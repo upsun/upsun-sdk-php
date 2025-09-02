@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DefaultConfig implements JsonSerializable
@@ -28,33 +27,12 @@ final class DefaultConfig implements JsonSerializable
         'manual_count' => 'manual_count',
         'schedule' => 'schedule'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'manual_count' => 'setManualCount',
-            'schedule' => 'setSchedule'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'manual_count' => 'getManualCount',
-            'schedule' => 'getSchedule'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $manual_count,
-        public readonly array $schedule
+        public readonly ?int $manual_count = null,
+        public readonly ?array $schedule = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'manual_count' => false,
-        'schedule' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class DefaultConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

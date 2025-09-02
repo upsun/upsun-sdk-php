@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GithubIntegration implements JsonSerializable
@@ -39,77 +38,23 @@ final class GithubIntegration implements JsonSerializable
         'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data',
         'token_type' => 'token_type'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'base_url' => 'setBaseUrl',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
-            'token_type' => 'setTokenType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'base_url' => 'getBaseUrl',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
-            'token_type' => 'getTokenType'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly bool $fetch_branches,
-        public readonly bool $prune_branches,
-        public readonly string $environment_init_resources,
-        public readonly ?string $base_url,
-        public readonly string $repository,
-        public readonly bool $build_pull_requests,
-        public readonly bool $build_draft_pull_requests,
-        public readonly bool $build_pull_requests_post_merge,
-        public readonly bool $pull_requests_clone_parent_data,
-        public readonly string $token_type,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?bool $fetch_branches = null,
+        public readonly ?bool $prune_branches = null,
+        public readonly ?string $environment_init_resources = null,
+        public readonly ?string $base_url = null,
+        public readonly ?string $repository = null,
+        public readonly ?bool $build_pull_requests = null,
+        public readonly ?bool $build_draft_pull_requests = null,
+        public readonly ?bool $build_pull_requests_post_merge = null,
+        public readonly ?bool $pull_requests_clone_parent_data = null,
+        public readonly ?string $token_type = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'fetch_branches' => false,
-        'prune_branches' => false,
-        'environment_init_resources' => false,
-        'base_url' => true,
-        'repository' => false,
-        'build_pull_requests' => false,
-        'build_draft_pull_requests' => false,
-        'build_pull_requests_post_merge' => false,
-        'pull_requests_clone_parent_data' => false,
-        'token_type' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -133,7 +78,6 @@ final class GithubIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

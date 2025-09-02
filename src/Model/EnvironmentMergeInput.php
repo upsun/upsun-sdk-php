@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentMergeInput implements JsonSerializable
@@ -27,29 +26,11 @@ final class EnvironmentMergeInput implements JsonSerializable
     private static array $attributeMap = [
         'resources' => 'resources'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'resources' => 'setResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'resources' => 'getResources'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\Upsun\Model\Resources4 $resources,
+        public readonly ?\Upsun\Model\Resources4 $resources = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'resources' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class EnvironmentMergeInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

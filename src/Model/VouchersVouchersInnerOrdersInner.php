@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class VouchersVouchersInnerOrdersInner implements JsonSerializable
@@ -33,53 +32,17 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
         'order_discount' => 'order_discount',
         'currency' => 'currency'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'order_id' => 'setOrderId',
-            'status' => 'setStatus',
-            'billing_period_start' => 'setBillingPeriodStart',
-            'billing_period_end' => 'setBillingPeriodEnd',
-            'order_total' => 'setOrderTotal',
-            'order_discount' => 'setOrderDiscount',
-            'currency' => 'setCurrency'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'order_id' => 'getOrderId',
-            'status' => 'getStatus',
-            'billing_period_start' => 'getBillingPeriodStart',
-            'billing_period_end' => 'getBillingPeriodEnd',
-            'order_total' => 'getOrderTotal',
-            'order_discount' => 'getOrderDiscount',
-            'currency' => 'getCurrency'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $order_id,
-        public readonly string $status,
-        public readonly string $billing_period_start,
-        public readonly string $billing_period_end,
-        public readonly string $order_total,
-        public readonly string $order_discount,
-        public readonly string $currency,
+        public readonly ?string $order_id = null,
+        public readonly ?string $status = null,
+        public readonly ?string $billing_period_start = null,
+        public readonly ?string $billing_period_end = null,
+        public readonly ?string $order_total = null,
+        public readonly ?string $order_discount = null,
+        public readonly ?string $currency = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'order_id' => false,
-        'status' => false,
-        'billing_period_start' => false,
-        'billing_period_end' => false,
-        'order_total' => false,
-        'order_discount' => false,
-        'currency' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

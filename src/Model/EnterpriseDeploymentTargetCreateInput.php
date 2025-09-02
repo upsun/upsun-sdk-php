@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
@@ -31,45 +30,15 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
         'ssh_hosts' => 'ssh_hosts',
         'enterprise_environments_mapping' => 'enterprise_environments_mapping'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $name,
-        public readonly object $site_urls,
-        public readonly array $ssh_hosts,
-        public readonly object $enterprise_environments_mapping,
+        public readonly ?string $type = null,
+        public readonly ?string $name = null,
+        public readonly ?object $site_urls = null,
+        public readonly ?array $ssh_hosts = [],
+        public readonly ?object $enterprise_environments_mapping = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'site_urls' => false,
-        'ssh_hosts' => false,
-        'enterprise_environments_mapping' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

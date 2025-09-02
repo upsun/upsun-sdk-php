@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateProjectInviteRequest implements JsonSerializable
@@ -31,45 +30,15 @@ final class CreateProjectInviteRequest implements JsonSerializable
         'environments' => 'environments',
         'force' => 'force'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'role' => 'setRole',
-            'email' => 'setEmail',
-            'permissions' => 'setPermissions',
-            'environments' => 'setEnvironments',
-            'force' => 'setForce'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'role' => 'getRole',
-            'email' => 'getEmail',
-            'permissions' => 'getPermissions',
-            'environments' => 'getEnvironments',
-            'force' => 'getForce'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $role,
-        public readonly string $email,
-        public readonly array $permissions,
-        public readonly array $environments,
-        public readonly bool $force,
+        public readonly ?string $role = null,
+        public readonly ?string $email = null,
+        public readonly ?array $permissions = [],
+        public readonly ?array $environments = [],
+        public readonly ?bool $force = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'role' => false,
-        'email' => false,
-        'permissions' => false,
-        'environments' => false,
-        'force' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class CreateProjectInviteRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

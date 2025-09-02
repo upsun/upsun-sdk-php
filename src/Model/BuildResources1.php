@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class BuildResources1 implements JsonSerializable
@@ -28,33 +27,12 @@ final class BuildResources1 implements JsonSerializable
         'cpu' => 'cpu',
         'memory' => 'memory'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu' => 'setCpu',
-            'memory' => 'setMemory'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu' => 'getCpu',
-            'memory' => 'getMemory'
-        ];
-    
-    
+
     public function __construct(
-        public readonly float $cpu,
-        public readonly int $memory,
+        public readonly ?float $cpu = null,
+        public readonly ?int $memory = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'cpu' => false,
-        'memory' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class BuildResources1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

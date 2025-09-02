@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateUsageAlertRequest implements JsonSerializable
@@ -28,33 +27,12 @@ final class CreateUsageAlertRequest implements JsonSerializable
         'id' => 'id',
         'config' => 'config'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'config' => 'getConfig'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly \Upsun\Model\CreateUsageAlertRequestConfig $config,
+        public readonly ?string $id = null,
+        public readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'config' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CreateUsageAlertRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

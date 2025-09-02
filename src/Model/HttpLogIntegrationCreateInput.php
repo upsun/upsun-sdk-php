@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class HttpLogIntegrationCreateInput implements JsonSerializable
@@ -31,45 +30,15 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
         'headers' => 'headers',
         'tls_verify' => 'tls_verify'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'url' => 'setUrl',
-            'headers' => 'setHeaders',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'url' => 'getUrl',
-            'headers' => 'getHeaders',
-            'tls_verify' => 'getTlsVerify'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly array $extra,
-        public readonly string $url,
-        public readonly array $headers,
-        public readonly bool $tls_verify,
+        public readonly ?string $type = null,
+        public readonly ?array $extra = [],
+        public readonly ?string $url = null,
+        public readonly ?array $headers = [],
+        public readonly ?bool $tls_verify = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'extra' => false,
-        'url' => false,
-        'headers' => false,
-        'tls_verify' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

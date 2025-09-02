@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SendOrgMfaRemindersRequest implements JsonSerializable
@@ -27,29 +26,11 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     private static array $attributeMap = [
         'user_ids' => 'user_ids'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_ids' => 'setUserIds'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_ids' => 'getUserIds'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $user_ids
+        public readonly ?array $user_ids = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'user_ids' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

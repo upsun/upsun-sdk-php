@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
@@ -29,37 +28,13 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
         'type' => 'type',
         'services' => 'services'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'type' => 'setType',
-            'services' => 'setServices'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'type' => 'getType',
-            'services' => 'getServices'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $id,
-        public readonly string $type,
-        public readonly ?array $services
+        public readonly ?string $id = null,
+        public readonly ?string $type = null,
+        public readonly ?array $services = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => true,
-        'type' => false,
-        'services' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

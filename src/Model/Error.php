@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Error implements JsonSerializable
@@ -31,45 +30,15 @@ final class Error implements JsonSerializable
         'detail' => 'detail',
         'title' => 'title'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'status' => 'setStatus',
-            'message' => 'setMessage',
-            'code' => 'setCode',
-            'detail' => 'setDetail',
-            'title' => 'setTitle'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'status' => 'getStatus',
-            'message' => 'getMessage',
-            'code' => 'getCode',
-            'detail' => 'getDetail',
-            'title' => 'getTitle'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $status,
-        public readonly string $message,
-        public readonly float $code,
-        public readonly object $detail,
-        public readonly string $title,
+        public readonly ?string $status = null,
+        public readonly ?string $message = null,
+        public readonly ?float $code = null,
+        public readonly ?object $detail = null,
+        public readonly ?string $title = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'status' => false,
-        'message' => false,
-        'code' => false,
-        'detail' => false,
-        'title' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class Error implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

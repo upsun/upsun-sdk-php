@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
@@ -29,37 +28,13 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
         'mode' => 'mode',
         'contents' => 'contents'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'path' => 'setPath',
-            'mode' => 'setMode',
-            'contents' => 'setContents'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'path' => 'getPath',
-            'mode' => 'getMode',
-            'contents' => 'getContents'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $path,
-        public readonly int $mode,
-        public readonly string $contents,
+        public readonly ?string $path = null,
+        public readonly ?int $mode = null,
+        public readonly ?string $contents = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'path' => false,
-        'mode' => false,
-        'contents' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

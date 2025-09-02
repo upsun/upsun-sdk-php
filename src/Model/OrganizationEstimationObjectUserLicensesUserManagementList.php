@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesUserManagementList implements JsonSerializable
@@ -28,33 +27,12 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         'standard_management_user' => 'standard_management_user',
         'advanced_management_user' => 'advanced_management_user'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'standard_management_user' => 'setStandardManagementUser',
-            'advanced_management_user' => 'setAdvancedManagementUser'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'standard_management_user' => 'getStandardManagementUser',
-            'advanced_management_user' => 'getAdvancedManagementUser'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standard_management_user,
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advanced_management_user,
+        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standard_management_user = null,
+        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advanced_management_user = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'standard_management_user' => false,
-        'advanced_management_user' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

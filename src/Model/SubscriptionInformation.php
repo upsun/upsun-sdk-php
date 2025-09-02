@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SubscriptionInformation implements JsonSerializable
@@ -38,73 +37,22 @@ final class SubscriptionInformation implements JsonSerializable
         'resource_validation_url' => 'resource_validation_url',
         'image_types' => 'image_types'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'license_uri' => 'setLicenseUri',
-            'plan' => 'setPlan',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'included_users' => 'setIncludedUsers',
-            'subscription_management_uri' => 'setSubscriptionManagementUri',
-            'restricted' => 'setRestricted',
-            'suspended' => 'setSuspended',
-            'user_licenses' => 'setUserLicenses',
-            'resources' => 'setResources',
-            'resource_validation_url' => 'setResourceValidationUrl',
-            'image_types' => 'setImageTypes'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'license_uri' => 'getLicenseUri',
-            'plan' => 'getPlan',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'included_users' => 'getIncludedUsers',
-            'subscription_management_uri' => 'getSubscriptionManagementUri',
-            'restricted' => 'getRestricted',
-            'suspended' => 'getSuspended',
-            'user_licenses' => 'getUserLicenses',
-            'resources' => 'getResources',
-            'resource_validation_url' => 'getResourceValidationUrl',
-            'image_types' => 'getImageTypes'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $license_uri,
-        public readonly string $plan,
-        public readonly int $environments,
-        public readonly int $storage,
-        public readonly int $included_users,
-        public readonly string $subscription_management_uri,
-        public readonly bool $restricted,
-        public readonly bool $suspended,
-        public readonly int $user_licenses,
-        public readonly \Upsun\Model\ResourcesLimits $resources,
-        public readonly string $resource_validation_url,
-        public readonly \Upsun\Model\RestrictedAndDeniedImageTypes $image_types,
+        public readonly ?string $license_uri = null,
+        public readonly ?string $plan = null,
+        public readonly ?int $environments = null,
+        public readonly ?int $storage = null,
+        public readonly ?int $included_users = null,
+        public readonly ?string $subscription_management_uri = null,
+        public readonly ?bool $restricted = null,
+        public readonly ?bool $suspended = null,
+        public readonly ?int $user_licenses = null,
+        public readonly ?\Upsun\Model\ResourcesLimits $resources = null,
+        public readonly ?string $resource_validation_url = null,
+        public readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $image_types = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'license_uri' => false,
-        'plan' => false,
-        'environments' => false,
-        'storage' => false,
-        'included_users' => false,
-        'subscription_management_uri' => false,
-        'restricted' => false,
-        'suspended' => false,
-        'user_licenses' => false,
-        'resources' => false,
-        'resource_validation_url' => false,
-        'image_types' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -127,7 +75,6 @@ final class SubscriptionInformation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

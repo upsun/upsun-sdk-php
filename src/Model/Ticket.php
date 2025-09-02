@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Ticket implements JsonSerializable
@@ -61,165 +60,45 @@ final class Ticket implements JsonSerializable
         'jira' => 'jira',
         'zd_ticket_url' => 'zd_ticket_url'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'ticket_id' => 'setTicketId',
-            'created' => 'setCreated',
-            'updated' => 'setUpdated',
-            'type' => 'setType',
-            'subject' => 'setSubject',
-            'description' => 'setDescription',
-            'priority' => 'setPriority',
-            'followup_tid' => 'setFollowupTid',
-            'status' => 'setStatus',
-            'recipient' => 'setRecipient',
-            'requester_id' => 'setRequesterId',
-            'submitter_id' => 'setSubmitterId',
-            'assignee_id' => 'setAssigneeId',
-            'organization_id' => 'setOrganizationId',
-            'collaborator_ids' => 'setCollaboratorIds',
-            'has_incidents' => 'setHasIncidents',
-            'due' => 'setDue',
-            'tags' => 'setTags',
-            'subscription_id' => 'setSubscriptionId',
-            'ticket_group' => 'setTicketGroup',
-            'support_plan' => 'setSupportPlan',
-            'affected_url' => 'setAffectedUrl',
-            'queue' => 'setQueue',
-            'issue_type' => 'setIssueType',
-            'resolution_time' => 'setResolutionTime',
-            'response_time' => 'setResponseTime',
-            'project_url' => 'setProjectUrl',
-            'region' => 'setRegion',
-            'category' => 'setCategory',
-            'environment' => 'setEnvironment',
-            'ticket_sharing_status' => 'setTicketSharingStatus',
-            'application_ticket_url' => 'setApplicationTicketUrl',
-            'infrastructure_ticket_url' => 'setInfrastructureTicketUrl',
-            'jira' => 'setJira',
-            'zd_ticket_url' => 'setZdTicketUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'ticket_id' => 'getTicketId',
-            'created' => 'getCreated',
-            'updated' => 'getUpdated',
-            'type' => 'getType',
-            'subject' => 'getSubject',
-            'description' => 'getDescription',
-            'priority' => 'getPriority',
-            'followup_tid' => 'getFollowupTid',
-            'status' => 'getStatus',
-            'recipient' => 'getRecipient',
-            'requester_id' => 'getRequesterId',
-            'submitter_id' => 'getSubmitterId',
-            'assignee_id' => 'getAssigneeId',
-            'organization_id' => 'getOrganizationId',
-            'collaborator_ids' => 'getCollaboratorIds',
-            'has_incidents' => 'getHasIncidents',
-            'due' => 'getDue',
-            'tags' => 'getTags',
-            'subscription_id' => 'getSubscriptionId',
-            'ticket_group' => 'getTicketGroup',
-            'support_plan' => 'getSupportPlan',
-            'affected_url' => 'getAffectedUrl',
-            'queue' => 'getQueue',
-            'issue_type' => 'getIssueType',
-            'resolution_time' => 'getResolutionTime',
-            'response_time' => 'getResponseTime',
-            'project_url' => 'getProjectUrl',
-            'region' => 'getRegion',
-            'category' => 'getCategory',
-            'environment' => 'getEnvironment',
-            'ticket_sharing_status' => 'getTicketSharingStatus',
-            'application_ticket_url' => 'getApplicationTicketUrl',
-            'infrastructure_ticket_url' => 'getInfrastructureTicketUrl',
-            'jira' => 'getJira',
-            'zd_ticket_url' => 'getZdTicketUrl'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $ticket_id,
-        public readonly \DateTime $created,
-        public readonly \DateTime $updated,
-        public readonly string $type,
-        public readonly string $subject,
-        public readonly string $description,
-        public readonly string $priority,
-        public readonly string $followup_tid,
-        public readonly string $status,
-        public readonly string $recipient,
-        public readonly string $requester_id,
-        public readonly string $submitter_id,
-        public readonly string $assignee_id,
-        public readonly string $organization_id,
-        public readonly array $collaborator_ids,
-        public readonly bool $has_incidents,
-        public readonly \DateTime $due,
-        public readonly array $tags,
-        public readonly string $subscription_id,
-        public readonly string $ticket_group,
-        public readonly string $support_plan,
-        public readonly string $affected_url,
-        public readonly string $queue,
-        public readonly string $issue_type,
-        public readonly \DateTime $resolution_time,
-        public readonly \DateTime $response_time,
-        public readonly string $project_url,
-        public readonly string $region,
-        public readonly string $category,
-        public readonly string $environment,
-        public readonly string $ticket_sharing_status,
-        public readonly string $application_ticket_url,
-        public readonly string $infrastructure_ticket_url,
-        public readonly array $jira,
-        public readonly string $zd_ticket_url,
+        public readonly ?int $ticket_id = null,
+        public readonly ?\DateTime $created = null,
+        public readonly ?\DateTime $updated = null,
+        public readonly ?string $type = null,
+        public readonly ?string $subject = null,
+        public readonly ?string $description = null,
+        public readonly ?string $priority = null,
+        public readonly ?string $followup_tid = null,
+        public readonly ?string $status = null,
+        public readonly ?string $recipient = null,
+        public readonly ?string $requester_id = null,
+        public readonly ?string $submitter_id = null,
+        public readonly ?string $assignee_id = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?array $collaborator_ids = [],
+        public readonly ?bool $has_incidents = null,
+        public readonly ?\DateTime $due = null,
+        public readonly ?array $tags = [],
+        public readonly ?string $subscription_id = null,
+        public readonly ?string $ticket_group = null,
+        public readonly ?string $support_plan = null,
+        public readonly ?string $affected_url = null,
+        public readonly ?string $queue = null,
+        public readonly ?string $issue_type = null,
+        public readonly ?\DateTime $resolution_time = null,
+        public readonly ?\DateTime $response_time = null,
+        public readonly ?string $project_url = null,
+        public readonly ?string $region = null,
+        public readonly ?string $category = null,
+        public readonly ?string $environment = null,
+        public readonly ?string $ticket_sharing_status = null,
+        public readonly ?string $application_ticket_url = null,
+        public readonly ?string $infrastructure_ticket_url = null,
+        public readonly ?array $jira = [],
+        public readonly ?string $zd_ticket_url = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'ticket_id' => false,
-        'created' => false,
-        'updated' => false,
-        'type' => false,
-        'subject' => false,
-        'description' => false,
-        'priority' => false,
-        'followup_tid' => false,
-        'status' => false,
-        'recipient' => false,
-        'requester_id' => false,
-        'submitter_id' => false,
-        'assignee_id' => false,
-        'organization_id' => false,
-        'collaborator_ids' => false,
-        'has_incidents' => false,
-        'due' => false,
-        'tags' => false,
-        'subscription_id' => false,
-        'ticket_group' => false,
-        'support_plan' => false,
-        'affected_url' => false,
-        'queue' => false,
-        'issue_type' => false,
-        'resolution_time' => false,
-        'response_time' => false,
-        'project_url' => false,
-        'region' => false,
-        'category' => false,
-        'environment' => false,
-        'ticket_sharing_status' => false,
-        'application_ticket_url' => false,
-        'infrastructure_ticket_url' => false,
-        'jira' => false,
-        'zd_ticket_url' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -265,7 +144,6 @@ final class Ticket implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

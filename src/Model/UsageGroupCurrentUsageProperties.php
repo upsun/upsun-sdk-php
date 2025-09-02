@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
@@ -35,61 +34,19 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         'daily_average' => 'daily_average',
         'daily_average_formatted' => 'daily_average_formatted'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'title' => 'setTitle',
-            'type' => 'setType',
-            'current_usage' => 'setCurrentUsage',
-            'current_usage_formatted' => 'setCurrentUsageFormatted',
-            'not_charged' => 'setNotCharged',
-            'free_quantity' => 'setFreeQuantity',
-            'free_quantity_formatted' => 'setFreeQuantityFormatted',
-            'daily_average' => 'setDailyAverage',
-            'daily_average_formatted' => 'setDailyAverageFormatted'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'title' => 'getTitle',
-            'type' => 'getType',
-            'current_usage' => 'getCurrentUsage',
-            'current_usage_formatted' => 'getCurrentUsageFormatted',
-            'not_charged' => 'getNotCharged',
-            'free_quantity' => 'getFreeQuantity',
-            'free_quantity_formatted' => 'getFreeQuantityFormatted',
-            'daily_average' => 'getDailyAverage',
-            'daily_average_formatted' => 'getDailyAverageFormatted'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $title,
-        public readonly bool $type,
-        public readonly float $current_usage,
-        public readonly string $current_usage_formatted,
-        public readonly bool $not_charged,
-        public readonly float $free_quantity,
-        public readonly string $free_quantity_formatted,
-        public readonly float $daily_average,
-        public readonly string $daily_average_formatted,
+        public readonly ?string $title = null,
+        public readonly ?bool $type = null,
+        public readonly ?float $current_usage = null,
+        public readonly ?string $current_usage_formatted = null,
+        public readonly ?bool $not_charged = null,
+        public readonly ?float $free_quantity = null,
+        public readonly ?string $free_quantity_formatted = null,
+        public readonly ?float $daily_average = null,
+        public readonly ?string $daily_average_formatted = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'title' => false,
-        'type' => false,
-        'current_usage' => false,
-        'current_usage_formatted' => false,
-        'not_charged' => false,
-        'free_quantity' => false,
-        'free_quantity_formatted' => false,
-        'daily_average' => false,
-        'daily_average_formatted' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

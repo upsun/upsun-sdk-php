@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ArrayFilter implements JsonSerializable
@@ -30,41 +29,14 @@ final class ArrayFilter implements JsonSerializable
         'in' => 'in',
         'nin' => 'nin'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eq' => 'setEq',
-            'ne' => 'setNe',
-            'in' => 'setIn',
-            'nin' => 'setNin'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eq' => 'getEq',
-            'ne' => 'getNe',
-            'in' => 'getIn',
-            'nin' => 'getNin'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $eq,
-        public readonly string $ne,
-        public readonly string $in,
-        public readonly string $nin,
+        public readonly ?string $eq = null,
+        public readonly ?string $ne = null,
+        public readonly ?string $in = null,
+        public readonly ?string $nin = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'eq' => false,
-        'ne' => false,
-        'in' => false,
-        'nin' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class ArrayFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

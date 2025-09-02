@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationInvitationOwner implements JsonSerializable
@@ -28,33 +27,12 @@ final class OrganizationInvitationOwner implements JsonSerializable
         'id' => 'id',
         'display_name' => 'display_name'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'display_name' => 'setDisplayName'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'display_name' => 'getDisplayName'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $display_name,
+        public readonly ?string $id = null,
+        public readonly ?string $display_name = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'display_name' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class OrganizationInvitationOwner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

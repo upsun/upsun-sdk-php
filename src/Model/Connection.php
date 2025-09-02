@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Connection implements JsonSerializable
@@ -33,53 +32,17 @@ final class Connection implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'provider' => 'setProvider',
-            'provider_type' => 'setProviderType',
-            'is_mandatory' => 'setIsMandatory',
-            'subject' => 'setSubject',
-            'email_address' => 'setEmailAddress',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'provider' => 'getProvider',
-            'provider_type' => 'getProviderType',
-            'is_mandatory' => 'getIsMandatory',
-            'subject' => 'getSubject',
-            'email_address' => 'getEmailAddress',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $provider,
-        public readonly string $provider_type,
-        public readonly bool $is_mandatory,
-        public readonly string $subject,
-        public readonly string $email_address,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
+        public readonly ?string $provider = null,
+        public readonly ?string $provider_type = null,
+        public readonly ?bool $is_mandatory = null,
+        public readonly ?string $subject = null,
+        public readonly ?string $email_address = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'provider' => false,
-        'provider_type' => false,
-        'is_mandatory' => false,
-        'subject' => false,
-        'email_address' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class Connection implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

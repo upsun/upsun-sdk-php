@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GitLabIntegrationCreateInput implements JsonSerializable
@@ -36,65 +35,20 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
         'build_wip_merge_requests' => 'build_wip_merge_requests',
         'merge_requests_clone_parent_data' => 'merge_requests_clone_parent_data'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'token' => 'setToken',
-            'base_url' => 'setBaseUrl',
-            'project' => 'setProject',
-            'build_merge_requests' => 'setBuildMergeRequests',
-            'build_wip_merge_requests' => 'setBuildWipMergeRequests',
-            'merge_requests_clone_parent_data' => 'setMergeRequestsCloneParentData'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'token' => 'getToken',
-            'base_url' => 'getBaseUrl',
-            'project' => 'getProject',
-            'build_merge_requests' => 'getBuildMergeRequests',
-            'build_wip_merge_requests' => 'getBuildWipMergeRequests',
-            'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly bool $fetch_branches,
-        public readonly bool $prune_branches,
-        public readonly string $environment_init_resources,
-        public readonly string $token,
-        public readonly string $base_url,
-        public readonly string $project,
-        public readonly bool $build_merge_requests,
-        public readonly bool $build_wip_merge_requests,
-        public readonly bool $merge_requests_clone_parent_data,
+        public readonly ?string $type = null,
+        public readonly ?bool $fetch_branches = null,
+        public readonly ?bool $prune_branches = null,
+        public readonly ?string $environment_init_resources = null,
+        public readonly ?string $token = null,
+        public readonly ?string $base_url = null,
+        public readonly ?string $project = null,
+        public readonly ?bool $build_merge_requests = null,
+        public readonly ?bool $build_wip_merge_requests = null,
+        public readonly ?bool $merge_requests_clone_parent_data = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'fetch_branches' => false,
-        'prune_branches' => false,
-        'environment_init_resources' => false,
-        'token' => false,
-        'base_url' => false,
-        'project' => false,
-        'build_merge_requests' => false,
-        'build_wip_merge_requests' => false,
-        'merge_requests_clone_parent_data' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

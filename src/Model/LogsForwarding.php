@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class LogsForwarding implements JsonSerializable
@@ -27,29 +26,11 @@ final class LogsForwarding implements JsonSerializable
     private static array $attributeMap = [
         'max_extra_payload_size' => 'max_extra_payload_size'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'max_extra_payload_size' => 'setMaxExtraPayloadSize'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'max_extra_payload_size' => 'getMaxExtraPayloadSize'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $max_extra_payload_size,
+        public readonly ?int $max_extra_payload_size = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'max_extra_payload_size' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class LogsForwarding implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

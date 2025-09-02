@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateUsageAlertRequestConfig implements JsonSerializable
@@ -27,29 +26,11 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     private static array $attributeMap = [
         'threshold' => 'threshold'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'threshold' => 'setThreshold'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'threshold' => 'getThreshold'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $threshold,
+        public readonly ?int $threshold = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'threshold' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

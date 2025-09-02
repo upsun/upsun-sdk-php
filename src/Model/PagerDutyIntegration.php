@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class PagerDutyIntegration implements JsonSerializable
@@ -30,41 +29,14 @@ final class PagerDutyIntegration implements JsonSerializable
         'type' => 'type',
         'routing_key' => 'routing_key'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'routing_key' => 'setRoutingKey'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'routing_key' => 'getRoutingKey'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly string $routing_key,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?string $routing_key = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'routing_key' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class PagerDutyIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

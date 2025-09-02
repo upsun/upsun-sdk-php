@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationLinks implements JsonSerializable
@@ -41,85 +40,25 @@ final class OrganizationLinks implements JsonSerializable
         'estimate_subscription' => 'estimate-subscription',
         'mfa_enforcement' => 'mfa-enforcement'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'update' => 'setUpdate',
-            'delete' => 'setDelete',
-            'members' => 'setMembers',
-            'create_member' => 'setCreateMember',
-            'address' => 'setAddress',
-            'profile' => 'setProfile',
-            'payment_source' => 'setPaymentSource',
-            'orders' => 'setOrders',
-            'vouchers' => 'setVouchers',
-            'apply_voucher' => 'setApplyVoucher',
-            'subscriptions' => 'setSubscriptions',
-            'create_subscription' => 'setCreateSubscription',
-            'estimate_subscription' => 'setEstimateSubscription',
-            'mfa_enforcement' => 'setMfaEnforcement'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'update' => 'getUpdate',
-            'delete' => 'getDelete',
-            'members' => 'getMembers',
-            'create_member' => 'getCreateMember',
-            'address' => 'getAddress',
-            'profile' => 'getProfile',
-            'payment_source' => 'getPaymentSource',
-            'orders' => 'getOrders',
-            'vouchers' => 'getVouchers',
-            'apply_voucher' => 'getApplyVoucher',
-            'subscriptions' => 'getSubscriptions',
-            'create_subscription' => 'getCreateSubscription',
-            'estimate_subscription' => 'getEstimateSubscription',
-            'mfa_enforcement' => 'getMfaEnforcement'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\OrganizationLinksSelf $self,
-        public readonly \Upsun\Model\OrganizationLinksUpdate $update,
-        public readonly \Upsun\Model\OrganizationLinksDelete $delete,
-        public readonly \Upsun\Model\OrganizationLinksMembers $members,
-        public readonly \Upsun\Model\OrganizationLinksCreateMember $create_member,
-        public readonly \Upsun\Model\OrganizationLinksAddress $address,
-        public readonly \Upsun\Model\OrganizationLinksProfile $profile,
-        public readonly \Upsun\Model\OrganizationLinksPaymentSource $payment_source,
-        public readonly \Upsun\Model\OrganizationLinksOrders $orders,
-        public readonly \Upsun\Model\OrganizationLinksVouchers $vouchers,
-        public readonly \Upsun\Model\OrganizationLinksApplyVoucher $apply_voucher,
-        public readonly \Upsun\Model\OrganizationLinksSubscriptions $subscriptions,
-        public readonly \Upsun\Model\OrganizationLinksCreateSubscription $create_subscription,
-        public readonly \Upsun\Model\OrganizationLinksEstimateSubscription $estimate_subscription,
-        public readonly \Upsun\Model\OrganizationLinksMfaEnforcement $mfa_enforcement,
+        public readonly ?\Upsun\Model\OrganizationLinksSelf $self = null,
+        public readonly ?\Upsun\Model\OrganizationLinksUpdate $update = null,
+        public readonly ?\Upsun\Model\OrganizationLinksDelete $delete = null,
+        public readonly ?\Upsun\Model\OrganizationLinksMembers $members = null,
+        public readonly ?\Upsun\Model\OrganizationLinksCreateMember $create_member = null,
+        public readonly ?\Upsun\Model\OrganizationLinksAddress $address = null,
+        public readonly ?\Upsun\Model\OrganizationLinksProfile $profile = null,
+        public readonly ?\Upsun\Model\OrganizationLinksPaymentSource $payment_source = null,
+        public readonly ?\Upsun\Model\OrganizationLinksOrders $orders = null,
+        public readonly ?\Upsun\Model\OrganizationLinksVouchers $vouchers = null,
+        public readonly ?\Upsun\Model\OrganizationLinksApplyVoucher $apply_voucher = null,
+        public readonly ?\Upsun\Model\OrganizationLinksSubscriptions $subscriptions = null,
+        public readonly ?\Upsun\Model\OrganizationLinksCreateSubscription $create_subscription = null,
+        public readonly ?\Upsun\Model\OrganizationLinksEstimateSubscription $estimate_subscription = null,
+        public readonly ?\Upsun\Model\OrganizationLinksMfaEnforcement $mfa_enforcement = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'self' => false,
-        'update' => false,
-        'delete' => false,
-        'members' => false,
-        'create_member' => false,
-        'address' => false,
-        'profile' => false,
-        'payment_source' => false,
-        'orders' => false,
-        'vouchers' => false,
-        'apply_voucher' => false,
-        'subscriptions' => false,
-        'create_subscription' => false,
-        'estimate_subscription' => false,
-        'mfa_enforcement' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -145,7 +84,6 @@ final class OrganizationLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

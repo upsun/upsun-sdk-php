@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GithubIntegrationCreateInput implements JsonSerializable
@@ -37,69 +36,21 @@ final class GithubIntegrationCreateInput implements JsonSerializable
         'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
         'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'token' => 'setToken',
-            'base_url' => 'setBaseUrl',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'token' => 'getToken',
-            'base_url' => 'getBaseUrl',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly bool $fetch_branches,
-        public readonly bool $prune_branches,
-        public readonly string $environment_init_resources,
-        public readonly string $token,
-        public readonly ?string $base_url,
-        public readonly string $repository,
-        public readonly bool $build_pull_requests,
-        public readonly bool $build_draft_pull_requests,
-        public readonly bool $build_pull_requests_post_merge,
-        public readonly bool $pull_requests_clone_parent_data,
+        public readonly ?string $type = null,
+        public readonly ?bool $fetch_branches = null,
+        public readonly ?bool $prune_branches = null,
+        public readonly ?string $environment_init_resources = null,
+        public readonly ?string $token = null,
+        public readonly ?string $base_url = null,
+        public readonly ?string $repository = null,
+        public readonly ?bool $build_pull_requests = null,
+        public readonly ?bool $build_draft_pull_requests = null,
+        public readonly ?bool $build_pull_requests_post_merge = null,
+        public readonly ?bool $pull_requests_clone_parent_data = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'fetch_branches' => false,
-        'prune_branches' => false,
-        'environment_init_resources' => false,
-        'token' => false,
-        'base_url' => true,
-        'repository' => false,
-        'build_pull_requests' => false,
-        'build_draft_pull_requests' => false,
-        'build_pull_requests_post_merge' => false,
-        'pull_requests_clone_parent_data' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -121,7 +72,6 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

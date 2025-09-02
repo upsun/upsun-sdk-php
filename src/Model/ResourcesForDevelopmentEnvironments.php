@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ResourcesForDevelopmentEnvironments implements JsonSerializable
@@ -30,41 +29,14 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
         'max_memory' => 'max_memory',
         'max_environments' => 'max_environments'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'legacy_development' => 'setLegacyDevelopment',
-            'max_cpu' => 'setMaxCpu',
-            'max_memory' => 'setMaxMemory',
-            'max_environments' => 'setMaxEnvironments'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'legacy_development' => 'getLegacyDevelopment',
-            'max_cpu' => 'getMaxCpu',
-            'max_memory' => 'getMaxMemory',
-            'max_environments' => 'getMaxEnvironments'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $legacy_development,
-        public readonly ?float $max_cpu,
-        public readonly ?int $max_memory,
-        public readonly ?int $max_environments,
+        public readonly ?bool $legacy_development = null,
+        public readonly ?float $max_cpu = null,
+        public readonly ?int $max_memory = null,
+        public readonly ?int $max_environments = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'legacy_development' => false,
-        'max_cpu' => true,
-        'max_memory' => true,
-        'max_environments' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

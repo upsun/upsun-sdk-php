@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentRestoreInput implements JsonSerializable
@@ -31,45 +30,15 @@ final class EnvironmentRestoreInput implements JsonSerializable
         'restore_resources' => 'restore_resources',
         'resources' => 'resources'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'environment_name' => 'setEnvironmentName',
-            'branch_from' => 'setBranchFrom',
-            'restore_code' => 'setRestoreCode',
-            'restore_resources' => 'setRestoreResources',
-            'resources' => 'setResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'environment_name' => 'getEnvironmentName',
-            'branch_from' => 'getBranchFrom',
-            'restore_code' => 'getRestoreCode',
-            'restore_resources' => 'getRestoreResources',
-            'resources' => 'getResources'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $environment_name,
-        public readonly ?string $branch_from,
-        public readonly bool $restore_code,
-        public readonly bool $restore_resources,
-        public readonly ?\Upsun\Model\Resources5 $resources,
+        public readonly ?string $environment_name = null,
+        public readonly ?string $branch_from = null,
+        public readonly ?bool $restore_code = null,
+        public readonly ?bool $restore_resources = null,
+        public readonly ?\Upsun\Model\Resources5 $resources = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'environment_name' => true,
-        'branch_from' => true,
-        'restore_code' => false,
-        'restore_resources' => false,
-        'resources' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class EnvironmentRestoreInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

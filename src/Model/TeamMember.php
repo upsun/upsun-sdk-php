@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TeamMember implements JsonSerializable
@@ -30,41 +29,14 @@ final class TeamMember implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'team_id' => 'setTeamId',
-            'user_id' => 'setUserId',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'team_id' => 'getTeamId',
-            'user_id' => 'getUserId',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $team_id,
-        public readonly string $user_id,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
+        public readonly ?string $team_id = null,
+        public readonly ?string $user_id = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'team_id' => false,
-        'user_id' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class TeamMember implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Region implements JsonSerializable
@@ -38,73 +37,22 @@ final class Region implements JsonSerializable
         'datacenter' => 'datacenter',
         'environmental_impact' => 'environmental_impact'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'label' => 'setLabel',
-            'zone' => 'setZone',
-            'selection_label' => 'setSelectionLabel',
-            'project_label' => 'setProjectLabel',
-            'timezone' => 'setTimezone',
-            'available' => 'setAvailable',
-            'private' => 'setPrivate',
-            'endpoint' => 'setEndpoint',
-            'provider' => 'setProvider',
-            'datacenter' => 'setDatacenter',
-            'environmental_impact' => 'setEnvironmentalImpact'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'label' => 'getLabel',
-            'zone' => 'getZone',
-            'selection_label' => 'getSelectionLabel',
-            'project_label' => 'getProjectLabel',
-            'timezone' => 'getTimezone',
-            'available' => 'getAvailable',
-            'private' => 'getPrivate',
-            'endpoint' => 'getEndpoint',
-            'provider' => 'getProvider',
-            'datacenter' => 'getDatacenter',
-            'environmental_impact' => 'getEnvironmentalImpact'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $label,
-        public readonly string $zone,
-        public readonly string $selection_label,
-        public readonly string $project_label,
-        public readonly string $timezone,
-        public readonly bool $available,
-        public readonly bool $private,
-        public readonly string $endpoint,
-        public readonly \Upsun\Model\RegionProvider $provider,
-        public readonly \Upsun\Model\RegionDatacenter $datacenter,
-        public readonly \Upsun\Model\RegionEnvironmentalImpact $environmental_impact,
+        public readonly ?string $id = null,
+        public readonly ?string $label = null,
+        public readonly ?string $zone = null,
+        public readonly ?string $selection_label = null,
+        public readonly ?string $project_label = null,
+        public readonly ?string $timezone = null,
+        public readonly ?bool $available = null,
+        public readonly ?bool $private = null,
+        public readonly ?string $endpoint = null,
+        public readonly ?\Upsun\Model\RegionProvider $provider = null,
+        public readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
+        public readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmental_impact = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'label' => false,
-        'zone' => false,
-        'selection_label' => false,
-        'project_label' => false,
-        'timezone' => false,
-        'available' => false,
-        'private' => false,
-        'endpoint' => false,
-        'provider' => false,
-        'datacenter' => false,
-        'environmental_impact' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -127,7 +75,6 @@ final class Region implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

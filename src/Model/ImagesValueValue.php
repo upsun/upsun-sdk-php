@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ImagesValueValue implements JsonSerializable
@@ -27,29 +26,11 @@ final class ImagesValueValue implements JsonSerializable
     private static array $attributeMap = [
         'available' => 'available'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'available' => 'setAvailable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'available' => 'getAvailable'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $available,
+        public readonly ?bool $available = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'available' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class ImagesValueValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

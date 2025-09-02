@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Discount implements JsonSerializable
@@ -37,69 +36,21 @@ final class Discount implements JsonSerializable
         'start_at' => 'start_at',
         'end_at' => 'end_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'type' => 'setType',
-            'type_label' => 'setTypeLabel',
-            'status' => 'setStatus',
-            'commitment' => 'setCommitment',
-            'total_months' => 'setTotalMonths',
-            'discount' => 'setDiscount',
-            'config' => 'setConfig',
-            'start_at' => 'setStartAt',
-            'end_at' => 'setEndAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'type' => 'getType',
-            'type_label' => 'getTypeLabel',
-            'status' => 'getStatus',
-            'commitment' => 'getCommitment',
-            'total_months' => 'getTotalMonths',
-            'discount' => 'getDiscount',
-            'config' => 'getConfig',
-            'start_at' => 'getStartAt',
-            'end_at' => 'getEndAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $id,
-        public readonly string $organization_id,
-        public readonly string $type,
-        public readonly string $type_label,
-        public readonly string $status,
-        public readonly ?\Upsun\Model\DiscountCommitment $commitment,
-        public readonly ?int $total_months,
-        public readonly \Upsun\Model\DiscountDiscount $discount,
-        public readonly object $config,
-        public readonly \DateTime $start_at,
-        public readonly ?\DateTime $end_at,
+        public readonly ?int $id = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?string $type = null,
+        public readonly ?string $type_label = null,
+        public readonly ?string $status = null,
+        public readonly ?\Upsun\Model\DiscountCommitment $commitment = null,
+        public readonly ?int $total_months = null,
+        public readonly ?\Upsun\Model\DiscountDiscount $discount = null,
+        public readonly ?object $config = null,
+        public readonly ?\DateTime $start_at = null,
+        public readonly ?\DateTime $end_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'organization_id' => false,
-        'type' => false,
-        'type_label' => false,
-        'status' => false,
-        'commitment' => true,
-        'total_months' => true,
-        'discount' => false,
-        'config' => false,
-        'start_at' => false,
-        'end_at' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -121,7 +72,6 @@ final class Discount implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

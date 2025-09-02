@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Invoice implements JsonSerializable
@@ -42,89 +41,26 @@ final class Invoice implements JsonSerializable
         'notes' => 'notes',
         'invoice_pdf' => 'invoice_pdf'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'invoice_number' => 'setInvoiceNumber',
-            'type' => 'setType',
-            'order_id' => 'setOrderId',
-            'related_invoice_id' => 'setRelatedInvoiceId',
-            'status' => 'setStatus',
-            'owner' => 'setOwner',
-            'invoice_date' => 'setInvoiceDate',
-            'invoice_due' => 'setInvoiceDue',
-            'created' => 'setCreated',
-            'changed' => 'setChanged',
-            'company' => 'setCompany',
-            'total' => 'setTotal',
-            'address' => 'setAddress',
-            'notes' => 'setNotes',
-            'invoice_pdf' => 'setInvoicePdf'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'invoice_number' => 'getInvoiceNumber',
-            'type' => 'getType',
-            'order_id' => 'getOrderId',
-            'related_invoice_id' => 'getRelatedInvoiceId',
-            'status' => 'getStatus',
-            'owner' => 'getOwner',
-            'invoice_date' => 'getInvoiceDate',
-            'invoice_due' => 'getInvoiceDue',
-            'created' => 'getCreated',
-            'changed' => 'getChanged',
-            'company' => 'getCompany',
-            'total' => 'getTotal',
-            'address' => 'getAddress',
-            'notes' => 'getNotes',
-            'invoice_pdf' => 'getInvoicePdf'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $invoice_number,
-        public readonly string $type,
-        public readonly string $order_id,
-        public readonly ?string $related_invoice_id,
-        public readonly string $status,
-        public readonly string $owner,
-        public readonly ?\DateTime $invoice_date,
-        public readonly ?\DateTime $invoice_due,
-        public readonly ?\DateTime $created,
-        public readonly ?\DateTime $changed,
-        public readonly string $company,
-        public readonly float $total,
-        public readonly \Upsun\Model\Address $address,
-        public readonly string $notes,
-        public readonly \Upsun\Model\InvoicePDF $invoice_pdf,
+        public readonly ?string $id = null,
+        public readonly ?string $invoice_number = null,
+        public readonly ?string $type = null,
+        public readonly ?string $order_id = null,
+        public readonly ?string $related_invoice_id = null,
+        public readonly ?string $status = null,
+        public readonly ?string $owner = null,
+        public readonly ?\DateTime $invoice_date = null,
+        public readonly ?\DateTime $invoice_due = null,
+        public readonly ?\DateTime $created = null,
+        public readonly ?\DateTime $changed = null,
+        public readonly ?string $company = null,
+        public readonly ?float $total = null,
+        public readonly ?\Upsun\Model\Address $address = null,
+        public readonly ?string $notes = null,
+        public readonly ?\Upsun\Model\InvoicePDF $invoice_pdf = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'invoice_number' => false,
-        'type' => false,
-        'order_id' => false,
-        'related_invoice_id' => true,
-        'status' => false,
-        'owner' => false,
-        'invoice_date' => true,
-        'invoice_due' => true,
-        'created' => true,
-        'changed' => true,
-        'company' => false,
-        'total' => false,
-        'address' => false,
-        'notes' => false,
-        'invoice_pdf' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -151,7 +87,6 @@ final class Invoice implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

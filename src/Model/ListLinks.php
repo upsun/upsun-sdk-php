@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListLinks implements JsonSerializable
@@ -29,37 +28,13 @@ final class ListLinks implements JsonSerializable
         'previous' => 'previous',
         'next' => 'next'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'previous' => 'setPrevious',
-            'next' => 'setNext'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'previous' => 'getPrevious',
-            'next' => 'getNext'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self,
-        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous,
-        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next,
+        public readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
+        public readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
+        public readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'self' => false,
-        'previous' => false,
-        'next' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ListLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

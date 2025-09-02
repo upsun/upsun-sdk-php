@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Config implements JsonSerializable
@@ -43,93 +42,27 @@ final class Config implements JsonSerializable
         'cdn_fastly' => 'cdn.fastly',
         'blackfire' => 'blackfire'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'newrelic' => 'setNewrelic',
-            'sumologic' => 'setSumologic',
-            'splunk' => 'setSplunk',
-            'httplog' => 'setHttplog',
-            'syslog' => 'setSyslog',
-            'webhook' => 'setWebhook',
-            'script' => 'setScript',
-            'github' => 'setGithub',
-            'gitlab' => 'setGitlab',
-            'bitbucket' => 'setBitbucket',
-            'bitbucket_server' => 'setBitbucketServer',
-            'health_email' => 'setHealthEmail',
-            'health_webhook' => 'setHealthWebhook',
-            'health_pagerduty' => 'setHealthPagerduty',
-            'health_slack' => 'setHealthSlack',
-            'cdn_fastly' => 'setCdnFastly',
-            'blackfire' => 'setBlackfire'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'newrelic' => 'getNewrelic',
-            'sumologic' => 'getSumologic',
-            'splunk' => 'getSplunk',
-            'httplog' => 'getHttplog',
-            'syslog' => 'getSyslog',
-            'webhook' => 'getWebhook',
-            'script' => 'getScript',
-            'github' => 'getGithub',
-            'gitlab' => 'getGitlab',
-            'bitbucket' => 'getBitbucket',
-            'bitbucket_server' => 'getBitbucketServer',
-            'health_email' => 'getHealthEmail',
-            'health_webhook' => 'getHealthWebhook',
-            'health_pagerduty' => 'getHealthPagerduty',
-            'health_slack' => 'getHealthSlack',
-            'cdn_fastly' => 'getCdnFastly',
-            'blackfire' => 'getBlackfire'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic,
-        public readonly \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic,
-        public readonly \Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk,
-        public readonly \Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog,
-        public readonly \Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog,
-        public readonly \Upsun\Model\WebhookIntegrationConfigurations $webhook,
-        public readonly \Upsun\Model\ScriptIntegrationConfigurations $script,
-        public readonly \Upsun\Model\GitHubIntegrationConfigurations $github,
-        public readonly \Upsun\Model\GitLabIntegrationConfigurations $gitlab,
-        public readonly \Upsun\Model\BitbucketIntegrationConfigurations $bitbucket,
-        public readonly \Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucket_server,
-        public readonly \Upsun\Model\HealthEmailNotificationIntegrationConfigurations $health_email,
-        public readonly \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $health_webhook,
-        public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $health_pagerduty,
-        public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations $health_slack,
-        public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations $cdn_fastly,
-        public readonly \Upsun\Model\BlackfireIntegrationConfigurations $blackfire,
+        public readonly ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
+        public readonly ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
+        public readonly ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk = null,
+        public readonly ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog = null,
+        public readonly ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog = null,
+        public readonly ?\Upsun\Model\WebhookIntegrationConfigurations $webhook = null,
+        public readonly ?\Upsun\Model\ScriptIntegrationConfigurations $script = null,
+        public readonly ?\Upsun\Model\GitHubIntegrationConfigurations $github = null,
+        public readonly ?\Upsun\Model\GitLabIntegrationConfigurations $gitlab = null,
+        public readonly ?\Upsun\Model\BitbucketIntegrationConfigurations $bitbucket = null,
+        public readonly ?\Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucket_server = null,
+        public readonly ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations $health_email = null,
+        public readonly ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $health_webhook = null,
+        public readonly ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $health_pagerduty = null,
+        public readonly ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations $health_slack = null,
+        public readonly ?\Upsun\Model\FastlyCDNIntegrationConfigurations $cdn_fastly = null,
+        public readonly ?\Upsun\Model\BlackfireIntegrationConfigurations $blackfire = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'newrelic' => false,
-        'sumologic' => false,
-        'splunk' => false,
-        'httplog' => false,
-        'syslog' => false,
-        'webhook' => false,
-        'script' => false,
-        'github' => false,
-        'gitlab' => false,
-        'bitbucket' => false,
-        'bitbucket_server' => false,
-        'health_email' => false,
-        'health_webhook' => false,
-        'health_pagerduty' => false,
-        'health_slack' => false,
-        'cdn_fastly' => false,
-        'blackfire' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -157,7 +90,6 @@ final class Config implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

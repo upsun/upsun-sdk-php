@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheConfigurationOfTheRedirects1 implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
         'expires' => 'expires',
         'paths' => 'paths'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'expires' => 'setExpires',
-            'paths' => 'setPaths'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'expires' => 'getExpires',
-            'paths' => 'getPaths'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $expires,
-        public readonly array $paths
+        public readonly ?string $expires = null,
+        public readonly ?array $paths = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'expires' => false,
-        'paths' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

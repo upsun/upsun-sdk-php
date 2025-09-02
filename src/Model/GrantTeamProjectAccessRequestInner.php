@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GrantTeamProjectAccessRequestInner implements JsonSerializable
@@ -27,29 +26,11 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
     private static array $attributeMap = [
         'project_id' => 'project_id'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'project_id' => 'setProjectId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'project_id' => 'getProjectId'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $project_id,
+        public readonly ?string $project_id = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'project_id' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

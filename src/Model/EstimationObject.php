@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EstimationObject implements JsonSerializable
@@ -32,49 +31,16 @@ final class EstimationObject implements JsonSerializable
         'total' => 'total',
         'options' => 'options'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'plan' => 'setPlan',
-            'user_licenses' => 'setUserLicenses',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'total' => 'setTotal',
-            'options' => 'setOptions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'plan' => 'getPlan',
-            'user_licenses' => 'getUserLicenses',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'total' => 'getTotal',
-            'options' => 'getOptions'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $plan,
-        public readonly string $user_licenses,
-        public readonly string $environments,
-        public readonly string $storage,
-        public readonly string $total,
-        public readonly object $options,
+        public readonly ?string $plan = null,
+        public readonly ?string $user_licenses = null,
+        public readonly ?string $environments = null,
+        public readonly ?string $storage = null,
+        public readonly ?string $total = null,
+        public readonly ?object $options = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'plan' => false,
-        'user_licenses' => false,
-        'environments' => false,
-        'storage' => false,
-        'total' => false,
-        'options' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class EstimationObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

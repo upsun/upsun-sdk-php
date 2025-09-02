@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SystemInformation implements JsonSerializable
@@ -29,37 +28,13 @@ final class SystemInformation implements JsonSerializable
         'image' => 'image',
         'started_at' => 'started_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'version' => 'setVersion',
-            'image' => 'setImage',
-            'started_at' => 'setStartedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'version' => 'getVersion',
-            'image' => 'getImage',
-            'started_at' => 'getStartedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $version,
-        public readonly string $image,
-        public readonly \DateTime $started_at,
+        public readonly ?string $version = null,
+        public readonly ?string $image = null,
+        public readonly ?\DateTime $started_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'version' => false,
-        'image' => false,
-        'started_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class SystemInformation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

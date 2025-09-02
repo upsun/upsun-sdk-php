@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProjectVariable implements JsonSerializable
@@ -35,61 +34,19 @@ final class ProjectVariable implements JsonSerializable
         'visible_build' => 'visible_build',
         'visible_runtime' => 'visible_runtime'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'value' => 'setValue',
-            'is_json' => 'setIsJson',
-            'is_sensitive' => 'setIsSensitive',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'value' => 'getValue',
-            'is_json' => 'getIsJson',
-            'is_sensitive' => 'getIsSensitive',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $name,
-        public readonly array $attributes,
-        public readonly string $value,
-        public readonly bool $is_json,
-        public readonly bool $is_sensitive,
-        public readonly bool $visible_build,
-        public readonly bool $visible_runtime,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $name = null,
+        public readonly ?array $attributes = [],
+        public readonly ?string $value = null,
+        public readonly ?bool $is_json = null,
+        public readonly ?bool $is_sensitive = null,
+        public readonly ?bool $visible_build = null,
+        public readonly ?bool $visible_runtime = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'name' => false,
-        'attributes' => false,
-        'value' => false,
-        'is_json' => false,
-        'is_sensitive' => false,
-        'visible_build' => false,
-        'visible_runtime' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class ProjectVariable implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

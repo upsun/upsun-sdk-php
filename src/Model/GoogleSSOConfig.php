@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GoogleSSOConfig implements JsonSerializable
@@ -28,33 +27,12 @@ final class GoogleSSOConfig implements JsonSerializable
         'provider_type' => 'provider_type',
         'domain' => 'domain'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'provider_type' => 'setProviderType',
-            'domain' => 'setDomain'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'provider_type' => 'getProviderType',
-            'domain' => 'getDomain'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $provider_type,
-        public readonly string $domain,
+        public readonly ?string $provider_type = null,
+        public readonly ?string $domain = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'provider_type' => false,
-        'domain' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class GoogleSSOConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

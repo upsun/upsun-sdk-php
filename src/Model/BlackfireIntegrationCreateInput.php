@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class BlackfireIntegrationCreateInput implements JsonSerializable
@@ -27,29 +26,11 @@ final class BlackfireIntegrationCreateInput implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
+        public readonly ?string $type = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class BlackfireIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

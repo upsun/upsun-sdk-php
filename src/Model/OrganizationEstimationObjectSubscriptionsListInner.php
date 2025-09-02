@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
@@ -30,41 +29,14 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
         'total' => 'total',
         'usage' => 'usage'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'license_id' => 'setLicenseId',
-            'project_title' => 'setProjectTitle',
-            'total' => 'setTotal',
-            'usage' => 'setUsage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'license_id' => 'getLicenseId',
-            'project_title' => 'getProjectTitle',
-            'total' => 'getTotal',
-            'usage' => 'getUsage'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $license_id,
-        public readonly string $project_title,
-        public readonly string $total,
-        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage,
+        public readonly ?string $license_id = null,
+        public readonly ?string $project_title = null,
+        public readonly ?string $total = null,
+        public readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'license_id' => false,
-        'project_title' => false,
-        'total' => false,
-        'usage' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

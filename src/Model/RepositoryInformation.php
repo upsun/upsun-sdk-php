@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class RepositoryInformation implements JsonSerializable
@@ -28,33 +27,12 @@ final class RepositoryInformation implements JsonSerializable
         'url' => 'url',
         'client_ssh_key' => 'client_ssh_key'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'url' => 'setUrl',
-            'client_ssh_key' => 'setClientSshKey'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'url' => 'getUrl',
-            'client_ssh_key' => 'getClientSshKey'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $url,
-        public readonly ?string $client_ssh_key,
+        public readonly ?string $url = null,
+        public readonly ?string $client_ssh_key = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'url' => false,
-        'client_ssh_key' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class RepositoryInformation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

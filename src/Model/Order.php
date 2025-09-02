@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Order implements JsonSerializable
@@ -46,105 +45,30 @@ final class Order implements JsonSerializable
         'line_items' => 'line_items',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'status' => 'setStatus',
-            'owner' => 'setOwner',
-            'address' => 'setAddress',
-            'company' => 'setCompany',
-            'vat_number' => 'setVatNumber',
-            'billing_period_start' => 'setBillingPeriodStart',
-            'billing_period_end' => 'setBillingPeriodEnd',
-            'billing_period_label' => 'setBillingPeriodLabel',
-            'billing_period_duration' => 'setBillingPeriodDuration',
-            'paid_on' => 'setPaidOn',
-            'total' => 'setTotal',
-            'total_formatted' => 'setTotalFormatted',
-            'components' => 'setComponents',
-            'currency' => 'setCurrency',
-            'invoice_url' => 'setInvoiceUrl',
-            'last_refreshed' => 'setLastRefreshed',
-            'invoiced' => 'setInvoiced',
-            'line_items' => 'setLineItems',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'status' => 'getStatus',
-            'owner' => 'getOwner',
-            'address' => 'getAddress',
-            'company' => 'getCompany',
-            'vat_number' => 'getVatNumber',
-            'billing_period_start' => 'getBillingPeriodStart',
-            'billing_period_end' => 'getBillingPeriodEnd',
-            'billing_period_label' => 'getBillingPeriodLabel',
-            'billing_period_duration' => 'getBillingPeriodDuration',
-            'paid_on' => 'getPaidOn',
-            'total' => 'getTotal',
-            'total_formatted' => 'getTotalFormatted',
-            'components' => 'getComponents',
-            'currency' => 'getCurrency',
-            'invoice_url' => 'getInvoiceUrl',
-            'last_refreshed' => 'getLastRefreshed',
-            'invoiced' => 'getInvoiced',
-            'line_items' => 'getLineItems',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $status,
-        public readonly string $owner,
-        public readonly \Upsun\Model\Address $address,
-        public readonly string $company,
-        public readonly string $vat_number,
-        public readonly \DateTime $billing_period_start,
-        public readonly \DateTime $billing_period_end,
-        public readonly \Upsun\Model\OrderBillingPeriodLabel $billing_period_label,
-        public readonly int $billing_period_duration,
-        public readonly ?\DateTime $paid_on,
-        public readonly int $total,
-        public readonly int $total_formatted,
-        public readonly \Upsun\Model\Components $components,
-        public readonly string $currency,
-        public readonly string $invoice_url,
-        public readonly \DateTime $last_refreshed,
-        public readonly bool $invoiced,
-        public readonly array $line_items,
-        public readonly \Upsun\Model\OrderLinks $_links,
+        public readonly ?string $id = null,
+        public readonly ?string $status = null,
+        public readonly ?string $owner = null,
+        public readonly ?\Upsun\Model\Address $address = null,
+        public readonly ?string $company = null,
+        public readonly ?string $vat_number = null,
+        public readonly ?\DateTime $billing_period_start = null,
+        public readonly ?\DateTime $billing_period_end = null,
+        public readonly ?\Upsun\Model\OrderBillingPeriodLabel $billing_period_label = null,
+        public readonly ?int $billing_period_duration = null,
+        public readonly ?\DateTime $paid_on = null,
+        public readonly ?int $total = null,
+        public readonly ?int $total_formatted = null,
+        public readonly ?\Upsun\Model\Components $components = null,
+        public readonly ?string $currency = null,
+        public readonly ?string $invoice_url = null,
+        public readonly ?\DateTime $last_refreshed = null,
+        public readonly ?bool $invoiced = null,
+        public readonly ?array $line_items = [],
+        public readonly ?\Upsun\Model\OrderLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'owner' => false,
-        'address' => false,
-        'company' => false,
-        'vat_number' => false,
-        'billing_period_start' => false,
-        'billing_period_end' => false,
-        'billing_period_label' => false,
-        'billing_period_duration' => false,
-        'paid_on' => true,
-        'total' => false,
-        'total_formatted' => false,
-        'components' => false,
-        'currency' => false,
-        'invoice_url' => false,
-        'last_refreshed' => false,
-        'invoiced' => false,
-        'line_items' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -175,7 +99,6 @@ final class Order implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

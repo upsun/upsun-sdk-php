@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class HTTPAccessPermissions implements JsonSerializable
@@ -29,37 +28,13 @@ final class HTTPAccessPermissions implements JsonSerializable
         'addresses' => 'addresses',
         'basic_auth' => 'basic_auth'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'is_enabled' => 'setIsEnabled',
-            'addresses' => 'setAddresses',
-            'basic_auth' => 'setBasicAuth'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'is_enabled' => 'getIsEnabled',
-            'addresses' => 'getAddresses',
-            'basic_auth' => 'getBasicAuth'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $is_enabled,
-        public readonly array $addresses,
-        public readonly array $basic_auth
+        public readonly ?bool $is_enabled = null,
+        public readonly ?array $addresses = [],
+        public readonly ?array $basic_auth = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'is_enabled' => false,
-        'addresses' => false,
-        'basic_auth' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class HTTPAccessPermissions implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

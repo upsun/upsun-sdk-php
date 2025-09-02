@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class AddressMetadataMetadata implements JsonSerializable
@@ -29,37 +28,13 @@ final class AddressMetadataMetadata implements JsonSerializable
         'field_labels' => 'field_labels',
         'show_vat' => 'show_vat'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'required_fields' => 'setRequiredFields',
-            'field_labels' => 'setFieldLabels',
-            'show_vat' => 'setShowVat'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'required_fields' => 'getRequiredFields',
-            'field_labels' => 'getFieldLabels',
-            'show_vat' => 'getShowVat'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $required_fields,
-        public readonly object $field_labels,
-        public readonly bool $show_vat,
+        public readonly ?array $required_fields = [],
+        public readonly ?object $field_labels = null,
+        public readonly ?bool $show_vat = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'required_fields' => false,
-        'field_labels' => false,
-        'show_vat' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class AddressMetadataMetadata implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

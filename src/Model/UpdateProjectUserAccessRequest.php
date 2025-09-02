@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpdateProjectUserAccessRequest implements JsonSerializable
@@ -27,29 +26,11 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     private static array $attributeMap = [
         'permissions' => 'permissions'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'permissions' => 'setPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'permissions' => 'getPermissions'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $permissions
+        public readonly ?array $permissions = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'permissions' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

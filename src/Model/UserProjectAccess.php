@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UserProjectAccess implements JsonSerializable
@@ -34,57 +33,18 @@ final class UserProjectAccess implements JsonSerializable
         'updated_at' => 'updated_at',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'organization_id' => 'setOrganizationId',
-            'project_id' => 'setProjectId',
-            'project_title' => 'setProjectTitle',
-            'permissions' => 'setPermissions',
-            'granted_at' => 'setGrantedAt',
-            'updated_at' => 'setUpdatedAt',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'organization_id' => 'getOrganizationId',
-            'project_id' => 'getProjectId',
-            'project_title' => 'getProjectTitle',
-            'permissions' => 'getPermissions',
-            'granted_at' => 'getGrantedAt',
-            'updated_at' => 'getUpdatedAt',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $user_id,
-        public readonly string $organization_id,
-        public readonly string $project_id,
-        public readonly string $project_title,
-        public readonly array $permissions,
-        public readonly \DateTime $granted_at,
-        public readonly \DateTime $updated_at,
-        public readonly \Upsun\Model\TeamProjectAccessLinks $_links,
+        public readonly ?string $user_id = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?string $project_id = null,
+        public readonly ?string $project_title = null,
+        public readonly ?array $permissions = [],
+        public readonly ?\DateTime $granted_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?\Upsun\Model\TeamProjectAccessLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'user_id' => false,
-        'organization_id' => false,
-        'project_id' => false,
-        'project_title' => false,
-        'permissions' => false,
-        'granted_at' => false,
-        'updated_at' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -103,7 +63,6 @@ final class UserProjectAccess implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

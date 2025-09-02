@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProdDomainStorageCreateInput implements JsonSerializable
@@ -29,37 +28,13 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
         'attributes' => 'attributes',
         'is_default' => 'is_default'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'is_default' => 'setIsDefault'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'is_default' => 'getIsDefault'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly array $attributes,
-        public readonly bool $is_default,
+        public readonly ?string $name = null,
+        public readonly ?array $attributes = [],
+        public readonly ?bool $is_default = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'attributes' => false,
-        'is_default' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

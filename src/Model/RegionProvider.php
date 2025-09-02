@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class RegionProvider implements JsonSerializable
@@ -28,33 +27,12 @@ final class RegionProvider implements JsonSerializable
         'name' => 'name',
         'logo' => 'logo'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'logo' => 'setLogo'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'logo' => 'getLogo'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly string $logo,
+        public readonly ?string $name = null,
+        public readonly ?string $logo = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'logo' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class RegionProvider implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

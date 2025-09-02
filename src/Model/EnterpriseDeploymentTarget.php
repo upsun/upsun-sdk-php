@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnterpriseDeploymentTarget implements JsonSerializable
@@ -34,57 +33,18 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         'maintenance_mode' => 'maintenance_mode',
         'enterprise_environments_mapping' => 'enterprise_environments_mapping'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'deploy_host' => 'setDeployHost',
-            'docroots' => 'setDocroots',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'maintenance_mode' => 'setMaintenanceMode',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'deploy_host' => 'getDeployHost',
-            'docroots' => 'getDocroots',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'maintenance_mode' => 'getMaintenanceMode',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $name,
-        public readonly ?string $deploy_host,
-        public readonly array $docroots,
-        public readonly object $site_urls,
-        public readonly array $ssh_hosts,
-        public readonly bool $maintenance_mode,
-        public readonly object $enterprise_environments_mapping,
+        public readonly ?string $type = null,
+        public readonly ?string $name = null,
+        public readonly ?string $deploy_host = null,
+        public readonly ?array $docroots = [],
+        public readonly ?object $site_urls = null,
+        public readonly ?array $ssh_hosts = [],
+        public readonly ?bool $maintenance_mode = null,
+        public readonly ?object $enterprise_environments_mapping = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'deploy_host' => true,
-        'docroots' => false,
-        'site_urls' => false,
-        'ssh_hosts' => false,
-        'maintenance_mode' => false,
-        'enterprise_environments_mapping' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -103,7 +63,6 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

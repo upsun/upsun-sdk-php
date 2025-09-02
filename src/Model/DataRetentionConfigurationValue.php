@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DataRetentionConfigurationValue implements JsonSerializable
@@ -28,33 +27,12 @@ final class DataRetentionConfigurationValue implements JsonSerializable
         'max_backups' => 'max_backups',
         'default_config' => 'default_config'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'max_backups' => 'setMaxBackups',
-            'default_config' => 'setDefaultConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'max_backups' => 'getMaxBackups',
-            'default_config' => 'getDefaultConfig'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $max_backups,
-        public readonly \Upsun\Model\DefaultConfig $default_config,
+        public readonly ?int $max_backups = null,
+        public readonly ?\Upsun\Model\DefaultConfig $default_config = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'max_backups' => false,
-        'default_config' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class DataRetentionConfigurationValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TicketJiraInner implements JsonSerializable
@@ -32,49 +31,16 @@ final class TicketJiraInner implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'ticket_id' => 'setTicketId',
-            'issue_id' => 'setIssueId',
-            'issue_key' => 'setIssueKey',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'ticket_id' => 'getTicketId',
-            'issue_id' => 'getIssueId',
-            'issue_key' => 'getIssueKey',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $id,
-        public readonly int $ticket_id,
-        public readonly int $issue_id,
-        public readonly string $issue_key,
-        public readonly float $created_at,
-        public readonly float $updated_at,
+        public readonly ?int $id = null,
+        public readonly ?int $ticket_id = null,
+        public readonly ?int $issue_id = null,
+        public readonly ?string $issue_key = null,
+        public readonly ?float $created_at = null,
+        public readonly ?float $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'ticket_id' => false,
-        'issue_id' => false,
-        'issue_key' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class TicketJiraInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

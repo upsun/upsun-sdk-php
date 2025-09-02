@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
@@ -28,33 +27,12 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
         'state' => 'state',
         'type' => 'type'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'state' => 'setState',
-            'type' => 'setType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'state' => 'getState',
-            'type' => 'getType'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $state,
-        public readonly string $type,
+        public readonly ?bool $state = null,
+        public readonly ?string $type = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'state' => false,
-        'type' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

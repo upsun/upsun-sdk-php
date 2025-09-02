@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Usage implements JsonSerializable
@@ -31,45 +30,15 @@ final class Usage implements JsonSerializable
         'quantity' => 'quantity',
         'start' => 'start'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'subscription_id' => 'setSubscriptionId',
-            'usage_group' => 'setUsageGroup',
-            'quantity' => 'setQuantity',
-            'start' => 'setStart'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'subscription_id' => 'getSubscriptionId',
-            'usage_group' => 'getUsageGroup',
-            'quantity' => 'getQuantity',
-            'start' => 'getStart'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $subscription_id,
-        public readonly string $usage_group,
-        public readonly float $quantity,
-        public readonly \DateTime $start,
+        public readonly ?string $id = null,
+        public readonly ?string $subscription_id = null,
+        public readonly ?string $usage_group = null,
+        public readonly ?float $quantity = null,
+        public readonly ?\DateTime $start = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'subscription_id' => false,
-        'usage_group' => false,
-        'quantity' => false,
-        'start' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class Usage implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

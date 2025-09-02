@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements JsonSerializable
@@ -28,33 +27,12 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
         'return_url' => 'return_url',
         'url' => 'url'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'return_url' => 'setReturnUrl',
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'return_url' => 'getReturnUrl',
-            'url' => 'getUrl'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $return_url,
-        public readonly string $url,
+        public readonly ?string $return_url = null,
+        public readonly ?string $url = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'return_url' => false,
-        'url' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

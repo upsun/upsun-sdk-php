@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationMFAEnforcement implements JsonSerializable
@@ -27,29 +26,11 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     private static array $attributeMap = [
         'enforce_mfa' => 'enforce_mfa'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enforce_mfa' => 'setEnforceMfa'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enforce_mfa' => 'getEnforceMfa'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enforce_mfa,
+        public readonly ?bool $enforce_mfa = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enforce_mfa' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

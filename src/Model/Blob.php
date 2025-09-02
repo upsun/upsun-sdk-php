@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Blob implements JsonSerializable
@@ -30,41 +29,14 @@ final class Blob implements JsonSerializable
         'encoding' => 'encoding',
         'content' => 'content'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sha' => 'setSha',
-            'size' => 'setSize',
-            'encoding' => 'setEncoding',
-            'content' => 'setContent'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sha' => 'getSha',
-            'size' => 'getSize',
-            'encoding' => 'getEncoding',
-            'content' => 'getContent'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $sha,
-        public readonly int $size,
-        public readonly string $encoding,
-        public readonly string $content,
+        public readonly ?string $sha = null,
+        public readonly ?int $size = null,
+        public readonly ?string $encoding = null,
+        public readonly ?string $content = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'sha' => false,
-        'size' => false,
-        'encoding' => false,
-        'content' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class Blob implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheAddonCredentialInformationOptional implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
         'addon_key' => 'addon_key',
         'client_key' => 'client_key'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'addon_key' => 'setAddonKey',
-            'client_key' => 'setClientKey'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'addon_key' => 'getAddonKey',
-            'client_key' => 'getClientKey'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $addon_key,
-        public readonly string $client_key,
+        public readonly ?string $addon_key = null,
+        public readonly ?string $client_key = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'addon_key' => false,
-        'client_key' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements JsonSerializable
@@ -28,33 +27,12 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
         'action' => 'action',
         'type' => 'type'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'action' => 'setAction',
-            'type' => 'setType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'action' => 'getAction',
-            'type' => 'getType'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $action,
-        public readonly string $type,
+        public readonly ?string $action = null,
+        public readonly ?string $type = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'action' => false,
-        'type' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

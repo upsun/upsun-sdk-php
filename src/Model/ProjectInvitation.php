@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProjectInvitation implements JsonSerializable
@@ -36,65 +35,20 @@ final class ProjectInvitation implements JsonSerializable
         'finished_at' => 'finished_at',
         'environments' => 'environments'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'state' => 'setState',
-            'project_id' => 'setProjectId',
-            'role' => 'setRole',
-            'email' => 'setEmail',
-            'owner' => 'setOwner',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'finished_at' => 'setFinishedAt',
-            'environments' => 'setEnvironments'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'state' => 'getState',
-            'project_id' => 'getProjectId',
-            'role' => 'getRole',
-            'email' => 'getEmail',
-            'owner' => 'getOwner',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'finished_at' => 'getFinishedAt',
-            'environments' => 'getEnvironments'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $state,
-        public readonly string $project_id,
-        public readonly string $role,
-        public readonly string $email,
-        public readonly \Upsun\Model\OrganizationInvitationOwner $owner,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
-        public readonly ?\DateTime $finished_at,
-        public readonly array $environments
+        public readonly ?string $id = null,
+        public readonly ?string $state = null,
+        public readonly ?string $project_id = null,
+        public readonly ?string $role = null,
+        public readonly ?string $email = null,
+        public readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?\DateTime $finished_at = null,
+        public readonly ?array $environments = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'state' => false,
-        'project_id' => false,
-        'role' => false,
-        'email' => false,
-        'owner' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'finished_at' => true,
-        'environments' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class ProjectInvitation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrderLinks implements JsonSerializable
@@ -27,29 +26,11 @@ final class OrderLinks implements JsonSerializable
     private static array $attributeMap = [
         'invoices' => 'invoices'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'invoices' => 'setInvoices'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'invoices' => 'getInvoices'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\OrderLinksInvoices $invoices,
+        public readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'invoices' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class OrderLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

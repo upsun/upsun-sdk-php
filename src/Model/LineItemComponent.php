@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class LineItemComponent implements JsonSerializable
@@ -30,41 +29,14 @@ final class LineItemComponent implements JsonSerializable
         'display_title' => 'display_title',
         'currency' => 'currency'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'amount' => 'setAmount',
-            'amount_formatted' => 'setAmountFormatted',
-            'display_title' => 'setDisplayTitle',
-            'currency' => 'setCurrency'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'amount' => 'getAmount',
-            'amount_formatted' => 'getAmountFormatted',
-            'display_title' => 'getDisplayTitle',
-            'currency' => 'getCurrency'
-        ];
-    
-    
+
     public function __construct(
-        public readonly float $amount,
-        public readonly string $amount_formatted,
-        public readonly string $display_title,
-        public readonly string $currency,
+        public readonly ?float $amount = null,
+        public readonly ?string $amount_formatted = null,
+        public readonly ?string $display_title = null,
+        public readonly ?string $currency = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'amount' => false,
-        'amount_formatted' => false,
-        'display_title' => false,
-        'currency' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class LineItemComponent implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

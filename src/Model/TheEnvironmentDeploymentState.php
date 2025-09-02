@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheEnvironmentDeploymentState implements JsonSerializable
@@ -29,37 +28,13 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
         'last_deployment_at' => 'last_deployment_at',
         'crons' => 'crons'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'last_deployment_successful' => 'setLastDeploymentSuccessful',
-            'last_deployment_at' => 'setLastDeploymentAt',
-            'crons' => 'setCrons'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'last_deployment_successful' => 'getLastDeploymentSuccessful',
-            'last_deployment_at' => 'getLastDeploymentAt',
-            'crons' => 'getCrons'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $last_deployment_successful,
-        public readonly ?\DateTime $last_deployment_at,
-        public readonly \Upsun\Model\TheCronsDeploymentState $crons,
+        public readonly ?bool $last_deployment_successful = null,
+        public readonly ?\DateTime $last_deployment_at = null,
+        public readonly ?\Upsun\Model\TheCronsDeploymentState $crons = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'last_deployment_successful' => false,
-        'last_deployment_at' => true,
-        'crons' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

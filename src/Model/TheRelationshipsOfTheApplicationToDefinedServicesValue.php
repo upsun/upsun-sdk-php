@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
         'service' => 'service',
         'endpoint' => 'endpoint'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'service' => 'setService',
-            'endpoint' => 'setEndpoint'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'service' => 'getService',
-            'endpoint' => 'getEndpoint'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $service,
-        public readonly ?string $endpoint,
+        public readonly ?string $service = null,
+        public readonly ?string $endpoint = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'service' => true,
-        'endpoint' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

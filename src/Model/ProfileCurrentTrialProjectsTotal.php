@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
@@ -30,41 +29,14 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
         'currency_symbol' => 'currency_symbol',
         'formatted' => 'formatted'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'amount' => 'setAmount',
-            'currency_code' => 'setCurrencyCode',
-            'currency_symbol' => 'setCurrencySymbol',
-            'formatted' => 'setFormatted'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'amount' => 'getAmount',
-            'currency_code' => 'getCurrencyCode',
-            'currency_symbol' => 'getCurrencySymbol',
-            'formatted' => 'getFormatted'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $amount,
-        public readonly string $currency_code,
-        public readonly string $currency_symbol,
-        public readonly string $formatted,
+        public readonly ?int $amount = null,
+        public readonly ?string $currency_code = null,
+        public readonly ?string $currency_symbol = null,
+        public readonly ?string $formatted = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'amount' => false,
-        'currency_code' => false,
-        'currency_symbol' => false,
-        'formatted' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class StringFilter implements JsonSerializable
@@ -34,57 +33,18 @@ final class StringFilter implements JsonSerializable
         'starts' => 'starts',
         'ends' => 'ends'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eq' => 'setEq',
-            'ne' => 'setNe',
-            'in' => 'setIn',
-            'nin' => 'setNin',
-            'between' => 'setBetween',
-            'contains' => 'setContains',
-            'starts' => 'setStarts',
-            'ends' => 'setEnds'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eq' => 'getEq',
-            'ne' => 'getNe',
-            'in' => 'getIn',
-            'nin' => 'getNin',
-            'between' => 'getBetween',
-            'contains' => 'getContains',
-            'starts' => 'getStarts',
-            'ends' => 'getEnds'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $eq,
-        public readonly string $ne,
-        public readonly string $in,
-        public readonly string $nin,
-        public readonly string $between,
-        public readonly string $contains,
-        public readonly string $starts,
-        public readonly string $ends,
+        public readonly ?string $eq = null,
+        public readonly ?string $ne = null,
+        public readonly ?string $in = null,
+        public readonly ?string $nin = null,
+        public readonly ?string $between = null,
+        public readonly ?string $contains = null,
+        public readonly ?string $starts = null,
+        public readonly ?string $ends = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'eq' => false,
-        'ne' => false,
-        'in' => false,
-        'nin' => false,
-        'between' => false,
-        'contains' => false,
-        'starts' => false,
-        'ends' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -103,7 +63,6 @@ final class StringFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

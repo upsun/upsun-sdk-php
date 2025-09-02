@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheCronsDeploymentState implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheCronsDeploymentState implements JsonSerializable
         'enabled' => 'enabled',
         'status' => 'status'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'status' => 'setStatus'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'status' => 'getStatus'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enabled,
-        public readonly string $status,
+        public readonly ?bool $enabled = null,
+        public readonly ?string $status = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => false,
-        'status' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheCronsDeploymentState implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

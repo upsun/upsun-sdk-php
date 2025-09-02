@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class WebHookIntegrationPatch implements JsonSerializable
@@ -34,57 +33,18 @@ final class WebHookIntegrationPatch implements JsonSerializable
         'shared_key' => 'shared_key',
         'url' => 'url'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'events' => 'setEvents',
-            'environments' => 'setEnvironments',
-            'excluded_environments' => 'setExcludedEnvironments',
-            'states' => 'setStates',
-            'result' => 'setResult',
-            'shared_key' => 'setSharedKey',
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'events' => 'getEvents',
-            'environments' => 'getEnvironments',
-            'excluded_environments' => 'getExcludedEnvironments',
-            'states' => 'getStates',
-            'result' => 'getResult',
-            'shared_key' => 'getSharedKey',
-            'url' => 'getUrl'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly array $events,
-        public readonly array $environments,
-        public readonly array $excluded_environments,
-        public readonly array $states,
-        public readonly string $result,
-        public readonly ?string $shared_key,
-        public readonly string $url,
+        public readonly ?string $type = null,
+        public readonly ?array $events = [],
+        public readonly ?array $environments = [],
+        public readonly ?array $excluded_environments = [],
+        public readonly ?array $states = [],
+        public readonly ?string $result = null,
+        public readonly ?string $shared_key = null,
+        public readonly ?string $url = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'events' => false,
-        'environments' => false,
-        'excluded_environments' => false,
-        'states' => false,
-        'result' => false,
-        'shared_key' => true,
-        'url' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -103,7 +63,6 @@ final class WebHookIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SlackIntegrationPatch implements JsonSerializable
@@ -29,37 +28,13 @@ final class SlackIntegrationPatch implements JsonSerializable
         'token' => 'token',
         'channel' => 'channel'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'token' => 'setToken',
-            'channel' => 'setChannel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'token' => 'getToken',
-            'channel' => 'getChannel'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $token,
-        public readonly string $channel,
+        public readonly ?string $type = null,
+        public readonly ?string $token = null,
+        public readonly ?string $channel = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'token' => false,
-        'channel' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class SlackIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

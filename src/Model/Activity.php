@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Activity implements JsonSerializable
@@ -45,101 +44,29 @@ final class Activity implements JsonSerializable
         'text' => 'text',
         'expires_at' => 'expires_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'parameters' => 'setParameters',
-            'project' => 'setProject',
-            'integration' => 'setIntegration',
-            'environments' => 'setEnvironments',
-            'state' => 'setState',
-            'result' => 'setResult',
-            'started_at' => 'setStartedAt',
-            'completed_at' => 'setCompletedAt',
-            'completion_percent' => 'setCompletionPercent',
-            'cancelled_at' => 'setCancelledAt',
-            'timings' => 'setTimings',
-            'log' => 'setLog',
-            'payload' => 'setPayload',
-            'description' => 'setDescription',
-            'text' => 'setText',
-            'expires_at' => 'setExpiresAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'parameters' => 'getParameters',
-            'project' => 'getProject',
-            'integration' => 'getIntegration',
-            'environments' => 'getEnvironments',
-            'state' => 'getState',
-            'result' => 'getResult',
-            'started_at' => 'getStartedAt',
-            'completed_at' => 'getCompletedAt',
-            'completion_percent' => 'getCompletionPercent',
-            'cancelled_at' => 'getCancelledAt',
-            'timings' => 'getTimings',
-            'log' => 'getLog',
-            'payload' => 'getPayload',
-            'description' => 'getDescription',
-            'text' => 'getText',
-            'expires_at' => 'getExpiresAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly object $parameters,
-        public readonly string $project,
-        public readonly string $integration,
-        public readonly array $environments,
-        public readonly string $state,
-        public readonly ?string $result,
-        public readonly ?\DateTime $started_at,
-        public readonly ?\DateTime $completed_at,
-        public readonly int $completion_percent,
-        public readonly ?\DateTime $cancelled_at,
-        public readonly array $timings,
-        public readonly string $log,
-        public readonly object $payload,
-        public readonly ?string $description,
-        public readonly ?string $text,
-        public readonly ?\DateTime $expires_at,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?object $parameters = null,
+        public readonly ?string $project = null,
+        public readonly ?string $integration = null,
+        public readonly ?array $environments = [],
+        public readonly ?string $state = null,
+        public readonly ?string $result = null,
+        public readonly ?\DateTime $started_at = null,
+        public readonly ?\DateTime $completed_at = null,
+        public readonly ?int $completion_percent = null,
+        public readonly ?\DateTime $cancelled_at = null,
+        public readonly ?array $timings = [],
+        public readonly ?string $log = null,
+        public readonly ?object $payload = null,
+        public readonly ?string $description = null,
+        public readonly ?string $text = null,
+        public readonly ?\DateTime $expires_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'parameters' => false,
-        'project' => false,
-        'integration' => false,
-        'environments' => false,
-        'state' => false,
-        'result' => true,
-        'started_at' => true,
-        'completed_at' => true,
-        'completion_percent' => false,
-        'cancelled_at' => true,
-        'timings' => false,
-        'log' => false,
-        'payload' => false,
-        'description' => true,
-        'text' => true,
-        'expires_at' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -169,7 +96,6 @@ final class Activity implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

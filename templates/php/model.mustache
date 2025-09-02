@@ -19,7 +19,6 @@ namespace {{modelPackage}};
 use ArrayAccess;
 {{/parentSchema}}
 {{/isEnum}}
-use {{invokerPackage}}\ObjectSerializer;
 use JsonSerializable;
 
 {{#isEnum}}{{>model_enum}}{{/isEnum}}{{^isEnum}}{{>model_generic}}{{/isEnum}}

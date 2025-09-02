@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
@@ -29,37 +28,13 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
         'timeout' => 'timeout',
         'role' => 'role'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'commands' => 'setCommands',
-            'timeout' => 'setTimeout',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'commands' => 'getCommands',
-            'timeout' => 'getTimeout',
-            'role' => 'getRole'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\TheCommandsDefinition $commands,
-        public readonly ?int $timeout,
-        public readonly string $role,
+        public readonly ?\Upsun\Model\TheCommandsDefinition $commands = null,
+        public readonly ?int $timeout = null,
+        public readonly ?string $role = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'commands' => false,
-        'timeout' => true,
-        'role' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

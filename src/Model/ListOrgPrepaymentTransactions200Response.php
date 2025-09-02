@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
@@ -29,37 +28,13 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         'transactions' => 'transactions',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'transactions' => 'setTransactions',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'transactions' => 'getTransactions',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $count,
-        public readonly array $transactions,
-        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links,
+        public readonly ?int $count = null,
+        public readonly ?array $transactions = [],
+        public readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'count' => false,
-        'transactions' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

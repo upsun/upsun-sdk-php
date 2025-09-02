@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class BlackfireIntegration implements JsonSerializable
@@ -31,45 +30,15 @@ final class BlackfireIntegration implements JsonSerializable
         'environments_credentials' => 'environments_credentials',
         'continuous_profiling' => 'continuous_profiling'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'environments_credentials' => 'setEnvironmentsCredentials',
-            'continuous_profiling' => 'setContinuousProfiling'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'environments_credentials' => 'getEnvironmentsCredentials',
-            'continuous_profiling' => 'getContinuousProfiling'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly array $environments_credentials,
-        public readonly bool $continuous_profiling,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?array $environments_credentials = [],
+        public readonly ?bool $continuous_profiling = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'environments_credentials' => false,
-        'continuous_profiling' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class BlackfireIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

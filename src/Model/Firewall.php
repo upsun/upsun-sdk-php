@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Firewall implements JsonSerializable
@@ -27,29 +26,11 @@ final class Firewall implements JsonSerializable
     private static array $attributeMap = [
         'outbound' => 'outbound'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'outbound' => 'setOutbound'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'outbound' => 'getOutbound'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $outbound
+        public readonly ?array $outbound = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'outbound' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class Firewall implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

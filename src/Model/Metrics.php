@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Metrics implements JsonSerializable
@@ -27,29 +26,11 @@ final class Metrics implements JsonSerializable
     private static array $attributeMap = [
         'max_range' => 'max_range'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'max_range' => 'setMaxRange'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'max_range' => 'getMaxRange'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $max_range,
+        public readonly ?string $max_range = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'max_range' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class Metrics implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

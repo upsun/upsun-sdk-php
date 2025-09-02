@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class FoundationDeploymentTargetCreateInput implements JsonSerializable
@@ -30,41 +29,14 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
         'hosts' => 'hosts',
         'use_dedicated_grid' => 'use_dedicated_grid'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'hosts' => 'setHosts',
-            'use_dedicated_grid' => 'setUseDedicatedGrid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'hosts' => 'getHosts',
-            'use_dedicated_grid' => 'getUseDedicatedGrid'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $name,
-        public readonly ?array $hosts,
-        public readonly bool $use_dedicated_grid,
+        public readonly ?string $type = null,
+        public readonly ?string $name = null,
+        public readonly ?array $hosts = [],
+        public readonly ?bool $use_dedicated_grid = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'hosts' => true,
-        'use_dedicated_grid' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

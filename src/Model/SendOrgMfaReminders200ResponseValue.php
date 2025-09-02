@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
@@ -28,33 +27,12 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
         'code' => 'code',
         'message' => 'message'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'code' => 'setCode',
-            'message' => 'setMessage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'code' => 'getCode',
-            'message' => 'getMessage'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $code,
-        public readonly string $message,
+        public readonly ?int $code = null,
+        public readonly ?string $message = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'code' => false,
-        'message' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

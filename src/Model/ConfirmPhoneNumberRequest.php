@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ConfirmPhoneNumberRequest implements JsonSerializable
@@ -27,29 +26,11 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
     private static array $attributeMap = [
         'code' => 'code'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'code' => 'setCode'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'code' => 'getCode'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $code,
+        public readonly ?string $code = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'code' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

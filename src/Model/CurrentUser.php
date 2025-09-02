@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CurrentUser implements JsonSerializable
@@ -41,85 +40,25 @@ final class CurrentUser implements JsonSerializable
         'trial' => 'trial',
         'current_trial' => 'current_trial'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'uuid' => 'setUuid',
-            'username' => 'setUsername',
-            'display_name' => 'setDisplayName',
-            'status' => 'setStatus',
-            'mail' => 'setMail',
-            'ssh_keys' => 'setSshKeys',
-            'has_key' => 'setHasKey',
-            'projects' => 'setProjects',
-            'sequence' => 'setSequence',
-            'roles' => 'setRoles',
-            'picture' => 'setPicture',
-            'tickets' => 'setTickets',
-            'trial' => 'setTrial',
-            'current_trial' => 'setCurrentTrial'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'uuid' => 'getUuid',
-            'username' => 'getUsername',
-            'display_name' => 'getDisplayName',
-            'status' => 'getStatus',
-            'mail' => 'getMail',
-            'ssh_keys' => 'getSshKeys',
-            'has_key' => 'getHasKey',
-            'projects' => 'getProjects',
-            'sequence' => 'getSequence',
-            'roles' => 'getRoles',
-            'picture' => 'getPicture',
-            'tickets' => 'getTickets',
-            'trial' => 'getTrial',
-            'current_trial' => 'getCurrentTrial'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $uuid,
-        public readonly string $username,
-        public readonly string $display_name,
-        public readonly int $status,
-        public readonly string $mail,
-        public readonly array $ssh_keys,
-        public readonly bool $has_key,
-        public readonly array $projects,
-        public readonly int $sequence,
-        public readonly array $roles,
-        public readonly string $picture,
-        public readonly object $tickets,
-        public readonly bool $trial,
-        public readonly array $current_trial
+        public readonly ?string $id = null,
+        public readonly ?string $uuid = null,
+        public readonly ?string $username = null,
+        public readonly ?string $display_name = null,
+        public readonly ?int $status = null,
+        public readonly ?string $mail = null,
+        public readonly ?array $ssh_keys = [],
+        public readonly ?bool $has_key = null,
+        public readonly ?array $projects = [],
+        public readonly ?int $sequence = null,
+        public readonly ?array $roles = [],
+        public readonly ?string $picture = null,
+        public readonly ?object $tickets = null,
+        public readonly ?bool $trial = null,
+        public readonly ?array $current_trial = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'uuid' => false,
-        'username' => false,
-        'display_name' => false,
-        'status' => false,
-        'mail' => false,
-        'ssh_keys' => false,
-        'has_key' => false,
-        'projects' => false,
-        'sequence' => false,
-        'roles' => false,
-        'picture' => false,
-        'tickets' => false,
-        'trial' => false,
-        'current_trial' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -145,7 +84,6 @@ final class CurrentUser implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

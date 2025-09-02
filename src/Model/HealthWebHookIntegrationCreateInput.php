@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class HealthWebHookIntegrationCreateInput implements JsonSerializable
@@ -29,37 +28,13 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
         'shared_key' => 'shared_key',
         'url' => 'url'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'shared_key' => 'setSharedKey',
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'shared_key' => 'getSharedKey',
-            'url' => 'getUrl'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly ?string $shared_key,
-        public readonly string $url,
+        public readonly ?string $type = null,
+        public readonly ?string $shared_key = null,
+        public readonly ?string $url = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'shared_key' => true,
-        'url' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

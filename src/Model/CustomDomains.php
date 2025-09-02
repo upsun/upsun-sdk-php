@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CustomDomains implements JsonSerializable
@@ -28,33 +27,12 @@ final class CustomDomains implements JsonSerializable
         'enabled' => 'enabled',
         'environments_with_domains_limit' => 'environments_with_domains_limit'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'environments_with_domains_limit' => 'setEnvironmentsWithDomainsLimit'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'environments_with_domains_limit' => 'getEnvironmentsWithDomainsLimit'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enabled,
-        public readonly int $environments_with_domains_limit,
+        public readonly ?bool $enabled = null,
+        public readonly ?int $environments_with_domains_limit = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => false,
-        'environments_with_domains_limit' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CustomDomains implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

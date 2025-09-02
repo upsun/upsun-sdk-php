@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateTicketRequest implements JsonSerializable
@@ -37,69 +36,21 @@ final class CreateTicketRequest implements JsonSerializable
         'attachments' => 'attachments',
         'collaborator_ids' => 'collaborator_ids'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'subject' => 'setSubject',
-            'description' => 'setDescription',
-            'requester_id' => 'setRequesterId',
-            'priority' => 'setPriority',
-            'subscription_id' => 'setSubscriptionId',
-            'organization_id' => 'setOrganizationId',
-            'affected_url' => 'setAffectedUrl',
-            'followup_tid' => 'setFollowupTid',
-            'category' => 'setCategory',
-            'attachments' => 'setAttachments',
-            'collaborator_ids' => 'setCollaboratorIds'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'subject' => 'getSubject',
-            'description' => 'getDescription',
-            'requester_id' => 'getRequesterId',
-            'priority' => 'getPriority',
-            'subscription_id' => 'getSubscriptionId',
-            'organization_id' => 'getOrganizationId',
-            'affected_url' => 'getAffectedUrl',
-            'followup_tid' => 'getFollowupTid',
-            'category' => 'getCategory',
-            'attachments' => 'getAttachments',
-            'collaborator_ids' => 'getCollaboratorIds'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $subject,
-        public readonly string $description,
-        public readonly string $requester_id,
-        public readonly string $priority,
-        public readonly string $subscription_id,
-        public readonly string $organization_id,
-        public readonly string $affected_url,
-        public readonly string $followup_tid,
-        public readonly string $category,
-        public readonly array $attachments,
-        public readonly array $collaborator_ids
+        public readonly ?string $subject = null,
+        public readonly ?string $description = null,
+        public readonly ?string $requester_id = null,
+        public readonly ?string $priority = null,
+        public readonly ?string $subscription_id = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?string $affected_url = null,
+        public readonly ?string $followup_tid = null,
+        public readonly ?string $category = null,
+        public readonly ?array $attachments = [],
+        public readonly ?array $collaborator_ids = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'subject' => false,
-        'description' => false,
-        'requester_id' => false,
-        'priority' => false,
-        'subscription_id' => false,
-        'organization_id' => false,
-        'affected_url' => false,
-        'followup_tid' => false,
-        'category' => false,
-        'attachments' => false,
-        'collaborator_ids' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -121,7 +72,6 @@ final class CreateTicketRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

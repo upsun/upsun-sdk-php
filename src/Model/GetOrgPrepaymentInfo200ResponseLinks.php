@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
@@ -28,33 +27,12 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
         'self' => 'self',
         'transactions' => 'transactions'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'transactions' => 'setTransactions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'transactions' => 'getTransactions'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self,
-        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions,
+        public readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+        public readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'self' => false,
-        'transactions' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

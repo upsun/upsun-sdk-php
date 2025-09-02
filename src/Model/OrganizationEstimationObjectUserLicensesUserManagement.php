@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesUserManagement implements JsonSerializable
@@ -29,37 +28,13 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
         'total' => 'total',
         'list' => 'list'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'total' => 'setTotal',
-            'list' => 'setList'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'total' => 'getTotal',
-            'list' => 'getList'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $count,
-        public readonly string $total,
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list,
+        public readonly ?int $count = null,
+        public readonly ?string $total = null,
+        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'count' => false,
-        'total' => false,
-        'list' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

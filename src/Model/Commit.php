@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Commit implements JsonSerializable
@@ -32,49 +31,16 @@ final class Commit implements JsonSerializable
         'tree' => 'tree',
         'parents' => 'parents'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sha' => 'setSha',
-            'author' => 'setAuthor',
-            'committer' => 'setCommitter',
-            'message' => 'setMessage',
-            'tree' => 'setTree',
-            'parents' => 'setParents'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sha' => 'getSha',
-            'author' => 'getAuthor',
-            'committer' => 'getCommitter',
-            'message' => 'getMessage',
-            'tree' => 'getTree',
-            'parents' => 'getParents'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $sha,
-        public readonly \Upsun\Model\TheInformationAboutTheAuthor $author,
-        public readonly \Upsun\Model\TheInformationAboutTheCommitter $committer,
-        public readonly string $message,
-        public readonly string $tree,
-        public readonly array $parents
+        public readonly ?string $sha = null,
+        public readonly ?\Upsun\Model\TheInformationAboutTheAuthor $author = null,
+        public readonly ?\Upsun\Model\TheInformationAboutTheCommitter $committer = null,
+        public readonly ?string $message = null,
+        public readonly ?string $tree = null,
+        public readonly ?array $parents = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'sha' => false,
-        'author' => false,
-        'committer' => false,
-        'message' => false,
-        'tree' => false,
-        'parents' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class Commit implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

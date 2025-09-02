@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ScriptIntegration implements JsonSerializable
@@ -35,61 +34,19 @@ final class ScriptIntegration implements JsonSerializable
         'result' => 'result',
         'script' => 'script'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'events' => 'setEvents',
-            'environments' => 'setEnvironments',
-            'excluded_environments' => 'setExcludedEnvironments',
-            'states' => 'setStates',
-            'result' => 'setResult',
-            'script' => 'setScript'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'events' => 'getEvents',
-            'environments' => 'getEnvironments',
-            'excluded_environments' => 'getExcludedEnvironments',
-            'states' => 'getStates',
-            'result' => 'getResult',
-            'script' => 'getScript'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly array $events,
-        public readonly array $environments,
-        public readonly array $excluded_environments,
-        public readonly array $states,
-        public readonly string $result,
-        public readonly string $script,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?array $events = [],
+        public readonly ?array $environments = [],
+        public readonly ?array $excluded_environments = [],
+        public readonly ?array $states = [],
+        public readonly ?string $result = null,
+        public readonly ?string $script = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'events' => false,
-        'environments' => false,
-        'excluded_environments' => false,
-        'states' => false,
-        'result' => false,
-        'script' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class ScriptIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateTeamRequest implements JsonSerializable
@@ -29,37 +28,13 @@ final class CreateTeamRequest implements JsonSerializable
         'label' => 'label',
         'project_permissions' => 'project_permissions'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'organization_id' => 'setOrganizationId',
-            'label' => 'setLabel',
-            'project_permissions' => 'setProjectPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'organization_id' => 'getOrganizationId',
-            'label' => 'getLabel',
-            'project_permissions' => 'getProjectPermissions'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $organization_id,
-        public readonly string $label,
-        public readonly array $project_permissions
+        public readonly ?string $organization_id = null,
+        public readonly ?string $label = null,
+        public readonly ?array $project_permissions = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'organization_id' => false,
-        'label' => false,
-        'project_permissions' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class CreateTeamRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

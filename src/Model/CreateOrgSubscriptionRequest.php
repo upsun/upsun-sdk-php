@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateOrgSubscriptionRequest implements JsonSerializable
@@ -33,53 +32,17 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
         'environments' => 'environments',
         'storage' => 'storage'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'plan' => 'setPlan',
-            'project_region' => 'setProjectRegion',
-            'project_title' => 'setProjectTitle',
-            'options_url' => 'setOptionsUrl',
-            'default_branch' => 'setDefaultBranch',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'plan' => 'getPlan',
-            'project_region' => 'getProjectRegion',
-            'project_title' => 'getProjectTitle',
-            'options_url' => 'getOptionsUrl',
-            'default_branch' => 'getDefaultBranch',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $plan,
-        public readonly string $project_region,
-        public readonly string $project_title,
-        public readonly string $options_url,
-        public readonly string $default_branch,
-        public readonly int $environments,
-        public readonly int $storage,
+        public readonly ?string $plan = null,
+        public readonly ?string $project_region = null,
+        public readonly ?string $project_title = null,
+        public readonly ?string $options_url = null,
+        public readonly ?string $default_branch = null,
+        public readonly ?int $environments = null,
+        public readonly ?int $storage = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'plan' => false,
-        'project_region' => false,
-        'project_title' => false,
-        'options_url' => false,
-        'default_branch' => false,
-        'environments' => false,
-        'storage' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -10,39 +10,18 @@ final class {{classname}} implements JsonSerializable
         {{#vars}}'{{name}}' => '{{baseName}}'{{^-last}},
         {{/-last}}{{/vars}}
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            {{#vars}}'{{name}}' => '{{setter}}'{{^-last}},
-            {{/-last}}{{/vars}}
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            {{#vars}}'{{name}}' => '{{getter}}'{{^-last}},
-            {{/-last}}{{/vars}}
-        ];
-    
-    
+
     public function __construct(
     {{#vars}}
         {{#isContainer}}
-        public readonly {{#isNullable}}?{{/isNullable}}array ${{name}}{{^-last}},{{/-last}}
+        public readonly ?array ${{name}} = [],
         {{/isContainer}}
         {{^isContainer}}
-        public readonly {{#isNullable}}?{{/isNullable}}{{{dataType}}} ${{name}}{{#defaultValue}} = {{defaultValue}}{{/defaultValue}},
+        public readonly ?{{{dataType}}} ${{name}} = {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}},
         {{/isContainer}}
     {{/vars}}
     ) {
     }
-
-    private static array $openAPINullables = [
-        {{#vars}}'{{name}}' => {{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{^-last}},
-        {{/-last}}{{/vars}}
-    ];
 
     public function jsonSerialize(): array
     {
@@ -56,6 +35,5 @@ final class {{classname}} implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ThePathsToRedirectValue implements JsonSerializable
@@ -32,49 +31,16 @@ final class ThePathsToRedirectValue implements JsonSerializable
         'code' => 'code',
         'expires' => 'expires'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'regexp' => 'setRegexp',
-            'to' => 'setTo',
-            'prefix' => 'setPrefix',
-            'append_suffix' => 'setAppendSuffix',
-            'code' => 'setCode',
-            'expires' => 'setExpires'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'regexp' => 'getRegexp',
-            'to' => 'getTo',
-            'prefix' => 'getPrefix',
-            'append_suffix' => 'getAppendSuffix',
-            'code' => 'getCode',
-            'expires' => 'getExpires'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $regexp,
-        public readonly string $to,
-        public readonly ?bool $prefix,
-        public readonly ?bool $append_suffix,
-        public readonly int $code,
-        public readonly ?string $expires,
+        public readonly ?bool $regexp = null,
+        public readonly ?string $to = null,
+        public readonly ?bool $prefix = null,
+        public readonly ?bool $append_suffix = null,
+        public readonly ?int $code = null,
+        public readonly ?string $expires = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'regexp' => false,
-        'to' => false,
-        'prefix' => true,
-        'append_suffix' => true,
-        'code' => false,
-        'expires' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class ThePathsToRedirectValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

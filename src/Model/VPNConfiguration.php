@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class VPNConfiguration implements JsonSerializable
@@ -40,81 +39,24 @@ final class VPNConfiguration implements JsonSerializable
         'lifetime' => 'lifetime',
         'margintime' => 'margintime'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'version' => 'setVersion',
-            'aggressive' => 'setAggressive',
-            'modeconfig' => 'setModeconfig',
-            'authentication' => 'setAuthentication',
-            'gateway_ip' => 'setGatewayIp',
-            'identity' => 'setIdentity',
-            'second_identity' => 'setSecondIdentity',
-            'remote_identity' => 'setRemoteIdentity',
-            'remote_subnets' => 'setRemoteSubnets',
-            'ike' => 'setIke',
-            'esp' => 'setEsp',
-            'ikelifetime' => 'setIkelifetime',
-            'lifetime' => 'setLifetime',
-            'margintime' => 'setMargintime'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'version' => 'getVersion',
-            'aggressive' => 'getAggressive',
-            'modeconfig' => 'getModeconfig',
-            'authentication' => 'getAuthentication',
-            'gateway_ip' => 'getGatewayIp',
-            'identity' => 'getIdentity',
-            'second_identity' => 'getSecondIdentity',
-            'remote_identity' => 'getRemoteIdentity',
-            'remote_subnets' => 'getRemoteSubnets',
-            'ike' => 'getIke',
-            'esp' => 'getEsp',
-            'ikelifetime' => 'getIkelifetime',
-            'lifetime' => 'getLifetime',
-            'margintime' => 'getMargintime'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $version,
-        public readonly string $aggressive,
-        public readonly string $modeconfig,
-        public readonly string $authentication,
-        public readonly string $gateway_ip,
-        public readonly ?string $identity,
-        public readonly ?string $second_identity,
-        public readonly ?string $remote_identity,
-        public readonly array $remote_subnets,
-        public readonly string $ike,
-        public readonly string $esp,
-        public readonly string $ikelifetime,
-        public readonly string $lifetime,
-        public readonly string $margintime,
+        public readonly ?int $version = null,
+        public readonly ?string $aggressive = null,
+        public readonly ?string $modeconfig = null,
+        public readonly ?string $authentication = null,
+        public readonly ?string $gateway_ip = null,
+        public readonly ?string $identity = null,
+        public readonly ?string $second_identity = null,
+        public readonly ?string $remote_identity = null,
+        public readonly ?array $remote_subnets = [],
+        public readonly ?string $ike = null,
+        public readonly ?string $esp = null,
+        public readonly ?string $ikelifetime = null,
+        public readonly ?string $lifetime = null,
+        public readonly ?string $margintime = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'version' => false,
-        'aggressive' => false,
-        'modeconfig' => false,
-        'authentication' => false,
-        'gateway_ip' => false,
-        'identity' => true,
-        'second_identity' => true,
-        'remote_identity' => true,
-        'remote_subnets' => false,
-        'ike' => false,
-        'esp' => false,
-        'ikelifetime' => false,
-        'lifetime' => false,
-        'margintime' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -139,7 +81,6 @@ final class VPNConfiguration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

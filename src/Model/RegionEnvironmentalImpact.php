@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class RegionEnvironmentalImpact implements JsonSerializable
@@ -29,37 +28,13 @@ final class RegionEnvironmentalImpact implements JsonSerializable
         'carbon_intensity' => 'carbon_intensity',
         'green' => 'green'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'zone' => 'setZone',
-            'carbon_intensity' => 'setCarbonIntensity',
-            'green' => 'setGreen'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'zone' => 'getZone',
-            'carbon_intensity' => 'getCarbonIntensity',
-            'green' => 'getGreen'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $zone,
-        public readonly string $carbon_intensity,
-        public readonly bool $green,
+        public readonly ?string $zone = null,
+        public readonly ?string $carbon_intensity = null,
+        public readonly ?bool $green = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'zone' => false,
-        'carbon_intensity' => false,
-        'green' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

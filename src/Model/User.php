@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class User implements JsonSerializable
@@ -42,89 +41,26 @@ final class User implements JsonSerializable
         'consented_at' => 'consented_at',
         'consent_method' => 'consent_method'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'deactivated' => 'setDeactivated',
-            'namespace' => 'setNamespace',
-            'username' => 'setUsername',
-            'email' => 'setEmail',
-            'email_verified' => 'setEmailVerified',
-            'first_name' => 'setFirstName',
-            'last_name' => 'setLastName',
-            'picture' => 'setPicture',
-            'company' => 'setCompany',
-            'website' => 'setWebsite',
-            'country' => 'setCountry',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'consented_at' => 'setConsentedAt',
-            'consent_method' => 'setConsentMethod'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'deactivated' => 'getDeactivated',
-            'namespace' => 'getNamespace',
-            'username' => 'getUsername',
-            'email' => 'getEmail',
-            'email_verified' => 'getEmailVerified',
-            'first_name' => 'getFirstName',
-            'last_name' => 'getLastName',
-            'picture' => 'getPicture',
-            'company' => 'getCompany',
-            'website' => 'getWebsite',
-            'country' => 'getCountry',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'consented_at' => 'getConsentedAt',
-            'consent_method' => 'getConsentMethod'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly bool $deactivated,
-        public readonly string $namespace,
-        public readonly string $username,
-        public readonly string $email,
-        public readonly bool $email_verified,
-        public readonly string $first_name,
-        public readonly string $last_name,
-        public readonly string $picture,
-        public readonly string $company,
-        public readonly string $website,
-        public readonly string $country,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
-        public readonly \DateTime $consented_at,
-        public readonly string $consent_method,
+        public readonly ?string $id = null,
+        public readonly ?bool $deactivated = null,
+        public readonly ?string $namespace = null,
+        public readonly ?string $username = null,
+        public readonly ?string $email = null,
+        public readonly ?bool $email_verified = null,
+        public readonly ?string $first_name = null,
+        public readonly ?string $last_name = null,
+        public readonly ?string $picture = null,
+        public readonly ?string $company = null,
+        public readonly ?string $website = null,
+        public readonly ?string $country = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?\DateTime $consented_at = null,
+        public readonly ?string $consent_method = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'deactivated' => false,
-        'namespace' => false,
-        'username' => false,
-        'email' => false,
-        'email_verified' => false,
-        'first_name' => false,
-        'last_name' => false,
-        'picture' => false,
-        'company' => false,
-        'website' => false,
-        'country' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'consented_at' => false,
-        'consent_method' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -151,7 +87,6 @@ final class User implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

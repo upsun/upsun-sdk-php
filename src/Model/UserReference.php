@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UserReference implements JsonSerializable
@@ -34,57 +33,18 @@ final class UserReference implements JsonSerializable
         'mfa_enabled' => 'mfa_enabled',
         'sso_enabled' => 'sso_enabled'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'username' => 'setUsername',
-            'email' => 'setEmail',
-            'first_name' => 'setFirstName',
-            'last_name' => 'setLastName',
-            'picture' => 'setPicture',
-            'mfa_enabled' => 'setMfaEnabled',
-            'sso_enabled' => 'setSsoEnabled'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'username' => 'getUsername',
-            'email' => 'getEmail',
-            'first_name' => 'getFirstName',
-            'last_name' => 'getLastName',
-            'picture' => 'getPicture',
-            'mfa_enabled' => 'getMfaEnabled',
-            'sso_enabled' => 'getSsoEnabled'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $username,
-        public readonly string $email,
-        public readonly string $first_name,
-        public readonly string $last_name,
-        public readonly string $picture,
-        public readonly bool $mfa_enabled,
-        public readonly bool $sso_enabled,
+        public readonly ?string $id = null,
+        public readonly ?string $username = null,
+        public readonly ?string $email = null,
+        public readonly ?string $first_name = null,
+        public readonly ?string $last_name = null,
+        public readonly ?string $picture = null,
+        public readonly ?bool $mfa_enabled = null,
+        public readonly ?bool $sso_enabled = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'username' => false,
-        'email' => false,
-        'first_name' => false,
-        'last_name' => false,
-        'picture' => false,
-        'mfa_enabled' => false,
-        'sso_enabled' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -103,7 +63,6 @@ final class UserReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

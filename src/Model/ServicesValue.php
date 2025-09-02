@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ServicesValue implements JsonSerializable
@@ -36,65 +35,20 @@ final class ServicesValue implements JsonSerializable
         'container_profile' => 'container_profile',
         'endpoints' => 'endpoints'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'size' => 'setSize',
-            'disk' => 'setDisk',
-            'access' => 'setAccess',
-            'configuration' => 'setConfiguration',
-            'relationships' => 'setRelationships',
-            'firewall' => 'setFirewall',
-            'resources' => 'setResources',
-            'container_profile' => 'setContainerProfile',
-            'endpoints' => 'setEndpoints'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'size' => 'getSize',
-            'disk' => 'getDisk',
-            'access' => 'getAccess',
-            'configuration' => 'getConfiguration',
-            'relationships' => 'getRelationships',
-            'firewall' => 'getFirewall',
-            'resources' => 'getResources',
-            'container_profile' => 'getContainerProfile',
-            'endpoints' => 'getEndpoints'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $size,
-        public readonly ?int $disk,
-        public readonly object $access,
-        public readonly object $configuration,
-        public readonly array $relationships,
-        public readonly ?\Upsun\Model\Firewall $firewall,
-        public readonly ?\Upsun\Model\Resources $resources,
-        public readonly ?string $container_profile,
-        public readonly ?object $endpoints,
+        public readonly ?string $type = null,
+        public readonly ?string $size = null,
+        public readonly ?int $disk = null,
+        public readonly ?object $access = null,
+        public readonly ?object $configuration = null,
+        public readonly ?array $relationships = [],
+        public readonly ?\Upsun\Model\Firewall $firewall = null,
+        public readonly ?\Upsun\Model\Resources $resources = null,
+        public readonly ?string $container_profile = null,
+        public readonly ?object $endpoints = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'size' => false,
-        'disk' => true,
-        'access' => false,
-        'configuration' => false,
-        'relationships' => false,
-        'firewall' => true,
-        'resources' => true,
-        'container_profile' => true,
-        'endpoints' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class ServicesValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

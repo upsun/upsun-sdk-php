@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationAlertConfigConfig implements JsonSerializable
@@ -28,33 +27,12 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
         'threshold' => 'threshold',
         'mode' => 'mode'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'threshold' => 'setThreshold',
-            'mode' => 'setMode'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'threshold' => 'getThreshold',
-            'mode' => 'getMode'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold,
-        public readonly string $mode,
+        public readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
+        public readonly ?string $mode = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'threshold' => false,
-        'mode' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

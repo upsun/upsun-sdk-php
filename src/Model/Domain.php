@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Domain implements JsonSerializable
@@ -35,61 +34,19 @@ final class Domain implements JsonSerializable
         'is_default' => 'is_default',
         'replacement_for' => 'replacement_for'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'project' => 'setProject',
-            'name' => 'setName',
-            'registered_name' => 'setRegisteredName',
-            'attributes' => 'setAttributes',
-            'is_default' => 'setIsDefault',
-            'replacement_for' => 'setReplacementFor'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'project' => 'getProject',
-            'name' => 'getName',
-            'registered_name' => 'getRegisteredName',
-            'attributes' => 'getAttributes',
-            'is_default' => 'getIsDefault',
-            'replacement_for' => 'getReplacementFor'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly string $project,
-        public readonly string $name,
-        public readonly string $registered_name,
-        public readonly array $attributes,
-        public readonly bool $is_default,
-        public readonly string $replacement_for,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?string $project = null,
+        public readonly ?string $name = null,
+        public readonly ?string $registered_name = null,
+        public readonly ?array $attributes = [],
+        public readonly ?bool $is_default = null,
+        public readonly ?string $replacement_for = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'project' => false,
-        'name' => false,
-        'registered_name' => false,
-        'attributes' => false,
-        'is_default' => false,
-        'replacement_for' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class Domain implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

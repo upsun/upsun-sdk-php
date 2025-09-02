@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class AddressGrantsInner implements JsonSerializable
@@ -28,33 +27,12 @@ final class AddressGrantsInner implements JsonSerializable
         'permission' => 'permission',
         'address' => 'address'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'permission' => 'setPermission',
-            'address' => 'setAddress'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'permission' => 'getPermission',
-            'address' => 'getAddress'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $permission,
-        public readonly string $address,
+        public readonly ?string $permission = null,
+        public readonly ?string $address = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'permission' => false,
-        'address' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class AddressGrantsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

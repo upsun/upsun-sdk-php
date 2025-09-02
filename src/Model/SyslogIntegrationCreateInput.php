@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SyslogIntegrationCreateInput implements JsonSerializable
@@ -36,65 +35,20 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         'auth_mode' => 'auth_mode',
         'tls_verify' => 'tls_verify'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'host' => 'setHost',
-            'port' => 'setPort',
-            'protocol' => 'setProtocol',
-            'facility' => 'setFacility',
-            'message_format' => 'setMessageFormat',
-            'auth_token' => 'setAuthToken',
-            'auth_mode' => 'setAuthMode',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'host' => 'getHost',
-            'port' => 'getPort',
-            'protocol' => 'getProtocol',
-            'facility' => 'getFacility',
-            'message_format' => 'getMessageFormat',
-            'auth_token' => 'getAuthToken',
-            'auth_mode' => 'getAuthMode',
-            'tls_verify' => 'getTlsVerify'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly array $extra,
-        public readonly string $host,
-        public readonly int $port,
-        public readonly string $protocol,
-        public readonly int $facility,
-        public readonly string $message_format,
-        public readonly string $auth_token,
-        public readonly string $auth_mode,
-        public readonly bool $tls_verify,
+        public readonly ?string $type = null,
+        public readonly ?array $extra = [],
+        public readonly ?string $host = null,
+        public readonly ?int $port = null,
+        public readonly ?string $protocol = null,
+        public readonly ?int $facility = null,
+        public readonly ?string $message_format = null,
+        public readonly ?string $auth_token = null,
+        public readonly ?string $auth_mode = null,
+        public readonly ?bool $tls_verify = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'extra' => false,
-        'host' => false,
-        'port' => false,
-        'protocol' => false,
-        'facility' => false,
-        'message_format' => false,
-        'auth_token' => false,
-        'auth_mode' => false,
-        'tls_verify' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

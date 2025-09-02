@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Organization implements JsonSerializable
@@ -39,77 +38,23 @@ final class Organization implements JsonSerializable
         'updated_at' => 'updated_at',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'type' => 'setType',
-            'owner_id' => 'setOwnerId',
-            'namespace' => 'setNamespace',
-            'name' => 'setName',
-            'label' => 'setLabel',
-            'country' => 'setCountry',
-            'capabilities' => 'setCapabilities',
-            'vendor' => 'setVendor',
-            'status' => 'setStatus',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'type' => 'getType',
-            'owner_id' => 'getOwnerId',
-            'namespace' => 'getNamespace',
-            'name' => 'getName',
-            'label' => 'getLabel',
-            'country' => 'getCountry',
-            'capabilities' => 'getCapabilities',
-            'vendor' => 'getVendor',
-            'status' => 'getStatus',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $type,
-        public readonly string $owner_id,
-        public readonly string $namespace,
-        public readonly string $name,
-        public readonly string $label,
-        public readonly string $country,
-        public readonly array $capabilities,
-        public readonly string $vendor,
-        public readonly string $status,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
-        public readonly \Upsun\Model\OrganizationLinks $_links,
+        public readonly ?string $id = null,
+        public readonly ?string $type = null,
+        public readonly ?string $owner_id = null,
+        public readonly ?string $namespace = null,
+        public readonly ?string $name = null,
+        public readonly ?string $label = null,
+        public readonly ?string $country = null,
+        public readonly ?array $capabilities = [],
+        public readonly ?string $vendor = null,
+        public readonly ?string $status = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?\Upsun\Model\OrganizationLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'type' => false,
-        'owner_id' => false,
-        'namespace' => false,
-        'name' => false,
-        'label' => false,
-        'country' => false,
-        'capabilities' => false,
-        'vendor' => false,
-        'status' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -133,7 +78,6 @@ final class Organization implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

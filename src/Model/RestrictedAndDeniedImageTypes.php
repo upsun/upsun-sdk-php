@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class RestrictedAndDeniedImageTypes implements JsonSerializable
@@ -28,33 +27,12 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
         'only' => 'only',
         'exclude' => 'exclude'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'only' => 'setOnly',
-            'exclude' => 'setExclude'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'only' => 'getOnly',
-            'exclude' => 'getExclude'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $only,
-        public readonly array $exclude
+        public readonly ?array $only = [],
+        public readonly ?array $exclude = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'only' => false,
-        'exclude' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

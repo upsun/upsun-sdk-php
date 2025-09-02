@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class APIToken implements JsonSerializable
@@ -33,53 +32,17 @@ final class APIToken implements JsonSerializable
         'updated_at' => 'updated_at',
         'last_used_at' => 'last_used_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'name' => 'setName',
-            'mfa_on_creation' => 'setMfaOnCreation',
-            'token' => 'setToken',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'last_used_at' => 'setLastUsedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'name' => 'getName',
-            'mfa_on_creation' => 'getMfaOnCreation',
-            'token' => 'getToken',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'last_used_at' => 'getLastUsedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $name,
-        public readonly bool $mfa_on_creation,
-        public readonly string $token,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
-        public readonly ?\DateTime $last_used_at,
+        public readonly ?string $id = null,
+        public readonly ?string $name = null,
+        public readonly ?bool $mfa_on_creation = null,
+        public readonly ?string $token = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?\DateTime $last_used_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'name' => false,
-        'mfa_on_creation' => false,
-        'token' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'last_used_at' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class APIToken implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentInitializeInput implements JsonSerializable
@@ -31,45 +30,15 @@ final class EnvironmentInitializeInput implements JsonSerializable
         'files' => 'files',
         'resources' => 'resources'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'profile' => 'setProfile',
-            'repository' => 'setRepository',
-            'config' => 'setConfig',
-            'files' => 'setFiles',
-            'resources' => 'setResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'profile' => 'getProfile',
-            'repository' => 'getRepository',
-            'config' => 'getConfig',
-            'files' => 'getFiles',
-            'resources' => 'getResources'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $profile,
-        public readonly string $repository,
-        public readonly ?string $config,
-        public readonly array $files,
-        public readonly ?\Upsun\Model\Resources3 $resources,
+        public readonly ?string $profile = null,
+        public readonly ?string $repository = null,
+        public readonly ?string $config = null,
+        public readonly ?array $files = [],
+        public readonly ?\Upsun\Model\Resources3 $resources = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'profile' => false,
-        'repository' => false,
-        'config' => true,
-        'files' => false,
-        'resources' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class EnvironmentInitializeInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

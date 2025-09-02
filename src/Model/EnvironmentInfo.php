@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentInfo implements JsonSerializable
@@ -35,61 +34,19 @@ final class EnvironmentInfo implements JsonSerializable
         'environment_type' => 'environment_type',
         'links' => 'links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'status' => 'setStatus',
-            'is_main' => 'setIsMain',
-            'is_production' => 'setIsProduction',
-            'constraints' => 'setConstraints',
-            'reference' => 'setReference',
-            'machine_name' => 'setMachineName',
-            'environment_type' => 'setEnvironmentType',
-            'links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'status' => 'getStatus',
-            'is_main' => 'getIsMain',
-            'is_production' => 'getIsProduction',
-            'constraints' => 'getConstraints',
-            'reference' => 'getReference',
-            'machine_name' => 'getMachineName',
-            'environment_type' => 'getEnvironmentType',
-            'links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly string $status,
-        public readonly bool $is_main,
-        public readonly bool $is_production,
-        public readonly object $constraints,
-        public readonly string $reference,
-        public readonly string $machine_name,
-        public readonly string $environment_type,
-        public readonly object $links,
+        public readonly ?string $name = null,
+        public readonly ?string $status = null,
+        public readonly ?bool $is_main = null,
+        public readonly ?bool $is_production = null,
+        public readonly ?object $constraints = null,
+        public readonly ?string $reference = null,
+        public readonly ?string $machine_name = null,
+        public readonly ?string $environment_type = null,
+        public readonly ?object $links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'status' => false,
-        'is_main' => false,
-        'is_production' => false,
-        'constraints' => false,
-        'reference' => false,
-        'machine_name' => false,
-        'environment_type' => false,
-        'links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class EnvironmentInfo implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

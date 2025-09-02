@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentBackupInput implements JsonSerializable
@@ -27,29 +26,11 @@ final class EnvironmentBackupInput implements JsonSerializable
     private static array $attributeMap = [
         'safe' => 'safe'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'safe' => 'setSafe'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'safe' => 'getSafe'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $safe,
+        public readonly ?bool $safe = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'safe' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class EnvironmentBackupInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

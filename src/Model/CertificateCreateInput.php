@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CertificateCreateInput implements JsonSerializable
@@ -30,41 +29,14 @@ final class CertificateCreateInput implements JsonSerializable
         'chain' => 'chain',
         'is_invalid' => 'is_invalid'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'certificate' => 'setCertificate',
-            'key' => 'setKey',
-            'chain' => 'setChain',
-            'is_invalid' => 'setIsInvalid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'certificate' => 'getCertificate',
-            'key' => 'getKey',
-            'chain' => 'getChain',
-            'is_invalid' => 'getIsInvalid'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $certificate,
-        public readonly string $key,
-        public readonly array $chain,
-        public readonly bool $is_invalid,
+        public readonly ?string $certificate = null,
+        public readonly ?string $key = null,
+        public readonly ?array $chain = [],
+        public readonly ?bool $is_invalid = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'certificate' => false,
-        'key' => false,
-        'chain' => false,
-        'is_invalid' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class CertificateCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

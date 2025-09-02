@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Profile implements JsonSerializable
@@ -49,117 +48,33 @@ final class Profile implements JsonSerializable
         'current_trial' => 'current_trial',
         'invoiced' => 'invoiced'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'display_name' => 'setDisplayName',
-            'email' => 'setEmail',
-            'username' => 'setUsername',
-            'type' => 'setType',
-            'picture' => 'setPicture',
-            'company_type' => 'setCompanyType',
-            'company_name' => 'setCompanyName',
-            'currency' => 'setCurrency',
-            'vat_number' => 'setVatNumber',
-            'company_role' => 'setCompanyRole',
-            'website_url' => 'setWebsiteUrl',
-            'new_ui' => 'setNewUi',
-            'ui_colorscheme' => 'setUiColorscheme',
-            'default_catalog' => 'setDefaultCatalog',
-            'project_options_url' => 'setProjectOptionsUrl',
-            'marketing' => 'setMarketing',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'billing_contact' => 'setBillingContact',
-            'security_contact' => 'setSecurityContact',
-            'current_trial' => 'setCurrentTrial',
-            'invoiced' => 'setInvoiced'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'display_name' => 'getDisplayName',
-            'email' => 'getEmail',
-            'username' => 'getUsername',
-            'type' => 'getType',
-            'picture' => 'getPicture',
-            'company_type' => 'getCompanyType',
-            'company_name' => 'getCompanyName',
-            'currency' => 'getCurrency',
-            'vat_number' => 'getVatNumber',
-            'company_role' => 'getCompanyRole',
-            'website_url' => 'getWebsiteUrl',
-            'new_ui' => 'getNewUi',
-            'ui_colorscheme' => 'getUiColorscheme',
-            'default_catalog' => 'getDefaultCatalog',
-            'project_options_url' => 'getProjectOptionsUrl',
-            'marketing' => 'getMarketing',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'billing_contact' => 'getBillingContact',
-            'security_contact' => 'getSecurityContact',
-            'current_trial' => 'getCurrentTrial',
-            'invoiced' => 'getInvoiced'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $display_name,
-        public readonly string $email,
-        public readonly string $username,
-        public readonly string $type,
-        public readonly string $picture,
-        public readonly string $company_type,
-        public readonly string $company_name,
-        public readonly string $currency,
-        public readonly string $vat_number,
-        public readonly string $company_role,
-        public readonly string $website_url,
-        public readonly bool $new_ui,
-        public readonly string $ui_colorscheme,
-        public readonly string $default_catalog,
-        public readonly string $project_options_url,
-        public readonly bool $marketing,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
-        public readonly string $billing_contact,
-        public readonly string $security_contact,
-        public readonly \Upsun\Model\ProfileCurrentTrial $current_trial,
-        public readonly bool $invoiced,
+        public readonly ?string $id = null,
+        public readonly ?string $display_name = null,
+        public readonly ?string $email = null,
+        public readonly ?string $username = null,
+        public readonly ?string $type = null,
+        public readonly ?string $picture = null,
+        public readonly ?string $company_type = null,
+        public readonly ?string $company_name = null,
+        public readonly ?string $currency = null,
+        public readonly ?string $vat_number = null,
+        public readonly ?string $company_role = null,
+        public readonly ?string $website_url = null,
+        public readonly ?bool $new_ui = null,
+        public readonly ?string $ui_colorscheme = null,
+        public readonly ?string $default_catalog = null,
+        public readonly ?string $project_options_url = null,
+        public readonly ?bool $marketing = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $billing_contact = null,
+        public readonly ?string $security_contact = null,
+        public readonly ?\Upsun\Model\ProfileCurrentTrial $current_trial = null,
+        public readonly ?bool $invoiced = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'display_name' => false,
-        'email' => false,
-        'username' => false,
-        'type' => false,
-        'picture' => false,
-        'company_type' => false,
-        'company_name' => false,
-        'currency' => false,
-        'vat_number' => false,
-        'company_role' => false,
-        'website_url' => false,
-        'new_ui' => false,
-        'ui_colorscheme' => false,
-        'default_catalog' => false,
-        'project_options_url' => false,
-        'marketing' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'billing_contact' => false,
-        'security_contact' => false,
-        'current_trial' => false,
-        'invoiced' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -193,7 +108,6 @@ final class Profile implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

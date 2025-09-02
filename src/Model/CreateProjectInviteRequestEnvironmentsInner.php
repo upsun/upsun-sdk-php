@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializable
@@ -28,33 +27,12 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
         'id' => 'id',
         'role' => 'role'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'role' => 'getRole'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $role,
+        public readonly ?string $id = null,
+        public readonly ?string $role = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'role' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

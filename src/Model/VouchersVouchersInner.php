@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class VouchersVouchersInner implements JsonSerializable
@@ -30,41 +29,14 @@ final class VouchersVouchersInner implements JsonSerializable
         'currency' => 'currency',
         'orders' => 'orders'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'code' => 'setCode',
-            'amount' => 'setAmount',
-            'currency' => 'setCurrency',
-            'orders' => 'setOrders'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'code' => 'getCode',
-            'amount' => 'getAmount',
-            'currency' => 'getCurrency',
-            'orders' => 'getOrders'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $code,
-        public readonly string $amount,
-        public readonly string $currency,
-        public readonly array $orders
+        public readonly ?string $code = null,
+        public readonly ?string $amount = null,
+        public readonly ?string $currency = null,
+        public readonly ?array $orders = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'code' => false,
-        'amount' => false,
-        'currency' => false,
-        'orders' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class VouchersVouchersInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

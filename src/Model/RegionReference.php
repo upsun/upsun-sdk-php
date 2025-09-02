@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class RegionReference implements JsonSerializable
@@ -42,89 +41,26 @@ final class RegionReference implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'label' => 'setLabel',
-            'zone' => 'setZone',
-            'selection_label' => 'setSelectionLabel',
-            'project_label' => 'setProjectLabel',
-            'timezone' => 'setTimezone',
-            'available' => 'setAvailable',
-            'private' => 'setPrivate',
-            'endpoint' => 'setEndpoint',
-            'code' => 'setCode',
-            'provider' => 'setProvider',
-            'datacenter' => 'setDatacenter',
-            'envimpact' => 'setEnvimpact',
-            'compliance' => 'setCompliance',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'label' => 'getLabel',
-            'zone' => 'getZone',
-            'selection_label' => 'getSelectionLabel',
-            'project_label' => 'getProjectLabel',
-            'timezone' => 'getTimezone',
-            'available' => 'getAvailable',
-            'private' => 'getPrivate',
-            'endpoint' => 'getEndpoint',
-            'code' => 'getCode',
-            'provider' => 'getProvider',
-            'datacenter' => 'getDatacenter',
-            'envimpact' => 'getEnvimpact',
-            'compliance' => 'getCompliance',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $label,
-        public readonly string $zone,
-        public readonly string $selection_label,
-        public readonly string $project_label,
-        public readonly string $timezone,
-        public readonly bool $available,
-        public readonly bool $private,
-        public readonly string $endpoint,
-        public readonly string $code,
-        public readonly object $provider,
-        public readonly object $datacenter,
-        public readonly object $envimpact,
-        public readonly object $compliance,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
+        public readonly ?string $id = null,
+        public readonly ?string $label = null,
+        public readonly ?string $zone = null,
+        public readonly ?string $selection_label = null,
+        public readonly ?string $project_label = null,
+        public readonly ?string $timezone = null,
+        public readonly ?bool $available = null,
+        public readonly ?bool $private = null,
+        public readonly ?string $endpoint = null,
+        public readonly ?string $code = null,
+        public readonly ?object $provider = null,
+        public readonly ?object $datacenter = null,
+        public readonly ?object $envimpact = null,
+        public readonly ?object $compliance = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'label' => false,
-        'zone' => false,
-        'selection_label' => false,
-        'project_label' => false,
-        'timezone' => false,
-        'available' => false,
-        'private' => false,
-        'endpoint' => false,
-        'code' => false,
-        'provider' => false,
-        'datacenter' => false,
-        'envimpact' => false,
-        'compliance' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -151,7 +87,6 @@ final class RegionReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SyslogIntegration implements JsonSerializable
@@ -36,65 +35,20 @@ final class SyslogIntegration implements JsonSerializable
         'message_format' => 'message_format',
         'tls_verify' => 'tls_verify'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'host' => 'setHost',
-            'port' => 'setPort',
-            'protocol' => 'setProtocol',
-            'facility' => 'setFacility',
-            'message_format' => 'setMessageFormat',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'host' => 'getHost',
-            'port' => 'getPort',
-            'protocol' => 'getProtocol',
-            'facility' => 'getFacility',
-            'message_format' => 'getMessageFormat',
-            'tls_verify' => 'getTlsVerify'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly array $extra,
-        public readonly string $host,
-        public readonly int $port,
-        public readonly string $protocol,
-        public readonly int $facility,
-        public readonly string $message_format,
-        public readonly bool $tls_verify,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?array $extra = [],
+        public readonly ?string $host = null,
+        public readonly ?int $port = null,
+        public readonly ?string $protocol = null,
+        public readonly ?int $facility = null,
+        public readonly ?string $message_format = null,
+        public readonly ?bool $tls_verify = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'extra' => false,
-        'host' => false,
-        'port' => false,
-        'protocol' => false,
-        'facility' => false,
-        'message_format' => false,
-        'tls_verify' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class SyslogIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

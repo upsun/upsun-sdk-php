@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Subscription implements JsonSerializable
@@ -50,121 +49,34 @@ final class Subscription implements JsonSerializable
         'services' => 'services',
         'green' => 'green'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'status' => 'setStatus',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'owner' => 'setOwner',
-            'owner_info' => 'setOwnerInfo',
-            'vendor' => 'setVendor',
-            'plan' => 'setPlan',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'user_licenses' => 'setUserLicenses',
-            'project_id' => 'setProjectId',
-            'project_endpoint' => 'setProjectEndpoint',
-            'project_title' => 'setProjectTitle',
-            'project_region' => 'setProjectRegion',
-            'project_region_label' => 'setProjectRegionLabel',
-            'project_ui' => 'setProjectUi',
-            'project_options' => 'setProjectOptions',
-            'agency_site' => 'setAgencySite',
-            'invoiced' => 'setInvoiced',
-            'hipaa' => 'setHipaa',
-            'is_trial_plan' => 'setIsTrialPlan',
-            'services' => 'setServices',
-            'green' => 'setGreen'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'status' => 'getStatus',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'owner' => 'getOwner',
-            'owner_info' => 'getOwnerInfo',
-            'vendor' => 'getVendor',
-            'plan' => 'getPlan',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'user_licenses' => 'getUserLicenses',
-            'project_id' => 'getProjectId',
-            'project_endpoint' => 'getProjectEndpoint',
-            'project_title' => 'getProjectTitle',
-            'project_region' => 'getProjectRegion',
-            'project_region_label' => 'getProjectRegionLabel',
-            'project_ui' => 'getProjectUi',
-            'project_options' => 'getProjectOptions',
-            'agency_site' => 'getAgencySite',
-            'invoiced' => 'getInvoiced',
-            'hipaa' => 'getHipaa',
-            'is_trial_plan' => 'getIsTrialPlan',
-            'services' => 'getServices',
-            'green' => 'getGreen'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $status,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
-        public readonly string $owner,
-        public readonly \Upsun\Model\OwnerInfo $owner_info,
-        public readonly string $vendor,
-        public readonly string $plan,
-        public readonly int $environments,
-        public readonly int $storage,
-        public readonly int $user_licenses,
-        public readonly string $project_id,
-        public readonly string $project_endpoint,
-        public readonly string $project_title,
-        public readonly string $project_region,
-        public readonly string $project_region_label,
-        public readonly string $project_ui,
-        public readonly \Upsun\Model\ProjectOptions $project_options,
-        public readonly bool $agency_site,
-        public readonly bool $invoiced,
-        public readonly bool $hipaa,
-        public readonly bool $is_trial_plan,
-        public readonly array $services,
-        public readonly bool $green,
+        public readonly ?string $id = null,
+        public readonly ?string $status = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $owner = null,
+        public readonly ?\Upsun\Model\OwnerInfo $owner_info = null,
+        public readonly ?string $vendor = null,
+        public readonly ?string $plan = null,
+        public readonly ?int $environments = null,
+        public readonly ?int $storage = null,
+        public readonly ?int $user_licenses = null,
+        public readonly ?string $project_id = null,
+        public readonly ?string $project_endpoint = null,
+        public readonly ?string $project_title = null,
+        public readonly ?string $project_region = null,
+        public readonly ?string $project_region_label = null,
+        public readonly ?string $project_ui = null,
+        public readonly ?\Upsun\Model\ProjectOptions $project_options = null,
+        public readonly ?bool $agency_site = null,
+        public readonly ?bool $invoiced = null,
+        public readonly ?bool $hipaa = null,
+        public readonly ?bool $is_trial_plan = null,
+        public readonly ?array $services = [],
+        public readonly ?bool $green = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'owner' => false,
-        'owner_info' => false,
-        'vendor' => false,
-        'plan' => false,
-        'environments' => false,
-        'storage' => false,
-        'user_licenses' => false,
-        'project_id' => false,
-        'project_endpoint' => false,
-        'project_title' => false,
-        'project_region' => false,
-        'project_region_label' => false,
-        'project_ui' => false,
-        'project_options' => false,
-        'agency_site' => false,
-        'invoiced' => false,
-        'hipaa' => false,
-        'is_trial_plan' => false,
-        'services' => false,
-        'green' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -199,7 +111,6 @@ final class Subscription implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

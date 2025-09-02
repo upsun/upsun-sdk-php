@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
@@ -35,61 +34,19 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         'rules' => 'rules',
         'request_buffering' => 'request_buffering'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'root' => 'setRoot',
-            'expires' => 'setExpires',
-            'passthru' => 'setPassthru',
-            'scripts' => 'setScripts',
-            'index' => 'setIndex',
-            'allow' => 'setAllow',
-            'headers' => 'setHeaders',
-            'rules' => 'setRules',
-            'request_buffering' => 'setRequestBuffering'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'root' => 'getRoot',
-            'expires' => 'getExpires',
-            'passthru' => 'getPassthru',
-            'scripts' => 'getScripts',
-            'index' => 'getIndex',
-            'allow' => 'getAllow',
-            'headers' => 'getHeaders',
-            'rules' => 'getRules',
-            'request_buffering' => 'getRequestBuffering'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $root,
-        public readonly string $expires,
-        public readonly string $passthru,
-        public readonly bool $scripts,
-        public readonly ?array $index,
-        public readonly bool $allow,
-        public readonly array $headers,
-        public readonly array $rules,
-        public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering,
+        public readonly ?string $root = null,
+        public readonly ?string $expires = null,
+        public readonly ?string $passthru = null,
+        public readonly ?bool $scripts = null,
+        public readonly ?array $index = [],
+        public readonly ?bool $allow = null,
+        public readonly ?array $headers = [],
+        public readonly ?array $rules = [],
+        public readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'root' => true,
-        'expires' => false,
-        'passthru' => false,
-        'scripts' => false,
-        'index' => true,
-        'allow' => false,
-        'headers' => false,
-        'rules' => false,
-        'request_buffering' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

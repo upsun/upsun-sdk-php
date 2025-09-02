@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpdateTicketRequest implements JsonSerializable
@@ -29,37 +28,13 @@ final class UpdateTicketRequest implements JsonSerializable
         'collaborator_ids' => 'collaborator_ids',
         'collaborators_replace' => 'collaborators_replace'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'status' => 'setStatus',
-            'collaborator_ids' => 'setCollaboratorIds',
-            'collaborators_replace' => 'setCollaboratorsReplace'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'status' => 'getStatus',
-            'collaborator_ids' => 'getCollaboratorIds',
-            'collaborators_replace' => 'getCollaboratorsReplace'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $status,
-        public readonly array $collaborator_ids,
-        public readonly bool $collaborators_replace,
+        public readonly ?string $status = null,
+        public readonly ?array $collaborator_ids = [],
+        public readonly ?bool $collaborators_replace = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'status' => false,
-        'collaborator_ids' => false,
-        'collaborators_replace' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class UpdateTicketRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

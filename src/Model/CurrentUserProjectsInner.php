@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CurrentUserProjectsInner implements JsonSerializable
@@ -46,105 +45,30 @@ final class CurrentUserProjectsInner implements JsonSerializable
         'vendor_resources' => 'vendor_resources',
         'created_at' => 'created_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'name' => 'setName',
-            'title' => 'setTitle',
-            'cluster' => 'setCluster',
-            'cluster_label' => 'setClusterLabel',
-            'region' => 'setRegion',
-            'region_label' => 'setRegionLabel',
-            'uri' => 'setUri',
-            'endpoint' => 'setEndpoint',
-            'license_id' => 'setLicenseId',
-            'owner' => 'setOwner',
-            'owner_info' => 'setOwnerInfo',
-            'plan' => 'setPlan',
-            'subscription_id' => 'setSubscriptionId',
-            'status' => 'setStatus',
-            'vendor' => 'setVendor',
-            'vendor_label' => 'setVendorLabel',
-            'vendor_website' => 'setVendorWebsite',
-            'vendor_resources' => 'setVendorResources',
-            'created_at' => 'setCreatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'name' => 'getName',
-            'title' => 'getTitle',
-            'cluster' => 'getCluster',
-            'cluster_label' => 'getClusterLabel',
-            'region' => 'getRegion',
-            'region_label' => 'getRegionLabel',
-            'uri' => 'getUri',
-            'endpoint' => 'getEndpoint',
-            'license_id' => 'getLicenseId',
-            'owner' => 'getOwner',
-            'owner_info' => 'getOwnerInfo',
-            'plan' => 'getPlan',
-            'subscription_id' => 'getSubscriptionId',
-            'status' => 'getStatus',
-            'vendor' => 'getVendor',
-            'vendor_label' => 'getVendorLabel',
-            'vendor_website' => 'getVendorWebsite',
-            'vendor_resources' => 'getVendorResources',
-            'created_at' => 'getCreatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $name,
-        public readonly string $title,
-        public readonly string $cluster,
-        public readonly string $cluster_label,
-        public readonly string $region,
-        public readonly string $region_label,
-        public readonly string $uri,
-        public readonly string $endpoint,
-        public readonly int $license_id,
-        public readonly string $owner,
-        public readonly \Upsun\Model\OwnerInfo $owner_info,
-        public readonly string $plan,
-        public readonly int $subscription_id,
-        public readonly string $status,
-        public readonly string $vendor,
-        public readonly string $vendor_label,
-        public readonly string $vendor_website,
-        public readonly string $vendor_resources,
-        public readonly \DateTime $created_at,
+        public readonly ?string $id = null,
+        public readonly ?string $name = null,
+        public readonly ?string $title = null,
+        public readonly ?string $cluster = null,
+        public readonly ?string $cluster_label = null,
+        public readonly ?string $region = null,
+        public readonly ?string $region_label = null,
+        public readonly ?string $uri = null,
+        public readonly ?string $endpoint = null,
+        public readonly ?int $license_id = null,
+        public readonly ?string $owner = null,
+        public readonly ?\Upsun\Model\OwnerInfo $owner_info = null,
+        public readonly ?string $plan = null,
+        public readonly ?int $subscription_id = null,
+        public readonly ?string $status = null,
+        public readonly ?string $vendor = null,
+        public readonly ?string $vendor_label = null,
+        public readonly ?string $vendor_website = null,
+        public readonly ?string $vendor_resources = null,
+        public readonly ?\DateTime $created_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'name' => false,
-        'title' => false,
-        'cluster' => false,
-        'cluster_label' => false,
-        'region' => false,
-        'region_label' => false,
-        'uri' => false,
-        'endpoint' => false,
-        'license_id' => false,
-        'owner' => false,
-        'owner_info' => false,
-        'plan' => false,
-        'subscription_id' => false,
-        'status' => false,
-        'vendor' => false,
-        'vendor_label' => false,
-        'vendor_website' => false,
-        'vendor_resources' => false,
-        'created_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -175,7 +99,6 @@ final class CurrentUserProjectsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

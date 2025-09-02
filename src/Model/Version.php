@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Version implements JsonSerializable
@@ -29,37 +28,13 @@ final class Version implements JsonSerializable
         'locked' => 'locked',
         'routing' => 'routing'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'commit' => 'setCommit',
-            'locked' => 'setLocked',
-            'routing' => 'setRouting'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'commit' => 'getCommit',
-            'locked' => 'getLocked',
-            'routing' => 'getRouting'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $commit,
-        public readonly bool $locked,
-        public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
+        public readonly ?string $commit = null,
+        public readonly ?bool $locked = null,
+        public readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'commit' => true,
-        'locked' => false,
-        'routing' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class Version implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

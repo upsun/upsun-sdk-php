@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TeamProjectAccessLinks implements JsonSerializable
@@ -29,37 +28,13 @@ final class TeamProjectAccessLinks implements JsonSerializable
         'update' => 'update',
         'delete' => 'delete'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'update' => 'setUpdate',
-            'delete' => 'setDelete'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'update' => 'getUpdate',
-            'delete' => 'getDelete'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\TeamProjectAccessLinksSelf $self,
-        public readonly \Upsun\Model\TeamProjectAccessLinksUpdate $update,
-        public readonly \Upsun\Model\TeamProjectAccessLinksDelete $delete,
+        public readonly ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
+        public readonly ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
+        public readonly ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'self' => false,
-        'update' => false,
-        'delete' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class TeamProjectAccessLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

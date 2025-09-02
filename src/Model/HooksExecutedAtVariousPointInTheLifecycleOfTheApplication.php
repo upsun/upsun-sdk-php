@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
@@ -29,37 +28,13 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         'deploy' => 'deploy',
         'post_deploy' => 'post_deploy'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'build' => 'setBuild',
-            'deploy' => 'setDeploy',
-            'post_deploy' => 'setPostDeploy'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'build' => 'getBuild',
-            'deploy' => 'getDeploy',
-            'post_deploy' => 'getPostDeploy'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $build,
-        public readonly ?string $deploy,
-        public readonly ?string $post_deploy,
+        public readonly ?string $build = null,
+        public readonly ?string $deploy = null,
+        public readonly ?string $post_deploy = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'build' => true,
-        'deploy' => true,
-        'post_deploy' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

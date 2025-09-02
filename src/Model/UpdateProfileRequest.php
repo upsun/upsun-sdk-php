@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpdateProfileRequest implements JsonSerializable
@@ -39,77 +38,23 @@ final class UpdateProfileRequest implements JsonSerializable
         'project_options_url' => 'project_options_url',
         'picture' => 'picture'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'display_name' => 'setDisplayName',
-            'username' => 'setUsername',
-            'current_password' => 'setCurrentPassword',
-            'password' => 'setPassword',
-            'company_type' => 'setCompanyType',
-            'company_name' => 'setCompanyName',
-            'vat_number' => 'setVatNumber',
-            'company_role' => 'setCompanyRole',
-            'marketing' => 'setMarketing',
-            'ui_colorscheme' => 'setUiColorscheme',
-            'default_catalog' => 'setDefaultCatalog',
-            'project_options_url' => 'setProjectOptionsUrl',
-            'picture' => 'setPicture'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'display_name' => 'getDisplayName',
-            'username' => 'getUsername',
-            'current_password' => 'getCurrentPassword',
-            'password' => 'getPassword',
-            'company_type' => 'getCompanyType',
-            'company_name' => 'getCompanyName',
-            'vat_number' => 'getVatNumber',
-            'company_role' => 'getCompanyRole',
-            'marketing' => 'getMarketing',
-            'ui_colorscheme' => 'getUiColorscheme',
-            'default_catalog' => 'getDefaultCatalog',
-            'project_options_url' => 'getProjectOptionsUrl',
-            'picture' => 'getPicture'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $display_name,
-        public readonly string $username,
-        public readonly string $current_password,
-        public readonly string $password,
-        public readonly string $company_type,
-        public readonly string $company_name,
-        public readonly string $vat_number,
-        public readonly string $company_role,
-        public readonly bool $marketing,
-        public readonly string $ui_colorscheme,
-        public readonly string $default_catalog,
-        public readonly string $project_options_url,
-        public readonly string $picture,
+        public readonly ?string $display_name = null,
+        public readonly ?string $username = null,
+        public readonly ?string $current_password = null,
+        public readonly ?string $password = null,
+        public readonly ?string $company_type = null,
+        public readonly ?string $company_name = null,
+        public readonly ?string $vat_number = null,
+        public readonly ?string $company_role = null,
+        public readonly ?bool $marketing = null,
+        public readonly ?string $ui_colorscheme = null,
+        public readonly ?string $default_catalog = null,
+        public readonly ?string $project_options_url = null,
+        public readonly ?string $picture = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'display_name' => false,
-        'username' => false,
-        'current_password' => false,
-        'password' => false,
-        'company_type' => false,
-        'company_name' => false,
-        'vat_number' => false,
-        'company_role' => false,
-        'marketing' => false,
-        'ui_colorscheme' => false,
-        'default_catalog' => false,
-        'project_options_url' => false,
-        'picture' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -133,7 +78,6 @@ final class UpdateProfileRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

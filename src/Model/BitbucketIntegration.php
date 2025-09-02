@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class BitbucketIntegration implements JsonSerializable
@@ -38,73 +37,22 @@ final class BitbucketIntegration implements JsonSerializable
         'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data',
         'resync_pull_requests' => 'resync_pull_requests'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'app_credentials' => 'setAppCredentials',
-            'addon_credentials' => 'setAddonCredentials',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
-            'resync_pull_requests' => 'setResyncPullRequests'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'app_credentials' => 'getAppCredentials',
-            'addon_credentials' => 'getAddonCredentials',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
-            'resync_pull_requests' => 'getResyncPullRequests'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $type,
-        public readonly bool $fetch_branches,
-        public readonly bool $prune_branches,
-        public readonly string $environment_init_resources,
-        public readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $app_credentials,
-        public readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addon_credentials,
-        public readonly string $repository,
-        public readonly bool $build_pull_requests,
-        public readonly bool $pull_requests_clone_parent_data,
-        public readonly bool $resync_pull_requests,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $type = null,
+        public readonly ?bool $fetch_branches = null,
+        public readonly ?bool $prune_branches = null,
+        public readonly ?string $environment_init_resources = null,
+        public readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $app_credentials = null,
+        public readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addon_credentials = null,
+        public readonly ?string $repository = null,
+        public readonly ?bool $build_pull_requests = null,
+        public readonly ?bool $pull_requests_clone_parent_data = null,
+        public readonly ?bool $resync_pull_requests = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'type' => false,
-        'fetch_branches' => false,
-        'prune_branches' => false,
-        'environment_init_resources' => false,
-        'app_credentials' => true,
-        'addon_credentials' => true,
-        'repository' => false,
-        'build_pull_requests' => false,
-        'pull_requests_clone_parent_data' => false,
-        'resync_pull_requests' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -127,7 +75,6 @@ final class BitbucketIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

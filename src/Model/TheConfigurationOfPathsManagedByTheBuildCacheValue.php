@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
@@ -30,41 +29,14 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
         'allow_stale' => 'allow_stale',
         'share_between_apps' => 'share_between_apps'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'directory' => 'setDirectory',
-            'watch' => 'setWatch',
-            'allow_stale' => 'setAllowStale',
-            'share_between_apps' => 'setShareBetweenApps'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'directory' => 'getDirectory',
-            'watch' => 'getWatch',
-            'allow_stale' => 'getAllowStale',
-            'share_between_apps' => 'getShareBetweenApps'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $directory,
-        public readonly array $watch,
-        public readonly bool $allow_stale,
-        public readonly bool $share_between_apps,
+        public readonly ?string $directory = null,
+        public readonly ?array $watch = [],
+        public readonly ?bool $allow_stale = null,
+        public readonly ?bool $share_between_apps = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'directory' => true,
-        'watch' => false,
-        'allow_stale' => false,
-        'share_between_apps' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

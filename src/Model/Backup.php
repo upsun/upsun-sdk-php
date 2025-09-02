@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Backup implements JsonSerializable
@@ -41,85 +40,25 @@ final class Backup implements JsonSerializable
         'restorable' => 'restorable',
         'automated' => 'automated'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'id' => 'setId',
-            'attributes' => 'setAttributes',
-            'status' => 'setStatus',
-            'expires_at' => 'setExpiresAt',
-            'index' => 'setIndex',
-            'commit_id' => 'setCommitId',
-            'environment' => 'setEnvironment',
-            'safe' => 'setSafe',
-            'size_of_volumes' => 'setSizeOfVolumes',
-            'size_used' => 'setSizeUsed',
-            'deployment' => 'setDeployment',
-            'restorable' => 'setRestorable',
-            'automated' => 'setAutomated'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'id' => 'getId',
-            'attributes' => 'getAttributes',
-            'status' => 'getStatus',
-            'expires_at' => 'getExpiresAt',
-            'index' => 'getIndex',
-            'commit_id' => 'getCommitId',
-            'environment' => 'getEnvironment',
-            'safe' => 'getSafe',
-            'size_of_volumes' => 'getSizeOfVolumes',
-            'size_used' => 'getSizeUsed',
-            'deployment' => 'getDeployment',
-            'restorable' => 'getRestorable',
-            'automated' => 'getAutomated'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $id,
-        public readonly array $attributes,
-        public readonly string $status,
-        public readonly ?\DateTime $expires_at,
-        public readonly ?int $index,
-        public readonly string $commit_id,
-        public readonly string $environment,
-        public readonly bool $safe,
-        public readonly ?int $size_of_volumes,
-        public readonly ?int $size_used,
-        public readonly ?string $deployment,
-        public readonly bool $restorable,
-        public readonly bool $automated,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $id = null,
+        public readonly ?array $attributes = [],
+        public readonly ?string $status = null,
+        public readonly ?\DateTime $expires_at = null,
+        public readonly ?int $index = null,
+        public readonly ?string $commit_id = null,
+        public readonly ?string $environment = null,
+        public readonly ?bool $safe = null,
+        public readonly ?int $size_of_volumes = null,
+        public readonly ?int $size_used = null,
+        public readonly ?string $deployment = null,
+        public readonly ?bool $restorable = null,
+        public readonly ?bool $automated = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'id' => false,
-        'attributes' => false,
-        'status' => false,
-        'expires_at' => true,
-        'index' => true,
-        'commit_id' => false,
-        'environment' => false,
-        'safe' => false,
-        'size_of_volumes' => true,
-        'size_used' => true,
-        'deployment' => true,
-        'restorable' => false,
-        'automated' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -145,7 +84,6 @@ final class Backup implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

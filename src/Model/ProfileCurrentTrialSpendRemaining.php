@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
@@ -31,45 +30,15 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
         'currency_symbol' => 'currency_symbol',
         'unlimited' => 'unlimited'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'formatted' => 'setFormatted',
-            'amount' => 'setAmount',
-            'currency' => 'setCurrency',
-            'currency_symbol' => 'setCurrencySymbol',
-            'unlimited' => 'setUnlimited'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'formatted' => 'getFormatted',
-            'amount' => 'getAmount',
-            'currency' => 'getCurrency',
-            'currency_symbol' => 'getCurrencySymbol',
-            'unlimited' => 'getUnlimited'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $formatted,
-        public readonly string $amount,
-        public readonly string $currency,
-        public readonly string $currency_symbol,
-        public readonly bool $unlimited,
+        public readonly ?string $formatted = null,
+        public readonly ?string $amount = null,
+        public readonly ?string $currency = null,
+        public readonly ?string $currency_symbol = null,
+        public readonly ?bool $unlimited = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'formatted' => false,
-        'amount' => false,
-        'currency' => false,
-        'currency_symbol' => false,
-        'unlimited' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

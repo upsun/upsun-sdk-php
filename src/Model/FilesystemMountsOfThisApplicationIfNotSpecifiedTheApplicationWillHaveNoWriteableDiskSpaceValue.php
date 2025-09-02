@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements JsonSerializable
@@ -29,37 +28,13 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
         'source_path' => 'source_path',
         'service' => 'service'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'source' => 'setSource',
-            'source_path' => 'setSourcePath',
-            'service' => 'setService'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'source' => 'getSource',
-            'source_path' => 'getSourcePath',
-            'service' => 'getService'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $source,
-        public readonly string $source_path,
-        public readonly ?string $service,
+        public readonly ?string $source = null,
+        public readonly ?string $source_path = null,
+        public readonly ?string $service = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'source' => false,
-        'source_path' => false,
-        'service' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

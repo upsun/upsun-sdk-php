@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Components implements JsonSerializable
@@ -27,29 +26,11 @@ final class Components implements JsonSerializable
     private static array $attributeMap = [
         'voucher_vat_baseprice' => 'voucher/vat/baseprice'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'voucher_vat_baseprice' => 'setVoucherVatBaseprice'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'voucher_vat_baseprice' => 'getVoucherVatBaseprice'
-        ];
-    
-    
+
     public function __construct(
-        public readonly object $voucher_vat_baseprice,
+        public readonly ?object $voucher_vat_baseprice = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'voucher_vat_baseprice' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class Components implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

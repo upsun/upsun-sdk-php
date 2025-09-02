@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheIssuerOfTheCertificateInner implements JsonSerializable
@@ -29,37 +28,13 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
         'alias' => 'alias',
         'value' => 'value'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'oid' => 'setOid',
-            'alias' => 'setAlias',
-            'value' => 'setValue'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'oid' => 'getOid',
-            'alias' => 'getAlias',
-            'value' => 'getValue'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $oid,
-        public readonly ?string $alias,
-        public readonly string $value,
+        public readonly ?string $oid = null,
+        public readonly ?string $alias = null,
+        public readonly ?string $value = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'oid' => false,
-        'alias' => true,
-        'value' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

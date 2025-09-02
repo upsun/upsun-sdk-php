@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentPatch implements JsonSerializable
@@ -35,61 +34,19 @@ final class EnvironmentPatch implements JsonSerializable
         'enable_smtp' => 'enable_smtp',
         'restrict_robots' => 'restrict_robots'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'title' => 'setTitle',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'parent' => 'setParent',
-            'clone_parent_on_create' => 'setCloneParentOnCreate',
-            'http_access' => 'setHttpAccess',
-            'enable_smtp' => 'setEnableSmtp',
-            'restrict_robots' => 'setRestrictRobots'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'title' => 'getTitle',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'parent' => 'getParent',
-            'clone_parent_on_create' => 'getCloneParentOnCreate',
-            'http_access' => 'getHttpAccess',
-            'enable_smtp' => 'getEnableSmtp',
-            'restrict_robots' => 'getRestrictRobots'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly string $title,
-        public readonly array $attributes,
-        public readonly string $type,
-        public readonly ?string $parent,
-        public readonly bool $clone_parent_on_create,
-        public readonly \Upsun\Model\HttpAccessPermissions1 $http_access,
-        public readonly bool $enable_smtp,
-        public readonly bool $restrict_robots,
+        public readonly ?string $name = null,
+        public readonly ?string $title = null,
+        public readonly ?array $attributes = [],
+        public readonly ?string $type = null,
+        public readonly ?string $parent = null,
+        public readonly ?bool $clone_parent_on_create = null,
+        public readonly ?\Upsun\Model\HttpAccessPermissions1 $http_access = null,
+        public readonly ?bool $enable_smtp = null,
+        public readonly ?bool $restrict_robots = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'title' => false,
-        'attributes' => false,
-        'type' => false,
-        'parent' => true,
-        'clone_parent_on_create' => false,
-        'http_access' => false,
-        'enable_smtp' => false,
-        'restrict_robots' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class EnvironmentPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

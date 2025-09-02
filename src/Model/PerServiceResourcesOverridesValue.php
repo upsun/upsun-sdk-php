@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class PerServiceResourcesOverridesValue implements JsonSerializable
@@ -29,37 +28,13 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
         'memory' => 'memory',
         'disk' => 'disk'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu' => 'setCpu',
-            'memory' => 'setMemory',
-            'disk' => 'setDisk'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu' => 'getCpu',
-            'memory' => 'getMemory',
-            'disk' => 'getDisk'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?float $cpu,
-        public readonly ?int $memory,
-        public readonly ?int $disk,
+        public readonly ?float $cpu = null,
+        public readonly ?int $memory = null,
+        public readonly ?int $disk = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'cpu' => true,
-        'memory' => true,
-        'disk' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GetAddress200Response implements JsonSerializable
@@ -37,69 +36,21 @@ final class GetAddress200Response implements JsonSerializable
         'postal_code' => 'postal_code',
         'metadata' => 'metadata'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'country' => 'setCountry',
-            'name_line' => 'setNameLine',
-            'premise' => 'setPremise',
-            'sub_premise' => 'setSubPremise',
-            'thoroughfare' => 'setThoroughfare',
-            'administrative_area' => 'setAdministrativeArea',
-            'sub_administrative_area' => 'setSubAdministrativeArea',
-            'locality' => 'setLocality',
-            'dependent_locality' => 'setDependentLocality',
-            'postal_code' => 'setPostalCode',
-            'metadata' => 'setMetadata'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'country' => 'getCountry',
-            'name_line' => 'getNameLine',
-            'premise' => 'getPremise',
-            'sub_premise' => 'getSubPremise',
-            'thoroughfare' => 'getThoroughfare',
-            'administrative_area' => 'getAdministrativeArea',
-            'sub_administrative_area' => 'getSubAdministrativeArea',
-            'locality' => 'getLocality',
-            'dependent_locality' => 'getDependentLocality',
-            'postal_code' => 'getPostalCode',
-            'metadata' => 'getMetadata'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $country,
-        public readonly string $name_line,
-        public readonly string $premise,
-        public readonly string $sub_premise,
-        public readonly string $thoroughfare,
-        public readonly string $administrative_area,
-        public readonly string $sub_administrative_area,
-        public readonly string $locality,
-        public readonly string $dependent_locality,
-        public readonly string $postal_code,
-        public readonly \Upsun\Model\AddressMetadataMetadata $metadata,
+        public readonly ?string $country = null,
+        public readonly ?string $name_line = null,
+        public readonly ?string $premise = null,
+        public readonly ?string $sub_premise = null,
+        public readonly ?string $thoroughfare = null,
+        public readonly ?string $administrative_area = null,
+        public readonly ?string $sub_administrative_area = null,
+        public readonly ?string $locality = null,
+        public readonly ?string $dependent_locality = null,
+        public readonly ?string $postal_code = null,
+        public readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'country' => false,
-        'name_line' => false,
-        'premise' => false,
-        'sub_premise' => false,
-        'thoroughfare' => false,
-        'administrative_area' => false,
-        'sub_administrative_area' => false,
-        'locality' => false,
-        'dependent_locality' => false,
-        'postal_code' => false,
-        'metadata' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -121,7 +72,6 @@ final class GetAddress200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

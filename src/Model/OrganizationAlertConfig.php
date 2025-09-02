@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationAlertConfig implements JsonSerializable
@@ -32,49 +31,16 @@ final class OrganizationAlertConfig implements JsonSerializable
         'updated_at' => 'updated_at',
         'config' => 'config'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'active' => 'setActive',
-            'alerts_sent' => 'setAlertsSent',
-            'last_alert_at' => 'setLastAlertAt',
-            'updated_at' => 'setUpdatedAt',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'active' => 'getActive',
-            'alerts_sent' => 'getAlertsSent',
-            'last_alert_at' => 'getLastAlertAt',
-            'updated_at' => 'getUpdatedAt',
-            'config' => 'getConfig'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly bool $active,
-        public readonly float $alerts_sent,
-        public readonly ?string $last_alert_at,
-        public readonly ?string $updated_at,
-        public readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config,
+        public readonly ?string $id = null,
+        public readonly ?bool $active = null,
+        public readonly ?float $alerts_sent = null,
+        public readonly ?string $last_alert_at = null,
+        public readonly ?string $updated_at = null,
+        public readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'active' => false,
-        'alerts_sent' => false,
-        'last_alert_at' => true,
-        'updated_at' => true,
-        'config' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class OrganizationAlertConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

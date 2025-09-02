@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CacheConfiguration implements JsonSerializable
@@ -30,41 +29,14 @@ final class CacheConfiguration implements JsonSerializable
         'cookies' => 'cookies',
         'headers' => 'headers'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'default_ttl' => 'setDefaultTtl',
-            'cookies' => 'setCookies',
-            'headers' => 'setHeaders'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'default_ttl' => 'getDefaultTtl',
-            'cookies' => 'getCookies',
-            'headers' => 'getHeaders'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enabled,
-        public readonly int $default_ttl,
-        public readonly array $cookies,
-        public readonly array $headers
+        public readonly ?bool $enabled = null,
+        public readonly ?int $default_ttl = null,
+        public readonly ?array $cookies = [],
+        public readonly ?array $headers = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => false,
-        'default_ttl' => false,
-        'cookies' => false,
-        'headers' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class CacheConfiguration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

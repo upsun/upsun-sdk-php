@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class PrepaymentTransactionObject implements JsonSerializable
@@ -33,53 +32,17 @@ final class PrepaymentTransactionObject implements JsonSerializable
         'updated' => 'updated',
         'expire_date' => 'expire_date'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'order_id' => 'setOrderId',
-            'message' => 'setMessage',
-            'status' => 'setStatus',
-            'amount' => 'setAmount',
-            'created' => 'setCreated',
-            'updated' => 'setUpdated',
-            'expire_date' => 'setExpireDate'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'order_id' => 'getOrderId',
-            'message' => 'getMessage',
-            'status' => 'getStatus',
-            'amount' => 'getAmount',
-            'created' => 'getCreated',
-            'updated' => 'getUpdated',
-            'expire_date' => 'getExpireDate'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $order_id,
-        public readonly string $message,
-        public readonly string $status,
-        public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance $amount,
-        public readonly string $created,
-        public readonly ?string $updated,
-        public readonly ?string $expire_date,
+        public readonly ?string $order_id = null,
+        public readonly ?string $message = null,
+        public readonly ?string $status = null,
+        public readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+        public readonly ?string $created = null,
+        public readonly ?string $updated = null,
+        public readonly ?string $expire_date = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'order_id' => false,
-        'message' => false,
-        'status' => false,
-        'amount' => false,
-        'created' => false,
-        'updated' => true,
-        'expire_date' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class PrepaymentTransactionObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListProfiles200Response implements JsonSerializable
@@ -29,37 +28,13 @@ final class ListProfiles200Response implements JsonSerializable
         'profiles' => 'profiles',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'profiles' => 'setProfiles',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'profiles' => 'getProfiles',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $count,
-        public readonly array $profiles,
-        public readonly \Upsun\Model\HalLinks $_links,
+        public readonly ?int $count = null,
+        public readonly ?array $profiles = [],
+        public readonly ?\Upsun\Model\HalLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'count' => false,
-        'profiles' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ListProfiles200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

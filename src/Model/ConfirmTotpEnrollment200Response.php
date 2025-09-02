@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ConfirmTotpEnrollment200Response implements JsonSerializable
@@ -27,29 +26,11 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     private static array $attributeMap = [
         'recovery_codes' => 'recovery_codes'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'recovery_codes' => 'setRecoveryCodes'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'recovery_codes' => 'getRecoveryCodes'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $recovery_codes
+        public readonly ?array $recovery_codes = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'recovery_codes' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

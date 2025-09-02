@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SSHKey implements JsonSerializable
@@ -32,49 +31,16 @@ final class SSHKey implements JsonSerializable
         'value' => 'value',
         'changed' => 'changed'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'key_id' => 'setKeyId',
-            'uid' => 'setUid',
-            'fingerprint' => 'setFingerprint',
-            'title' => 'setTitle',
-            'value' => 'setValue',
-            'changed' => 'setChanged'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'key_id' => 'getKeyId',
-            'uid' => 'getUid',
-            'fingerprint' => 'getFingerprint',
-            'title' => 'getTitle',
-            'value' => 'getValue',
-            'changed' => 'getChanged'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $key_id,
-        public readonly int $uid,
-        public readonly string $fingerprint,
-        public readonly string $title,
-        public readonly string $value,
-        public readonly string $changed,
+        public readonly ?int $key_id = null,
+        public readonly ?int $uid = null,
+        public readonly ?string $fingerprint = null,
+        public readonly ?string $title = null,
+        public readonly ?string $value = null,
+        public readonly ?string $changed = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'key_id' => false,
-        'uid' => false,
-        'fingerprint' => false,
-        'title' => false,
-        'value' => false,
-        'changed' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class SSHKey implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

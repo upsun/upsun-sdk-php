@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpdateUserRequest implements JsonSerializable
@@ -33,53 +32,17 @@ final class UpdateUserRequest implements JsonSerializable
         'website' => 'website',
         'country' => 'country'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'username' => 'setUsername',
-            'first_name' => 'setFirstName',
-            'last_name' => 'setLastName',
-            'picture' => 'setPicture',
-            'company' => 'setCompany',
-            'website' => 'setWebsite',
-            'country' => 'setCountry'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'username' => 'getUsername',
-            'first_name' => 'getFirstName',
-            'last_name' => 'getLastName',
-            'picture' => 'getPicture',
-            'company' => 'getCompany',
-            'website' => 'getWebsite',
-            'country' => 'getCountry'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $username,
-        public readonly string $first_name,
-        public readonly string $last_name,
-        public readonly string $picture,
-        public readonly string $company,
-        public readonly string $website,
-        public readonly string $country,
+        public readonly ?string $username = null,
+        public readonly ?string $first_name = null,
+        public readonly ?string $last_name = null,
+        public readonly ?string $picture = null,
+        public readonly ?string $company = null,
+        public readonly ?string $website = null,
+        public readonly ?string $country = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'username' => false,
-        'first_name' => false,
-        'last_name' => false,
-        'picture' => false,
-        'company' => false,
-        'website' => false,
-        'country' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class UpdateUserRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

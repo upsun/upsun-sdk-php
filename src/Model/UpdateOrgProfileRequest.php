@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpdateOrgProfileRequest implements JsonSerializable
@@ -32,49 +31,16 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         'vat_number' => 'vat_number',
         'billing_contact' => 'billing_contact'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'default_catalog' => 'setDefaultCatalog',
-            'project_options_url' => 'setProjectOptionsUrl',
-            'security_contact' => 'setSecurityContact',
-            'company_name' => 'setCompanyName',
-            'vat_number' => 'setVatNumber',
-            'billing_contact' => 'setBillingContact'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'default_catalog' => 'getDefaultCatalog',
-            'project_options_url' => 'getProjectOptionsUrl',
-            'security_contact' => 'getSecurityContact',
-            'company_name' => 'getCompanyName',
-            'vat_number' => 'getVatNumber',
-            'billing_contact' => 'getBillingContact'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $default_catalog,
-        public readonly string $project_options_url,
-        public readonly string $security_contact,
-        public readonly string $company_name,
-        public readonly string $vat_number,
-        public readonly string $billing_contact,
+        public readonly ?string $default_catalog = null,
+        public readonly ?string $project_options_url = null,
+        public readonly ?string $security_contact = null,
+        public readonly ?string $company_name = null,
+        public readonly ?string $vat_number = null,
+        public readonly ?string $billing_contact = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'default_catalog' => false,
-        'project_options_url' => false,
-        'security_contact' => false,
-        'company_name' => false,
-        'vat_number' => false,
-        'billing_contact' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

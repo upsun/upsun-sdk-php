@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DeploymentTargetPatch implements JsonSerializable
@@ -34,57 +33,18 @@ final class DeploymentTargetPatch implements JsonSerializable
         'hosts' => 'hosts',
         'use_dedicated_grid' => 'use_dedicated_grid'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'enforced_mounts' => 'setEnforcedMounts',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
-            'hosts' => 'setHosts',
-            'use_dedicated_grid' => 'setUseDedicatedGrid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'enforced_mounts' => 'getEnforcedMounts',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
-            'hosts' => 'getHosts',
-            'use_dedicated_grid' => 'getUseDedicatedGrid'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $name,
-        public readonly object $enforced_mounts,
-        public readonly object $site_urls,
-        public readonly array $ssh_hosts,
-        public readonly object $enterprise_environments_mapping,
-        public readonly ?array $hosts,
-        public readonly bool $use_dedicated_grid,
+        public readonly ?string $type = null,
+        public readonly ?string $name = null,
+        public readonly ?object $enforced_mounts = null,
+        public readonly ?object $site_urls = null,
+        public readonly ?array $ssh_hosts = [],
+        public readonly ?object $enterprise_environments_mapping = null,
+        public readonly ?array $hosts = [],
+        public readonly ?bool $use_dedicated_grid = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'enforced_mounts' => false,
-        'site_urls' => false,
-        'ssh_hosts' => false,
-        'enterprise_environments_mapping' => false,
-        'hosts' => true,
-        'use_dedicated_grid' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -103,7 +63,6 @@ final class DeploymentTargetPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

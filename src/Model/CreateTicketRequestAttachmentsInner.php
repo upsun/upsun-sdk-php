@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
@@ -28,33 +27,12 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
         'filename' => 'filename',
         'data' => 'data'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'filename' => 'setFilename',
-            'data' => 'setData'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'filename' => 'getFilename',
-            'data' => 'getData'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $filename,
-        public readonly string $data,
+        public readonly ?string $filename = null,
+        public readonly ?string $data = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'filename' => false,
-        'data' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

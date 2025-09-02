@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CurrencyAmount implements JsonSerializable
@@ -30,41 +29,14 @@ final class CurrencyAmount implements JsonSerializable
         'currency_code' => 'currency_code',
         'currency_symbol' => 'currency_symbol'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'formatted' => 'setFormatted',
-            'amount' => 'setAmount',
-            'currency_code' => 'setCurrencyCode',
-            'currency_symbol' => 'setCurrencySymbol'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'formatted' => 'getFormatted',
-            'amount' => 'getAmount',
-            'currency_code' => 'getCurrencyCode',
-            'currency_symbol' => 'getCurrencySymbol'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $formatted,
-        public readonly float $amount,
-        public readonly string $currency_code,
-        public readonly string $currency_symbol,
+        public readonly ?string $formatted = null,
+        public readonly ?float $amount = null,
+        public readonly ?string $currency_code = null,
+        public readonly ?string $currency_symbol = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'formatted' => false,
-        'amount' => false,
-        'currency_code' => false,
-        'currency_symbol' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class CurrencyAmount implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

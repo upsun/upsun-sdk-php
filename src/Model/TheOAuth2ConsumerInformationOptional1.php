@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
         'key' => 'key',
         'secret' => 'secret'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'key' => 'setKey',
-            'secret' => 'setSecret'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'key' => 'getKey',
-            'secret' => 'getSecret'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $key,
-        public readonly string $secret,
+        public readonly ?string $key = null,
+        public readonly ?string $secret = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'key' => false,
-        'secret' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

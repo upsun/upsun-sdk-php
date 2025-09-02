@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class RegionDatacenter implements JsonSerializable
@@ -29,37 +28,13 @@ final class RegionDatacenter implements JsonSerializable
         'label' => 'label',
         'location' => 'location'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'label' => 'setLabel',
-            'location' => 'setLocation'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'label' => 'getLabel',
-            'location' => 'getLocation'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly string $label,
-        public readonly string $location,
+        public readonly ?string $name = null,
+        public readonly ?string $label = null,
+        public readonly ?string $location = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'label' => false,
-        'location' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class RegionDatacenter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

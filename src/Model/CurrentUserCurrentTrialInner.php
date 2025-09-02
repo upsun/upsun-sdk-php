@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CurrentUserCurrentTrialInner implements JsonSerializable
@@ -30,41 +29,14 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
         'spend_remaining' => 'spend_remaining',
         'expiration' => 'expiration'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created' => 'setCreated',
-            'description' => 'setDescription',
-            'spend_remaining' => 'setSpendRemaining',
-            'expiration' => 'setExpiration'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created' => 'getCreated',
-            'description' => 'getDescription',
-            'spend_remaining' => 'getSpendRemaining',
-            'expiration' => 'getExpiration'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \DateTime $created,
-        public readonly string $description,
-        public readonly string $spend_remaining,
-        public readonly \DateTime $expiration,
+        public readonly ?\DateTime $created = null,
+        public readonly ?string $description = null,
+        public readonly ?string $spend_remaining = null,
+        public readonly ?\DateTime $expiration = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created' => false,
-        'description' => false,
-        'spend_remaining' => false,
-        'expiration' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

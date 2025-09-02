@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class StrictTransportSecurityOptions1 implements JsonSerializable
@@ -29,37 +28,13 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
         'include_subdomains' => 'include_subdomains',
         'preload' => 'preload'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'include_subdomains' => 'setIncludeSubdomains',
-            'preload' => 'setPreload'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'include_subdomains' => 'getIncludeSubdomains',
-            'preload' => 'getPreload'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?bool $enabled,
-        public readonly ?bool $include_subdomains,
-        public readonly ?bool $preload,
+        public readonly ?bool $enabled = null,
+        public readonly ?bool $include_subdomains = null,
+        public readonly ?bool $preload = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => true,
-        'include_subdomains' => true,
-        'preload' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

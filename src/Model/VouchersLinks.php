@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class VouchersLinks implements JsonSerializable
@@ -27,29 +26,11 @@ final class VouchersLinks implements JsonSerializable
     private static array $attributeMap = [
         'self' => 'self'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self,
+        public readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'self' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class VouchersLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

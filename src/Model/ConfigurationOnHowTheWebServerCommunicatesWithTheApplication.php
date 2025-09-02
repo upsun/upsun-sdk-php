@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
@@ -28,33 +27,12 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         'socket_family' => 'socket_family',
         'protocol' => 'protocol'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'socket_family' => 'setSocketFamily',
-            'protocol' => 'setProtocol'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'socket_family' => 'getSocketFamily',
-            'protocol' => 'getProtocol'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $socket_family,
-        public readonly ?string $protocol,
+        public readonly ?string $socket_family = null,
+        public readonly ?string $protocol = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'socket_family' => false,
-        'protocol' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

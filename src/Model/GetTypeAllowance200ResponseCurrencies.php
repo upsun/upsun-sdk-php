@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
@@ -31,45 +30,15 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
         'aud' => 'AUD',
         'cad' => 'CAD'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eur' => 'setEur',
-            'usd' => 'setUsd',
-            'gbp' => 'setGbp',
-            'aud' => 'setAud',
-            'cad' => 'setCad'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eur' => 'getEur',
-            'usd' => 'getUsd',
-            'gbp' => 'getGbp',
-            'aud' => 'getAud',
-            'cad' => 'getCad'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gbp,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aud,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad,
+        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur = null,
+        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd = null,
+        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gbp = null,
+        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aud = null,
+        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'eur' => false,
-        'usd' => false,
-        'gbp' => false,
-        'aud' => false,
-        'cad' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

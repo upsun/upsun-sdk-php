@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class HalLinksPrevious implements JsonSerializable
@@ -28,33 +27,12 @@ final class HalLinksPrevious implements JsonSerializable
         'title' => 'title',
         'href' => 'href'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'title' => 'setTitle',
-            'href' => 'setHref'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'title' => 'getTitle',
-            'href' => 'getHref'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $title,
-        public readonly string $href,
+        public readonly ?string $title = null,
+        public readonly ?string $href = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'title' => false,
-        'href' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class HalLinksPrevious implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

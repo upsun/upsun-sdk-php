@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerializable
@@ -27,29 +26,11 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     private static array $attributeMap = [
         'command' => 'command'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'command' => 'setCommand'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'command' => 'getCommand'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $command,
+        public readonly ?string $command = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'command' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

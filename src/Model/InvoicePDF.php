@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class InvoicePDF implements JsonSerializable
@@ -28,33 +27,12 @@ final class InvoicePDF implements JsonSerializable
         'url' => 'url',
         'status' => 'status'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'url' => 'setUrl',
-            'status' => 'setStatus'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'url' => 'getUrl',
-            'status' => 'getStatus'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $url,
-        public readonly string $status,
+        public readonly ?string $url = null,
+        public readonly ?string $status = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'url' => false,
-        'status' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class InvoicePDF implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

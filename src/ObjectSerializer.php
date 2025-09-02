@@ -5,6 +5,7 @@ namespace Upsun;
 use DateTime;
 use ReflectionClass;
 use ReflectionProperty;
+
 use GuzzleHttp\Psr7\Utils;
 use Upsun\Model\ModelInterface;
 
@@ -24,7 +25,7 @@ class ObjectSerializer
     /**
      * Change the date format
      *
-     * @param string $format the new date format to use
+     * @param string $format   the new date format to use
      */
     public static function setDateTimeFormat($format)
     {
@@ -34,8 +35,8 @@ class ObjectSerializer
     /**
      * Serialize data
      *
-     * @param mixed $data the data to serialize
-     * @param string|null $type the OpenAPIToolsType of the data
+     * @param mixed  $data   the data to serialize
+     * @param string|null $type   the OpenAPIToolsType of the data
      * @param string|null $format the format of the OpenAPITools type of the data
      *
      * @return scalar|object|array|null serialized form of $data
@@ -80,7 +81,7 @@ class ObjectSerializer
                     }
                 }
             } else {
-                foreach ($data as $property => $value) {
+                foreach($data as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
@@ -116,9 +117,7 @@ class ObjectSerializer
      */
     public static function sanitizeTimestamp($timestamp)
     {
-        if (!is_string($timestamp)) {
-            return $timestamp;
-        }
+        if (!is_string($timestamp)) return $timestamp;
 
         return preg_replace('/(:\d{2}.\d{6})\d*/', '$1', $timestamp);
     }
@@ -139,7 +138,7 @@ class ObjectSerializer
     /**
      * Checks if a value is empty, based on its OpenAPI type.
      *
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $openApiType
      *
      * @return bool true if $value is empty
@@ -187,12 +186,12 @@ class ObjectSerializer
      * Take query parameter properties and turn it into an array suitable for
      * native http_build_query or GuzzleHttp\Psr7\Query::build.
      *
-     * @param mixed $value Parameter value
-     * @param string $paramName Parameter name
+     * @param mixed  $value       Parameter value
+     * @param string $paramName   Parameter name
      * @param string $openApiType OpenAPIType eg. array or object
-     * @param string $style Parameter serialization style
-     * @param bool $explode Parameter explode option
-     * @param bool $required Whether query param is required or not
+     * @param string $style       Parameter serialization style
+     * @param bool   $explode     Parameter explode option
+     * @param bool   $required    Whether query param is required or not
      *
      * @return array
      */
@@ -203,8 +202,7 @@ class ObjectSerializer
         string $style = 'form',
         bool $explode = true,
         bool $required = true
-    ): array
-    {
+    ): array {
 
         # Check if we should omit this parameter from the query. This should only happen when:
         #  - Parameter is NOT required; AND
@@ -219,7 +217,7 @@ class ObjectSerializer
         }
 
         # Handle DateTime objects in query
-        if ($openApiType === "\\DateTime" && $value instanceof \DateTime) {
+        if($openApiType === "\\DateTime" && $value instanceof \DateTime) {
             return ["{$paramName}" => $value->format(self::$dateTimeFormat)];
         }
 
@@ -229,9 +227,7 @@ class ObjectSerializer
         // since \GuzzleHttp\Psr7\Query::build fails with nested arrays
         // need to flatten array first
         $flattenArray = function ($arr, $name, &$result = []) use (&$flattenArray, $style, $explode) {
-            if (!is_array($arr)) {
-                return $arr;
-            }
+            if (!is_array($arr)) return $arr;
 
             foreach ($arr as $k => $v) {
                 $prop = ($style === 'deepObject') ? $prop = "{$name}[{$k}]" : $k;
@@ -279,14 +275,11 @@ class ObjectSerializer
      */
     public static function convertBoolToQueryStringFormat(bool $value)
     {
-        if (
-            Configuration::BOOLEAN_FORMAT_STRING ==
-            Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
-        ) {
+        if (Configuration::BOOLEAN_FORMAT_STRING == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
             return $value ? 'true' : 'false';
         }
 
-        return (int)$value;
+        return (int) $value;
     }
 
     /**
@@ -325,17 +318,17 @@ class ObjectSerializer
         } elseif (is_bool($value)) {
             return $value ? 'true' : 'false';
         } else {
-            return (string)$value;
+            return (string) $value;
         }
     }
 
     /**
      * Serialize an array to a string.
      *
-     * @param array $collection collection to serialize to a string
-     * @param string $style the format use for serialization (csv,
+     * @param array  $collection                 collection to serialize to a string
+     * @param string $style                      the format use for serialization (csv,
      * ssv, tsv, pipes, multi)
-     * @param bool $allowCollectionFormatMulti allow collection format to be a multidimensional array
+     * @param bool   $allowCollectionFormatMulti allow collection format to be a multidimensional array
      *
      * @return string
      */
@@ -374,24 +367,24 @@ class ObjectSerializer
         if (!class_exists($class)) {
             throw new \InvalidArgumentException("Class {$class} does not exist");
         }
-
+    
         $reflectionClass = new ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
-
+    
         if (!$constructor) {
             throw new \InvalidArgumentException("Class {$class} requires a constructor");
         }
-
+    
         $constructorParams = $constructor->getParameters();
         $args = [];
-
+    
         foreach ($constructorParams as $param) {
             $paramName = $param->getName();
             $paramType = $param->getType();
-
+            
             // Convertir snake_case vers kebab-case pour les clés JSON
             $jsonKey = str_replace('_', '-', $paramName);
-
+            
             // Récupérer la valeur depuis les données
             $value = null;
             if (is_object($data)) {
@@ -399,31 +392,31 @@ class ObjectSerializer
             } elseif (is_array($data)) {
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
-
+    
             // Traitement selon le type
             if ($paramType) {
                 $typeName = $paramType->getName();
-
+                
                 // Types primitifs
                 if ($paramType->isBuiltin()) {
                     switch ($typeName) {
                         case 'array':
-                            $args[] = (array)($value ?? []);
+                            $args[] = (array) ($value ?? []);
                             break;
                         case 'bool':
-                            $args[] = (bool)$value;
+                            $args[] = (bool) $value;
                             break;
                         case 'int':
-                            $args[] = $value !== null ? (int)$value : null;
+                            $args[] = $value !== null ? (int) $value : null;
                             break;
                         case 'float':
-                            $args[] = $value !== null ? (float)$value : null;
+                            $args[] = $value !== null ? (float) $value : null;
                             break;
                         case 'string':
-                            $args[] = $value !== null ? (string)$value : null;
+                            $args[] = $value !== null ? (string) $value : null;
                             break;
                         case 'object':
-                            $args[] = is_array($value) ? (object)$value : $value;
+                            $args[] = is_array($value) ? (object) $value : $value;
                             break;
                         default:
                             $args[] = $value;
@@ -444,25 +437,24 @@ class ObjectSerializer
                 $args[] = $value;
             }
         }
-
+    
         try {
             return new $class(...$args);
-        } catch (\TypeError $e) {
+        } catch (TypeError $e) {
             throw new \InvalidArgumentException(
-                "Failed to instantiate {$class}: " . $e->getMessage() .
-                ". Available data keys: " . implode(', ', is_object($data) ?
-                    array_keys(get_object_vars($data)) : array_keys($data))
+                "Failed to instantiate {$class}: " . $e->getMessage() . 
+                ". Available data keys: " . implode(', ', is_object($data) ? array_keys(get_object_vars($data)) : array_keys($data))
             );
         }
     }
-
+    
     // Usage dans votre ObjectSerializer::deserialize principal
     public static function deserialize($data, $class, $httpHeaders = null, $discriminator = null)
     {
         if (null === $data) {
             return null;
         }
-
+    
         // Gérer les tableaux
         if (strcasecmp(substr($class, -2), '[]') === 0) {
             $class = substr($class, 0, -2);
@@ -474,26 +466,26 @@ class ObjectSerializer
             }
             return $values;
         }
-
+    
         // Types primitifs
         if (in_array($class, ['bool', 'boolean', 'int', 'integer', 'float', 'double', 'string', 'byte', 'mixed', 'DateTime', 'SplFileObject'])) {
             return self::deserializePrimitive($data, $class);
         }
-
+    
         // Modèles - utiliser directement la nouvelle méthode
         return self::deserializeSimplifiedModel($data, $class);
     }
 
     /**
-     * Build a query string from an array of key value pairs.
-     *
-     * This function can use the return value of `parse()` to build a query
-     * string. This function does not modify the provided keys when an array is
-     * encountered (like `http_build_query()` would).
-     *
-     * The function is copied from https://github.com/guzzle/psr7/blob/a243f80a1ca7fe8ceed4deee17f12c1930efe662/src/Query.php#L59-L112
-     * with a modification which is described in https://github.com/guzzle/psr7/pull/603
-     */
+    * Build a query string from an array of key value pairs.
+    *
+    * This function can use the return value of `parse()` to build a query
+    * string. This function does not modify the provided keys when an array is
+    * encountered (like `http_build_query()` would).
+    *
+    * The function is copied from https://github.com/guzzle/psr7/blob/a243f80a1ca7fe8ceed4deee17f12c1930efe662/src/Query.php#L59-L112
+    * with a modification which is described in https://github.com/guzzle/psr7/pull/603
+    */
     public static function buildQuery(array $params, $encoding = PHP_QUERY_RFC3986): string
     {
         if (!$params) {
@@ -513,21 +505,17 @@ class ObjectSerializer
         }
 
         $castBool = Configuration::BOOLEAN_FORMAT_INT == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
-            ? function ($v) {
-                return (int)$v;
-            }
-            : function ($v) {
-                return $v ? 'true' : 'false';
-            };
+            ? function ($v) { return (int) $v; }
+            : function ($v) { return $v ? 'true' : 'false'; };
 
         $qs = '';
         foreach ($params as $k => $v) {
-            $k = $encoder((string)$k);
+            $k = $encoder((string) $k);
             if (!is_array($v)) {
                 $qs .= $k;
                 $v = is_bool($v) ? $castBool($v) : $v;
                 if ($v !== null) {
-                    $qs .= '=' . $encoder((string)$v);
+                    $qs .= '='.$encoder((string) $v);
                 }
                 $qs .= '&';
             } else {
@@ -535,13 +523,13 @@ class ObjectSerializer
                     $qs .= $k;
                     $vv = is_bool($vv) ? $castBool($vv) : $vv;
                     if ($vv !== null) {
-                        $qs .= '=' . $encoder((string)$vv);
+                        $qs .= '='.$encoder((string) $vv);
                     }
                     $qs .= '&';
                 }
             }
         }
 
-        return $qs ? (string)substr($qs, 0, -1) : '';
+        return $qs ? (string) substr($qs, 0, -1) : '';
     }
 }

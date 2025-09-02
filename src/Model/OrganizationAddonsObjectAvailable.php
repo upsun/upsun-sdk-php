@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationAddonsObjectAvailable implements JsonSerializable
@@ -28,33 +27,12 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
         'user_management' => 'user_management',
         'support_level' => 'support_level'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_management' => 'setUserManagement',
-            'support_level' => 'setSupportLevel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_management' => 'getUserManagement',
-            'support_level' => 'getSupportLevel'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $user_management,
-        public readonly array $support_level
+        public readonly ?array $user_management = [],
+        public readonly ?array $support_level = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'user_management' => false,
-        'support_level' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

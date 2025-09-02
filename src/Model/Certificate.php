@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Certificate implements JsonSerializable
@@ -37,69 +36,21 @@ final class Certificate implements JsonSerializable
         'issuer' => 'issuer',
         'expires_at' => 'expires_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'certificate' => 'setCertificate',
-            'chain' => 'setChain',
-            'is_provisioned' => 'setIsProvisioned',
-            'is_invalid' => 'setIsInvalid',
-            'is_root' => 'setIsRoot',
-            'domains' => 'setDomains',
-            'auth_type' => 'setAuthType',
-            'issuer' => 'setIssuer',
-            'expires_at' => 'setExpiresAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'certificate' => 'getCertificate',
-            'chain' => 'getChain',
-            'is_provisioned' => 'getIsProvisioned',
-            'is_invalid' => 'getIsInvalid',
-            'is_root' => 'getIsRoot',
-            'domains' => 'getDomains',
-            'auth_type' => 'getAuthType',
-            'issuer' => 'getIssuer',
-            'expires_at' => 'getExpiresAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $certificate,
-        public readonly array $chain,
-        public readonly bool $is_provisioned,
-        public readonly bool $is_invalid,
-        public readonly bool $is_root,
-        public readonly array $domains,
-        public readonly array $auth_type,
-        public readonly array $issuer,
-        public readonly \DateTime $expires_at,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $certificate = null,
+        public readonly ?array $chain = [],
+        public readonly ?bool $is_provisioned = null,
+        public readonly ?bool $is_invalid = null,
+        public readonly ?bool $is_root = null,
+        public readonly ?array $domains = [],
+        public readonly ?array $auth_type = [],
+        public readonly ?array $issuer = [],
+        public readonly ?\DateTime $expires_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'certificate' => false,
-        'chain' => false,
-        'is_provisioned' => false,
-        'is_invalid' => false,
-        'is_root' => false,
-        'domains' => false,
-        'auth_type' => false,
-        'issuer' => false,
-        'expires_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -121,7 +72,6 @@ final class Certificate implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Vouchers implements JsonSerializable
@@ -33,53 +32,17 @@ final class Vouchers implements JsonSerializable
         'vouchers' => 'vouchers',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'uuid' => 'setUuid',
-            'vouchers_total' => 'setVouchersTotal',
-            'vouchers_applied' => 'setVouchersApplied',
-            'vouchers_remaining_balance' => 'setVouchersRemainingBalance',
-            'currency' => 'setCurrency',
-            'vouchers' => 'setVouchers',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'uuid' => 'getUuid',
-            'vouchers_total' => 'getVouchersTotal',
-            'vouchers_applied' => 'getVouchersApplied',
-            'vouchers_remaining_balance' => 'getVouchersRemainingBalance',
-            'currency' => 'getCurrency',
-            'vouchers' => 'getVouchers',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $uuid,
-        public readonly string $vouchers_total,
-        public readonly string $vouchers_applied,
-        public readonly string $vouchers_remaining_balance,
-        public readonly string $currency,
-        public readonly array $vouchers,
-        public readonly \Upsun\Model\VouchersLinks $_links,
+        public readonly ?string $uuid = null,
+        public readonly ?string $vouchers_total = null,
+        public readonly ?string $vouchers_applied = null,
+        public readonly ?string $vouchers_remaining_balance = null,
+        public readonly ?string $currency = null,
+        public readonly ?array $vouchers = [],
+        public readonly ?\Upsun\Model\VouchersLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'uuid' => false,
-        'vouchers_total' => false,
-        'vouchers_applied' => false,
-        'vouchers_remaining_balance' => false,
-        'currency' => false,
-        'vouchers' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class Vouchers implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Integrations implements JsonSerializable
@@ -29,37 +28,13 @@ final class Integrations implements JsonSerializable
         'config' => 'config',
         'allowed_integrations' => 'allowed_integrations'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'config' => 'setConfig',
-            'allowed_integrations' => 'setAllowedIntegrations'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'config' => 'getConfig',
-            'allowed_integrations' => 'getAllowedIntegrations'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enabled,
-        public readonly \Upsun\Model\Config $config,
-        public readonly array $allowed_integrations
+        public readonly ?bool $enabled = null,
+        public readonly ?\Upsun\Model\Config $config = null,
+        public readonly ?array $allowed_integrations = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => false,
-        'config' => false,
-        'allowed_integrations' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class Integrations implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

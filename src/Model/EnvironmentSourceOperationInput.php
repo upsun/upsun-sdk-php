@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentSourceOperationInput implements JsonSerializable
@@ -28,33 +27,12 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
         'operation' => 'operation',
         'variables' => 'variables'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'operation' => 'setOperation',
-            'variables' => 'setVariables'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'operation' => 'getOperation',
-            'variables' => 'getVariables'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $operation,
-        public readonly array $variables
+        public readonly ?string $operation = null,
+        public readonly ?array $variables = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'operation' => false,
-        'variables' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

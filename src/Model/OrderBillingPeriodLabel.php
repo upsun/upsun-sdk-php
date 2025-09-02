@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrderBillingPeriodLabel implements JsonSerializable
@@ -30,41 +29,14 @@ final class OrderBillingPeriodLabel implements JsonSerializable
         'year' => 'year',
         'next_month' => 'next_month'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'formatted' => 'setFormatted',
-            'month' => 'setMonth',
-            'year' => 'setYear',
-            'next_month' => 'setNextMonth'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'formatted' => 'getFormatted',
-            'month' => 'getMonth',
-            'year' => 'getYear',
-            'next_month' => 'getNextMonth'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $formatted,
-        public readonly string $month,
-        public readonly string $year,
-        public readonly string $next_month,
+        public readonly ?string $formatted = null,
+        public readonly ?string $month = null,
+        public readonly ?string $year = null,
+        public readonly ?string $next_month = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'formatted' => false,
-        'month' => false,
-        'year' => false,
-        'next_month' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GetUsageAlerts200Response implements JsonSerializable
@@ -28,33 +27,12 @@ final class GetUsageAlerts200Response implements JsonSerializable
         'available' => 'available',
         'current' => 'current'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'available' => 'setAvailable',
-            'current' => 'setCurrent'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'available' => 'getAvailable',
-            'current' => 'getCurrent'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $available,
-        public readonly array $current
+        public readonly ?array $available = [],
+        public readonly ?array $current = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'available' => false,
-        'current' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class GetUsageAlerts200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

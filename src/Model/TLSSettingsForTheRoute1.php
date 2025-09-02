@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TLSSettingsForTheRoute1 implements JsonSerializable
@@ -30,41 +29,14 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
         'client_authentication' => 'client_authentication',
         'client_certificate_authorities' => 'client_certificate_authorities'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'strict_transport_security' => 'setStrictTransportSecurity',
-            'min_version' => 'setMinVersion',
-            'client_authentication' => 'setClientAuthentication',
-            'client_certificate_authorities' => 'setClientCertificateAuthorities'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'strict_transport_security' => 'getStrictTransportSecurity',
-            'min_version' => 'getMinVersion',
-            'client_authentication' => 'getClientAuthentication',
-            'client_certificate_authorities' => 'getClientCertificateAuthorities'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\StrictTransportSecurityOptions1 $strict_transport_security,
-        public readonly ?string $min_version,
-        public readonly ?string $client_authentication,
-        public readonly array $client_certificate_authorities
+        public readonly ?\Upsun\Model\StrictTransportSecurityOptions1 $strict_transport_security = null,
+        public readonly ?string $min_version = null,
+        public readonly ?string $client_authentication = null,
+        public readonly ?array $client_certificate_authorities = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'strict_transport_security' => false,
-        'min_version' => true,
-        'client_authentication' => true,
-        'client_certificate_authorities' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

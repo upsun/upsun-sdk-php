@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListTicketPriorities200ResponseInner implements JsonSerializable
@@ -30,41 +29,14 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
         'short_description' => 'short_description',
         'description' => 'description'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'label' => 'setLabel',
-            'short_description' => 'setShortDescription',
-            'description' => 'setDescription'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'label' => 'getLabel',
-            'short_description' => 'getShortDescription',
-            'description' => 'getDescription'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $label,
-        public readonly string $short_description,
-        public readonly string $description,
+        public readonly ?string $id = null,
+        public readonly ?string $label = null,
+        public readonly ?string $short_description = null,
+        public readonly ?string $description = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'label' => false,
-        'short_description' => false,
-        'description' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

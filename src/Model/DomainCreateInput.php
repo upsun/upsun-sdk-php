@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DomainCreateInput implements JsonSerializable
@@ -30,41 +29,14 @@ final class DomainCreateInput implements JsonSerializable
         'is_default' => 'is_default',
         'replacement_for' => 'replacement_for'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'is_default' => 'setIsDefault',
-            'replacement_for' => 'setReplacementFor'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'is_default' => 'getIsDefault',
-            'replacement_for' => 'getReplacementFor'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly array $attributes,
-        public readonly bool $is_default,
-        public readonly string $replacement_for,
+        public readonly ?string $name = null,
+        public readonly ?array $attributes = [],
+        public readonly ?bool $is_default = null,
+        public readonly ?string $replacement_for = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'attributes' => false,
-        'is_default' => false,
-        'replacement_for' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class DomainCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

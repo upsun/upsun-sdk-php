@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OutboundFirewallRestrictionsInner implements JsonSerializable
@@ -30,41 +29,14 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
         'domains' => 'domains',
         'ports' => 'ports'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'protocol' => 'setProtocol',
-            'ips' => 'setIps',
-            'domains' => 'setDomains',
-            'ports' => 'setPorts'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'protocol' => 'getProtocol',
-            'ips' => 'getIps',
-            'domains' => 'getDomains',
-            'ports' => 'getPorts'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $protocol,
-        public readonly array $ips,
-        public readonly array $domains,
-        public readonly array $ports
+        public readonly ?string $protocol = null,
+        public readonly ?array $ips = [],
+        public readonly ?array $domains = [],
+        public readonly ?array $ports = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'protocol' => false,
-        'ips' => false,
-        'domains' => false,
-        'ports' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

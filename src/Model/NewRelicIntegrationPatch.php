@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class NewRelicIntegrationPatch implements JsonSerializable
@@ -31,45 +30,15 @@ final class NewRelicIntegrationPatch implements JsonSerializable
         'license_key' => 'license_key',
         'tls_verify' => 'tls_verify'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'url' => 'setUrl',
-            'license_key' => 'setLicenseKey',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'url' => 'getUrl',
-            'license_key' => 'getLicenseKey',
-            'tls_verify' => 'getTlsVerify'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly array $extra,
-        public readonly string $url,
-        public readonly string $license_key,
-        public readonly bool $tls_verify,
+        public readonly ?string $type = null,
+        public readonly ?array $extra = [],
+        public readonly ?string $url = null,
+        public readonly ?string $license_key = null,
+        public readonly ?bool $tls_verify = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'extra' => false,
-        'url' => false,
-        'license_key' => false,
-        'tls_verify' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

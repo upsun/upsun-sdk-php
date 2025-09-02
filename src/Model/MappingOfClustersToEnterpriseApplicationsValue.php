@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
@@ -28,33 +27,12 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
         'active_docroot' => 'active_docroot',
         'docroot_versions' => 'docroot_versions'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'active_docroot' => 'setActiveDocroot',
-            'docroot_versions' => 'setDocrootVersions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'active_docroot' => 'getActiveDocroot',
-            'docroot_versions' => 'getDocrootVersions'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $active_docroot,
-        public readonly ?array $docroot_versions
+        public readonly ?string $active_docroot = null,
+        public readonly ?array $docroot_versions = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'active_docroot' => true,
-        'docroot_versions' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class PlanRecords implements JsonSerializable
@@ -35,61 +34,19 @@ final class PlanRecords implements JsonSerializable
         'end' => 'end',
         'status' => 'status'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'owner' => 'setOwner',
-            'subscription_id' => 'setSubscriptionId',
-            'sku' => 'setSku',
-            'plan' => 'setPlan',
-            'options' => 'setOptions',
-            'start' => 'setStart',
-            'end' => 'setEnd',
-            'status' => 'setStatus'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'owner' => 'getOwner',
-            'subscription_id' => 'getSubscriptionId',
-            'sku' => 'getSku',
-            'plan' => 'getPlan',
-            'options' => 'getOptions',
-            'start' => 'getStart',
-            'end' => 'getEnd',
-            'status' => 'getStatus'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $owner,
-        public readonly string $subscription_id,
-        public readonly string $sku,
-        public readonly string $plan,
-        public readonly array $options,
-        public readonly \DateTime $start,
-        public readonly ?\DateTime $end,
-        public readonly string $status,
+        public readonly ?string $id = null,
+        public readonly ?string $owner = null,
+        public readonly ?string $subscription_id = null,
+        public readonly ?string $sku = null,
+        public readonly ?string $plan = null,
+        public readonly ?array $options = [],
+        public readonly ?\DateTime $start = null,
+        public readonly ?\DateTime $end = null,
+        public readonly ?string $status = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'owner' => false,
-        'subscription_id' => false,
-        'sku' => false,
-        'plan' => false,
-        'options' => false,
-        'start' => false,
-        'end' => true,
-        'status' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class PlanRecords implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

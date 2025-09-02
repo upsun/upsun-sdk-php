@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SpecificOverridesValue implements JsonSerializable
@@ -31,45 +30,15 @@ final class SpecificOverridesValue implements JsonSerializable
         'allow' => 'allow',
         'headers' => 'headers'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'expires' => 'setExpires',
-            'passthru' => 'setPassthru',
-            'scripts' => 'setScripts',
-            'allow' => 'setAllow',
-            'headers' => 'setHeaders'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'expires' => 'getExpires',
-            'passthru' => 'getPassthru',
-            'scripts' => 'getScripts',
-            'allow' => 'getAllow',
-            'headers' => 'getHeaders'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $expires,
-        public readonly string $passthru,
-        public readonly bool $scripts,
-        public readonly bool $allow,
-        public readonly array $headers
+        public readonly ?string $expires = null,
+        public readonly ?string $passthru = null,
+        public readonly ?bool $scripts = null,
+        public readonly ?bool $allow = null,
+        public readonly ?array $headers = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'expires' => true,
-        'passthru' => false,
-        'scripts' => false,
-        'allow' => false,
-        'headers' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class SpecificOverridesValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

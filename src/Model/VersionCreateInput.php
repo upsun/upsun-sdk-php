@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class VersionCreateInput implements JsonSerializable
@@ -27,29 +26,11 @@ final class VersionCreateInput implements JsonSerializable
     private static array $attributeMap = [
         'routing' => 'routing'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'routing' => 'setRouting'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'routing' => 'getRouting'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing,
+        public readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'routing' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class VersionCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

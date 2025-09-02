@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SourceOperations implements JsonSerializable
@@ -27,29 +26,11 @@ final class SourceOperations implements JsonSerializable
     private static array $attributeMap = [
         'enabled' => 'enabled'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enabled,
+        public readonly ?bool $enabled = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class SourceOperations implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

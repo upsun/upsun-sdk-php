@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpstreamRoute implements JsonSerializable
@@ -36,65 +35,20 @@ final class UpstreamRoute implements JsonSerializable
         'upstream' => 'upstream',
         'redirects' => 'redirects'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'primary' => 'setPrimary',
-            'id' => 'setId',
-            'production_url' => 'setProductionUrl',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'tls' => 'setTls',
-            'cache' => 'setCache',
-            'ssi' => 'setSsi',
-            'upstream' => 'setUpstream',
-            'redirects' => 'setRedirects'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'primary' => 'getPrimary',
-            'id' => 'getId',
-            'production_url' => 'getProductionUrl',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'tls' => 'getTls',
-            'cache' => 'getCache',
-            'ssi' => 'getSsi',
-            'upstream' => 'getUpstream',
-            'redirects' => 'getRedirects'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?bool $primary,
-        public readonly ?string $id,
-        public readonly ?string $production_url,
-        public readonly array $attributes,
-        public readonly string $type,
-        public readonly \Upsun\Model\TLSSettingsForTheRoute $tls,
-        public readonly \Upsun\Model\CacheConfiguration $cache,
-        public readonly \Upsun\Model\ServerSideIncludeConfiguration $ssi,
-        public readonly string $upstream,
-        public readonly \Upsun\Model\TheConfigurationOfTheRedirects $redirects,
+        public readonly ?bool $primary = null,
+        public readonly ?string $id = null,
+        public readonly ?string $production_url = null,
+        public readonly ?array $attributes = [],
+        public readonly ?string $type = null,
+        public readonly ?\Upsun\Model\TLSSettingsForTheRoute $tls = null,
+        public readonly ?\Upsun\Model\CacheConfiguration $cache = null,
+        public readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        public readonly ?string $upstream = null,
+        public readonly ?\Upsun\Model\TheConfigurationOfTheRedirects $redirects = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'primary' => true,
-        'id' => true,
-        'production_url' => true,
-        'attributes' => false,
-        'type' => false,
-        'tls' => false,
-        'cache' => false,
-        'ssi' => false,
-        'upstream' => false,
-        'redirects' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class UpstreamRoute implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

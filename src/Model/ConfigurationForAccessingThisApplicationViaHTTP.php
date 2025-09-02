@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
@@ -36,65 +35,20 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         'expires' => 'expires',
         'move_to_root' => 'move_to_root'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'locations' => 'setLocations',
-            'commands' => 'setCommands',
-            'upstream' => 'setUpstream',
-            'document_root' => 'setDocumentRoot',
-            'passthru' => 'setPassthru',
-            'index_files' => 'setIndexFiles',
-            'whitelist' => 'setWhitelist',
-            'blacklist' => 'setBlacklist',
-            'expires' => 'setExpires',
-            'move_to_root' => 'setMoveToRoot'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'locations' => 'getLocations',
-            'commands' => 'getCommands',
-            'upstream' => 'getUpstream',
-            'document_root' => 'getDocumentRoot',
-            'passthru' => 'getPassthru',
-            'index_files' => 'getIndexFiles',
-            'whitelist' => 'getWhitelist',
-            'blacklist' => 'getBlacklist',
-            'expires' => 'getExpires',
-            'move_to_root' => 'getMoveToRoot'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $locations,
-        public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands,
-        public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream,
-        public readonly ?string $document_root,
-        public readonly ?string $passthru,
-        public readonly ?array $index_files,
-        public readonly ?array $whitelist,
-        public readonly ?array $blacklist,
-        public readonly ?string $expires,
-        public readonly bool $move_to_root,
+        public readonly ?array $locations = [],
+        public readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
+        public readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
+        public readonly ?string $document_root = null,
+        public readonly ?string $passthru = null,
+        public readonly ?array $index_files = [],
+        public readonly ?array $whitelist = [],
+        public readonly ?array $blacklist = [],
+        public readonly ?string $expires = null,
+        public readonly ?bool $move_to_root = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'locations' => false,
-        'commands' => false,
-        'upstream' => false,
-        'document_root' => true,
-        'passthru' => true,
-        'index_files' => true,
-        'whitelist' => true,
-        'blacklist' => true,
-        'expires' => true,
-        'move_to_root' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

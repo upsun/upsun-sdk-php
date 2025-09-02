@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListTeams200Response implements JsonSerializable
@@ -29,37 +28,13 @@ final class ListTeams200Response implements JsonSerializable
         'count' => 'count',
         '_links' => '_links'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'items' => 'setItems',
-            'count' => 'setCount',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'items' => 'getItems',
-            'count' => 'getCount',
-            '_links' => 'getLinks'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $items,
-        public readonly int $count,
-        public readonly \Upsun\Model\ListLinks $_links,
+        public readonly ?array $items = [],
+        public readonly ?int $count = null,
+        public readonly ?\Upsun\Model\ListLinks $_links = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'items' => false,
-        'count' => false,
-        '_links' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ListTeams200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

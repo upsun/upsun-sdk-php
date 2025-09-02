@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProjectSettingsPatch implements JsonSerializable
@@ -29,37 +28,13 @@ final class ProjectSettingsPatch implements JsonSerializable
         'data_retention' => 'data_retention',
         'build_resources' => 'build_resources'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'initialize' => 'setInitialize',
-            'data_retention' => 'setDataRetention',
-            'build_resources' => 'setBuildResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'initialize' => 'getInitialize',
-            'data_retention' => 'getDataRetention',
-            'build_resources' => 'getBuildResources'
-        ];
-    
-    
+
     public function __construct(
-        public readonly object $initialize,
-        public readonly ?array $data_retention,
-        public readonly \Upsun\Model\BuildResources2 $build_resources,
+        public readonly ?object $initialize = null,
+        public readonly ?array $data_retention = [],
+        public readonly ?\Upsun\Model\BuildResources2 $build_resources = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'initialize' => false,
-        'data_retention' => true,
-        'build_resources' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ProjectSettingsPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

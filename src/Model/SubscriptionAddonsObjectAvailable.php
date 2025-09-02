@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SubscriptionAddonsObjectAvailable implements JsonSerializable
@@ -28,33 +27,12 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
         'continuous_profiling' => 'continuous_profiling',
         'project_support_level' => 'project_support_level'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'continuous_profiling' => 'setContinuousProfiling',
-            'project_support_level' => 'setProjectSupportLevel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'continuous_profiling' => 'getContinuousProfiling',
-            'project_support_level' => 'getProjectSupportLevel'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $continuous_profiling,
-        public readonly array $project_support_level
+        public readonly ?array $continuous_profiling = [],
+        public readonly ?array $project_support_level = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'continuous_profiling' => false,
-        'project_support_level' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

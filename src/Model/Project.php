@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Project implements JsonSerializable
@@ -41,85 +40,25 @@ final class Project implements JsonSerializable
         'default_domain' => 'default_domain',
         'subscription' => 'subscription'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'attributes' => 'setAttributes',
-            'title' => 'setTitle',
-            'description' => 'setDescription',
-            'owner' => 'setOwner',
-            'namespace' => 'setNamespace',
-            'organization' => 'setOrganization',
-            'default_branch' => 'setDefaultBranch',
-            'status' => 'setStatus',
-            'timezone' => 'setTimezone',
-            'region' => 'setRegion',
-            'repository' => 'setRepository',
-            'default_domain' => 'setDefaultDomain',
-            'subscription' => 'setSubscription'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'attributes' => 'getAttributes',
-            'title' => 'getTitle',
-            'description' => 'getDescription',
-            'owner' => 'getOwner',
-            'namespace' => 'getNamespace',
-            'organization' => 'getOrganization',
-            'default_branch' => 'getDefaultBranch',
-            'status' => 'getStatus',
-            'timezone' => 'getTimezone',
-            'region' => 'getRegion',
-            'repository' => 'getRepository',
-            'default_domain' => 'getDefaultDomain',
-            'subscription' => 'getSubscription'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly array $attributes,
-        public readonly string $title,
-        public readonly string $description,
-        public readonly string $owner,
-        public readonly ?string $namespace,
-        public readonly ?string $organization,
-        public readonly ?string $default_branch,
-        public readonly \Upsun\Model\Status $status,
-        public readonly string $timezone,
-        public readonly string $region,
-        public readonly \Upsun\Model\RepositoryInformation $repository,
-        public readonly ?string $default_domain,
-        public readonly \Upsun\Model\SubscriptionInformation $subscription,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?array $attributes = [],
+        public readonly ?string $title = null,
+        public readonly ?string $description = null,
+        public readonly ?string $owner = null,
+        public readonly ?string $namespace = null,
+        public readonly ?string $organization = null,
+        public readonly ?string $default_branch = null,
+        public readonly ?\Upsun\Model\Status $status = null,
+        public readonly ?string $timezone = null,
+        public readonly ?string $region = null,
+        public readonly ?\Upsun\Model\RepositoryInformation $repository = null,
+        public readonly ?string $default_domain = null,
+        public readonly ?\Upsun\Model\SubscriptionInformation $subscription = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'attributes' => false,
-        'title' => false,
-        'description' => false,
-        'owner' => false,
-        'namespace' => true,
-        'organization' => true,
-        'default_branch' => true,
-        'status' => false,
-        'timezone' => false,
-        'region' => false,
-        'repository' => false,
-        'default_domain' => true,
-        'subscription' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -145,7 +84,6 @@ final class Project implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

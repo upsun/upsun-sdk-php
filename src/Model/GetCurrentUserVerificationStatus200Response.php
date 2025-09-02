@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class GetCurrentUserVerificationStatus200Response implements JsonSerializable
@@ -27,29 +26,11 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     private static array $attributeMap = [
         'verify_phone' => 'verify_phone'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'verify_phone' => 'setVerifyPhone'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'verify_phone' => 'getVerifyPhone'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $verify_phone,
+        public readonly ?bool $verify_phone = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'verify_phone' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

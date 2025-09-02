@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProfileCurrentTrialProjects implements JsonSerializable
@@ -29,37 +28,13 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
         'name' => 'name',
         'total' => 'total'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'name' => 'setName',
-            'total' => 'setTotal'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'name' => 'getName',
-            'total' => 'getTotal'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $name,
-        public readonly \Upsun\Model\ProfileCurrentTrialProjectsTotal $total,
+        public readonly ?string $id = null,
+        public readonly ?string $name = null,
+        public readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'name' => false,
-        'total' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

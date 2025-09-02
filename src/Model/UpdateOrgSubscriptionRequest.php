@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class UpdateOrgSubscriptionRequest implements JsonSerializable
@@ -38,73 +37,22 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
         'continuous_profiling' => 'continuous_profiling',
         'project_support_level' => 'project_support_level'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'project_title' => 'setProjectTitle',
-            'plan' => 'setPlan',
-            'timezone' => 'setTimezone',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'big_dev' => 'setBigDev',
-            'big_dev_service' => 'setBigDevService',
-            'backups' => 'setBackups',
-            'observability_suite' => 'setObservabilitySuite',
-            'blackfire' => 'setBlackfire',
-            'continuous_profiling' => 'setContinuousProfiling',
-            'project_support_level' => 'setProjectSupportLevel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'project_title' => 'getProjectTitle',
-            'plan' => 'getPlan',
-            'timezone' => 'getTimezone',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'big_dev' => 'getBigDev',
-            'big_dev_service' => 'getBigDevService',
-            'backups' => 'getBackups',
-            'observability_suite' => 'getObservabilitySuite',
-            'blackfire' => 'getBlackfire',
-            'continuous_profiling' => 'getContinuousProfiling',
-            'project_support_level' => 'getProjectSupportLevel'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $project_title,
-        public readonly string $plan,
-        public readonly string $timezone,
-        public readonly int $environments,
-        public readonly int $storage,
-        public readonly string $big_dev,
-        public readonly string $big_dev_service,
-        public readonly string $backups,
-        public readonly string $observability_suite,
-        public readonly string $blackfire,
-        public readonly string $continuous_profiling,
-        public readonly string $project_support_level,
+        public readonly ?string $project_title = null,
+        public readonly ?string $plan = null,
+        public readonly ?string $timezone = null,
+        public readonly ?int $environments = null,
+        public readonly ?int $storage = null,
+        public readonly ?string $big_dev = null,
+        public readonly ?string $big_dev_service = null,
+        public readonly ?string $backups = null,
+        public readonly ?string $observability_suite = null,
+        public readonly ?string $blackfire = null,
+        public readonly ?string $continuous_profiling = null,
+        public readonly ?string $project_support_level = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'project_title' => false,
-        'plan' => false,
-        'timezone' => false,
-        'environments' => false,
-        'storage' => false,
-        'big_dev' => false,
-        'big_dev_service' => false,
-        'backups' => false,
-        'observability_suite' => false,
-        'blackfire' => false,
-        'continuous_profiling' => false,
-        'project_support_level' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -127,7 +75,6 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

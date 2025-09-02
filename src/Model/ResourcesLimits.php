@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ResourcesLimits implements JsonSerializable
@@ -29,37 +28,13 @@ final class ResourcesLimits implements JsonSerializable
         'production' => 'production',
         'development' => 'development'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'container_profiles' => 'setContainerProfiles',
-            'production' => 'setProduction',
-            'development' => 'setDevelopment'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'container_profiles' => 'getContainerProfiles',
-            'production' => 'getProduction',
-            'development' => 'getDevelopment'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $container_profiles,
-        public readonly \Upsun\Model\ResourcesForProductionEnvironments $production,
-        public readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
+        public readonly ?bool $container_profiles = null,
+        public readonly ?\Upsun\Model\ResourcesForProductionEnvironments $production = null,
+        public readonly ?\Upsun\Model\ResourcesForDevelopmentEnvironments $development = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'container_profiles' => false,
-        'production' => false,
-        'development' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class ResourcesLimits implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

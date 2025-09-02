@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheObjectTheReferencePointsTo implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
         'type' => 'type',
         'sha' => 'sha'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'sha' => 'setSha'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'sha' => 'getSha'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $sha,
+        public readonly ?string $type = null,
+        public readonly ?string $sha = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'sha' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

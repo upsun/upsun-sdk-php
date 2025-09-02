@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
@@ -28,33 +27,12 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
         'server_uuid' => 'server_uuid',
         'server_token' => 'server_token'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'server_uuid' => 'setServerUuid',
-            'server_token' => 'setServerToken'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'server_uuid' => 'getServerUuid',
-            'server_token' => 'getServerToken'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $server_uuid,
-        public readonly string $server_token,
+        public readonly ?string $server_uuid = null,
+        public readonly ?string $server_token = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'server_uuid' => false,
-        'server_token' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

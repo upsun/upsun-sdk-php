@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TeamCounts implements JsonSerializable
@@ -28,33 +27,12 @@ final class TeamCounts implements JsonSerializable
         'member_count' => 'member_count',
         'project_count' => 'project_count'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'member_count' => 'setMemberCount',
-            'project_count' => 'setProjectCount'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'member_count' => 'getMemberCount',
-            'project_count' => 'getProjectCount'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $member_count,
-        public readonly int $project_count,
+        public readonly ?int $member_count = null,
+        public readonly ?int $project_count = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'member_count' => false,
-        'project_count' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TeamCounts implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

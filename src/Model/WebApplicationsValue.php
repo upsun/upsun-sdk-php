@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class WebApplicationsValue implements JsonSerializable
@@ -56,145 +55,40 @@ final class WebApplicationsValue implements JsonSerializable
         'config_id' => 'config_id',
         'slug_id' => 'slug_id'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'resources' => 'setResources',
-            'size' => 'setSize',
-            'disk' => 'setDisk',
-            'access' => 'setAccess',
-            'relationships' => 'setRelationships',
-            'additional_hosts' => 'setAdditionalHosts',
-            'mounts' => 'setMounts',
-            'timezone' => 'setTimezone',
-            'variables' => 'setVariables',
-            'firewall' => 'setFirewall',
-            'container_profile' => 'setContainerProfile',
-            'operations' => 'setOperations',
-            'name' => 'setName',
-            'type' => 'setType',
-            'preflight' => 'setPreflight',
-            'tree_id' => 'setTreeId',
-            'app_dir' => 'setAppDir',
-            'endpoints' => 'setEndpoints',
-            'runtime' => 'setRuntime',
-            'web' => 'setWeb',
-            'hooks' => 'setHooks',
-            'crons' => 'setCrons',
-            'source' => 'setSource',
-            'build' => 'setBuild',
-            'dependencies' => 'setDependencies',
-            'stack' => 'setStack',
-            'is_across_submodule' => 'setIsAcrossSubmodule',
-            'instance_count' => 'setInstanceCount',
-            'config_id' => 'setConfigId',
-            'slug_id' => 'setSlugId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'resources' => 'getResources',
-            'size' => 'getSize',
-            'disk' => 'getDisk',
-            'access' => 'getAccess',
-            'relationships' => 'getRelationships',
-            'additional_hosts' => 'getAdditionalHosts',
-            'mounts' => 'getMounts',
-            'timezone' => 'getTimezone',
-            'variables' => 'getVariables',
-            'firewall' => 'getFirewall',
-            'container_profile' => 'getContainerProfile',
-            'operations' => 'getOperations',
-            'name' => 'getName',
-            'type' => 'getType',
-            'preflight' => 'getPreflight',
-            'tree_id' => 'getTreeId',
-            'app_dir' => 'getAppDir',
-            'endpoints' => 'getEndpoints',
-            'runtime' => 'getRuntime',
-            'web' => 'getWeb',
-            'hooks' => 'getHooks',
-            'crons' => 'getCrons',
-            'source' => 'getSource',
-            'build' => 'getBuild',
-            'dependencies' => 'getDependencies',
-            'stack' => 'getStack',
-            'is_across_submodule' => 'getIsAcrossSubmodule',
-            'instance_count' => 'getInstanceCount',
-            'config_id' => 'getConfigId',
-            'slug_id' => 'getSlugId'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\Upsun\Model\Resources $resources,
-        public readonly string $size,
-        public readonly ?int $disk,
-        public readonly array $access,
-        public readonly array $relationships,
-        public readonly array $additional_hosts,
-        public readonly array $mounts,
-        public readonly ?string $timezone,
-        public readonly array $variables,
-        public readonly ?\Upsun\Model\Firewall $firewall,
-        public readonly ?string $container_profile,
-        public readonly array $operations,
-        public readonly string $name,
-        public readonly string $type,
-        public readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
-        public readonly string $tree_id,
-        public readonly string $app_dir,
-        public readonly ?object $endpoints,
-        public readonly object $runtime,
-        public readonly \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web,
-        public readonly \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks,
-        public readonly array $crons,
-        public readonly \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source,
-        public readonly \Upsun\Model\TheBuildConfigurationOfTheApplication $build,
-        public readonly array $dependencies,
-        public readonly ?array $stack,
-        public readonly bool $is_across_submodule,
-        public readonly ?int $instance_count,
-        public readonly string $config_id,
-        public readonly string $slug_id,
+        public readonly ?\Upsun\Model\Resources $resources = null,
+        public readonly ?string $size = null,
+        public readonly ?int $disk = null,
+        public readonly ?array $access = [],
+        public readonly ?array $relationships = [],
+        public readonly ?array $additional_hosts = [],
+        public readonly ?array $mounts = [],
+        public readonly ?string $timezone = null,
+        public readonly ?array $variables = [],
+        public readonly ?\Upsun\Model\Firewall $firewall = null,
+        public readonly ?string $container_profile = null,
+        public readonly ?array $operations = [],
+        public readonly ?string $name = null,
+        public readonly ?string $type = null,
+        public readonly ?\Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
+        public readonly ?string $tree_id = null,
+        public readonly ?string $app_dir = null,
+        public readonly ?object $endpoints = null,
+        public readonly ?object $runtime = null,
+        public readonly ?\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web = null,
+        public readonly ?\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks = null,
+        public readonly ?array $crons = [],
+        public readonly ?\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source = null,
+        public readonly ?\Upsun\Model\TheBuildConfigurationOfTheApplication $build = null,
+        public readonly ?array $dependencies = [],
+        public readonly ?array $stack = [],
+        public readonly ?bool $is_across_submodule = null,
+        public readonly ?int $instance_count = null,
+        public readonly ?string $config_id = null,
+        public readonly ?string $slug_id = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'resources' => true,
-        'size' => false,
-        'disk' => true,
-        'access' => false,
-        'relationships' => false,
-        'additional_hosts' => false,
-        'mounts' => false,
-        'timezone' => true,
-        'variables' => false,
-        'firewall' => true,
-        'container_profile' => true,
-        'operations' => false,
-        'name' => false,
-        'type' => false,
-        'preflight' => false,
-        'tree_id' => false,
-        'app_dir' => false,
-        'endpoints' => true,
-        'runtime' => false,
-        'web' => false,
-        'hooks' => false,
-        'crons' => false,
-        'source' => false,
-        'build' => false,
-        'dependencies' => false,
-        'stack' => true,
-        'is_across_submodule' => false,
-        'instance_count' => true,
-        'config_id' => false,
-        'slug_id' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -235,7 +129,6 @@ final class WebApplicationsValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

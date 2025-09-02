@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheCommandsDefinition implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheCommandsDefinition implements JsonSerializable
         'start' => 'start',
         'stop' => 'stop'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'start' => 'setStart',
-            'stop' => 'setStop'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'start' => 'getStart',
-            'stop' => 'getStop'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $start,
-        public readonly ?string $stop,
+        public readonly ?string $start = null,
+        public readonly ?string $stop = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'start' => false,
-        'stop' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheCommandsDefinition implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
@@ -28,33 +27,12 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
         'flavor' => 'flavor',
         'caches' => 'caches'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'flavor' => 'setFlavor',
-            'caches' => 'setCaches'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'flavor' => 'getFlavor',
-            'caches' => 'getCaches'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?string $flavor,
-        public readonly array $caches
+        public readonly ?string $flavor = null,
+        public readonly ?array $caches = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'flavor' => true,
-        'caches' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

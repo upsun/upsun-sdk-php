@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheDefaultResourcesForThisService implements JsonSerializable
@@ -30,41 +29,14 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
         'disk' => 'disk',
         'profile_size' => 'profile_size'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu' => 'setCpu',
-            'memory' => 'setMemory',
-            'disk' => 'setDisk',
-            'profile_size' => 'setProfileSize'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu' => 'getCpu',
-            'memory' => 'getMemory',
-            'disk' => 'getDisk',
-            'profile_size' => 'getProfileSize'
-        ];
-    
-    
+
     public function __construct(
-        public readonly float $cpu,
-        public readonly int $memory,
-        public readonly ?int $disk,
-        public readonly ?string $profile_size,
+        public readonly ?float $cpu = null,
+        public readonly ?int $memory = null,
+        public readonly ?int $disk = null,
+        public readonly ?string $profile_size = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'cpu' => false,
-        'memory' => false,
-        'disk' => true,
-        'profile_size' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

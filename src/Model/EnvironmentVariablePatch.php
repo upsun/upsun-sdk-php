@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EnvironmentVariablePatch implements JsonSerializable
@@ -35,61 +34,19 @@ final class EnvironmentVariablePatch implements JsonSerializable
         'is_enabled' => 'is_enabled',
         'is_inheritable' => 'is_inheritable'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'value' => 'setValue',
-            'is_json' => 'setIsJson',
-            'is_sensitive' => 'setIsSensitive',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime',
-            'is_enabled' => 'setIsEnabled',
-            'is_inheritable' => 'setIsInheritable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'value' => 'getValue',
-            'is_json' => 'getIsJson',
-            'is_sensitive' => 'getIsSensitive',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime',
-            'is_enabled' => 'getIsEnabled',
-            'is_inheritable' => 'getIsInheritable'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly array $attributes,
-        public readonly string $value,
-        public readonly bool $is_json,
-        public readonly bool $is_sensitive,
-        public readonly bool $visible_build,
-        public readonly bool $visible_runtime,
-        public readonly bool $is_enabled,
-        public readonly bool $is_inheritable,
+        public readonly ?string $name = null,
+        public readonly ?array $attributes = [],
+        public readonly ?string $value = null,
+        public readonly ?bool $is_json = null,
+        public readonly ?bool $is_sensitive = null,
+        public readonly ?bool $visible_build = null,
+        public readonly ?bool $visible_runtime = null,
+        public readonly ?bool $is_enabled = null,
+        public readonly ?bool $is_inheritable = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'attributes' => false,
-        'value' => false,
-        'is_json' => false,
-        'is_sensitive' => false,
-        'visible_build' => false,
-        'visible_runtime' => false,
-        'is_enabled' => false,
-        'is_inheritable' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class EnvironmentVariablePatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

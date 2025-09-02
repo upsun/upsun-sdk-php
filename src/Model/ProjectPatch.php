@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProjectPatch implements JsonSerializable
@@ -33,53 +32,17 @@ final class ProjectPatch implements JsonSerializable
         'region' => 'region',
         'default_domain' => 'default_domain'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'attributes' => 'setAttributes',
-            'title' => 'setTitle',
-            'description' => 'setDescription',
-            'default_branch' => 'setDefaultBranch',
-            'timezone' => 'setTimezone',
-            'region' => 'setRegion',
-            'default_domain' => 'setDefaultDomain'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'attributes' => 'getAttributes',
-            'title' => 'getTitle',
-            'description' => 'getDescription',
-            'default_branch' => 'getDefaultBranch',
-            'timezone' => 'getTimezone',
-            'region' => 'getRegion',
-            'default_domain' => 'getDefaultDomain'
-        ];
-    
-    
+
     public function __construct(
-        public readonly array $attributes,
-        public readonly string $title,
-        public readonly string $description,
-        public readonly ?string $default_branch,
-        public readonly string $timezone,
-        public readonly string $region,
-        public readonly ?string $default_domain,
+        public readonly ?array $attributes = [],
+        public readonly ?string $title = null,
+        public readonly ?string $description = null,
+        public readonly ?string $default_branch = null,
+        public readonly ?string $timezone = null,
+        public readonly ?string $region = null,
+        public readonly ?string $default_domain = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'attributes' => false,
-        'title' => false,
-        'description' => false,
-        'default_branch' => true,
-        'timezone' => false,
-        'region' => false,
-        'default_domain' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class ProjectPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

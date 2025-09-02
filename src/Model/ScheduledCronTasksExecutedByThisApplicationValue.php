@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
@@ -31,45 +30,15 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         'timeout' => 'timeout',
         'cmd' => 'cmd'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'spec' => 'setSpec',
-            'commands' => 'setCommands',
-            'shutdown_timeout' => 'setShutdownTimeout',
-            'timeout' => 'setTimeout',
-            'cmd' => 'setCmd'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'spec' => 'getSpec',
-            'commands' => 'getCommands',
-            'shutdown_timeout' => 'getShutdownTimeout',
-            'timeout' => 'getTimeout',
-            'cmd' => 'getCmd'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $spec,
-        public readonly \Upsun\Model\TheCommandsDefinition $commands,
-        public readonly ?int $shutdown_timeout,
-        public readonly int $timeout,
-        public readonly string $cmd,
+        public readonly ?string $spec = null,
+        public readonly ?\Upsun\Model\TheCommandsDefinition $commands = null,
+        public readonly ?int $shutdown_timeout = null,
+        public readonly ?int $timeout = null,
+        public readonly ?string $cmd = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'spec' => false,
-        'commands' => false,
-        'shutdown_timeout' => true,
-        'timeout' => false,
-        'cmd' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -85,7 +54,6 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

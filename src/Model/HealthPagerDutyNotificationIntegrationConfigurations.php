@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class HealthPagerDutyNotificationIntegrationConfigurations implements JsonSerializable
@@ -28,33 +27,12 @@ final class HealthPagerDutyNotificationIntegrationConfigurations implements Json
         'enabled' => 'enabled',
         'role' => 'role'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'role' => 'getRole'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $enabled,
-        public readonly string $role,
+        public readonly ?bool $enabled = null,
+        public readonly ?string $role = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'enabled' => false,
-        'role' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class HealthPagerDutyNotificationIntegrationConfigurations implements Json
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

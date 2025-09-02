@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
@@ -32,49 +31,16 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         'visible_build' => 'visible_build',
         'visible_runtime' => 'visible_runtime'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'value' => 'setValue',
-            'is_sensitive' => 'setIsSensitive',
-            'is_json' => 'setIsJson',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'value' => 'getValue',
-            'is_sensitive' => 'getIsSensitive',
-            'is_json' => 'getIsJson',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly string $value,
-        public readonly bool $is_sensitive,
-        public readonly bool $is_json,
-        public readonly bool $visible_build,
-        public readonly bool $visible_runtime,
+        public readonly ?string $name = null,
+        public readonly ?string $value = null,
+        public readonly ?bool $is_sensitive = null,
+        public readonly ?bool $is_json = null,
+        public readonly ?bool $visible_build = null,
+        public readonly ?bool $visible_runtime = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'value' => false,
-        'is_sensitive' => false,
-        'is_json' => false,
-        'visible_build' => false,
-        'visible_runtime' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

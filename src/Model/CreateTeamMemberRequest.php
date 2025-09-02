@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateTeamMemberRequest implements JsonSerializable
@@ -27,29 +26,11 @@ final class CreateTeamMemberRequest implements JsonSerializable
     private static array $attributeMap = [
         'user_id' => 'user_id'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $user_id,
+        public readonly ?string $user_id = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'user_id' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class CreateTeamMemberRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

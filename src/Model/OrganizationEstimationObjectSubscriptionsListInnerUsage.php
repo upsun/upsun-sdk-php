@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
@@ -30,41 +29,14 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
         'storage' => 'storage',
         'environments' => 'environments'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu' => 'setCpu',
-            'memory' => 'setMemory',
-            'storage' => 'setStorage',
-            'environments' => 'setEnvironments'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu' => 'getCpu',
-            'memory' => 'getMemory',
-            'storage' => 'getStorage',
-            'environments' => 'getEnvironments'
-        ];
-    
-    
+
     public function __construct(
-        public readonly float $cpu,
-        public readonly float $memory,
-        public readonly float $storage,
-        public readonly int $environments,
+        public readonly ?float $cpu = null,
+        public readonly ?float $memory = null,
+        public readonly ?float $storage = null,
+        public readonly ?int $environments = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'cpu' => false,
-        'memory' => false,
-        'storage' => false,
-        'environments' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

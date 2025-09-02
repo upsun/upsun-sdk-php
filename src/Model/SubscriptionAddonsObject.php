@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class SubscriptionAddonsObject implements JsonSerializable
@@ -29,37 +28,13 @@ final class SubscriptionAddonsObject implements JsonSerializable
         'current' => 'current',
         'upgrades_available' => 'upgrades_available'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'available' => 'setAvailable',
-            'current' => 'setCurrent',
-            'upgrades_available' => 'setUpgradesAvailable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'available' => 'getAvailable',
-            'current' => 'getCurrent',
-            'upgrades_available' => 'getUpgradesAvailable'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \Upsun\Model\SubscriptionAddonsObjectAvailable $available,
-        public readonly \Upsun\Model\SubscriptionAddonsObjectCurrent $current,
-        public readonly \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgrades_available,
+        public readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
+        public readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
+        public readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgrades_available = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'available' => false,
-        'current' => false,
-        'upgrades_available' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class SubscriptionAddonsObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DedicatedDeploymentTargetPatch implements JsonSerializable
@@ -29,37 +28,13 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
         'name' => 'name',
         'enforced_mounts' => 'enforced_mounts'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'enforced_mounts' => 'setEnforcedMounts'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'enforced_mounts' => 'getEnforcedMounts'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $name,
-        public readonly object $enforced_mounts,
+        public readonly ?string $type = null,
+        public readonly ?string $name = null,
+        public readonly ?object $enforced_mounts = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'enforced_mounts' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

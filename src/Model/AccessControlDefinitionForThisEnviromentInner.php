@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
@@ -28,33 +27,12 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
         'entity_id' => 'entity_id',
         'role' => 'role'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'entity_id' => 'setEntityId',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'entity_id' => 'getEntityId',
-            'role' => 'getRole'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $entity_id,
-        public readonly string $role,
+        public readonly ?string $entity_id = null,
+        public readonly ?string $role = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'entity_id' => false,
-        'role' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

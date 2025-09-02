@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class CreateOrgMemberRequest implements JsonSerializable
@@ -28,33 +27,12 @@ final class CreateOrgMemberRequest implements JsonSerializable
         'user_id' => 'user_id',
         'permissions' => 'permissions'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'permissions' => 'setPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'permissions' => 'getPermissions'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $user_id,
-        public readonly array $permissions
+        public readonly ?string $user_id = null,
+        public readonly ?array $permissions = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'user_id' => false,
-        'permissions' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class CreateOrgMemberRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

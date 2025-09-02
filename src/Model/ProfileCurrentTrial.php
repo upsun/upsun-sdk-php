@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProfileCurrentTrial implements JsonSerializable
@@ -37,69 +36,21 @@ final class ProfileCurrentTrial implements JsonSerializable
         'model' => 'model',
         'days_remaining' => 'days_remaining'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'active' => 'setActive',
-            'created' => 'setCreated',
-            'description' => 'setDescription',
-            'expiration' => 'setExpiration',
-            'current' => 'setCurrent',
-            'spend' => 'setSpend',
-            'spend_remaining' => 'setSpendRemaining',
-            'projects' => 'setProjects',
-            'pending_verification' => 'setPendingVerification',
-            'model' => 'setModel',
-            'days_remaining' => 'setDaysRemaining'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'active' => 'getActive',
-            'created' => 'getCreated',
-            'description' => 'getDescription',
-            'expiration' => 'getExpiration',
-            'current' => 'getCurrent',
-            'spend' => 'getSpend',
-            'spend_remaining' => 'getSpendRemaining',
-            'projects' => 'getProjects',
-            'pending_verification' => 'getPendingVerification',
-            'model' => 'getModel',
-            'days_remaining' => 'getDaysRemaining'
-        ];
-    
-    
+
     public function __construct(
-        public readonly bool $active,
-        public readonly \DateTime $created,
-        public readonly string $description,
-        public readonly \DateTime $expiration,
-        public readonly \Upsun\Model\ProfileCurrentTrialCurrent $current,
-        public readonly \Upsun\Model\ProfileCurrentTrialSpend $spend,
-        public readonly \Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining,
-        public readonly \Upsun\Model\ProfileCurrentTrialProjects $projects,
-        public readonly ?string $pending_verification,
-        public readonly string $model,
-        public readonly int $days_remaining,
+        public readonly ?bool $active = null,
+        public readonly ?\DateTime $created = null,
+        public readonly ?string $description = null,
+        public readonly ?\DateTime $expiration = null,
+        public readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+        public readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+        public readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining = null,
+        public readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        public readonly ?string $pending_verification = null,
+        public readonly ?string $model = null,
+        public readonly ?int $days_remaining = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'active' => false,
-        'created' => false,
-        'description' => false,
-        'expiration' => false,
-        'current' => false,
-        'spend' => false,
-        'spend_remaining' => false,
-        'projects' => false,
-        'pending_verification' => true,
-        'model' => false,
-        'days_remaining' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -121,7 +72,6 @@ final class ProfileCurrentTrial implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

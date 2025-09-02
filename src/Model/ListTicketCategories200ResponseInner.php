@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListTicketCategories200ResponseInner implements JsonSerializable
@@ -28,33 +27,12 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
         'id' => 'id',
         'label' => 'label'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'label' => 'setLabel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'label' => 'getLabel'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $label,
+        public readonly ?string $id = null,
+        public readonly ?string $label = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'label' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

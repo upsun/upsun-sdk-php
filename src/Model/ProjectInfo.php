@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProjectInfo implements JsonSerializable
@@ -32,49 +31,16 @@ final class ProjectInfo implements JsonSerializable
         'capabilities' => 'capabilities',
         'settings' => 'settings'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'title' => 'setTitle',
-            'name' => 'setName',
-            'namespace' => 'setNamespace',
-            'organization' => 'setOrganization',
-            'capabilities' => 'setCapabilities',
-            'settings' => 'setSettings'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'title' => 'getTitle',
-            'name' => 'getName',
-            'namespace' => 'getNamespace',
-            'organization' => 'getOrganization',
-            'capabilities' => 'getCapabilities',
-            'settings' => 'getSettings'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $title,
-        public readonly string $name,
-        public readonly ?string $namespace,
-        public readonly ?string $organization,
-        public readonly object $capabilities,
-        public readonly object $settings,
+        public readonly ?string $title = null,
+        public readonly ?string $name = null,
+        public readonly ?string $namespace = null,
+        public readonly ?string $organization = null,
+        public readonly ?object $capabilities = null,
+        public readonly ?object $settings = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'title' => false,
-        'name' => false,
-        'namespace' => true,
-        'organization' => true,
-        'capabilities' => false,
-        'settings' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class ProjectInfo implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

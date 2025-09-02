@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DiscountCommitment implements JsonSerializable
@@ -29,37 +28,13 @@ final class DiscountCommitment implements JsonSerializable
         'amount' => 'amount',
         'net' => 'net'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'months' => 'setMonths',
-            'amount' => 'setAmount',
-            'net' => 'setNet'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'months' => 'getMonths',
-            'amount' => 'getAmount',
-            'net' => 'getNet'
-        ];
-    
-    
+
     public function __construct(
-        public readonly int $months,
-        public readonly \Upsun\Model\DiscountCommitmentAmount $amount,
-        public readonly \Upsun\Model\DiscountCommitmentNet $net,
+        public readonly ?int $months = null,
+        public readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
+        public readonly ?\Upsun\Model\DiscountCommitmentNet $net = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'months' => false,
-        'amount' => false,
-        'net' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class DiscountCommitment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

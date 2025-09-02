@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TeamReference implements JsonSerializable
@@ -33,53 +32,17 @@ final class TeamReference implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'label' => 'setLabel',
-            'project_permissions' => 'setProjectPermissions',
-            'counts' => 'setCounts',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'label' => 'getLabel',
-            'project_permissions' => 'getProjectPermissions',
-            'counts' => 'getCounts',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $organization_id,
-        public readonly string $label,
-        public readonly array $project_permissions,
-        public readonly \Upsun\Model\TeamCounts $counts,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
+        public readonly ?string $id = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?string $label = null,
+        public readonly ?array $project_permissions = [],
+        public readonly ?\Upsun\Model\TeamCounts $counts = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'organization_id' => false,
-        'label' => false,
-        'project_permissions' => false,
-        'counts' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class TeamReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

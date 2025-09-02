@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheInformationAboutTheCommitter implements JsonSerializable
@@ -29,37 +28,13 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
         'name' => 'name',
         'email' => 'email'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'date' => 'setDate',
-            'name' => 'setName',
-            'email' => 'setEmail'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'date' => 'getDate',
-            'name' => 'getName',
-            'email' => 'getEmail'
-        ];
-    
-    
+
     public function __construct(
-        public readonly \DateTime $date,
-        public readonly string $name,
-        public readonly string $email,
+        public readonly ?\DateTime $date = null,
+        public readonly ?string $name = null,
+        public readonly ?string $email = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'date' => false,
-        'name' => false,
-        'email' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Alert implements JsonSerializable
@@ -32,49 +31,16 @@ final class Alert implements JsonSerializable
         'updated_at' => 'updated_at',
         'config' => 'config'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'active' => 'setActive',
-            'alerts_sent' => 'setAlertsSent',
-            'last_alert_at' => 'setLastAlertAt',
-            'updated_at' => 'setUpdatedAt',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'active' => 'getActive',
-            'alerts_sent' => 'getAlertsSent',
-            'last_alert_at' => 'getLastAlertAt',
-            'updated_at' => 'getUpdatedAt',
-            'config' => 'getConfig'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly bool $active,
-        public readonly int $alerts_sent,
-        public readonly \DateTime $last_alert_at,
-        public readonly \DateTime $updated_at,
-        public readonly object $config,
+        public readonly ?string $id = null,
+        public readonly ?bool $active = null,
+        public readonly ?int $alerts_sent = null,
+        public readonly ?\DateTime $last_alert_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?object $config = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'active' => false,
-        'alerts_sent' => false,
-        'last_alert_at' => false,
-        'updated_at' => false,
-        'config' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -91,7 +57,6 @@ final class Alert implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

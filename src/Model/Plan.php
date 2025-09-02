@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Plan implements JsonSerializable
@@ -28,33 +27,12 @@ final class Plan implements JsonSerializable
         'name' => 'name',
         'label' => 'label'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'label' => 'setLabel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'label' => 'getLabel'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $name,
-        public readonly string $label,
+        public readonly ?string $name = null,
+        public readonly ?string $label = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'name' => false,
-        'label' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -67,7 +45,6 @@ final class Plan implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class EmailIntegrationPatch implements JsonSerializable
@@ -29,37 +28,13 @@ final class EmailIntegrationPatch implements JsonSerializable
         'from_address' => 'from_address',
         'recipients' => 'recipients'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'from_address' => 'setFromAddress',
-            'recipients' => 'setRecipients'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'from_address' => 'getFromAddress',
-            'recipients' => 'getRecipients'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly ?string $from_address,
-        public readonly array $recipients
+        public readonly ?string $type = null,
+        public readonly ?string $from_address = null,
+        public readonly ?array $recipients = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'from_address' => true,
-        'recipients' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class EmailIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

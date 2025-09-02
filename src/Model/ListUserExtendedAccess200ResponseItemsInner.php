@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
@@ -33,53 +32,17 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
         'granted_at' => 'granted_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'resource_id' => 'setResourceId',
-            'resource_type' => 'setResourceType',
-            'organization_id' => 'setOrganizationId',
-            'permissions' => 'setPermissions',
-            'granted_at' => 'setGrantedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'resource_id' => 'getResourceId',
-            'resource_type' => 'getResourceType',
-            'organization_id' => 'getOrganizationId',
-            'permissions' => 'getPermissions',
-            'granted_at' => 'getGrantedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $user_id,
-        public readonly string $resource_id,
-        public readonly string $resource_type,
-        public readonly string $organization_id,
-        public readonly array $permissions,
-        public readonly \DateTime $granted_at,
-        public readonly \DateTime $updated_at,
+        public readonly ?string $user_id = null,
+        public readonly ?string $resource_id = null,
+        public readonly ?string $resource_type = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?array $permissions = [],
+        public readonly ?\DateTime $granted_at = null,
+        public readonly ?\DateTime $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'user_id' => false,
-        'resource_id' => false,
-        'resource_type' => false,
-        'organization_id' => false,
-        'permissions' => false,
-        'granted_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

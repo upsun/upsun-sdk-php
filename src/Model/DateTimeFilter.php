@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DateTimeFilter implements JsonSerializable
@@ -33,53 +32,17 @@ final class DateTimeFilter implements JsonSerializable
         'lt' => 'lt',
         'lte' => 'lte'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eq' => 'setEq',
-            'ne' => 'setNe',
-            'between' => 'setBetween',
-            'gt' => 'setGt',
-            'gte' => 'setGte',
-            'lt' => 'setLt',
-            'lte' => 'setLte'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eq' => 'getEq',
-            'ne' => 'getNe',
-            'between' => 'getBetween',
-            'gt' => 'getGt',
-            'gte' => 'getGte',
-            'lt' => 'getLt',
-            'lte' => 'getLte'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $eq,
-        public readonly string $ne,
-        public readonly string $between,
-        public readonly string $gt,
-        public readonly string $gte,
-        public readonly string $lt,
-        public readonly string $lte,
+        public readonly ?string $eq = null,
+        public readonly ?string $ne = null,
+        public readonly ?string $between = null,
+        public readonly ?string $gt = null,
+        public readonly ?string $gte = null,
+        public readonly ?string $lt = null,
+        public readonly ?string $lte = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'eq' => false,
-        'ne' => false,
-        'between' => false,
-        'gt' => false,
-        'gte' => false,
-        'lt' => false,
-        'lte' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -97,7 +60,6 @@ final class DateTimeFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

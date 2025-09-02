@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheDisksResources implements JsonSerializable
@@ -29,37 +28,13 @@ final class TheDisksResources implements JsonSerializable
         'instance' => 'instance',
         'storage' => 'storage'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'temporary' => 'setTemporary',
-            'instance' => 'setInstance',
-            'storage' => 'setStorage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'temporary' => 'getTemporary',
-            'instance' => 'getInstance',
-            'storage' => 'getStorage'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?int $temporary,
-        public readonly ?int $instance,
-        public readonly ?int $storage,
+        public readonly ?int $temporary = null,
+        public readonly ?int $instance = null,
+        public readonly ?int $storage = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'temporary' => true,
-        'instance' => true,
-        'storage' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -73,7 +48,6 @@ final class TheDisksResources implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

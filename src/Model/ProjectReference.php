@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class ProjectReference implements JsonSerializable
@@ -36,65 +35,20 @@ final class ProjectReference implements JsonSerializable
         'created_at' => 'created_at',
         'updated_at' => 'updated_at'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'subscription_id' => 'setSubscriptionId',
-            'region' => 'setRegion',
-            'title' => 'setTitle',
-            'type' => 'setType',
-            'plan' => 'setPlan',
-            'status' => 'setStatus',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'subscription_id' => 'getSubscriptionId',
-            'region' => 'getRegion',
-            'title' => 'getTitle',
-            'type' => 'getType',
-            'plan' => 'getPlan',
-            'status' => 'getStatus',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $id,
-        public readonly string $organization_id,
-        public readonly string $subscription_id,
-        public readonly string $region,
-        public readonly string $title,
-        public readonly \Upsun\Model\OrganizationProjectType $type,
-        public readonly \Upsun\Model\OrganizationProjectPlan $plan,
-        public readonly \Upsun\Model\OrganizationProjectStatus $status,
-        public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at,
+        public readonly ?string $id = null,
+        public readonly ?string $organization_id = null,
+        public readonly ?string $subscription_id = null,
+        public readonly ?string $region = null,
+        public readonly ?string $title = null,
+        public readonly ?\Upsun\Model\OrganizationProjectType $type = null,
+        public readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
+        public readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'id' => false,
-        'organization_id' => false,
-        'subscription_id' => false,
-        'region' => false,
-        'title' => false,
-        'type' => false,
-        'plan' => false,
-        'status' => false,
-        'created_at' => false,
-        'updated_at' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -115,7 +69,6 @@ final class ProjectReference implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

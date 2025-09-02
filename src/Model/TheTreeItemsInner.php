@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class TheTreeItemsInner implements JsonSerializable
@@ -30,41 +29,14 @@ final class TheTreeItemsInner implements JsonSerializable
         'type' => 'type',
         'sha' => 'sha'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'path' => 'setPath',
-            'mode' => 'setMode',
-            'type' => 'setType',
-            'sha' => 'setSha'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'path' => 'getPath',
-            'mode' => 'getMode',
-            'type' => 'getType',
-            'sha' => 'getSha'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $path,
-        public readonly string $mode,
-        public readonly string $type,
-        public readonly ?string $sha,
+        public readonly ?string $path = null,
+        public readonly ?string $mode = null,
+        public readonly ?string $type = null,
+        public readonly ?string $sha = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'path' => false,
-        'mode' => false,
-        'type' => false,
-        'sha' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -79,7 +51,6 @@ final class TheTreeItemsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

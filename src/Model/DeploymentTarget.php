@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class DeploymentTarget implements JsonSerializable
@@ -45,101 +44,29 @@ final class DeploymentTarget implements JsonSerializable
         'use_dedicated_grid' => 'use_dedicated_grid',
         'storage_type' => 'storage_type'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'deploy_host' => 'setDeployHost',
-            'deploy_port' => 'setDeployPort',
-            'ssh_host' => 'setSshHost',
-            'hosts' => 'setHosts',
-            'auto_mounts' => 'setAutoMounts',
-            'excluded_mounts' => 'setExcludedMounts',
-            'enforced_mounts' => 'setEnforcedMounts',
-            'auto_crons' => 'setAutoCrons',
-            'auto_nginx' => 'setAutoNginx',
-            'maintenance_mode' => 'setMaintenanceMode',
-            'guardrails_phase' => 'setGuardrailsPhase',
-            'docroots' => 'setDocroots',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
-            'use_dedicated_grid' => 'setUseDedicatedGrid',
-            'storage_type' => 'setStorageType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'deploy_host' => 'getDeployHost',
-            'deploy_port' => 'getDeployPort',
-            'ssh_host' => 'getSshHost',
-            'hosts' => 'getHosts',
-            'auto_mounts' => 'getAutoMounts',
-            'excluded_mounts' => 'getExcludedMounts',
-            'enforced_mounts' => 'getEnforcedMounts',
-            'auto_crons' => 'getAutoCrons',
-            'auto_nginx' => 'getAutoNginx',
-            'maintenance_mode' => 'getMaintenanceMode',
-            'guardrails_phase' => 'getGuardrailsPhase',
-            'docroots' => 'getDocroots',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
-            'use_dedicated_grid' => 'getUseDedicatedGrid',
-            'storage_type' => 'getStorageType'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly string $name,
-        public readonly ?string $deploy_host,
-        public readonly ?int $deploy_port,
-        public readonly ?string $ssh_host,
-        public readonly ?array $hosts,
-        public readonly bool $auto_mounts,
-        public readonly array $excluded_mounts,
-        public readonly object $enforced_mounts,
-        public readonly bool $auto_crons,
-        public readonly bool $auto_nginx,
-        public readonly bool $maintenance_mode,
-        public readonly int $guardrails_phase,
-        public readonly array $docroots,
-        public readonly object $site_urls,
-        public readonly array $ssh_hosts,
-        public readonly object $enterprise_environments_mapping,
-        public readonly bool $use_dedicated_grid,
-        public readonly ?string $storage_type,
+        public readonly ?string $type = null,
+        public readonly ?string $name = null,
+        public readonly ?string $deploy_host = null,
+        public readonly ?int $deploy_port = null,
+        public readonly ?string $ssh_host = null,
+        public readonly ?array $hosts = [],
+        public readonly ?bool $auto_mounts = null,
+        public readonly ?array $excluded_mounts = [],
+        public readonly ?object $enforced_mounts = null,
+        public readonly ?bool $auto_crons = null,
+        public readonly ?bool $auto_nginx = null,
+        public readonly ?bool $maintenance_mode = null,
+        public readonly ?int $guardrails_phase = null,
+        public readonly ?array $docroots = [],
+        public readonly ?object $site_urls = null,
+        public readonly ?array $ssh_hosts = [],
+        public readonly ?object $enterprise_environments_mapping = null,
+        public readonly ?bool $use_dedicated_grid = null,
+        public readonly ?string $storage_type = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'deploy_host' => true,
-        'deploy_port' => true,
-        'ssh_host' => true,
-        'hosts' => true,
-        'auto_mounts' => false,
-        'excluded_mounts' => false,
-        'enforced_mounts' => false,
-        'auto_crons' => false,
-        'auto_nginx' => false,
-        'maintenance_mode' => false,
-        'guardrails_phase' => false,
-        'docroots' => false,
-        'site_urls' => false,
-        'ssh_hosts' => false,
-        'enterprise_environments_mapping' => false,
-        'use_dedicated_grid' => false,
-        'storage_type' => true
-    ];
 
     public function jsonSerialize(): array
     {
@@ -169,7 +96,6 @@ final class DeploymentTarget implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

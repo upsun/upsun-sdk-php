@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class Deployment implements JsonSerializable
@@ -45,101 +44,29 @@ final class Deployment implements JsonSerializable
         'workers' => 'workers',
         'container_profiles' => 'container_profiles'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'fingerprint' => 'setFingerprint',
-            'cluster_name' => 'setClusterName',
-            'project_info' => 'setProjectInfo',
-            'environment_info' => 'setEnvironmentInfo',
-            'deployment_target' => 'setDeploymentTarget',
-            'vpn' => 'setVpn',
-            'http_access' => 'setHttpAccess',
-            'enable_smtp' => 'setEnableSmtp',
-            'restrict_robots' => 'setRestrictRobots',
-            'variables' => 'setVariables',
-            'access' => 'setAccess',
-            'subscription' => 'setSubscription',
-            'services' => 'setServices',
-            'routes' => 'setRoutes',
-            'webapps' => 'setWebapps',
-            'workers' => 'setWorkers',
-            'container_profiles' => 'setContainerProfiles'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'fingerprint' => 'getFingerprint',
-            'cluster_name' => 'getClusterName',
-            'project_info' => 'getProjectInfo',
-            'environment_info' => 'getEnvironmentInfo',
-            'deployment_target' => 'getDeploymentTarget',
-            'vpn' => 'getVpn',
-            'http_access' => 'getHttpAccess',
-            'enable_smtp' => 'getEnableSmtp',
-            'restrict_robots' => 'getRestrictRobots',
-            'variables' => 'getVariables',
-            'access' => 'getAccess',
-            'subscription' => 'getSubscription',
-            'services' => 'getServices',
-            'routes' => 'getRoutes',
-            'webapps' => 'getWebapps',
-            'workers' => 'getWorkers',
-            'container_profiles' => 'getContainerProfiles'
-        ];
-    
-    
+
     public function __construct(
-        public readonly ?\DateTime $created_at,
-        public readonly ?\DateTime $updated_at,
-        public readonly string $fingerprint,
-        public readonly string $cluster_name,
-        public readonly \Upsun\Model\ProjectInfo $project_info,
-        public readonly \Upsun\Model\EnvironmentInfo $environment_info,
-        public readonly string $deployment_target,
-        public readonly ?\Upsun\Model\VPNConfiguration $vpn,
-        public readonly \Upsun\Model\HTTPAccessPermissions $http_access,
-        public readonly bool $enable_smtp,
-        public readonly bool $restrict_robots,
-        public readonly array $variables,
-        public readonly array $access,
-        public readonly \Upsun\Model\Subscription1 $subscription,
-        public readonly array $services,
-        public readonly array $routes,
-        public readonly array $webapps,
-        public readonly array $workers,
-        public readonly array $container_profiles
+        public readonly ?\DateTime $created_at = null,
+        public readonly ?\DateTime $updated_at = null,
+        public readonly ?string $fingerprint = null,
+        public readonly ?string $cluster_name = null,
+        public readonly ?\Upsun\Model\ProjectInfo $project_info = null,
+        public readonly ?\Upsun\Model\EnvironmentInfo $environment_info = null,
+        public readonly ?string $deployment_target = null,
+        public readonly ?\Upsun\Model\VPNConfiguration $vpn = null,
+        public readonly ?\Upsun\Model\HTTPAccessPermissions $http_access = null,
+        public readonly ?bool $enable_smtp = null,
+        public readonly ?bool $restrict_robots = null,
+        public readonly ?array $variables = [],
+        public readonly ?array $access = [],
+        public readonly ?\Upsun\Model\Subscription1 $subscription = null,
+        public readonly ?array $services = [],
+        public readonly ?array $routes = [],
+        public readonly ?array $webapps = [],
+        public readonly ?array $workers = [],
+        public readonly ?array $container_profiles = [],
     ) {
     }
-
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'fingerprint' => false,
-        'cluster_name' => false,
-        'project_info' => false,
-        'environment_info' => false,
-        'deployment_target' => false,
-        'vpn' => true,
-        'http_access' => false,
-        'enable_smtp' => false,
-        'restrict_robots' => false,
-        'variables' => false,
-        'access' => false,
-        'subscription' => false,
-        'services' => false,
-        'routes' => false,
-        'webapps' => false,
-        'workers' => false,
-        'container_profiles' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -169,7 +96,6 @@ final class Deployment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

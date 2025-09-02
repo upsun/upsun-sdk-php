@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class LineItem implements JsonSerializable
@@ -35,61 +34,19 @@ final class LineItem implements JsonSerializable
         'components' => 'components',
         'exclude_from_invoice' => 'exclude_from_invoice'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'license_id' => 'setLicenseId',
-            'project_id' => 'setProjectId',
-            'product' => 'setProduct',
-            'sku' => 'setSku',
-            'total' => 'setTotal',
-            'total_formatted' => 'setTotalFormatted',
-            'components' => 'setComponents',
-            'exclude_from_invoice' => 'setExcludeFromInvoice'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'license_id' => 'getLicenseId',
-            'project_id' => 'getProjectId',
-            'product' => 'getProduct',
-            'sku' => 'getSku',
-            'total' => 'getTotal',
-            'total_formatted' => 'getTotalFormatted',
-            'components' => 'getComponents',
-            'exclude_from_invoice' => 'getExcludeFromInvoice'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $type,
-        public readonly ?float $license_id,
-        public readonly ?string $project_id,
-        public readonly string $product,
-        public readonly string $sku,
-        public readonly float $total,
-        public readonly string $total_formatted,
-        public readonly array $components,
-        public readonly bool $exclude_from_invoice,
+        public readonly ?string $type = null,
+        public readonly ?float $license_id = null,
+        public readonly ?string $project_id = null,
+        public readonly ?string $product = null,
+        public readonly ?string $sku = null,
+        public readonly ?float $total = null,
+        public readonly ?string $total_formatted = null,
+        public readonly ?array $components = [],
+        public readonly ?bool $exclude_from_invoice = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'type' => false,
-        'license_id' => true,
-        'project_id' => true,
-        'product' => false,
-        'sku' => false,
-        'total' => false,
-        'total_formatted' => false,
-        'components' => false,
-        'exclude_from_invoice' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -109,7 +66,6 @@ final class LineItem implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 

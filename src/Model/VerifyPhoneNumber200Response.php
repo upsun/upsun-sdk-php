@@ -13,7 +13,6 @@
 namespace Upsun\Model;
 
 use ArrayAccess;
-use Upsun\ObjectSerializer;
 use JsonSerializable;
 
 final class VerifyPhoneNumber200Response implements JsonSerializable
@@ -27,29 +26,11 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
     private static array $attributeMap = [
         'sid' => 'sid'
     ];
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sid' => 'setSid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sid' => 'getSid'
-        ];
-    
-    
+
     public function __construct(
-        public readonly string $sid,
+        public readonly ?string $sid = null,
     ) {
     }
-
-    private static array $openAPINullables = [
-        'sid' => false
-    ];
 
     public function jsonSerialize(): array
     {
@@ -61,7 +42,6 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
-    }   
-    
+    }
 }
 
