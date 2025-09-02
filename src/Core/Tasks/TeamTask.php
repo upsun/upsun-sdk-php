@@ -43,6 +43,7 @@ class TeamTask extends TaskBase
      */
     public function create(array $createTeamRequest): Team|Error
     {
+        var_dump($createTeamRequest);
         $createTeamRequest = new CreateTeamRequest($createTeamRequest);
         return $this->teamsApi->createTeam($createTeamRequest);
     }
