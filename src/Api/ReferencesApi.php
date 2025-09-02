@@ -137,7 +137,6 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced organizations
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listReferencedOrgsWithHttpInfo(
@@ -150,88 +149,21 @@ final class ReferencesApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        'array<string,\Upsun\Model\OrganizationReference>',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'array<string,\Upsun\Model\OrganizationReference>',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -425,7 +357,6 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced projects
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listReferencedProjectsWithHttpInfo(
@@ -438,102 +369,21 @@ final class ReferencesApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        'array<string,\Upsun\Model\ProjectReference>',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'array<string,\Upsun\Model\ProjectReference>',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -727,7 +577,6 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced regions
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listReferencedRegionsWithHttpInfo(
@@ -740,102 +589,21 @@ final class ReferencesApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        'array<string,\Upsun\Model\RegionReference>',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'array<string,\Upsun\Model\RegionReference>',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -1029,7 +797,6 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced teams
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listReferencedTeamsWithHttpInfo(
@@ -1042,74 +809,21 @@ final class ReferencesApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        'array<string,\Upsun\Model\TeamReference>',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'array<string,\Upsun\Model\TeamReference>',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -1303,7 +1017,6 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced users
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listReferencedUsersWithHttpInfo(
@@ -1316,74 +1029,21 @@ final class ReferencesApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        'array<string,\Upsun\Model\UserReference>',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'array<string,\Upsun\Model\UserReference>',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 

@@ -126,7 +126,7 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentials(
         string $organization_id,
         string $order_id
-    ): array|\Upsun\Model\Error {
+    ): array {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo(
             $organization_id,
             $order_id
@@ -137,7 +137,6 @@ final class OrdersApi extends AbstractApi
     /**
      * Create confirmation credentials for for 3D-Secure
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentialsWithHttpInfo(
@@ -150,102 +149,21 @@ final class OrdersApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\CreateAuthorizationCredentials200Response',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\CreateAuthorizationCredentials200Response',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -421,7 +339,7 @@ final class OrdersApi extends AbstractApi
      */
     public function downloadInvoice(
         string $token
-    ): void {
+    ): string {
         list($response) = $this->downloadInvoiceWithHttpInfo(
             $token
         );
@@ -431,7 +349,6 @@ final class OrdersApi extends AbstractApi
     /**
      * Download an invoice.
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function downloadInvoiceWithHttpInfo(
@@ -442,42 +359,21 @@ final class OrdersApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
+            return $this->handleResponseWithDataType(
+                'string',
+                $request,
+                $response
+            );
 
-
-            return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -629,7 +525,7 @@ final class OrdersApi extends AbstractApi
         string $organization_id,
         string $order_id,
         string $mode = null
-    ): \Upsun\Model\Order|\Upsun\Model\Error {
+    ): \Upsun\Model\Order {
         list($response) = $this->getOrgOrderWithHttpInfo(
             $organization_id,
             $order_id,
@@ -641,7 +537,6 @@ final class OrdersApi extends AbstractApi
     /**
      * Get order
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrderWithHttpInfo(
@@ -656,88 +551,21 @@ final class OrdersApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Order',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\Order',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Order',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -933,7 +761,7 @@ final class OrdersApi extends AbstractApi
         int $filter_total = null,
         int $page = null,
         string $mode = null
-    ): array|\Upsun\Model\Error {
+    ): array {
         list($response) = $this->listOrgOrdersWithHttpInfo(
             $organization_id,
             $filter_status,
@@ -947,7 +775,6 @@ final class OrdersApi extends AbstractApi
     /**
      * List orders
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrdersWithHttpInfo(
@@ -966,88 +793,21 @@ final class OrdersApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\ListOrgOrders200Response',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                'array',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\ListOrgOrders200Response',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 

@@ -135,7 +135,6 @@ final class SSHKeysApi extends AbstractApi
     /**
      * Add a new public SSH key to a user
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKeyWithHttpInfo(
@@ -146,60 +145,21 @@ final class SSHKeysApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 201:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\SSHKey',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\SSHKey',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\SSHKey',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -348,7 +308,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function deleteSshKey(
         int $key_id
-    ): void {
+    ): \Upsun\Model\SSHKey {
         list($response) = $this->deleteSshKeyWithHttpInfo(
             $key_id
         );
@@ -358,7 +318,6 @@ final class SSHKeysApi extends AbstractApi
     /**
      * Delete an SSH key
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function deleteSshKeyWithHttpInfo(
@@ -369,42 +328,21 @@ final class SSHKeysApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\SSHKey',
+                $request,
+                $response
+            );
 
-
-            return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -561,7 +499,6 @@ final class SSHKeysApi extends AbstractApi
     /**
      * Get an SSH key
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function getSshKeyWithHttpInfo(
@@ -572,60 +509,21 @@ final class SSHKeysApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\SSHKey',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\SSHKey',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\SSHKey',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 

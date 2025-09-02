@@ -122,11 +122,13 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array
      */
     public function cancelOrgInvite(
         string $organization_id,
         string $invitation_id
-    ): null|\Upsun\Model\Error {
+    ): array {
         list($response) = $this->cancelOrgInviteWithHttpInfo(
             $organization_id,
             $invitation_id
@@ -137,7 +139,6 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Cancel a pending invitation to an organization
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function cancelOrgInviteWithHttpInfo(
@@ -150,50 +151,21 @@ final class OrganizationInvitationsApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\OrganizationInvitation[]',
+                $request,
+                $response
+            );
 
-
-            return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -360,7 +332,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     public function createOrgInvite(
         string $organization_id,
         \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
-    ): \Upsun\Model\OrganizationInvitation|\Upsun\Model\Error {
+    ): \Upsun\Model\OrganizationInvitation {
         list($response) = $this->createOrgInviteWithHttpInfo(
             $organization_id,
             $create_org_invite_request
@@ -371,7 +343,6 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Invite user to an organization by email
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgInviteWithHttpInfo(
@@ -384,102 +355,21 @@ final class OrganizationInvitationsApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 201:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\OrganizationInvitation',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 409:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\OrganizationInvitation',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\OrganizationInvitation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 409:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -645,7 +535,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return array|\Upsun\Model\Error
+     * @return array
      */
     public function listOrgInvites(
         string $organization_id,
@@ -669,7 +559,6 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * List invitations to an organization
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvitesWithHttpInfo(
@@ -690,74 +579,21 @@ final class OrganizationInvitationsApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\OrganizationInvitation[]',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\OrganizationInvitation[]',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\OrganizationInvitation[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 

@@ -122,11 +122,13 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array
      */
     public function cancelProjectInvite(
         string $project_id,
         string $invitation_id
-    ): null|\Upsun\Model\Error {
+    ): array {
         list($response) = $this->cancelProjectInviteWithHttpInfo(
             $project_id,
             $invitation_id
@@ -137,7 +139,6 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Cancel a pending invitation to a project
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function cancelProjectInviteWithHttpInfo(
@@ -150,50 +151,21 @@ final class ProjectInvitationsApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ProjectInvitation[]',
+                $request,
+                $response
+            );
 
-
-            return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -360,7 +332,7 @@ final class ProjectInvitationsApi extends AbstractApi
     public function createProjectInvite(
         string $project_id,
         \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
-    ): \Upsun\Model\ProjectInvitation|\Upsun\Model\Error {
+    ): \Upsun\Model\ProjectInvitation {
         list($response) = $this->createProjectInviteWithHttpInfo(
             $project_id,
             $create_project_invite_request
@@ -371,7 +343,6 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Invite user to a project by email
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectInviteWithHttpInfo(
@@ -384,130 +355,21 @@ final class ProjectInvitationsApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 201:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\ProjectInvitation',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 402:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 409:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ProjectInvitation',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\ProjectInvitation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 402:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 409:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
@@ -673,7 +535,7 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return array|\Upsun\Model\Error
+     * @return array
      */
     public function listProjectInvites(
         string $project_id,
@@ -697,7 +559,6 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * List invitations to a project
      *
-     * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectInvitesWithHttpInfo(
@@ -718,88 +579,21 @@ final class ProjectInvitationsApi extends AbstractApi
         );
 
         try {
-            try {
-                $this->refreshToken();
-                $response = $this->sendAuthenticatedRequest(
-                    $request->getMethod(),
-                    (string) $request->getUri(),
-                    $request->getHeaders()
-                );
-            } catch (HttpException $e) {
-                $response = $e->getResponse();
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $response->getStatusCode(),
-                        (string) $request->getUri()
-                    ),
-                    $request,
-                    $response,
-                    $e
-                );
-            } catch (ClientExceptionInterface $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $request,
-                    null,
-                    $e
-                );
-            }
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders()
+            );
 
-            $statusCode = $response->getStatusCode();
-
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\ProjectInvitation[]',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-            }
-
-
+            return $this->handleResponseWithDataType(
+                '\Upsun\Model\ProjectInvitation[]',
+                $request,
+                $response
+            );
 
         } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\ProjectInvitation[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+            // gestion des erreurs pour chaque code
+            throw $e;
         }
     }
 
