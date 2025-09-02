@@ -133,10 +133,17 @@ class ObjectSerializer
                     // Nested model
                     if ($value !== null) {
                         $args[] = self::deserializeModel($value, $typeName);
-                    } elseif ((new ReflectionClass($typeName))->getConstructor()) {
-                        $args[] = new $typeName(...[]); // créer un objet vide si le constructeur existe
                     } else {
-                        $args[] = null;
+                        // Vérifier si le paramètre est nullable
+                        $paramType = $param->getType();
+                        $isNullable = $paramType?->allowsNull() ?? true;
+                        if ($isNullable) {
+                            $args[] = null;
+                        } else {
+                            throw new \InvalidArgumentException(
+                                "Cannot deserialize '{$paramName}' for class {$class}: value is required but missing"
+                            );
+                        }
                     }
                 } else {
                     // Primitive type
