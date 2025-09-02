@@ -16,413 +16,66 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SpecificOverridesValue implements ModelInterface, ArrayAccess, JsonSerializable
+final class SpecificOverridesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Specific_overrides__value';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'expires' => 'string',
-        'passthru' => 'string',
-        'scripts' => 'bool',
-        'allow' => 'bool',
-        'headers' => 'array<string,string>'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'expires' => null,
-        'passthru' => null,
-        'scripts' => null,
-        'allow' => null,
-        'headers' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'expires' => true,
-        'passthru' => false,
-        'scripts' => false,
-        'allow' => false,
-        'headers' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly ?string $expires,
+        public readonly string $passthru,
+        public readonly bool $scripts,
+        public readonly bool $allow,
+        /**
+         * @var string[]
+         */
+        public readonly array $headers
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'expires' => $this->expires,
+            'passthru' => $this->passthru,
+            'scripts' => $this->scripts,
+            'allow' => $this->allow,
+            'headers' => $this->headers,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'expires' => 'expires',
-        'passthru' => 'passthru',
-        'scripts' => 'scripts',
-        'allow' => 'allow',
-        'headers' => 'headers'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'expires' => 'setExpires',
-        'passthru' => 'setPassthru',
-        'scripts' => 'setScripts',
-        'allow' => 'setAllow',
-        'headers' => 'setHeaders'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'expires' => 'getExpires',
-        'passthru' => 'getPassthru',
-        'scripts' => 'getScripts',
-        'allow' => 'getAllow',
-        'headers' => 'getHeaders'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('expires', $data ?? [], null);
-        $this->setIfExists('passthru', $data ?? [], null);
-        $this->setIfExists('scripts', $data ?? [], null);
-        $this->setIfExists('allow', $data ?? [], null);
-        $this->setIfExists('headers', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets expires
-     *
-     * @return string|null
-     */
-    public function getExpires()
-    {
-        return $this->container['expires'];
-    }
-
-    /**
-     * Sets expires
-     */
-    public function setExpires($expires)
-    {
-        if (is_null($expires)) {
-            array_push($this->openAPINullablesSetToNull, 'expires');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $this->container['expires'] = $expires;
-
-        return $this;
-    }
-
-    /**
-     * Gets passthru
-     *
-     * @return string|null
-     */
-    public function getPassthru()
-    {
-        return $this->container['passthru'];
-    }
-
-    /**
-     * Sets passthru
-     */
-    public function setPassthru($passthru)
-    {
-        if (is_null($passthru)) {
-            throw new \InvalidArgumentException('non-nullable passthru cannot be null');
-        }
-        $this->container['passthru'] = $passthru;
-
-        return $this;
-    }
-
-    /**
-     * Gets scripts
-     *
-     * @return bool|null
-     */
-    public function getScripts()
-    {
-        return $this->container['scripts'];
-    }
-
-    /**
-     * Sets scripts
-     */
-    public function setScripts($scripts)
-    {
-        if (is_null($scripts)) {
-            throw new \InvalidArgumentException('non-nullable scripts cannot be null');
-        }
-        $this->container['scripts'] = $scripts;
-
-        return $this;
-    }
-
-    /**
-     * Gets allow
-     *
-     * @return bool|null
-     */
-    public function getAllow()
-    {
-        return $this->container['allow'];
-    }
-
-    /**
-     * Sets allow
-     */
-    public function setAllow($allow)
-    {
-        if (is_null($allow)) {
-            throw new \InvalidArgumentException('non-nullable allow cannot be null');
-        }
-        $this->container['allow'] = $allow;
-
-        return $this;
-    }
-
-    /**
-     * Gets headers
-     *
-     * @return array<string,string>|null
-     */
-    public function getHeaders()
-    {
-        return $this->container['headers'];
-    }
-
-    /**
-     * Sets headers
-     */
-    public function setHeaders($headers)
-    {
-        if (is_null($headers)) {
-            throw new \InvalidArgumentException('non-nullable headers cannot be null');
-        }
-        $this->container['headers'] = $headers;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'expires' => true,
+                'passthru' => false,
+                'scripts' => false,
+                'allow' => false,
+                'headers' => false
+            ];
+        protected static $openAPIFormats = [
+            'expires' => null,
+            'passthru' => null,
+            'scripts' => null,
+            'allow' => null,
+            'headers' => null
+        ];
 }
+

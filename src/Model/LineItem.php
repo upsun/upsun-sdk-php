@@ -16,580 +16,82 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class LineItem implements ModelInterface, ArrayAccess, JsonSerializable
+final class LineItem implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'LineItem';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'type' => 'string',
-        'license_id' => 'float',
-        'project_id' => 'string',
-        'product' => 'string',
-        'sku' => 'string',
-        'total' => 'float',
-        'total_formatted' => 'string',
-        'components' => 'array<string,\Upsun\Model\LineItemComponent>',
-        'exclude_from_invoice' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'type' => null,
-        'license_id' => null,
-        'project_id' => null,
-        'product' => null,
-        'sku' => null,
-        'total' => null,
-        'total_formatted' => null,
-        'components' => null,
-        'exclude_from_invoice' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'type' => false,
-        'license_id' => true,
-        'project_id' => true,
-        'product' => false,
-        'sku' => false,
-        'total' => false,
-        'total_formatted' => false,
-        'components' => false,
-        'exclude_from_invoice' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $type,
+        public readonly ?float $license_id,
+        public readonly ?string $project_id,
+        public readonly string $product,
+        public readonly string $sku,
+        public readonly float $total,
+        public readonly string $total_formatted,
+        /**
+         * @var string[]
+         */
+        public readonly array $components,
+        public readonly bool $exclude_from_invoice
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'type' => 'type',
-        'license_id' => 'license_id',
-        'project_id' => 'project_id',
-        'product' => 'product',
-        'sku' => 'sku',
-        'total' => 'total',
-        'total_formatted' => 'total_formatted',
-        'components' => 'components',
-        'exclude_from_invoice' => 'exclude_from_invoice'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'type' => 'setType',
-        'license_id' => 'setLicenseId',
-        'project_id' => 'setProjectId',
-        'product' => 'setProduct',
-        'sku' => 'setSku',
-        'total' => 'setTotal',
-        'total_formatted' => 'setTotalFormatted',
-        'components' => 'setComponents',
-        'exclude_from_invoice' => 'setExcludeFromInvoice'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'type' => 'getType',
-        'license_id' => 'getLicenseId',
-        'project_id' => 'getProjectId',
-        'product' => 'getProduct',
-        'sku' => 'getSku',
-        'total' => 'getTotal',
-        'total_formatted' => 'getTotalFormatted',
-        'components' => 'getComponents',
-        'exclude_from_invoice' => 'getExcludeFromInvoice'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_PROJECT_PLAN = 'project_plan';
-    public const TYPE_PROJECT_FEATURE = 'project_feature';
-    public const TYPE_PROJECT_SUBTOTAL = 'project_subtotal';
-    public const TYPE_ORGANIZATION_PLAN = 'organization_plan';
-    public const TYPE_ORGANIZATION_FEATURE = 'organization_feature';
-    public const TYPE_ORGANIZATION_SUBTOTAL = 'organization_subtotal';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::TYPE_PROJECT_PLAN,
-            self::TYPE_PROJECT_FEATURE,
-            self::TYPE_PROJECT_SUBTOTAL,
-            self::TYPE_ORGANIZATION_PLAN,
-            self::TYPE_ORGANIZATION_FEATURE,
-            self::TYPE_ORGANIZATION_SUBTOTAL,
+            'type' => $this->type,
+            'license_id' => $this->license_id,
+            'project_id' => $this->project_id,
+            'product' => $this->product,
+            'sku' => $this->sku,
+            'total' => $this->total,
+            'total_formatted' => $this->total_formatted,
+            'components' => $this->components,
+            'exclude_from_invoice' => $this->exclude_from_invoice,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('license_id', $data ?? [], null);
-        $this->setIfExists('project_id', $data ?? [], null);
-        $this->setIfExists('product', $data ?? [], null);
-        $this->setIfExists('sku', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
-        $this->setIfExists('total_formatted', $data ?? [], null);
-        $this->setIfExists('components', $data ?? [], null);
-        $this->setIfExists('exclude_from_invoice', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets license_id
-     *
-     * @return float|null
-     */
-    public function getLicenseId()
-    {
-        return $this->container['license_id'];
-    }
-
-    /**
-     * Sets license_id
-     */
-    public function setLicenseId($license_id)
-    {
-        if (is_null($license_id)) {
-            array_push($this->openAPINullablesSetToNull, 'license_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('license_id', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['license_id'] = $license_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_id
-     *
-     * @return string|null
-     */
-    public function getProjectId()
-    {
-        return $this->container['project_id'];
-    }
-
-    /**
-     * Sets project_id
-     */
-    public function setProjectId($project_id)
-    {
-        if (is_null($project_id)) {
-            array_push($this->openAPINullablesSetToNull, 'project_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('project_id', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['project_id'] = $project_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets product
-     *
-     * @return string|null
-     */
-    public function getProduct()
-    {
-        return $this->container['product'];
-    }
-
-    /**
-     * Sets product
-     */
-    public function setProduct($product)
-    {
-        if (is_null($product)) {
-            throw new \InvalidArgumentException('non-nullable product cannot be null');
-        }
-        $this->container['product'] = $product;
-
-        return $this;
-    }
-
-    /**
-     * Gets sku
-     *
-     * @return string|null
-     */
-    public function getSku()
-    {
-        return $this->container['sku'];
-    }
-
-    /**
-     * Sets sku
-     */
-    public function setSku($sku)
-    {
-        if (is_null($sku)) {
-            throw new \InvalidArgumentException('non-nullable sku cannot be null');
-        }
-        $this->container['sku'] = $sku;
-
-        return $this;
-    }
-
-    /**
-     * Gets total
-     *
-     * @return float|null
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     */
-    public function setTotal($total)
-    {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
-        }
-        $this->container['total'] = $total;
-
-        return $this;
-    }
-
-    /**
-     * Gets total_formatted
-     *
-     * @return string|null
-     */
-    public function getTotalFormatted()
-    {
-        return $this->container['total_formatted'];
-    }
-
-    /**
-     * Sets total_formatted
-     */
-    public function setTotalFormatted($total_formatted)
-    {
-        if (is_null($total_formatted)) {
-            throw new \InvalidArgumentException('non-nullable total_formatted cannot be null');
-        }
-        $this->container['total_formatted'] = $total_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets components
-     *
-     * @return array<string,\Upsun\Model\LineItemComponent>|null
-     */
-    public function getComponents()
-    {
-        return $this->container['components'];
-    }
-
-    /**
-     * Sets components
-     */
-    public function setComponents($components)
-    {
-        if (is_null($components)) {
-            throw new \InvalidArgumentException('non-nullable components cannot be null');
-        }
-        $this->container['components'] = $components;
-
-        return $this;
-    }
-
-    /**
-     * Gets exclude_from_invoice
-     *
-     * @return bool|null
-     */
-    public function getExcludeFromInvoice()
-    {
-        return $this->container['exclude_from_invoice'];
-    }
-
-    /**
-     * Sets exclude_from_invoice
-     */
-    public function setExcludeFromInvoice($exclude_from_invoice)
-    {
-        if (is_null($exclude_from_invoice)) {
-            throw new \InvalidArgumentException('non-nullable exclude_from_invoice cannot be null');
-        }
-        $this->container['exclude_from_invoice'] = $exclude_from_invoice;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'type' => false,
+                'license_id' => true,
+                'project_id' => true,
+                'product' => false,
+                'sku' => false,
+                'total' => false,
+                'total_formatted' => false,
+                'components' => false,
+                'exclude_from_invoice' => false
+            ];
+        protected static $openAPIFormats = [
+            'type' => null,
+            'license_id' => null,
+            'project_id' => null,
+            'product' => null,
+            'sku' => null,
+            'total' => null,
+            'total_formatted' => null,
+            'components' => null,
+            'exclude_from_invoice' => null
+        ];
 }
+

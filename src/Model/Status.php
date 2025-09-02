@@ -16,322 +16,51 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Status implements ModelInterface, ArrayAccess, JsonSerializable
+final class Status implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Status';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'code' => 'string',
-        'message' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'code' => null,
-        'message' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'code' => false,
-        'message' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $code,
+        public readonly string $message
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'code' => $this->code,
+            'message' => $this->message,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'code' => 'code',
-        'message' => 'message'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'code' => 'setCode',
-        'message' => 'setMessage'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'code' => 'getCode',
-        'message' => 'getMessage'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets code
-     *
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     */
-    public function setCode($code)
-    {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
-        }
-        $this->container['code'] = $code;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     */
-    public function setMessage($message)
-    {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
-        $this->container['message'] = $message;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'code' => false,
+                'message' => false
+            ];
+        protected static $openAPIFormats = [
+            'code' => null,
+            'message' => null
+        ];
 }
+

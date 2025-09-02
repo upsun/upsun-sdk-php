@@ -16,553 +16,79 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentInfo implements ModelInterface, ArrayAccess, JsonSerializable
+final class EnvironmentInfo implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Environment_Info';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'name' => 'string',
-        'status' => 'string',
-        'is_main' => 'bool',
-        'is_production' => 'bool',
-        'constraints' => 'object',
-        'reference' => 'string',
-        'machine_name' => 'string',
-        'environment_type' => 'string',
-        'links' => 'object'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'name' => null,
-        'status' => null,
-        'is_main' => null,
-        'is_production' => null,
-        'constraints' => null,
-        'reference' => null,
-        'machine_name' => null,
-        'environment_type' => null,
-        'links' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'name' => false,
-        'status' => false,
-        'is_main' => false,
-        'is_production' => false,
-        'constraints' => false,
-        'reference' => false,
-        'machine_name' => false,
-        'environment_type' => false,
-        'links' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $name,
+        public readonly string $status,
+        public readonly bool $is_main,
+        public readonly bool $is_production,
+        public readonly object $constraints,
+        public readonly string $reference,
+        public readonly string $machine_name,
+        public readonly string $environment_type,
+        public readonly object $links
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'name' => $this->name,
+            'status' => $this->status,
+            'is_main' => $this->is_main,
+            'is_production' => $this->is_production,
+            'constraints' => $this->constraints,
+            'reference' => $this->reference,
+            'machine_name' => $this->machine_name,
+            'environment_type' => $this->environment_type,
+            'links' => $this->links,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'name' => 'name',
-        'status' => 'status',
-        'is_main' => 'is_main',
-        'is_production' => 'is_production',
-        'constraints' => 'constraints',
-        'reference' => 'reference',
-        'machine_name' => 'machine_name',
-        'environment_type' => 'environment_type',
-        'links' => 'links'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'name' => 'setName',
-        'status' => 'setStatus',
-        'is_main' => 'setIsMain',
-        'is_production' => 'setIsProduction',
-        'constraints' => 'setConstraints',
-        'reference' => 'setReference',
-        'machine_name' => 'setMachineName',
-        'environment_type' => 'setEnvironmentType',
-        'links' => 'setLinks'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'name' => 'getName',
-        'status' => 'getStatus',
-        'is_main' => 'getIsMain',
-        'is_production' => 'getIsProduction',
-        'constraints' => 'getConstraints',
-        'reference' => 'getReference',
-        'machine_name' => 'getMachineName',
-        'environment_type' => 'getEnvironmentType',
-        'links' => 'getLinks'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('is_main', $data ?? [], null);
-        $this->setIfExists('is_production', $data ?? [], null);
-        $this->setIfExists('constraints', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
-        $this->setIfExists('machine_name', $data ?? [], null);
-        $this->setIfExists('environment_type', $data ?? [], null);
-        $this->setIfExists('links', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        if ($this->container['is_main'] === null) {
-            $invalidProperties[] = "'is_main' can't be null";
-        }
-        if ($this->container['is_production'] === null) {
-            $invalidProperties[] = "'is_production' can't be null";
-        }
-        if ($this->container['constraints'] === null) {
-            $invalidProperties[] = "'constraints' can't be null";
-        }
-        if ($this->container['reference'] === null) {
-            $invalidProperties[] = "'reference' can't be null";
-        }
-        if ($this->container['machine_name'] === null) {
-            $invalidProperties[] = "'machine_name' can't be null";
-        }
-        if ($this->container['environment_type'] === null) {
-            $invalidProperties[] = "'environment_type' can't be null";
-        }
-        if ($this->container['links'] === null) {
-            $invalidProperties[] = "'links' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_main
-     *
-     * @return bool
-     */
-    public function getIsMain()
-    {
-        return $this->container['is_main'];
-    }
-
-    /**
-     * Sets is_main
-     */
-    public function setIsMain($is_main)
-    {
-        if (is_null($is_main)) {
-            throw new \InvalidArgumentException('non-nullable is_main cannot be null');
-        }
-        $this->container['is_main'] = $is_main;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_production
-     *
-     * @return bool
-     */
-    public function getIsProduction()
-    {
-        return $this->container['is_production'];
-    }
-
-    /**
-     * Sets is_production
-     */
-    public function setIsProduction($is_production)
-    {
-        if (is_null($is_production)) {
-            throw new \InvalidArgumentException('non-nullable is_production cannot be null');
-        }
-        $this->container['is_production'] = $is_production;
-
-        return $this;
-    }
-
-    /**
-     * Gets constraints
-     *
-     * @return object
-     */
-    public function getConstraints()
-    {
-        return $this->container['constraints'];
-    }
-
-    /**
-     * Sets constraints
-     */
-    public function setConstraints($constraints)
-    {
-        if (is_null($constraints)) {
-            throw new \InvalidArgumentException('non-nullable constraints cannot be null');
-        }
-        $this->container['constraints'] = $constraints;
-
-        return $this;
-    }
-
-    /**
-     * Gets reference
-     *
-     * @return string
-     */
-    public function getReference()
-    {
-        return $this->container['reference'];
-    }
-
-    /**
-     * Sets reference
-     */
-    public function setReference($reference)
-    {
-        if (is_null($reference)) {
-            throw new \InvalidArgumentException('non-nullable reference cannot be null');
-        }
-        $this->container['reference'] = $reference;
-
-        return $this;
-    }
-
-    /**
-     * Gets machine_name
-     *
-     * @return string
-     */
-    public function getMachineName()
-    {
-        return $this->container['machine_name'];
-    }
-
-    /**
-     * Sets machine_name
-     */
-    public function setMachineName($machine_name)
-    {
-        if (is_null($machine_name)) {
-            throw new \InvalidArgumentException('non-nullable machine_name cannot be null');
-        }
-        $this->container['machine_name'] = $machine_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets environment_type
-     *
-     * @return string
-     */
-    public function getEnvironmentType()
-    {
-        return $this->container['environment_type'];
-    }
-
-    /**
-     * Sets environment_type
-     */
-    public function setEnvironmentType($environment_type)
-    {
-        if (is_null($environment_type)) {
-            throw new \InvalidArgumentException('non-nullable environment_type cannot be null');
-        }
-        $this->container['environment_type'] = $environment_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets links
-     *
-     * @return object
-     */
-    public function getLinks()
-    {
-        return $this->container['links'];
-    }
-
-    /**
-     * Sets links
-     */
-    public function setLinks($links)
-    {
-        if (is_null($links)) {
-            throw new \InvalidArgumentException('non-nullable links cannot be null');
-        }
-        $this->container['links'] = $links;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'name' => false,
+                'status' => false,
+                'is_main' => false,
+                'is_production' => false,
+                'constraints' => false,
+                'reference' => false,
+                'machine_name' => false,
+                'environment_type' => false,
+                'links' => false
+            ];
+        protected static $openAPIFormats = [
+            'name' => null,
+            'status' => null,
+            'is_main' => null,
+            'is_production' => null,
+            'constraints' => null,
+            'reference' => null,
+            'machine_name' => null,
+            'environment_type' => null,
+            'links' => null
+        ];
 }
+

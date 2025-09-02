@@ -16,435 +16,66 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ResourcesOverridesValue implements ModelInterface, ArrayAccess, JsonSerializable
+final class ResourcesOverridesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources_overrides_value';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'services' => 'array<string,\Upsun\Model\PerServiceResourcesOverridesValue>',
-        'starts_at' => '\DateTime',
-        'ends_at' => '\DateTime',
-        'redeployed_start' => 'bool',
-        'redeployed_end' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'services' => null,
-        'starts_at' => 'date-time',
-        'ends_at' => 'date-time',
-        'redeployed_start' => null,
-        'redeployed_end' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'services' => false,
-        'starts_at' => true,
-        'ends_at' => true,
-        'redeployed_start' => false,
-        'redeployed_end' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        /**
+         * @var string[]
+         */
+        public readonly array $services,
+        public readonly ?\DateTime $starts_at,
+        public readonly ?\DateTime $ends_at,
+        public readonly bool $redeployed_start,
+        public readonly bool $redeployed_end
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'services' => $this->services,
+            'starts_at' => $this->starts_at,
+            'ends_at' => $this->ends_at,
+            'redeployed_start' => $this->redeployed_start,
+            'redeployed_end' => $this->redeployed_end,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'services' => 'services',
-        'starts_at' => 'starts_at',
-        'ends_at' => 'ends_at',
-        'redeployed_start' => 'redeployed_start',
-        'redeployed_end' => 'redeployed_end'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'services' => 'setServices',
-        'starts_at' => 'setStartsAt',
-        'ends_at' => 'setEndsAt',
-        'redeployed_start' => 'setRedeployedStart',
-        'redeployed_end' => 'setRedeployedEnd'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'services' => 'getServices',
-        'starts_at' => 'getStartsAt',
-        'ends_at' => 'getEndsAt',
-        'redeployed_start' => 'getRedeployedStart',
-        'redeployed_end' => 'getRedeployedEnd'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('services', $data ?? [], null);
-        $this->setIfExists('starts_at', $data ?? [], null);
-        $this->setIfExists('ends_at', $data ?? [], null);
-        $this->setIfExists('redeployed_start', $data ?? [], null);
-        $this->setIfExists('redeployed_end', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['services'] === null) {
-            $invalidProperties[] = "'services' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['starts_at'] === null) {
-            $invalidProperties[] = "'starts_at' can't be null";
-        }
-        if ($this->container['ends_at'] === null) {
-            $invalidProperties[] = "'ends_at' can't be null";
-        }
-        if ($this->container['redeployed_start'] === null) {
-            $invalidProperties[] = "'redeployed_start' can't be null";
-        }
-        if ($this->container['redeployed_end'] === null) {
-            $invalidProperties[] = "'redeployed_end' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets services
-     *
-     * @return array<string,\Upsun\Model\PerServiceResourcesOverridesValue>
-     */
-    public function getServices()
-    {
-        return $this->container['services'];
-    }
-
-    /**
-     * Sets services
-     */
-    public function setServices($services)
-    {
-        if (is_null($services)) {
-            throw new \InvalidArgumentException('non-nullable services cannot be null');
-        }
-        $this->container['services'] = $services;
-
-        return $this;
-    }
-
-    /**
-     * Gets starts_at
-     *
-     * @return \DateTime
-     */
-    public function getStartsAt()
-    {
-        return $this->container['starts_at'];
-    }
-
-    /**
-     * Sets starts_at
-     */
-    public function setStartsAt($starts_at)
-    {
-        if (is_null($starts_at)) {
-            array_push($this->openAPINullablesSetToNull, 'starts_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('starts_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['starts_at'] = $starts_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets ends_at
-     *
-     * @return \DateTime
-     */
-    public function getEndsAt()
-    {
-        return $this->container['ends_at'];
-    }
-
-    /**
-     * Sets ends_at
-     */
-    public function setEndsAt($ends_at)
-    {
-        if (is_null($ends_at)) {
-            array_push($this->openAPINullablesSetToNull, 'ends_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ends_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['ends_at'] = $ends_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets redeployed_start
-     *
-     * @return bool
-     */
-    public function getRedeployedStart()
-    {
-        return $this->container['redeployed_start'];
-    }
-
-    /**
-     * Sets redeployed_start
-     */
-    public function setRedeployedStart($redeployed_start)
-    {
-        if (is_null($redeployed_start)) {
-            throw new \InvalidArgumentException('non-nullable redeployed_start cannot be null');
-        }
-        $this->container['redeployed_start'] = $redeployed_start;
-
-        return $this;
-    }
-
-    /**
-     * Gets redeployed_end
-     *
-     * @return bool
-     */
-    public function getRedeployedEnd()
-    {
-        return $this->container['redeployed_end'];
-    }
-
-    /**
-     * Sets redeployed_end
-     */
-    public function setRedeployedEnd($redeployed_end)
-    {
-        if (is_null($redeployed_end)) {
-            throw new \InvalidArgumentException('non-nullable redeployed_end cannot be null');
-        }
-        $this->container['redeployed_end'] = $redeployed_end;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'services' => false,
+                'starts_at' => true,
+                'ends_at' => true,
+                'redeployed_start' => false,
+                'redeployed_end' => false
+            ];
+        protected static $openAPIFormats = [
+            'services' => null,
+            'starts_at' => 'date-time',
+            'ends_at' => 'date-time',
+            'redeployed_start' => null,
+            'redeployed_end' => null
+        ];
 }
+

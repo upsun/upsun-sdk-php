@@ -16,362 +16,54 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GrantUserProjectAccessRequestInner implements ModelInterface, ArrayAccess, JsonSerializable
+final class GrantUserProjectAccessRequestInner implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'grant_user_project_access_request_inner';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'project_id' => 'string',
-        'permissions' => 'string[]'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'project_id' => null,
-        'permissions' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'project_id' => false,
-        'permissions' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $project_id,
+        /**
+         * @var array
+         */
+        public readonly array $permissions
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'project_id' => 'project_id',
-        'permissions' => 'permissions'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'project_id' => 'setProjectId',
-        'permissions' => 'setPermissions'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'project_id' => 'getProjectId',
-        'permissions' => 'getPermissions'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_VIEWER = 'viewer';
-    public const PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
-    public const PERMISSIONS_DEVELOPMENT_CONTRIBUTOR = 'development:contributor';
-    public const PERMISSIONS_DEVELOPMENT_VIEWER = 'development:viewer';
-    public const PERMISSIONS_STAGING_ADMIN = 'staging:admin';
-    public const PERMISSIONS_STAGING_CONTRIBUTOR = 'staging:contributor';
-    public const PERMISSIONS_STAGING_VIEWER = 'staging:viewer';
-    public const PERMISSIONS_PRODUCTION_ADMIN = 'production:admin';
-    public const PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
-    public const PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getPermissionsAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::PERMISSIONS_ADMIN,
-            self::PERMISSIONS_VIEWER,
-            self::PERMISSIONS_DEVELOPMENT_ADMIN,
-            self::PERMISSIONS_DEVELOPMENT_CONTRIBUTOR,
-            self::PERMISSIONS_DEVELOPMENT_VIEWER,
-            self::PERMISSIONS_STAGING_ADMIN,
-            self::PERMISSIONS_STAGING_CONTRIBUTOR,
-            self::PERMISSIONS_STAGING_VIEWER,
-            self::PERMISSIONS_PRODUCTION_ADMIN,
-            self::PERMISSIONS_PRODUCTION_CONTRIBUTOR,
-            self::PERMISSIONS_PRODUCTION_VIEWER,
+            'project_id' => $this->project_id,
+            'permissions' => $this->permissions,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('project_id', $data ?? [], null);
-        $this->setIfExists('permissions', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['project_id'] === null) {
-            $invalidProperties[] = "'project_id' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['permissions'] === null) {
-            $invalidProperties[] = "'permissions' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets project_id
-     *
-     * @return string
-     */
-    public function getProjectId()
-    {
-        return $this->container['project_id'];
-    }
-
-    /**
-     * Sets project_id
-     */
-    public function setProjectId($project_id)
-    {
-        if (is_null($project_id)) {
-            throw new \InvalidArgumentException('non-nullable project_id cannot be null');
-        }
-        $this->container['project_id'] = $project_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets permissions
-     *
-     * @return string[]
-     */
-    public function getPermissions()
-    {
-        return $this->container['permissions'];
-    }
-
-    /**
-     * Sets permissions
-     */
-    public function setPermissions($permissions)
-    {
-        if (is_null($permissions)) {
-            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
-        }
-        $allowedValues = $this->getPermissionsAllowableValues();
-        if (array_diff($permissions, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'permissions', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['permissions'] = $permissions;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'project_id' => false,
+                'permissions' => false
+            ];
+        protected static $openAPIFormats = [
+            'project_id' => null,
+            'permissions' => null
+        ];
 }
+

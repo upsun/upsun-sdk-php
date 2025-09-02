@@ -179,32 +179,78 @@ final class RepositoryApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Blob',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Blob',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Blob(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Blob',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Blob',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -433,32 +479,78 @@ final class RepositoryApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Commit',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Commit',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Commit(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Commit',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Commit',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -687,32 +779,78 @@ final class RepositoryApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Ref',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Ref',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Ref(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Ref',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Ref',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -941,32 +1079,78 @@ final class RepositoryApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Tree',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Tree',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Tree(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Tree',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Tree',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -1191,32 +1375,78 @@ final class RepositoryApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Ref[]',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Ref[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Ref[](
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Ref[]',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Ref[]',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**

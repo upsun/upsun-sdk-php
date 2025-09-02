@@ -16,663 +16,86 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ServicesValue implements ModelInterface, ArrayAccess, JsonSerializable
+final class ServicesValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Services_value';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'type' => 'string',
-        'size' => 'string',
-        'disk' => 'int',
-        'access' => 'object',
-        'configuration' => 'object',
-        'relationships' => 'array<string,string>',
-        'firewall' => '\Upsun\Model\Firewall',
-        'resources' => '\Upsun\Model\Resources',
-        'container_profile' => 'string',
-        'endpoints' => 'object'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'type' => null,
-        'size' => null,
-        'disk' => null,
-        'access' => null,
-        'configuration' => null,
-        'relationships' => null,
-        'firewall' => null,
-        'resources' => null,
-        'container_profile' => null,
-        'endpoints' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'type' => false,
-        'size' => false,
-        'disk' => true,
-        'access' => false,
-        'configuration' => false,
-        'relationships' => false,
-        'firewall' => true,
-        'resources' => true,
-        'container_profile' => true,
-        'endpoints' => true
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $type,
+        public readonly string $size,
+        public readonly ?int $disk,
+        public readonly object $access,
+        public readonly object $configuration,
+        /**
+         * @var string[]
+         */
+        public readonly array $relationships,
+        public readonly ?\Upsun\Model\Firewall $firewall,
+        public readonly ?\Upsun\Model\Resources $resources,
+        public readonly ?string $container_profile,
+        public readonly ?object $endpoints
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'type' => 'type',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'configuration' => 'configuration',
-        'relationships' => 'relationships',
-        'firewall' => 'firewall',
-        'resources' => 'resources',
-        'container_profile' => 'container_profile',
-        'endpoints' => 'endpoints'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'type' => 'setType',
-        'size' => 'setSize',
-        'disk' => 'setDisk',
-        'access' => 'setAccess',
-        'configuration' => 'setConfiguration',
-        'relationships' => 'setRelationships',
-        'firewall' => 'setFirewall',
-        'resources' => 'setResources',
-        'container_profile' => 'setContainerProfile',
-        'endpoints' => 'setEndpoints'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'type' => 'getType',
-        'size' => 'getSize',
-        'disk' => 'getDisk',
-        'access' => 'getAccess',
-        'configuration' => 'getConfiguration',
-        'relationships' => 'getRelationships',
-        'firewall' => 'getFirewall',
-        'resources' => 'getResources',
-        'container_profile' => 'getContainerProfile',
-        'endpoints' => 'getEndpoints'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const SIZE__2_XL = '2XL';
-    public const SIZE__4_XL = '4XL';
-    public const SIZE_AUTO = 'AUTO';
-    public const SIZE_L = 'L';
-    public const SIZE_M = 'M';
-    public const SIZE_S = 'S';
-    public const SIZE_XL = 'XL';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getSizeAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::SIZE__2_XL,
-            self::SIZE__4_XL,
-            self::SIZE_AUTO,
-            self::SIZE_L,
-            self::SIZE_M,
-            self::SIZE_S,
-            self::SIZE_XL,
+            'type' => $this->type,
+            'size' => $this->size,
+            'disk' => $this->disk,
+            'access' => $this->access,
+            'configuration' => $this->configuration,
+            'relationships' => $this->relationships,
+            'firewall' => $this->firewall,
+            'resources' => $this->resources,
+            'container_profile' => $this->container_profile,
+            'endpoints' => $this->endpoints,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('disk', $data ?? [], null);
-        $this->setIfExists('access', $data ?? [], null);
-        $this->setIfExists('configuration', $data ?? [], null);
-        $this->setIfExists('relationships', $data ?? [], null);
-        $this->setIfExists('firewall', $data ?? [], null);
-        $this->setIfExists('resources', $data ?? [], null);
-        $this->setIfExists('container_profile', $data ?? [], null);
-        $this->setIfExists('endpoints', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['size'] === null) {
-            $invalidProperties[] = "'size' can't be null";
-        }
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!is_null($this->container['size']) && !in_array($this->container['size'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'size', must be one of '%s'",
-                $this->container['size'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['disk'] === null) {
-            $invalidProperties[] = "'disk' can't be null";
-        }
-        if ($this->container['access'] === null) {
-            $invalidProperties[] = "'access' can't be null";
-        }
-        if ($this->container['configuration'] === null) {
-            $invalidProperties[] = "'configuration' can't be null";
-        }
-        if ($this->container['relationships'] === null) {
-            $invalidProperties[] = "'relationships' can't be null";
-        }
-        if ($this->container['firewall'] === null) {
-            $invalidProperties[] = "'firewall' can't be null";
-        }
-        if ($this->container['resources'] === null) {
-            $invalidProperties[] = "'resources' can't be null";
-        }
-        if ($this->container['container_profile'] === null) {
-            $invalidProperties[] = "'container_profile' can't be null";
-        }
-        if ($this->container['endpoints'] === null) {
-            $invalidProperties[] = "'endpoints' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets size
-     *
-     * @return string
-     */
-    public function getSize()
-    {
-        return $this->container['size'];
-    }
-
-    /**
-     * Sets size
-     */
-    public function setSize($size)
-    {
-        if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
-        }
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!in_array($size, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'size', must be one of '%s'",
-                    $size,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Gets disk
-     *
-     * @return int
-     */
-    public function getDisk()
-    {
-        return $this->container['disk'];
-    }
-
-    /**
-     * Sets disk
-     */
-    public function setDisk($disk)
-    {
-        if (is_null($disk)) {
-            array_push($this->openAPINullablesSetToNull, 'disk');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('disk', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['disk'] = $disk;
-
-        return $this;
-    }
-
-    /**
-     * Gets access
-     *
-     * @return object
-     */
-    public function getAccess()
-    {
-        return $this->container['access'];
-    }
-
-    /**
-     * Sets access
-     */
-    public function setAccess($access)
-    {
-        if (is_null($access)) {
-            throw new \InvalidArgumentException('non-nullable access cannot be null');
-        }
-        $this->container['access'] = $access;
-
-        return $this;
-    }
-
-    /**
-     * Gets configuration
-     *
-     * @return object
-     */
-    public function getConfiguration()
-    {
-        return $this->container['configuration'];
-    }
-
-    /**
-     * Sets configuration
-     */
-    public function setConfiguration($configuration)
-    {
-        if (is_null($configuration)) {
-            throw new \InvalidArgumentException('non-nullable configuration cannot be null');
-        }
-        $this->container['configuration'] = $configuration;
-
-        return $this;
-    }
-
-    /**
-     * Gets relationships
-     *
-     * @return array<string,string>
-     */
-    public function getRelationships()
-    {
-        return $this->container['relationships'];
-    }
-
-    /**
-     * Sets relationships
-     */
-    public function setRelationships($relationships)
-    {
-        if (is_null($relationships)) {
-            throw new \InvalidArgumentException('non-nullable relationships cannot be null');
-        }
-        $this->container['relationships'] = $relationships;
-
-        return $this;
-    }
-
-    /**
-     * Gets firewall
-     *
-     * @return \Upsun\Model\Firewall
-     */
-    public function getFirewall()
-    {
-        return $this->container['firewall'];
-    }
-
-    /**
-     * Sets firewall
-     */
-    public function setFirewall($firewall)
-    {
-        if (is_null($firewall)) {
-            array_push($this->openAPINullablesSetToNull, 'firewall');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('firewall', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['firewall'] = $firewall;
-
-        return $this;
-    }
-
-    /**
-     * Gets resources
-     *
-     * @return \Upsun\Model\Resources
-     */
-    public function getResources()
-    {
-        return $this->container['resources'];
-    }
-
-    /**
-     * Sets resources
-     */
-    public function setResources($resources)
-    {
-        if (is_null($resources)) {
-            array_push($this->openAPINullablesSetToNull, 'resources');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resources', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['resources'] = $resources;
-
-        return $this;
-    }
-
-    /**
-     * Gets container_profile
-     *
-     * @return string
-     */
-    public function getContainerProfile()
-    {
-        return $this->container['container_profile'];
-    }
-
-    /**
-     * Sets container_profile
-     */
-    public function setContainerProfile($container_profile)
-    {
-        if (is_null($container_profile)) {
-            array_push($this->openAPINullablesSetToNull, 'container_profile');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('container_profile', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['container_profile'] = $container_profile;
-
-        return $this;
-    }
-
-    /**
-     * Gets endpoints
-     *
-     * @return object
-     */
-    public function getEndpoints()
-    {
-        return $this->container['endpoints'];
-    }
-
-    /**
-     * Sets endpoints
-     */
-    public function setEndpoints($endpoints)
-    {
-        if (is_null($endpoints)) {
-            array_push($this->openAPINullablesSetToNull, 'endpoints');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('endpoints', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['endpoints'] = $endpoints;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'type' => false,
+                'size' => false,
+                'disk' => true,
+                'access' => false,
+                'configuration' => false,
+                'relationships' => false,
+                'firewall' => true,
+                'resources' => true,
+                'container_profile' => true,
+                'endpoints' => true
+            ];
+        protected static $openAPIFormats = [
+            'type' => null,
+            'size' => null,
+            'disk' => null,
+            'access' => null,
+            'configuration' => null,
+            'relationships' => null,
+            'firewall' => null,
+            'resources' => null,
+            'container_profile' => null,
+            'endpoints' => null
+        ];
 }
+

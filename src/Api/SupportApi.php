@@ -175,32 +175,78 @@ final class SupportApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Ticket',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Ticket',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Ticket(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Ticket',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Ticket',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -402,32 +448,78 @@ final class SupportApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\ListTicketCategories200ResponseInner[]',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\ListTicketCategories200ResponseInner[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\ListTicketCategories200ResponseInner[](
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\ListTicketCategories200ResponseInner[]',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\ListTicketCategories200ResponseInner[]',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -650,32 +742,78 @@ final class SupportApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\ListTicketPriorities200ResponseInner[]',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\ListTicketPriorities200ResponseInner[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\ListTicketPriorities200ResponseInner[](
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\ListTicketPriorities200ResponseInner[]',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\ListTicketPriorities200ResponseInner[]',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -898,32 +1036,84 @@ final class SupportApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Ticket',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Ticket',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Ticket(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Ticket',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Ticket',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**

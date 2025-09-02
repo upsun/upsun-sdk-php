@@ -16,376 +16,59 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class GetTotpEnrollment200Response implements ModelInterface, ArrayAccess, JsonSerializable
+final class GetTotpEnrollment200Response implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'get_totp_enrollment_200_response';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'issuer' => 'string',
-        'account_name' => 'string',
-        'secret' => 'string',
-        'qr_code' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'issuer' => 'uri',
-        'account_name' => null,
-        'secret' => null,
-        'qr_code' => 'byte'
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'issuer' => false,
-        'account_name' => false,
-        'secret' => false,
-        'qr_code' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $issuer,
+        public readonly string $account_name,
+        public readonly string $secret,
+        public readonly string $qr_code
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'issuer' => $this->issuer,
+            'account_name' => $this->account_name,
+            'secret' => $this->secret,
+            'qr_code' => $this->qr_code,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'issuer' => 'issuer',
-        'account_name' => 'account_name',
-        'secret' => 'secret',
-        'qr_code' => 'qr_code'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'issuer' => 'setIssuer',
-        'account_name' => 'setAccountName',
-        'secret' => 'setSecret',
-        'qr_code' => 'setQrCode'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'issuer' => 'getIssuer',
-        'account_name' => 'getAccountName',
-        'secret' => 'getSecret',
-        'qr_code' => 'getQrCode'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('issuer', $data ?? [], null);
-        $this->setIfExists('account_name', $data ?? [], null);
-        $this->setIfExists('secret', $data ?? [], null);
-        $this->setIfExists('qr_code', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets issuer
-     *
-     * @return string|null
-     */
-    public function getIssuer()
-    {
-        return $this->container['issuer'];
-    }
-
-    /**
-     * Sets issuer
-     */
-    public function setIssuer($issuer)
-    {
-        if (is_null($issuer)) {
-            throw new \InvalidArgumentException('non-nullable issuer cannot be null');
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $this->container['issuer'] = $issuer;
-
-        return $this;
-    }
-
-    /**
-     * Gets account_name
-     *
-     * @return string|null
-     */
-    public function getAccountName()
-    {
-        return $this->container['account_name'];
-    }
-
-    /**
-     * Sets account_name
-     */
-    public function setAccountName($account_name)
-    {
-        if (is_null($account_name)) {
-            throw new \InvalidArgumentException('non-nullable account_name cannot be null');
-        }
-        $this->container['account_name'] = $account_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets secret
-     *
-     * @return string|null
-     */
-    public function getSecret()
-    {
-        return $this->container['secret'];
-    }
-
-    /**
-     * Sets secret
-     */
-    public function setSecret($secret)
-    {
-        if (is_null($secret)) {
-            throw new \InvalidArgumentException('non-nullable secret cannot be null');
-        }
-        $this->container['secret'] = $secret;
-
-        return $this;
-    }
-
-    /**
-     * Gets qr_code
-     *
-     * @return string|null
-     */
-    public function getQrCode()
-    {
-        return $this->container['qr_code'];
-    }
-
-    /**
-     * Sets qr_code
-     */
-    public function setQrCode($qr_code)
-    {
-        if (is_null($qr_code)) {
-            throw new \InvalidArgumentException('non-nullable qr_code cannot be null');
-        }
-        $this->container['qr_code'] = $qr_code;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'issuer' => false,
+                'account_name' => false,
+                'secret' => false,
+                'qr_code' => false
+            ];
+        protected static $openAPIFormats = [
+            'issuer' => 'uri',
+            'account_name' => null,
+            'secret' => null,
+            'qr_code' => 'byte'
+        ];
 }
+

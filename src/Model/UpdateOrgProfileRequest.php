@@ -16,436 +16,67 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UpdateOrgProfileRequest implements ModelInterface, ArrayAccess, JsonSerializable
+final class UpdateOrgProfileRequest implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_org_profile_request';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'default_catalog' => 'string',
-        'project_options_url' => 'string',
-        'security_contact' => 'string',
-        'company_name' => 'string',
-        'vat_number' => 'string',
-        'billing_contact' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'default_catalog' => null,
-        'project_options_url' => 'uri',
-        'security_contact' => 'email',
-        'company_name' => null,
-        'vat_number' => null,
-        'billing_contact' => 'email'
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'default_catalog' => false,
-        'project_options_url' => false,
-        'security_contact' => false,
-        'company_name' => false,
-        'vat_number' => false,
-        'billing_contact' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $default_catalog,
+        public readonly string $project_options_url,
+        public readonly string $security_contact,
+        public readonly string $company_name,
+        public readonly string $vat_number,
+        public readonly string $billing_contact
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'default_catalog' => $this->default_catalog,
+            'project_options_url' => $this->project_options_url,
+            'security_contact' => $this->security_contact,
+            'company_name' => $this->company_name,
+            'vat_number' => $this->vat_number,
+            'billing_contact' => $this->billing_contact,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'default_catalog' => 'default_catalog',
-        'project_options_url' => 'project_options_url',
-        'security_contact' => 'security_contact',
-        'company_name' => 'company_name',
-        'vat_number' => 'vat_number',
-        'billing_contact' => 'billing_contact'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'default_catalog' => 'setDefaultCatalog',
-        'project_options_url' => 'setProjectOptionsUrl',
-        'security_contact' => 'setSecurityContact',
-        'company_name' => 'setCompanyName',
-        'vat_number' => 'setVatNumber',
-        'billing_contact' => 'setBillingContact'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'default_catalog' => 'getDefaultCatalog',
-        'project_options_url' => 'getProjectOptionsUrl',
-        'security_contact' => 'getSecurityContact',
-        'company_name' => 'getCompanyName',
-        'vat_number' => 'getVatNumber',
-        'billing_contact' => 'getBillingContact'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('default_catalog', $data ?? [], null);
-        $this->setIfExists('project_options_url', $data ?? [], null);
-        $this->setIfExists('security_contact', $data ?? [], null);
-        $this->setIfExists('company_name', $data ?? [], null);
-        $this->setIfExists('vat_number', $data ?? [], null);
-        $this->setIfExists('billing_contact', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets default_catalog
-     *
-     * @return string|null
-     */
-    public function getDefaultCatalog()
-    {
-        return $this->container['default_catalog'];
-    }
-
-    /**
-     * Sets default_catalog
-     */
-    public function setDefaultCatalog($default_catalog)
-    {
-        if (is_null($default_catalog)) {
-            throw new \InvalidArgumentException('non-nullable default_catalog cannot be null');
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $this->container['default_catalog'] = $default_catalog;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_options_url
-     *
-     * @return string|null
-     */
-    public function getProjectOptionsUrl()
-    {
-        return $this->container['project_options_url'];
-    }
-
-    /**
-     * Sets project_options_url
-     */
-    public function setProjectOptionsUrl($project_options_url)
-    {
-        if (is_null($project_options_url)) {
-            throw new \InvalidArgumentException('non-nullable project_options_url cannot be null');
-        }
-        $this->container['project_options_url'] = $project_options_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets security_contact
-     *
-     * @return string|null
-     */
-    public function getSecurityContact()
-    {
-        return $this->container['security_contact'];
-    }
-
-    /**
-     * Sets security_contact
-     */
-    public function setSecurityContact($security_contact)
-    {
-        if (is_null($security_contact)) {
-            throw new \InvalidArgumentException('non-nullable security_contact cannot be null');
-        }
-        $this->container['security_contact'] = $security_contact;
-
-        return $this;
-    }
-
-    /**
-     * Gets company_name
-     *
-     * @return string|null
-     */
-    public function getCompanyName()
-    {
-        return $this->container['company_name'];
-    }
-
-    /**
-     * Sets company_name
-     */
-    public function setCompanyName($company_name)
-    {
-        if (is_null($company_name)) {
-            throw new \InvalidArgumentException('non-nullable company_name cannot be null');
-        }
-        $this->container['company_name'] = $company_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat_number
-     *
-     * @return string|null
-     */
-    public function getVatNumber()
-    {
-        return $this->container['vat_number'];
-    }
-
-    /**
-     * Sets vat_number
-     */
-    public function setVatNumber($vat_number)
-    {
-        if (is_null($vat_number)) {
-            throw new \InvalidArgumentException('non-nullable vat_number cannot be null');
-        }
-        $this->container['vat_number'] = $vat_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets billing_contact
-     *
-     * @return string|null
-     */
-    public function getBillingContact()
-    {
-        return $this->container['billing_contact'];
-    }
-
-    /**
-     * Sets billing_contact
-     */
-    public function setBillingContact($billing_contact)
-    {
-        if (is_null($billing_contact)) {
-            throw new \InvalidArgumentException('non-nullable billing_contact cannot be null');
-        }
-        $this->container['billing_contact'] = $billing_contact;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'default_catalog' => false,
+                'project_options_url' => false,
+                'security_contact' => false,
+                'company_name' => false,
+                'vat_number' => false,
+                'billing_contact' => false
+            ];
+        protected static $openAPIFormats = [
+            'default_catalog' => null,
+            'project_options_url' => 'uri',
+            'security_contact' => 'email',
+            'company_name' => null,
+            'vat_number' => null,
+            'billing_contact' => 'email'
+        ];
 }
+

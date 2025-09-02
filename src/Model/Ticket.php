@@ -16,1542 +16,192 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Ticket implements ModelInterface, ArrayAccess, JsonSerializable
+final class Ticket implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Ticket';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'ticket_id' => 'int',
-        'created' => '\DateTime',
-        'updated' => '\DateTime',
-        'type' => 'string',
-        'subject' => 'string',
-        'description' => 'string',
-        'priority' => 'string',
-        'followup_tid' => 'string',
-        'status' => 'string',
-        'recipient' => 'string',
-        'requester_id' => 'string',
-        'submitter_id' => 'string',
-        'assignee_id' => 'string',
-        'organization_id' => 'string',
-        'collaborator_ids' => 'string[]',
-        'has_incidents' => 'bool',
-        'due' => '\DateTime',
-        'tags' => 'string[]',
-        'subscription_id' => 'string',
-        'ticket_group' => 'string',
-        'support_plan' => 'string',
-        'affected_url' => 'string',
-        'queue' => 'string',
-        'issue_type' => 'string',
-        'resolution_time' => '\DateTime',
-        'response_time' => '\DateTime',
-        'project_url' => 'string',
-        'region' => 'string',
-        'category' => 'string',
-        'environment' => 'string',
-        'ticket_sharing_status' => 'string',
-        'application_ticket_url' => 'string',
-        'infrastructure_ticket_url' => 'string',
-        'jira' => '\Upsun\Model\TicketJiraInner[]',
-        'zd_ticket_url' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'ticket_id' => null,
-        'created' => 'date-time',
-        'updated' => 'date-time',
-        'type' => null,
-        'subject' => null,
-        'description' => null,
-        'priority' => null,
-        'followup_tid' => null,
-        'status' => null,
-        'recipient' => null,
-        'requester_id' => 'uuid',
-        'submitter_id' => 'uuid',
-        'assignee_id' => 'uuid',
-        'organization_id' => null,
-        'collaborator_ids' => null,
-        'has_incidents' => null,
-        'due' => 'date-time',
-        'tags' => null,
-        'subscription_id' => null,
-        'ticket_group' => null,
-        'support_plan' => null,
-        'affected_url' => 'url',
-        'queue' => null,
-        'issue_type' => null,
-        'resolution_time' => 'date-time',
-        'response_time' => 'date-time',
-        'project_url' => 'url',
-        'region' => null,
-        'category' => null,
-        'environment' => null,
-        'ticket_sharing_status' => null,
-        'application_ticket_url' => 'url',
-        'infrastructure_ticket_url' => 'url',
-        'jira' => null,
-        'zd_ticket_url' => 'url'
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'ticket_id' => false,
-        'created' => false,
-        'updated' => false,
-        'type' => false,
-        'subject' => false,
-        'description' => false,
-        'priority' => false,
-        'followup_tid' => false,
-        'status' => false,
-        'recipient' => false,
-        'requester_id' => false,
-        'submitter_id' => false,
-        'assignee_id' => false,
-        'organization_id' => false,
-        'collaborator_ids' => false,
-        'has_incidents' => false,
-        'due' => false,
-        'tags' => false,
-        'subscription_id' => false,
-        'ticket_group' => false,
-        'support_plan' => false,
-        'affected_url' => false,
-        'queue' => false,
-        'issue_type' => false,
-        'resolution_time' => false,
-        'response_time' => false,
-        'project_url' => false,
-        'region' => false,
-        'category' => false,
-        'environment' => false,
-        'ticket_sharing_status' => false,
-        'application_ticket_url' => false,
-        'infrastructure_ticket_url' => false,
-        'jira' => false,
-        'zd_ticket_url' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly int $ticket_id,
+        public readonly \DateTime $created,
+        public readonly \DateTime $updated,
+        public readonly string $type,
+        public readonly string $subject,
+        public readonly string $description,
+        public readonly string $priority,
+        public readonly string $followup_tid,
+        public readonly string $status,
+        public readonly string $recipient,
+        public readonly string $requester_id,
+        public readonly string $submitter_id,
+        public readonly string $assignee_id,
+        public readonly string $organization_id,
+        /**
+         * @var array
+         */
+        public readonly array $collaborator_ids,
+        public readonly bool $has_incidents,
+        public readonly \DateTime $due,
+        /**
+         * @var array
+         */
+        public readonly array $tags,
+        public readonly string $subscription_id,
+        public readonly string $ticket_group,
+        public readonly string $support_plan,
+        public readonly string $affected_url,
+        public readonly string $queue,
+        public readonly string $issue_type,
+        public readonly \DateTime $resolution_time,
+        public readonly \DateTime $response_time,
+        public readonly string $project_url,
+        public readonly string $region,
+        public readonly string $category,
+        public readonly string $environment,
+        public readonly string $ticket_sharing_status,
+        public readonly string $application_ticket_url,
+        public readonly string $infrastructure_ticket_url,
+        /**
+         * @var array
+         */
+        public readonly array $jira,
+        public readonly string $zd_ticket_url
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'ticket_id' => 'ticket_id',
-        'created' => 'created',
-        'updated' => 'updated',
-        'type' => 'type',
-        'subject' => 'subject',
-        'description' => 'description',
-        'priority' => 'priority',
-        'followup_tid' => 'followup_tid',
-        'status' => 'status',
-        'recipient' => 'recipient',
-        'requester_id' => 'requester_id',
-        'submitter_id' => 'submitter_id',
-        'assignee_id' => 'assignee_id',
-        'organization_id' => 'organization_id',
-        'collaborator_ids' => 'collaborator_ids',
-        'has_incidents' => 'has_incidents',
-        'due' => 'due',
-        'tags' => 'tags',
-        'subscription_id' => 'subscription_id',
-        'ticket_group' => 'ticket_group',
-        'support_plan' => 'support_plan',
-        'affected_url' => 'affected_url',
-        'queue' => 'queue',
-        'issue_type' => 'issue_type',
-        'resolution_time' => 'resolution_time',
-        'response_time' => 'response_time',
-        'project_url' => 'project_url',
-        'region' => 'region',
-        'category' => 'category',
-        'environment' => 'environment',
-        'ticket_sharing_status' => 'ticket_sharing_status',
-        'application_ticket_url' => 'application_ticket_url',
-        'infrastructure_ticket_url' => 'infrastructure_ticket_url',
-        'jira' => 'jira',
-        'zd_ticket_url' => 'zd_ticket_url'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'ticket_id' => 'setTicketId',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated',
-        'type' => 'setType',
-        'subject' => 'setSubject',
-        'description' => 'setDescription',
-        'priority' => 'setPriority',
-        'followup_tid' => 'setFollowupTid',
-        'status' => 'setStatus',
-        'recipient' => 'setRecipient',
-        'requester_id' => 'setRequesterId',
-        'submitter_id' => 'setSubmitterId',
-        'assignee_id' => 'setAssigneeId',
-        'organization_id' => 'setOrganizationId',
-        'collaborator_ids' => 'setCollaboratorIds',
-        'has_incidents' => 'setHasIncidents',
-        'due' => 'setDue',
-        'tags' => 'setTags',
-        'subscription_id' => 'setSubscriptionId',
-        'ticket_group' => 'setTicketGroup',
-        'support_plan' => 'setSupportPlan',
-        'affected_url' => 'setAffectedUrl',
-        'queue' => 'setQueue',
-        'issue_type' => 'setIssueType',
-        'resolution_time' => 'setResolutionTime',
-        'response_time' => 'setResponseTime',
-        'project_url' => 'setProjectUrl',
-        'region' => 'setRegion',
-        'category' => 'setCategory',
-        'environment' => 'setEnvironment',
-        'ticket_sharing_status' => 'setTicketSharingStatus',
-        'application_ticket_url' => 'setApplicationTicketUrl',
-        'infrastructure_ticket_url' => 'setInfrastructureTicketUrl',
-        'jira' => 'setJira',
-        'zd_ticket_url' => 'setZdTicketUrl'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'ticket_id' => 'getTicketId',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated',
-        'type' => 'getType',
-        'subject' => 'getSubject',
-        'description' => 'getDescription',
-        'priority' => 'getPriority',
-        'followup_tid' => 'getFollowupTid',
-        'status' => 'getStatus',
-        'recipient' => 'getRecipient',
-        'requester_id' => 'getRequesterId',
-        'submitter_id' => 'getSubmitterId',
-        'assignee_id' => 'getAssigneeId',
-        'organization_id' => 'getOrganizationId',
-        'collaborator_ids' => 'getCollaboratorIds',
-        'has_incidents' => 'getHasIncidents',
-        'due' => 'getDue',
-        'tags' => 'getTags',
-        'subscription_id' => 'getSubscriptionId',
-        'ticket_group' => 'getTicketGroup',
-        'support_plan' => 'getSupportPlan',
-        'affected_url' => 'getAffectedUrl',
-        'queue' => 'getQueue',
-        'issue_type' => 'getIssueType',
-        'resolution_time' => 'getResolutionTime',
-        'response_time' => 'getResponseTime',
-        'project_url' => 'getProjectUrl',
-        'region' => 'getRegion',
-        'category' => 'getCategory',
-        'environment' => 'getEnvironment',
-        'ticket_sharing_status' => 'getTicketSharingStatus',
-        'application_ticket_url' => 'getApplicationTicketUrl',
-        'infrastructure_ticket_url' => 'getInfrastructureTicketUrl',
-        'jira' => 'getJira',
-        'zd_ticket_url' => 'getZdTicketUrl'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_PROBLEM = 'problem';
-    public const TYPE_TASK = 'task';
-    public const TYPE_INCIDENT = 'incident';
-    public const TYPE_QUESTION = 'question';
-    public const PRIORITY_LOW = 'low';
-    public const PRIORITY_NORMAL = 'normal';
-    public const PRIORITY_HIGH = 'high';
-    public const PRIORITY_URGENT = 'urgent';
-    public const STATUS_CLOSED = 'closed';
-    public const STATUS_DELETED = 'deleted';
-    public const STATUS_HOLD = 'hold';
-    public const STATUS__NEW = 'new';
-    public const STATUS_OPEN = 'open';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_SOLVED = 'solved';
-    public const CATEGORY_ACCESS = 'access';
-    public const CATEGORY_BILLING_QUESTION = 'billing_question';
-    public const CATEGORY_COMPLAINT = 'complaint';
-    public const CATEGORY_COMPLIANCE_QUESTION = 'compliance_question';
-    public const CATEGORY_CONFIGURATION_CHANGE = 'configuration_change';
-    public const CATEGORY_GENERAL_QUESTION = 'general_question';
-    public const CATEGORY_INCIDENT_OUTAGE = 'incident_outage';
-    public const CATEGORY_BUG_REPORT = 'bug_report';
-    public const CATEGORY_ONBOARDING = 'onboarding';
-    public const CATEGORY_REPORT_A_GUI_BUG = 'report_a_gui_bug';
-    public const CATEGORY_CLOSE_MY_ACCOUNT = 'close_my_account';
-    public const ENVIRONMENT_ENV_DEVELOPMENT = 'env_development';
-    public const ENVIRONMENT_ENV_STAGING = 'env_staging';
-    public const ENVIRONMENT_ENV_PRODUCTION = 'env_production';
-    public const TICKET_SHARING_STATUS_TS_SENT_TO_PLATFORM = 'ts_sent_to_platform';
-    public const TICKET_SHARING_STATUS_TS_ACCEPTED_BY_PLATFORM = 'ts_accepted_by_platform';
-    public const TICKET_SHARING_STATUS_TS_RETURNED_FROM_PLATFORM = 'ts_returned_from_platform';
-    public const TICKET_SHARING_STATUS_TS_SOLVED_BY_PLATFORM = 'ts_solved_by_platform';
-    public const TICKET_SHARING_STATUS_TS_REJECTED_BY_PLATFORM = 'ts_rejected_by_platform';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::TYPE_PROBLEM,
-            self::TYPE_TASK,
-            self::TYPE_INCIDENT,
-            self::TYPE_QUESTION,
+            'ticket_id' => $this->ticket_id,
+            'created' => $this->created,
+            'updated' => $this->updated,
+            'type' => $this->type,
+            'subject' => $this->subject,
+            'description' => $this->description,
+            'priority' => $this->priority,
+            'followup_tid' => $this->followup_tid,
+            'status' => $this->status,
+            'recipient' => $this->recipient,
+            'requester_id' => $this->requester_id,
+            'submitter_id' => $this->submitter_id,
+            'assignee_id' => $this->assignee_id,
+            'organization_id' => $this->organization_id,
+            'collaborator_ids' => $this->collaborator_ids,
+            'has_incidents' => $this->has_incidents,
+            'due' => $this->due,
+            'tags' => $this->tags,
+            'subscription_id' => $this->subscription_id,
+            'ticket_group' => $this->ticket_group,
+            'support_plan' => $this->support_plan,
+            'affected_url' => $this->affected_url,
+            'queue' => $this->queue,
+            'issue_type' => $this->issue_type,
+            'resolution_time' => $this->resolution_time,
+            'response_time' => $this->response_time,
+            'project_url' => $this->project_url,
+            'region' => $this->region,
+            'category' => $this->category,
+            'environment' => $this->environment,
+            'ticket_sharing_status' => $this->ticket_sharing_status,
+            'application_ticket_url' => $this->application_ticket_url,
+            'infrastructure_ticket_url' => $this->infrastructure_ticket_url,
+            'jira' => $this->jira,
+            'zd_ticket_url' => $this->zd_ticket_url,
         ];
     }
 
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getPriorityAllowableValues(): array
+    public function __toString(): string
     {
-        return [
-            self::PRIORITY_LOW,
-            self::PRIORITY_NORMAL,
-            self::PRIORITY_HIGH,
-            self::PRIORITY_URGENT,
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
+        }
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
+        }
+        
+            protected static array $openAPINullables = [
+                'ticket_id' => false,
+                'created' => false,
+                'updated' => false,
+                'type' => false,
+                'subject' => false,
+                'description' => false,
+                'priority' => false,
+                'followup_tid' => false,
+                'status' => false,
+                'recipient' => false,
+                'requester_id' => false,
+                'submitter_id' => false,
+                'assignee_id' => false,
+                'organization_id' => false,
+                'collaborator_ids' => false,
+                'has_incidents' => false,
+                'due' => false,
+                'tags' => false,
+                'subscription_id' => false,
+                'ticket_group' => false,
+                'support_plan' => false,
+                'affected_url' => false,
+                'queue' => false,
+                'issue_type' => false,
+                'resolution_time' => false,
+                'response_time' => false,
+                'project_url' => false,
+                'region' => false,
+                'category' => false,
+                'environment' => false,
+                'ticket_sharing_status' => false,
+                'application_ticket_url' => false,
+                'infrastructure_ticket_url' => false,
+                'jira' => false,
+                'zd_ticket_url' => false
+            ];
+        protected static $openAPIFormats = [
+            'ticket_id' => null,
+            'created' => 'date-time',
+            'updated' => 'date-time',
+            'type' => null,
+            'subject' => null,
+            'description' => null,
+            'priority' => null,
+            'followup_tid' => null,
+            'status' => null,
+            'recipient' => null,
+            'requester_id' => 'uuid',
+            'submitter_id' => 'uuid',
+            'assignee_id' => 'uuid',
+            'organization_id' => null,
+            'collaborator_ids' => null,
+            'has_incidents' => null,
+            'due' => 'date-time',
+            'tags' => null,
+            'subscription_id' => null,
+            'ticket_group' => null,
+            'support_plan' => null,
+            'affected_url' => 'url',
+            'queue' => null,
+            'issue_type' => null,
+            'resolution_time' => 'date-time',
+            'response_time' => 'date-time',
+            'project_url' => 'url',
+            'region' => null,
+            'category' => null,
+            'environment' => null,
+            'ticket_sharing_status' => null,
+            'application_ticket_url' => 'url',
+            'infrastructure_ticket_url' => 'url',
+            'jira' => null,
+            'zd_ticket_url' => 'url'
         ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getStatusAllowableValues(): array
-    {
-        return [
-            self::STATUS_CLOSED,
-            self::STATUS_DELETED,
-            self::STATUS_HOLD,
-            self::STATUS__NEW,
-            self::STATUS_OPEN,
-            self::STATUS_PENDING,
-            self::STATUS_SOLVED,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getCategoryAllowableValues(): array
-    {
-        return [
-            self::CATEGORY_ACCESS,
-            self::CATEGORY_BILLING_QUESTION,
-            self::CATEGORY_COMPLAINT,
-            self::CATEGORY_COMPLIANCE_QUESTION,
-            self::CATEGORY_CONFIGURATION_CHANGE,
-            self::CATEGORY_GENERAL_QUESTION,
-            self::CATEGORY_INCIDENT_OUTAGE,
-            self::CATEGORY_BUG_REPORT,
-            self::CATEGORY_ONBOARDING,
-            self::CATEGORY_REPORT_A_GUI_BUG,
-            self::CATEGORY_CLOSE_MY_ACCOUNT,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getEnvironmentAllowableValues(): array
-    {
-        return [
-            self::ENVIRONMENT_ENV_DEVELOPMENT,
-            self::ENVIRONMENT_ENV_STAGING,
-            self::ENVIRONMENT_ENV_PRODUCTION,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTicketSharingStatusAllowableValues(): array
-    {
-        return [
-            self::TICKET_SHARING_STATUS_TS_SENT_TO_PLATFORM,
-            self::TICKET_SHARING_STATUS_TS_ACCEPTED_BY_PLATFORM,
-            self::TICKET_SHARING_STATUS_TS_RETURNED_FROM_PLATFORM,
-            self::TICKET_SHARING_STATUS_TS_SOLVED_BY_PLATFORM,
-            self::TICKET_SHARING_STATUS_TS_REJECTED_BY_PLATFORM,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('ticket_id', $data ?? [], null);
-        $this->setIfExists('created', $data ?? [], null);
-        $this->setIfExists('updated', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('subject', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('priority', $data ?? [], null);
-        $this->setIfExists('followup_tid', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('recipient', $data ?? [], null);
-        $this->setIfExists('requester_id', $data ?? [], null);
-        $this->setIfExists('submitter_id', $data ?? [], null);
-        $this->setIfExists('assignee_id', $data ?? [], null);
-        $this->setIfExists('organization_id', $data ?? [], null);
-        $this->setIfExists('collaborator_ids', $data ?? [], null);
-        $this->setIfExists('has_incidents', $data ?? [], null);
-        $this->setIfExists('due', $data ?? [], null);
-        $this->setIfExists('tags', $data ?? [], null);
-        $this->setIfExists('subscription_id', $data ?? [], null);
-        $this->setIfExists('ticket_group', $data ?? [], null);
-        $this->setIfExists('support_plan', $data ?? [], null);
-        $this->setIfExists('affected_url', $data ?? [], null);
-        $this->setIfExists('queue', $data ?? [], null);
-        $this->setIfExists('issue_type', $data ?? [], null);
-        $this->setIfExists('resolution_time', $data ?? [], null);
-        $this->setIfExists('response_time', $data ?? [], null);
-        $this->setIfExists('project_url', $data ?? [], null);
-        $this->setIfExists('region', $data ?? [], null);
-        $this->setIfExists('category', $data ?? [], null);
-        $this->setIfExists('environment', $data ?? [], null);
-        $this->setIfExists('ticket_sharing_status', $data ?? [], null);
-        $this->setIfExists('application_ticket_url', $data ?? [], null);
-        $this->setIfExists('infrastructure_ticket_url', $data ?? [], null);
-        $this->setIfExists('jira', $data ?? [], null);
-        $this->setIfExists('zd_ticket_url', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getPriorityAllowableValues();
-        if (!is_null($this->container['priority']) && !in_array($this->container['priority'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'priority', must be one of '%s'",
-                $this->container['priority'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getCategoryAllowableValues();
-        if (!is_null($this->container['category']) && !in_array($this->container['category'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'category', must be one of '%s'",
-                $this->container['category'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getEnvironmentAllowableValues();
-        if (!is_null($this->container['environment']) && !in_array($this->container['environment'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'environment', must be one of '%s'",
-                $this->container['environment'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getTicketSharingStatusAllowableValues();
-        if (!is_null($this->container['ticket_sharing_status']) && !in_array($this->container['ticket_sharing_status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'ticket_sharing_status', must be one of '%s'",
-                $this->container['ticket_sharing_status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets ticket_id
-     *
-     * @return int|null
-     */
-    public function getTicketId()
-    {
-        return $this->container['ticket_id'];
-    }
-
-    /**
-     * Sets ticket_id
-     */
-    public function setTicketId($ticket_id)
-    {
-        if (is_null($ticket_id)) {
-            throw new \InvalidArgumentException('non-nullable ticket_id cannot be null');
-        }
-        $this->container['ticket_id'] = $ticket_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
-     *
-     * @return \DateTime|null
-     */
-    public function getCreated()
-    {
-        return $this->container['created'];
-    }
-
-    /**
-     * Sets created
-     */
-    public function setCreated($created)
-    {
-        if (is_null($created)) {
-            throw new \InvalidArgumentException('non-nullable created cannot be null');
-        }
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdated()
-    {
-        return $this->container['updated'];
-    }
-
-    /**
-     * Sets updated
-     */
-    public function setUpdated($updated)
-    {
-        if (is_null($updated)) {
-            throw new \InvalidArgumentException('non-nullable updated cannot be null');
-        }
-        $this->container['updated'] = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets subject
-     *
-     * @return string|null
-     */
-    public function getSubject()
-    {
-        return $this->container['subject'];
-    }
-
-    /**
-     * Sets subject
-     */
-    public function setSubject($subject)
-    {
-        if (is_null($subject)) {
-            throw new \InvalidArgumentException('non-nullable subject cannot be null');
-        }
-        $this->container['subject'] = $subject;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets priority
-     *
-     * @return string|null
-     */
-    public function getPriority()
-    {
-        return $this->container['priority'];
-    }
-
-    /**
-     * Sets priority
-     */
-    public function setPriority($priority)
-    {
-        if (is_null($priority)) {
-            throw new \InvalidArgumentException('non-nullable priority cannot be null');
-        }
-        $allowedValues = $this->getPriorityAllowableValues();
-        if (!in_array($priority, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'priority', must be one of '%s'",
-                    $priority,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['priority'] = $priority;
-
-        return $this;
-    }
-
-    /**
-     * Gets followup_tid
-     *
-     * @return string|null
-     */
-    public function getFollowupTid()
-    {
-        return $this->container['followup_tid'];
-    }
-
-    /**
-     * Sets followup_tid
-     */
-    public function setFollowupTid($followup_tid)
-    {
-        if (is_null($followup_tid)) {
-            throw new \InvalidArgumentException('non-nullable followup_tid cannot be null');
-        }
-        $this->container['followup_tid'] = $followup_tid;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string|null
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets recipient
-     *
-     * @return string|null
-     */
-    public function getRecipient()
-    {
-        return $this->container['recipient'];
-    }
-
-    /**
-     * Sets recipient
-     */
-    public function setRecipient($recipient)
-    {
-        if (is_null($recipient)) {
-            throw new \InvalidArgumentException('non-nullable recipient cannot be null');
-        }
-        $this->container['recipient'] = $recipient;
-
-        return $this;
-    }
-
-    /**
-     * Gets requester_id
-     *
-     * @return string|null
-     */
-    public function getRequesterId()
-    {
-        return $this->container['requester_id'];
-    }
-
-    /**
-     * Sets requester_id
-     */
-    public function setRequesterId($requester_id)
-    {
-        if (is_null($requester_id)) {
-            throw new \InvalidArgumentException('non-nullable requester_id cannot be null');
-        }
-        $this->container['requester_id'] = $requester_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets submitter_id
-     *
-     * @return string|null
-     */
-    public function getSubmitterId()
-    {
-        return $this->container['submitter_id'];
-    }
-
-    /**
-     * Sets submitter_id
-     */
-    public function setSubmitterId($submitter_id)
-    {
-        if (is_null($submitter_id)) {
-            throw new \InvalidArgumentException('non-nullable submitter_id cannot be null');
-        }
-        $this->container['submitter_id'] = $submitter_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets assignee_id
-     *
-     * @return string|null
-     */
-    public function getAssigneeId()
-    {
-        return $this->container['assignee_id'];
-    }
-
-    /**
-     * Sets assignee_id
-     */
-    public function setAssigneeId($assignee_id)
-    {
-        if (is_null($assignee_id)) {
-            throw new \InvalidArgumentException('non-nullable assignee_id cannot be null');
-        }
-        $this->container['assignee_id'] = $assignee_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets organization_id
-     *
-     * @return string|null
-     */
-    public function getOrganizationId()
-    {
-        return $this->container['organization_id'];
-    }
-
-    /**
-     * Sets organization_id
-     */
-    public function setOrganizationId($organization_id)
-    {
-        if (is_null($organization_id)) {
-            throw new \InvalidArgumentException('non-nullable organization_id cannot be null');
-        }
-        $this->container['organization_id'] = $organization_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets collaborator_ids
-     *
-     * @return string[]|null
-     */
-    public function getCollaboratorIds()
-    {
-        return $this->container['collaborator_ids'];
-    }
-
-    /**
-     * Sets collaborator_ids
-     */
-    public function setCollaboratorIds($collaborator_ids)
-    {
-        if (is_null($collaborator_ids)) {
-            throw new \InvalidArgumentException('non-nullable collaborator_ids cannot be null');
-        }
-        $this->container['collaborator_ids'] = $collaborator_ids;
-
-        return $this;
-    }
-
-    /**
-     * Gets has_incidents
-     *
-     * @return bool|null
-     */
-    public function getHasIncidents()
-    {
-        return $this->container['has_incidents'];
-    }
-
-    /**
-     * Sets has_incidents
-     */
-    public function setHasIncidents($has_incidents)
-    {
-        if (is_null($has_incidents)) {
-            throw new \InvalidArgumentException('non-nullable has_incidents cannot be null');
-        }
-        $this->container['has_incidents'] = $has_incidents;
-
-        return $this;
-    }
-
-    /**
-     * Gets due
-     *
-     * @return \DateTime|null
-     */
-    public function getDue()
-    {
-        return $this->container['due'];
-    }
-
-    /**
-     * Sets due
-     */
-    public function setDue($due)
-    {
-        if (is_null($due)) {
-            throw new \InvalidArgumentException('non-nullable due cannot be null');
-        }
-        $this->container['due'] = $due;
-
-        return $this;
-    }
-
-    /**
-     * Gets tags
-     *
-     * @return string[]|null
-     */
-    public function getTags()
-    {
-        return $this->container['tags'];
-    }
-
-    /**
-     * Sets tags
-     */
-    public function setTags($tags)
-    {
-        if (is_null($tags)) {
-            throw new \InvalidArgumentException('non-nullable tags cannot be null');
-        }
-        $this->container['tags'] = $tags;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscription_id
-     *
-     * @return string|null
-     */
-    public function getSubscriptionId()
-    {
-        return $this->container['subscription_id'];
-    }
-
-    /**
-     * Sets subscription_id
-     */
-    public function setSubscriptionId($subscription_id)
-    {
-        if (is_null($subscription_id)) {
-            throw new \InvalidArgumentException('non-nullable subscription_id cannot be null');
-        }
-        $this->container['subscription_id'] = $subscription_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets ticket_group
-     *
-     * @return string|null
-     */
-    public function getTicketGroup()
-    {
-        return $this->container['ticket_group'];
-    }
-
-    /**
-     * Sets ticket_group
-     */
-    public function setTicketGroup($ticket_group)
-    {
-        if (is_null($ticket_group)) {
-            throw new \InvalidArgumentException('non-nullable ticket_group cannot be null');
-        }
-        $this->container['ticket_group'] = $ticket_group;
-
-        return $this;
-    }
-
-    /**
-     * Gets support_plan
-     *
-     * @return string|null
-     */
-    public function getSupportPlan()
-    {
-        return $this->container['support_plan'];
-    }
-
-    /**
-     * Sets support_plan
-     */
-    public function setSupportPlan($support_plan)
-    {
-        if (is_null($support_plan)) {
-            throw new \InvalidArgumentException('non-nullable support_plan cannot be null');
-        }
-        $this->container['support_plan'] = $support_plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets affected_url
-     *
-     * @return string|null
-     */
-    public function getAffectedUrl()
-    {
-        return $this->container['affected_url'];
-    }
-
-    /**
-     * Sets affected_url
-     */
-    public function setAffectedUrl($affected_url)
-    {
-        if (is_null($affected_url)) {
-            throw new \InvalidArgumentException('non-nullable affected_url cannot be null');
-        }
-        $this->container['affected_url'] = $affected_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets queue
-     *
-     * @return string|null
-     */
-    public function getQueue()
-    {
-        return $this->container['queue'];
-    }
-
-    /**
-     * Sets queue
-     */
-    public function setQueue($queue)
-    {
-        if (is_null($queue)) {
-            throw new \InvalidArgumentException('non-nullable queue cannot be null');
-        }
-        $this->container['queue'] = $queue;
-
-        return $this;
-    }
-
-    /**
-     * Gets issue_type
-     *
-     * @return string|null
-     */
-    public function getIssueType()
-    {
-        return $this->container['issue_type'];
-    }
-
-    /**
-     * Sets issue_type
-     */
-    public function setIssueType($issue_type)
-    {
-        if (is_null($issue_type)) {
-            throw new \InvalidArgumentException('non-nullable issue_type cannot be null');
-        }
-        $this->container['issue_type'] = $issue_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets resolution_time
-     *
-     * @return \DateTime|null
-     */
-    public function getResolutionTime()
-    {
-        return $this->container['resolution_time'];
-    }
-
-    /**
-     * Sets resolution_time
-     */
-    public function setResolutionTime($resolution_time)
-    {
-        if (is_null($resolution_time)) {
-            throw new \InvalidArgumentException('non-nullable resolution_time cannot be null');
-        }
-        $this->container['resolution_time'] = $resolution_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets response_time
-     *
-     * @return \DateTime|null
-     */
-    public function getResponseTime()
-    {
-        return $this->container['response_time'];
-    }
-
-    /**
-     * Sets response_time
-     */
-    public function setResponseTime($response_time)
-    {
-        if (is_null($response_time)) {
-            throw new \InvalidArgumentException('non-nullable response_time cannot be null');
-        }
-        $this->container['response_time'] = $response_time;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_url
-     *
-     * @return string|null
-     */
-    public function getProjectUrl()
-    {
-        return $this->container['project_url'];
-    }
-
-    /**
-     * Sets project_url
-     */
-    public function setProjectUrl($project_url)
-    {
-        if (is_null($project_url)) {
-            throw new \InvalidArgumentException('non-nullable project_url cannot be null');
-        }
-        $this->container['project_url'] = $project_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets region
-     *
-     * @return string|null
-     */
-    public function getRegion()
-    {
-        return $this->container['region'];
-    }
-
-    /**
-     * Sets region
-     */
-    public function setRegion($region)
-    {
-        if (is_null($region)) {
-            throw new \InvalidArgumentException('non-nullable region cannot be null');
-        }
-        $this->container['region'] = $region;
-
-        return $this;
-    }
-
-    /**
-     * Gets category
-     *
-     * @return string|null
-     */
-    public function getCategory()
-    {
-        return $this->container['category'];
-    }
-
-    /**
-     * Sets category
-     */
-    public function setCategory($category)
-    {
-        if (is_null($category)) {
-            throw new \InvalidArgumentException('non-nullable category cannot be null');
-        }
-        $allowedValues = $this->getCategoryAllowableValues();
-        if (!in_array($category, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'category', must be one of '%s'",
-                    $category,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['category'] = $category;
-
-        return $this;
-    }
-
-    /**
-     * Gets environment
-     *
-     * @return string|null
-     */
-    public function getEnvironment()
-    {
-        return $this->container['environment'];
-    }
-
-    /**
-     * Sets environment
-     */
-    public function setEnvironment($environment)
-    {
-        if (is_null($environment)) {
-            throw new \InvalidArgumentException('non-nullable environment cannot be null');
-        }
-        $allowedValues = $this->getEnvironmentAllowableValues();
-        if (!in_array($environment, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'environment', must be one of '%s'",
-                    $environment,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['environment'] = $environment;
-
-        return $this;
-    }
-
-    /**
-     * Gets ticket_sharing_status
-     *
-     * @return string|null
-     */
-    public function getTicketSharingStatus()
-    {
-        return $this->container['ticket_sharing_status'];
-    }
-
-    /**
-     * Sets ticket_sharing_status
-     */
-    public function setTicketSharingStatus($ticket_sharing_status)
-    {
-        if (is_null($ticket_sharing_status)) {
-            throw new \InvalidArgumentException('non-nullable ticket_sharing_status cannot be null');
-        }
-        $allowedValues = $this->getTicketSharingStatusAllowableValues();
-        if (!in_array($ticket_sharing_status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'ticket_sharing_status', must be one of '%s'",
-                    $ticket_sharing_status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['ticket_sharing_status'] = $ticket_sharing_status;
-
-        return $this;
-    }
-
-    /**
-     * Gets application_ticket_url
-     *
-     * @return string|null
-     */
-    public function getApplicationTicketUrl()
-    {
-        return $this->container['application_ticket_url'];
-    }
-
-    /**
-     * Sets application_ticket_url
-     */
-    public function setApplicationTicketUrl($application_ticket_url)
-    {
-        if (is_null($application_ticket_url)) {
-            throw new \InvalidArgumentException('non-nullable application_ticket_url cannot be null');
-        }
-        $this->container['application_ticket_url'] = $application_ticket_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets infrastructure_ticket_url
-     *
-     * @return string|null
-     */
-    public function getInfrastructureTicketUrl()
-    {
-        return $this->container['infrastructure_ticket_url'];
-    }
-
-    /**
-     * Sets infrastructure_ticket_url
-     */
-    public function setInfrastructureTicketUrl($infrastructure_ticket_url)
-    {
-        if (is_null($infrastructure_ticket_url)) {
-            throw new \InvalidArgumentException('non-nullable infrastructure_ticket_url cannot be null');
-        }
-        $this->container['infrastructure_ticket_url'] = $infrastructure_ticket_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets jira
-     *
-     * @return \Upsun\Model\TicketJiraInner[]|null
-     */
-    public function getJira()
-    {
-        return $this->container['jira'];
-    }
-
-    /**
-     * Sets jira
-     */
-    public function setJira($jira)
-    {
-        if (is_null($jira)) {
-            throw new \InvalidArgumentException('non-nullable jira cannot be null');
-        }
-        $this->container['jira'] = $jira;
-
-        return $this;
-    }
-
-    /**
-     * Gets zd_ticket_url
-     *
-     * @return string|null
-     */
-    public function getZdTicketUrl()
-    {
-        return $this->container['zd_ticket_url'];
-    }
-
-    /**
-     * Sets zd_ticket_url
-     */
-    public function setZdTicketUrl($zd_ticket_url)
-    {
-        if (is_null($zd_ticket_url)) {
-            throw new \InvalidArgumentException('non-nullable zd_ticket_url cannot be null');
-        }
-        $this->container['zd_ticket_url'] = $zd_ticket_url;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
 }
+

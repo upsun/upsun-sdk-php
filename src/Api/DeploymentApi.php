@@ -183,32 +183,78 @@ final class DeploymentApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Deployment',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Deployment',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Deployment(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Deployment',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Deployment',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -456,32 +502,78 @@ final class DeploymentApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Deployment[]',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Deployment[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\Deployment[](
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Deployment[]',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Deployment[]',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**

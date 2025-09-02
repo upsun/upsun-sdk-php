@@ -175,32 +175,78 @@ final class SystemInformationApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\AcceptedResponse',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\AcceptedResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\AcceptedResponse(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\AcceptedResponse',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\AcceptedResponse',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -406,32 +452,78 @@ final class SystemInformationApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                default:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\SystemInformation',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                default:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\SystemInformation',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\SystemInformation(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                default:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\SystemInformation',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                default:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\SystemInformation',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**

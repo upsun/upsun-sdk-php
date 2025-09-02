@@ -16,422 +16,63 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInterface, ArrayAccess, JsonSerializable
+final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Scheduled_cron_tasks_executed_by_this_application__value';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'spec' => 'string',
-        'commands' => '\Upsun\Model\TheCommandsDefinition',
-        'shutdown_timeout' => 'int',
-        'timeout' => 'int',
-        'cmd' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'spec' => null,
-        'commands' => null,
-        'shutdown_timeout' => null,
-        'timeout' => null,
-        'cmd' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'spec' => false,
-        'commands' => false,
-        'shutdown_timeout' => true,
-        'timeout' => false,
-        'cmd' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $spec,
+        public readonly \Upsun\Model\TheCommandsDefinition $commands,
+        public readonly ?int $shutdown_timeout,
+        public readonly int $timeout,
+        public readonly string $cmd
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'spec' => $this->spec,
+            'commands' => $this->commands,
+            'shutdown_timeout' => $this->shutdown_timeout,
+            'timeout' => $this->timeout,
+            'cmd' => $this->cmd,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'spec' => 'spec',
-        'commands' => 'commands',
-        'shutdown_timeout' => 'shutdown_timeout',
-        'timeout' => 'timeout',
-        'cmd' => 'cmd'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'spec' => 'setSpec',
-        'commands' => 'setCommands',
-        'shutdown_timeout' => 'setShutdownTimeout',
-        'timeout' => 'setTimeout',
-        'cmd' => 'setCmd'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'spec' => 'getSpec',
-        'commands' => 'getCommands',
-        'shutdown_timeout' => 'getShutdownTimeout',
-        'timeout' => 'getTimeout',
-        'cmd' => 'getCmd'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('spec', $data ?? [], null);
-        $this->setIfExists('commands', $data ?? [], null);
-        $this->setIfExists('shutdown_timeout', $data ?? [], null);
-        $this->setIfExists('timeout', $data ?? [], null);
-        $this->setIfExists('cmd', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['spec'] === null) {
-            $invalidProperties[] = "'spec' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['commands'] === null) {
-            $invalidProperties[] = "'commands' can't be null";
-        }
-        if ($this->container['timeout'] === null) {
-            $invalidProperties[] = "'timeout' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets spec
-     *
-     * @return string
-     */
-    public function getSpec()
-    {
-        return $this->container['spec'];
-    }
-
-    /**
-     * Sets spec
-     */
-    public function setSpec($spec)
-    {
-        if (is_null($spec)) {
-            throw new \InvalidArgumentException('non-nullable spec cannot be null');
-        }
-        $this->container['spec'] = $spec;
-
-        return $this;
-    }
-
-    /**
-     * Gets commands
-     *
-     * @return \Upsun\Model\TheCommandsDefinition
-     */
-    public function getCommands()
-    {
-        return $this->container['commands'];
-    }
-
-    /**
-     * Sets commands
-     */
-    public function setCommands($commands)
-    {
-        if (is_null($commands)) {
-            throw new \InvalidArgumentException('non-nullable commands cannot be null');
-        }
-        $this->container['commands'] = $commands;
-
-        return $this;
-    }
-
-    /**
-     * Gets shutdown_timeout
-     *
-     * @return int|null
-     */
-    public function getShutdownTimeout()
-    {
-        return $this->container['shutdown_timeout'];
-    }
-
-    /**
-     * Sets shutdown_timeout
-     */
-    public function setShutdownTimeout($shutdown_timeout)
-    {
-        if (is_null($shutdown_timeout)) {
-            array_push($this->openAPINullablesSetToNull, 'shutdown_timeout');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('shutdown_timeout', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['shutdown_timeout'] = $shutdown_timeout;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeout
-     *
-     * @return int
-     */
-    public function getTimeout()
-    {
-        return $this->container['timeout'];
-    }
-
-    /**
-     * Sets timeout
-     */
-    public function setTimeout($timeout)
-    {
-        if (is_null($timeout)) {
-            throw new \InvalidArgumentException('non-nullable timeout cannot be null');
-        }
-        $this->container['timeout'] = $timeout;
-
-        return $this;
-    }
-
-    /**
-     * Gets cmd
-     *
-     * @return string|null
-     */
-    public function getCmd()
-    {
-        return $this->container['cmd'];
-    }
-
-    /**
-     * Sets cmd
-     */
-    public function setCmd($cmd)
-    {
-        if (is_null($cmd)) {
-            throw new \InvalidArgumentException('non-nullable cmd cannot be null');
-        }
-        $this->container['cmd'] = $cmd;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'spec' => false,
+                'commands' => false,
+                'shutdown_timeout' => true,
+                'timeout' => false,
+                'cmd' => false
+            ];
+        protected static $openAPIFormats = [
+            'spec' => null,
+            'commands' => null,
+            'shutdown_timeout' => null,
+            'timeout' => null,
+            'cmd' => null
+        ];
 }
+

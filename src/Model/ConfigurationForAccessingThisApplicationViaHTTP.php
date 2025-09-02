@@ -16,604 +16,95 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class ConfigurationForAccessingThisApplicationViaHTTP implements ModelInterface, ArrayAccess, JsonSerializable
+final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_for_accessing_this_application_via_HTTP_';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'locations' => 'array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue>',
-        'commands' => '\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
-        'upstream' => '\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
-        'document_root' => 'string',
-        'passthru' => 'string',
-        'index_files' => 'string[]',
-        'whitelist' => 'string[]',
-        'blacklist' => 'string[]',
-        'expires' => 'string',
-        'move_to_root' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'locations' => null,
-        'commands' => null,
-        'upstream' => null,
-        'document_root' => null,
-        'passthru' => null,
-        'index_files' => null,
-        'whitelist' => null,
-        'blacklist' => null,
-        'expires' => null,
-        'move_to_root' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'locations' => false,
-        'commands' => false,
-        'upstream' => false,
-        'document_root' => true,
-        'passthru' => true,
-        'index_files' => true,
-        'whitelist' => true,
-        'blacklist' => true,
-        'expires' => true,
-        'move_to_root' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        /**
+         * @var string[]
+         */
+        public readonly array $locations,
+        public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands,
+        public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream,
+        public readonly ?string $document_root,
+        public readonly ?string $passthru,
+        /**
+         * @var array
+         */
+        public readonly ?array $index_files,
+        /**
+         * @var array
+         */
+        public readonly ?array $whitelist,
+        /**
+         * @var array
+         */
+        public readonly ?array $blacklist,
+        public readonly ?string $expires,
+        public readonly bool $move_to_root
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'locations' => $this->locations,
+            'commands' => $this->commands,
+            'upstream' => $this->upstream,
+            'document_root' => $this->document_root,
+            'passthru' => $this->passthru,
+            'index_files' => $this->index_files,
+            'whitelist' => $this->whitelist,
+            'blacklist' => $this->blacklist,
+            'expires' => $this->expires,
+            'move_to_root' => $this->move_to_root,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'locations' => 'locations',
-        'commands' => 'commands',
-        'upstream' => 'upstream',
-        'document_root' => 'document_root',
-        'passthru' => 'passthru',
-        'index_files' => 'index_files',
-        'whitelist' => 'whitelist',
-        'blacklist' => 'blacklist',
-        'expires' => 'expires',
-        'move_to_root' => 'move_to_root'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'locations' => 'setLocations',
-        'commands' => 'setCommands',
-        'upstream' => 'setUpstream',
-        'document_root' => 'setDocumentRoot',
-        'passthru' => 'setPassthru',
-        'index_files' => 'setIndexFiles',
-        'whitelist' => 'setWhitelist',
-        'blacklist' => 'setBlacklist',
-        'expires' => 'setExpires',
-        'move_to_root' => 'setMoveToRoot'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'locations' => 'getLocations',
-        'commands' => 'getCommands',
-        'upstream' => 'getUpstream',
-        'document_root' => 'getDocumentRoot',
-        'passthru' => 'getPassthru',
-        'index_files' => 'getIndexFiles',
-        'whitelist' => 'getWhitelist',
-        'blacklist' => 'getBlacklist',
-        'expires' => 'getExpires',
-        'move_to_root' => 'getMoveToRoot'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('locations', $data ?? [], null);
-        $this->setIfExists('commands', $data ?? [], null);
-        $this->setIfExists('upstream', $data ?? [], null);
-        $this->setIfExists('document_root', $data ?? [], null);
-        $this->setIfExists('passthru', $data ?? [], null);
-        $this->setIfExists('index_files', $data ?? [], null);
-        $this->setIfExists('whitelist', $data ?? [], null);
-        $this->setIfExists('blacklist', $data ?? [], null);
-        $this->setIfExists('expires', $data ?? [], null);
-        $this->setIfExists('move_to_root', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['locations'] === null) {
-            $invalidProperties[] = "'locations' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['move_to_root'] === null) {
-            $invalidProperties[] = "'move_to_root' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets locations
-     *
-     * @return array<string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue>
-     */
-    public function getLocations()
-    {
-        return $this->container['locations'];
-    }
-
-    /**
-     * Sets locations
-     */
-    public function setLocations($locations)
-    {
-        if (is_null($locations)) {
-            throw new \InvalidArgumentException('non-nullable locations cannot be null');
-        }
-        $this->container['locations'] = $locations;
-
-        return $this;
-    }
-
-    /**
-     * Gets commands
-     *
-     * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
-     */
-    public function getCommands()
-    {
-        return $this->container['commands'];
-    }
-
-    /**
-     * Sets commands
-     */
-    public function setCommands($commands)
-    {
-        if (is_null($commands)) {
-            throw new \InvalidArgumentException('non-nullable commands cannot be null');
-        }
-        $this->container['commands'] = $commands;
-
-        return $this;
-    }
-
-    /**
-     * Gets upstream
-     *
-     * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
-     */
-    public function getUpstream()
-    {
-        return $this->container['upstream'];
-    }
-
-    /**
-     * Sets upstream
-     */
-    public function setUpstream($upstream)
-    {
-        if (is_null($upstream)) {
-            throw new \InvalidArgumentException('non-nullable upstream cannot be null');
-        }
-        $this->container['upstream'] = $upstream;
-
-        return $this;
-    }
-
-    /**
-     * Gets document_root
-     *
-     * @return string|null
-     */
-    public function getDocumentRoot()
-    {
-        return $this->container['document_root'];
-    }
-
-    /**
-     * Sets document_root
-     */
-    public function setDocumentRoot($document_root)
-    {
-        if (is_null($document_root)) {
-            array_push($this->openAPINullablesSetToNull, 'document_root');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('document_root', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['document_root'] = $document_root;
-
-        return $this;
-    }
-
-    /**
-     * Gets passthru
-     *
-     * @return string|null
-     */
-    public function getPassthru()
-    {
-        return $this->container['passthru'];
-    }
-
-    /**
-     * Sets passthru
-     */
-    public function setPassthru($passthru)
-    {
-        if (is_null($passthru)) {
-            array_push($this->openAPINullablesSetToNull, 'passthru');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('passthru', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['passthru'] = $passthru;
-
-        return $this;
-    }
-
-    /**
-     * Gets index_files
-     *
-     * @return string[]|null
-     */
-    public function getIndexFiles()
-    {
-        return $this->container['index_files'];
-    }
-
-    /**
-     * Sets index_files
-     */
-    public function setIndexFiles($index_files)
-    {
-        if (is_null($index_files)) {
-            array_push($this->openAPINullablesSetToNull, 'index_files');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('index_files', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['index_files'] = $index_files;
-
-        return $this;
-    }
-
-    /**
-     * Gets whitelist
-     *
-     * @return string[]|null
-     */
-    public function getWhitelist()
-    {
-        return $this->container['whitelist'];
-    }
-
-    /**
-     * Sets whitelist
-     */
-    public function setWhitelist($whitelist)
-    {
-        if (is_null($whitelist)) {
-            array_push($this->openAPINullablesSetToNull, 'whitelist');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('whitelist', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['whitelist'] = $whitelist;
-
-        return $this;
-    }
-
-    /**
-     * Gets blacklist
-     *
-     * @return string[]|null
-     */
-    public function getBlacklist()
-    {
-        return $this->container['blacklist'];
-    }
-
-    /**
-     * Sets blacklist
-     */
-    public function setBlacklist($blacklist)
-    {
-        if (is_null($blacklist)) {
-            array_push($this->openAPINullablesSetToNull, 'blacklist');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('blacklist', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['blacklist'] = $blacklist;
-
-        return $this;
-    }
-
-    /**
-     * Gets expires
-     *
-     * @return string|null
-     */
-    public function getExpires()
-    {
-        return $this->container['expires'];
-    }
-
-    /**
-     * Sets expires
-     */
-    public function setExpires($expires)
-    {
-        if (is_null($expires)) {
-            array_push($this->openAPINullablesSetToNull, 'expires');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('expires', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['expires'] = $expires;
-
-        return $this;
-    }
-
-    /**
-     * Gets move_to_root
-     *
-     * @return bool
-     */
-    public function getMoveToRoot()
-    {
-        return $this->container['move_to_root'];
-    }
-
-    /**
-     * Sets move_to_root
-     */
-    public function setMoveToRoot($move_to_root)
-    {
-        if (is_null($move_to_root)) {
-            throw new \InvalidArgumentException('non-nullable move_to_root cannot be null');
-        }
-        $this->container['move_to_root'] = $move_to_root;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'locations' => false,
+                'commands' => false,
+                'upstream' => false,
+                'document_root' => true,
+                'passthru' => true,
+                'index_files' => true,
+                'whitelist' => true,
+                'blacklist' => true,
+                'expires' => true,
+                'move_to_root' => false
+            ];
+        protected static $openAPIFormats = [
+            'locations' => null,
+            'commands' => null,
+            'upstream' => null,
+            'document_root' => null,
+            'passthru' => null,
+            'index_files' => null,
+            'whitelist' => null,
+            'blacklist' => null,
+            'expires' => null,
+            'move_to_root' => null
+        ];
 }
+

@@ -16,681 +16,91 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class SubscriptionInformation implements ModelInterface, ArrayAccess, JsonSerializable
+final class SubscriptionInformation implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Subscription_information';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'license_uri' => 'string',
-        'plan' => 'string',
-        'environments' => 'int',
-        'storage' => 'int',
-        'included_users' => 'int',
-        'subscription_management_uri' => 'string',
-        'restricted' => 'bool',
-        'suspended' => 'bool',
-        'user_licenses' => 'int',
-        'resources' => '\Upsun\Model\ResourcesLimits',
-        'resource_validation_url' => 'string',
-        'image_types' => '\Upsun\Model\RestrictedAndDeniedImageTypes'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'license_uri' => null,
-        'plan' => null,
-        'environments' => null,
-        'storage' => null,
-        'included_users' => null,
-        'subscription_management_uri' => null,
-        'restricted' => null,
-        'suspended' => null,
-        'user_licenses' => null,
-        'resources' => null,
-        'resource_validation_url' => null,
-        'image_types' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'license_uri' => false,
-        'plan' => false,
-        'environments' => false,
-        'storage' => false,
-        'included_users' => false,
-        'subscription_management_uri' => false,
-        'restricted' => false,
-        'suspended' => false,
-        'user_licenses' => false,
-        'resources' => false,
-        'resource_validation_url' => false,
-        'image_types' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $license_uri,
+        public readonly string $plan,
+        public readonly int $environments,
+        public readonly int $storage,
+        public readonly int $included_users,
+        public readonly string $subscription_management_uri,
+        public readonly bool $restricted,
+        public readonly bool $suspended,
+        public readonly int $user_licenses,
+        public readonly \Upsun\Model\ResourcesLimits $resources,
+        public readonly string $resource_validation_url,
+        public readonly \Upsun\Model\RestrictedAndDeniedImageTypes $image_types
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'license_uri' => 'license_uri',
-        'plan' => 'plan',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'included_users' => 'included_users',
-        'subscription_management_uri' => 'subscription_management_uri',
-        'restricted' => 'restricted',
-        'suspended' => 'suspended',
-        'user_licenses' => 'user_licenses',
-        'resources' => 'resources',
-        'resource_validation_url' => 'resource_validation_url',
-        'image_types' => 'image_types'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'license_uri' => 'setLicenseUri',
-        'plan' => 'setPlan',
-        'environments' => 'setEnvironments',
-        'storage' => 'setStorage',
-        'included_users' => 'setIncludedUsers',
-        'subscription_management_uri' => 'setSubscriptionManagementUri',
-        'restricted' => 'setRestricted',
-        'suspended' => 'setSuspended',
-        'user_licenses' => 'setUserLicenses',
-        'resources' => 'setResources',
-        'resource_validation_url' => 'setResourceValidationUrl',
-        'image_types' => 'setImageTypes'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'license_uri' => 'getLicenseUri',
-        'plan' => 'getPlan',
-        'environments' => 'getEnvironments',
-        'storage' => 'getStorage',
-        'included_users' => 'getIncludedUsers',
-        'subscription_management_uri' => 'getSubscriptionManagementUri',
-        'restricted' => 'getRestricted',
-        'suspended' => 'getSuspended',
-        'user_licenses' => 'getUserLicenses',
-        'resources' => 'getResources',
-        'resource_validation_url' => 'getResourceValidationUrl',
-        'image_types' => 'getImageTypes'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const PLAN__2XLARGE = '2xlarge';
-    public const PLAN__4XLARGE = '4xlarge';
-    public const PLAN__8XLARGE = '8xlarge';
-    public const PLAN_DEVELOPMENT = 'development';
-    public const PLAN_LARGE = 'large';
-    public const PLAN_MEDIUM = 'medium';
-    public const PLAN_STANDARD = 'standard';
-    public const PLAN_XLARGE = 'xlarge';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getPlanAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::PLAN__2XLARGE,
-            self::PLAN__4XLARGE,
-            self::PLAN__8XLARGE,
-            self::PLAN_DEVELOPMENT,
-            self::PLAN_LARGE,
-            self::PLAN_MEDIUM,
-            self::PLAN_STANDARD,
-            self::PLAN_XLARGE,
+            'license_uri' => $this->license_uri,
+            'plan' => $this->plan,
+            'environments' => $this->environments,
+            'storage' => $this->storage,
+            'included_users' => $this->included_users,
+            'subscription_management_uri' => $this->subscription_management_uri,
+            'restricted' => $this->restricted,
+            'suspended' => $this->suspended,
+            'user_licenses' => $this->user_licenses,
+            'resources' => $this->resources,
+            'resource_validation_url' => $this->resource_validation_url,
+            'image_types' => $this->image_types,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('license_uri', $data ?? [], null);
-        $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('environments', $data ?? [], null);
-        $this->setIfExists('storage', $data ?? [], null);
-        $this->setIfExists('included_users', $data ?? [], null);
-        $this->setIfExists('subscription_management_uri', $data ?? [], null);
-        $this->setIfExists('restricted', $data ?? [], null);
-        $this->setIfExists('suspended', $data ?? [], null);
-        $this->setIfExists('user_licenses', $data ?? [], null);
-        $this->setIfExists('resources', $data ?? [], null);
-        $this->setIfExists('resource_validation_url', $data ?? [], null);
-        $this->setIfExists('image_types', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['license_uri'] === null) {
-            $invalidProperties[] = "'license_uri' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $allowedValues = $this->getPlanAllowableValues();
-        if (!is_null($this->container['plan']) && !in_array($this->container['plan'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'plan', must be one of '%s'",
-                $this->container['plan'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['storage'] === null) {
-            $invalidProperties[] = "'storage' can't be null";
-        }
-        if ($this->container['included_users'] === null) {
-            $invalidProperties[] = "'included_users' can't be null";
-        }
-        if ($this->container['subscription_management_uri'] === null) {
-            $invalidProperties[] = "'subscription_management_uri' can't be null";
-        }
-        if ($this->container['restricted'] === null) {
-            $invalidProperties[] = "'restricted' can't be null";
-        }
-        if ($this->container['suspended'] === null) {
-            $invalidProperties[] = "'suspended' can't be null";
-        }
-        if ($this->container['user_licenses'] === null) {
-            $invalidProperties[] = "'user_licenses' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets license_uri
-     *
-     * @return string
-     */
-    public function getLicenseUri()
-    {
-        return $this->container['license_uri'];
-    }
-
-    /**
-     * Sets license_uri
-     */
-    public function setLicenseUri($license_uri)
-    {
-        if (is_null($license_uri)) {
-            throw new \InvalidArgumentException('non-nullable license_uri cannot be null');
-        }
-        $this->container['license_uri'] = $license_uri;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan
-     *
-     * @return string|null
-     */
-    public function getPlan()
-    {
-        return $this->container['plan'];
-    }
-
-    /**
-     * Sets plan
-     */
-    public function setPlan($plan)
-    {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
-        $allowedValues = $this->getPlanAllowableValues();
-        if (!in_array($plan, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'plan', must be one of '%s'",
-                    $plan,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets environments
-     *
-     * @return int|null
-     */
-    public function getEnvironments()
-    {
-        return $this->container['environments'];
-    }
-
-    /**
-     * Sets environments
-     */
-    public function setEnvironments($environments)
-    {
-        if (is_null($environments)) {
-            throw new \InvalidArgumentException('non-nullable environments cannot be null');
-        }
-        $this->container['environments'] = $environments;
-
-        return $this;
-    }
-
-    /**
-     * Gets storage
-     *
-     * @return int
-     */
-    public function getStorage()
-    {
-        return $this->container['storage'];
-    }
-
-    /**
-     * Sets storage
-     */
-    public function setStorage($storage)
-    {
-        if (is_null($storage)) {
-            throw new \InvalidArgumentException('non-nullable storage cannot be null');
-        }
-        $this->container['storage'] = $storage;
-
-        return $this;
-    }
-
-    /**
-     * Gets included_users
-     *
-     * @return int
-     */
-    public function getIncludedUsers()
-    {
-        return $this->container['included_users'];
-    }
-
-    /**
-     * Sets included_users
-     */
-    public function setIncludedUsers($included_users)
-    {
-        if (is_null($included_users)) {
-            throw new \InvalidArgumentException('non-nullable included_users cannot be null');
-        }
-        $this->container['included_users'] = $included_users;
-
-        return $this;
-    }
-
-    /**
-     * Gets subscription_management_uri
-     *
-     * @return string
-     */
-    public function getSubscriptionManagementUri()
-    {
-        return $this->container['subscription_management_uri'];
-    }
-
-    /**
-     * Sets subscription_management_uri
-     */
-    public function setSubscriptionManagementUri($subscription_management_uri)
-    {
-        if (is_null($subscription_management_uri)) {
-            throw new \InvalidArgumentException('non-nullable subscription_management_uri cannot be null');
-        }
-        $this->container['subscription_management_uri'] = $subscription_management_uri;
-
-        return $this;
-    }
-
-    /**
-     * Gets restricted
-     *
-     * @return bool
-     */
-    public function getRestricted()
-    {
-        return $this->container['restricted'];
-    }
-
-    /**
-     * Sets restricted
-     */
-    public function setRestricted($restricted)
-    {
-        if (is_null($restricted)) {
-            throw new \InvalidArgumentException('non-nullable restricted cannot be null');
-        }
-        $this->container['restricted'] = $restricted;
-
-        return $this;
-    }
-
-    /**
-     * Gets suspended
-     *
-     * @return bool
-     */
-    public function getSuspended()
-    {
-        return $this->container['suspended'];
-    }
-
-    /**
-     * Sets suspended
-     */
-    public function setSuspended($suspended)
-    {
-        if (is_null($suspended)) {
-            throw new \InvalidArgumentException('non-nullable suspended cannot be null');
-        }
-        $this->container['suspended'] = $suspended;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_licenses
-     *
-     * @return int
-     */
-    public function getUserLicenses()
-    {
-        return $this->container['user_licenses'];
-    }
-
-    /**
-     * Sets user_licenses
-     */
-    public function setUserLicenses($user_licenses)
-    {
-        if (is_null($user_licenses)) {
-            throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
-        }
-        $this->container['user_licenses'] = $user_licenses;
-
-        return $this;
-    }
-
-    /**
-     * Gets resources
-     *
-     * @return \Upsun\Model\ResourcesLimits|null
-     */
-    public function getResources()
-    {
-        return $this->container['resources'];
-    }
-
-    /**
-     * Sets resources
-     */
-    public function setResources($resources)
-    {
-        if (is_null($resources)) {
-            throw new \InvalidArgumentException('non-nullable resources cannot be null');
-        }
-        $this->container['resources'] = $resources;
-
-        return $this;
-    }
-
-    /**
-     * Gets resource_validation_url
-     *
-     * @return string|null
-     */
-    public function getResourceValidationUrl()
-    {
-        return $this->container['resource_validation_url'];
-    }
-
-    /**
-     * Sets resource_validation_url
-     */
-    public function setResourceValidationUrl($resource_validation_url)
-    {
-        if (is_null($resource_validation_url)) {
-            throw new \InvalidArgumentException('non-nullable resource_validation_url cannot be null');
-        }
-        $this->container['resource_validation_url'] = $resource_validation_url;
-
-        return $this;
-    }
-
-    /**
-     * Gets image_types
-     *
-     * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
-     */
-    public function getImageTypes()
-    {
-        return $this->container['image_types'];
-    }
-
-    /**
-     * Sets image_types
-     */
-    public function setImageTypes($image_types)
-    {
-        if (is_null($image_types)) {
-            throw new \InvalidArgumentException('non-nullable image_types cannot be null');
-        }
-        $this->container['image_types'] = $image_types;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'license_uri' => false,
+                'plan' => false,
+                'environments' => false,
+                'storage' => false,
+                'included_users' => false,
+                'subscription_management_uri' => false,
+                'restricted' => false,
+                'suspended' => false,
+                'user_licenses' => false,
+                'resources' => false,
+                'resource_validation_url' => false,
+                'image_types' => false
+            ];
+        protected static $openAPIFormats = [
+            'license_uri' => null,
+            'plan' => null,
+            'environments' => null,
+            'storage' => null,
+            'included_users' => null,
+            'subscription_management_uri' => null,
+            'restricted' => null,
+            'suspended' => null,
+            'user_licenses' => null,
+            'resources' => null,
+            'resource_validation_url' => null,
+            'image_types' => null
+        ];
 }
+

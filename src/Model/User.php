@@ -16,831 +16,107 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class User implements ModelInterface, ArrayAccess, JsonSerializable
+final class User implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'User';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'deactivated' => 'bool',
-        'namespace' => 'string',
-        'username' => 'string',
-        'email' => 'string',
-        'email_verified' => 'bool',
-        'first_name' => 'string',
-        'last_name' => 'string',
-        'picture' => 'string',
-        'company' => 'string',
-        'website' => 'string',
-        'country' => 'string',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'consented_at' => '\DateTime',
-        'consent_method' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => 'uuid',
-        'deactivated' => null,
-        'namespace' => null,
-        'username' => null,
-        'email' => 'email',
-        'email_verified' => null,
-        'first_name' => null,
-        'last_name' => null,
-        'picture' => 'uri',
-        'company' => null,
-        'website' => 'uri',
-        'country' => null,
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'consented_at' => 'date-time',
-        'consent_method' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'deactivated' => false,
-        'namespace' => false,
-        'username' => false,
-        'email' => false,
-        'email_verified' => false,
-        'first_name' => false,
-        'last_name' => false,
-        'picture' => false,
-        'company' => false,
-        'website' => false,
-        'country' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'consented_at' => false,
-        'consent_method' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $id,
+        public readonly bool $deactivated,
+        public readonly string $namespace,
+        public readonly string $username,
+        public readonly string $email,
+        public readonly bool $email_verified,
+        public readonly string $first_name,
+        public readonly string $last_name,
+        public readonly string $picture,
+        public readonly string $company,
+        public readonly string $website,
+        public readonly string $country,
+        public readonly \DateTime $created_at,
+        public readonly \DateTime $updated_at,
+        public readonly \DateTime $consented_at,
+        public readonly string $consent_method
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'deactivated' => 'deactivated',
-        'namespace' => 'namespace',
-        'username' => 'username',
-        'email' => 'email',
-        'email_verified' => 'email_verified',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
-        'picture' => 'picture',
-        'company' => 'company',
-        'website' => 'website',
-        'country' => 'country',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'consented_at' => 'consented_at',
-        'consent_method' => 'consent_method'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'deactivated' => 'setDeactivated',
-        'namespace' => 'setNamespace',
-        'username' => 'setUsername',
-        'email' => 'setEmail',
-        'email_verified' => 'setEmailVerified',
-        'first_name' => 'setFirstName',
-        'last_name' => 'setLastName',
-        'picture' => 'setPicture',
-        'company' => 'setCompany',
-        'website' => 'setWebsite',
-        'country' => 'setCountry',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'consented_at' => 'setConsentedAt',
-        'consent_method' => 'setConsentMethod'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'deactivated' => 'getDeactivated',
-        'namespace' => 'getNamespace',
-        'username' => 'getUsername',
-        'email' => 'getEmail',
-        'email_verified' => 'getEmailVerified',
-        'first_name' => 'getFirstName',
-        'last_name' => 'getLastName',
-        'picture' => 'getPicture',
-        'company' => 'getCompany',
-        'website' => 'getWebsite',
-        'country' => 'getCountry',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'consented_at' => 'getConsentedAt',
-        'consent_method' => 'getConsentMethod'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const CONSENT_METHOD_OPT_IN = 'opt-in';
-    public const CONSENT_METHOD_TEXT_REF = 'text-ref';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getConsentMethodAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::CONSENT_METHOD_OPT_IN,
-            self::CONSENT_METHOD_TEXT_REF,
+            'id' => $this->id,
+            'deactivated' => $this->deactivated,
+            'namespace' => $this->namespace,
+            'username' => $this->username,
+            'email' => $this->email,
+            'email_verified' => $this->email_verified,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'picture' => $this->picture,
+            'company' => $this->company,
+            'website' => $this->website,
+            'country' => $this->country,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'consented_at' => $this->consented_at,
+            'consent_method' => $this->consent_method,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('deactivated', $data ?? [], null);
-        $this->setIfExists('namespace', $data ?? [], null);
-        $this->setIfExists('username', $data ?? [], null);
-        $this->setIfExists('email', $data ?? [], null);
-        $this->setIfExists('email_verified', $data ?? [], null);
-        $this->setIfExists('first_name', $data ?? [], null);
-        $this->setIfExists('last_name', $data ?? [], null);
-        $this->setIfExists('picture', $data ?? [], null);
-        $this->setIfExists('company', $data ?? [], null);
-        $this->setIfExists('website', $data ?? [], null);
-        $this->setIfExists('country', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('consented_at', $data ?? [], null);
-        $this->setIfExists('consent_method', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['deactivated'] === null) {
-            $invalidProperties[] = "'deactivated' can't be null";
-        }
-        if ($this->container['namespace'] === null) {
-            $invalidProperties[] = "'namespace' can't be null";
-        }
-        if ($this->container['username'] === null) {
-            $invalidProperties[] = "'username' can't be null";
-        }
-        if ($this->container['email'] === null) {
-            $invalidProperties[] = "'email' can't be null";
-        }
-        if ($this->container['email_verified'] === null) {
-            $invalidProperties[] = "'email_verified' can't be null";
-        }
-        if ($this->container['first_name'] === null) {
-            $invalidProperties[] = "'first_name' can't be null";
-        }
-        if ($this->container['last_name'] === null) {
-            $invalidProperties[] = "'last_name' can't be null";
-        }
-        if ($this->container['picture'] === null) {
-            $invalidProperties[] = "'picture' can't be null";
-        }
-        if ($this->container['company'] === null) {
-            $invalidProperties[] = "'company' can't be null";
-        }
-        if ($this->container['website'] === null) {
-            $invalidProperties[] = "'website' can't be null";
-        }
-        if ($this->container['country'] === null) {
-            $invalidProperties[] = "'country' can't be null";
-        }
-        if ((mb_strlen($this->container['country']) > 2)) {
-            $invalidProperties[] =
-                "invalid value for 'country', the character length must be smaller than or equal to 2.";
-        }
-
-        if ((mb_strlen($this->container['country']) < 2)) {
-            $invalidProperties[] =
-                "invalid value for 'country', the character length must be bigger than or equal to 2.";
-        }
-
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
-        }
-        if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
-        }
-        $allowedValues = $this->getConsentMethodAllowableValues();
-        if (!is_null($this->container['consent_method']) && !in_array($this->container['consent_method'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'consent_method', must be one of '%s'",
-                $this->container['consent_method'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets deactivated
-     *
-     * @return bool
-     */
-    public function getDeactivated()
-    {
-        return $this->container['deactivated'];
-    }
-
-    /**
-     * Sets deactivated
-     */
-    public function setDeactivated($deactivated)
-    {
-        if (is_null($deactivated)) {
-            throw new \InvalidArgumentException('non-nullable deactivated cannot be null');
-        }
-        $this->container['deactivated'] = $deactivated;
-
-        return $this;
-    }
-
-    /**
-     * Gets namespace
-     *
-     * @return string
-     */
-    public function getNamespace()
-    {
-        return $this->container['namespace'];
-    }
-
-    /**
-     * Sets namespace
-     */
-    public function setNamespace($namespace)
-    {
-        if (is_null($namespace)) {
-            throw new \InvalidArgumentException('non-nullable namespace cannot be null');
-        }
-        $this->container['namespace'] = $namespace;
-
-        return $this;
-    }
-
-    /**
-     * Gets username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->container['username'];
-    }
-
-    /**
-     * Sets username
-     */
-    public function setUsername($username)
-    {
-        if (is_null($username)) {
-            throw new \InvalidArgumentException('non-nullable username cannot be null');
-        }
-        $this->container['username'] = $username;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     */
-    public function setEmail($email)
-    {
-        if (is_null($email)) {
-            throw new \InvalidArgumentException('non-nullable email cannot be null');
-        }
-        $this->container['email'] = $email;
-
-        return $this;
-    }
-
-    /**
-     * Gets email_verified
-     *
-     * @return bool
-     */
-    public function getEmailVerified()
-    {
-        return $this->container['email_verified'];
-    }
-
-    /**
-     * Sets email_verified
-     */
-    public function setEmailVerified($email_verified)
-    {
-        if (is_null($email_verified)) {
-            throw new \InvalidArgumentException('non-nullable email_verified cannot be null');
-        }
-        $this->container['email_verified'] = $email_verified;
-
-        return $this;
-    }
-
-    /**
-     * Gets first_name
-     *
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->container['first_name'];
-    }
-
-    /**
-     * Sets first_name
-     */
-    public function setFirstName($first_name)
-    {
-        if (is_null($first_name)) {
-            throw new \InvalidArgumentException('non-nullable first_name cannot be null');
-        }
-        $this->container['first_name'] = $first_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets last_name
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->container['last_name'];
-    }
-
-    /**
-     * Sets last_name
-     */
-    public function setLastName($last_name)
-    {
-        if (is_null($last_name)) {
-            throw new \InvalidArgumentException('non-nullable last_name cannot be null');
-        }
-        $this->container['last_name'] = $last_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets picture
-     *
-     * @return string
-     */
-    public function getPicture()
-    {
-        return $this->container['picture'];
-    }
-
-    /**
-     * Sets picture
-     */
-    public function setPicture($picture)
-    {
-        if (is_null($picture)) {
-            throw new \InvalidArgumentException('non-nullable picture cannot be null');
-        }
-        $this->container['picture'] = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Gets company
-     *
-     * @return string
-     */
-    public function getCompany()
-    {
-        return $this->container['company'];
-    }
-
-    /**
-     * Sets company
-     */
-    public function setCompany($company)
-    {
-        if (is_null($company)) {
-            throw new \InvalidArgumentException('non-nullable company cannot be null');
-        }
-        $this->container['company'] = $company;
-
-        return $this;
-    }
-
-    /**
-     * Gets website
-     *
-     * @return string
-     */
-    public function getWebsite()
-    {
-        return $this->container['website'];
-    }
-
-    /**
-     * Sets website
-     */
-    public function setWebsite($website)
-    {
-        if (is_null($website)) {
-            throw new \InvalidArgumentException('non-nullable website cannot be null');
-        }
-        $this->container['website'] = $website;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     */
-    public function setCountry($country)
-    {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
-        }
-        if ((mb_strlen($country) > 2)) {
-            throw new \InvalidArgumentException(
-                'invalid length for $country when calling User., must be smaller than or equal to 2.'
-            );
-        }
-        if ((mb_strlen($country) < 2)) {
-            throw new \InvalidArgumentException(
-                'invalid length for $country when calling User., must be bigger than or equal to 2.'
-            );
-        }
-
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets consented_at
-     *
-     * @return \DateTime|null
-     */
-    public function getConsentedAt()
-    {
-        return $this->container['consented_at'];
-    }
-
-    /**
-     * Sets consented_at
-     */
-    public function setConsentedAt($consented_at)
-    {
-        if (is_null($consented_at)) {
-            throw new \InvalidArgumentException('non-nullable consented_at cannot be null');
-        }
-        $this->container['consented_at'] = $consented_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets consent_method
-     *
-     * @return string|null
-     */
-    public function getConsentMethod()
-    {
-        return $this->container['consent_method'];
-    }
-
-    /**
-     * Sets consent_method
-     */
-    public function setConsentMethod($consent_method)
-    {
-        if (is_null($consent_method)) {
-            throw new \InvalidArgumentException('non-nullable consent_method cannot be null');
-        }
-        $allowedValues = $this->getConsentMethodAllowableValues();
-        if (!in_array($consent_method, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'consent_method', must be one of '%s'",
-                    $consent_method,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['consent_method'] = $consent_method;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'id' => false,
+                'deactivated' => false,
+                'namespace' => false,
+                'username' => false,
+                'email' => false,
+                'email_verified' => false,
+                'first_name' => false,
+                'last_name' => false,
+                'picture' => false,
+                'company' => false,
+                'website' => false,
+                'country' => false,
+                'created_at' => false,
+                'updated_at' => false,
+                'consented_at' => false,
+                'consent_method' => false
+            ];
+        protected static $openAPIFormats = [
+            'id' => 'uuid',
+            'deactivated' => null,
+            'namespace' => null,
+            'username' => null,
+            'email' => 'email',
+            'email_verified' => null,
+            'first_name' => null,
+            'last_name' => null,
+            'picture' => 'uri',
+            'company' => null,
+            'website' => 'uri',
+            'country' => null,
+            'created_at' => 'date-time',
+            'updated_at' => 'date-time',
+            'consented_at' => 'date-time',
+            'consent_method' => null
+        ];
 }
+

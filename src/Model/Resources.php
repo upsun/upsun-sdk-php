@@ -16,496 +16,67 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Resources implements ModelInterface, ArrayAccess, JsonSerializable
+final class Resources implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'base_memory' => 'int',
-        'memory_ratio' => 'int',
-        'profile_size' => 'string',
-        'minimum' => '\Upsun\Model\TheMinimumResourcesForThisService',
-        'default' => '\Upsun\Model\TheDefaultResourcesForThisService',
-        'disk' => '\Upsun\Model\TheDisksResources'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'base_memory' => null,
-        'memory_ratio' => null,
-        'profile_size' => null,
-        'minimum' => null,
-        'default' => null,
-        'disk' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'base_memory' => true,
-        'memory_ratio' => true,
-        'profile_size' => true,
-        'minimum' => true,
-        'default' => true,
-        'disk' => true
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly ?int $base_memory,
+        public readonly ?int $memory_ratio,
+        public readonly ?string $profile_size,
+        public readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum,
+        public readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default,
+        public readonly ?\Upsun\Model\TheDisksResources $disk
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'base_memory' => $this->base_memory,
+            'memory_ratio' => $this->memory_ratio,
+            'profile_size' => $this->profile_size,
+            'minimum' => $this->minimum,
+            'default' => $this->default,
+            'disk' => $this->disk,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'base_memory' => 'base_memory',
-        'memory_ratio' => 'memory_ratio',
-        'profile_size' => 'profile_size',
-        'minimum' => 'minimum',
-        'default' => 'default',
-        'disk' => 'disk'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'base_memory' => 'setBaseMemory',
-        'memory_ratio' => 'setMemoryRatio',
-        'profile_size' => 'setProfileSize',
-        'minimum' => 'setMinimum',
-        'default' => 'setDefault',
-        'disk' => 'setDisk'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'base_memory' => 'getBaseMemory',
-        'memory_ratio' => 'getMemoryRatio',
-        'profile_size' => 'getProfileSize',
-        'minimum' => 'getMinimum',
-        'default' => 'getDefault',
-        'disk' => 'getDisk'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('base_memory', $data ?? [], null);
-        $this->setIfExists('memory_ratio', $data ?? [], null);
-        $this->setIfExists('profile_size', $data ?? [], null);
-        $this->setIfExists('minimum', $data ?? [], null);
-        $this->setIfExists('default', $data ?? [], null);
-        $this->setIfExists('disk', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['base_memory'] === null) {
-            $invalidProperties[] = "'base_memory' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['memory_ratio'] === null) {
-            $invalidProperties[] = "'memory_ratio' can't be null";
-        }
-        if ($this->container['profile_size'] === null) {
-            $invalidProperties[] = "'profile_size' can't be null";
-        }
-        if ($this->container['minimum'] === null) {
-            $invalidProperties[] = "'minimum' can't be null";
-        }
-        if ($this->container['default'] === null) {
-            $invalidProperties[] = "'default' can't be null";
-        }
-        if ($this->container['disk'] === null) {
-            $invalidProperties[] = "'disk' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets base_memory
-     *
-     * @return int
-     */
-    public function getBaseMemory()
-    {
-        return $this->container['base_memory'];
-    }
-
-    /**
-     * Sets base_memory
-     */
-    public function setBaseMemory($base_memory)
-    {
-        if (is_null($base_memory)) {
-            array_push($this->openAPINullablesSetToNull, 'base_memory');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('base_memory', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['base_memory'] = $base_memory;
-
-        return $this;
-    }
-
-    /**
-     * Gets memory_ratio
-     *
-     * @return int
-     */
-    public function getMemoryRatio()
-    {
-        return $this->container['memory_ratio'];
-    }
-
-    /**
-     * Sets memory_ratio
-     */
-    public function setMemoryRatio($memory_ratio)
-    {
-        if (is_null($memory_ratio)) {
-            array_push($this->openAPINullablesSetToNull, 'memory_ratio');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('memory_ratio', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['memory_ratio'] = $memory_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets profile_size
-     *
-     * @return string
-     */
-    public function getProfileSize()
-    {
-        return $this->container['profile_size'];
-    }
-
-    /**
-     * Sets profile_size
-     */
-    public function setProfileSize($profile_size)
-    {
-        if (is_null($profile_size)) {
-            array_push($this->openAPINullablesSetToNull, 'profile_size');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('profile_size', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['profile_size'] = $profile_size;
-
-        return $this;
-    }
-
-    /**
-     * Gets minimum
-     *
-     * @return \Upsun\Model\TheMinimumResourcesForThisService
-     */
-    public function getMinimum()
-    {
-        return $this->container['minimum'];
-    }
-
-    /**
-     * Sets minimum
-     */
-    public function setMinimum($minimum)
-    {
-        if (is_null($minimum)) {
-            array_push($this->openAPINullablesSetToNull, 'minimum');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('minimum', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['minimum'] = $minimum;
-
-        return $this;
-    }
-
-    /**
-     * Gets default
-     *
-     * @return \Upsun\Model\TheDefaultResourcesForThisService
-     */
-    public function getDefault()
-    {
-        return $this->container['default'];
-    }
-
-    /**
-     * Sets default
-     */
-    public function setDefault($default)
-    {
-        if (is_null($default)) {
-            array_push($this->openAPINullablesSetToNull, 'default');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('default', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['default'] = $default;
-
-        return $this;
-    }
-
-    /**
-     * Gets disk
-     *
-     * @return \Upsun\Model\TheDisksResources
-     */
-    public function getDisk()
-    {
-        return $this->container['disk'];
-    }
-
-    /**
-     * Sets disk
-     */
-    public function setDisk($disk)
-    {
-        if (is_null($disk)) {
-            array_push($this->openAPINullablesSetToNull, 'disk');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('disk', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['disk'] = $disk;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'base_memory' => true,
+                'memory_ratio' => true,
+                'profile_size' => true,
+                'minimum' => true,
+                'default' => true,
+                'disk' => true
+            ];
+        protected static $openAPIFormats = [
+            'base_memory' => null,
+            'memory_ratio' => null,
+            'profile_size' => null,
+            'minimum' => null,
+            'default' => null,
+            'disk' => null
+        ];
 }
+

@@ -16,616 +16,91 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class Region implements ModelInterface, ArrayAccess, JsonSerializable
+final class Region implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Region';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'id' => 'string',
-        'label' => 'string',
-        'zone' => 'string',
-        'selection_label' => 'string',
-        'project_label' => 'string',
-        'timezone' => 'string',
-        'available' => 'bool',
-        'private' => 'bool',
-        'endpoint' => 'string',
-        'provider' => '\Upsun\Model\RegionProvider',
-        'datacenter' => '\Upsun\Model\RegionDatacenter',
-        'environmental_impact' => '\Upsun\Model\RegionEnvironmentalImpact'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'id' => null,
-        'label' => null,
-        'zone' => null,
-        'selection_label' => null,
-        'project_label' => null,
-        'timezone' => null,
-        'available' => null,
-        'private' => null,
-        'endpoint' => null,
-        'provider' => null,
-        'datacenter' => null,
-        'environmental_impact' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'id' => false,
-        'label' => false,
-        'zone' => false,
-        'selection_label' => false,
-        'project_label' => false,
-        'timezone' => false,
-        'available' => false,
-        'private' => false,
-        'endpoint' => false,
-        'provider' => false,
-        'datacenter' => false,
-        'environmental_impact' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $id,
+        public readonly string $label,
+        public readonly string $zone,
+        public readonly string $selection_label,
+        public readonly string $project_label,
+        public readonly string $timezone,
+        public readonly bool $available,
+        public readonly bool $private,
+        public readonly string $endpoint,
+        public readonly \Upsun\Model\RegionProvider $provider,
+        public readonly \Upsun\Model\RegionDatacenter $datacenter,
+        public readonly \Upsun\Model\RegionEnvironmentalImpact $environmental_impact
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'id' => $this->id,
+            'label' => $this->label,
+            'zone' => $this->zone,
+            'selection_label' => $this->selection_label,
+            'project_label' => $this->project_label,
+            'timezone' => $this->timezone,
+            'available' => $this->available,
+            'private' => $this->private,
+            'endpoint' => $this->endpoint,
+            'provider' => $this->provider,
+            'datacenter' => $this->datacenter,
+            'environmental_impact' => $this->environmental_impact,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'id' => 'id',
-        'label' => 'label',
-        'zone' => 'zone',
-        'selection_label' => 'selection_label',
-        'project_label' => 'project_label',
-        'timezone' => 'timezone',
-        'available' => 'available',
-        'private' => 'private',
-        'endpoint' => 'endpoint',
-        'provider' => 'provider',
-        'datacenter' => 'datacenter',
-        'environmental_impact' => 'environmental_impact'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'id' => 'setId',
-        'label' => 'setLabel',
-        'zone' => 'setZone',
-        'selection_label' => 'setSelectionLabel',
-        'project_label' => 'setProjectLabel',
-        'timezone' => 'setTimezone',
-        'available' => 'setAvailable',
-        'private' => 'setPrivate',
-        'endpoint' => 'setEndpoint',
-        'provider' => 'setProvider',
-        'datacenter' => 'setDatacenter',
-        'environmental_impact' => 'setEnvironmentalImpact'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'id' => 'getId',
-        'label' => 'getLabel',
-        'zone' => 'getZone',
-        'selection_label' => 'getSelectionLabel',
-        'project_label' => 'getProjectLabel',
-        'timezone' => 'getTimezone',
-        'available' => 'getAvailable',
-        'private' => 'getPrivate',
-        'endpoint' => 'getEndpoint',
-        'provider' => 'getProvider',
-        'datacenter' => 'getDatacenter',
-        'environmental_impact' => 'getEnvironmentalImpact'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('label', $data ?? [], null);
-        $this->setIfExists('zone', $data ?? [], null);
-        $this->setIfExists('selection_label', $data ?? [], null);
-        $this->setIfExists('project_label', $data ?? [], null);
-        $this->setIfExists('timezone', $data ?? [], null);
-        $this->setIfExists('available', $data ?? [], null);
-        $this->setIfExists('private', $data ?? [], null);
-        $this->setIfExists('endpoint', $data ?? [], null);
-        $this->setIfExists('provider', $data ?? [], null);
-        $this->setIfExists('datacenter', $data ?? [], null);
-        $this->setIfExists('environmental_impact', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
-     *
-     * @return string|null
-     */
-    public function getId()
-    {
-        return $this->container['id'];
-    }
-
-    /**
-     * Sets id
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets label
-     *
-     * @return string|null
-     */
-    public function getLabel()
-    {
-        return $this->container['label'];
-    }
-
-    /**
-     * Sets label
-     */
-    public function setLabel($label)
-    {
-        if (is_null($label)) {
-            throw new \InvalidArgumentException('non-nullable label cannot be null');
-        }
-        $this->container['label'] = $label;
-
-        return $this;
-    }
-
-    /**
-     * Gets zone
-     *
-     * @return string|null
-     */
-    public function getZone()
-    {
-        return $this->container['zone'];
-    }
-
-    /**
-     * Sets zone
-     */
-    public function setZone($zone)
-    {
-        if (is_null($zone)) {
-            throw new \InvalidArgumentException('non-nullable zone cannot be null');
-        }
-        $this->container['zone'] = $zone;
-
-        return $this;
-    }
-
-    /**
-     * Gets selection_label
-     *
-     * @return string|null
-     */
-    public function getSelectionLabel()
-    {
-        return $this->container['selection_label'];
-    }
-
-    /**
-     * Sets selection_label
-     */
-    public function setSelectionLabel($selection_label)
-    {
-        if (is_null($selection_label)) {
-            throw new \InvalidArgumentException('non-nullable selection_label cannot be null');
-        }
-        $this->container['selection_label'] = $selection_label;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_label
-     *
-     * @return string|null
-     */
-    public function getProjectLabel()
-    {
-        return $this->container['project_label'];
-    }
-
-    /**
-     * Sets project_label
-     */
-    public function setProjectLabel($project_label)
-    {
-        if (is_null($project_label)) {
-            throw new \InvalidArgumentException('non-nullable project_label cannot be null');
-        }
-        $this->container['project_label'] = $project_label;
-
-        return $this;
-    }
-
-    /**
-     * Gets timezone
-     *
-     * @return string|null
-     */
-    public function getTimezone()
-    {
-        return $this->container['timezone'];
-    }
-
-    /**
-     * Sets timezone
-     */
-    public function setTimezone($timezone)
-    {
-        if (is_null($timezone)) {
-            throw new \InvalidArgumentException('non-nullable timezone cannot be null');
-        }
-        $this->container['timezone'] = $timezone;
-
-        return $this;
-    }
-
-    /**
-     * Gets available
-     *
-     * @return bool|null
-     */
-    public function getAvailable()
-    {
-        return $this->container['available'];
-    }
-
-    /**
-     * Sets available
-     */
-    public function setAvailable($available)
-    {
-        if (is_null($available)) {
-            throw new \InvalidArgumentException('non-nullable available cannot be null');
-        }
-        $this->container['available'] = $available;
-
-        return $this;
-    }
-
-    /**
-     * Gets private
-     *
-     * @return bool|null
-     */
-    public function getPrivate()
-    {
-        return $this->container['private'];
-    }
-
-    /**
-     * Sets private
-     */
-    public function setPrivate($private)
-    {
-        if (is_null($private)) {
-            throw new \InvalidArgumentException('non-nullable private cannot be null');
-        }
-        $this->container['private'] = $private;
-
-        return $this;
-    }
-
-    /**
-     * Gets endpoint
-     *
-     * @return string|null
-     */
-    public function getEndpoint()
-    {
-        return $this->container['endpoint'];
-    }
-
-    /**
-     * Sets endpoint
-     */
-    public function setEndpoint($endpoint)
-    {
-        if (is_null($endpoint)) {
-            throw new \InvalidArgumentException('non-nullable endpoint cannot be null');
-        }
-        $this->container['endpoint'] = $endpoint;
-
-        return $this;
-    }
-
-    /**
-     * Gets provider
-     *
-     * @return \Upsun\Model\RegionProvider|null
-     */
-    public function getProvider()
-    {
-        return $this->container['provider'];
-    }
-
-    /**
-     * Sets provider
-     */
-    public function setProvider($provider)
-    {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
-        }
-        $this->container['provider'] = $provider;
-
-        return $this;
-    }
-
-    /**
-     * Gets datacenter
-     *
-     * @return \Upsun\Model\RegionDatacenter|null
-     */
-    public function getDatacenter()
-    {
-        return $this->container['datacenter'];
-    }
-
-    /**
-     * Sets datacenter
-     */
-    public function setDatacenter($datacenter)
-    {
-        if (is_null($datacenter)) {
-            throw new \InvalidArgumentException('non-nullable datacenter cannot be null');
-        }
-        $this->container['datacenter'] = $datacenter;
-
-        return $this;
-    }
-
-    /**
-     * Gets environmental_impact
-     *
-     * @return \Upsun\Model\RegionEnvironmentalImpact|null
-     */
-    public function getEnvironmentalImpact()
-    {
-        return $this->container['environmental_impact'];
-    }
-
-    /**
-     * Sets environmental_impact
-     */
-    public function setEnvironmentalImpact($environmental_impact)
-    {
-        if (is_null($environmental_impact)) {
-            throw new \InvalidArgumentException('non-nullable environmental_impact cannot be null');
-        }
-        $this->container['environmental_impact'] = $environmental_impact;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'id' => false,
+                'label' => false,
+                'zone' => false,
+                'selection_label' => false,
+                'project_label' => false,
+                'timezone' => false,
+                'available' => false,
+                'private' => false,
+                'endpoint' => false,
+                'provider' => false,
+                'datacenter' => false,
+                'environmental_impact' => false
+            ];
+        protected static $openAPIFormats = [
+            'id' => null,
+            'label' => null,
+            'zone' => null,
+            'selection_label' => null,
+            'project_label' => null,
+            'timezone' => null,
+            'available' => null,
+            'private' => null,
+            'endpoint' => null,
+            'provider' => null,
+            'datacenter' => null,
+            'environmental_impact' => null
+        ];
 }
+

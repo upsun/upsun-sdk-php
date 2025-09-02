@@ -179,74 +179,144 @@ final class OrganizationMembersApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 201:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\OrganizationMember',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 201:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\OrganizationMember',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\OrganizationMember(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 201:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\OrganizationMember',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 400:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 403:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 404:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 201:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\OrganizationMember',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 400:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 403:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 404:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -473,30 +543,68 @@ final class OrganizationMembersApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            return [null, $statusCode, $response->getHeaders()];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
+    
+    
+            return [null, $statusCode, $response->getHeaders()];
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//
+//            return [null, $statusCode, $response->getHeaders()];
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//        
+//            
+//                case 403:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 404:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -715,60 +823,122 @@ final class OrganizationMembersApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\OrganizationMember',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\OrganizationMember',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\OrganizationMember(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\OrganizationMember',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 403:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 404:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\OrganizationMember',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 403:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 404:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -1013,74 +1183,144 @@ final class OrganizationMembersApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\ListOrgMembers200Response',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\ListOrgMembers200Response',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\ListOrgMembers200Response(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\ListOrgMembers200Response',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 400:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 403:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 404:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\ListOrgMembers200Response',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 400:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 403:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 404:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**
@@ -1387,74 +1627,144 @@ final class OrganizationMembersApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
+            $responseBody = (string) $response->getBody();
+            $data = json_decode($responseBody, true);
 
-
-            switch ($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\OrganizationMember',
-                        $request,
-                        $response,
-                    );
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 403:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Upsun\Model\Error',
-                        $request,
-                        $response,
-                    );
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
+                    $request,
+                    $response
+                );
             }
-
-
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\OrganizationMember',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 403:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Upsun\Model\Error',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-
+    
+            // Création du modèle directement
+            $model = new \Upsun\Model\OrganizationMember(
+            );
+    
+            return [$model, $statusCode, $response->getHeaders()];
+    
+    
+        } catch (\Exception $e) {
+            throw new ApiException(
+                $e->getMessage(),
+                $request ?? null,
+                $response ?? null,
+                $e
+            );
         }
+            
+
+
+
+//            
+//            
+//            
+//
+//            switch ($statusCode) {
+//            
+//            
+//                case 200:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\OrganizationMember',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 400:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 403:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            
+//            
+//            
+//                case 404:
+//                    return $this->handleResponseWithDataType(
+//                        '\Upsun\Model\Error',
+//                        $request,
+//                        $response,
+//                    );
+//            
+//            
+//            }
+//            
+//            
+//
+//
+//
+//
+//            
+//            
+//        } catch (ApiException $e) {
+//            switch ($e->getCode()) {
+//        
+//            
+//                case 200:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\OrganizationMember',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 400:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 403:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            
+//                case 404:
+//                    $data = ObjectSerializer::deserialize(
+//                        $e->getResponseBody(),
+//                        '\Upsun\Model\Error',
+//                        $e->getResponseHeaders()
+//                    );
+//                    $e->setResponseObject($data);
+//                    throw $e;
+//            
+//        
+//            }
+//
+//
+//        }
     }
 
     /**

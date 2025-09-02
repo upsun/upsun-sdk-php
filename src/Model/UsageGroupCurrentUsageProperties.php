@@ -16,526 +16,79 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class UsageGroupCurrentUsageProperties implements ModelInterface, ArrayAccess, JsonSerializable
+final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'UsageGroupCurrentUsageProperties';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'title' => 'string',
-        'type' => 'bool',
-        'current_usage' => 'float',
-        'current_usage_formatted' => 'string',
-        'not_charged' => 'bool',
-        'free_quantity' => 'float',
-        'free_quantity_formatted' => 'string',
-        'daily_average' => 'float',
-        'daily_average_formatted' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'title' => null,
-        'type' => null,
-        'current_usage' => null,
-        'current_usage_formatted' => null,
-        'not_charged' => null,
-        'free_quantity' => null,
-        'free_quantity_formatted' => null,
-        'daily_average' => null,
-        'daily_average_formatted' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'title' => false,
-        'type' => false,
-        'current_usage' => false,
-        'current_usage_formatted' => false,
-        'not_charged' => false,
-        'free_quantity' => false,
-        'free_quantity_formatted' => false,
-        'daily_average' => false,
-        'daily_average_formatted' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $title,
+        public readonly bool $type,
+        public readonly float $current_usage,
+        public readonly string $current_usage_formatted,
+        public readonly bool $not_charged,
+        public readonly float $free_quantity,
+        public readonly string $free_quantity_formatted,
+        public readonly float $daily_average,
+        public readonly string $daily_average_formatted
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'title' => $this->title,
+            'type' => $this->type,
+            'current_usage' => $this->current_usage,
+            'current_usage_formatted' => $this->current_usage_formatted,
+            'not_charged' => $this->not_charged,
+            'free_quantity' => $this->free_quantity,
+            'free_quantity_formatted' => $this->free_quantity_formatted,
+            'daily_average' => $this->daily_average,
+            'daily_average_formatted' => $this->daily_average_formatted,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'title' => 'title',
-        'type' => 'type',
-        'current_usage' => 'current_usage',
-        'current_usage_formatted' => 'current_usage_formatted',
-        'not_charged' => 'not_charged',
-        'free_quantity' => 'free_quantity',
-        'free_quantity_formatted' => 'free_quantity_formatted',
-        'daily_average' => 'daily_average',
-        'daily_average_formatted' => 'daily_average_formatted'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'title' => 'setTitle',
-        'type' => 'setType',
-        'current_usage' => 'setCurrentUsage',
-        'current_usage_formatted' => 'setCurrentUsageFormatted',
-        'not_charged' => 'setNotCharged',
-        'free_quantity' => 'setFreeQuantity',
-        'free_quantity_formatted' => 'setFreeQuantityFormatted',
-        'daily_average' => 'setDailyAverage',
-        'daily_average_formatted' => 'setDailyAverageFormatted'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'title' => 'getTitle',
-        'type' => 'getType',
-        'current_usage' => 'getCurrentUsage',
-        'current_usage_formatted' => 'getCurrentUsageFormatted',
-        'not_charged' => 'getNotCharged',
-        'free_quantity' => 'getFreeQuantity',
-        'free_quantity_formatted' => 'getFreeQuantityFormatted',
-        'daily_average' => 'getDailyAverage',
-        'daily_average_formatted' => 'getDailyAverageFormatted'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('title', $data ?? [], null);
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('current_usage', $data ?? [], null);
-        $this->setIfExists('current_usage_formatted', $data ?? [], null);
-        $this->setIfExists('not_charged', $data ?? [], null);
-        $this->setIfExists('free_quantity', $data ?? [], null);
-        $this->setIfExists('free_quantity_formatted', $data ?? [], null);
-        $this->setIfExists('daily_average', $data ?? [], null);
-        $this->setIfExists('daily_average_formatted', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets title
-     *
-     * @return string|null
-     */
-    public function getTitle()
-    {
-        return $this->container['title'];
-    }
-
-    /**
-     * Sets title
-     */
-    public function setTitle($title)
-    {
-        if (is_null($title)) {
-            throw new \InvalidArgumentException('non-nullable title cannot be null');
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $this->container['title'] = $title;
-
-        return $this;
-    }
-
-    /**
-     * Gets type
-     *
-     * @return bool|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets current_usage
-     *
-     * @return float|null
-     */
-    public function getCurrentUsage()
-    {
-        return $this->container['current_usage'];
-    }
-
-    /**
-     * Sets current_usage
-     */
-    public function setCurrentUsage($current_usage)
-    {
-        if (is_null($current_usage)) {
-            throw new \InvalidArgumentException('non-nullable current_usage cannot be null');
-        }
-        $this->container['current_usage'] = $current_usage;
-
-        return $this;
-    }
-
-    /**
-     * Gets current_usage_formatted
-     *
-     * @return string|null
-     */
-    public function getCurrentUsageFormatted()
-    {
-        return $this->container['current_usage_formatted'];
-    }
-
-    /**
-     * Sets current_usage_formatted
-     */
-    public function setCurrentUsageFormatted($current_usage_formatted)
-    {
-        if (is_null($current_usage_formatted)) {
-            throw new \InvalidArgumentException('non-nullable current_usage_formatted cannot be null');
-        }
-        $this->container['current_usage_formatted'] = $current_usage_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets not_charged
-     *
-     * @return bool|null
-     */
-    public function getNotCharged()
-    {
-        return $this->container['not_charged'];
-    }
-
-    /**
-     * Sets not_charged
-     */
-    public function setNotCharged($not_charged)
-    {
-        if (is_null($not_charged)) {
-            throw new \InvalidArgumentException('non-nullable not_charged cannot be null');
-        }
-        $this->container['not_charged'] = $not_charged;
-
-        return $this;
-    }
-
-    /**
-     * Gets free_quantity
-     *
-     * @return float|null
-     */
-    public function getFreeQuantity()
-    {
-        return $this->container['free_quantity'];
-    }
-
-    /**
-     * Sets free_quantity
-     */
-    public function setFreeQuantity($free_quantity)
-    {
-        if (is_null($free_quantity)) {
-            throw new \InvalidArgumentException('non-nullable free_quantity cannot be null');
-        }
-        $this->container['free_quantity'] = $free_quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets free_quantity_formatted
-     *
-     * @return string|null
-     */
-    public function getFreeQuantityFormatted()
-    {
-        return $this->container['free_quantity_formatted'];
-    }
-
-    /**
-     * Sets free_quantity_formatted
-     */
-    public function setFreeQuantityFormatted($free_quantity_formatted)
-    {
-        if (is_null($free_quantity_formatted)) {
-            throw new \InvalidArgumentException('non-nullable free_quantity_formatted cannot be null');
-        }
-        $this->container['free_quantity_formatted'] = $free_quantity_formatted;
-
-        return $this;
-    }
-
-    /**
-     * Gets daily_average
-     *
-     * @return float|null
-     */
-    public function getDailyAverage()
-    {
-        return $this->container['daily_average'];
-    }
-
-    /**
-     * Sets daily_average
-     */
-    public function setDailyAverage($daily_average)
-    {
-        if (is_null($daily_average)) {
-            throw new \InvalidArgumentException('non-nullable daily_average cannot be null');
-        }
-        $this->container['daily_average'] = $daily_average;
-
-        return $this;
-    }
-
-    /**
-     * Gets daily_average_formatted
-     *
-     * @return string|null
-     */
-    public function getDailyAverageFormatted()
-    {
-        return $this->container['daily_average_formatted'];
-    }
-
-    /**
-     * Sets daily_average_formatted
-     */
-    public function setDailyAverageFormatted($daily_average_formatted)
-    {
-        if (is_null($daily_average_formatted)) {
-            throw new \InvalidArgumentException('non-nullable daily_average_formatted cannot be null');
-        }
-        $this->container['daily_average_formatted'] = $daily_average_formatted;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'title' => false,
+                'type' => false,
+                'current_usage' => false,
+                'current_usage_formatted' => false,
+                'not_charged' => false,
+                'free_quantity' => false,
+                'free_quantity_formatted' => false,
+                'daily_average' => false,
+                'daily_average_formatted' => false
+            ];
+        protected static $openAPIFormats = [
+            'title' => null,
+            'type' => null,
+            'current_usage' => null,
+            'current_usage_formatted' => null,
+            'not_charged' => null,
+            'free_quantity' => null,
+            'free_quantity_formatted' => null,
+            'daily_average' => null,
+            'daily_average_formatted' => null
+        ];
 }
+

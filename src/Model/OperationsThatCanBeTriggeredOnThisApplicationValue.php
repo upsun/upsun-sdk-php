@@ -16,396 +16,55 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelInterface, ArrayAccess, JsonSerializable
+final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Operations_that_can_be_triggered_on_this_application_value';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'commands' => '\Upsun\Model\TheCommandsDefinition',
-        'timeout' => 'int',
-        'role' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'commands' => null,
-        'timeout' => null,
-        'role' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'commands' => false,
-        'timeout' => true,
-        'role' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly \Upsun\Model\TheCommandsDefinition $commands,
+        public readonly ?int $timeout,
+        public readonly string $role
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'commands' => 'commands',
-        'timeout' => 'timeout',
-        'role' => 'role'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'commands' => 'setCommands',
-        'timeout' => 'setTimeout',
-        'role' => 'setRole'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'commands' => 'getCommands',
-        'timeout' => 'getTimeout',
-        'role' => 'getRole'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_CONTRIBUTOR = 'contributor';
-    public const ROLE_VIEWER = 'viewer';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getRoleAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::ROLE_ADMIN,
-            self::ROLE_CONTRIBUTOR,
-            self::ROLE_VIEWER,
+            'commands' => $this->commands,
+            'timeout' => $this->timeout,
+            'role' => $this->role,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('commands', $data ?? [], null);
-        $this->setIfExists('timeout', $data ?? [], null);
-        $this->setIfExists('role', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['commands'] === null) {
-            $invalidProperties[] = "'commands' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['timeout'] === null) {
-            $invalidProperties[] = "'timeout' can't be null";
-        }
-        if ($this->container['role'] === null) {
-            $invalidProperties[] = "'role' can't be null";
-        }
-        $allowedValues = $this->getRoleAllowableValues();
-        if (!is_null($this->container['role']) && !in_array($this->container['role'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'role', must be one of '%s'",
-                $this->container['role'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets commands
-     *
-     * @return \Upsun\Model\TheCommandsDefinition
-     */
-    public function getCommands()
-    {
-        return $this->container['commands'];
-    }
-
-    /**
-     * Sets commands
-     */
-    public function setCommands($commands)
-    {
-        if (is_null($commands)) {
-            throw new \InvalidArgumentException('non-nullable commands cannot be null');
-        }
-        $this->container['commands'] = $commands;
-
-        return $this;
-    }
-
-    /**
-     * Gets timeout
-     *
-     * @return int
-     */
-    public function getTimeout()
-    {
-        return $this->container['timeout'];
-    }
-
-    /**
-     * Sets timeout
-     */
-    public function setTimeout($timeout)
-    {
-        if (is_null($timeout)) {
-            array_push($this->openAPINullablesSetToNull, 'timeout');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('timeout', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['timeout'] = $timeout;
-
-        return $this;
-    }
-
-    /**
-     * Gets role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->container['role'];
-    }
-
-    /**
-     * Sets role
-     */
-    public function setRole($role)
-    {
-        if (is_null($role)) {
-            throw new \InvalidArgumentException('non-nullable role cannot be null');
-        }
-        $allowedValues = $this->getRoleAllowableValues();
-        if (!in_array($role, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'role', must be one of '%s'",
-                    $role,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['role'] = $role;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'commands' => false,
+                'timeout' => true,
+                'role' => false
+            ];
+        protected static $openAPIFormats = [
+            'commands' => null,
+            'timeout' => null,
+            'role' => null
+        ];
 }
+

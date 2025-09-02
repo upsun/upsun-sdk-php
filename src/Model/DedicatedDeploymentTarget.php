@@ -16,747 +16,101 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DedicatedDeploymentTarget implements ModelInterface, ArrayAccess, JsonSerializable
+final class DedicatedDeploymentTarget implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'DedicatedDeploymentTarget';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'type' => 'string',
-        'name' => 'string',
-        'deploy_host' => 'string',
-        'deploy_port' => 'int',
-        'ssh_host' => 'string',
-        'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
-        'auto_mounts' => 'bool',
-        'excluded_mounts' => 'string[]',
-        'enforced_mounts' => 'object',
-        'auto_crons' => 'bool',
-        'auto_nginx' => 'bool',
-        'maintenance_mode' => 'bool',
-        'guardrails_phase' => 'int'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'type' => null,
-        'name' => null,
-        'deploy_host' => null,
-        'deploy_port' => null,
-        'ssh_host' => null,
-        'hosts' => null,
-        'auto_mounts' => null,
-        'excluded_mounts' => null,
-        'enforced_mounts' => null,
-        'auto_crons' => null,
-        'auto_nginx' => null,
-        'maintenance_mode' => null,
-        'guardrails_phase' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'type' => false,
-        'name' => false,
-        'deploy_host' => true,
-        'deploy_port' => true,
-        'ssh_host' => true,
-        'hosts' => true,
-        'auto_mounts' => false,
-        'excluded_mounts' => false,
-        'enforced_mounts' => false,
-        'auto_crons' => false,
-        'auto_nginx' => false,
-        'maintenance_mode' => false,
-        'guardrails_phase' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $type,
+        public readonly string $name,
+        public readonly ?string $deploy_host,
+        public readonly ?int $deploy_port,
+        public readonly ?string $ssh_host,
+        /**
+         * @var array
+         */
+        public readonly ?array $hosts,
+        public readonly bool $auto_mounts,
+        /**
+         * @var array
+         */
+        public readonly array $excluded_mounts,
+        public readonly object $enforced_mounts,
+        public readonly bool $auto_crons,
+        public readonly bool $auto_nginx,
+        public readonly bool $maintenance_mode,
+        public readonly int $guardrails_phase
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'deploy_host' => 'deploy_host',
-        'deploy_port' => 'deploy_port',
-        'ssh_host' => 'ssh_host',
-        'hosts' => 'hosts',
-        'auto_mounts' => 'auto_mounts',
-        'excluded_mounts' => 'excluded_mounts',
-        'enforced_mounts' => 'enforced_mounts',
-        'auto_crons' => 'auto_crons',
-        'auto_nginx' => 'auto_nginx',
-        'maintenance_mode' => 'maintenance_mode',
-        'guardrails_phase' => 'guardrails_phase'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'type' => 'setType',
-        'name' => 'setName',
-        'deploy_host' => 'setDeployHost',
-        'deploy_port' => 'setDeployPort',
-        'ssh_host' => 'setSshHost',
-        'hosts' => 'setHosts',
-        'auto_mounts' => 'setAutoMounts',
-        'excluded_mounts' => 'setExcludedMounts',
-        'enforced_mounts' => 'setEnforcedMounts',
-        'auto_crons' => 'setAutoCrons',
-        'auto_nginx' => 'setAutoNginx',
-        'maintenance_mode' => 'setMaintenanceMode',
-        'guardrails_phase' => 'setGuardrailsPhase'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'type' => 'getType',
-        'name' => 'getName',
-        'deploy_host' => 'getDeployHost',
-        'deploy_port' => 'getDeployPort',
-        'ssh_host' => 'getSshHost',
-        'hosts' => 'getHosts',
-        'auto_mounts' => 'getAutoMounts',
-        'excluded_mounts' => 'getExcludedMounts',
-        'enforced_mounts' => 'getEnforcedMounts',
-        'auto_crons' => 'getAutoCrons',
-        'auto_nginx' => 'getAutoNginx',
-        'maintenance_mode' => 'getMaintenanceMode',
-        'guardrails_phase' => 'getGuardrailsPhase'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
-    /**
-     * Gets allowable values of the enum
-     */
-    public function getTypeAllowableValues(): array
+    public function jsonSerialize(): array
     {
         return [
-            self::TYPE_DEDICATED,
-            self::TYPE_ENTERPRISE,
-            self::TYPE_LOCAL,
+            'type' => $this->type,
+            'name' => $this->name,
+            'deploy_host' => $this->deploy_host,
+            'deploy_port' => $this->deploy_port,
+            'ssh_host' => $this->ssh_host,
+            'hosts' => $this->hosts,
+            'auto_mounts' => $this->auto_mounts,
+            'excluded_mounts' => $this->excluded_mounts,
+            'enforced_mounts' => $this->enforced_mounts,
+            'auto_crons' => $this->auto_crons,
+            'auto_nginx' => $this->auto_nginx,
+            'maintenance_mode' => $this->maintenance_mode,
+            'guardrails_phase' => $this->guardrails_phase,
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
+    public function __toString(): string
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('deploy_host', $data ?? [], null);
-        $this->setIfExists('deploy_port', $data ?? [], null);
-        $this->setIfExists('ssh_host', $data ?? [], null);
-        $this->setIfExists('hosts', $data ?? [], null);
-        $this->setIfExists('auto_mounts', $data ?? [], null);
-        $this->setIfExists('excluded_mounts', $data ?? [], null);
-        $this->setIfExists('enforced_mounts', $data ?? [], null);
-        $this->setIfExists('auto_crons', $data ?? [], null);
-        $this->setIfExists('auto_nginx', $data ?? [], null);
-        $this->setIfExists('maintenance_mode', $data ?? [], null);
-        $this->setIfExists('guardrails_phase', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['deploy_host'] === null) {
-            $invalidProperties[] = "'deploy_host' can't be null";
-        }
-        if ($this->container['deploy_port'] === null) {
-            $invalidProperties[] = "'deploy_port' can't be null";
-        }
-        if ($this->container['ssh_host'] === null) {
-            $invalidProperties[] = "'ssh_host' can't be null";
-        }
-        if ($this->container['hosts'] === null) {
-            $invalidProperties[] = "'hosts' can't be null";
-        }
-        if ($this->container['auto_mounts'] === null) {
-            $invalidProperties[] = "'auto_mounts' can't be null";
-        }
-        if ($this->container['excluded_mounts'] === null) {
-            $invalidProperties[] = "'excluded_mounts' can't be null";
-        }
-        if ($this->container['enforced_mounts'] === null) {
-            $invalidProperties[] = "'enforced_mounts' can't be null";
-        }
-        if ($this->container['auto_crons'] === null) {
-            $invalidProperties[] = "'auto_crons' can't be null";
-        }
-        if ($this->container['auto_nginx'] === null) {
-            $invalidProperties[] = "'auto_nginx' can't be null";
-        }
-        if ($this->container['maintenance_mode'] === null) {
-            $invalidProperties[] = "'maintenance_mode' can't be null";
-        }
-        if ($this->container['guardrails_phase'] === null) {
-            $invalidProperties[] = "'guardrails_phase' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets deploy_host
-     *
-     * @return string
-     */
-    public function getDeployHost()
-    {
-        return $this->container['deploy_host'];
-    }
-
-    /**
-     * Sets deploy_host
-     */
-    public function setDeployHost($deploy_host)
-    {
-        if (is_null($deploy_host)) {
-            array_push($this->openAPINullablesSetToNull, 'deploy_host');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('deploy_host', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['deploy_host'] = $deploy_host;
-
-        return $this;
-    }
-
-    /**
-     * Gets deploy_port
-     *
-     * @return int
-     */
-    public function getDeployPort()
-    {
-        return $this->container['deploy_port'];
-    }
-
-    /**
-     * Sets deploy_port
-     */
-    public function setDeployPort($deploy_port)
-    {
-        if (is_null($deploy_port)) {
-            array_push($this->openAPINullablesSetToNull, 'deploy_port');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('deploy_port', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['deploy_port'] = $deploy_port;
-
-        return $this;
-    }
-
-    /**
-     * Gets ssh_host
-     *
-     * @return string
-     */
-    public function getSshHost()
-    {
-        return $this->container['ssh_host'];
-    }
-
-    /**
-     * Sets ssh_host
-     */
-    public function setSshHost($ssh_host)
-    {
-        if (is_null($ssh_host)) {
-            array_push($this->openAPINullablesSetToNull, 'ssh_host');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('ssh_host', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['ssh_host'] = $ssh_host;
-
-        return $this;
-    }
-
-    /**
-     * Gets hosts
-     *
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
-     */
-    public function getHosts()
-    {
-        return $this->container['hosts'];
-    }
-
-    /**
-     * Sets hosts
-     */
-    public function setHosts($hosts)
-    {
-        if (is_null($hosts)) {
-            array_push($this->openAPINullablesSetToNull, 'hosts');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('hosts', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['hosts'] = $hosts;
-
-        return $this;
-    }
-
-    /**
-     * Gets auto_mounts
-     *
-     * @return bool
-     */
-    public function getAutoMounts()
-    {
-        return $this->container['auto_mounts'];
-    }
-
-    /**
-     * Sets auto_mounts
-     */
-    public function setAutoMounts($auto_mounts)
-    {
-        if (is_null($auto_mounts)) {
-            throw new \InvalidArgumentException('non-nullable auto_mounts cannot be null');
-        }
-        $this->container['auto_mounts'] = $auto_mounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets excluded_mounts
-     *
-     * @return string[]
-     */
-    public function getExcludedMounts()
-    {
-        return $this->container['excluded_mounts'];
-    }
-
-    /**
-     * Sets excluded_mounts
-     */
-    public function setExcludedMounts($excluded_mounts)
-    {
-        if (is_null($excluded_mounts)) {
-            throw new \InvalidArgumentException('non-nullable excluded_mounts cannot be null');
-        }
-        $this->container['excluded_mounts'] = $excluded_mounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets enforced_mounts
-     *
-     * @return object
-     */
-    public function getEnforcedMounts()
-    {
-        return $this->container['enforced_mounts'];
-    }
-
-    /**
-     * Sets enforced_mounts
-     */
-    public function setEnforcedMounts($enforced_mounts)
-    {
-        if (is_null($enforced_mounts)) {
-            throw new \InvalidArgumentException('non-nullable enforced_mounts cannot be null');
-        }
-        $this->container['enforced_mounts'] = $enforced_mounts;
-
-        return $this;
-    }
-
-    /**
-     * Gets auto_crons
-     *
-     * @return bool
-     */
-    public function getAutoCrons()
-    {
-        return $this->container['auto_crons'];
-    }
-
-    /**
-     * Sets auto_crons
-     */
-    public function setAutoCrons($auto_crons)
-    {
-        if (is_null($auto_crons)) {
-            throw new \InvalidArgumentException('non-nullable auto_crons cannot be null');
-        }
-        $this->container['auto_crons'] = $auto_crons;
-
-        return $this;
-    }
-
-    /**
-     * Gets auto_nginx
-     *
-     * @return bool
-     */
-    public function getAutoNginx()
-    {
-        return $this->container['auto_nginx'];
-    }
-
-    /**
-     * Sets auto_nginx
-     */
-    public function setAutoNginx($auto_nginx)
-    {
-        if (is_null($auto_nginx)) {
-            throw new \InvalidArgumentException('non-nullable auto_nginx cannot be null');
-        }
-        $this->container['auto_nginx'] = $auto_nginx;
-
-        return $this;
-    }
-
-    /**
-     * Gets maintenance_mode
-     *
-     * @return bool
-     */
-    public function getMaintenanceMode()
-    {
-        return $this->container['maintenance_mode'];
-    }
-
-    /**
-     * Sets maintenance_mode
-     */
-    public function setMaintenanceMode($maintenance_mode)
-    {
-        if (is_null($maintenance_mode)) {
-            throw new \InvalidArgumentException('non-nullable maintenance_mode cannot be null');
-        }
-        $this->container['maintenance_mode'] = $maintenance_mode;
-
-        return $this;
-    }
-
-    /**
-     * Gets guardrails_phase
-     *
-     * @return int
-     */
-    public function getGuardrailsPhase()
-    {
-        return $this->container['guardrails_phase'];
-    }
-
-    /**
-     * Sets guardrails_phase
-     */
-    public function setGuardrailsPhase($guardrails_phase)
-    {
-        if (is_null($guardrails_phase)) {
-            throw new \InvalidArgumentException('non-nullable guardrails_phase cannot be null');
-        }
-        $this->container['guardrails_phase'] = $guardrails_phase;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'type' => false,
+                'name' => false,
+                'deploy_host' => true,
+                'deploy_port' => true,
+                'ssh_host' => true,
+                'hosts' => true,
+                'auto_mounts' => false,
+                'excluded_mounts' => false,
+                'enforced_mounts' => false,
+                'auto_crons' => false,
+                'auto_nginx' => false,
+                'maintenance_mode' => false,
+                'guardrails_phase' => false
+            ];
+        protected static $openAPIFormats = [
+            'type' => null,
+            'name' => null,
+            'deploy_host' => null,
+            'deploy_port' => null,
+            'ssh_host' => null,
+            'hosts' => null,
+            'auto_mounts' => null,
+            'excluded_mounts' => null,
+            'enforced_mounts' => null,
+            'auto_crons' => null,
+            'auto_nginx' => null,
+            'maintenance_mode' => null,
+            'guardrails_phase' => null
+        ];
 }
+

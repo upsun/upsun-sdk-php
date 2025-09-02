@@ -16,729 +16,102 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class EnvironmentVariable implements ModelInterface, ArrayAccess, JsonSerializable
+final class EnvironmentVariable implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentVariable';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'name' => 'string',
-        'attributes' => 'array<string,string>',
-        'value' => 'string',
-        'is_json' => 'bool',
-        'is_sensitive' => 'bool',
-        'visible_build' => 'bool',
-        'visible_runtime' => 'bool',
-        'project' => 'string',
-        'environment' => 'string',
-        'inherited' => 'bool',
-        'is_enabled' => 'bool',
-        'is_inheritable' => 'bool'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'name' => null,
-        'attributes' => null,
-        'value' => null,
-        'is_json' => null,
-        'is_sensitive' => null,
-        'visible_build' => null,
-        'visible_runtime' => null,
-        'project' => null,
-        'environment' => null,
-        'inherited' => null,
-        'is_enabled' => null,
-        'is_inheritable' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'created_at' => true,
-        'updated_at' => true,
-        'name' => false,
-        'attributes' => false,
-        'value' => false,
-        'is_json' => false,
-        'is_sensitive' => false,
-        'visible_build' => false,
-        'visible_runtime' => false,
-        'project' => false,
-        'environment' => false,
-        'inherited' => false,
-        'is_enabled' => false,
-        'is_inheritable' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly ?\DateTime $created_at,
+        public readonly ?\DateTime $updated_at,
+        public readonly string $name,
+        /**
+         * @var string[]
+         */
+        public readonly array $attributes,
+        public readonly string $value,
+        public readonly bool $is_json,
+        public readonly bool $is_sensitive,
+        public readonly bool $visible_build,
+        public readonly bool $visible_runtime,
+        public readonly string $project,
+        public readonly string $environment,
+        public readonly bool $inherited,
+        public readonly bool $is_enabled,
+        public readonly bool $is_inheritable
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'name' => $this->name,
+            'attributes' => $this->attributes,
+            'value' => $this->value,
+            'is_json' => $this->is_json,
+            'is_sensitive' => $this->is_sensitive,
+            'visible_build' => $this->visible_build,
+            'visible_runtime' => $this->visible_runtime,
+            'project' => $this->project,
+            'environment' => $this->environment,
+            'inherited' => $this->inherited,
+            'is_enabled' => $this->is_enabled,
+            'is_inheritable' => $this->is_inheritable,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'value' => 'value',
-        'is_json' => 'is_json',
-        'is_sensitive' => 'is_sensitive',
-        'visible_build' => 'visible_build',
-        'visible_runtime' => 'visible_runtime',
-        'project' => 'project',
-        'environment' => 'environment',
-        'inherited' => 'inherited',
-        'is_enabled' => 'is_enabled',
-        'is_inheritable' => 'is_inheritable'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'name' => 'setName',
-        'attributes' => 'setAttributes',
-        'value' => 'setValue',
-        'is_json' => 'setIsJson',
-        'is_sensitive' => 'setIsSensitive',
-        'visible_build' => 'setVisibleBuild',
-        'visible_runtime' => 'setVisibleRuntime',
-        'project' => 'setProject',
-        'environment' => 'setEnvironment',
-        'inherited' => 'setInherited',
-        'is_enabled' => 'setIsEnabled',
-        'is_inheritable' => 'setIsInheritable'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'name' => 'getName',
-        'attributes' => 'getAttributes',
-        'value' => 'getValue',
-        'is_json' => 'getIsJson',
-        'is_sensitive' => 'getIsSensitive',
-        'visible_build' => 'getVisibleBuild',
-        'visible_runtime' => 'getVisibleRuntime',
-        'project' => 'getProject',
-        'environment' => 'getEnvironment',
-        'inherited' => 'getInherited',
-        'is_enabled' => 'getIsEnabled',
-        'is_inheritable' => 'getIsInheritable'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
-        $this->setIfExists('is_json', $data ?? [], null);
-        $this->setIfExists('is_sensitive', $data ?? [], null);
-        $this->setIfExists('visible_build', $data ?? [], null);
-        $this->setIfExists('visible_runtime', $data ?? [], null);
-        $this->setIfExists('project', $data ?? [], null);
-        $this->setIfExists('environment', $data ?? [], null);
-        $this->setIfExists('inherited', $data ?? [], null);
-        $this->setIfExists('is_enabled', $data ?? [], null);
-        $this->setIfExists('is_inheritable', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        if ($this->container['created_at'] === null) {
-            $invalidProperties[] = "'created_at' can't be null";
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        if ($this->container['updated_at'] === null) {
-            $invalidProperties[] = "'updated_at' can't be null";
-        }
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['attributes'] === null) {
-            $invalidProperties[] = "'attributes' can't be null";
-        }
-        if ($this->container['is_json'] === null) {
-            $invalidProperties[] = "'is_json' can't be null";
-        }
-        if ($this->container['is_sensitive'] === null) {
-            $invalidProperties[] = "'is_sensitive' can't be null";
-        }
-        if ($this->container['visible_build'] === null) {
-            $invalidProperties[] = "'visible_build' can't be null";
-        }
-        if ($this->container['visible_runtime'] === null) {
-            $invalidProperties[] = "'visible_runtime' can't be null";
-        }
-        if ($this->container['project'] === null) {
-            $invalidProperties[] = "'project' can't be null";
-        }
-        if ($this->container['environment'] === null) {
-            $invalidProperties[] = "'environment' can't be null";
-        }
-        if ($this->container['inherited'] === null) {
-            $invalidProperties[] = "'inherited' can't be null";
-        }
-        if ($this->container['is_enabled'] === null) {
-            $invalidProperties[] = "'is_enabled' can't be null";
-        }
-        if ($this->container['is_inheritable'] === null) {
-            $invalidProperties[] = "'is_inheritable' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets created_at
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->container['created_at'];
-    }
-
-    /**
-     * Sets created_at
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            array_push($this->openAPINullablesSetToNull, 'created_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('created_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->container['updated_at'];
-    }
-
-    /**
-     * Sets updated_at
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            array_push($this->openAPINullablesSetToNull, 'updated_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('updated_at', $nullablesSetToNull);
-            if ($index !== false) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     */
-    public function setName($name)
-    {
-        if (is_null($name)) {
-            throw new \InvalidArgumentException('non-nullable name cannot be null');
-        }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return array<string,string>
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return string|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     */
-    public function setValue($value)
-    {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_json
-     *
-     * @return bool
-     */
-    public function getIsJson()
-    {
-        return $this->container['is_json'];
-    }
-
-    /**
-     * Sets is_json
-     */
-    public function setIsJson($is_json)
-    {
-        if (is_null($is_json)) {
-            throw new \InvalidArgumentException('non-nullable is_json cannot be null');
-        }
-        $this->container['is_json'] = $is_json;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_sensitive
-     *
-     * @return bool
-     */
-    public function getIsSensitive()
-    {
-        return $this->container['is_sensitive'];
-    }
-
-    /**
-     * Sets is_sensitive
-     */
-    public function setIsSensitive($is_sensitive)
-    {
-        if (is_null($is_sensitive)) {
-            throw new \InvalidArgumentException('non-nullable is_sensitive cannot be null');
-        }
-        $this->container['is_sensitive'] = $is_sensitive;
-
-        return $this;
-    }
-
-    /**
-     * Gets visible_build
-     *
-     * @return bool
-     */
-    public function getVisibleBuild()
-    {
-        return $this->container['visible_build'];
-    }
-
-    /**
-     * Sets visible_build
-     */
-    public function setVisibleBuild($visible_build)
-    {
-        if (is_null($visible_build)) {
-            throw new \InvalidArgumentException('non-nullable visible_build cannot be null');
-        }
-        $this->container['visible_build'] = $visible_build;
-
-        return $this;
-    }
-
-    /**
-     * Gets visible_runtime
-     *
-     * @return bool
-     */
-    public function getVisibleRuntime()
-    {
-        return $this->container['visible_runtime'];
-    }
-
-    /**
-     * Sets visible_runtime
-     */
-    public function setVisibleRuntime($visible_runtime)
-    {
-        if (is_null($visible_runtime)) {
-            throw new \InvalidArgumentException('non-nullable visible_runtime cannot be null');
-        }
-        $this->container['visible_runtime'] = $visible_runtime;
-
-        return $this;
-    }
-
-    /**
-     * Gets project
-     *
-     * @return string
-     */
-    public function getProject()
-    {
-        return $this->container['project'];
-    }
-
-    /**
-     * Sets project
-     */
-    public function setProject($project)
-    {
-        if (is_null($project)) {
-            throw new \InvalidArgumentException('non-nullable project cannot be null');
-        }
-        $this->container['project'] = $project;
-
-        return $this;
-    }
-
-    /**
-     * Gets environment
-     *
-     * @return string
-     */
-    public function getEnvironment()
-    {
-        return $this->container['environment'];
-    }
-
-    /**
-     * Sets environment
-     */
-    public function setEnvironment($environment)
-    {
-        if (is_null($environment)) {
-            throw new \InvalidArgumentException('non-nullable environment cannot be null');
-        }
-        $this->container['environment'] = $environment;
-
-        return $this;
-    }
-
-    /**
-     * Gets inherited
-     *
-     * @return bool
-     */
-    public function getInherited()
-    {
-        return $this->container['inherited'];
-    }
-
-    /**
-     * Sets inherited
-     */
-    public function setInherited($inherited)
-    {
-        if (is_null($inherited)) {
-            throw new \InvalidArgumentException('non-nullable inherited cannot be null');
-        }
-        $this->container['inherited'] = $inherited;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_enabled
-     *
-     * @return bool
-     */
-    public function getIsEnabled()
-    {
-        return $this->container['is_enabled'];
-    }
-
-    /**
-     * Sets is_enabled
-     */
-    public function setIsEnabled($is_enabled)
-    {
-        if (is_null($is_enabled)) {
-            throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
-        }
-        $this->container['is_enabled'] = $is_enabled;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_inheritable
-     *
-     * @return bool
-     */
-    public function getIsInheritable()
-    {
-        return $this->container['is_inheritable'];
-    }
-
-    /**
-     * Sets is_inheritable
-     */
-    public function setIsInheritable($is_inheritable)
-    {
-        if (is_null($is_inheritable)) {
-            throw new \InvalidArgumentException('non-nullable is_inheritable cannot be null');
-        }
-        $this->container['is_inheritable'] = $is_inheritable;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'created_at' => true,
+                'updated_at' => true,
+                'name' => false,
+                'attributes' => false,
+                'value' => false,
+                'is_json' => false,
+                'is_sensitive' => false,
+                'visible_build' => false,
+                'visible_runtime' => false,
+                'project' => false,
+                'environment' => false,
+                'inherited' => false,
+                'is_enabled' => false,
+                'is_inheritable' => false
+            ];
+        protected static $openAPIFormats = [
+            'created_at' => 'date-time',
+            'updated_at' => 'date-time',
+            'name' => null,
+            'attributes' => null,
+            'value' => null,
+            'is_json' => null,
+            'is_sensitive' => null,
+            'visible_build' => null,
+            'visible_runtime' => null,
+            'project' => null,
+            'environment' => null,
+            'inherited' => null,
+            'is_enabled' => null,
+            'is_inheritable' => null
+        ];
 }
+

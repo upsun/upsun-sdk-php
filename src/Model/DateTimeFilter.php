@@ -16,466 +16,71 @@ use ArrayAccess;
 use Upsun\ObjectSerializer;
 use JsonSerializable;
 
-final class DateTimeFilter implements ModelInterface, ArrayAccess, JsonSerializable
+final class DateTimeFilter implements JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'DateTimeFilter';
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    private static array $openAPITypes = [
-        'eq' => 'string',
-        'ne' => 'string',
-        'between' => 'string',
-        'gt' => 'string',
-        'gte' => 'string',
-        'lt' => 'string',
-        'lte' => 'string'
-    ];
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    private static array $openAPIFormats = [
-        'eq' => null,
-        'ne' => null,
-        'between' => null,
-        'gt' => null,
-        'gte' => null,
-        'lt' => null,
-        'lte' => null
-    ];
-
-    /**
-     * Array of nullable properties. Used for (de)serialization
-     */
-    private static array $openAPINullables = [
-        'eq' => false,
-        'ne' => false,
-        'between' => false,
-        'gt' => false,
-        'gte' => false,
-        'lt' => false,
-        'lte' => false
-    ];
-
-    /**
-     * If a nullable field gets set to null, insert it here
-     */
-    private array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     */
-    public static function openAPITypes(): array
-    {
-        return self::$openAPITypes;
+    public function __construct(
+        public readonly string $eq,
+        public readonly string $ne,
+        public readonly string $between,
+        public readonly string $gt,
+        public readonly string $gte,
+        public readonly string $lt,
+        public readonly string $lte
+    ) {
     }
 
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     */
-    public static function openAPIFormats(): array
+    public function jsonSerialize(): array
     {
-        return self::$openAPIFormats;
+        return [
+            'eq' => $this->eq,
+            'ne' => $this->ne,
+            'between' => $this->between,
+            'gt' => $this->gt,
+            'gte' => $this->gte,
+            'lt' => $this->lt,
+            'lte' => $this->lte,
+        ];
     }
 
-    /**
-     * Array of nullable properties
-     */
-    protected static function openAPINullables(): array
+    public function __toString(): string
     {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    private static array $attributeMap = [
-        'eq' => 'eq',
-        'ne' => 'ne',
-        'between' => 'between',
-        'gt' => 'gt',
-        'gte' => 'gte',
-        'lt' => 'lt',
-        'lte' => 'lte'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    private static $setters = [
-        'eq' => 'setEq',
-        'ne' => 'setNe',
-        'between' => 'setBetween',
-        'gt' => 'setGt',
-        'gte' => 'setGte',
-        'lt' => 'setLt',
-        'lte' => 'setLte'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     */
-    private static $getters = [
-        'eq' => 'getEq',
-        'ne' => 'getNe',
-        'between' => 'getBetween',
-        'gt' => 'getGt',
-        'gte' => 'getGte',
-        'lt' => 'getLt',
-        'lte' => 'getLte'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     */
-    public static function attributeMap(): array
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     */
-    public static function setters(): array
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters(): array
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     */
-    public function getModelName(): string
-    {
-        return self::$openAPIModelName;
-    }
-
-
-    /**
-     * Associative array for storing property values
-     */
-    private array $container = [];
-
-    /**
-     * Constructor
-     */
-    public function __construct(?array $data = null)
-    {
-        $this->setIfExists('eq', $data ?? [], null);
-        $this->setIfExists('ne', $data ?? [], null);
-        $this->setIfExists('between', $data ?? [], null);
-        $this->setIfExists('gt', $data ?? [], null);
-        $this->setIfExists('gte', $data ?? [], null);
-        $this->setIfExists('lt', $data ?? [], null);
-        $this->setIfExists('lte', $data ?? [], null);
-    }
-
-    /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    */
-    private function setIfExists(string $variableName, array $fields, mixed $defaultValue): void
-    {
-        if (
-            self::isNullable($variableName)
-            && array_key_exists($variableName, $fields) && is_null($fields[$variableName])
-        ) {
-            $this->openAPINullablesSetToNull[] = $variableName;
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }   
+    
+    public static function openAPIFormats()
+        {
+            return self::$openAPIFormats;
         }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     */
-    public function listInvalidProperties(): array
-    {
-        $invalidProperties = [];
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     */
-    public function valid(): bool
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets eq
-     *
-     * @return string|null
-     */
-    public function getEq()
-    {
-        return $this->container['eq'];
-    }
-
-    /**
-     * Sets eq
-     */
-    public function setEq($eq)
-    {
-        if (is_null($eq)) {
-            throw new \InvalidArgumentException('non-nullable eq cannot be null');
+    
+        /**
+         * Array of nullable properties
+         *
+         * @return array
+         */
+        protected static function openAPINullables(): array
+        {
+            return self::$openAPINullables;
         }
-        $this->container['eq'] = $eq;
-
-        return $this;
-    }
-
-    /**
-     * Gets ne
-     *
-     * @return string|null
-     */
-    public function getNe()
-    {
-        return $this->container['ne'];
-    }
-
-    /**
-     * Sets ne
-     */
-    public function setNe($ne)
-    {
-        if (is_null($ne)) {
-            throw new \InvalidArgumentException('non-nullable ne cannot be null');
-        }
-        $this->container['ne'] = $ne;
-
-        return $this;
-    }
-
-    /**
-     * Gets between
-     *
-     * @return string|null
-     */
-    public function getBetween()
-    {
-        return $this->container['between'];
-    }
-
-    /**
-     * Sets between
-     */
-    public function setBetween($between)
-    {
-        if (is_null($between)) {
-            throw new \InvalidArgumentException('non-nullable between cannot be null');
-        }
-        $this->container['between'] = $between;
-
-        return $this;
-    }
-
-    /**
-     * Gets gt
-     *
-     * @return string|null
-     */
-    public function getGt()
-    {
-        return $this->container['gt'];
-    }
-
-    /**
-     * Sets gt
-     */
-    public function setGt($gt)
-    {
-        if (is_null($gt)) {
-            throw new \InvalidArgumentException('non-nullable gt cannot be null');
-        }
-        $this->container['gt'] = $gt;
-
-        return $this;
-    }
-
-    /**
-     * Gets gte
-     *
-     * @return string|null
-     */
-    public function getGte()
-    {
-        return $this->container['gte'];
-    }
-
-    /**
-     * Sets gte
-     */
-    public function setGte($gte)
-    {
-        if (is_null($gte)) {
-            throw new \InvalidArgumentException('non-nullable gte cannot be null');
-        }
-        $this->container['gte'] = $gte;
-
-        return $this;
-    }
-
-    /**
-     * Gets lt
-     *
-     * @return string|null
-     */
-    public function getLt()
-    {
-        return $this->container['lt'];
-    }
-
-    /**
-     * Sets lt
-     */
-    public function setLt($lt)
-    {
-        if (is_null($lt)) {
-            throw new \InvalidArgumentException('non-nullable lt cannot be null');
-        }
-        $this->container['lt'] = $lt;
-
-        return $this;
-    }
-
-    /**
-     * Gets lte
-     *
-     * @return string|null
-     */
-    public function getLte()
-    {
-        return $this->container['lte'];
-    }
-
-    /**
-     * Sets lte
-     */
-    public function setLte($lte)
-    {
-        if (is_null($lte)) {
-            throw new \InvalidArgumentException('non-nullable lte cannot be null');
-        }
-        $this->container['lte'] = $lte;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     */
-    public function offsetExists(mixed $offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet(mixed $offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     */
-    public function offsetSet(mixed $offset = null, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     */
-    public function offsetUnset(mixed $offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize(): mixed
-    {
-        return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
-    }
+        
+            protected static array $openAPINullables = [
+                'eq' => false,
+                'ne' => false,
+                'between' => false,
+                'gt' => false,
+                'gte' => false,
+                'lt' => false,
+                'lte' => false
+            ];
+        protected static $openAPIFormats = [
+            'eq' => null,
+            'ne' => null,
+            'between' => null,
+            'gt' => null,
+            'gte' => null,
+            'lt' => null,
+            'lte' => null
+        ];
 }
+
