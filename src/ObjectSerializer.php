@@ -449,32 +449,34 @@ class ObjectSerializer
         return new $class(...$args);
     }
 
-
-    // Usage dans votre ObjectSerializer::deserialize principal
-    public static function deserialize($data, $class, $httpHeaders = null, $discriminator = null)
+    public static function deserialize($data, string $class, $httpHeaders = null, $discriminator = null)
     {
-        if (null === $data) {
+        if ($data === null) {
             return null;
         }
-    
-        // Gérer les tableaux
-        if (strcasecmp(substr($class, -2), '[]') === 0) {
-            $class = substr($class, 0, -2);
+
+        // Handle array of models
+        if (substr($class, -2) === '[]') {
+            $subClass = substr($class, 0, -2); // remove []
             $values = [];
-            if (is_array($data)) {
-                foreach ($data as $value) {
-                    $values[] = self::deserialize($value, $class, $httpHeaders);
-                }
+
+            if (!is_array($data)) {
+                throw new \InvalidArgumentException("Data must be an array to deserialize into {$class}");
             }
+
+            foreach ($data as $item) {
+                $values[] = self::deserialize($item, $subClass, $httpHeaders, $discriminator);
+            }
+
             return $values;
         }
-    
-        // Types primitifs
-        if (in_array($class, ['bool', 'boolean', 'int', 'integer', 'float', 'double', 'string', 'byte', 'mixed', 'DateTime', 'SplFileObject'])) {
+
+        // Primitive types
+        if (in_array($class, ['bool','boolean','int','integer','float','double','string','byte','mixed','DateTime','SplFileObject'], true)) {
             return self::deserializePrimitive($data, $class);
         }
-    
-        // Modèles - utiliser directement la nouvelle méthode
+
+        // Nested models
         return self::deserializeSimplifiedModel($data, $class);
     }
 
