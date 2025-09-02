@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use DateTimeInterface;
 use Upsun\UpsunClient;
 
 /**
@@ -16,5 +17,23 @@ abstract class TaskBase
     public function __construct(
         public UpsunClient $client,
     ) {
+    }
+
+    function normalizeFilter(array|string|int|\DateTime|null $value): array
+    {
+        if ($value === null) {
+            return [];
+        }
+
+        if (is_array($value)) {
+            return $value;
+        }
+
+        if ($value instanceof \DateTime) {
+            return ['eq' => $value->format(DateTimeInterface::ATOM)];
+        }
+
+        // string or int
+        return ['eq' => (string) $value];
     }
 }

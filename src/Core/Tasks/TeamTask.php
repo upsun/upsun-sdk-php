@@ -127,12 +127,10 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): array {
-        var_dump($filterId, $filterOrganizationId, new StringFilter(...$filterId));
-        
         return $this->teamsApi->listTeams(
-            new StringFilter(...$filterOrganizationId),
-            new StringFilter(...$filterId),
-            new DateTimeFilter(...$filterUpdatedAt),
+            new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
+            new StringFilter(...$this->normalizeFilter($filterId)),
+            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -153,7 +151,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response {
+    ): array {
         return $this->teamsApi->listUserTeams(
             $userId,
             new StringFilter($filterOrganizationId),
