@@ -122,7 +122,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Team
      */
     public function createTeam(
         \Upsun\Model\CreateTeamRequest $create_team_request
@@ -311,7 +310,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\TeamMember
      */
     public function createTeamMember(
         string $team_id,
@@ -523,7 +521,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function deleteTeam(
         string $team_id
@@ -704,7 +701,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function deleteTeamMember(
         string $team_id,
@@ -908,7 +904,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Team
      */
     public function getTeam(
         string $team_id
@@ -1099,7 +1094,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\TeamMember
      */
     public function getTeamMember(
         string $team_id,
@@ -1313,7 +1307,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListTeamMembers200Response
      */
     public function listTeamMembers(
         string $team_id,
@@ -1564,7 +1557,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListTeams200Response
      */
     public function listTeams(
         \Upsun\Model\StringFilter $filter_organization_id = null,
@@ -1885,7 +1877,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListTeams200Response
      */
     public function listUserTeams(
         string $user_id,
@@ -2209,7 +2200,6 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Team
      */
     public function updateTeam(
         string $team_id,

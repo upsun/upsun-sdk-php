@@ -124,7 +124,6 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      *
      * @return array
-      * return pouette 
      */
     public function cancelOrgInvite(
         string $organization_id,
@@ -328,7 +327,6 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\OrganizationInvitation
      */
     public function createOrgInvite(
         string $organization_id,
@@ -536,7 +534,6 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      *
      * @return array
-      * return pouette \Upsun\Model\OrganizationInvitation[]
      */
     public function listOrgInvites(
         string $organization_id,

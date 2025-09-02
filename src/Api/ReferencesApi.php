@@ -122,7 +122,6 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette array&lt;string,\Upsun\Model\OrganizationReference&gt;
      */
     public function listReferencedOrgs(
         string $in,
@@ -342,7 +341,6 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette array&lt;string,\Upsun\Model\ProjectReference&gt;
      */
     public function listReferencedProjects(
         string $in,
@@ -562,7 +560,6 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette array&lt;string,\Upsun\Model\RegionReference&gt;
      */
     public function listReferencedRegions(
         string $in,
@@ -782,7 +779,6 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette array&lt;string,\Upsun\Model\TeamReference&gt;
      */
     public function listReferencedTeams(
         string $in,
@@ -1002,7 +998,6 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette array&lt;string,\Upsun\Model\UserReference&gt;
      */
     public function listReferencedUsers(
         string $in,

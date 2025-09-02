@@ -122,7 +122,6 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsVariables(
         string $project_id,
@@ -334,7 +333,6 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsVariables(
         string $project_id,
@@ -548,7 +546,6 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ProjectVariable
      */
     public function getProjectsVariables(
         string $project_id,
@@ -762,7 +759,6 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ProjectVariable[]
      */
     public function listProjectsVariables(
         string $project_id
@@ -953,7 +949,6 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsVariables(
         string $project_id,

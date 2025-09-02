@@ -122,7 +122,6 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function backupEnvironment(
         string $project_id,
@@ -357,7 +356,6 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsEnvironmentsBackups(
         string $project_id,
@@ -594,7 +592,6 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Backup
      */
     public function getProjectsEnvironmentsBackups(
         string $project_id,
@@ -831,7 +828,6 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Backup[]
      */
     public function listProjectsEnvironmentsBackups(
         string $project_id,
@@ -1045,7 +1041,6 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function restoreBackup(
         string $project_id,

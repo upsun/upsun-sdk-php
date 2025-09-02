@@ -122,7 +122,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\CreateProfilePicture200Response
      */
     public function createProfilePicture(
         string $uuid
@@ -313,7 +312,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function deleteProfilePicture(
         string $uuid
@@ -494,7 +492,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetAddress200Response
      */
     public function getAddress(
         string $user_id
@@ -685,7 +682,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Profile
      */
     public function getProfile(
         string $user_id
@@ -876,7 +872,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListProfiles200Response
      */
     public function listProfiles(
         
@@ -1053,7 +1048,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetAddress200Response
      */
     public function updateAddress(
         string $user_id,
@@ -1259,7 +1253,6 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Profile
      */
     public function updateProfile(
         string $user_id,

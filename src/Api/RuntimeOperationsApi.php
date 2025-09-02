@@ -122,7 +122,6 @@ final class RuntimeOperationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function runOperation(
         string $project_id,

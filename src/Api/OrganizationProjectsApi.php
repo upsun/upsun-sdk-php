@@ -122,7 +122,6 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\OrganizationProject
      */
     public function getOrgProject(
         string $organization_id,
@@ -336,7 +335,6 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListOrgProjects200Response
      */
     public function listOrgProjects(
         string $organization_id,

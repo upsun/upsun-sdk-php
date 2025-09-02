@@ -122,7 +122,6 @@ final class AddOnsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\OrganizationAddonsObject
      */
     public function getOrgAddons(
         string $organization_id

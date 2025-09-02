@@ -122,7 +122,6 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function deleteLoginConnection(
         string $provider,
@@ -326,7 +325,6 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Connection
      */
     public function getLoginConnection(
         string $provider,
@@ -542,7 +540,6 @@ final class ConnectionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      *
      * @return array
-      * return pouette \Upsun\Model\Connection[]
      */
     public function listLoginConnections(
         string $user_id

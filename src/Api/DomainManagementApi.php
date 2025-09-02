@@ -122,7 +122,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsDomains(
         string $project_id,
@@ -334,7 +333,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsEnvironmentsDomains(
         string $project_id,
@@ -569,7 +567,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsDomains(
         string $project_id,
@@ -783,7 +780,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsEnvironmentsDomains(
         string $project_id,
@@ -1020,7 +1016,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Domain
      */
     public function getProjectsDomains(
         string $project_id,
@@ -1234,7 +1229,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Domain
      */
     public function getProjectsEnvironmentsDomains(
         string $project_id,
@@ -1471,7 +1465,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Domain[]
      */
     public function listProjectsDomains(
         string $project_id
@@ -1662,7 +1655,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Domain[]
      */
     public function listProjectsEnvironmentsDomains(
         string $project_id,
@@ -1876,7 +1868,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsDomains(
         string $project_id,
@@ -2111,7 +2102,6 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsEnvironmentsDomains(
         string $project_id,

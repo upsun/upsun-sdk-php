@@ -122,7 +122,6 @@ final class OrdersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\CreateAuthorizationCredentials200Response
      */
     public function createAuthorizationCredentials(
         string $organization_id,
@@ -336,7 +335,6 @@ final class OrdersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function downloadInvoice(
         string $token
@@ -520,7 +518,6 @@ final class OrdersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Order
      */
     public function getOrgOrder(
         string $organization_id,
@@ -754,7 +751,6 @@ final class OrdersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListOrgOrders200Response
      */
     public function listOrgOrders(
         string $organization_id,

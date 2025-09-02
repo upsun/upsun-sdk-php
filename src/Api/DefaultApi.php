@@ -122,7 +122,6 @@ final class DefaultApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListTickets200Response
      */
     public function listTickets(
         int $filter_ticket_id = null,

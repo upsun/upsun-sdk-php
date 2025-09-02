@@ -122,7 +122,6 @@ final class AlertsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Alert
      */
     public function createUsageAlert(
         string $subscription_id,
@@ -328,7 +327,6 @@ final class AlertsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function deleteUsageAlert(
         string $subscription_id,
@@ -532,7 +530,6 @@ final class AlertsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetUsageAlerts200Response
      */
     public function getUsageAlerts(
         string $subscription_id
@@ -723,7 +720,6 @@ final class AlertsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Alert
      */
     public function updateUsageAlert(
         string $subscription_id,

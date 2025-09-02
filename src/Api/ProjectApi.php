@@ -122,7 +122,6 @@ final class ProjectApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function actionProjectsClearBuildCache(
         string $project_id
@@ -313,7 +312,6 @@ final class ProjectApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjects(
         string $project_id
@@ -504,7 +502,6 @@ final class ProjectApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Project
      */
     public function getProjects(
         string $project_id
@@ -695,7 +692,6 @@ final class ProjectApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ProjectCapabilities
      */
     public function getProjectsCapabilities(
         string $project_id
@@ -886,7 +882,6 @@ final class ProjectApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjects(
         string $project_id,

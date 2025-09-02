@@ -122,7 +122,6 @@ final class VouchersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function applyOrgVoucher(
         string $organization_id,
@@ -324,7 +323,6 @@ final class VouchersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Vouchers
      */
     public function listOrgVouchers(
         string $organization_id

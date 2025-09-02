@@ -122,7 +122,6 @@ final class PlansApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListPlans200Response
      */
     public function listPlans(
         

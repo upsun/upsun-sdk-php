@@ -122,7 +122,6 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\OrganizationEstimationObject
      */
     public function estimateOrg(
         string $organization_id
@@ -313,7 +312,6 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\OrganizationAlertConfig
      */
     public function getOrgBillingAlertConfig(
         string $organization_id
@@ -504,7 +502,6 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetOrgPrepaymentInfo200Response
      */
     public function getOrgPrepaymentInfo(
         string $organization_id
@@ -695,7 +692,6 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListOrgPrepaymentTransactions200Response
      */
     public function listOrgPrepaymentTransactions(
         string $organization_id
@@ -886,7 +882,6 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\OrganizationAlertConfig
      */
     public function updateOrgBillingAlertConfig(
         string $organization_id,

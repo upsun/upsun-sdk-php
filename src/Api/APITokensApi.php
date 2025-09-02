@@ -122,7 +122,6 @@ final class APITokensApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\APIToken
      */
     public function createApiToken(
         string $user_id,
@@ -328,7 +327,6 @@ final class APITokensApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function deleteApiToken(
         string $user_id,
@@ -532,7 +530,6 @@ final class APITokensApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\APIToken
      */
     public function getApiToken(
         string $user_id,
@@ -748,7 +745,6 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      *
      * @return array
-      * return pouette \Upsun\Model\APIToken[]
      */
     public function listApiTokens(
         string $user_id

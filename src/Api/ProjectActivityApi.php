@@ -122,7 +122,6 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function actionProjectsActivitiesCancel(
         string $project_id,
@@ -336,7 +335,6 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Activity
      */
     public function getProjectsActivities(
         string $project_id,
@@ -550,7 +548,6 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Activity[]
      */
     public function listProjectsActivities(
         string $project_id

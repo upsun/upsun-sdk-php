@@ -122,7 +122,6 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Discount
      */
     public function getDiscount(
         string $id
@@ -313,7 +312,6 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetTypeAllowance200Response
      */
     public function getTypeAllowance(
         
@@ -490,7 +488,6 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListOrgDiscounts200Response
      */
     public function listOrgDiscounts(
         string $organization_id

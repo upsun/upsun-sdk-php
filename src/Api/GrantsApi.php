@@ -122,7 +122,6 @@ final class GrantsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListUserExtendedAccess200Response
      */
     public function listUserExtendedAccess(
         string $user_id,

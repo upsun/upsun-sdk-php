@@ -122,7 +122,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\User
      */
     public function getCurrentUser(
         
@@ -299,7 +298,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\CurrentUser
      */
     public function getCurrentUserDeprecated(
         
@@ -476,7 +474,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetCurrentUserVerificationStatus200Response
      */
     public function getCurrentUserVerificationStatus(
         
@@ -653,7 +650,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\GetCurrentUserVerificationStatusFull200Response
      */
     public function getCurrentUserVerificationStatusFull(
         
@@ -830,7 +826,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\User
      */
     public function getUser(
         string $user_id
@@ -1021,7 +1016,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\User
      */
     public function getUserByEmailAddress(
         string $email
@@ -1212,7 +1206,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\User
      */
     public function getUserByUsername(
         string $username
@@ -1403,7 +1396,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function resetEmailAddress(
         string $user_id,
@@ -1599,7 +1591,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function resetPassword(
         string $user_id
@@ -1780,7 +1771,6 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\User
      */
     public function updateUser(
         string $user_id,

@@ -122,7 +122,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\UserProjectAccess
      */
     public function getProjectUserAccess(
         string $project_id,
@@ -336,7 +335,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\UserProjectAccess
      */
     public function getUserProjectAccess(
         string $user_id,
@@ -550,7 +548,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function grantProjectUserAccess(
         string $project_id,
@@ -752,7 +749,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function grantUserProjectAccess(
         string $user_id,
@@ -954,7 +950,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListProjectUserAccess200Response
      */
     public function listProjectUserAccess(
         string $project_id,
@@ -1238,7 +1233,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\ListProjectUserAccess200Response
      */
     public function listUserProjectAccess(
         string $user_id,
@@ -1542,7 +1536,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function removeProjectUserAccess(
         string $project_id,
@@ -1746,7 +1739,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function removeUserProjectAccess(
         string $user_id,
@@ -1950,7 +1942,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function updateProjectUserAccess(
         string $project_id,
@@ -2169,7 +2160,6 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette 
      */
     public function updateUserProjectAccess(
         string $user_id,

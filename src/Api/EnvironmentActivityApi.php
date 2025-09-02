@@ -122,7 +122,6 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
         string $project_id,
@@ -359,7 +358,6 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Activity
      */
     public function getProjectsEnvironmentsActivities(
         string $project_id,
@@ -596,7 +594,6 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-      * return pouette \Upsun\Model\Activity[]
      */
     public function listProjectsEnvironmentsActivities(
         string $project_id,
