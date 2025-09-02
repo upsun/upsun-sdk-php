@@ -41,30 +41,5 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'commits_ahead' => true,
-                'commits_behind' => true,
-                'parent_ref' => true
-            ];
-        protected static $openAPIFormats = [
-            'commits_ahead' => null,
-            'commits_behind' => null,
-            'parent_ref' => null
-        ];
 }
 

@@ -63,40 +63,5 @@ final class WebHookIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'events' => false,
-                'environments' => false,
-                'excluded_environments' => false,
-                'states' => false,
-                'result' => false,
-                'shared_key' => true,
-                'url' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'events' => null,
-            'environments' => null,
-            'excluded_environments' => null,
-            'states' => null,
-            'result' => null,
-            'shared_key' => null,
-            'url' => null
-        ];
 }
 

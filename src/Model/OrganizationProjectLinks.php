@@ -45,34 +45,5 @@ final class OrganizationProjectLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'self' => false,
-                'update' => false,
-                'delete' => false,
-                'subscription' => false,
-                'api' => false
-            ];
-        protected static $openAPIFormats = [
-            'self' => null,
-            'update' => null,
-            'delete' => null,
-            'subscription' => null,
-            'api' => null
-        ];
 }
 

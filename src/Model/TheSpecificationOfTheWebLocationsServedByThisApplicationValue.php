@@ -62,42 +62,5 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'root' => true,
-                'expires' => false,
-                'passthru' => false,
-                'scripts' => false,
-                'index' => true,
-                'allow' => false,
-                'headers' => false,
-                'rules' => false,
-                'request_buffering' => false
-            ];
-        protected static $openAPIFormats = [
-            'root' => null,
-            'expires' => null,
-            'passthru' => null,
-            'scripts' => null,
-            'index' => null,
-            'allow' => null,
-            'headers' => null,
-            'rules' => null,
-            'request_buffering' => null
-        ];
 }
 

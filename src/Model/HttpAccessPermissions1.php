@@ -47,30 +47,5 @@ final class HttpAccessPermissions1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'is_enabled' => false,
-                'addresses' => false,
-                'basic_auth' => false
-            ];
-        protected static $openAPIFormats = [
-            'is_enabled' => null,
-            'addresses' => null,
-            'basic_auth' => null
-        ];
 }
 

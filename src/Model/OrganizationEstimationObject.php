@@ -49,38 +49,5 @@ final class OrganizationEstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'total' => false,
-                'sub_total' => false,
-                'vouchers' => false,
-                'user_licenses' => false,
-                'user_management' => false,
-                'support_level' => false,
-                'subscriptions' => false
-            ];
-        protected static $openAPIFormats = [
-            'total' => null,
-            'sub_total' => null,
-            'vouchers' => null,
-            'user_licenses' => null,
-            'user_management' => null,
-            'support_level' => null,
-            'subscriptions' => null
-        ];
 }
 

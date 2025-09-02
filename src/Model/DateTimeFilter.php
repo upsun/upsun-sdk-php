@@ -49,38 +49,5 @@ final class DateTimeFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'eq' => false,
-                'ne' => false,
-                'between' => false,
-                'gt' => false,
-                'gte' => false,
-                'lt' => false,
-                'lte' => false
-            ];
-        protected static $openAPIFormats = [
-            'eq' => null,
-            'ne' => null,
-            'between' => null,
-            'gt' => null,
-            'gte' => null,
-            'lt' => null,
-            'lte' => null
-        ];
 }
 

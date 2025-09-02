@@ -52,38 +52,5 @@ final class ProjectPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'attributes' => false,
-                'title' => false,
-                'description' => false,
-                'default_branch' => true,
-                'timezone' => false,
-                'region' => false,
-                'default_domain' => true
-            ];
-        protected static $openAPIFormats = [
-            'attributes' => null,
-            'title' => null,
-            'description' => null,
-            'default_branch' => null,
-            'timezone' => null,
-            'region' => null,
-            'default_domain' => null
-        ];
 }
 

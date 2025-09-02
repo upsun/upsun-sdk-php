@@ -49,38 +49,5 @@ final class PrepaymentTransactionObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'order_id' => false,
-                'message' => false,
-                'status' => false,
-                'amount' => false,
-                'created' => false,
-                'updated' => true,
-                'expire_date' => true
-            ];
-        protected static $openAPIFormats = [
-            'order_id' => null,
-            'message' => null,
-            'status' => null,
-            'amount' => null,
-            'created' => null,
-            'updated' => null,
-            'expire_date' => null
-        ];
 }
 

@@ -51,34 +51,5 @@ final class CreateProjectInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'role' => false,
-                'email' => false,
-                'permissions' => false,
-                'environments' => false,
-                'force' => false
-            ];
-        protected static $openAPIFormats = [
-            'role' => null,
-            'email' => 'email',
-            'permissions' => null,
-            'environments' => null,
-            'force' => null
-        ];
 }
 

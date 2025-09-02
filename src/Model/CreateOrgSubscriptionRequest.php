@@ -49,38 +49,5 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'plan' => false,
-                'project_region' => false,
-                'project_title' => false,
-                'options_url' => false,
-                'default_branch' => false,
-                'environments' => false,
-                'storage' => false
-            ];
-        protected static $openAPIFormats = [
-            'plan' => null,
-            'project_region' => null,
-            'project_title' => null,
-            'options_url' => null,
-            'default_branch' => null,
-            'environments' => null,
-            'storage' => null
-        ];
 }
 

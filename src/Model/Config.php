@@ -69,58 +69,5 @@ final class Config implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'newrelic' => false,
-                'sumologic' => false,
-                'splunk' => false,
-                'httplog' => false,
-                'syslog' => false,
-                'webhook' => false,
-                'script' => false,
-                'github' => false,
-                'gitlab' => false,
-                'bitbucket' => false,
-                'bitbucket_server' => false,
-                'health_email' => false,
-                'health_webhook' => false,
-                'health_pagerduty' => false,
-                'health_slack' => false,
-                'cdn_fastly' => false,
-                'blackfire' => false
-            ];
-        protected static $openAPIFormats = [
-            'newrelic' => null,
-            'sumologic' => null,
-            'splunk' => null,
-            'httplog' => null,
-            'syslog' => null,
-            'webhook' => null,
-            'script' => null,
-            'github' => null,
-            'gitlab' => null,
-            'bitbucket' => null,
-            'bitbucket_server' => null,
-            'health_email' => null,
-            'health_webhook' => null,
-            'health_pagerduty' => null,
-            'health_slack' => null,
-            'cdn_fastly' => null,
-            'blackfire' => null
-        ];
 }
 

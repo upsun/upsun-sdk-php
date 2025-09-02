@@ -52,38 +52,5 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'user_id' => false,
-                'resource_id' => false,
-                'resource_type' => false,
-                'organization_id' => false,
-                'permissions' => false,
-                'granted_at' => false,
-                'updated_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'user_id' => 'uuid',
-            'resource_id' => null,
-            'resource_type' => null,
-            'organization_id' => null,
-            'permissions' => null,
-            'granted_at' => 'date-time',
-            'updated_at' => 'date-time'
-        ];
 }
 

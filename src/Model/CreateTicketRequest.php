@@ -63,46 +63,5 @@ final class CreateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'subject' => false,
-                'description' => false,
-                'requester_id' => false,
-                'priority' => false,
-                'subscription_id' => false,
-                'organization_id' => false,
-                'affected_url' => false,
-                'followup_tid' => false,
-                'category' => false,
-                'attachments' => false,
-                'collaborator_ids' => false
-            ];
-        protected static $openAPIFormats = [
-            'subject' => null,
-            'description' => null,
-            'requester_id' => 'uuid',
-            'priority' => null,
-            'subscription_id' => null,
-            'organization_id' => null,
-            'affected_url' => 'url',
-            'followup_tid' => null,
-            'category' => null,
-            'attachments' => null,
-            'collaborator_ids' => null
-        ];
 }
 

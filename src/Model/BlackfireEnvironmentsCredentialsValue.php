@@ -39,28 +39,5 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'server_uuid' => false,
-                'server_token' => false
-            ];
-        protected static $openAPIFormats = [
-            'server_uuid' => null,
-            'server_token' => null
-        ];
 }
 

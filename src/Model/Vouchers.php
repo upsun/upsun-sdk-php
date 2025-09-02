@@ -52,38 +52,5 @@ final class Vouchers implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'uuid' => false,
-                'vouchers_total' => false,
-                'vouchers_applied' => false,
-                'vouchers_remaining_balance' => false,
-                'currency' => false,
-                'vouchers' => false,
-                '_links' => false
-            ];
-        protected static $openAPIFormats = [
-            'uuid' => 'uuid',
-            'vouchers_total' => null,
-            'vouchers_applied' => null,
-            'vouchers_remaining_balance' => null,
-            'currency' => null,
-            'vouchers' => null,
-            '_links' => null
-        ];
 }
 

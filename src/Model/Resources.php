@@ -47,36 +47,5 @@ final class Resources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'base_memory' => true,
-                'memory_ratio' => true,
-                'profile_size' => true,
-                'minimum' => true,
-                'default' => true,
-                'disk' => true
-            ];
-        protected static $openAPIFormats = [
-            'base_memory' => null,
-            'memory_ratio' => null,
-            'profile_size' => null,
-            'minimum' => null,
-            'default' => null,
-            'disk' => null
-        ];
 }
 

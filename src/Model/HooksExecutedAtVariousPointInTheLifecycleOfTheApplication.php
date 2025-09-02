@@ -41,30 +41,5 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'build' => true,
-                'deploy' => true,
-                'post_deploy' => true
-            ];
-        protected static $openAPIFormats = [
-            'build' => null,
-            'deploy' => null,
-            'post_deploy' => null
-        ];
 }
 

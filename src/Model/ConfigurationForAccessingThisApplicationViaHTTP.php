@@ -67,44 +67,5 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'locations' => false,
-                'commands' => false,
-                'upstream' => false,
-                'document_root' => true,
-                'passthru' => true,
-                'index_files' => true,
-                'whitelist' => true,
-                'blacklist' => true,
-                'expires' => true,
-                'move_to_root' => false
-            ];
-        protected static $openAPIFormats = [
-            'locations' => null,
-            'commands' => null,
-            'upstream' => null,
-            'document_root' => null,
-            'passthru' => null,
-            'index_files' => null,
-            'whitelist' => null,
-            'blacklist' => null,
-            'expires' => null,
-            'move_to_root' => null
-        ];
 }
 

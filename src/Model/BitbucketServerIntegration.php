@@ -59,48 +59,5 @@ final class BitbucketServerIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'type' => false,
-                'fetch_branches' => false,
-                'prune_branches' => false,
-                'environment_init_resources' => false,
-                'url' => false,
-                'username' => false,
-                'project' => false,
-                'repository' => false,
-                'build_pull_requests' => false,
-                'pull_requests_clone_parent_data' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'type' => null,
-            'fetch_branches' => null,
-            'prune_branches' => null,
-            'environment_init_resources' => null,
-            'url' => null,
-            'username' => null,
-            'project' => null,
-            'repository' => null,
-            'build_pull_requests' => null,
-            'pull_requests_clone_parent_data' => null
-        ];
 }
 

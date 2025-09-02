@@ -39,28 +39,5 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'standard_management_user' => false,
-                'advanced_management_user' => false
-            ];
-        protected static $openAPIFormats = [
-            'standard_management_user' => null,
-            'advanced_management_user' => null
-        ];
 }
 

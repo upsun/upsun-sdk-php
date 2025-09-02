@@ -56,42 +56,5 @@ final class OrganizationMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'organization_id' => false,
-                'user_id' => false,
-                'permissions' => false,
-                'level' => false,
-                'owner' => false,
-                'created_at' => false,
-                'updated_at' => false,
-                '_links' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => 'uuid',
-            'organization_id' => 'ulid',
-            'user_id' => 'uuid',
-            'permissions' => null,
-            'level' => null,
-            'owner' => null,
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            '_links' => null
-        ];
 }
 

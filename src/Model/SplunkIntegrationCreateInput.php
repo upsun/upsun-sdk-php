@@ -52,38 +52,5 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'extra' => false,
-                'url' => false,
-                'index' => false,
-                'token' => false,
-                'sourcetype' => false,
-                'tls_verify' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'extra' => null,
-            'url' => null,
-            'index' => null,
-            'token' => null,
-            'sourcetype' => null,
-            'tls_verify' => null
-        ];
 }
 

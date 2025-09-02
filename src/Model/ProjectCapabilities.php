@@ -60,46 +60,5 @@ final class ProjectCapabilities implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'custom_domains' => false,
-                'source_operations' => false,
-                'runtime_operations' => false,
-                'outbound_firewall' => false,
-                'metrics' => false,
-                'logs_forwarding' => false,
-                'images' => false,
-                'instance_limit' => false,
-                'build_resources' => false,
-                'data_retention' => false,
-                'integrations' => false
-            ];
-        protected static $openAPIFormats = [
-            'custom_domains' => null,
-            'source_operations' => null,
-            'runtime_operations' => null,
-            'outbound_firewall' => null,
-            'metrics' => null,
-            'logs_forwarding' => null,
-            'images' => null,
-            'instance_limit' => null,
-            'build_resources' => null,
-            'data_retention' => null,
-            'integrations' => null
-        ];
 }
 

@@ -43,32 +43,5 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'legacy_development' => false,
-                'max_cpu' => true,
-                'max_memory' => true,
-                'max_environments' => true
-            ];
-        protected static $openAPIFormats = [
-            'legacy_development' => null,
-            'max_cpu' => 'float',
-            'max_memory' => null,
-            'max_environments' => null
-        ];
 }
 

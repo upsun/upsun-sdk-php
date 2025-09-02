@@ -59,48 +59,5 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'project_title' => false,
-                'plan' => false,
-                'timezone' => false,
-                'environments' => false,
-                'storage' => false,
-                'big_dev' => false,
-                'big_dev_service' => false,
-                'backups' => false,
-                'observability_suite' => false,
-                'blackfire' => false,
-                'continuous_profiling' => false,
-                'project_support_level' => false
-            ];
-        protected static $openAPIFormats = [
-            'project_title' => null,
-            'plan' => null,
-            'timezone' => null,
-            'environments' => null,
-            'storage' => null,
-            'big_dev' => null,
-            'big_dev_service' => null,
-            'backups' => null,
-            'observability_suite' => null,
-            'blackfire' => null,
-            'continuous_profiling' => null,
-            'project_support_level' => null
-        ];
 }
 

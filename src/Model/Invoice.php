@@ -67,56 +67,5 @@ final class Invoice implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'invoice_number' => false,
-                'type' => false,
-                'order_id' => false,
-                'related_invoice_id' => true,
-                'status' => false,
-                'owner' => false,
-                'invoice_date' => true,
-                'invoice_due' => true,
-                'created' => true,
-                'changed' => true,
-                'company' => false,
-                'total' => false,
-                'address' => false,
-                'notes' => false,
-                'invoice_pdf' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'invoice_number' => null,
-            'type' => null,
-            'order_id' => null,
-            'related_invoice_id' => null,
-            'status' => null,
-            'owner' => 'ulid',
-            'invoice_date' => 'date-time',
-            'invoice_due' => 'date-time',
-            'created' => 'date-time',
-            'changed' => 'date-time',
-            'company' => null,
-            'total' => 'double',
-            'address' => null,
-            'notes' => null,
-            'invoice_pdf' => null
-        ];
 }
 

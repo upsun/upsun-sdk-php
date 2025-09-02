@@ -52,38 +52,5 @@ final class ProjectVariableCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'name' => false,
-                'attributes' => false,
-                'value' => false,
-                'is_json' => false,
-                'is_sensitive' => false,
-                'visible_build' => false,
-                'visible_runtime' => false
-            ];
-        protected static $openAPIFormats = [
-            'name' => null,
-            'attributes' => null,
-            'value' => null,
-            'is_json' => null,
-            'is_sensitive' => null,
-            'visible_build' => null,
-            'visible_runtime' => null
-        ];
 }
 

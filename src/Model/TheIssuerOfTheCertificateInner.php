@@ -41,30 +41,5 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'oid' => false,
-                'alias' => true,
-                'value' => false
-            ];
-        protected static $openAPIFormats = [
-            'oid' => null,
-            'alias' => null,
-            'value' => null
-        ];
 }
 

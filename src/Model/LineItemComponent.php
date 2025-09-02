@@ -43,32 +43,5 @@ final class LineItemComponent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'amount' => false,
-                'amount_formatted' => false,
-                'display_title' => false,
-                'currency' => false
-            ];
-        protected static $openAPIFormats = [
-            'amount' => null,
-            'amount_formatted' => null,
-            'display_title' => null,
-            'currency' => null
-        ];
 }
 

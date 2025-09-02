@@ -47,36 +47,5 @@ final class TicketJiraInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'ticket_id' => false,
-                'issue_id' => false,
-                'issue_key' => false,
-                'created_at' => false,
-                'updated_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'ticket_id' => null,
-            'issue_id' => null,
-            'issue_key' => null,
-            'created_at' => 'float',
-            'updated_at' => 'float'
-        ];
 }
 

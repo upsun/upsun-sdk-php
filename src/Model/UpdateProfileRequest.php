@@ -61,50 +61,5 @@ final class UpdateProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'display_name' => false,
-                'username' => false,
-                'current_password' => false,
-                'password' => false,
-                'company_type' => false,
-                'company_name' => false,
-                'vat_number' => false,
-                'company_role' => false,
-                'marketing' => false,
-                'ui_colorscheme' => false,
-                'default_catalog' => false,
-                'project_options_url' => false,
-                'picture' => false
-            ];
-        protected static $openAPIFormats = [
-            'display_name' => null,
-            'username' => null,
-            'current_password' => null,
-            'password' => null,
-            'company_type' => null,
-            'company_name' => null,
-            'vat_number' => null,
-            'company_role' => null,
-            'marketing' => null,
-            'ui_colorscheme' => null,
-            'default_catalog' => null,
-            'project_options_url' => null,
-            'picture' => null
-        ];
 }
 

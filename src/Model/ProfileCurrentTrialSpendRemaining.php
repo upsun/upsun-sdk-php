@@ -45,34 +45,5 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'formatted' => false,
-                'amount' => false,
-                'currency' => false,
-                'currency_symbol' => false,
-                'unlimited' => false
-            ];
-        protected static $openAPIFormats = [
-            'formatted' => null,
-            'amount' => null,
-            'currency' => null,
-            'currency_symbol' => null,
-            'unlimited' => null
-        ];
 }
 

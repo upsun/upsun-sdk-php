@@ -43,32 +43,5 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'license_id' => false,
-                'project_title' => false,
-                'total' => false,
-                'usage' => false
-            ];
-        protected static $openAPIFormats = [
-            'license_id' => null,
-            'project_title' => null,
-            'total' => null,
-            'usage' => null
-        ];
 }
 

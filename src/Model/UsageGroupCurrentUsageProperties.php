@@ -53,42 +53,5 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'title' => false,
-                'type' => false,
-                'current_usage' => false,
-                'current_usage_formatted' => false,
-                'not_charged' => false,
-                'free_quantity' => false,
-                'free_quantity_formatted' => false,
-                'daily_average' => false,
-                'daily_average_formatted' => false
-            ];
-        protected static $openAPIFormats = [
-            'title' => null,
-            'type' => null,
-            'current_usage' => null,
-            'current_usage_formatted' => null,
-            'not_charged' => null,
-            'free_quantity' => null,
-            'free_quantity_formatted' => null,
-            'daily_average' => null,
-            'daily_average_formatted' => null
-        ];
 }
 

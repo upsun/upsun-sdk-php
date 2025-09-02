@@ -43,32 +43,5 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'cpu' => false,
-                'memory' => false,
-                'storage' => false,
-                'environments' => false
-            ];
-        protected static $openAPIFormats = [
-            'cpu' => null,
-            'memory' => null,
-            'storage' => null,
-            'environments' => null
-        ];
 }
 

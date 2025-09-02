@@ -56,42 +56,5 @@ final class LineItem implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'license_id' => true,
-                'project_id' => true,
-                'product' => false,
-                'sku' => false,
-                'total' => false,
-                'total_formatted' => false,
-                'components' => false,
-                'exclude_from_invoice' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'license_id' => null,
-            'project_id' => null,
-            'product' => null,
-            'sku' => null,
-            'total' => null,
-            'total_formatted' => null,
-            'components' => null,
-            'exclude_from_invoice' => null
-        ];
 }
 

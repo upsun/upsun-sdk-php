@@ -51,40 +51,5 @@ final class StringFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'eq' => false,
-                'ne' => false,
-                'in' => false,
-                'nin' => false,
-                'between' => false,
-                'contains' => false,
-                'starts' => false,
-                'ends' => false
-            ];
-        protected static $openAPIFormats = [
-            'eq' => null,
-            'ne' => null,
-            'in' => null,
-            'nin' => null,
-            'between' => null,
-            'contains' => null,
-            'starts' => null,
-            'ends' => null
-        ];
 }
 

@@ -65,54 +65,5 @@ final class OrganizationLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'self' => false,
-                'update' => false,
-                'delete' => false,
-                'members' => false,
-                'create_member' => false,
-                'address' => false,
-                'profile' => false,
-                'payment_source' => false,
-                'orders' => false,
-                'vouchers' => false,
-                'apply_voucher' => false,
-                'subscriptions' => false,
-                'create_subscription' => false,
-                'estimate_subscription' => false,
-                'mfa_enforcement' => false
-            ];
-        protected static $openAPIFormats = [
-            'self' => null,
-            'update' => null,
-            'delete' => null,
-            'members' => null,
-            'create_member' => null,
-            'address' => null,
-            'profile' => null,
-            'payment_source' => null,
-            'orders' => null,
-            'vouchers' => null,
-            'apply_voucher' => null,
-            'subscriptions' => null,
-            'create_subscription' => null,
-            'estimate_subscription' => null,
-            'mfa_enforcement' => null
-        ];
 }
 

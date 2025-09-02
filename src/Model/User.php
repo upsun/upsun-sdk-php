@@ -67,56 +67,5 @@ final class User implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'deactivated' => false,
-                'namespace' => false,
-                'username' => false,
-                'email' => false,
-                'email_verified' => false,
-                'first_name' => false,
-                'last_name' => false,
-                'picture' => false,
-                'company' => false,
-                'website' => false,
-                'country' => false,
-                'created_at' => false,
-                'updated_at' => false,
-                'consented_at' => false,
-                'consent_method' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => 'uuid',
-            'deactivated' => null,
-            'namespace' => null,
-            'username' => null,
-            'email' => 'email',
-            'email_verified' => null,
-            'first_name' => null,
-            'last_name' => null,
-            'picture' => 'uri',
-            'company' => null,
-            'website' => 'uri',
-            'country' => null,
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'consented_at' => 'date-time',
-            'consent_method' => null
-        ];
 }
 

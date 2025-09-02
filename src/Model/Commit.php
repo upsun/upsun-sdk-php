@@ -50,36 +50,5 @@ final class Commit implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'sha' => false,
-                'author' => false,
-                'committer' => false,
-                'message' => false,
-                'tree' => false,
-                'parents' => false
-            ];
-        protected static $openAPIFormats = [
-            'sha' => null,
-            'author' => null,
-            'committer' => null,
-            'message' => null,
-            'tree' => null,
-            'parents' => null
-        ];
 }
 

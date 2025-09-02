@@ -51,40 +51,5 @@ final class UserReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'username' => false,
-                'email' => false,
-                'first_name' => false,
-                'last_name' => false,
-                'picture' => false,
-                'mfa_enabled' => false,
-                'sso_enabled' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => 'uuid',
-            'username' => null,
-            'email' => 'email',
-            'first_name' => null,
-            'last_name' => null,
-            'picture' => 'uri',
-            'mfa_enabled' => null,
-            'sso_enabled' => null
-        ];
 }
 

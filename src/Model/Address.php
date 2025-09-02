@@ -55,44 +55,5 @@ final class Address implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'country' => false,
-                'name_line' => false,
-                'premise' => false,
-                'sub_premise' => false,
-                'thoroughfare' => false,
-                'administrative_area' => false,
-                'sub_administrative_area' => false,
-                'locality' => false,
-                'dependent_locality' => false,
-                'postal_code' => false
-            ];
-        protected static $openAPIFormats = [
-            'country' => 'ISO ALPHA-2',
-            'name_line' => null,
-            'premise' => null,
-            'sub_premise' => null,
-            'thoroughfare' => null,
-            'administrative_area' => 'ISO ALPHA-2',
-            'sub_administrative_area' => null,
-            'locality' => null,
-            'dependent_locality' => null,
-            'postal_code' => null
-        ];
 }
 

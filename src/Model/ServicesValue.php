@@ -58,44 +58,5 @@ final class ServicesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'size' => false,
-                'disk' => true,
-                'access' => false,
-                'configuration' => false,
-                'relationships' => false,
-                'firewall' => true,
-                'resources' => true,
-                'container_profile' => true,
-                'endpoints' => true
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'size' => null,
-            'disk' => null,
-            'access' => null,
-            'configuration' => null,
-            'relationships' => null,
-            'firewall' => null,
-            'resources' => null,
-            'container_profile' => null,
-            'endpoints' => null
-        ];
 }
 

@@ -68,54 +68,5 @@ final class Backup implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'id' => false,
-                'attributes' => false,
-                'status' => false,
-                'expires_at' => true,
-                'index' => true,
-                'commit_id' => false,
-                'environment' => false,
-                'safe' => false,
-                'size_of_volumes' => true,
-                'size_used' => true,
-                'deployment' => true,
-                'restorable' => false,
-                'automated' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'id' => null,
-            'attributes' => null,
-            'status' => null,
-            'expires_at' => 'date-time',
-            'index' => null,
-            'commit_id' => null,
-            'environment' => null,
-            'safe' => null,
-            'size_of_volumes' => null,
-            'size_used' => null,
-            'deployment' => null,
-            'restorable' => null,
-            'automated' => null
-        ];
 }
 

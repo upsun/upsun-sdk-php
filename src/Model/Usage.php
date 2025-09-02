@@ -45,34 +45,5 @@ final class Usage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'subscription_id' => false,
-                'usage_group' => false,
-                'quantity' => false,
-                'start' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'subscription_id' => null,
-            'usage_group' => null,
-            'quantity' => null,
-            'start' => 'date-time'
-        ];
 }
 

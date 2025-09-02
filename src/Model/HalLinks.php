@@ -41,30 +41,5 @@ final class HalLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'self' => false,
-                'previous' => false,
-                'next' => false
-            ];
-        protected static $openAPIFormats = [
-            'self' => null,
-            'previous' => null,
-            'next' => null
-        ];
 }
 

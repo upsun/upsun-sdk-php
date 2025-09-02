@@ -47,36 +47,5 @@ final class ProjectInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'title' => false,
-                'name' => false,
-                'namespace' => true,
-                'organization' => true,
-                'capabilities' => false,
-                'settings' => false
-            ];
-        protected static $openAPIFormats = [
-            'title' => null,
-            'name' => null,
-            'namespace' => null,
-            'organization' => null,
-            'capabilities' => null,
-            'settings' => null
-        ];
 }
 

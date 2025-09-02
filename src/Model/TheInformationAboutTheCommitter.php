@@ -41,30 +41,5 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'date' => false,
-                'name' => false,
-                'email' => false
-            ];
-        protected static $openAPIFormats = [
-            'date' => 'date-time',
-            'name' => null,
-            'email' => null
-        ];
 }
 

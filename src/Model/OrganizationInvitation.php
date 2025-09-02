@@ -56,42 +56,5 @@ final class OrganizationInvitation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'state' => false,
-                'organization_id' => false,
-                'email' => false,
-                'owner' => false,
-                'created_at' => false,
-                'updated_at' => false,
-                'finished_at' => true,
-                'permissions' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => 'uuid',
-            'state' => null,
-            'organization_id' => null,
-            'email' => 'email',
-            'owner' => null,
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'finished_at' => 'date-time',
-            'permissions' => null
-        ];
 }
 

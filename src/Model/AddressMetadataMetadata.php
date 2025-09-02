@@ -44,30 +44,5 @@ final class AddressMetadataMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'required_fields' => false,
-                'field_labels' => false,
-                'show_vat' => false
-            ];
-        protected static $openAPIFormats = [
-            'required_fields' => null,
-            'field_labels' => null,
-            'show_vat' => null
-        ];
 }
 

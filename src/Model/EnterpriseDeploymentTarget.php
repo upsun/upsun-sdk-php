@@ -57,40 +57,5 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'name' => false,
-                'deploy_host' => true,
-                'docroots' => false,
-                'site_urls' => false,
-                'ssh_hosts' => false,
-                'maintenance_mode' => false,
-                'enterprise_environments_mapping' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'name' => null,
-            'deploy_host' => null,
-            'docroots' => null,
-            'site_urls' => null,
-            'ssh_hosts' => null,
-            'maintenance_mode' => null,
-            'enterprise_environments_mapping' => null
-        ];
 }
 

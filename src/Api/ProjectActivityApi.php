@@ -179,78 +179,32 @@ final class ProjectActivityApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
-            $responseBody = (string) $response->getBody();
-            $data = json_decode($responseBody, true);
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
-                    $request,
-                    $response
-                );
+
+            switch ($statusCode) {
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\Upsun\Model\AcceptedResponse',
+                        $request,
+                        $response,
+                    );
             }
-    
-            // Création du modèle directement
-            $model = new \Upsun\Model\AcceptedResponse(
-            );
-    
-            return [$model, $statusCode, $response->getHeaders()];
-    
-    
-        } catch (\Exception $e) {
-            throw new ApiException(
-                $e->getMessage(),
-                $request ?? null,
-                $response ?? null,
-                $e
-            );
+
+
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Upsun\Model\AcceptedResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
         }
-            
-
-
-
-//            
-//            
-//            
-//
-//            switch ($statusCode) {
-//            
-//            
-//                default:
-//                    return $this->handleResponseWithDataType(
-//                        '\Upsun\Model\AcceptedResponse',
-//                        $request,
-//                        $response,
-//                    );
-//            
-//            
-//            }
-//            
-//            
-//
-//
-//
-//
-//            
-//            
-//        } catch (ApiException $e) {
-//            switch ($e->getCode()) {
-//        
-//            
-//                default:
-//                    $data = ObjectSerializer::deserialize(
-//                        $e->getResponseBody(),
-//                        '\Upsun\Model\AcceptedResponse',
-//                        $e->getResponseHeaders()
-//                    );
-//                    $e->setResponseObject($data);
-//                    throw $e;
-//            
-//        
-//            }
-//
-//
-//        }
     }
 
     /**
@@ -479,78 +433,32 @@ final class ProjectActivityApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
-            $responseBody = (string) $response->getBody();
-            $data = json_decode($responseBody, true);
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
-                    $request,
-                    $response
-                );
+
+            switch ($statusCode) {
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\Upsun\Model\Activity',
+                        $request,
+                        $response,
+                    );
             }
-    
-            // Création du modèle directement
-            $model = new \Upsun\Model\Activity(
-            );
-    
-            return [$model, $statusCode, $response->getHeaders()];
-    
-    
-        } catch (\Exception $e) {
-            throw new ApiException(
-                $e->getMessage(),
-                $request ?? null,
-                $response ?? null,
-                $e
-            );
+
+
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Upsun\Model\Activity',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
         }
-            
-
-
-
-//            
-//            
-//            
-//
-//            switch ($statusCode) {
-//            
-//            
-//                default:
-//                    return $this->handleResponseWithDataType(
-//                        '\Upsun\Model\Activity',
-//                        $request,
-//                        $response,
-//                    );
-//            
-//            
-//            }
-//            
-//            
-//
-//
-//
-//
-//            
-//            
-//        } catch (ApiException $e) {
-//            switch ($e->getCode()) {
-//        
-//            
-//                default:
-//                    $data = ObjectSerializer::deserialize(
-//                        $e->getResponseBody(),
-//                        '\Upsun\Model\Activity',
-//                        $e->getResponseHeaders()
-//                    );
-//                    $e->setResponseObject($data);
-//                    throw $e;
-//            
-//        
-//            }
-//
-//
-//        }
     }
 
     /**
@@ -775,78 +683,32 @@ final class ProjectActivityApi extends AbstractApi
             }
 
             $statusCode = $response->getStatusCode();
-            $responseBody = (string) $response->getBody();
-            $data = json_decode($responseBody, true);
 
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf('[%d] Error connecting to the API (%s)', $statusCode, (string) $request->getUri()),
-                    $request,
-                    $response
-                );
+
+            switch ($statusCode) {
+                default:
+                    return $this->handleResponseWithDataType(
+                        '\Upsun\Model\Activity[]',
+                        $request,
+                        $response,
+                    );
             }
-    
-            // Création du modèle directement
-            $model = new \Upsun\Model\Activity[](
-            );
-    
-            return [$model, $statusCode, $response->getHeaders()];
-    
-    
-        } catch (\Exception $e) {
-            throw new ApiException(
-                $e->getMessage(),
-                $request ?? null,
-                $response ?? null,
-                $e
-            );
+
+
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                default:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Upsun\Model\Activity[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+
         }
-            
-
-
-
-//            
-//            
-//            
-//
-//            switch ($statusCode) {
-//            
-//            
-//                default:
-//                    return $this->handleResponseWithDataType(
-//                        '\Upsun\Model\Activity[]',
-//                        $request,
-//                        $response,
-//                    );
-//            
-//            
-//            }
-//            
-//            
-//
-//
-//
-//
-//            
-//            
-//        } catch (ApiException $e) {
-//            switch ($e->getCode()) {
-//        
-//            
-//                default:
-//                    $data = ObjectSerializer::deserialize(
-//                        $e->getResponseBody(),
-//                        '\Upsun\Model\Activity[]',
-//                        $e->getResponseHeaders()
-//                    );
-//                    $e->setResponseObject($data);
-//                    throw $e;
-//            
-//        
-//            }
-//
-//
-//        }
     }
 
     /**

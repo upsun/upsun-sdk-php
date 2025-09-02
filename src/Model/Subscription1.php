@@ -59,48 +59,5 @@ final class Subscription1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'license_uri' => false,
-                'plan' => false,
-                'environments' => false,
-                'storage' => false,
-                'included_users' => false,
-                'subscription_management_uri' => false,
-                'restricted' => false,
-                'suspended' => false,
-                'user_licenses' => false,
-                'resources' => false,
-                'resource_validation_url' => false,
-                'image_types' => false
-            ];
-        protected static $openAPIFormats = [
-            'license_uri' => null,
-            'plan' => null,
-            'environments' => null,
-            'storage' => null,
-            'included_users' => null,
-            'subscription_management_uri' => null,
-            'restricted' => null,
-            'suspended' => null,
-            'user_licenses' => null,
-            'resources' => null,
-            'resource_validation_url' => null,
-            'image_types' => null
-        ];
 }
 

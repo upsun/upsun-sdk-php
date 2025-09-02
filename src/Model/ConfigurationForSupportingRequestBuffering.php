@@ -39,28 +39,5 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'enabled' => false,
-                'max_request_size' => true
-            ];
-        protected static $openAPIFormats = [
-            'enabled' => null,
-            'max_request_size' => null
-        ];
 }
 

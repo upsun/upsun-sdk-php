@@ -39,28 +39,5 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'redirect_to_url' => false,
-                'type' => false
-            ];
-        protected static $openAPIFormats = [
-            'redirect_to_url' => null,
-            'type' => null
-        ];
 }
 

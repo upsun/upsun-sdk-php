@@ -77,54 +77,5 @@ final class CurrentUser implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'uuid' => false,
-                'username' => false,
-                'display_name' => false,
-                'status' => false,
-                'mail' => false,
-                'ssh_keys' => false,
-                'has_key' => false,
-                'projects' => false,
-                'sequence' => false,
-                'roles' => false,
-                'picture' => false,
-                'tickets' => false,
-                'trial' => false,
-                'current_trial' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => 'uuid',
-            'uuid' => 'uuid',
-            'username' => null,
-            'display_name' => null,
-            'status' => null,
-            'mail' => 'email',
-            'ssh_keys' => null,
-            'has_key' => null,
-            'projects' => null,
-            'sequence' => null,
-            'roles' => null,
-            'picture' => 'url',
-            'tickets' => null,
-            'trial' => null,
-            'current_trial' => null
-        ];
 }
 

@@ -68,54 +68,5 @@ final class Project implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'attributes' => false,
-                'title' => false,
-                'description' => false,
-                'owner' => false,
-                'namespace' => true,
-                'organization' => true,
-                'default_branch' => true,
-                'status' => false,
-                'timezone' => false,
-                'region' => false,
-                'repository' => false,
-                'default_domain' => true,
-                'subscription' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'attributes' => null,
-            'title' => null,
-            'description' => null,
-            'owner' => null,
-            'namespace' => null,
-            'organization' => null,
-            'default_branch' => null,
-            'status' => null,
-            'timezone' => null,
-            'region' => null,
-            'repository' => null,
-            'default_domain' => null,
-            'subscription' => null
-        ];
 }
 

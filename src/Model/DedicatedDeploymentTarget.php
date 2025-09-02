@@ -67,50 +67,5 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'name' => false,
-                'deploy_host' => true,
-                'deploy_port' => true,
-                'ssh_host' => true,
-                'hosts' => true,
-                'auto_mounts' => false,
-                'excluded_mounts' => false,
-                'enforced_mounts' => false,
-                'auto_crons' => false,
-                'auto_nginx' => false,
-                'maintenance_mode' => false,
-                'guardrails_phase' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'name' => null,
-            'deploy_host' => null,
-            'deploy_port' => null,
-            'ssh_host' => null,
-            'hosts' => null,
-            'auto_mounts' => null,
-            'excluded_mounts' => null,
-            'enforced_mounts' => null,
-            'auto_crons' => null,
-            'auto_nginx' => null,
-            'maintenance_mode' => null,
-            'guardrails_phase' => null
-        ];
 }
 

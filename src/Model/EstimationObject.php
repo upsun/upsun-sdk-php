@@ -47,36 +47,5 @@ final class EstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'plan' => false,
-                'user_licenses' => false,
-                'environments' => false,
-                'storage' => false,
-                'total' => false,
-                'options' => false
-            ];
-        protected static $openAPIFormats = [
-            'plan' => null,
-            'user_licenses' => null,
-            'environments' => null,
-            'storage' => null,
-            'total' => null,
-            'options' => null
-        ];
 }
 

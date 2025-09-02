@@ -58,44 +58,5 @@ final class SyslogIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'type' => false,
-                'extra' => false,
-                'host' => false,
-                'port' => false,
-                'protocol' => false,
-                'facility' => false,
-                'message_format' => false,
-                'tls_verify' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'type' => null,
-            'extra' => null,
-            'host' => null,
-            'port' => null,
-            'protocol' => null,
-            'facility' => null,
-            'message_format' => null,
-            'tls_verify' => null
-        ];
 }
 

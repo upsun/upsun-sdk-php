@@ -45,34 +45,5 @@ final class EnvironmentBranchInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'title' => false,
-                'name' => false,
-                'clone_parent' => false,
-                'type' => false,
-                'resources' => true
-            ];
-        protected static $openAPIFormats = [
-            'title' => null,
-            'name' => null,
-            'clone_parent' => null,
-            'type' => null,
-            'resources' => null
-        ];
 }
 

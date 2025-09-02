@@ -51,34 +51,5 @@ final class HttpLogIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'extra' => false,
-                'url' => false,
-                'headers' => false,
-                'tls_verify' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'extra' => null,
-            'url' => null,
-            'headers' => null,
-            'tls_verify' => null
-        ];
 }
 

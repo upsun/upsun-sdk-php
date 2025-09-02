@@ -61,50 +61,5 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'cpu_app' => false,
-                'storage_app_services' => false,
-                'memory_app' => false,
-                'cpu_services' => false,
-                'memory_services' => false,
-                'backup_storage' => false,
-                'build_cpu' => false,
-                'build_memory' => false,
-                'egress_bandwidth' => false,
-                'ingress_requests' => false,
-                'logs_fwd_content_size' => false,
-                'fastly_bandwidth' => false,
-                'fastly_requests' => false
-            ];
-        protected static $openAPIFormats = [
-            'cpu_app' => null,
-            'storage_app_services' => null,
-            'memory_app' => null,
-            'cpu_services' => null,
-            'memory_services' => null,
-            'backup_storage' => null,
-            'build_cpu' => null,
-            'build_memory' => null,
-            'egress_bandwidth' => null,
-            'ingress_requests' => null,
-            'logs_fwd_content_size' => null,
-            'fastly_bandwidth' => null,
-            'fastly_requests' => null
-        ];
 }
 

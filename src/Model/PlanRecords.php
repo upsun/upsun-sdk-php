@@ -56,42 +56,5 @@ final class PlanRecords implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'owner' => false,
-                'subscription_id' => false,
-                'sku' => false,
-                'plan' => false,
-                'options' => false,
-                'start' => false,
-                'end' => true,
-                'status' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'owner' => 'uuid',
-            'subscription_id' => null,
-            'sku' => null,
-            'plan' => null,
-            'options' => null,
-            'start' => 'date-time',
-            'end' => 'date-time',
-            'status' => null
-        ];
 }
 

@@ -59,48 +59,5 @@ final class Region implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'label' => false,
-                'zone' => false,
-                'selection_label' => false,
-                'project_label' => false,
-                'timezone' => false,
-                'available' => false,
-                'private' => false,
-                'endpoint' => false,
-                'provider' => false,
-                'datacenter' => false,
-                'environmental_impact' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'label' => null,
-            'zone' => null,
-            'selection_label' => null,
-            'project_label' => null,
-            'timezone' => null,
-            'available' => null,
-            'private' => null,
-            'endpoint' => null,
-            'provider' => null,
-            'datacenter' => null,
-            'environmental_impact' => null
-        ];
 }
 

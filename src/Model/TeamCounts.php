@@ -39,28 +39,5 @@ final class TeamCounts implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'member_count' => false,
-                'project_count' => false
-            ];
-        protected static $openAPIFormats = [
-            'member_count' => null,
-            'project_count' => null
-        ];
 }
 

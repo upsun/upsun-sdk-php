@@ -41,30 +41,5 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'addon_key' => false,
-                'client_key' => false,
-                'shared_secret' => false
-            ];
-        protected static $openAPIFormats = [
-            'addon_key' => null,
-            'client_key' => null,
-            'shared_secret' => null
-        ];
 }
 

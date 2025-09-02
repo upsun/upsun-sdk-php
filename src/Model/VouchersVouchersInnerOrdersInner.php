@@ -49,38 +49,5 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'order_id' => false,
-                'status' => false,
-                'billing_period_start' => false,
-                'billing_period_end' => false,
-                'order_total' => false,
-                'order_discount' => false,
-                'currency' => false
-            ];
-        protected static $openAPIFormats = [
-            'order_id' => null,
-            'status' => null,
-            'billing_period_start' => null,
-            'billing_period_end' => null,
-            'order_total' => null,
-            'order_discount' => null,
-            'currency' => null
-        ];
 }
 

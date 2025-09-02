@@ -45,34 +45,5 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'organization_id' => false,
-                'balance' => false,
-                'last_updated_at' => true,
-                'sufficient' => false,
-                'fallback' => true
-            ];
-        protected static $openAPIFormats = [
-            'organization_id' => null,
-            'balance' => null,
-            'last_updated_at' => null,
-            'sufficient' => null,
-            'fallback' => null
-        ];
 }
 

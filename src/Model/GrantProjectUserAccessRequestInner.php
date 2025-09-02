@@ -44,30 +44,5 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'user_id' => false,
-                'permissions' => false,
-                'auto_add_member' => false
-            ];
-        protected static $openAPIFormats = [
-            'user_id' => null,
-            'permissions' => null,
-            'auto_add_member' => null
-        ];
 }
 

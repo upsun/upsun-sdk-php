@@ -57,40 +57,5 @@ final class DeploymentTargetPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'name' => false,
-                'enforced_mounts' => false,
-                'site_urls' => false,
-                'ssh_hosts' => false,
-                'enterprise_environments_mapping' => false,
-                'hosts' => true,
-                'use_dedicated_grid' => false
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'name' => null,
-            'enforced_mounts' => null,
-            'site_urls' => null,
-            'ssh_hosts' => null,
-            'enterprise_environments_mapping' => null,
-            'hosts' => null,
-            'use_dedicated_grid' => null
-        ];
 }
 

@@ -54,40 +54,5 @@ final class UserProjectAccess implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'user_id' => false,
-                'organization_id' => false,
-                'project_id' => false,
-                'project_title' => false,
-                'permissions' => false,
-                'granted_at' => false,
-                'updated_at' => false,
-                '_links' => false
-            ];
-        protected static $openAPIFormats = [
-            'user_id' => 'uuid',
-            'organization_id' => 'ulid',
-            'project_id' => null,
-            'project_title' => null,
-            'permissions' => null,
-            'granted_at' => 'date-time',
-            'updated_at' => 'date-time',
-            '_links' => null
-        ];
 }
 

@@ -47,36 +47,5 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'regexp' => false,
-                'to' => false,
-                'prefix' => true,
-                'append_suffix' => true,
-                'code' => false,
-                'expires' => true
-            ];
-        protected static $openAPIFormats = [
-            'regexp' => null,
-            'to' => null,
-            'prefix' => null,
-            'append_suffix' => null,
-            'code' => null,
-            'expires' => null
-        ];
 }
 

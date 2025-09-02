@@ -56,42 +56,5 @@ final class EnvironmentPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'name' => false,
-                'title' => false,
-                'attributes' => false,
-                'type' => false,
-                'parent' => true,
-                'clone_parent_on_create' => false,
-                'http_access' => false,
-                'enable_smtp' => false,
-                'restrict_robots' => false
-            ];
-        protected static $openAPIFormats = [
-            'name' => null,
-            'title' => null,
-            'attributes' => null,
-            'type' => null,
-            'parent' => null,
-            'clone_parent_on_create' => null,
-            'http_access' => null,
-            'enable_smtp' => null,
-            'restrict_robots' => null
-        ];
 }
 

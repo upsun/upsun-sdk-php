@@ -42,28 +42,5 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'root' => true,
-                'operations' => false
-            ];
-        protected static $openAPIFormats = [
-            'root' => null,
-            'operations' => null
-        ];
 }
 

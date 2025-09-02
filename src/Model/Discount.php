@@ -57,46 +57,5 @@ final class Discount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'organization_id' => false,
-                'type' => false,
-                'type_label' => false,
-                'status' => false,
-                'commitment' => true,
-                'total_months' => true,
-                'discount' => false,
-                'config' => false,
-                'start_at' => false,
-                'end_at' => true
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'organization_id' => null,
-            'type' => null,
-            'type_label' => null,
-            'status' => null,
-            'commitment' => null,
-            'total_months' => null,
-            'discount' => null,
-            'config' => null,
-            'start_at' => 'date-time',
-            'end_at' => 'date-time'
-        ];
 }
 

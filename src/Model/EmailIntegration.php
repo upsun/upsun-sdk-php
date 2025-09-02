@@ -48,34 +48,5 @@ final class EmailIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'type' => false,
-                'from_address' => true,
-                'recipients' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'type' => null,
-            'from_address' => null,
-            'recipients' => null
-        ];
 }
 

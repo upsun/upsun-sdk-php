@@ -48,34 +48,5 @@ final class ResourcesOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'services' => false,
-                'starts_at' => true,
-                'ends_at' => true,
-                'redeployed_start' => false,
-                'redeployed_end' => false
-            ];
-        protected static $openAPIFormats = [
-            'services' => null,
-            'starts_at' => 'date-time',
-            'ends_at' => 'date-time',
-            'redeployed_start' => null,
-            'redeployed_end' => null
-        ];
 }
 

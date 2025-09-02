@@ -64,50 +64,5 @@ final class Organization implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'type' => false,
-                'owner_id' => false,
-                'namespace' => false,
-                'name' => false,
-                'label' => false,
-                'country' => false,
-                'capabilities' => false,
-                'vendor' => false,
-                'status' => false,
-                'created_at' => false,
-                'updated_at' => false,
-                '_links' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => 'ulid',
-            'type' => null,
-            'owner_id' => 'uuid',
-            'namespace' => null,
-            'name' => null,
-            'label' => null,
-            'country' => null,
-            'capabilities' => null,
-            'vendor' => null,
-            'status' => null,
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            '_links' => null
-        ];
 }
 

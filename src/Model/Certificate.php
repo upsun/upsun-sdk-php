@@ -69,46 +69,5 @@ final class Certificate implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'certificate' => false,
-                'chain' => false,
-                'is_provisioned' => false,
-                'is_invalid' => false,
-                'is_root' => false,
-                'domains' => false,
-                'auth_type' => false,
-                'issuer' => false,
-                'expires_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'certificate' => null,
-            'chain' => null,
-            'is_provisioned' => null,
-            'is_invalid' => null,
-            'is_root' => null,
-            'domains' => null,
-            'auth_type' => null,
-            'issuer' => null,
-            'expires_at' => 'date-time'
-        ];
 }
 

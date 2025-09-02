@@ -43,32 +43,5 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'amount' => false,
-                'currency_code' => false,
-                'currency_symbol' => false,
-                'formatted' => false
-            ];
-        protected static $openAPIFormats = [
-            'amount' => null,
-            'currency_code' => null,
-            'currency_symbol' => null,
-            'formatted' => null
-        ];
 }
 

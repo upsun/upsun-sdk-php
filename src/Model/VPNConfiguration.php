@@ -66,52 +66,5 @@ final class VPNConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'version' => false,
-                'aggressive' => false,
-                'modeconfig' => false,
-                'authentication' => false,
-                'gateway_ip' => false,
-                'identity' => true,
-                'second_identity' => true,
-                'remote_identity' => true,
-                'remote_subnets' => false,
-                'ike' => false,
-                'esp' => false,
-                'ikelifetime' => false,
-                'lifetime' => false,
-                'margintime' => false
-            ];
-        protected static $openAPIFormats = [
-            'version' => null,
-            'aggressive' => null,
-            'modeconfig' => null,
-            'authentication' => null,
-            'gateway_ip' => null,
-            'identity' => null,
-            'second_identity' => null,
-            'remote_identity' => null,
-            'remote_subnets' => null,
-            'ike' => null,
-            'esp' => null,
-            'ikelifetime' => null,
-            'lifetime' => null,
-            'margintime' => null
-        ];
 }
 

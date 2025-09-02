@@ -48,34 +48,5 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'type' => false,
-                'name' => false,
-                'hosts' => true,
-                'use_dedicated_grid' => false,
-                'storage_type' => true
-            ];
-        protected static $openAPIFormats = [
-            'type' => null,
-            'name' => null,
-            'hosts' => null,
-            'use_dedicated_grid' => null,
-            'storage_type' => null
-        ];
 }
 

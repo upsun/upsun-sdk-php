@@ -46,32 +46,5 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'directory' => true,
-                'watch' => false,
-                'allow_stale' => false,
-                'share_between_apps' => false
-            ];
-        protected static $openAPIFormats = [
-            'directory' => null,
-            'watch' => null,
-            'allow_stale' => null,
-            'share_between_apps' => null
-        ];
 }
 

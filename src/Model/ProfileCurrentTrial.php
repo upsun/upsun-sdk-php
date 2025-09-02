@@ -57,46 +57,5 @@ final class ProfileCurrentTrial implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'active' => false,
-                'created' => false,
-                'description' => false,
-                'expiration' => false,
-                'current' => false,
-                'spend' => false,
-                'spend_remaining' => false,
-                'projects' => false,
-                'pending_verification' => true,
-                'model' => false,
-                'days_remaining' => false
-            ];
-        protected static $openAPIFormats = [
-            'active' => null,
-            'created' => 'date-time',
-            'description' => null,
-            'expiration' => 'date-time',
-            'current' => null,
-            'spend' => null,
-            'spend_remaining' => null,
-            'projects' => null,
-            'pending_verification' => null,
-            'model' => null,
-            'days_remaining' => null
-        ];
 }
 

@@ -49,38 +49,5 @@ final class Connection implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'provider' => false,
-                'provider_type' => false,
-                'is_mandatory' => false,
-                'subject' => false,
-                'email_address' => false,
-                'created_at' => false,
-                'updated_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'provider' => null,
-            'provider_type' => null,
-            'is_mandatory' => null,
-            'subject' => null,
-            'email_address' => null,
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time'
-        ];
 }
 

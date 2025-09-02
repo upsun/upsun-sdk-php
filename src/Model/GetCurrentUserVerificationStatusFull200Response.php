@@ -39,28 +39,5 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'state' => false,
-                'type' => false
-            ];
-        protected static $openAPIFormats = [
-            'state' => null,
-            'type' => null
-        ];
 }
 

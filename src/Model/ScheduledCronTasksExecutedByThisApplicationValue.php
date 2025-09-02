@@ -45,34 +45,5 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'spec' => false,
-                'commands' => false,
-                'shutdown_timeout' => true,
-                'timeout' => false,
-                'cmd' => false
-            ];
-        protected static $openAPIFormats = [
-            'spec' => null,
-            'commands' => null,
-            'shutdown_timeout' => null,
-            'timeout' => null,
-            'cmd' => null
-        ];
 }
 

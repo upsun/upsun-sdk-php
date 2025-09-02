@@ -53,42 +53,5 @@ final class EnvironmentInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'name' => false,
-                'status' => false,
-                'is_main' => false,
-                'is_production' => false,
-                'constraints' => false,
-                'reference' => false,
-                'machine_name' => false,
-                'environment_type' => false,
-                'links' => false
-            ];
-        protected static $openAPIFormats = [
-            'name' => null,
-            'status' => null,
-            'is_main' => null,
-            'is_production' => null,
-            'constraints' => null,
-            'reference' => null,
-            'machine_name' => null,
-            'environment_type' => null,
-            'links' => null
-        ];
 }
 

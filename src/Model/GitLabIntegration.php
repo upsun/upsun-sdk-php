@@ -57,46 +57,5 @@ final class GitLabIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'created_at' => true,
-                'updated_at' => true,
-                'type' => false,
-                'fetch_branches' => false,
-                'prune_branches' => false,
-                'environment_init_resources' => false,
-                'base_url' => false,
-                'project' => false,
-                'build_merge_requests' => false,
-                'build_wip_merge_requests' => false,
-                'merge_requests_clone_parent_data' => false
-            ];
-        protected static $openAPIFormats = [
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time',
-            'type' => null,
-            'fetch_branches' => null,
-            'prune_branches' => null,
-            'environment_init_resources' => null,
-            'base_url' => null,
-            'project' => null,
-            'build_merge_requests' => null,
-            'build_wip_merge_requests' => null,
-            'merge_requests_clone_parent_data' => null
-        ];
 }
 

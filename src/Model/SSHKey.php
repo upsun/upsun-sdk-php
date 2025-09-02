@@ -47,36 +47,5 @@ final class SSHKey implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'key_id' => false,
-                'uid' => false,
-                'fingerprint' => false,
-                'title' => false,
-                'value' => false,
-                'changed' => false
-            ];
-        protected static $openAPIFormats = [
-            'key_id' => null,
-            'uid' => null,
-            'fingerprint' => null,
-            'title' => null,
-            'value' => null,
-            'changed' => null
-        ];
 }
 

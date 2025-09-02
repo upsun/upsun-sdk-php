@@ -41,30 +41,5 @@ final class SystemInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'version' => false,
-                'image' => false,
-                'started_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'version' => null,
-            'image' => null,
-            'started_at' => 'date-time'
-        ];
 }
 

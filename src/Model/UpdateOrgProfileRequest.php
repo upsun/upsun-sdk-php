@@ -47,36 +47,5 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'default_catalog' => false,
-                'project_options_url' => false,
-                'security_contact' => false,
-                'company_name' => false,
-                'vat_number' => false,
-                'billing_contact' => false
-            ];
-        protected static $openAPIFormats = [
-            'default_catalog' => null,
-            'project_options_url' => 'uri',
-            'security_contact' => 'email',
-            'company_name' => null,
-            'vat_number' => null,
-            'billing_contact' => 'email'
-        ];
 }
 

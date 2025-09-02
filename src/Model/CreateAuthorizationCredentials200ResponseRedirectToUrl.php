@@ -39,28 +39,5 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'return_url' => false,
-                'url' => false
-            ];
-        protected static $openAPIFormats = [
-            'return_url' => null,
-            'url' => null
-        ];
 }
 

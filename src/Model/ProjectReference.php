@@ -55,44 +55,5 @@ final class ProjectReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'id' => false,
-                'organization_id' => false,
-                'subscription_id' => false,
-                'region' => false,
-                'title' => false,
-                'type' => false,
-                'plan' => false,
-                'status' => false,
-                'created_at' => false,
-                'updated_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'id' => null,
-            'organization_id' => 'ulid',
-            'subscription_id' => null,
-            'region' => null,
-            'title' => null,
-            'type' => null,
-            'plan' => null,
-            'status' => null,
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time'
-        ];
 }
 

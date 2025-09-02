@@ -47,36 +47,5 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'name' => false,
-                'value' => false,
-                'is_sensitive' => false,
-                'is_json' => false,
-                'visible_build' => false,
-                'visible_runtime' => false
-            ];
-        protected static $openAPIFormats = [
-            'name' => null,
-            'value' => null,
-            'is_sensitive' => null,
-            'is_json' => null,
-            'visible_build' => null,
-            'visible_runtime' => null
-        ];
 }
 

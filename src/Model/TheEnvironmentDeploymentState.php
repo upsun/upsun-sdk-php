@@ -41,30 +41,5 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'last_deployment_successful' => false,
-                'last_deployment_at' => true,
-                'crons' => false
-            ];
-        protected static $openAPIFormats = [
-            'last_deployment_successful' => null,
-            'last_deployment_at' => 'date-time',
-            'crons' => null
-        ];
 }
 

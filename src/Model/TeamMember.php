@@ -43,32 +43,5 @@ final class TeamMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats;
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables;
-        }
-        
-            protected static array $openAPINullables = [
-                'team_id' => false,
-                'user_id' => false,
-                'created_at' => false,
-                'updated_at' => false
-            ];
-        protected static $openAPIFormats = [
-            'team_id' => 'ulid',
-            'user_id' => 'uuid',
-            'created_at' => 'date-time',
-            'updated_at' => 'date-time'
-        ];
 }
 

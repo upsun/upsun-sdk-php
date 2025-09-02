@@ -1,4 +1,4 @@
-final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}{{^parentSchema}}implements ModelInterface, ArrayAccess, JsonSerializable{{/parentSchema}}
+final class {{classname}} implements JsonSerializable
 {
     public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
 
@@ -23,11 +23,6 @@ final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}
         {{/isContainer}}
     {{/vars}}
     ) {
-        {{/parentSchema}}
-        {{#vars}}
-        $this->setIfExists('{{name}}', $data ?? [], {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}});
-        {{/vars}}
-        {{#discriminator}}
     }
 
     public function jsonSerialize(): array
@@ -44,27 +39,4 @@ final class {{classname}} {{#parentSchema}}extends {{{parent}}}{{/parentSchema}}
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }   
     
-    public static function openAPIFormats()
-        {
-            return self::$openAPIFormats{{#parentSchema}} + parent::openAPIFormats(){{/parentSchema}};
-        }
-    
-        /**
-         * Array of nullable properties
-         *
-         * @return array
-         */
-        protected static function openAPINullables(): array
-        {
-            return self::$openAPINullables{{#parentSchema}} + parent::openAPINullables(){{/parentSchema}};
-        }
-        
-            protected static array $openAPINullables = [
-                {{#vars}}'{{name}}' => {{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{^-last}},
-                {{/-last}}{{/vars}}
-            ];
-        protected static $openAPIFormats = [
-            {{#vars}}'{{name}}' => {{#dataFormat}}'{{{.}}}'{{/dataFormat}}{{^dataFormat}}null{{/dataFormat}}{{^-last}},
-            {{/-last}}{{/vars}}
-        ];
 }
