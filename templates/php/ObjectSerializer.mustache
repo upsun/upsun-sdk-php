@@ -423,17 +423,11 @@ class ObjectSerializer
                             $args[] = $value;
                             break;
                     }
-                }
-                // Handle special classes
-                elseif ($typeName === 'DateTime') {
+                } elseif ($typeName === 'DateTime') {
                     $args[] = $value !== null ? new \DateTime($value) : null;
-                }
-                // Handle nested models
-                elseif (class_exists($typeName)) {
+                } elseif (class_exists($typeName)) {
                     $args[] = $value !== null ? self::deserializeSimplifiedModel($value, $typeName) : null;
-                }
-                // Unknown type, fallback
-                else {
+                } else {
                     $args[] = $value;
                 }
             } else {
@@ -472,7 +466,12 @@ class ObjectSerializer
         }
 
         // Primitive types
-        if (in_array($class, ['bool','boolean','int','integer','float','double','string','byte','mixed','DateTime','SplFileObject'], true)) {
+        if (in_array(
+                $class, 
+                ['bool','boolean','int','integer','float','double','string','byte','mixed','array','DateTime','SplFileObject'], 
+                true
+            )
+        ) {
             return self::deserializePrimitive($data, $class);
         }
 
