@@ -127,7 +127,7 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): array {
-        var_dump($filterId, $filterOrganizationId, new StringFilter(...$filterOrganizationId));
+        var_dump($filterId, $filterOrganizationId, new StringFilter(...$filterId));
         
         return $this->teamsApi->listTeams(
             new StringFilter(...$filterOrganizationId),
