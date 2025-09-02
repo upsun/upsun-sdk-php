@@ -466,13 +466,30 @@ class ObjectSerializer
         }
 
         // Primitive types
-        if (in_array(
-                $class, 
-                ['bool','boolean','int','integer','float','double','string','byte','mixed','array','DateTime','SplFileObject'], 
-                true
-            )
-        ) {
-            return self::deserializePrimitive($data, $class);
+        switch ($class) {
+            case 'bool':
+            case 'boolean':
+                return (bool) $data;
+            case 'int':
+            case 'integer':
+                return (int) $data;
+            case 'float':
+            case 'double':
+                return (float) $data;
+            case 'string':
+            case 'byte':
+                return (string) $data;
+            case 'mixed':
+                return $data;
+            case 'array':
+                return (array) $data;
+            case 'DateTime':
+                return new \DateTime($data);
+            case 'SplFileObject':
+                return new \SplFileObject($data);
+            default:
+                // Nested model
+                return self::deserializeSimplifiedModel($data, $class);
         }
 
         // Nested models
