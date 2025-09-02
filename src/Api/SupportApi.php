@@ -122,6 +122,7 @@ final class SupportApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Ticket
      */
     public function createTicket(
         \Upsun\Model\CreateTicketRequest $create_ticket_request = null
@@ -158,7 +159,6 @@ final class SupportApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -305,6 +305,7 @@ final class SupportApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListTicketCategories200ResponseInner[]
      */
     public function listTicketCategories(
         string $subscription_id = null,
@@ -345,7 +346,6 @@ final class SupportApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -513,6 +513,7 @@ final class SupportApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListTicketPriorities200ResponseInner[]
      */
     public function listTicketPriorities(
         string $subscription_id = null,
@@ -553,7 +554,6 @@ final class SupportApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -721,6 +721,7 @@ final class SupportApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Ticket
      */
     public function updateTicket(
         string $ticket_id,
@@ -761,7 +762,6 @@ final class SupportApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

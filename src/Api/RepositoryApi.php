@@ -122,6 +122,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Blob
      */
     public function getProjectsGitBlobs(
         string $project_id,
@@ -162,7 +163,6 @@ final class RepositoryApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -336,6 +336,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Commit
      */
     public function getProjectsGitCommits(
         string $project_id,
@@ -376,7 +377,6 @@ final class RepositoryApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -550,6 +550,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Ref
      */
     public function getProjectsGitRefs(
         string $project_id,
@@ -590,7 +591,6 @@ final class RepositoryApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -764,6 +764,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Tree
      */
     public function getProjectsGitTrees(
         string $project_id,
@@ -804,7 +805,6 @@ final class RepositoryApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -978,6 +978,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Ref[]
      */
     public function listProjectsGitRefs(
         string $project_id
@@ -1014,7 +1015,6 @@ final class RepositoryApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

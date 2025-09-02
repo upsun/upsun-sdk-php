@@ -122,6 +122,7 @@ final class PhoneNumberApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function confirmPhoneNumber(
         string $sid,
@@ -166,7 +167,6 @@ final class PhoneNumberApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -341,6 +341,7 @@ final class PhoneNumberApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\VerifyPhoneNumber200Response
      */
     public function verifyPhoneNumber(
         string $user_id,
@@ -381,7 +382,6 @@ final class PhoneNumberApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

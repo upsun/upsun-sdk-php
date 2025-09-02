@@ -122,6 +122,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function activateEnvironment(
         string $project_id,
@@ -166,7 +167,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -357,6 +357,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function branchEnvironment(
         string $project_id,
@@ -401,7 +402,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -592,6 +592,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsEnvironmentsVersions(
         string $project_id,
@@ -636,7 +637,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -827,6 +827,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deactivateEnvironment(
         string $project_id,
@@ -867,7 +868,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1041,6 +1041,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteEnvironment(
         string $project_id,
@@ -1081,7 +1082,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1255,6 +1255,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsEnvironmentsVersions(
         string $project_id,
@@ -1299,7 +1300,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1492,6 +1492,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Environment
      */
     public function getEnvironment(
         string $project_id,
@@ -1532,7 +1533,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1706,6 +1706,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Version
      */
     public function getProjectsEnvironmentsVersions(
         string $project_id,
@@ -1750,7 +1751,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1943,6 +1943,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function initializeEnvironment(
         string $project_id,
@@ -1987,7 +1988,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -2178,6 +2178,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Environment[]
      */
     public function listProjectsEnvironments(
         string $project_id
@@ -2214,7 +2215,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -2369,6 +2369,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Version[]
      */
     public function listProjectsEnvironmentsVersions(
         string $project_id,
@@ -2409,7 +2410,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -2583,6 +2583,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function mergeEnvironment(
         string $project_id,
@@ -2627,7 +2628,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -2818,6 +2818,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function pauseEnvironment(
         string $project_id,
@@ -2858,7 +2859,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -3032,6 +3032,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function redeployEnvironment(
         string $project_id,
@@ -3072,7 +3073,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -3246,6 +3246,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function resumeEnvironment(
         string $project_id,
@@ -3286,7 +3287,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -3460,6 +3460,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function synchronizeEnvironment(
         string $project_id,
@@ -3504,7 +3505,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -3695,6 +3695,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateEnvironment(
         string $project_id,
@@ -3739,7 +3740,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -3930,6 +3930,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsEnvironmentsVersions(
         string $project_id,
@@ -3978,7 +3979,6 @@ final class EnvironmentApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

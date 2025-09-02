@@ -122,6 +122,7 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsEnvironmentsRoutes(
         string $project_id,
@@ -166,7 +167,6 @@ final class RoutingApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -357,6 +357,7 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsEnvironmentsRoutes(
         string $project_id,
@@ -401,7 +402,6 @@ final class RoutingApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -594,6 +594,7 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Route
      */
     public function getProjectsEnvironmentsRoutes(
         string $project_id,
@@ -638,7 +639,6 @@ final class RoutingApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -831,6 +831,7 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Route[]
      */
     public function listProjectsEnvironmentsRoutes(
         string $project_id,
@@ -871,7 +872,6 @@ final class RoutingApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1045,6 +1045,7 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsEnvironmentsRoutes(
         string $project_id,
@@ -1093,7 +1094,6 @@ final class RoutingApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

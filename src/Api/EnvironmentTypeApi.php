@@ -122,6 +122,7 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\EnvironmentType
      */
     public function getEnvironmentType(
         string $project_id,
@@ -162,7 +163,6 @@ final class EnvironmentTypeApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -336,6 +336,7 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\EnvironmentType[]
      */
     public function listProjectsEnvironmentTypes(
         string $project_id
@@ -372,7 +373,6 @@ final class EnvironmentTypeApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

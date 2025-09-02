@@ -122,6 +122,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\TeamProjectAccess
      */
     public function getProjectTeamAccess(
         string $project_id,
@@ -162,7 +163,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -336,6 +336,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\TeamProjectAccess
      */
     public function getTeamProjectAccess(
         string $team_id,
@@ -376,7 +377,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -550,6 +550,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function grantProjectTeamAccess(
         string $project_id,
@@ -590,7 +591,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -752,6 +752,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function grantTeamProjectAccess(
         string $team_id,
@@ -792,7 +793,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -954,6 +954,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListTeamProjectAccess200Response
      */
     public function listProjectTeamAccess(
         string $project_id,
@@ -1006,7 +1007,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1238,6 +1238,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListTeamProjectAccess200Response
      */
     public function listTeamProjectAccess(
         string $team_id,
@@ -1290,7 +1291,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1522,6 +1522,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function removeProjectTeamAccess(
         string $project_id,
@@ -1562,7 +1563,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1726,6 +1726,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function removeTeamProjectAccess(
         string $team_id,
@@ -1766,7 +1767,6 @@ final class TeamAccessApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

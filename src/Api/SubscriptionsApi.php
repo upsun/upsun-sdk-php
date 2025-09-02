@@ -122,6 +122,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\CanCreateNewOrgSubscription200Response
      */
     public function canCreateNewOrgSubscription(
         string $organization_id
@@ -158,7 +159,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -313,6 +313,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Subscription
      */
     public function createOrgSubscription(
         string $organization_id,
@@ -353,7 +354,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -525,6 +525,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function deleteOrgSubscription(
         string $organization_id,
@@ -565,7 +566,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -729,6 +729,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\EstimationObject
      */
     public function estimateNewOrgSubscription(
         string $organization_id,
@@ -785,7 +786,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1044,6 +1044,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\EstimationObject
      */
     public function estimateOrgSubscription(
         string $organization_id,
@@ -1104,7 +1105,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1364,6 +1364,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Subscription
      */
     public function getOrgSubscription(
         string $organization_id,
@@ -1404,7 +1405,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1578,6 +1578,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\SubscriptionCurrentUsageObject
      */
     public function getOrgSubscriptionCurrentUsage(
         string $organization_id,
@@ -1626,7 +1627,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1832,6 +1832,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListOrgSubscriptions200Response
      */
     public function listOrgSubscriptions(
         string $organization_id,
@@ -1908,7 +1909,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -2236,6 +2236,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\SubscriptionAddonsObject
      */
     public function listSubscriptionAddons(
         string $organization_id,
@@ -2276,7 +2277,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -2450,6 +2450,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Subscription
      */
     public function updateOrgSubscription(
         string $organization_id,
@@ -2494,7 +2495,6 @@ final class SubscriptionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

@@ -124,6 +124,7 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      *
      * @return array
+      * return pouette 
      */
     public function cancelProjectInvite(
         string $project_id,
@@ -164,7 +165,6 @@ final class ProjectInvitationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -328,6 +328,7 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ProjectInvitation
      */
     public function createProjectInvite(
         string $project_id,
@@ -368,7 +369,6 @@ final class ProjectInvitationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -536,6 +536,7 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      *
      * @return array
+      * return pouette \Upsun\Model\ProjectInvitation[]
      */
     public function listProjectInvites(
         string $project_id,
@@ -592,7 +593,6 @@ final class ProjectInvitationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

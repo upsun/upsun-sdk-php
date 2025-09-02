@@ -122,6 +122,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ConfirmTotpEnrollment200Response
      */
     public function confirmTotpEnrollment(
         string $user_id,
@@ -162,7 +163,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -328,6 +328,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function disableOrgMfaEnforcement(
         string $organization_id
@@ -364,7 +365,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -509,6 +509,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function enableOrgMfaEnforcement(
         string $organization_id
@@ -545,7 +546,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -690,6 +690,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\OrganizationMFAEnforcement
      */
     public function getOrgMfaEnforcement(
         string $organization_id
@@ -726,7 +727,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -881,6 +881,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\GetTotpEnrollment200Response
      */
     public function getTotpEnrollment(
         string $user_id
@@ -917,7 +918,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1072,6 +1072,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ConfirmTotpEnrollment200Response
      */
     public function recreateRecoveryCodes(
         string $user_id
@@ -1108,7 +1109,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1263,6 +1263,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette array&lt;string,\Upsun\Model\SendOrgMfaReminders200ResponseValue&gt;
      */
     public function sendOrgMfaReminders(
         string $organization_id,
@@ -1303,7 +1304,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1469,6 +1469,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function withdrawTotpEnrollment(
         string $user_id
@@ -1505,7 +1506,6 @@ final class MFAApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

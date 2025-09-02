@@ -122,6 +122,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\SSHKey
      */
     public function createSshKey(
         \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
@@ -158,7 +159,6 @@ final class SSHKeysApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -305,6 +305,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function deleteSshKey(
         int $key_id
@@ -341,7 +342,6 @@ final class SSHKeysApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -486,6 +486,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\SSHKey
      */
     public function getSshKey(
         int $key_id
@@ -522,7 +523,6 @@ final class SSHKeysApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

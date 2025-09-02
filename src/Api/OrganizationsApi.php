@@ -77,7 +77,7 @@ final class OrganizationsApi extends AbstractApi
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
         $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
         $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-        Api/UserProfilesApi.php
+
         $plugins = $plugins ?? [
             new RedirectPlugin(['strict' => true]),
             new ErrorPlugin(),
@@ -122,6 +122,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Organization
      */
     public function createOrg(
         \Upsun\Model\CreateOrgRequest $create_org_request
@@ -158,7 +159,6 @@ final class OrganizationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -311,6 +311,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function deleteOrg(
         string $organization_id
@@ -347,7 +348,6 @@ final class OrganizationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -492,6 +492,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Organization
      */
     public function getOrg(
         string $organization_id
@@ -528,7 +529,6 @@ final class OrganizationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -683,6 +683,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListOrgs200Response
      */
     public function listOrgs(
         \Upsun\Model\StringFilter $filter_id = null,
@@ -763,7 +764,6 @@ final class OrganizationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1104,6 +1104,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListUserOrgs200Response
      */
     public function listUserOrgs(
         string $user_id,
@@ -1172,7 +1173,6 @@ final class OrganizationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1468,6 +1468,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Organization
      */
     public function updateOrg(
         string $organization_id,
@@ -1508,7 +1509,6 @@ final class OrganizationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

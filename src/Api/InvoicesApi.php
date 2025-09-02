@@ -122,6 +122,7 @@ final class InvoicesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Invoice
      */
     public function getOrgInvoice(
         string $invoice_id,
@@ -162,7 +163,6 @@ final class InvoicesApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -336,6 +336,7 @@ final class InvoicesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListOrgInvoices200Response
      */
     public function listOrgInvoices(
         string $organization_id,
@@ -388,7 +389,6 @@ final class InvoicesApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

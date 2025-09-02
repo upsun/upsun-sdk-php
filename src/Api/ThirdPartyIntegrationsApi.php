@@ -122,6 +122,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsIntegrations(
         string $project_id,
@@ -162,7 +163,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -334,6 +334,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsIntegrations(
         string $project_id,
@@ -374,7 +375,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -548,6 +548,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Integration
      */
     public function getProjectsIntegrations(
         string $project_id,
@@ -588,7 +589,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -762,6 +762,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Integration[]
      */
     public function listProjectsIntegrations(
         string $project_id
@@ -798,7 +799,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -953,6 +953,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsIntegrations(
         string $project_id,
@@ -997,7 +998,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

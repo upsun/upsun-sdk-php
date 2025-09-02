@@ -122,6 +122,7 @@ final class SourceOperationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\EnvironmentSourceOperation[]
      */
     public function listProjectsEnvironmentsSourceOperations(
         string $project_id,
@@ -162,7 +163,6 @@ final class SourceOperationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -336,6 +336,7 @@ final class SourceOperationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function runSourceOperation(
         string $project_id,
@@ -380,7 +381,6 @@ final class SourceOperationsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

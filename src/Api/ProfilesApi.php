@@ -122,6 +122,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Address
      */
     public function getOrgAddress(
         string $organization_id
@@ -158,7 +159,6 @@ final class ProfilesApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -313,6 +313,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Profile
      */
     public function getOrgProfile(
         string $organization_id
@@ -349,7 +350,6 @@ final class ProfilesApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -504,6 +504,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Address
      */
     public function updateOrgAddress(
         string $organization_id,
@@ -544,7 +545,6 @@ final class ProfilesApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -710,6 +710,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Profile
      */
     public function updateOrgProfile(
         string $organization_id,
@@ -750,7 +751,6 @@ final class ProfilesApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

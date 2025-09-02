@@ -122,6 +122,7 @@ final class SystemInformationApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function actionProjectsSystemRestart(
         string $project_id
@@ -158,7 +159,6 @@ final class SystemInformationApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -313,6 +313,7 @@ final class SystemInformationApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\SystemInformation
      */
     public function getProjectsSystem(
         string $project_id
@@ -349,7 +350,6 @@ final class SystemInformationApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

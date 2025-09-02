@@ -122,6 +122,7 @@ final class RegionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\Region
      */
     public function getRegion(
         string $region_id
@@ -158,7 +159,6 @@ final class RegionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -313,6 +313,7 @@ final class RegionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListRegions200Response
      */
     public function listRegions(
         \Upsun\Model\StringFilter $filter_available = null,
@@ -373,7 +374,6 @@ final class RegionsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

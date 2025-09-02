@@ -122,6 +122,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function createProjectsDeployments(
         string $project_id,
@@ -162,7 +163,6 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -334,6 +334,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function deleteProjectsDeployments(
         string $project_id,
@@ -374,7 +375,6 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -548,6 +548,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\DeploymentTarget
      */
     public function getProjectsDeployments(
         string $project_id,
@@ -588,7 +589,6 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -762,6 +762,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\DeploymentTarget[]
      */
     public function listProjectsDeployments(
         string $project_id
@@ -798,7 +799,6 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -953,6 +953,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\AcceptedResponse
      */
     public function updateProjectsDeployments(
         string $project_id,
@@ -997,7 +998,6 @@ final class DeploymentTargetApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

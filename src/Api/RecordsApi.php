@@ -122,6 +122,7 @@ final class RecordsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListOrgPlanRecords200Response
      */
     public function listOrgPlanRecords(
         string $organization_id,
@@ -190,7 +191,6 @@ final class RecordsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -473,6 +473,7 @@ final class RecordsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListOrgUsageRecords200Response
      */
     public function listOrgUsageRecords(
         string $organization_id,
@@ -529,7 +530,6 @@ final class RecordsApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }

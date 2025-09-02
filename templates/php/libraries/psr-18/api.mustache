@@ -147,11 +147,12 @@ use function sprintf;
      *
      * @return {{{vendorExtensions.x-return-types-union}}}
 {{/vendorExtensions.x-return-types-displayReturn}}
+      * return pouette {{returnType}}
      */
     public function {{operationId}}(
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
+    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{{returnType}}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
         {{#vendorExtensions.x-returnable}}list($response) = {{/vendorExtensions.x-returnable}}$this->{{operationId}}WithHttpInfo(
             {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
             {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}

@@ -122,6 +122,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\OrganizationMember
      */
     public function createOrgMember(
         string $organization_id,
@@ -162,7 +163,6 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -334,6 +334,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette 
      */
     public function deleteOrgMember(
         string $organization_id,
@@ -374,7 +375,6 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -538,6 +538,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\OrganizationMember
      */
     public function getOrgMember(
         string $organization_id,
@@ -578,7 +579,6 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -752,6 +752,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\ListOrgMembers200Response
      */
     public function listOrgMembers(
         string $organization_id,
@@ -808,7 +809,6 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
@@ -1056,6 +1056,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+      * return pouette \Upsun\Model\OrganizationMember
      */
     public function updateOrgMember(
         string $organization_id,
@@ -1100,7 +1101,6 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
         } catch (ApiException $e) {
-            // gestion des erreurs pour chaque code
             throw $e;
         }
     }
