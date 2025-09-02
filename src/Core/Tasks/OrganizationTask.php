@@ -233,7 +233,7 @@ class OrganizationTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response {
+    ): array {
         return $this->client->team->list(
             ['eq' => $organizationId],
             null,
