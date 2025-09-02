@@ -92,6 +92,7 @@ class ObjectSerializer
      */
     private static function deserializeModel($data, $class)
     {
+        var_dump($class,$data);
         if (!class_exists($class)) {
             throw new \InvalidArgumentException("Class {$class} does not exist");
         }
