@@ -26,6 +26,11 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'active' => false,
+        'config' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

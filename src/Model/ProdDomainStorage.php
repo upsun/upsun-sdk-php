@@ -35,6 +35,17 @@ final class ProdDomainStorage implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'project' => false,
+        'name' => false,
+        'registered_name' => false,
+        'attributes' => false,
+        'is_default' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

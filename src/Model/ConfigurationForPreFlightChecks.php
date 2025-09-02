@@ -29,6 +29,11 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'ignored_rules' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

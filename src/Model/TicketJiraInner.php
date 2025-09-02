@@ -30,6 +30,15 @@ final class TicketJiraInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'ticket_id' => false,
+        'issue_id' => false,
+        'issue_key' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

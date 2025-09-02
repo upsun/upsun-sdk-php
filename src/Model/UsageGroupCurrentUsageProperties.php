@@ -33,6 +33,18 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'title' => false,
+        'type' => false,
+        'current_usage' => false,
+        'current_usage_formatted' => false,
+        'not_charged' => false,
+        'free_quantity' => false,
+        'free_quantity_formatted' => false,
+        'daily_average' => false,
+        'daily_average_formatted' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

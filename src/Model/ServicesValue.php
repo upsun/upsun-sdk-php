@@ -37,6 +37,19 @@ final class ServicesValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'size' => false,
+        'disk' => true,
+        'access' => false,
+        'configuration' => false,
+        'relationships' => false,
+        'firewall' => true,
+        'resources' => true,
+        'container_profile' => true,
+        'endpoints' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

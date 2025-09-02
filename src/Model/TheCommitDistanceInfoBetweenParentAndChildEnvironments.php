@@ -27,6 +27,12 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     ) {
     }
 
+    private static array $openAPINullables = [
+        'commits_ahead' => true,
+        'commits_behind' => true,
+        'parent_ref' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

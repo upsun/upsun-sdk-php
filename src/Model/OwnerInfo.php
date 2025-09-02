@@ -27,6 +27,12 @@ final class OwnerInfo implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'username' => false,
+        'display_name' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

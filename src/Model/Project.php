@@ -42,6 +42,24 @@ final class Project implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'attributes' => false,
+        'title' => false,
+        'description' => false,
+        'owner' => false,
+        'namespace' => true,
+        'organization' => true,
+        'default_branch' => true,
+        'status' => false,
+        'timezone' => false,
+        'region' => false,
+        'repository' => false,
+        'default_domain' => true,
+        'subscription' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

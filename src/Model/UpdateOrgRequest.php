@@ -27,6 +27,12 @@ final class UpdateOrgRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'label' => false,
+        'country' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

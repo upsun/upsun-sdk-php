@@ -29,6 +29,14 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     ) {
     }
 
+    private static array $openAPINullables = [
+        'spec' => false,
+        'commands' => false,
+        'shutdown_timeout' => true,
+        'timeout' => false,
+        'cmd' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

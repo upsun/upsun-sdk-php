@@ -43,6 +43,22 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'name' => false,
+        'deploy_host' => true,
+        'deploy_port' => true,
+        'ssh_host' => true,
+        'hosts' => true,
+        'auto_mounts' => false,
+        'excluded_mounts' => false,
+        'enforced_mounts' => false,
+        'auto_crons' => false,
+        'auto_nginx' => false,
+        'maintenance_mode' => false,
+        'guardrails_phase' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

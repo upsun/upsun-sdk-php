@@ -28,6 +28,10 @@ final class Firewall implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'outbound' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

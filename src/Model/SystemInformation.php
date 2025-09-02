@@ -27,6 +27,12 @@ final class SystemInformation implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'version' => false,
+        'image' => false,
+        'started_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

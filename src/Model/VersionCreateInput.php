@@ -25,6 +25,10 @@ final class VersionCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'routing' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

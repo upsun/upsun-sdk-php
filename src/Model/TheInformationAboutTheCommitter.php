@@ -27,6 +27,12 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'date' => false,
+        'name' => false,
+        'email' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

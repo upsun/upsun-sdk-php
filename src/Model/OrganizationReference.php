@@ -31,6 +31,16 @@ final class OrganizationReference implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'owner_id' => false,
+        'name' => false,
+        'label' => false,
+        'vendor' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

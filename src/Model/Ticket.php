@@ -68,6 +68,44 @@ final class Ticket implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'ticket_id' => false,
+        'created' => false,
+        'updated' => false,
+        'type' => false,
+        'subject' => false,
+        'description' => false,
+        'priority' => false,
+        'followup_tid' => false,
+        'status' => false,
+        'recipient' => false,
+        'requester_id' => false,
+        'submitter_id' => false,
+        'assignee_id' => false,
+        'organization_id' => false,
+        'collaborator_ids' => false,
+        'has_incidents' => false,
+        'due' => false,
+        'tags' => false,
+        'subscription_id' => false,
+        'ticket_group' => false,
+        'support_plan' => false,
+        'affected_url' => false,
+        'queue' => false,
+        'issue_type' => false,
+        'resolution_time' => false,
+        'response_time' => false,
+        'project_url' => false,
+        'region' => false,
+        'category' => false,
+        'environment' => false,
+        'ticket_sharing_status' => false,
+        'application_ticket_url' => false,
+        'infrastructure_ticket_url' => false,
+        'jira' => false,
+        'zd_ticket_url' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

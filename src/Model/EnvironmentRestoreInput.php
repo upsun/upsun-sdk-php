@@ -29,6 +29,14 @@ final class EnvironmentRestoreInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'environment_name' => true,
+        'branch_from' => true,
+        'restore_code' => false,
+        'restore_resources' => false,
+        'resources' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

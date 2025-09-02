@@ -26,6 +26,11 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'max_request_size' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

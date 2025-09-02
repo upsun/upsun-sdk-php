@@ -29,6 +29,11 @@ final class DomainPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'attributes' => false,
+        'is_default' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

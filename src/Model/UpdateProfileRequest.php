@@ -37,6 +37,22 @@ final class UpdateProfileRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'display_name' => false,
+        'username' => false,
+        'current_password' => false,
+        'password' => false,
+        'company_type' => false,
+        'company_name' => false,
+        'vat_number' => false,
+        'company_role' => false,
+        'marketing' => false,
+        'ui_colorscheme' => false,
+        'default_catalog' => false,
+        'project_options_url' => false,
+        'picture' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

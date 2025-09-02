@@ -27,6 +27,12 @@ final class StrictTransportSecurityOptions implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => true,
+        'include_subdomains' => true,
+        'preload' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

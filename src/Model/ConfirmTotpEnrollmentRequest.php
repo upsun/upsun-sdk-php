@@ -26,6 +26,11 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'secret' => false,
+        'passcode' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

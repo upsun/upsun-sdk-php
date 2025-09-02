@@ -30,6 +30,15 @@ final class ThePathsToRedirectValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'regexp' => false,
+        'to' => false,
+        'prefix' => true,
+        'append_suffix' => true,
+        'code' => false,
+        'expires' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

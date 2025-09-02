@@ -27,6 +27,12 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'can_create' => false,
+        'message' => false,
+        'required_action' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

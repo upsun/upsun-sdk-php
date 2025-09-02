@@ -35,6 +35,20 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'fetch_branches' => false,
+        'prune_branches' => false,
+        'environment_init_resources' => false,
+        'url' => false,
+        'username' => false,
+        'token' => false,
+        'project' => false,
+        'repository' => false,
+        'build_pull_requests' => false,
+        'pull_requests_clone_parent_data' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

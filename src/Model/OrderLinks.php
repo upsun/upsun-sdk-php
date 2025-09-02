@@ -25,6 +25,10 @@ final class OrderLinks implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'invoices' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

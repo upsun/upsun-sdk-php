@@ -30,6 +30,12 @@ final class Integrations implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'config' => false,
+        'allowed_integrations' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

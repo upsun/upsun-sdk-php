@@ -30,6 +30,15 @@ final class EstimationObject implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'plan' => false,
+        'user_licenses' => false,
+        'environments' => false,
+        'storage' => false,
+        'total' => false,
+        'options' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

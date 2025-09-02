@@ -44,6 +44,17 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'events' => false,
+        'environments' => false,
+        'excluded_environments' => false,
+        'states' => false,
+        'result' => false,
+        'token' => false,
+        'service_id' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

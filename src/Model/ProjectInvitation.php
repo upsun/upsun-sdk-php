@@ -37,6 +37,19 @@ final class ProjectInvitation implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'state' => false,
+        'project_id' => false,
+        'role' => false,
+        'email' => false,
+        'owner' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        'finished_at' => true,
+        'environments' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -26,6 +26,11 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     ) {
     }
 
+    private static array $openAPINullables = [
+        'service' => true,
+        'endpoint' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

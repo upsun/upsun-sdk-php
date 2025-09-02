@@ -30,6 +30,15 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'value' => false,
+        'is_sensitive' => false,
+        'is_json' => false,
+        'visible_build' => false,
+        'visible_runtime' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -29,6 +29,14 @@ final class Error implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'status' => false,
+        'message' => false,
+        'code' => false,
+        'detail' => false,
+        'title' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

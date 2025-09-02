@@ -37,6 +37,22 @@ final class GithubIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'fetch_branches' => false,
+        'prune_branches' => false,
+        'environment_init_resources' => false,
+        'base_url' => true,
+        'repository' => false,
+        'build_pull_requests' => false,
+        'build_draft_pull_requests' => false,
+        'build_pull_requests_post_merge' => false,
+        'pull_requests_clone_parent_data' => false,
+        'token_type' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

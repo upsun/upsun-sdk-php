@@ -25,6 +25,10 @@ final class Metrics implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'max_range' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

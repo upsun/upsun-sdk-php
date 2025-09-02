@@ -28,6 +28,13 @@ final class LineItemComponent implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'amount' => false,
+        'amount_formatted' => false,
+        'display_title' => false,
+        'currency' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

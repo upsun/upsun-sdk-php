@@ -37,6 +37,16 @@ final class HttpLogIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'extra' => false,
+        'url' => false,
+        'headers' => false,
+        'tls_verify' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

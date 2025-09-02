@@ -26,6 +26,11 @@ final class CustomDomains implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'environments_with_domains_limit' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

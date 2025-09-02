@@ -30,6 +30,12 @@ final class CreateOrgInviteRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'email' => false,
+        'permissions' => false,
+        'force' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

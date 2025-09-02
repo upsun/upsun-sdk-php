@@ -26,6 +26,11 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'pre_start' => true,
+        'start' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

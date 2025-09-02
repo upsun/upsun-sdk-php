@@ -34,6 +34,19 @@ final class ProjectReference implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'organization_id' => false,
+        'subscription_id' => false,
+        'region' => false,
+        'title' => false,
+        'type' => false,
+        'plan' => false,
+        'status' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

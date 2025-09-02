@@ -27,6 +27,12 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'last_deployment_successful' => false,
+        'last_deployment_at' => true,
+        'crons' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

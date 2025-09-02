@@ -30,6 +30,15 @@ final class ProjectInfo implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'title' => false,
+        'name' => false,
+        'namespace' => true,
+        'organization' => true,
+        'capabilities' => false,
+        'settings' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

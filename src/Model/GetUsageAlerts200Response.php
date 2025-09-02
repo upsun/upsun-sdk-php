@@ -32,6 +32,11 @@ final class GetUsageAlerts200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'available' => false,
+        'current' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

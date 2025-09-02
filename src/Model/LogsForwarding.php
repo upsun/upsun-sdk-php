@@ -25,6 +25,10 @@ final class LogsForwarding implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'max_extra_payload_size' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

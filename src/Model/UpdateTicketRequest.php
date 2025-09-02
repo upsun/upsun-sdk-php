@@ -30,6 +30,12 @@ final class UpdateTicketRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'status' => false,
+        'collaborator_ids' => false,
+        'collaborators_replace' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

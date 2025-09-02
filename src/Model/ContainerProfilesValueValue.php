@@ -26,6 +26,11 @@ final class ContainerProfilesValueValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'cpu' => false,
+        'memory' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

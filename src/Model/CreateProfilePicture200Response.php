@@ -25,6 +25,10 @@ final class CreateProfilePicture200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'url' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

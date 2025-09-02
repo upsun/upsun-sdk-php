@@ -27,6 +27,12 @@ final class Version implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'commit' => true,
+        'locked' => false,
+        'routing' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

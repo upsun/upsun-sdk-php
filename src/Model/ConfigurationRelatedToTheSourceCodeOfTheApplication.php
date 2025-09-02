@@ -29,6 +29,11 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     ) {
     }
 
+    private static array $openAPINullables = [
+        'root' => true,
+        'operations' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

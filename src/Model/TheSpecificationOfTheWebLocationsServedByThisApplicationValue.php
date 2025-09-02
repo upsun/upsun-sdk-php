@@ -42,6 +42,18 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     ) {
     }
 
+    private static array $openAPINullables = [
+        'root' => true,
+        'expires' => false,
+        'passthru' => false,
+        'scripts' => false,
+        'index' => true,
+        'allow' => false,
+        'headers' => false,
+        'rules' => false,
+        'request_buffering' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

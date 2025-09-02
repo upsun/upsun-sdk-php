@@ -32,6 +32,11 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'continuous_profiling' => false,
+        'project_support_level' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

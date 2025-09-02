@@ -29,6 +29,11 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'project_id' => false,
+        'permissions' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -33,6 +33,18 @@ final class EnvironmentInfo implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'status' => false,
+        'is_main' => false,
+        'is_production' => false,
+        'constraints' => false,
+        'reference' => false,
+        'machine_name' => false,
+        'environment_type' => false,
+        'links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

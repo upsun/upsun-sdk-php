@@ -36,6 +36,18 @@ final class LineItem implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'license_id' => true,
+        'project_id' => true,
+        'product' => false,
+        'sku' => false,
+        'total' => false,
+        'total_formatted' => false,
+        'components' => false,
+        'exclude_from_invoice' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

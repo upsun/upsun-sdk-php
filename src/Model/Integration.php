@@ -95,6 +95,56 @@ final class Integration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'fetch_branches' => false,
+        'prune_branches' => false,
+        'environment_init_resources' => false,
+        'app_credentials' => true,
+        'addon_credentials' => true,
+        'repository' => false,
+        'build_pull_requests' => false,
+        'pull_requests_clone_parent_data' => false,
+        'resync_pull_requests' => false,
+        'url' => false,
+        'username' => false,
+        'project' => false,
+        'environments_credentials' => false,
+        'continuous_profiling' => false,
+        'events' => false,
+        'environments' => false,
+        'excluded_environments' => false,
+        'states' => false,
+        'result' => false,
+        'service_id' => false,
+        'base_url' => false,
+        'build_draft_pull_requests' => false,
+        'build_pull_requests_post_merge' => false,
+        'token_type' => false,
+        'build_merge_requests' => false,
+        'build_wip_merge_requests' => false,
+        'merge_requests_clone_parent_data' => false,
+        'from_address' => true,
+        'recipients' => false,
+        'routing_key' => false,
+        'channel' => false,
+        'extra' => false,
+        'headers' => false,
+        'tls_verify' => false,
+        'script' => false,
+        'index' => false,
+        'sourcetype' => false,
+        'category' => false,
+        'host' => false,
+        'port' => false,
+        'protocol' => false,
+        'facility' => false,
+        'message_format' => false,
+        'shared_key' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

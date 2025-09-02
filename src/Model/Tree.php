@@ -29,6 +29,11 @@ final class Tree implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'sha' => false,
+        'tree' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

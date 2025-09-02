@@ -28,6 +28,13 @@ final class SlackIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'channel' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

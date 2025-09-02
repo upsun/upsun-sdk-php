@@ -32,6 +32,11 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'only' => false,
+        'exclude' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

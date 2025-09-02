@@ -37,6 +37,22 @@ final class OrganizationProject implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'organization_id' => false,
+        'subscription_id' => false,
+        'region' => false,
+        'title' => false,
+        'type' => false,
+        'plan' => false,
+        'access_migration_status' => false,
+        'status' => false,
+        'vendor' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

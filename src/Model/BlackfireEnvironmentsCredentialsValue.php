@@ -26,6 +26,11 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'server_uuid' => false,
+        'server_token' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

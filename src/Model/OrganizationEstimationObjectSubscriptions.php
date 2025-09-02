@@ -29,6 +29,11 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     ) {
     }
 
+    private static array $openAPINullables = [
+        'total' => false,
+        'list' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

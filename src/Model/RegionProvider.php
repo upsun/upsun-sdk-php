@@ -26,6 +26,11 @@ final class RegionProvider implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'logo' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

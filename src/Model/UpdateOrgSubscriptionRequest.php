@@ -36,6 +36,21 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'project_title' => false,
+        'plan' => false,
+        'timezone' => false,
+        'environments' => false,
+        'storage' => false,
+        'big_dev' => false,
+        'big_dev_service' => false,
+        'backups' => false,
+        'observability_suite' => false,
+        'blackfire' => false,
+        'continuous_profiling' => false,
+        'project_support_level' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

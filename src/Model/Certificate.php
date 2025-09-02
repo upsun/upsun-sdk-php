@@ -47,6 +47,20 @@ final class Certificate implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'certificate' => false,
+        'chain' => false,
+        'is_provisioned' => false,
+        'is_invalid' => false,
+        'is_root' => false,
+        'domains' => false,
+        'auth_type' => false,
+        'issuer' => false,
+        'expires_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -46,6 +46,19 @@ final class WebHookIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'events' => false,
+        'environments' => false,
+        'excluded_environments' => false,
+        'states' => false,
+        'result' => false,
+        'shared_key' => true,
+        'url' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

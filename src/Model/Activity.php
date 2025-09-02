@@ -49,6 +49,28 @@ final class Activity implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'parameters' => false,
+        'project' => false,
+        'integration' => false,
+        'environments' => false,
+        'state' => false,
+        'result' => true,
+        'started_at' => true,
+        'completed_at' => true,
+        'completion_percent' => false,
+        'cancelled_at' => true,
+        'timings' => false,
+        'log' => false,
+        'payload' => false,
+        'description' => true,
+        'text' => true,
+        'expires_at' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

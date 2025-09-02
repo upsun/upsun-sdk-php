@@ -26,6 +26,11 @@ final class InvoicePDF implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'url' => false,
+        'status' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

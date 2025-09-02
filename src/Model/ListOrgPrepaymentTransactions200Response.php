@@ -30,6 +30,12 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'count' => false,
+        'transactions' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

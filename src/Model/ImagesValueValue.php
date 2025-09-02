@@ -25,6 +25,10 @@ final class ImagesValueValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'available' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

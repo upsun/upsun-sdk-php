@@ -31,6 +31,13 @@ final class TLSSettingsForTheRoute implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'strict_transport_security' => false,
+        'min_version' => true,
+        'client_authentication' => true,
+        'client_certificate_authorities' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

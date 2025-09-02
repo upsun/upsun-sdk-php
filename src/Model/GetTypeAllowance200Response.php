@@ -25,6 +25,10 @@ final class GetTypeAllowance200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'currencies' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

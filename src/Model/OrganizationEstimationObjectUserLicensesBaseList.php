@@ -26,6 +26,11 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     ) {
     }
 
+    private static array $openAPINullables = [
+        'admin_user' => false,
+        'viewer_user' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

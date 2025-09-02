@@ -26,6 +26,11 @@ final class TeamProjectAccessLinksUpdate implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'href' => false,
+        'method' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

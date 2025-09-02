@@ -29,6 +29,11 @@ final class CreateOrgMemberRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'user_id' => false,
+        'permissions' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

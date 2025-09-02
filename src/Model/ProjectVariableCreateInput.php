@@ -34,6 +34,16 @@ final class ProjectVariableCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'attributes' => false,
+        'value' => false,
+        'is_json' => false,
+        'is_sensitive' => false,
+        'visible_build' => false,
+        'visible_runtime' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

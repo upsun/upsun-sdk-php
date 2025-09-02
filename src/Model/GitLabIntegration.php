@@ -35,6 +35,20 @@ final class GitLabIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'fetch_branches' => false,
+        'prune_branches' => false,
+        'environment_init_resources' => false,
+        'base_url' => false,
+        'project' => false,
+        'build_merge_requests' => false,
+        'build_wip_merge_requests' => false,
+        'merge_requests_clone_parent_data' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

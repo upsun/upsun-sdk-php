@@ -31,6 +31,13 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     ) {
     }
 
+    private static array $openAPINullables = [
+        'directory' => true,
+        'watch' => false,
+        'allow_stale' => false,
+        'share_between_apps' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

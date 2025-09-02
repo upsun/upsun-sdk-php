@@ -46,6 +46,19 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     ) {
     }
 
+    private static array $openAPINullables = [
+        'locations' => false,
+        'commands' => false,
+        'upstream' => false,
+        'document_root' => true,
+        'passthru' => true,
+        'index_files' => true,
+        'whitelist' => true,
+        'blacklist' => true,
+        'expires' => true,
+        'move_to_root' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

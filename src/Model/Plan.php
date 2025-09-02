@@ -26,6 +26,11 @@ final class Plan implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'label' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -29,6 +29,11 @@ final class CertificatePatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'chain' => false,
+        'is_invalid' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

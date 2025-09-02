@@ -30,6 +30,15 @@ final class Alert implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'active' => false,
+        'alerts_sent' => false,
+        'last_alert_at' => false,
+        'updated_at' => false,
+        'config' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

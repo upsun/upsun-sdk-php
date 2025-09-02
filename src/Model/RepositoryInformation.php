@@ -26,6 +26,11 @@ final class RepositoryInformation implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'url' => false,
+        'client_ssh_key' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

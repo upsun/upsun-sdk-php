@@ -28,6 +28,13 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'synchronize_code' => false,
+        'rebase' => false,
+        'synchronize_data' => false,
+        'synchronize_resources' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

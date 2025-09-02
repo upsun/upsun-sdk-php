@@ -37,6 +37,19 @@ final class UpstreamRouteCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'primary' => true,
+        'id' => true,
+        'production_url' => true,
+        'attributes' => false,
+        'type' => false,
+        'tls' => false,
+        'cache' => false,
+        'ssi' => false,
+        'upstream' => false,
+        'redirects' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

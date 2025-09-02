@@ -37,6 +37,19 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'extra' => false,
+        'host' => false,
+        'port' => false,
+        'protocol' => false,
+        'facility' => false,
+        'message_format' => false,
+        'auth_token' => false,
+        'auth_mode' => false,
+        'tls_verify' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

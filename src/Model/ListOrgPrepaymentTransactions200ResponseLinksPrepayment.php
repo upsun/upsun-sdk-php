@@ -25,6 +25,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements J
     ) {
     }
 
+    private static array $openAPINullables = [
+        'href' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

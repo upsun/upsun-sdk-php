@@ -29,6 +29,11 @@ final class UpdateTeamRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'label' => false,
+        'project_permissions' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

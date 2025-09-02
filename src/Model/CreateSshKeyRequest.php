@@ -27,6 +27,12 @@ final class CreateSshKeyRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'value' => false,
+        'title' => false,
+        'uuid' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

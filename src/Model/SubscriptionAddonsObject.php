@@ -27,6 +27,12 @@ final class SubscriptionAddonsObject implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'available' => false,
+        'current' => false,
+        'upgrades_available' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

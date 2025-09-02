@@ -27,6 +27,12 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     ) {
     }
 
+    private static array $openAPINullables = [
+        'source' => false,
+        'source_path' => false,
+        'service' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -25,6 +25,10 @@ final class OrganizationProjectLinksSelf implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'href' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

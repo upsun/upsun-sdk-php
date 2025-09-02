@@ -26,6 +26,11 @@ final class TeamCounts implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'member_count' => false,
+        'project_count' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

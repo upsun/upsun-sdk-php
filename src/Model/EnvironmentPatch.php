@@ -36,6 +36,18 @@ final class EnvironmentPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'title' => false,
+        'attributes' => false,
+        'type' => false,
+        'parent' => true,
+        'clone_parent_on_create' => false,
+        'http_access' => false,
+        'enable_smtp' => false,
+        'restrict_robots' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

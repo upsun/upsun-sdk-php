@@ -28,6 +28,13 @@ final class ArrayFilter implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'eq' => false,
+        'ne' => false,
+        'in' => false,
+        'nin' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

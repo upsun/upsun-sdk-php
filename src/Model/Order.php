@@ -47,6 +47,29 @@ final class Order implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'status' => false,
+        'owner' => false,
+        'address' => false,
+        'company' => false,
+        'vat_number' => false,
+        'billing_period_start' => false,
+        'billing_period_end' => false,
+        'billing_period_label' => false,
+        'billing_period_duration' => false,
+        'paid_on' => true,
+        'total' => false,
+        'total_formatted' => false,
+        'components' => false,
+        'currency' => false,
+        'invoice_url' => false,
+        'last_refreshed' => false,
+        'invoiced' => false,
+        'line_items' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

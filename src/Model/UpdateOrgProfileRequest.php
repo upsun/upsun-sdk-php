@@ -30,6 +30,15 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'default_catalog' => false,
+        'project_options_url' => false,
+        'security_contact' => false,
+        'company_name' => false,
+        'vat_number' => false,
+        'billing_contact' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

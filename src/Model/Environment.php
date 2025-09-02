@@ -62,6 +62,41 @@ final class Environment implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'name' => false,
+        'machine_name' => false,
+        'title' => false,
+        'attributes' => false,
+        'type' => false,
+        'parent' => true,
+        'default_domain' => true,
+        'has_domains' => false,
+        'clone_parent_on_create' => false,
+        'deployment_target' => true,
+        'is_pr' => false,
+        'has_remote' => false,
+        'status' => false,
+        'http_access' => false,
+        'enable_smtp' => false,
+        'restrict_robots' => false,
+        'edge_hostname' => false,
+        'deployment_state' => true,
+        'resources_overrides' => false,
+        'max_instance_count' => true,
+        'last_active_at' => true,
+        'last_backup_at' => true,
+        'project' => false,
+        'is_main' => false,
+        'is_dirty' => false,
+        'has_code' => false,
+        'head_commit' => true,
+        'merge_info' => false,
+        'has_deployment' => false,
+        'supports_restrict_robots' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -26,6 +26,11 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'commands' => false,
+        'disk' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

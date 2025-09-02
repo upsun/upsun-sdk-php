@@ -35,6 +35,20 @@ final class ProfileCurrentTrial implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'active' => false,
+        'created' => false,
+        'description' => false,
+        'expiration' => false,
+        'current' => false,
+        'spend' => false,
+        'spend_remaining' => false,
+        'projects' => false,
+        'pending_verification' => true,
+        'model' => false,
+        'days_remaining' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

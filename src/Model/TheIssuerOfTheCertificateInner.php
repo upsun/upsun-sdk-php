@@ -27,6 +27,12 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'oid' => false,
+        'alias' => true,
+        'value' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

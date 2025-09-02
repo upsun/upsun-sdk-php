@@ -31,6 +31,16 @@ final class APIToken implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'name' => false,
+        'mfa_on_creation' => false,
+        'token' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        'last_used_at' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

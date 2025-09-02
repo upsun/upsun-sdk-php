@@ -32,6 +32,14 @@ final class ResourcesOverridesValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'services' => false,
+        'starts_at' => true,
+        'ends_at' => true,
+        'redeployed_start' => false,
+        'redeployed_end' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

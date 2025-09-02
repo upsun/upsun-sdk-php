@@ -29,6 +29,14 @@ final class EnvironmentBranchInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'title' => false,
+        'name' => false,
+        'clone_parent' => false,
+        'type' => false,
+        'resources' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

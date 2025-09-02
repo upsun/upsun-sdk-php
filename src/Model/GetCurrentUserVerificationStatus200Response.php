@@ -25,6 +25,10 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     ) {
     }
 
+    private static array $openAPINullables = [
+        'verify_phone' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

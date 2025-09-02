@@ -29,6 +29,14 @@ final class OrganizationProjectLinks implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'self' => false,
+        'update' => false,
+        'delete' => false,
+        'subscription' => false,
+        'api' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

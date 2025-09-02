@@ -41,6 +41,20 @@ final class CreateTicketRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'subject' => false,
+        'description' => false,
+        'requester_id' => false,
+        'priority' => false,
+        'subscription_id' => false,
+        'organization_id' => false,
+        'affected_url' => false,
+        'followup_tid' => false,
+        'category' => false,
+        'attachments' => false,
+        'collaborator_ids' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

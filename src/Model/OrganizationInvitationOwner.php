@@ -26,6 +26,11 @@ final class OrganizationInvitationOwner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'display_name' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -26,6 +26,11 @@ final class TheCommandsDefinition implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'start' => false,
+        'stop' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -28,6 +28,10 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'recovery_codes' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

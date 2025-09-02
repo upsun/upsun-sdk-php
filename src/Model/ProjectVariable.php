@@ -36,6 +36,18 @@ final class ProjectVariable implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'name' => false,
+        'attributes' => false,
+        'value' => false,
+        'is_json' => false,
+        'is_sensitive' => false,
+        'visible_build' => false,
+        'visible_runtime' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

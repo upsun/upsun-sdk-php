@@ -28,6 +28,10 @@ final class ReplacementDomainStoragePatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'attributes' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

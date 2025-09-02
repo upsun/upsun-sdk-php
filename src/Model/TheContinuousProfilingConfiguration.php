@@ -28,6 +28,10 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'supported_runtimes' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

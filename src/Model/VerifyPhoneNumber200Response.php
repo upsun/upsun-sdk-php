@@ -25,6 +25,10 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'sid' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

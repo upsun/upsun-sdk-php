@@ -26,6 +26,11 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'label' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

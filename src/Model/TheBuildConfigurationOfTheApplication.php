@@ -29,6 +29,11 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'flavor' => true,
+        'caches' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

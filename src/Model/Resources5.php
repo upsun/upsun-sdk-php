@@ -25,6 +25,10 @@ final class Resources5 implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'init' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

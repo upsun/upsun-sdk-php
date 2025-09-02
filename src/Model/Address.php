@@ -34,6 +34,19 @@ final class Address implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'country' => false,
+        'name_line' => false,
+        'premise' => false,
+        'sub_premise' => false,
+        'thoroughfare' => false,
+        'administrative_area' => false,
+        'sub_administrative_area' => false,
+        'locality' => false,
+        'dependent_locality' => false,
+        'postal_code' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -27,6 +27,12 @@ final class RegionDatacenter implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'label' => false,
+        'location' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

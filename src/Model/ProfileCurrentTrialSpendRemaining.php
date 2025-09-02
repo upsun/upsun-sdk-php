@@ -29,6 +29,14 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'formatted' => false,
+        'amount' => false,
+        'currency' => false,
+        'currency_symbol' => false,
+        'unlimited' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

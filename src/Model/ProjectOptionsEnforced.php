@@ -26,6 +26,11 @@ final class ProjectOptionsEnforced implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'settings' => false,
+        'capabilities' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -28,6 +28,13 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created' => false,
+        'description' => false,
+        'spend_remaining' => false,
+        'expiration' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

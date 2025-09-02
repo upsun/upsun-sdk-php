@@ -47,6 +47,32 @@ final class Profile implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'display_name' => false,
+        'email' => false,
+        'username' => false,
+        'type' => false,
+        'picture' => false,
+        'company_type' => false,
+        'company_name' => false,
+        'currency' => false,
+        'vat_number' => false,
+        'company_role' => false,
+        'website_url' => false,
+        'new_ui' => false,
+        'ui_colorscheme' => false,
+        'default_catalog' => false,
+        'project_options_url' => false,
+        'marketing' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        'billing_contact' => false,
+        'security_contact' => false,
+        'current_trial' => false,
+        'invoiced' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

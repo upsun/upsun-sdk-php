@@ -26,6 +26,11 @@ final class CreateUsageAlertRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'config' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

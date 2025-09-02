@@ -29,6 +29,11 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     ) {
     }
 
+    private static array $openAPINullables = [
+        'active_docroot' => true,
+        'docroot_versions' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

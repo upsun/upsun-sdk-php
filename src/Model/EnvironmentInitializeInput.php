@@ -32,6 +32,14 @@ final class EnvironmentInitializeInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'profile' => false,
+        'repository' => false,
+        'config' => true,
+        'files' => false,
+        'resources' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

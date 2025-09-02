@@ -27,6 +27,12 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'name' => false,
+        'enforced_mounts' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

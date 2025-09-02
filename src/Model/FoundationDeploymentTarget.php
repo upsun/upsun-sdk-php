@@ -32,6 +32,14 @@ final class FoundationDeploymentTarget implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'name' => false,
+        'hosts' => true,
+        'use_dedicated_grid' => false,
+        'storage_type' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

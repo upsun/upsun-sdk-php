@@ -25,6 +25,10 @@ final class ApplyOrgVoucherRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'code' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

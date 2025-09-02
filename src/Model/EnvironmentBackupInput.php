@@ -25,6 +25,10 @@ final class EnvironmentBackupInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'safe' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

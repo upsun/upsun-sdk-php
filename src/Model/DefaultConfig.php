@@ -29,6 +29,11 @@ final class DefaultConfig implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'manual_count' => false,
+        'schedule' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

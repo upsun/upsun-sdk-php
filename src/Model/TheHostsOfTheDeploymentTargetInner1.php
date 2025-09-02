@@ -30,6 +30,12 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => true,
+        'type' => false,
+        'services' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

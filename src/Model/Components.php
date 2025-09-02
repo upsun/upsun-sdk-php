@@ -25,6 +25,10 @@ final class Components implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'voucher_vat_baseprice' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

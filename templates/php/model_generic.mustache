@@ -25,6 +25,11 @@ final class {{classname}} implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        {{#vars}}'{{name}}' => {{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{^-last}},
+        {{/-last}}{{/vars}}
+    ];
+
     public function jsonSerialize(): array
     {
         return [

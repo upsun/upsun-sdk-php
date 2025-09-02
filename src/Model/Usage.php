@@ -29,6 +29,14 @@ final class Usage implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'subscription_id' => false,
+        'usage_group' => false,
+        'quantity' => false,
+        'start' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

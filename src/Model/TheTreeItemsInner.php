@@ -28,6 +28,13 @@ final class TheTreeItemsInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'path' => false,
+        'mode' => false,
+        'type' => false,
+        'sha' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

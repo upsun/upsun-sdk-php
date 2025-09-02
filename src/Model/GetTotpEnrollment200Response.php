@@ -28,6 +28,13 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'issuer' => false,
+        'account_name' => false,
+        'secret' => false,
+        'qr_code' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

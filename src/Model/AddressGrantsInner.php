@@ -26,6 +26,11 @@ final class AddressGrantsInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'permission' => false,
+        'address' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

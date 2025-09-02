@@ -29,6 +29,11 @@ final class ListRegions200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'regions' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

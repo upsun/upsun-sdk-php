@@ -28,6 +28,13 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'amount' => false,
+        'currency_code' => false,
+        'currency_symbol' => false,
+        'formatted' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

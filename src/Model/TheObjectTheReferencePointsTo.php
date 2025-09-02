@@ -26,6 +26,11 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'sha' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

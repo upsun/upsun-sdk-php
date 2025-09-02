@@ -25,6 +25,10 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enforce_mfa' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

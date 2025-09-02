@@ -30,6 +30,15 @@ final class OrganizationAlertConfig implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'active' => false,
+        'alerts_sent' => false,
+        'last_alert_at' => true,
+        'updated_at' => true,
+        'config' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

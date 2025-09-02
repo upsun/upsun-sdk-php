@@ -28,6 +28,13 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'label' => false,
+        'short_description' => false,
+        'description' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -28,6 +28,13 @@ final class TeamMember implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'team_id' => false,
+        'user_id' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

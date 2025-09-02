@@ -26,6 +26,11 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'routing_key' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

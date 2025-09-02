@@ -33,6 +33,15 @@ final class Commit implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'sha' => false,
+        'author' => false,
+        'committer' => false,
+        'message' => false,
+        'tree' => false,
+        'parents' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

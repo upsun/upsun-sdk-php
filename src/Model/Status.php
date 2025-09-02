@@ -26,6 +26,11 @@ final class Status implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'code' => false,
+        'message' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

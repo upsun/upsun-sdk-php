@@ -25,6 +25,10 @@ final class ResetEmailAddressRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'email_address' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

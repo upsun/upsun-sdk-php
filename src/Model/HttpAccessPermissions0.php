@@ -33,6 +33,12 @@ final class HttpAccessPermissions implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'is_enabled' => false,
+        'addresses' => false,
+        'basic_auth' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

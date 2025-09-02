@@ -34,6 +34,13 @@ final class CacheConfiguration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'default_ttl' => false,
+        'cookies' => false,
+        'headers' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

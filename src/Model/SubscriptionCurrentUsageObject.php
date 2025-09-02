@@ -37,6 +37,22 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'cpu_app' => false,
+        'storage_app_services' => false,
+        'memory_app' => false,
+        'cpu_services' => false,
+        'memory_services' => false,
+        'backup_storage' => false,
+        'build_cpu' => false,
+        'build_memory' => false,
+        'egress_bandwidth' => false,
+        'ingress_requests' => false,
+        'logs_fwd_content_size' => false,
+        'fastly_bandwidth' => false,
+        'fastly_requests' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

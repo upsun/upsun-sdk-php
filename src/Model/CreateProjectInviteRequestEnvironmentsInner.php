@@ -26,6 +26,11 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'role' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

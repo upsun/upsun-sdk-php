@@ -32,6 +32,17 @@ final class StringFilter implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'eq' => false,
+        'ne' => false,
+        'in' => false,
+        'nin' => false,
+        'between' => false,
+        'contains' => false,
+        'starts' => false,
+        'ends' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

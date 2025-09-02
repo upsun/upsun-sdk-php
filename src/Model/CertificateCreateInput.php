@@ -31,6 +31,13 @@ final class CertificateCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'certificate' => false,
+        'key' => false,
+        'chain' => false,
+        'is_invalid' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -32,6 +32,14 @@ final class SpecificOverridesValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'expires' => true,
+        'passthru' => false,
+        'scripts' => false,
+        'allow' => false,
+        'headers' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

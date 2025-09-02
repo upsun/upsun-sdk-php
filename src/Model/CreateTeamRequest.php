@@ -30,6 +30,12 @@ final class CreateTeamRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'organization_id' => false,
+        'label' => false,
+        'project_permissions' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

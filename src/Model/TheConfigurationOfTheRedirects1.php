@@ -29,6 +29,11 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'expires' => false,
+        'paths' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

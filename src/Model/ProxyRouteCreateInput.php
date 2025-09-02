@@ -34,6 +34,16 @@ final class ProxyRouteCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'primary' => true,
+        'id' => true,
+        'production_url' => true,
+        'attributes' => false,
+        'type' => false,
+        'tls' => false,
+        'to' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

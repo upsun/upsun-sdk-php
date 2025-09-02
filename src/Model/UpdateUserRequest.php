@@ -31,6 +31,16 @@ final class UpdateUserRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'username' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'picture' => false,
+        'company' => false,
+        'website' => false,
+        'country' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

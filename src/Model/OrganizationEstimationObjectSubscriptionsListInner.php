@@ -28,6 +28,13 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     ) {
     }
 
+    private static array $openAPINullables = [
+        'license_id' => false,
+        'project_title' => false,
+        'total' => false,
+        'usage' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

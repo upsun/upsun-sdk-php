@@ -41,6 +41,26 @@ final class Config implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'newrelic' => false,
+        'sumologic' => false,
+        'splunk' => false,
+        'httplog' => false,
+        'syslog' => false,
+        'webhook' => false,
+        'script' => false,
+        'github' => false,
+        'gitlab' => false,
+        'bitbucket' => false,
+        'bitbucket_server' => false,
+        'health_email' => false,
+        'health_webhook' => false,
+        'health_pagerduty' => false,
+        'health_slack' => false,
+        'cdn_fastly' => false,
+        'blackfire' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

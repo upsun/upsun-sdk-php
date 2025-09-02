@@ -30,6 +30,12 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'attributes' => false,
+        'replacement_for' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

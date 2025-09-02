@@ -27,6 +27,12 @@ final class BuildResources implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'max_cpu' => false,
+        'max_memory' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

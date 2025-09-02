@@ -25,6 +25,10 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     ) {
     }
 
+    private static array $openAPINullables = [
+        'command' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

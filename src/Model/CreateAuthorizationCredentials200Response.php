@@ -26,6 +26,11 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     ) {
     }
 
+    private static array $openAPINullables = [
+        'redirect_to_url' => false,
+        'type' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

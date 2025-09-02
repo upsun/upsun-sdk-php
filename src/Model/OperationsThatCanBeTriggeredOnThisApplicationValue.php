@@ -27,6 +27,12 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     ) {
     }
 
+    private static array $openAPINullables = [
+        'commands' => false,
+        'timeout' => true,
+        'role' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -30,6 +30,15 @@ final class OrganizationSSOConfig implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'provider_type' => false,
+        'domain' => false,
+        'organization_id' => false,
+        'enforced' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

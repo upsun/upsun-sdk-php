@@ -45,6 +45,18 @@ final class FastlyIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'events' => false,
+        'environments' => false,
+        'excluded_environments' => false,
+        'states' => false,
+        'result' => false,
+        'service_id' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

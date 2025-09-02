@@ -26,6 +26,11 @@ final class AcceptedResponse implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'status' => false,
+        'code' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

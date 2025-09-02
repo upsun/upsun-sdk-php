@@ -25,6 +25,10 @@ final class UpdateUsageAlertRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'config' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

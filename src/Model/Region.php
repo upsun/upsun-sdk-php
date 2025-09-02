@@ -36,6 +36,21 @@ final class Region implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'label' => false,
+        'zone' => false,
+        'selection_label' => false,
+        'project_label' => false,
+        'timezone' => false,
+        'available' => false,
+        'private' => false,
+        'endpoint' => false,
+        'provider' => false,
+        'datacenter' => false,
+        'environmental_impact' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

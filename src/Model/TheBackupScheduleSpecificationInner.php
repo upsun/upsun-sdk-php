@@ -26,6 +26,11 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'interval' => false,
+        'count' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

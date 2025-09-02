@@ -27,6 +27,12 @@ final class HalLinks implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'self' => false,
+        'previous' => false,
+        'next' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

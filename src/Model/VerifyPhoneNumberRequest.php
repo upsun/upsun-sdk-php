@@ -26,6 +26,11 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'channel' => false,
+        'phone_number' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

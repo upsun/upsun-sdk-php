@@ -32,6 +32,14 @@ final class SumologicIntegrationPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'extra' => false,
+        'url' => false,
+        'category' => false,
+        'tls_verify' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

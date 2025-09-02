@@ -30,6 +30,12 @@ final class AddressMetadataMetadata implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'required_fields' => false,
+        'field_labels' => false,
+        'show_vat' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

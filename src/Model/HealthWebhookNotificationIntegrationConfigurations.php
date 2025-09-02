@@ -26,6 +26,11 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'role' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

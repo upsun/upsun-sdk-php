@@ -26,6 +26,11 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     ) {
     }
 
+    private static array $openAPINullables = [
+        'action' => false,
+        'type' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

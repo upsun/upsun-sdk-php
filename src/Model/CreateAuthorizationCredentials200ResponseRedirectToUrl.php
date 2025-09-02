@@ -26,6 +26,11 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     ) {
     }
 
+    private static array $openAPINullables = [
+        'return_url' => false,
+        'url' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

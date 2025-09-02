@@ -28,6 +28,13 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'legacy_development' => false,
+        'max_cpu' => true,
+        'max_memory' => true,
+        'max_environments' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

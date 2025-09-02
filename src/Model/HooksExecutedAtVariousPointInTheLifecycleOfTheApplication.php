@@ -27,6 +27,12 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     ) {
     }
 
+    private static array $openAPINullables = [
+        'build' => true,
+        'deploy' => true,
+        'post_deploy' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -44,6 +44,29 @@ final class CurrentUserProjectsInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'name' => false,
+        'title' => false,
+        'cluster' => false,
+        'cluster_label' => false,
+        'region' => false,
+        'region_label' => false,
+        'uri' => false,
+        'endpoint' => false,
+        'license_id' => false,
+        'owner' => false,
+        'owner_info' => false,
+        'plan' => false,
+        'subscription_id' => false,
+        'status' => false,
+        'vendor' => false,
+        'vendor_label' => false,
+        'vendor_website' => false,
+        'vendor_resources' => false,
+        'created_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -26,6 +26,11 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     ) {
     }
 
+    private static array $openAPINullables = [
+        'socket_family' => false,
+        'protocol' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

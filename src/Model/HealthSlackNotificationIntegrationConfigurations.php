@@ -26,6 +26,11 @@ final class HealthSlackNotificationIntegrationConfigurations implements JsonSeri
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'role' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

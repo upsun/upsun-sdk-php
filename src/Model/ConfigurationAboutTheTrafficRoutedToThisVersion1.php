@@ -25,6 +25,10 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
     ) {
     }
 
+    private static array $openAPINullables = [
+        'percentage' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

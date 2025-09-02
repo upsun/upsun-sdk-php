@@ -26,6 +26,11 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     ) {
     }
 
+    private static array $openAPINullables = [
+        'entity_id' => false,
+        'role' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

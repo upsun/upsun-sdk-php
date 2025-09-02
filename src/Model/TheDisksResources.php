@@ -27,6 +27,12 @@ final class TheDisksResources implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'temporary' => true,
+        'instance' => true,
+        'storage' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

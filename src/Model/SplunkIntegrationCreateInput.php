@@ -34,6 +34,16 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'extra' => false,
+        'url' => false,
+        'index' => false,
+        'token' => false,
+        'sourcetype' => false,
+        'tls_verify' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

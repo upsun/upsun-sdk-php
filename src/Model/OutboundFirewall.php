@@ -25,6 +25,10 @@ final class OutboundFirewall implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

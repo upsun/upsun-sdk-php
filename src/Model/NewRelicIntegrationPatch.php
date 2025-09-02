@@ -32,6 +32,14 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'extra' => false,
+        'url' => false,
+        'license_key' => false,
+        'tls_verify' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

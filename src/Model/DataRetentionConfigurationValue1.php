@@ -26,6 +26,11 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'max_backups' => false,
+        'default_config' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

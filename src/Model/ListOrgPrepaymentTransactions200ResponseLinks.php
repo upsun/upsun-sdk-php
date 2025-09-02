@@ -28,6 +28,13 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     ) {
     }
 
+    private static array $openAPINullables = [
+        'self' => false,
+        'previous' => false,
+        'next' => false,
+        'prepayment' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

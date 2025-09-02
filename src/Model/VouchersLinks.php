@@ -25,6 +25,10 @@ final class VouchersLinks implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'self' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

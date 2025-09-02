@@ -27,6 +27,12 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     ) {
     }
 
+    private static array $openAPINullables = [
+        'count' => false,
+        'total' => false,
+        'list' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

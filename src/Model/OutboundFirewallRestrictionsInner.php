@@ -37,6 +37,13 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'protocol' => false,
+        'ips' => false,
+        'domains' => false,
+        'ports' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -27,6 +27,12 @@ final class ResourcesLimits implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'container_profiles' => false,
+        'production' => false,
+        'development' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

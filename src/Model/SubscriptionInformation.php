@@ -36,6 +36,21 @@ final class SubscriptionInformation implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'license_uri' => false,
+        'plan' => false,
+        'environments' => false,
+        'storage' => false,
+        'included_users' => false,
+        'subscription_management_uri' => false,
+        'restricted' => false,
+        'suspended' => false,
+        'user_licenses' => false,
+        'resources' => false,
+        'resource_validation_url' => false,
+        'image_types' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -42,6 +42,24 @@ final class Backup implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'id' => false,
+        'attributes' => false,
+        'status' => false,
+        'expires_at' => true,
+        'index' => true,
+        'commit_id' => false,
+        'environment' => false,
+        'safe' => false,
+        'size_of_volumes' => true,
+        'size_used' => true,
+        'deployment' => true,
+        'restorable' => false,
+        'automated' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

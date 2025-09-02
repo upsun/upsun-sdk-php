@@ -40,6 +40,25 @@ final class User implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'deactivated' => false,
+        'namespace' => false,
+        'username' => false,
+        'email' => false,
+        'email_verified' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'picture' => false,
+        'company' => false,
+        'website' => false,
+        'country' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        'consented_at' => false,
+        'consent_method' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

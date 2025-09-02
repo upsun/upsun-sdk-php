@@ -26,6 +26,11 @@ final class GoogleSSOConfig implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'provider_type' => false,
+        'domain' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

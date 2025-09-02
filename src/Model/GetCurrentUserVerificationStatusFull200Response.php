@@ -26,6 +26,11 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     ) {
     }
 
+    private static array $openAPINullables = [
+        'state' => false,
+        'type' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

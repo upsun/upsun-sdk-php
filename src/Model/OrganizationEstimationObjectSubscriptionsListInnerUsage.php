@@ -28,6 +28,13 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ) {
     }
 
+    private static array $openAPINullables = [
+        'cpu' => false,
+        'memory' => false,
+        'storage' => false,
+        'environments' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

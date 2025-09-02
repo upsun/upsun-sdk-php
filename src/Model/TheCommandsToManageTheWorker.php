@@ -26,6 +26,11 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'pre_start' => true,
+        'start' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

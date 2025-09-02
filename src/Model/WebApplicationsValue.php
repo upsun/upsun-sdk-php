@@ -81,6 +81,39 @@ final class WebApplicationsValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'resources' => true,
+        'size' => false,
+        'disk' => true,
+        'access' => false,
+        'relationships' => false,
+        'additional_hosts' => false,
+        'mounts' => false,
+        'timezone' => true,
+        'variables' => false,
+        'firewall' => true,
+        'container_profile' => true,
+        'operations' => false,
+        'name' => false,
+        'type' => false,
+        'preflight' => false,
+        'tree_id' => false,
+        'app_dir' => false,
+        'endpoints' => true,
+        'runtime' => false,
+        'web' => false,
+        'hooks' => false,
+        'crons' => false,
+        'source' => false,
+        'build' => false,
+        'dependencies' => false,
+        'stack' => true,
+        'is_across_submodule' => false,
+        'instance_count' => true,
+        'config_id' => false,
+        'slug_id' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

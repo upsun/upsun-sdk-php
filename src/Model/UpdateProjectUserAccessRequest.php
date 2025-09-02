@@ -28,6 +28,10 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'permissions' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

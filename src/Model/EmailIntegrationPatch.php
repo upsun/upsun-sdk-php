@@ -30,6 +30,12 @@ final class EmailIntegrationPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'from_address' => true,
+        'recipients' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

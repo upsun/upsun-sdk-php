@@ -29,6 +29,11 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'operation' => false,
+        'variables' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

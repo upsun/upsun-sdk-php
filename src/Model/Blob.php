@@ -28,6 +28,13 @@ final class Blob implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'sha' => false,
+        'size' => false,
+        'encoding' => false,
+        'content' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

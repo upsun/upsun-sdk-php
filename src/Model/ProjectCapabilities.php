@@ -38,6 +38,20 @@ final class ProjectCapabilities implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'custom_domains' => false,
+        'source_operations' => false,
+        'runtime_operations' => false,
+        'outbound_firewall' => false,
+        'metrics' => false,
+        'logs_forwarding' => false,
+        'images' => false,
+        'instance_limit' => false,
+        'build_resources' => false,
+        'data_retention' => false,
+        'integrations' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

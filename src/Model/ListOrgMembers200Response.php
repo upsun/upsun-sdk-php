@@ -30,6 +30,12 @@ final class ListOrgMembers200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'count' => false,
+        'items' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -27,6 +27,12 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     ) {
     }
 
+    private static array $openAPINullables = [
+        'path' => false,
+        'mode' => false,
+        'contents' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

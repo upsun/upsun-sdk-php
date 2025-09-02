@@ -41,6 +41,23 @@ final class VPNConfiguration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'version' => false,
+        'aggressive' => false,
+        'modeconfig' => false,
+        'authentication' => false,
+        'gateway_ip' => false,
+        'identity' => true,
+        'second_identity' => true,
+        'remote_identity' => true,
+        'remote_subnets' => false,
+        'ike' => false,
+        'esp' => false,
+        'ikelifetime' => false,
+        'lifetime' => false,
+        'margintime' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -26,6 +26,11 @@ final class SyslogLogForwardingIntegrationConfigurations implements JsonSerializ
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'role' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

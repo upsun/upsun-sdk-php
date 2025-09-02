@@ -34,6 +34,16 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ) {
     }
 
+    private static array $openAPINullables = [
+        'user_id' => false,
+        'resource_id' => false,
+        'resource_type' => false,
+        'organization_id' => false,
+        'permissions' => false,
+        'granted_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

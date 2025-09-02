@@ -32,6 +32,14 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'name' => false,
+        'site_urls' => false,
+        'ssh_hosts' => false,
+        'enterprise_environments_mapping' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

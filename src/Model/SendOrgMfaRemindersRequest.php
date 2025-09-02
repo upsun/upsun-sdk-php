@@ -28,6 +28,10 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'user_ids' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

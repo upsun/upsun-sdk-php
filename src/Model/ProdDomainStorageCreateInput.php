@@ -30,6 +30,12 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'attributes' => false,
+        'is_default' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

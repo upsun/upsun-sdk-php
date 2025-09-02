@@ -28,6 +28,10 @@ final class UpdateOrgMemberRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'permissions' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

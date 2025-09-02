@@ -27,6 +27,12 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'cpu' => true,
+        'memory' => true,
+        'disk' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

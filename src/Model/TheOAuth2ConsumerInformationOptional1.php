@@ -26,6 +26,11 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'key' => false,
+        'secret' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -32,6 +32,11 @@ final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializabl
     ) {
     }
 
+    private static array $openAPINullables = [
+        'user_management' => false,
+        'support_level' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

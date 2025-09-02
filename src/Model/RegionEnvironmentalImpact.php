@@ -27,6 +27,12 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'zone' => false,
+        'carbon_intensity' => false,
+        'green' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

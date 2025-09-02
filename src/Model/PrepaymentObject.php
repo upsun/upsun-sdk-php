@@ -25,6 +25,10 @@ final class PrepaymentObject implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'prepayment' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

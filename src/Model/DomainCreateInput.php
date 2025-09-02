@@ -31,6 +31,13 @@ final class DomainCreateInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false,
+        'attributes' => false,
+        'is_default' => false,
+        'replacement_for' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

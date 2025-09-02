@@ -36,6 +36,18 @@ final class PlanRecords implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'owner' => false,
+        'subscription_id' => false,
+        'sku' => false,
+        'plan' => false,
+        'options' => false,
+        'start' => false,
+        'end' => true,
+        'status' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

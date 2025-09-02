@@ -30,6 +30,15 @@ final class Resources implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'base_memory' => true,
+        'memory_ratio' => true,
+        'profile_size' => true,
+        'minimum' => true,
+        'default' => true,
+        'disk' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

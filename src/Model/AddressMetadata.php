@@ -25,6 +25,10 @@ final class AddressMetadata implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'metadata' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

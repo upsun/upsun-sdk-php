@@ -31,6 +31,13 @@ final class VouchersVouchersInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'code' => false,
+        'amount' => false,
+        'currency' => false,
+        'orders' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

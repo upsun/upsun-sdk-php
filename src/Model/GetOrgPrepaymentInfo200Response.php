@@ -26,6 +26,11 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'prepayment' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -28,6 +28,13 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'cpu' => false,
+        'memory' => false,
+        'disk' => true,
+        'profile_size' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

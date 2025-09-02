@@ -51,6 +51,24 @@ final class CurrentUser implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'uuid' => false,
+        'username' => false,
+        'display_name' => false,
+        'status' => false,
+        'mail' => false,
+        'ssh_keys' => false,
+        'has_key' => false,
+        'projects' => false,
+        'sequence' => false,
+        'roles' => false,
+        'picture' => false,
+        'tickets' => false,
+        'trial' => false,
+        'current_trial' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

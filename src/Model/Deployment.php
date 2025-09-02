@@ -64,6 +64,28 @@ final class Deployment implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'fingerprint' => false,
+        'cluster_name' => false,
+        'project_info' => false,
+        'environment_info' => false,
+        'deployment_target' => false,
+        'vpn' => true,
+        'http_access' => false,
+        'enable_smtp' => false,
+        'restrict_robots' => false,
+        'variables' => false,
+        'access' => false,
+        'subscription' => false,
+        'services' => false,
+        'routes' => false,
+        'webapps' => false,
+        'workers' => false,
+        'container_profiles' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

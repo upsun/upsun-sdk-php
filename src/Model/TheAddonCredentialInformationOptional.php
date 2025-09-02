@@ -26,6 +26,11 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'addon_key' => false,
+        'client_key' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

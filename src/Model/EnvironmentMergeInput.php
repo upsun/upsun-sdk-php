@@ -25,6 +25,10 @@ final class EnvironmentMergeInput implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'resources' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

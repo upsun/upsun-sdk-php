@@ -27,6 +27,12 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'date' => false,
+        'name' => false,
+        'email' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

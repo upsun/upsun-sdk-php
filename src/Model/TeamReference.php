@@ -34,6 +34,16 @@ final class TeamReference implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'organization_id' => false,
+        'label' => false,
+        'project_permissions' => false,
+        'counts' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

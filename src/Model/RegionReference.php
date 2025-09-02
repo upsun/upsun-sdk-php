@@ -40,6 +40,25 @@ final class RegionReference implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'label' => false,
+        'zone' => false,
+        'selection_label' => false,
+        'project_label' => false,
+        'timezone' => false,
+        'available' => false,
+        'private' => false,
+        'endpoint' => false,
+        'code' => false,
+        'provider' => false,
+        'datacenter' => false,
+        'envimpact' => false,
+        'compliance' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

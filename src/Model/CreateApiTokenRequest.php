@@ -25,6 +25,10 @@ final class CreateApiTokenRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'name' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

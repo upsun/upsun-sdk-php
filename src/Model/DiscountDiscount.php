@@ -27,6 +27,12 @@ final class DiscountDiscount implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'monthly' => false,
+        'commitment_period' => true,
+        'contract_total' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

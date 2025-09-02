@@ -34,6 +34,16 @@ final class ProjectPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'attributes' => false,
+        'title' => false,
+        'description' => false,
+        'default_branch' => true,
+        'timezone' => false,
+        'region' => false,
+        'default_domain' => true
+    ];
+
     public function jsonSerialize(): array
     {
         return [

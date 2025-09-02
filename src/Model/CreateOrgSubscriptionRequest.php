@@ -31,6 +31,16 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'plan' => false,
+        'project_region' => false,
+        'project_title' => false,
+        'options_url' => false,
+        'default_branch' => false,
+        'environments' => false,
+        'storage' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

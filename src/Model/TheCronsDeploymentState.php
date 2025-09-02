@@ -26,6 +26,11 @@ final class TheCronsDeploymentState implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'enabled' => false,
+        'status' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

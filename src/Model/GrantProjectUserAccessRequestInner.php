@@ -30,6 +30,12 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'user_id' => false,
+        'permissions' => false,
+        'auto_add_member' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

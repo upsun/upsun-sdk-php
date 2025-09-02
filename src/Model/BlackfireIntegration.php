@@ -32,6 +32,14 @@ final class BlackfireIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'environments_credentials' => false,
+        'continuous_profiling' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

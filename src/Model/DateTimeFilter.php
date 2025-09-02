@@ -31,6 +31,16 @@ final class DateTimeFilter implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'eq' => false,
+        'ne' => false,
+        'between' => false,
+        'gt' => false,
+        'gte' => false,
+        'lt' => false,
+        'lte' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

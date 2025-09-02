@@ -38,6 +38,17 @@ final class DeploymentTargetPatch implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'type' => false,
+        'name' => false,
+        'enforced_mounts' => false,
+        'site_urls' => false,
+        'ssh_hosts' => false,
+        'enterprise_environments_mapping' => false,
+        'hosts' => true,
+        'use_dedicated_grid' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

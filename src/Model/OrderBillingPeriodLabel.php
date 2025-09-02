@@ -28,6 +28,13 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'formatted' => false,
+        'month' => false,
+        'year' => false,
+        'next_month' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

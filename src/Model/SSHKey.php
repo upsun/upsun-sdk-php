@@ -30,6 +30,15 @@ final class SSHKey implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'key_id' => false,
+        'uid' => false,
+        'fingerprint' => false,
+        'title' => false,
+        'value' => false,
+        'changed' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -31,6 +31,16 @@ final class Connection implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'provider' => false,
+        'provider_type' => false,
+        'is_mandatory' => false,
+        'subject' => false,
+        'email_address' => false,
+        'created_at' => false,
+        'updated_at' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

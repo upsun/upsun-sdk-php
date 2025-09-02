@@ -31,6 +31,16 @@ final class TeamProjectAccess implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'team_id' => false,
+        'organization_id' => false,
+        'project_id' => false,
+        'project_title' => false,
+        'granted_at' => false,
+        'updated_at' => false,
+        '_links' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

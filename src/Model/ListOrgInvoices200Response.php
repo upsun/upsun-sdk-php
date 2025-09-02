@@ -28,6 +28,10 @@ final class ListOrgInvoices200Response implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'items' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

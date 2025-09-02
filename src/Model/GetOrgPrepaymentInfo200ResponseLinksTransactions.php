@@ -25,6 +25,10 @@ final class GetOrgPrepaymentInfo200ResponseLinksTransactions implements JsonSeri
     ) {
     }
 
+    private static array $openAPINullables = [
+        'href' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

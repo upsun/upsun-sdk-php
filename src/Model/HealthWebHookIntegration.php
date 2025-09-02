@@ -28,6 +28,13 @@ final class HealthWebHookIntegration implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'created_at' => true,
+        'updated_at' => true,
+        'type' => false,
+        'url' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

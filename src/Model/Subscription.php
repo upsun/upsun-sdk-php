@@ -51,6 +51,33 @@ final class Subscription implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'status' => false,
+        'created_at' => false,
+        'updated_at' => false,
+        'owner' => false,
+        'owner_info' => false,
+        'vendor' => false,
+        'plan' => false,
+        'environments' => false,
+        'storage' => false,
+        'user_licenses' => false,
+        'project_id' => false,
+        'project_endpoint' => false,
+        'project_title' => false,
+        'project_region' => false,
+        'project_region_label' => false,
+        'project_ui' => false,
+        'project_options' => false,
+        'agency_site' => false,
+        'invoiced' => false,
+        'hipaa' => false,
+        'is_trial_plan' => false,
+        'services' => false,
+        'green' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

@@ -27,6 +27,12 @@ final class Ref implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'ref' => false,
+        'object' => false,
+        'sha' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

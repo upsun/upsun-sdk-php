@@ -26,6 +26,11 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'filename' => false,
+        'data' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

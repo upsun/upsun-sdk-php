@@ -40,6 +40,25 @@ final class Invoice implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'invoice_number' => false,
+        'type' => false,
+        'order_id' => false,
+        'related_invoice_id' => true,
+        'status' => false,
+        'owner' => false,
+        'invoice_date' => true,
+        'invoice_due' => true,
+        'created' => true,
+        'changed' => true,
+        'company' => false,
+        'total' => false,
+        'address' => false,
+        'notes' => false,
+        'invoice_pdf' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

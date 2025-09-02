@@ -69,6 +69,33 @@ final class WorkersValue implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'resources' => true,
+        'size' => false,
+        'disk' => true,
+        'access' => false,
+        'relationships' => false,
+        'additional_hosts' => false,
+        'mounts' => false,
+        'timezone' => true,
+        'variables' => false,
+        'firewall' => true,
+        'container_profile' => true,
+        'operations' => false,
+        'name' => false,
+        'type' => false,
+        'preflight' => false,
+        'tree_id' => false,
+        'app_dir' => false,
+        'endpoints' => true,
+        'runtime' => false,
+        'worker' => false,
+        'app' => false,
+        'stack' => true,
+        'instance_count' => true,
+        'slug_id' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [

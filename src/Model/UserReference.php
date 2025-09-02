@@ -32,6 +32,17 @@ final class UserReference implements JsonSerializable
     ) {
     }
 
+    private static array $openAPINullables = [
+        'id' => false,
+        'username' => false,
+        'email' => false,
+        'first_name' => false,
+        'last_name' => false,
+        'picture' => false,
+        'mfa_enabled' => false,
+        'sso_enabled' => false
+    ];
+
     public function jsonSerialize(): array
     {
         return [
