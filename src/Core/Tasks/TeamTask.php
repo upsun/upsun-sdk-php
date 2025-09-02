@@ -119,9 +119,9 @@ class TeamTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?array $filterOrganizationId = null,
-        ?array $filterId = null,
-        ?array $filterUpdatedAt = null,
+        ?array $filterOrganizationId = [],
+        ?array $filterId = [],
+        ?array $filterUpdatedAt = [],
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
