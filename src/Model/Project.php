@@ -83,54 +83,10 @@ final class Project implements JsonSerializable
             'subscription' => 'getSubscription'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'attributes' => 'setAttributes',
-            'title' => 'setTitle',
-            'description' => 'setDescription',
-            'owner' => 'setOwner',
-            'namespace' => 'setNamespace',
-            'organization' => 'setOrganization',
-            'default_branch' => 'setDefaultBranch',
-            'status' => 'setStatus',
-            'timezone' => 'setTimezone',
-            'region' => 'setRegion',
-            'repository' => 'setRepository',
-            'default_domain' => 'setDefaultDomain',
-            'subscription' => 'setSubscription'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'attributes' => 'getAttributes',
-            'title' => 'getTitle',
-            'description' => 'getDescription',
-            'owner' => 'getOwner',
-            'namespace' => 'getNamespace',
-            'organization' => 'getOrganization',
-            'default_branch' => 'getDefaultBranch',
-            'status' => 'getStatus',
-            'timezone' => 'getTimezone',
-            'region' => 'getRegion',
-            'repository' => 'getRepository',
-            'default_domain' => 'getDefaultDomain',
-            'subscription' => 'getSubscription'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $title,
         public readonly string $description,
@@ -143,7 +99,7 @@ final class Project implements JsonSerializable
         public readonly string $region,
         public readonly \Upsun\Model\RepositoryInformation $repository,
         public readonly ?string $default_domain,
-        public readonly \Upsun\Model\SubscriptionInformation $subscription
+        public readonly \Upsun\Model\SubscriptionInformation $subscription,
     ) {
     }
 

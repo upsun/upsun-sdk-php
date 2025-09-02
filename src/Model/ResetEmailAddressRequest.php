@@ -41,22 +41,9 @@ final class ResetEmailAddressRequest implements JsonSerializable
             'email_address' => 'getEmailAddress'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'email_address' => 'setEmailAddress'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'email_address' => 'getEmailAddress'
-        ];
     
     public function __construct(
-        public readonly string $email_address
+        public readonly string $email_address,
     ) {
     }
 

@@ -53,34 +53,13 @@ final class EnvironmentRestoreInput implements JsonSerializable
             'resources' => 'getResources'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'environment_name' => 'setEnvironmentName',
-            'branch_from' => 'setBranchFrom',
-            'restore_code' => 'setRestoreCode',
-            'restore_resources' => 'setRestoreResources',
-            'resources' => 'setResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'environment_name' => 'getEnvironmentName',
-            'branch_from' => 'getBranchFrom',
-            'restore_code' => 'getRestoreCode',
-            'restore_resources' => 'getRestoreResources',
-            'resources' => 'getResources'
-        ];
     
     public function __construct(
         public readonly ?string $environment_name,
         public readonly ?string $branch_from,
         public readonly bool $restore_code,
         public readonly bool $restore_resources,
-        public readonly ?\Upsun\Model\Resources5 $resources
+        public readonly ?\Upsun\Model\Resources5 $resources,
     ) {
     }
 

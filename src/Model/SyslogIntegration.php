@@ -68,52 +68,18 @@ final class SyslogIntegration implements JsonSerializable
             'tls_verify' => 'getTlsVerify'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'host' => 'setHost',
-            'port' => 'setPort',
-            'protocol' => 'setProtocol',
-            'facility' => 'setFacility',
-            'message_format' => 'setMessageFormat',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'host' => 'getHost',
-            'port' => 'getPort',
-            'protocol' => 'getProtocol',
-            'facility' => 'getFacility',
-            'message_format' => 'getMessageFormat',
-            'tls_verify' => 'getTlsVerify'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $type,
-        /**
-         * @var string[]
-         */
         public readonly array $extra,
         public readonly string $host,
         public readonly int $port,
         public readonly string $protocol,
         public readonly int $facility,
         public readonly string $message_format,
-        public readonly bool $tls_verify
+        public readonly bool $tls_verify,
     ) {
     }
 

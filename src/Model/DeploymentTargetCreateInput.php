@@ -62,49 +62,16 @@ final class DeploymentTargetCreateInput implements JsonSerializable
             'use_dedicated_grid' => 'getUseDedicatedGrid'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'enforced_mounts' => 'setEnforcedMounts',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping',
-            'hosts' => 'setHosts',
-            'use_dedicated_grid' => 'setUseDedicatedGrid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'enforced_mounts' => 'getEnforcedMounts',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping',
-            'hosts' => 'getHosts',
-            'use_dedicated_grid' => 'getUseDedicatedGrid'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $name,
         public readonly object $enforced_mounts,
         public readonly object $site_urls,
-        /**
-         * @var array
-         */
         public readonly array $ssh_hosts,
         public readonly object $enterprise_environments_mapping,
-        /**
-         * @var array
-         */
         public readonly ?array $hosts,
-        public readonly bool $use_dedicated_grid
+        public readonly bool $use_dedicated_grid,
     ) {
     }
 

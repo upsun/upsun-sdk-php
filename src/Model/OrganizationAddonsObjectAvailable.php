@@ -44,30 +44,9 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
             'support_level' => 'getSupportLevel'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_management' => 'setUserManagement',
-            'support_level' => 'setSupportLevel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_management' => 'getUserManagement',
-            'support_level' => 'getSupportLevel'
-        ];
     
     public function __construct(
-        /**
-         * @var string[]
-         */
         public readonly array $user_management,
-        /**
-         * @var string[]
-         */
         public readonly array $support_level
     ) {
     }

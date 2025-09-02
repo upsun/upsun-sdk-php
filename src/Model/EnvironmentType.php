@@ -41,24 +41,8 @@ final class EnvironmentType implements JsonSerializable
             'attributes' => 'getAttributes'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'attributes' => 'setAttributes'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'attributes' => 'getAttributes'
-        ];
     
     public function __construct(
-        /**
-         * @var string[]
-         */
         public readonly array $attributes
     ) {
     }

@@ -71,39 +71,6 @@ final class CreateTicketRequest implements JsonSerializable
             'collaborator_ids' => 'getCollaboratorIds'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'subject' => 'setSubject',
-            'description' => 'setDescription',
-            'requester_id' => 'setRequesterId',
-            'priority' => 'setPriority',
-            'subscription_id' => 'setSubscriptionId',
-            'organization_id' => 'setOrganizationId',
-            'affected_url' => 'setAffectedUrl',
-            'followup_tid' => 'setFollowupTid',
-            'category' => 'setCategory',
-            'attachments' => 'setAttachments',
-            'collaborator_ids' => 'setCollaboratorIds'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'subject' => 'getSubject',
-            'description' => 'getDescription',
-            'requester_id' => 'getRequesterId',
-            'priority' => 'getPriority',
-            'subscription_id' => 'getSubscriptionId',
-            'organization_id' => 'getOrganizationId',
-            'affected_url' => 'getAffectedUrl',
-            'followup_tid' => 'getFollowupTid',
-            'category' => 'getCategory',
-            'attachments' => 'getAttachments',
-            'collaborator_ids' => 'getCollaboratorIds'
-        ];
     
     public function __construct(
         public readonly string $subject,
@@ -115,13 +82,7 @@ final class CreateTicketRequest implements JsonSerializable
         public readonly string $affected_url,
         public readonly string $followup_tid,
         public readonly string $category,
-        /**
-         * @var array
-         */
         public readonly array $attachments,
-        /**
-         * @var array
-         */
         public readonly array $collaborator_ids
     ) {
     }

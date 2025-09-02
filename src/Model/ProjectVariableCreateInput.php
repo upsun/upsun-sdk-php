@@ -59,43 +59,15 @@ final class ProjectVariableCreateInput implements JsonSerializable
             'visible_runtime' => 'getVisibleRuntime'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'value' => 'setValue',
-            'is_json' => 'setIsJson',
-            'is_sensitive' => 'setIsSensitive',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'value' => 'getValue',
-            'is_json' => 'getIsJson',
-            'is_sensitive' => 'getIsSensitive',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime'
-        ];
     
     public function __construct(
         public readonly string $name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $value,
         public readonly bool $is_json,
         public readonly bool $is_sensitive,
         public readonly bool $visible_build,
-        public readonly bool $visible_runtime
+        public readonly bool $visible_runtime,
     ) {
     }
 

@@ -50,34 +50,12 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
             'share_between_apps' => 'getShareBetweenApps'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'directory' => 'setDirectory',
-            'watch' => 'setWatch',
-            'allow_stale' => 'setAllowStale',
-            'share_between_apps' => 'setShareBetweenApps'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'directory' => 'getDirectory',
-            'watch' => 'getWatch',
-            'allow_stale' => 'getAllowStale',
-            'share_between_apps' => 'getShareBetweenApps'
-        ];
     
     public function __construct(
         public readonly ?string $directory,
-        /**
-         * @var array
-         */
         public readonly array $watch,
         public readonly bool $allow_stale,
-        public readonly bool $share_between_apps
+        public readonly bool $share_between_apps,
     ) {
     }
 

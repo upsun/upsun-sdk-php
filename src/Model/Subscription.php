@@ -110,65 +110,6 @@ final class Subscription implements JsonSerializable
             'green' => 'getGreen'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'status' => 'setStatus',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'owner' => 'setOwner',
-            'owner_info' => 'setOwnerInfo',
-            'vendor' => 'setVendor',
-            'plan' => 'setPlan',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'user_licenses' => 'setUserLicenses',
-            'project_id' => 'setProjectId',
-            'project_endpoint' => 'setProjectEndpoint',
-            'project_title' => 'setProjectTitle',
-            'project_region' => 'setProjectRegion',
-            'project_region_label' => 'setProjectRegionLabel',
-            'project_ui' => 'setProjectUi',
-            'project_options' => 'setProjectOptions',
-            'agency_site' => 'setAgencySite',
-            'invoiced' => 'setInvoiced',
-            'hipaa' => 'setHipaa',
-            'is_trial_plan' => 'setIsTrialPlan',
-            'services' => 'setServices',
-            'green' => 'setGreen'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'status' => 'getStatus',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'owner' => 'getOwner',
-            'owner_info' => 'getOwnerInfo',
-            'vendor' => 'getVendor',
-            'plan' => 'getPlan',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'user_licenses' => 'getUserLicenses',
-            'project_id' => 'getProjectId',
-            'project_endpoint' => 'getProjectEndpoint',
-            'project_title' => 'getProjectTitle',
-            'project_region' => 'getProjectRegion',
-            'project_region_label' => 'getProjectRegionLabel',
-            'project_ui' => 'getProjectUi',
-            'project_options' => 'getProjectOptions',
-            'agency_site' => 'getAgencySite',
-            'invoiced' => 'getInvoiced',
-            'hipaa' => 'getHipaa',
-            'is_trial_plan' => 'getIsTrialPlan',
-            'services' => 'getServices',
-            'green' => 'getGreen'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -193,11 +134,8 @@ final class Subscription implements JsonSerializable
         public readonly bool $invoiced,
         public readonly bool $hipaa,
         public readonly bool $is_trial_plan,
-        /**
-         * @var array
-         */
         public readonly array $services,
-        public readonly bool $green
+        public readonly bool $green,
     ) {
     }
 

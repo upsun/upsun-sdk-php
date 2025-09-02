@@ -47,31 +47,11 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
             'auto_add_member' => 'getAutoAddMember'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'permissions' => 'setPermissions',
-            'auto_add_member' => 'setAutoAddMember'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'permissions' => 'getPermissions',
-            'auto_add_member' => 'getAutoAddMember'
-        ];
     
     public function __construct(
         public readonly string $user_id,
-        /**
-         * @var array
-         */
         public readonly array $permissions,
-        public readonly bool $auto_add_member
+        public readonly bool $auto_add_member,
     ) {
     }
 

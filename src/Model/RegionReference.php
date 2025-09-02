@@ -86,49 +86,6 @@ final class RegionReference implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'label' => 'setLabel',
-            'zone' => 'setZone',
-            'selection_label' => 'setSelectionLabel',
-            'project_label' => 'setProjectLabel',
-            'timezone' => 'setTimezone',
-            'available' => 'setAvailable',
-            'private' => 'setPrivate',
-            'endpoint' => 'setEndpoint',
-            'code' => 'setCode',
-            'provider' => 'setProvider',
-            'datacenter' => 'setDatacenter',
-            'envimpact' => 'setEnvimpact',
-            'compliance' => 'setCompliance',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'label' => 'getLabel',
-            'zone' => 'getZone',
-            'selection_label' => 'getSelectionLabel',
-            'project_label' => 'getProjectLabel',
-            'timezone' => 'getTimezone',
-            'available' => 'getAvailable',
-            'private' => 'getPrivate',
-            'endpoint' => 'getEndpoint',
-            'code' => 'getCode',
-            'provider' => 'getProvider',
-            'datacenter' => 'getDatacenter',
-            'envimpact' => 'getEnvimpact',
-            'compliance' => 'getCompliance',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -146,7 +103,7 @@ final class RegionReference implements JsonSerializable
         public readonly object $envimpact,
         public readonly object $compliance,
         public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 

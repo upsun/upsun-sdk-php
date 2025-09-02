@@ -41,22 +41,9 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
             'command' => 'getCommand'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'command' => 'setCommand'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'command' => 'getCommand'
-        ];
     
     public function __construct(
-        public readonly ?string $command
+        public readonly ?string $command,
     ) {
     }
 

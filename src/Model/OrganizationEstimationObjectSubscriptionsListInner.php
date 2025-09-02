@@ -50,31 +50,12 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
             'usage' => 'getUsage'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'license_id' => 'setLicenseId',
-            'project_title' => 'setProjectTitle',
-            'total' => 'setTotal',
-            'usage' => 'setUsage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'license_id' => 'getLicenseId',
-            'project_title' => 'getProjectTitle',
-            'total' => 'getTotal',
-            'usage' => 'getUsage'
-        ];
     
     public function __construct(
         public readonly string $license_id,
         public readonly string $project_title,
         public readonly string $total,
-        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage
+        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage,
     ) {
     }
 

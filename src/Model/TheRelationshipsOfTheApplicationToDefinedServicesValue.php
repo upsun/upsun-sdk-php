@@ -44,25 +44,10 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
             'endpoint' => 'getEndpoint'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'service' => 'setService',
-            'endpoint' => 'setEndpoint'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'service' => 'getService',
-            'endpoint' => 'getEndpoint'
-        ];
     
     public function __construct(
         public readonly ?string $service,
-        public readonly ?string $endpoint
+        public readonly ?string $endpoint,
     ) {
     }
 

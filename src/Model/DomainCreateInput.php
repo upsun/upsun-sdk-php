@@ -50,34 +50,12 @@ final class DomainCreateInput implements JsonSerializable
             'replacement_for' => 'getReplacementFor'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'is_default' => 'setIsDefault',
-            'replacement_for' => 'setReplacementFor'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'is_default' => 'getIsDefault',
-            'replacement_for' => 'getReplacementFor'
-        ];
     
     public function __construct(
         public readonly string $name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly bool $is_default,
-        public readonly string $replacement_for
+        public readonly string $replacement_for,
     ) {
     }
 

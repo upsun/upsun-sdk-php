@@ -44,25 +44,10 @@ final class EnvironmentOperationInput implements JsonSerializable
             'operation' => 'getOperation'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'service' => 'setService',
-            'operation' => 'setOperation'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'service' => 'getService',
-            'operation' => 'getOperation'
-        ];
     
     public function __construct(
         public readonly string $service,
-        public readonly string $operation
+        public readonly string $operation,
     ) {
     }
 

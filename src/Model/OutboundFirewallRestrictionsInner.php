@@ -50,39 +50,11 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
             'ports' => 'getPorts'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'protocol' => 'setProtocol',
-            'ips' => 'setIps',
-            'domains' => 'setDomains',
-            'ports' => 'setPorts'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'protocol' => 'getProtocol',
-            'ips' => 'getIps',
-            'domains' => 'getDomains',
-            'ports' => 'getPorts'
-        ];
     
     public function __construct(
         public readonly string $protocol,
-        /**
-         * @var array
-         */
         public readonly array $ips,
-        /**
-         * @var array
-         */
         public readonly array $domains,
-        /**
-         * @var array
-         */
         public readonly array $ports
     ) {
     }

@@ -44,25 +44,10 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
             'advanced_management_user' => 'getAdvancedManagementUser'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'standard_management_user' => 'setStandardManagementUser',
-            'advanced_management_user' => 'setAdvancedManagementUser'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'standard_management_user' => 'getStandardManagementUser',
-            'advanced_management_user' => 'getAdvancedManagementUser'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standard_management_user,
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advanced_management_user
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advanced_management_user,
     ) {
     }
 

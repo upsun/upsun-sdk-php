@@ -50,33 +50,11 @@ final class VouchersVouchersInner implements JsonSerializable
             'orders' => 'getOrders'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'code' => 'setCode',
-            'amount' => 'setAmount',
-            'currency' => 'setCurrency',
-            'orders' => 'setOrders'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'code' => 'getCode',
-            'amount' => 'getAmount',
-            'currency' => 'getCurrency',
-            'orders' => 'getOrders'
-        ];
     
     public function __construct(
         public readonly string $code,
         public readonly string $amount,
         public readonly string $currency,
-        /**
-         * @var array
-         */
         public readonly array $orders
     ) {
     }

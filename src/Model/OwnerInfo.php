@@ -47,28 +47,11 @@ final class OwnerInfo implements JsonSerializable
             'display_name' => 'getDisplayName'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'username' => 'setUsername',
-            'display_name' => 'setDisplayName'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'username' => 'getUsername',
-            'display_name' => 'getDisplayName'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $username,
-        public readonly string $display_name
+        public readonly string $display_name,
     ) {
     }
 

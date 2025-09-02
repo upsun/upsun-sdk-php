@@ -59,31 +59,6 @@ final class Vouchers implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'uuid' => 'setUuid',
-            'vouchers_total' => 'setVouchersTotal',
-            'vouchers_applied' => 'setVouchersApplied',
-            'vouchers_remaining_balance' => 'setVouchersRemainingBalance',
-            'currency' => 'setCurrency',
-            'vouchers' => 'setVouchers',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'uuid' => 'getUuid',
-            'vouchers_total' => 'getVouchersTotal',
-            'vouchers_applied' => 'getVouchersApplied',
-            'vouchers_remaining_balance' => 'getVouchersRemainingBalance',
-            'currency' => 'getCurrency',
-            'vouchers' => 'getVouchers',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly string $uuid,
@@ -91,11 +66,8 @@ final class Vouchers implements JsonSerializable
         public readonly string $vouchers_applied,
         public readonly string $vouchers_remaining_balance,
         public readonly string $currency,
-        /**
-         * @var array
-         */
         public readonly array $vouchers,
-        public readonly \Upsun\Model\VouchersLinks $_links
+        public readonly \Upsun\Model\VouchersLinks $_links,
     ) {
     }
 

@@ -50,31 +50,12 @@ final class LineItemComponent implements JsonSerializable
             'currency' => 'getCurrency'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'amount' => 'setAmount',
-            'amount_formatted' => 'setAmountFormatted',
-            'display_title' => 'setDisplayTitle',
-            'currency' => 'setCurrency'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'amount' => 'getAmount',
-            'amount_formatted' => 'getAmountFormatted',
-            'display_title' => 'getDisplayTitle',
-            'currency' => 'getCurrency'
-        ];
     
     public function __construct(
         public readonly float $amount,
         public readonly string $amount_formatted,
         public readonly string $display_title,
-        public readonly string $currency
+        public readonly string $currency,
     ) {
     }
 

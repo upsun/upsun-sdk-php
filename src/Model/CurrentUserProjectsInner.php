@@ -98,57 +98,6 @@ final class CurrentUserProjectsInner implements JsonSerializable
             'created_at' => 'getCreatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'name' => 'setName',
-            'title' => 'setTitle',
-            'cluster' => 'setCluster',
-            'cluster_label' => 'setClusterLabel',
-            'region' => 'setRegion',
-            'region_label' => 'setRegionLabel',
-            'uri' => 'setUri',
-            'endpoint' => 'setEndpoint',
-            'license_id' => 'setLicenseId',
-            'owner' => 'setOwner',
-            'owner_info' => 'setOwnerInfo',
-            'plan' => 'setPlan',
-            'subscription_id' => 'setSubscriptionId',
-            'status' => 'setStatus',
-            'vendor' => 'setVendor',
-            'vendor_label' => 'setVendorLabel',
-            'vendor_website' => 'setVendorWebsite',
-            'vendor_resources' => 'setVendorResources',
-            'created_at' => 'setCreatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'name' => 'getName',
-            'title' => 'getTitle',
-            'cluster' => 'getCluster',
-            'cluster_label' => 'getClusterLabel',
-            'region' => 'getRegion',
-            'region_label' => 'getRegionLabel',
-            'uri' => 'getUri',
-            'endpoint' => 'getEndpoint',
-            'license_id' => 'getLicenseId',
-            'owner' => 'getOwner',
-            'owner_info' => 'getOwnerInfo',
-            'plan' => 'getPlan',
-            'subscription_id' => 'getSubscriptionId',
-            'status' => 'getStatus',
-            'vendor' => 'getVendor',
-            'vendor_label' => 'getVendorLabel',
-            'vendor_website' => 'getVendorWebsite',
-            'vendor_resources' => 'getVendorResources',
-            'created_at' => 'getCreatedAt'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -170,7 +119,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
         public readonly string $vendor_label,
         public readonly string $vendor_website,
         public readonly string $vendor_resources,
-        public readonly \DateTime $created_at
+        public readonly \DateTime $created_at,
     ) {
     }
 

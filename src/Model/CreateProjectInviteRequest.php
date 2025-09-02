@@ -53,40 +53,13 @@ final class CreateProjectInviteRequest implements JsonSerializable
             'force' => 'getForce'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'role' => 'setRole',
-            'email' => 'setEmail',
-            'permissions' => 'setPermissions',
-            'environments' => 'setEnvironments',
-            'force' => 'setForce'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'role' => 'getRole',
-            'email' => 'getEmail',
-            'permissions' => 'getPermissions',
-            'environments' => 'getEnvironments',
-            'force' => 'getForce'
-        ];
     
     public function __construct(
         public readonly string $role,
         public readonly string $email,
-        /**
-         * @var array
-         */
         public readonly array $permissions,
-        /**
-         * @var array
-         */
         public readonly array $environments,
-        public readonly bool $force
+        public readonly bool $force,
     ) {
     }
 

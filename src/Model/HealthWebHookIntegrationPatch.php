@@ -47,28 +47,11 @@ final class HealthWebHookIntegrationPatch implements JsonSerializable
             'url' => 'getUrl'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'shared_key' => 'setSharedKey',
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'shared_key' => 'getSharedKey',
-            'url' => 'getUrl'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly ?string $shared_key,
-        public readonly string $url
+        public readonly string $url,
     ) {
     }
 

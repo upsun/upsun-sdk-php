@@ -71,64 +71,19 @@ final class Certificate implements JsonSerializable
             'expires_at' => 'getExpiresAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'certificate' => 'setCertificate',
-            'chain' => 'setChain',
-            'is_provisioned' => 'setIsProvisioned',
-            'is_invalid' => 'setIsInvalid',
-            'is_root' => 'setIsRoot',
-            'domains' => 'setDomains',
-            'auth_type' => 'setAuthType',
-            'issuer' => 'setIssuer',
-            'expires_at' => 'setExpiresAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'certificate' => 'getCertificate',
-            'chain' => 'getChain',
-            'is_provisioned' => 'getIsProvisioned',
-            'is_invalid' => 'getIsInvalid',
-            'is_root' => 'getIsRoot',
-            'domains' => 'getDomains',
-            'auth_type' => 'getAuthType',
-            'issuer' => 'getIssuer',
-            'expires_at' => 'getExpiresAt'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $certificate,
-        /**
-         * @var array
-         */
         public readonly array $chain,
         public readonly bool $is_provisioned,
         public readonly bool $is_invalid,
         public readonly bool $is_root,
-        /**
-         * @var array
-         */
         public readonly array $domains,
-        /**
-         * @var array
-         */
         public readonly array $auth_type,
-        /**
-         * @var array
-         */
         public readonly array $issuer,
-        public readonly \DateTime $expires_at
+        public readonly \DateTime $expires_at,
     ) {
     }
 

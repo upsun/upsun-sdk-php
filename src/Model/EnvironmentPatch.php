@@ -65,49 +65,17 @@ final class EnvironmentPatch implements JsonSerializable
             'restrict_robots' => 'getRestrictRobots'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'title' => 'setTitle',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'parent' => 'setParent',
-            'clone_parent_on_create' => 'setCloneParentOnCreate',
-            'http_access' => 'setHttpAccess',
-            'enable_smtp' => 'setEnableSmtp',
-            'restrict_robots' => 'setRestrictRobots'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'title' => 'getTitle',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'parent' => 'getParent',
-            'clone_parent_on_create' => 'getCloneParentOnCreate',
-            'http_access' => 'getHttpAccess',
-            'enable_smtp' => 'getEnableSmtp',
-            'restrict_robots' => 'getRestrictRobots'
-        ];
     
     public function __construct(
         public readonly string $name,
         public readonly string $title,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $type,
         public readonly ?string $parent,
         public readonly bool $clone_parent_on_create,
         public readonly \Upsun\Model\HttpAccessPermissions1 $http_access,
         public readonly bool $enable_smtp,
-        public readonly bool $restrict_robots
+        public readonly bool $restrict_robots,
     ) {
     }
 

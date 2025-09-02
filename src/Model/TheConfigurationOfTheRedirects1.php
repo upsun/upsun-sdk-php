@@ -44,27 +44,9 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
             'paths' => 'getPaths'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'expires' => 'setExpires',
-            'paths' => 'setPaths'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'expires' => 'getExpires',
-            'paths' => 'getPaths'
-        ];
     
     public function __construct(
         public readonly string $expires,
-        /**
-         * @var string[]
-         */
         public readonly array $paths
     ) {
     }

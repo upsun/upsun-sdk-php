@@ -44,27 +44,9 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
             'list' => 'getList'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'total' => 'setTotal',
-            'list' => 'setList'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'total' => 'getTotal',
-            'list' => 'getList'
-        ];
     
     public function __construct(
         public readonly string $total,
-        /**
-         * @var array
-         */
         public readonly array $list
     ) {
     }

@@ -44,25 +44,10 @@ final class CustomDomains implements JsonSerializable
             'environments_with_domains_limit' => 'getEnvironmentsWithDomainsLimit'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'environments_with_domains_limit' => 'setEnvironmentsWithDomainsLimit'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'environments_with_domains_limit' => 'getEnvironmentsWithDomainsLimit'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
-        public readonly int $environments_with_domains_limit
+        public readonly int $environments_with_domains_limit,
     ) {
     }
 

@@ -50,31 +50,12 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
             'max_environments' => 'getMaxEnvironments'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'legacy_development' => 'setLegacyDevelopment',
-            'max_cpu' => 'setMaxCpu',
-            'max_memory' => 'setMaxMemory',
-            'max_environments' => 'setMaxEnvironments'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'legacy_development' => 'getLegacyDevelopment',
-            'max_cpu' => 'getMaxCpu',
-            'max_memory' => 'getMaxMemory',
-            'max_environments' => 'getMaxEnvironments'
-        ];
     
     public function __construct(
         public readonly bool $legacy_development,
         public readonly ?float $max_cpu,
         public readonly ?int $max_memory,
-        public readonly ?int $max_environments
+        public readonly ?int $max_environments,
     ) {
     }
 

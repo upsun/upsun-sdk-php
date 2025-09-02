@@ -41,22 +41,9 @@ final class RuntimeOperations implements JsonSerializable
             'enabled' => 'getEnabled'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled'
-        ];
     
     public function __construct(
-        public readonly bool $enabled
+        public readonly bool $enabled,
     ) {
     }
 

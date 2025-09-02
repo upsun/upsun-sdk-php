@@ -56,29 +56,6 @@ final class OrganizationAlertConfig implements JsonSerializable
             'config' => 'getConfig'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'active' => 'setActive',
-            'alerts_sent' => 'setAlertsSent',
-            'last_alert_at' => 'setLastAlertAt',
-            'updated_at' => 'setUpdatedAt',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'active' => 'getActive',
-            'alerts_sent' => 'getAlertsSent',
-            'last_alert_at' => 'getLastAlertAt',
-            'updated_at' => 'getUpdatedAt',
-            'config' => 'getConfig'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -86,7 +63,7 @@ final class OrganizationAlertConfig implements JsonSerializable
         public readonly float $alerts_sent,
         public readonly ?string $last_alert_at,
         public readonly ?string $updated_at,
-        public readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config
+        public readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config,
     ) {
     }
 

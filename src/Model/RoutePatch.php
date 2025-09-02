@@ -71,47 +71,11 @@ final class RoutePatch implements JsonSerializable
             'upstream' => 'getUpstream'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'primary' => 'setPrimary',
-            'id' => 'setId',
-            'production_url' => 'setProductionUrl',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'tls' => 'setTls',
-            'to' => 'setTo',
-            'redirects' => 'setRedirects',
-            'cache' => 'setCache',
-            'ssi' => 'setSsi',
-            'upstream' => 'setUpstream'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'primary' => 'getPrimary',
-            'id' => 'getId',
-            'production_url' => 'getProductionUrl',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'tls' => 'getTls',
-            'to' => 'getTo',
-            'redirects' => 'getRedirects',
-            'cache' => 'getCache',
-            'ssi' => 'getSsi',
-            'upstream' => 'getUpstream'
-        ];
     
     public function __construct(
         public readonly ?bool $primary,
         public readonly ?string $id,
         public readonly ?string $production_url,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $type,
         public readonly \Upsun\Model\TLSSettingsForTheRoute1 $tls,
@@ -119,7 +83,7 @@ final class RoutePatch implements JsonSerializable
         public readonly \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects,
         public readonly \Upsun\Model\CacheConfiguration1 $cache,
         public readonly \Upsun\Model\ServerSideIncludeConfiguration $ssi,
-        public readonly string $upstream
+        public readonly string $upstream,
     ) {
     }
 

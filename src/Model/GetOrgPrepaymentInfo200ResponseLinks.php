@@ -44,25 +44,10 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
             'transactions' => 'getTransactions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'transactions' => 'setTransactions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'transactions' => 'getTransactions'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self,
-        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions
+        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions,
     ) {
     }
 

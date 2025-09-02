@@ -44,25 +44,10 @@ final class DataRetentionConfigurationValue implements JsonSerializable
             'default_config' => 'getDefaultConfig'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'max_backups' => 'setMaxBackups',
-            'default_config' => 'setDefaultConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'max_backups' => 'getMaxBackups',
-            'default_config' => 'getDefaultConfig'
-        ];
     
     public function __construct(
         public readonly int $max_backups,
-        public readonly \Upsun\Model\DefaultConfig $default_config
+        public readonly \Upsun\Model\DefaultConfig $default_config,
     ) {
     }
 

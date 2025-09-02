@@ -44,25 +44,10 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
             'count' => 'getCount'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'interval' => 'setInterval',
-            'count' => 'setCount'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'interval' => 'getInterval',
-            'count' => 'getCount'
-        ];
     
     public function __construct(
         public readonly string $interval,
-        public readonly int $count
+        public readonly int $count,
     ) {
     }
 

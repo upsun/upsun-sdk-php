@@ -53,34 +53,13 @@ final class Usage implements JsonSerializable
             'start' => 'getStart'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'subscription_id' => 'setSubscriptionId',
-            'usage_group' => 'setUsageGroup',
-            'quantity' => 'setQuantity',
-            'start' => 'setStart'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'subscription_id' => 'getSubscriptionId',
-            'usage_group' => 'getUsageGroup',
-            'quantity' => 'getQuantity',
-            'start' => 'getStart'
-        ];
     
     public function __construct(
         public readonly string $id,
         public readonly string $subscription_id,
         public readonly string $usage_group,
         public readonly float $quantity,
-        public readonly \DateTime $start
+        public readonly \DateTime $start,
     ) {
     }
 

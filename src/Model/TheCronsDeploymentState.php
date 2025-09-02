@@ -44,25 +44,10 @@ final class TheCronsDeploymentState implements JsonSerializable
             'status' => 'getStatus'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'status' => 'setStatus'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'status' => 'getStatus'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
-        public readonly string $status
+        public readonly string $status,
     ) {
     }
 

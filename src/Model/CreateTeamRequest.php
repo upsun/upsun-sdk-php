@@ -47,30 +47,10 @@ final class CreateTeamRequest implements JsonSerializable
             'project_permissions' => 'getProjectPermissions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'organization_id' => 'setOrganizationId',
-            'label' => 'setLabel',
-            'project_permissions' => 'setProjectPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'organization_id' => 'getOrganizationId',
-            'label' => 'getLabel',
-            'project_permissions' => 'getProjectPermissions'
-        ];
     
     public function __construct(
         public readonly string $organization_id,
         public readonly string $label,
-        /**
-         * @var array
-         */
         public readonly array $project_permissions
     ) {
     }

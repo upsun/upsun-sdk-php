@@ -56,29 +56,6 @@ final class UpdateOrgProfileRequest implements JsonSerializable
             'billing_contact' => 'getBillingContact'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'default_catalog' => 'setDefaultCatalog',
-            'project_options_url' => 'setProjectOptionsUrl',
-            'security_contact' => 'setSecurityContact',
-            'company_name' => 'setCompanyName',
-            'vat_number' => 'setVatNumber',
-            'billing_contact' => 'setBillingContact'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'default_catalog' => 'getDefaultCatalog',
-            'project_options_url' => 'getProjectOptionsUrl',
-            'security_contact' => 'getSecurityContact',
-            'company_name' => 'getCompanyName',
-            'vat_number' => 'getVatNumber',
-            'billing_contact' => 'getBillingContact'
-        ];
     
     public function __construct(
         public readonly string $default_catalog,
@@ -86,7 +63,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         public readonly string $security_contact,
         public readonly string $company_name,
         public readonly string $vat_number,
-        public readonly string $billing_contact
+        public readonly string $billing_contact,
     ) {
     }
 

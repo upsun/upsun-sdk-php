@@ -41,22 +41,9 @@ final class GetTypeAllowance200Response implements JsonSerializable
             'currencies' => 'getCurrencies'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'currencies' => 'setCurrencies'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'currencies' => 'getCurrencies'
-        ];
     
     public function __construct(
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies,
     ) {
     }
 

@@ -68,61 +68,18 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
             'move_to_root' => 'getMoveToRoot'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'locations' => 'setLocations',
-            'commands' => 'setCommands',
-            'upstream' => 'setUpstream',
-            'document_root' => 'setDocumentRoot',
-            'passthru' => 'setPassthru',
-            'index_files' => 'setIndexFiles',
-            'whitelist' => 'setWhitelist',
-            'blacklist' => 'setBlacklist',
-            'expires' => 'setExpires',
-            'move_to_root' => 'setMoveToRoot'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'locations' => 'getLocations',
-            'commands' => 'getCommands',
-            'upstream' => 'getUpstream',
-            'document_root' => 'getDocumentRoot',
-            'passthru' => 'getPassthru',
-            'index_files' => 'getIndexFiles',
-            'whitelist' => 'getWhitelist',
-            'blacklist' => 'getBlacklist',
-            'expires' => 'getExpires',
-            'move_to_root' => 'getMoveToRoot'
-        ];
     
     public function __construct(
-        /**
-         * @var string[]
-         */
         public readonly array $locations,
         public readonly \Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands,
         public readonly \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream,
         public readonly ?string $document_root,
         public readonly ?string $passthru,
-        /**
-         * @var array
-         */
         public readonly ?array $index_files,
-        /**
-         * @var array
-         */
         public readonly ?array $whitelist,
-        /**
-         * @var array
-         */
         public readonly ?array $blacklist,
         public readonly ?string $expires,
-        public readonly bool $move_to_root
+        public readonly bool $move_to_root,
     ) {
     }
 

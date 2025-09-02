@@ -62,33 +62,6 @@ final class ReplacementDomainStorage implements JsonSerializable
             'replacement_for' => 'getReplacementFor'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'project' => 'setProject',
-            'name' => 'setName',
-            'registered_name' => 'setRegisteredName',
-            'attributes' => 'setAttributes',
-            'replacement_for' => 'setReplacementFor'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'project' => 'getProject',
-            'name' => 'getName',
-            'registered_name' => 'getRegisteredName',
-            'attributes' => 'getAttributes',
-            'replacement_for' => 'getReplacementFor'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -97,11 +70,8 @@ final class ReplacementDomainStorage implements JsonSerializable
         public readonly string $project,
         public readonly string $name,
         public readonly string $registered_name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
-        public readonly string $replacement_for
+        public readonly string $replacement_for,
     ) {
     }
 

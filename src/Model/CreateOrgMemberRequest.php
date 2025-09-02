@@ -44,27 +44,9 @@ final class CreateOrgMemberRequest implements JsonSerializable
             'permissions' => 'getPermissions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'permissions' => 'setPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'permissions' => 'getPermissions'
-        ];
     
     public function __construct(
         public readonly string $user_id,
-        /**
-         * @var array
-         */
         public readonly array $permissions
     ) {
     }

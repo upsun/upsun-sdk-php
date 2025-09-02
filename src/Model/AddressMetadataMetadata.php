@@ -47,31 +47,11 @@ final class AddressMetadataMetadata implements JsonSerializable
             'show_vat' => 'getShowVat'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'required_fields' => 'setRequiredFields',
-            'field_labels' => 'setFieldLabels',
-            'show_vat' => 'setShowVat'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'required_fields' => 'getRequiredFields',
-            'field_labels' => 'getFieldLabels',
-            'show_vat' => 'getShowVat'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $required_fields,
         public readonly object $field_labels,
-        public readonly bool $show_vat
+        public readonly bool $show_vat,
     ) {
     }
 

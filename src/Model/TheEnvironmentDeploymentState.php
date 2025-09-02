@@ -47,28 +47,11 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
             'crons' => 'getCrons'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'last_deployment_successful' => 'setLastDeploymentSuccessful',
-            'last_deployment_at' => 'setLastDeploymentAt',
-            'crons' => 'setCrons'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'last_deployment_successful' => 'getLastDeploymentSuccessful',
-            'last_deployment_at' => 'getLastDeploymentAt',
-            'crons' => 'getCrons'
-        ];
     
     public function __construct(
         public readonly bool $last_deployment_successful,
         public readonly ?\DateTime $last_deployment_at,
-        public readonly \Upsun\Model\TheCronsDeploymentState $crons
+        public readonly \Upsun\Model\TheCronsDeploymentState $crons,
     ) {
     }
 

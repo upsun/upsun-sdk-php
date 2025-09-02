@@ -44,27 +44,9 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
             'permissions' => 'getPermissions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'project_id' => 'setProjectId',
-            'permissions' => 'setPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'project_id' => 'getProjectId',
-            'permissions' => 'getPermissions'
-        ];
     
     public function __construct(
         public readonly string $project_id,
-        /**
-         * @var array
-         */
         public readonly array $permissions
     ) {
     }

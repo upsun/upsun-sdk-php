@@ -41,22 +41,9 @@ final class CreateTeamMemberRequest implements JsonSerializable
             'user_id' => 'getUserId'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId'
-        ];
     
     public function __construct(
-        public readonly string $user_id
+        public readonly string $user_id,
     ) {
     }
 

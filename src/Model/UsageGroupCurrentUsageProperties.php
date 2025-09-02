@@ -65,35 +65,6 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
             'daily_average_formatted' => 'getDailyAverageFormatted'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'title' => 'setTitle',
-            'type' => 'setType',
-            'current_usage' => 'setCurrentUsage',
-            'current_usage_formatted' => 'setCurrentUsageFormatted',
-            'not_charged' => 'setNotCharged',
-            'free_quantity' => 'setFreeQuantity',
-            'free_quantity_formatted' => 'setFreeQuantityFormatted',
-            'daily_average' => 'setDailyAverage',
-            'daily_average_formatted' => 'setDailyAverageFormatted'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'title' => 'getTitle',
-            'type' => 'getType',
-            'current_usage' => 'getCurrentUsage',
-            'current_usage_formatted' => 'getCurrentUsageFormatted',
-            'not_charged' => 'getNotCharged',
-            'free_quantity' => 'getFreeQuantity',
-            'free_quantity_formatted' => 'getFreeQuantityFormatted',
-            'daily_average' => 'getDailyAverage',
-            'daily_average_formatted' => 'getDailyAverageFormatted'
-        ];
     
     public function __construct(
         public readonly string $title,
@@ -104,7 +75,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         public readonly float $free_quantity,
         public readonly string $free_quantity_formatted,
         public readonly float $daily_average,
-        public readonly string $daily_average_formatted
+        public readonly string $daily_average_formatted,
     ) {
     }
 

@@ -56,29 +56,6 @@ final class EstimationObject implements JsonSerializable
             'options' => 'getOptions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'plan' => 'setPlan',
-            'user_licenses' => 'setUserLicenses',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'total' => 'setTotal',
-            'options' => 'setOptions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'plan' => 'getPlan',
-            'user_licenses' => 'getUserLicenses',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'total' => 'getTotal',
-            'options' => 'getOptions'
-        ];
     
     public function __construct(
         public readonly string $plan,
@@ -86,7 +63,7 @@ final class EstimationObject implements JsonSerializable
         public readonly string $environments,
         public readonly string $storage,
         public readonly string $total,
-        public readonly object $options
+        public readonly object $options,
     ) {
     }
 

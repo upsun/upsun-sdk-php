@@ -50,34 +50,12 @@ final class CertificateCreateInput implements JsonSerializable
             'is_invalid' => 'getIsInvalid'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'certificate' => 'setCertificate',
-            'key' => 'setKey',
-            'chain' => 'setChain',
-            'is_invalid' => 'setIsInvalid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'certificate' => 'getCertificate',
-            'key' => 'getKey',
-            'chain' => 'getChain',
-            'is_invalid' => 'getIsInvalid'
-        ];
     
     public function __construct(
         public readonly string $certificate,
         public readonly string $key,
-        /**
-         * @var array
-         */
         public readonly array $chain,
-        public readonly bool $is_invalid
+        public readonly bool $is_invalid,
     ) {
     }
 

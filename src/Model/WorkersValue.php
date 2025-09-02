@@ -110,96 +110,19 @@ final class WorkersValue implements JsonSerializable
             'slug_id' => 'getSlugId'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'resources' => 'setResources',
-            'size' => 'setSize',
-            'disk' => 'setDisk',
-            'access' => 'setAccess',
-            'relationships' => 'setRelationships',
-            'additional_hosts' => 'setAdditionalHosts',
-            'mounts' => 'setMounts',
-            'timezone' => 'setTimezone',
-            'variables' => 'setVariables',
-            'firewall' => 'setFirewall',
-            'container_profile' => 'setContainerProfile',
-            'operations' => 'setOperations',
-            'name' => 'setName',
-            'type' => 'setType',
-            'preflight' => 'setPreflight',
-            'tree_id' => 'setTreeId',
-            'app_dir' => 'setAppDir',
-            'endpoints' => 'setEndpoints',
-            'runtime' => 'setRuntime',
-            'worker' => 'setWorker',
-            'app' => 'setApp',
-            'stack' => 'setStack',
-            'instance_count' => 'setInstanceCount',
-            'slug_id' => 'setSlugId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'resources' => 'getResources',
-            'size' => 'getSize',
-            'disk' => 'getDisk',
-            'access' => 'getAccess',
-            'relationships' => 'getRelationships',
-            'additional_hosts' => 'getAdditionalHosts',
-            'mounts' => 'getMounts',
-            'timezone' => 'getTimezone',
-            'variables' => 'getVariables',
-            'firewall' => 'getFirewall',
-            'container_profile' => 'getContainerProfile',
-            'operations' => 'getOperations',
-            'name' => 'getName',
-            'type' => 'getType',
-            'preflight' => 'getPreflight',
-            'tree_id' => 'getTreeId',
-            'app_dir' => 'getAppDir',
-            'endpoints' => 'getEndpoints',
-            'runtime' => 'getRuntime',
-            'worker' => 'getWorker',
-            'app' => 'getApp',
-            'stack' => 'getStack',
-            'instance_count' => 'getInstanceCount',
-            'slug_id' => 'getSlugId'
-        ];
     
     public function __construct(
         public readonly ?\Upsun\Model\Resources $resources,
         public readonly string $size,
         public readonly ?int $disk,
-        /**
-         * @var string[]
-         */
         public readonly array $access,
-        /**
-         * @var string[]
-         */
         public readonly array $relationships,
-        /**
-         * @var string[]
-         */
         public readonly array $additional_hosts,
-        /**
-         * @var string[]
-         */
         public readonly array $mounts,
         public readonly ?string $timezone,
-        /**
-         * @var string[]
-         */
         public readonly array $variables,
         public readonly ?\Upsun\Model\Firewall $firewall,
         public readonly ?string $container_profile,
-        /**
-         * @var string[]
-         */
         public readonly array $operations,
         public readonly string $name,
         public readonly string $type,
@@ -210,12 +133,9 @@ final class WorkersValue implements JsonSerializable
         public readonly object $runtime,
         public readonly \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker,
         public readonly string $app,
-        /**
-         * @var array
-         */
         public readonly ?array $stack,
         public readonly ?int $instance_count,
-        public readonly string $slug_id
+        public readonly string $slug_id,
     ) {
     }
 

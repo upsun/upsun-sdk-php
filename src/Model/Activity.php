@@ -95,55 +95,6 @@ final class Activity implements JsonSerializable
             'expires_at' => 'getExpiresAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'parameters' => 'setParameters',
-            'project' => 'setProject',
-            'integration' => 'setIntegration',
-            'environments' => 'setEnvironments',
-            'state' => 'setState',
-            'result' => 'setResult',
-            'started_at' => 'setStartedAt',
-            'completed_at' => 'setCompletedAt',
-            'completion_percent' => 'setCompletionPercent',
-            'cancelled_at' => 'setCancelledAt',
-            'timings' => 'setTimings',
-            'log' => 'setLog',
-            'payload' => 'setPayload',
-            'description' => 'setDescription',
-            'text' => 'setText',
-            'expires_at' => 'setExpiresAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'parameters' => 'getParameters',
-            'project' => 'getProject',
-            'integration' => 'getIntegration',
-            'environments' => 'getEnvironments',
-            'state' => 'getState',
-            'result' => 'getResult',
-            'started_at' => 'getStartedAt',
-            'completed_at' => 'getCompletedAt',
-            'completion_percent' => 'getCompletionPercent',
-            'cancelled_at' => 'getCancelledAt',
-            'timings' => 'getTimings',
-            'log' => 'getLog',
-            'payload' => 'getPayload',
-            'description' => 'getDescription',
-            'text' => 'getText',
-            'expires_at' => 'getExpiresAt'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -152,9 +103,6 @@ final class Activity implements JsonSerializable
         public readonly object $parameters,
         public readonly string $project,
         public readonly string $integration,
-        /**
-         * @var array
-         */
         public readonly array $environments,
         public readonly string $state,
         public readonly ?string $result,
@@ -162,15 +110,12 @@ final class Activity implements JsonSerializable
         public readonly ?\DateTime $completed_at,
         public readonly int $completion_percent,
         public readonly ?\DateTime $cancelled_at,
-        /**
-         * @var string[]
-         */
         public readonly array $timings,
         public readonly string $log,
         public readonly object $payload,
         public readonly ?string $description,
         public readonly ?string $text,
-        public readonly ?\DateTime $expires_at
+        public readonly ?\DateTime $expires_at,
     ) {
     }
 

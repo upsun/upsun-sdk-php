@@ -59,31 +59,6 @@ final class UpdateUserRequest implements JsonSerializable
             'country' => 'getCountry'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'username' => 'setUsername',
-            'first_name' => 'setFirstName',
-            'last_name' => 'setLastName',
-            'picture' => 'setPicture',
-            'company' => 'setCompany',
-            'website' => 'setWebsite',
-            'country' => 'setCountry'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'username' => 'getUsername',
-            'first_name' => 'getFirstName',
-            'last_name' => 'getLastName',
-            'picture' => 'getPicture',
-            'company' => 'getCompany',
-            'website' => 'getWebsite',
-            'country' => 'getCountry'
-        ];
     
     public function __construct(
         public readonly string $username,
@@ -92,7 +67,7 @@ final class UpdateUserRequest implements JsonSerializable
         public readonly string $picture,
         public readonly string $company,
         public readonly string $website,
-        public readonly string $country
+        public readonly string $country,
     ) {
     }
 

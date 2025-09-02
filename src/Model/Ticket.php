@@ -143,87 +143,6 @@ final class Ticket implements JsonSerializable
             'zd_ticket_url' => 'getZdTicketUrl'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'ticket_id' => 'setTicketId',
-            'created' => 'setCreated',
-            'updated' => 'setUpdated',
-            'type' => 'setType',
-            'subject' => 'setSubject',
-            'description' => 'setDescription',
-            'priority' => 'setPriority',
-            'followup_tid' => 'setFollowupTid',
-            'status' => 'setStatus',
-            'recipient' => 'setRecipient',
-            'requester_id' => 'setRequesterId',
-            'submitter_id' => 'setSubmitterId',
-            'assignee_id' => 'setAssigneeId',
-            'organization_id' => 'setOrganizationId',
-            'collaborator_ids' => 'setCollaboratorIds',
-            'has_incidents' => 'setHasIncidents',
-            'due' => 'setDue',
-            'tags' => 'setTags',
-            'subscription_id' => 'setSubscriptionId',
-            'ticket_group' => 'setTicketGroup',
-            'support_plan' => 'setSupportPlan',
-            'affected_url' => 'setAffectedUrl',
-            'queue' => 'setQueue',
-            'issue_type' => 'setIssueType',
-            'resolution_time' => 'setResolutionTime',
-            'response_time' => 'setResponseTime',
-            'project_url' => 'setProjectUrl',
-            'region' => 'setRegion',
-            'category' => 'setCategory',
-            'environment' => 'setEnvironment',
-            'ticket_sharing_status' => 'setTicketSharingStatus',
-            'application_ticket_url' => 'setApplicationTicketUrl',
-            'infrastructure_ticket_url' => 'setInfrastructureTicketUrl',
-            'jira' => 'setJira',
-            'zd_ticket_url' => 'setZdTicketUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'ticket_id' => 'getTicketId',
-            'created' => 'getCreated',
-            'updated' => 'getUpdated',
-            'type' => 'getType',
-            'subject' => 'getSubject',
-            'description' => 'getDescription',
-            'priority' => 'getPriority',
-            'followup_tid' => 'getFollowupTid',
-            'status' => 'getStatus',
-            'recipient' => 'getRecipient',
-            'requester_id' => 'getRequesterId',
-            'submitter_id' => 'getSubmitterId',
-            'assignee_id' => 'getAssigneeId',
-            'organization_id' => 'getOrganizationId',
-            'collaborator_ids' => 'getCollaboratorIds',
-            'has_incidents' => 'getHasIncidents',
-            'due' => 'getDue',
-            'tags' => 'getTags',
-            'subscription_id' => 'getSubscriptionId',
-            'ticket_group' => 'getTicketGroup',
-            'support_plan' => 'getSupportPlan',
-            'affected_url' => 'getAffectedUrl',
-            'queue' => 'getQueue',
-            'issue_type' => 'getIssueType',
-            'resolution_time' => 'getResolutionTime',
-            'response_time' => 'getResponseTime',
-            'project_url' => 'getProjectUrl',
-            'region' => 'getRegion',
-            'category' => 'getCategory',
-            'environment' => 'getEnvironment',
-            'ticket_sharing_status' => 'getTicketSharingStatus',
-            'application_ticket_url' => 'getApplicationTicketUrl',
-            'infrastructure_ticket_url' => 'getInfrastructureTicketUrl',
-            'jira' => 'getJira',
-            'zd_ticket_url' => 'getZdTicketUrl'
-        ];
     
     public function __construct(
         public readonly int $ticket_id,
@@ -240,15 +159,9 @@ final class Ticket implements JsonSerializable
         public readonly string $submitter_id,
         public readonly string $assignee_id,
         public readonly string $organization_id,
-        /**
-         * @var array
-         */
         public readonly array $collaborator_ids,
         public readonly bool $has_incidents,
         public readonly \DateTime $due,
-        /**
-         * @var array
-         */
         public readonly array $tags,
         public readonly string $subscription_id,
         public readonly string $ticket_group,
@@ -265,11 +178,8 @@ final class Ticket implements JsonSerializable
         public readonly string $ticket_sharing_status,
         public readonly string $application_ticket_url,
         public readonly string $infrastructure_ticket_url,
-        /**
-         * @var array
-         */
         public readonly array $jira,
-        public readonly string $zd_ticket_url
+        public readonly string $zd_ticket_url,
     ) {
     }
 

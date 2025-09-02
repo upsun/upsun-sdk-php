@@ -47,31 +47,11 @@ final class CreateOrgInviteRequest implements JsonSerializable
             'force' => 'getForce'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'email' => 'setEmail',
-            'permissions' => 'setPermissions',
-            'force' => 'setForce'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'email' => 'getEmail',
-            'permissions' => 'getPermissions',
-            'force' => 'getForce'
-        ];
     
     public function __construct(
         public readonly string $email,
-        /**
-         * @var array
-         */
         public readonly array $permissions,
-        public readonly bool $force
+        public readonly bool $force,
     ) {
     }
 

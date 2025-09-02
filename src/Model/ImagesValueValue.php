@@ -41,22 +41,9 @@ final class ImagesValueValue implements JsonSerializable
             'available' => 'getAvailable'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'available' => 'setAvailable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'available' => 'getAvailable'
-        ];
     
     public function __construct(
-        public readonly bool $available
+        public readonly bool $available,
     ) {
     }
 

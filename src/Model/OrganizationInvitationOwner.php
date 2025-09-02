@@ -44,25 +44,10 @@ final class OrganizationInvitationOwner implements JsonSerializable
             'display_name' => 'getDisplayName'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'display_name' => 'setDisplayName'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'display_name' => 'getDisplayName'
-        ];
     
     public function __construct(
         public readonly string $id,
-        public readonly string $display_name
+        public readonly string $display_name,
     ) {
     }
 

@@ -44,25 +44,10 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
             'secret' => 'getSecret'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'key' => 'setKey',
-            'secret' => 'setSecret'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'key' => 'getKey',
-            'secret' => 'getSecret'
-        ];
     
     public function __construct(
         public readonly string $key,
-        public readonly string $secret
+        public readonly string $secret,
     ) {
     }
 

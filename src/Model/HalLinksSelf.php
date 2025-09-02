@@ -44,25 +44,10 @@ final class HalLinksSelf implements JsonSerializable
             'href' => 'getHref'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'title' => 'setTitle',
-            'href' => 'setHref'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'title' => 'getTitle',
-            'href' => 'getHref'
-        ];
     
     public function __construct(
         public readonly string $title,
-        public readonly string $href
+        public readonly string $href,
     ) {
     }
 

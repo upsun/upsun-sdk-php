@@ -59,31 +59,6 @@ final class Connection implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'provider' => 'setProvider',
-            'provider_type' => 'setProviderType',
-            'is_mandatory' => 'setIsMandatory',
-            'subject' => 'setSubject',
-            'email_address' => 'setEmailAddress',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'provider' => 'getProvider',
-            'provider_type' => 'getProviderType',
-            'is_mandatory' => 'getIsMandatory',
-            'subject' => 'getSubject',
-            'email_address' => 'getEmailAddress',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $provider,
@@ -92,7 +67,7 @@ final class Connection implements JsonSerializable
         public readonly string $subject,
         public readonly string $email_address,
         public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 

@@ -59,43 +59,15 @@ final class ProxyRoutePatch implements JsonSerializable
             'to' => 'getTo'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'primary' => 'setPrimary',
-            'id' => 'setId',
-            'production_url' => 'setProductionUrl',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'tls' => 'setTls',
-            'to' => 'setTo'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'primary' => 'getPrimary',
-            'id' => 'getId',
-            'production_url' => 'getProductionUrl',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'tls' => 'getTls',
-            'to' => 'getTo'
-        ];
     
     public function __construct(
         public readonly ?bool $primary,
         public readonly ?string $id,
         public readonly ?string $production_url,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $type,
         public readonly \Upsun\Model\TLSSettingsForTheRoute1 $tls,
-        public readonly string $to
+        public readonly string $to,
     ) {
     }
 

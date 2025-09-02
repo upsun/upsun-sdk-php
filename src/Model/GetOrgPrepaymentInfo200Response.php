@@ -44,25 +44,10 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'prepayment' => 'setPrepayment',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'prepayment' => 'getPrepayment',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\PrepaymentObject $prepayment,
-        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $_links
+        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $_links,
     ) {
     }
 

@@ -47,28 +47,11 @@ final class HalLinks implements JsonSerializable
             'next' => 'getNext'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'previous' => 'setPrevious',
-            'next' => 'setNext'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'previous' => 'getPrevious',
-            'next' => 'getNext'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\HalLinksSelf $self,
         public readonly \Upsun\Model\HalLinksPrevious $previous,
-        public readonly \Upsun\Model\HalLinksNext $next
+        public readonly \Upsun\Model\HalLinksNext $next,
     ) {
     }
 

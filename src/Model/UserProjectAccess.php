@@ -62,46 +62,16 @@ final class UserProjectAccess implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'organization_id' => 'setOrganizationId',
-            'project_id' => 'setProjectId',
-            'project_title' => 'setProjectTitle',
-            'permissions' => 'setPermissions',
-            'granted_at' => 'setGrantedAt',
-            'updated_at' => 'setUpdatedAt',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'organization_id' => 'getOrganizationId',
-            'project_id' => 'getProjectId',
-            'project_title' => 'getProjectTitle',
-            'permissions' => 'getPermissions',
-            'granted_at' => 'getGrantedAt',
-            'updated_at' => 'getUpdatedAt',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly string $user_id,
         public readonly string $organization_id,
         public readonly string $project_id,
         public readonly string $project_title,
-        /**
-         * @var array
-         */
         public readonly array $permissions,
         public readonly \DateTime $granted_at,
         public readonly \DateTime $updated_at,
-        public readonly \Upsun\Model\TeamProjectAccessLinks $_links
+        public readonly \Upsun\Model\TeamProjectAccessLinks $_links,
     ) {
     }
 

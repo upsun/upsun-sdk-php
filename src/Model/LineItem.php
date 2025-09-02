@@ -65,35 +65,6 @@ final class LineItem implements JsonSerializable
             'exclude_from_invoice' => 'getExcludeFromInvoice'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'license_id' => 'setLicenseId',
-            'project_id' => 'setProjectId',
-            'product' => 'setProduct',
-            'sku' => 'setSku',
-            'total' => 'setTotal',
-            'total_formatted' => 'setTotalFormatted',
-            'components' => 'setComponents',
-            'exclude_from_invoice' => 'setExcludeFromInvoice'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'license_id' => 'getLicenseId',
-            'project_id' => 'getProjectId',
-            'product' => 'getProduct',
-            'sku' => 'getSku',
-            'total' => 'getTotal',
-            'total_formatted' => 'getTotalFormatted',
-            'components' => 'getComponents',
-            'exclude_from_invoice' => 'getExcludeFromInvoice'
-        ];
     
     public function __construct(
         public readonly string $type,
@@ -103,11 +74,8 @@ final class LineItem implements JsonSerializable
         public readonly string $sku,
         public readonly float $total,
         public readonly string $total_formatted,
-        /**
-         * @var string[]
-         */
         public readonly array $components,
-        public readonly bool $exclude_from_invoice
+        public readonly bool $exclude_from_invoice,
     ) {
     }
 

@@ -53,37 +53,13 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
             'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $name,
         public readonly object $site_urls,
-        /**
-         * @var array
-         */
         public readonly array $ssh_hosts,
-        public readonly object $enterprise_environments_mapping
+        public readonly object $enterprise_environments_mapping,
     ) {
     }
 

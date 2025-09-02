@@ -59,31 +59,6 @@ final class PrepaymentTransactionObject implements JsonSerializable
             'expire_date' => 'getExpireDate'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'order_id' => 'setOrderId',
-            'message' => 'setMessage',
-            'status' => 'setStatus',
-            'amount' => 'setAmount',
-            'created' => 'setCreated',
-            'updated' => 'setUpdated',
-            'expire_date' => 'setExpireDate'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'order_id' => 'getOrderId',
-            'message' => 'getMessage',
-            'status' => 'getStatus',
-            'amount' => 'getAmount',
-            'created' => 'getCreated',
-            'updated' => 'getUpdated',
-            'expire_date' => 'getExpireDate'
-        ];
     
     public function __construct(
         public readonly string $order_id,
@@ -92,7 +67,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
         public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance $amount,
         public readonly string $created,
         public readonly ?string $updated,
-        public readonly ?string $expire_date
+        public readonly ?string $expire_date,
     ) {
     }
 

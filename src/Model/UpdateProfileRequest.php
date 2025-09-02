@@ -77,43 +77,6 @@ final class UpdateProfileRequest implements JsonSerializable
             'picture' => 'getPicture'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'display_name' => 'setDisplayName',
-            'username' => 'setUsername',
-            'current_password' => 'setCurrentPassword',
-            'password' => 'setPassword',
-            'company_type' => 'setCompanyType',
-            'company_name' => 'setCompanyName',
-            'vat_number' => 'setVatNumber',
-            'company_role' => 'setCompanyRole',
-            'marketing' => 'setMarketing',
-            'ui_colorscheme' => 'setUiColorscheme',
-            'default_catalog' => 'setDefaultCatalog',
-            'project_options_url' => 'setProjectOptionsUrl',
-            'picture' => 'setPicture'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'display_name' => 'getDisplayName',
-            'username' => 'getUsername',
-            'current_password' => 'getCurrentPassword',
-            'password' => 'getPassword',
-            'company_type' => 'getCompanyType',
-            'company_name' => 'getCompanyName',
-            'vat_number' => 'getVatNumber',
-            'company_role' => 'getCompanyRole',
-            'marketing' => 'getMarketing',
-            'ui_colorscheme' => 'getUiColorscheme',
-            'default_catalog' => 'getDefaultCatalog',
-            'project_options_url' => 'getProjectOptionsUrl',
-            'picture' => 'getPicture'
-        ];
     
     public function __construct(
         public readonly string $display_name,
@@ -128,7 +91,7 @@ final class UpdateProfileRequest implements JsonSerializable
         public readonly string $ui_colorscheme,
         public readonly string $default_catalog,
         public readonly string $project_options_url,
-        public readonly string $picture
+        public readonly string $picture,
     ) {
     }
 

@@ -47,28 +47,11 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
             'shared_secret' => 'getSharedSecret'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'addon_key' => 'setAddonKey',
-            'client_key' => 'setClientKey',
-            'shared_secret' => 'setSharedSecret'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'addon_key' => 'getAddonKey',
-            'client_key' => 'getClientKey',
-            'shared_secret' => 'getSharedSecret'
-        ];
     
     public function __construct(
         public readonly string $addon_key,
         public readonly string $client_key,
-        public readonly string $shared_secret
+        public readonly string $shared_secret,
     ) {
     }
 

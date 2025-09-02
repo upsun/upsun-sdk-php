@@ -50,31 +50,12 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
             'expiration' => 'getExpiration'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created' => 'setCreated',
-            'description' => 'setDescription',
-            'spend_remaining' => 'setSpendRemaining',
-            'expiration' => 'setExpiration'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created' => 'getCreated',
-            'description' => 'getDescription',
-            'spend_remaining' => 'getSpendRemaining',
-            'expiration' => 'getExpiration'
-        ];
     
     public function __construct(
         public readonly \DateTime $created,
         public readonly string $description,
         public readonly string $spend_remaining,
-        public readonly \DateTime $expiration
+        public readonly \DateTime $expiration,
     ) {
     }
 

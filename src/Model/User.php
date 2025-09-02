@@ -86,49 +86,6 @@ final class User implements JsonSerializable
             'consent_method' => 'getConsentMethod'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'deactivated' => 'setDeactivated',
-            'namespace' => 'setNamespace',
-            'username' => 'setUsername',
-            'email' => 'setEmail',
-            'email_verified' => 'setEmailVerified',
-            'first_name' => 'setFirstName',
-            'last_name' => 'setLastName',
-            'picture' => 'setPicture',
-            'company' => 'setCompany',
-            'website' => 'setWebsite',
-            'country' => 'setCountry',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'consented_at' => 'setConsentedAt',
-            'consent_method' => 'setConsentMethod'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'deactivated' => 'getDeactivated',
-            'namespace' => 'getNamespace',
-            'username' => 'getUsername',
-            'email' => 'getEmail',
-            'email_verified' => 'getEmailVerified',
-            'first_name' => 'getFirstName',
-            'last_name' => 'getLastName',
-            'picture' => 'getPicture',
-            'company' => 'getCompany',
-            'website' => 'getWebsite',
-            'country' => 'getCountry',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'consented_at' => 'getConsentedAt',
-            'consent_method' => 'getConsentMethod'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -146,7 +103,7 @@ final class User implements JsonSerializable
         public readonly \DateTime $created_at,
         public readonly \DateTime $updated_at,
         public readonly \DateTime $consented_at,
-        public readonly string $consent_method
+        public readonly string $consent_method,
     ) {
     }
 

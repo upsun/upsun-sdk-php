@@ -83,47 +83,6 @@ final class CurrentUser implements JsonSerializable
             'current_trial' => 'getCurrentTrial'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'uuid' => 'setUuid',
-            'username' => 'setUsername',
-            'display_name' => 'setDisplayName',
-            'status' => 'setStatus',
-            'mail' => 'setMail',
-            'ssh_keys' => 'setSshKeys',
-            'has_key' => 'setHasKey',
-            'projects' => 'setProjects',
-            'sequence' => 'setSequence',
-            'roles' => 'setRoles',
-            'picture' => 'setPicture',
-            'tickets' => 'setTickets',
-            'trial' => 'setTrial',
-            'current_trial' => 'setCurrentTrial'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'uuid' => 'getUuid',
-            'username' => 'getUsername',
-            'display_name' => 'getDisplayName',
-            'status' => 'getStatus',
-            'mail' => 'getMail',
-            'ssh_keys' => 'getSshKeys',
-            'has_key' => 'getHasKey',
-            'projects' => 'getProjects',
-            'sequence' => 'getSequence',
-            'roles' => 'getRoles',
-            'picture' => 'getPicture',
-            'tickets' => 'getTickets',
-            'trial' => 'getTrial',
-            'current_trial' => 'getCurrentTrial'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -132,26 +91,14 @@ final class CurrentUser implements JsonSerializable
         public readonly string $display_name,
         public readonly int $status,
         public readonly string $mail,
-        /**
-         * @var array
-         */
         public readonly array $ssh_keys,
         public readonly bool $has_key,
-        /**
-         * @var array
-         */
         public readonly array $projects,
         public readonly int $sequence,
-        /**
-         * @var array
-         */
         public readonly array $roles,
         public readonly string $picture,
         public readonly object $tickets,
         public readonly bool $trial,
-        /**
-         * @var array
-         */
         public readonly array $current_trial
     ) {
     }

@@ -47,31 +47,11 @@ final class UpdateTicketRequest implements JsonSerializable
             'collaborators_replace' => 'getCollaboratorsReplace'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'status' => 'setStatus',
-            'collaborator_ids' => 'setCollaboratorIds',
-            'collaborators_replace' => 'setCollaboratorsReplace'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'status' => 'getStatus',
-            'collaborator_ids' => 'getCollaboratorIds',
-            'collaborators_replace' => 'getCollaboratorsReplace'
-        ];
     
     public function __construct(
         public readonly string $status,
-        /**
-         * @var array
-         */
         public readonly array $collaborator_ids,
-        public readonly bool $collaborators_replace
+        public readonly bool $collaborators_replace,
     ) {
     }
 

@@ -44,25 +44,10 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
             'url' => 'getUrl'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'return_url' => 'setReturnUrl',
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'return_url' => 'getReturnUrl',
-            'url' => 'getUrl'
-        ];
     
     public function __construct(
         public readonly string $return_url,
-        public readonly string $url
+        public readonly string $url,
     ) {
     }
 

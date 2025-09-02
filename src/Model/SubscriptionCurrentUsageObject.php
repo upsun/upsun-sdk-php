@@ -77,43 +77,6 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
             'fastly_requests' => 'getFastlyRequests'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu_app' => 'setCpuApp',
-            'storage_app_services' => 'setStorageAppServices',
-            'memory_app' => 'setMemoryApp',
-            'cpu_services' => 'setCpuServices',
-            'memory_services' => 'setMemoryServices',
-            'backup_storage' => 'setBackupStorage',
-            'build_cpu' => 'setBuildCpu',
-            'build_memory' => 'setBuildMemory',
-            'egress_bandwidth' => 'setEgressBandwidth',
-            'ingress_requests' => 'setIngressRequests',
-            'logs_fwd_content_size' => 'setLogsFwdContentSize',
-            'fastly_bandwidth' => 'setFastlyBandwidth',
-            'fastly_requests' => 'setFastlyRequests'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu_app' => 'getCpuApp',
-            'storage_app_services' => 'getStorageAppServices',
-            'memory_app' => 'getMemoryApp',
-            'cpu_services' => 'getCpuServices',
-            'memory_services' => 'getMemoryServices',
-            'backup_storage' => 'getBackupStorage',
-            'build_cpu' => 'getBuildCpu',
-            'build_memory' => 'getBuildMemory',
-            'egress_bandwidth' => 'getEgressBandwidth',
-            'ingress_requests' => 'getIngressRequests',
-            'logs_fwd_content_size' => 'getLogsFwdContentSize',
-            'fastly_bandwidth' => 'getFastlyBandwidth',
-            'fastly_requests' => 'getFastlyRequests'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $cpu_app,
@@ -128,7 +91,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $ingress_requests,
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $logs_fwd_content_size,
         public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $fastly_bandwidth,
-        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $fastly_requests
+        public readonly \Upsun\Model\UsageGroupCurrentUsageProperties $fastly_requests,
     ) {
     }
 

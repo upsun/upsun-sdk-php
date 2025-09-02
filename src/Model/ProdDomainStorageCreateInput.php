@@ -47,31 +47,11 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
             'is_default' => 'getIsDefault'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'is_default' => 'setIsDefault'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'is_default' => 'getIsDefault'
-        ];
     
     public function __construct(
         public readonly string $name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
-        public readonly bool $is_default
+        public readonly bool $is_default,
     ) {
     }
 

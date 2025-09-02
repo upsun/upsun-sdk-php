@@ -44,25 +44,10 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
             'passcode' => 'getPasscode'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'secret' => 'setSecret',
-            'passcode' => 'setPasscode'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'secret' => 'getSecret',
-            'passcode' => 'getPasscode'
-        ];
     
     public function __construct(
         public readonly string $secret,
-        public readonly string $passcode
+        public readonly string $passcode,
     ) {
     }
 

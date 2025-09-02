@@ -44,25 +44,10 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
             'user_management' => 'getUserManagement'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'base' => 'setBase',
-            'user_management' => 'setUserManagement'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'base' => 'getBase',
-            'user_management' => 'getUserManagement'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base,
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $user_management
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $user_management,
     ) {
     }
 

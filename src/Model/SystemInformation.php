@@ -47,28 +47,11 @@ final class SystemInformation implements JsonSerializable
             'started_at' => 'getStartedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'version' => 'setVersion',
-            'image' => 'setImage',
-            'started_at' => 'setStartedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'version' => 'getVersion',
-            'image' => 'getImage',
-            'started_at' => 'getStartedAt'
-        ];
     
     public function __construct(
         public readonly string $version,
         public readonly string $image,
-        public readonly \DateTime $started_at
+        public readonly \DateTime $started_at,
     ) {
     }
 

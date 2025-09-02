@@ -47,28 +47,11 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
             'value' => 'getValue'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'oid' => 'setOid',
-            'alias' => 'setAlias',
-            'value' => 'setValue'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'oid' => 'getOid',
-            'alias' => 'getAlias',
-            'value' => 'getValue'
-        ];
     
     public function __construct(
         public readonly string $oid,
         public readonly ?string $alias,
-        public readonly string $value
+        public readonly string $value,
     ) {
     }
 

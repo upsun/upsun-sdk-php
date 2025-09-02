@@ -65,41 +65,9 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
             'is_inheritable' => 'getIsInheritable'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'value' => 'setValue',
-            'is_json' => 'setIsJson',
-            'is_sensitive' => 'setIsSensitive',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime',
-            'is_enabled' => 'setIsEnabled',
-            'is_inheritable' => 'setIsInheritable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'value' => 'getValue',
-            'is_json' => 'getIsJson',
-            'is_sensitive' => 'getIsSensitive',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime',
-            'is_enabled' => 'getIsEnabled',
-            'is_inheritable' => 'getIsInheritable'
-        ];
     
     public function __construct(
         public readonly string $name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $value,
         public readonly bool $is_json,
@@ -107,7 +75,7 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
         public readonly bool $visible_build,
         public readonly bool $visible_runtime,
         public readonly bool $is_enabled,
-        public readonly bool $is_inheritable
+        public readonly bool $is_inheritable,
     ) {
     }
 

@@ -44,25 +44,10 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
             'server_token' => 'getServerToken'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'server_uuid' => 'setServerUuid',
-            'server_token' => 'setServerToken'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'server_uuid' => 'getServerUuid',
-            'server_token' => 'getServerToken'
-        ];
     
     public function __construct(
         public readonly string $server_uuid,
-        public readonly string $server_token
+        public readonly string $server_token,
     ) {
     }
 

@@ -47,28 +47,11 @@ final class CreateSshKeyRequest implements JsonSerializable
             'uuid' => 'getUuid'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'value' => 'setValue',
-            'title' => 'setTitle',
-            'uuid' => 'setUuid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'value' => 'getValue',
-            'title' => 'getTitle',
-            'uuid' => 'getUuid'
-        ];
     
     public function __construct(
         public readonly string $value,
         public readonly string $title,
-        public readonly string $uuid
+        public readonly string $uuid,
     ) {
     }
 

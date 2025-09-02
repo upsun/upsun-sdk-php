@@ -62,49 +62,16 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
             'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'deploy_host' => 'setDeployHost',
-            'docroots' => 'setDocroots',
-            'site_urls' => 'setSiteUrls',
-            'ssh_hosts' => 'setSshHosts',
-            'maintenance_mode' => 'setMaintenanceMode',
-            'enterprise_environments_mapping' => 'setEnterpriseEnvironmentsMapping'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'deploy_host' => 'getDeployHost',
-            'docroots' => 'getDocroots',
-            'site_urls' => 'getSiteUrls',
-            'ssh_hosts' => 'getSshHosts',
-            'maintenance_mode' => 'getMaintenanceMode',
-            'enterprise_environments_mapping' => 'getEnterpriseEnvironmentsMapping'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $name,
         public readonly ?string $deploy_host,
-        /**
-         * @var string[]
-         */
         public readonly array $docroots,
         public readonly object $site_urls,
-        /**
-         * @var array
-         */
         public readonly array $ssh_hosts,
         public readonly bool $maintenance_mode,
-        public readonly object $enterprise_environments_mapping
+        public readonly object $enterprise_environments_mapping,
     ) {
     }
 

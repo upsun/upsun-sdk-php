@@ -47,28 +47,11 @@ final class BuildResources implements JsonSerializable
             'max_memory' => 'getMaxMemory'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'max_cpu' => 'setMaxCpu',
-            'max_memory' => 'setMaxMemory'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'max_cpu' => 'getMaxCpu',
-            'max_memory' => 'getMaxMemory'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
         public readonly float $max_cpu,
-        public readonly int $max_memory
+        public readonly int $max_memory,
     ) {
     }
 

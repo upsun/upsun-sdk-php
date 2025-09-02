@@ -44,27 +44,9 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
             'docroot_versions' => 'getDocrootVersions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'active_docroot' => 'setActiveDocroot',
-            'docroot_versions' => 'setDocrootVersions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'active_docroot' => 'getActiveDocroot',
-            'docroot_versions' => 'getDocrootVersions'
-        ];
     
     public function __construct(
         public readonly ?string $active_docroot,
-        /**
-         * @var array
-         */
         public readonly ?array $docroot_versions
     ) {
     }

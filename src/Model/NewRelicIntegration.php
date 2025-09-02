@@ -56,40 +56,14 @@ final class NewRelicIntegration implements JsonSerializable
             'tls_verify' => 'getTlsVerify'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'url' => 'setUrl',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'url' => 'getUrl',
-            'tls_verify' => 'getTlsVerify'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $type,
-        /**
-         * @var string[]
-         */
         public readonly array $extra,
         public readonly string $url,
-        public readonly bool $tls_verify
+        public readonly bool $tls_verify,
     ) {
     }
 

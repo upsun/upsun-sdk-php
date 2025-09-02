@@ -44,25 +44,10 @@ final class CreateUsageAlertRequest implements JsonSerializable
             'config' => 'getConfig'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'config' => 'getConfig'
-        ];
     
     public function __construct(
         public readonly string $id,
-        public readonly \Upsun\Model\CreateUsageAlertRequestConfig $config
+        public readonly \Upsun\Model\CreateUsageAlertRequestConfig $config,
     ) {
     }
 

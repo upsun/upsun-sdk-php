@@ -71,39 +71,6 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
             'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'url' => 'setUrl',
-            'username' => 'setUsername',
-            'token' => 'setToken',
-            'project' => 'setProject',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'url' => 'getUrl',
-            'username' => 'getUsername',
-            'token' => 'getToken',
-            'project' => 'getProject',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData'
-        ];
     
     public function __construct(
         public readonly string $type,
@@ -116,7 +83,7 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
         public readonly string $project,
         public readonly string $repository,
         public readonly bool $build_pull_requests,
-        public readonly bool $pull_requests_clone_parent_data
+        public readonly bool $pull_requests_clone_parent_data,
     ) {
     }
 

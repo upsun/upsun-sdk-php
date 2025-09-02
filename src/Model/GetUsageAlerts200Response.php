@@ -44,30 +44,9 @@ final class GetUsageAlerts200Response implements JsonSerializable
             'current' => 'getCurrent'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'available' => 'setAvailable',
-            'current' => 'setCurrent'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'available' => 'getAvailable',
-            'current' => 'getCurrent'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $available,
-        /**
-         * @var array
-         */
         public readonly array $current
     ) {
     }

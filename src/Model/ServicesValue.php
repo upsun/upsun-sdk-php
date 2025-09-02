@@ -68,37 +68,6 @@ final class ServicesValue implements JsonSerializable
             'endpoints' => 'getEndpoints'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'size' => 'setSize',
-            'disk' => 'setDisk',
-            'access' => 'setAccess',
-            'configuration' => 'setConfiguration',
-            'relationships' => 'setRelationships',
-            'firewall' => 'setFirewall',
-            'resources' => 'setResources',
-            'container_profile' => 'setContainerProfile',
-            'endpoints' => 'setEndpoints'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'size' => 'getSize',
-            'disk' => 'getDisk',
-            'access' => 'getAccess',
-            'configuration' => 'getConfiguration',
-            'relationships' => 'getRelationships',
-            'firewall' => 'getFirewall',
-            'resources' => 'getResources',
-            'container_profile' => 'getContainerProfile',
-            'endpoints' => 'getEndpoints'
-        ];
     
     public function __construct(
         public readonly string $type,
@@ -106,14 +75,11 @@ final class ServicesValue implements JsonSerializable
         public readonly ?int $disk,
         public readonly object $access,
         public readonly object $configuration,
-        /**
-         * @var string[]
-         */
         public readonly array $relationships,
         public readonly ?\Upsun\Model\Firewall $firewall,
         public readonly ?\Upsun\Model\Resources $resources,
         public readonly ?string $container_profile,
-        public readonly ?object $endpoints
+        public readonly ?object $endpoints,
     ) {
     }
 

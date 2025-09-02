@@ -47,28 +47,11 @@ final class ListLinks implements JsonSerializable
             'next' => 'getNext'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'previous' => 'setPrevious',
-            'next' => 'setNext'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'previous' => 'getPrevious',
-            'next' => 'getNext'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self,
         public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous,
-        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next
+        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next,
     ) {
     }
 

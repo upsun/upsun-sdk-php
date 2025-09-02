@@ -65,58 +65,17 @@ final class ScriptIntegration implements JsonSerializable
             'script' => 'getScript'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'events' => 'setEvents',
-            'environments' => 'setEnvironments',
-            'excluded_environments' => 'setExcludedEnvironments',
-            'states' => 'setStates',
-            'result' => 'setResult',
-            'script' => 'setScript'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'events' => 'getEvents',
-            'environments' => 'getEnvironments',
-            'excluded_environments' => 'getExcludedEnvironments',
-            'states' => 'getStates',
-            'result' => 'getResult',
-            'script' => 'getScript'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $type,
-        /**
-         * @var array
-         */
         public readonly array $events,
-        /**
-         * @var array
-         */
         public readonly array $environments,
-        /**
-         * @var array
-         */
         public readonly array $excluded_environments,
-        /**
-         * @var array
-         */
         public readonly array $states,
         public readonly string $result,
-        public readonly string $script
+        public readonly string $script,
     ) {
     }
 

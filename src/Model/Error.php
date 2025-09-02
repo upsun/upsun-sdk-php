@@ -53,34 +53,13 @@ final class Error implements JsonSerializable
             'title' => 'getTitle'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'status' => 'setStatus',
-            'message' => 'setMessage',
-            'code' => 'setCode',
-            'detail' => 'setDetail',
-            'title' => 'setTitle'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'status' => 'getStatus',
-            'message' => 'getMessage',
-            'code' => 'getCode',
-            'detail' => 'getDetail',
-            'title' => 'getTitle'
-        ];
     
     public function __construct(
         public readonly string $status,
         public readonly string $message,
         public readonly float $code,
         public readonly object $detail,
-        public readonly string $title
+        public readonly string $title,
     ) {
     }
 

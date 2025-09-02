@@ -83,55 +83,11 @@ final class Backup implements JsonSerializable
             'automated' => 'getAutomated'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'id' => 'setId',
-            'attributes' => 'setAttributes',
-            'status' => 'setStatus',
-            'expires_at' => 'setExpiresAt',
-            'index' => 'setIndex',
-            'commit_id' => 'setCommitId',
-            'environment' => 'setEnvironment',
-            'safe' => 'setSafe',
-            'size_of_volumes' => 'setSizeOfVolumes',
-            'size_used' => 'setSizeUsed',
-            'deployment' => 'setDeployment',
-            'restorable' => 'setRestorable',
-            'automated' => 'setAutomated'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'id' => 'getId',
-            'attributes' => 'getAttributes',
-            'status' => 'getStatus',
-            'expires_at' => 'getExpiresAt',
-            'index' => 'getIndex',
-            'commit_id' => 'getCommitId',
-            'environment' => 'getEnvironment',
-            'safe' => 'getSafe',
-            'size_of_volumes' => 'getSizeOfVolumes',
-            'size_used' => 'getSizeUsed',
-            'deployment' => 'getDeployment',
-            'restorable' => 'getRestorable',
-            'automated' => 'getAutomated'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $id,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $status,
         public readonly ?\DateTime $expires_at,
@@ -143,7 +99,7 @@ final class Backup implements JsonSerializable
         public readonly ?int $size_used,
         public readonly ?string $deployment,
         public readonly bool $restorable,
-        public readonly bool $automated
+        public readonly bool $automated,
     ) {
     }
 

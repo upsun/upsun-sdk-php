@@ -71,39 +71,6 @@ final class GetAddress200Response implements JsonSerializable
             'metadata' => 'getMetadata'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'country' => 'setCountry',
-            'name_line' => 'setNameLine',
-            'premise' => 'setPremise',
-            'sub_premise' => 'setSubPremise',
-            'thoroughfare' => 'setThoroughfare',
-            'administrative_area' => 'setAdministrativeArea',
-            'sub_administrative_area' => 'setSubAdministrativeArea',
-            'locality' => 'setLocality',
-            'dependent_locality' => 'setDependentLocality',
-            'postal_code' => 'setPostalCode',
-            'metadata' => 'setMetadata'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'country' => 'getCountry',
-            'name_line' => 'getNameLine',
-            'premise' => 'getPremise',
-            'sub_premise' => 'getSubPremise',
-            'thoroughfare' => 'getThoroughfare',
-            'administrative_area' => 'getAdministrativeArea',
-            'sub_administrative_area' => 'getSubAdministrativeArea',
-            'locality' => 'getLocality',
-            'dependent_locality' => 'getDependentLocality',
-            'postal_code' => 'getPostalCode',
-            'metadata' => 'getMetadata'
-        ];
     
     public function __construct(
         public readonly string $country,
@@ -116,7 +83,7 @@ final class GetAddress200Response implements JsonSerializable
         public readonly string $locality,
         public readonly string $dependent_locality,
         public readonly string $postal_code,
-        public readonly \Upsun\Model\AddressMetadataMetadata $metadata
+        public readonly \Upsun\Model\AddressMetadataMetadata $metadata,
     ) {
     }
 

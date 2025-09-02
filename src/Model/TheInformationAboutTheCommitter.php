@@ -47,28 +47,11 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
             'email' => 'getEmail'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'date' => 'setDate',
-            'name' => 'setName',
-            'email' => 'setEmail'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'date' => 'getDate',
-            'name' => 'getName',
-            'email' => 'getEmail'
-        ];
     
     public function __construct(
         public readonly \DateTime $date,
         public readonly string $name,
-        public readonly string $email
+        public readonly string $email,
     ) {
     }
 

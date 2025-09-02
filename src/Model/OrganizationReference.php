@@ -59,31 +59,6 @@ final class OrganizationReference implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'owner_id' => 'setOwnerId',
-            'name' => 'setName',
-            'label' => 'setLabel',
-            'vendor' => 'setVendor',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'owner_id' => 'getOwnerId',
-            'name' => 'getName',
-            'label' => 'getLabel',
-            'vendor' => 'getVendor',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -92,7 +67,7 @@ final class OrganizationReference implements JsonSerializable
         public readonly string $label,
         public readonly string $vendor,
         public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 

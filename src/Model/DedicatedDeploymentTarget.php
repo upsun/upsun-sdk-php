@@ -77,43 +77,6 @@ final class DedicatedDeploymentTarget implements JsonSerializable
             'guardrails_phase' => 'getGuardrailsPhase'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'deploy_host' => 'setDeployHost',
-            'deploy_port' => 'setDeployPort',
-            'ssh_host' => 'setSshHost',
-            'hosts' => 'setHosts',
-            'auto_mounts' => 'setAutoMounts',
-            'excluded_mounts' => 'setExcludedMounts',
-            'enforced_mounts' => 'setEnforcedMounts',
-            'auto_crons' => 'setAutoCrons',
-            'auto_nginx' => 'setAutoNginx',
-            'maintenance_mode' => 'setMaintenanceMode',
-            'guardrails_phase' => 'setGuardrailsPhase'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'deploy_host' => 'getDeployHost',
-            'deploy_port' => 'getDeployPort',
-            'ssh_host' => 'getSshHost',
-            'hosts' => 'getHosts',
-            'auto_mounts' => 'getAutoMounts',
-            'excluded_mounts' => 'getExcludedMounts',
-            'enforced_mounts' => 'getEnforcedMounts',
-            'auto_crons' => 'getAutoCrons',
-            'auto_nginx' => 'getAutoNginx',
-            'maintenance_mode' => 'getMaintenanceMode',
-            'guardrails_phase' => 'getGuardrailsPhase'
-        ];
     
     public function __construct(
         public readonly string $type,
@@ -121,20 +84,14 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         public readonly ?string $deploy_host,
         public readonly ?int $deploy_port,
         public readonly ?string $ssh_host,
-        /**
-         * @var array
-         */
         public readonly ?array $hosts,
         public readonly bool $auto_mounts,
-        /**
-         * @var array
-         */
         public readonly array $excluded_mounts,
         public readonly object $enforced_mounts,
         public readonly bool $auto_crons,
         public readonly bool $auto_nginx,
         public readonly bool $maintenance_mode,
-        public readonly int $guardrails_phase
+        public readonly int $guardrails_phase,
     ) {
     }
 

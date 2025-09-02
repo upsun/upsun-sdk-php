@@ -47,28 +47,11 @@ final class UpdateOrgRequest implements JsonSerializable
             'country' => 'getCountry'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'label' => 'setLabel',
-            'country' => 'setCountry'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'label' => 'getLabel',
-            'country' => 'getCountry'
-        ];
     
     public function __construct(
         public readonly string $name,
         public readonly string $label,
-        public readonly string $country
+        public readonly string $country,
     ) {
     }
 

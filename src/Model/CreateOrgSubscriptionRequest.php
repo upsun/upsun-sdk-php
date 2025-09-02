@@ -59,31 +59,6 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
             'storage' => 'getStorage'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'plan' => 'setPlan',
-            'project_region' => 'setProjectRegion',
-            'project_title' => 'setProjectTitle',
-            'options_url' => 'setOptionsUrl',
-            'default_branch' => 'setDefaultBranch',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'plan' => 'getPlan',
-            'project_region' => 'getProjectRegion',
-            'project_title' => 'getProjectTitle',
-            'options_url' => 'getOptionsUrl',
-            'default_branch' => 'getDefaultBranch',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage'
-        ];
     
     public function __construct(
         public readonly string $plan,
@@ -92,7 +67,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
         public readonly string $options_url,
         public readonly string $default_branch,
         public readonly int $environments,
-        public readonly int $storage
+        public readonly int $storage,
     ) {
     }
 

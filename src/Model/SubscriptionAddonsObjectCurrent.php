@@ -44,30 +44,9 @@ final class SubscriptionAddonsObjectCurrent implements JsonSerializable
             'project_support_level' => 'getProjectSupportLevel'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'continuous_profiling' => 'setContinuousProfiling',
-            'project_support_level' => 'setProjectSupportLevel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'continuous_profiling' => 'getContinuousProfiling',
-            'project_support_level' => 'getProjectSupportLevel'
-        ];
     
     public function __construct(
-        /**
-         * @var string[]
-         */
         public readonly array $continuous_profiling,
-        /**
-         * @var string[]
-         */
         public readonly array $project_support_level
     ) {
     }

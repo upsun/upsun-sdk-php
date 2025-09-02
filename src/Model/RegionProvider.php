@@ -44,25 +44,10 @@ final class RegionProvider implements JsonSerializable
             'logo' => 'getLogo'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'logo' => 'setLogo'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'logo' => 'getLogo'
-        ];
     
     public function __construct(
         public readonly string $name,
-        public readonly string $logo
+        public readonly string $logo,
     ) {
     }
 

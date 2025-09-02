@@ -68,37 +68,6 @@ final class ProjectInvitation implements JsonSerializable
             'environments' => 'getEnvironments'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'state' => 'setState',
-            'project_id' => 'setProjectId',
-            'role' => 'setRole',
-            'email' => 'setEmail',
-            'owner' => 'setOwner',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'finished_at' => 'setFinishedAt',
-            'environments' => 'setEnvironments'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'state' => 'getState',
-            'project_id' => 'getProjectId',
-            'role' => 'getRole',
-            'email' => 'getEmail',
-            'owner' => 'getOwner',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'finished_at' => 'getFinishedAt',
-            'environments' => 'getEnvironments'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -110,9 +79,6 @@ final class ProjectInvitation implements JsonSerializable
         public readonly \DateTime $created_at,
         public readonly \DateTime $updated_at,
         public readonly ?\DateTime $finished_at,
-        /**
-         * @var array
-         */
         public readonly array $environments
     ) {
     }

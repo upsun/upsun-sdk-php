@@ -44,25 +44,10 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
             'max_request_size' => 'getMaxRequestSize'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'max_request_size' => 'setMaxRequestSize'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'max_request_size' => 'getMaxRequestSize'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
-        public readonly ?string $max_request_size
+        public readonly ?string $max_request_size,
     ) {
     }
 

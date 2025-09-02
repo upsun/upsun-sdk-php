@@ -68,37 +68,6 @@ final class GitLabIntegrationPatch implements JsonSerializable
             'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'token' => 'setToken',
-            'base_url' => 'setBaseUrl',
-            'project' => 'setProject',
-            'build_merge_requests' => 'setBuildMergeRequests',
-            'build_wip_merge_requests' => 'setBuildWipMergeRequests',
-            'merge_requests_clone_parent_data' => 'setMergeRequestsCloneParentData'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'token' => 'getToken',
-            'base_url' => 'getBaseUrl',
-            'project' => 'getProject',
-            'build_merge_requests' => 'getBuildMergeRequests',
-            'build_wip_merge_requests' => 'getBuildWipMergeRequests',
-            'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData'
-        ];
     
     public function __construct(
         public readonly string $type,
@@ -110,7 +79,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
         public readonly string $project,
         public readonly bool $build_merge_requests,
         public readonly bool $build_wip_merge_requests,
-        public readonly bool $merge_requests_clone_parent_data
+        public readonly bool $merge_requests_clone_parent_data,
     ) {
     }
 

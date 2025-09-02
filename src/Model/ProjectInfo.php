@@ -56,29 +56,6 @@ final class ProjectInfo implements JsonSerializable
             'settings' => 'getSettings'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'title' => 'setTitle',
-            'name' => 'setName',
-            'namespace' => 'setNamespace',
-            'organization' => 'setOrganization',
-            'capabilities' => 'setCapabilities',
-            'settings' => 'setSettings'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'title' => 'getTitle',
-            'name' => 'getName',
-            'namespace' => 'getNamespace',
-            'organization' => 'getOrganization',
-            'capabilities' => 'getCapabilities',
-            'settings' => 'getSettings'
-        ];
     
     public function __construct(
         public readonly string $title,
@@ -86,7 +63,7 @@ final class ProjectInfo implements JsonSerializable
         public readonly ?string $namespace,
         public readonly ?string $organization,
         public readonly object $capabilities,
-        public readonly object $settings
+        public readonly object $settings,
     ) {
     }
 

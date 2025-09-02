@@ -62,33 +62,6 @@ final class StringFilter implements JsonSerializable
             'ends' => 'getEnds'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eq' => 'setEq',
-            'ne' => 'setNe',
-            'in' => 'setIn',
-            'nin' => 'setNin',
-            'between' => 'setBetween',
-            'contains' => 'setContains',
-            'starts' => 'setStarts',
-            'ends' => 'setEnds'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eq' => 'getEq',
-            'ne' => 'getNe',
-            'in' => 'getIn',
-            'nin' => 'getNin',
-            'between' => 'getBetween',
-            'contains' => 'getContains',
-            'starts' => 'getStarts',
-            'ends' => 'getEnds'
-        ];
     
     public function __construct(
         public readonly string $eq,
@@ -98,7 +71,7 @@ final class StringFilter implements JsonSerializable
         public readonly string $between,
         public readonly string $contains,
         public readonly string $starts,
-        public readonly string $ends
+        public readonly string $ends,
     ) {
     }
 

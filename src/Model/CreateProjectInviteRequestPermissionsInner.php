@@ -44,25 +44,10 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
             'role' => 'getRole'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'role' => 'getRole'
-        ];
     
     public function __construct(
         public readonly string $type,
-        public readonly string $role
+        public readonly string $role,
     ) {
     }
 

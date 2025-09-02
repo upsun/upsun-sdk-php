@@ -53,37 +53,13 @@ final class FoundationDeploymentTarget implements JsonSerializable
             'storage_type' => 'getStorageType'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'hosts' => 'setHosts',
-            'use_dedicated_grid' => 'setUseDedicatedGrid',
-            'storage_type' => 'setStorageType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'hosts' => 'getHosts',
-            'use_dedicated_grid' => 'getUseDedicatedGrid',
-            'storage_type' => 'getStorageType'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $name,
-        /**
-         * @var array
-         */
         public readonly ?array $hosts,
         public readonly bool $use_dedicated_grid,
-        public readonly ?string $storage_type
+        public readonly ?string $storage_type,
     ) {
     }
 

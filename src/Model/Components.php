@@ -41,22 +41,9 @@ final class Components implements JsonSerializable
             'voucher_vat_baseprice' => 'getVoucherVatBaseprice'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'voucher_vat_baseprice' => 'setVoucherVatBaseprice'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'voucher_vat_baseprice' => 'getVoucherVatBaseprice'
-        ];
     
     public function __construct(
-        public readonly object $voucher_vat_baseprice
+        public readonly object $voucher_vat_baseprice,
     ) {
     }
 

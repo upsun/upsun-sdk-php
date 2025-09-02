@@ -56,29 +56,6 @@ final class Alert implements JsonSerializable
             'config' => 'getConfig'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'active' => 'setActive',
-            'alerts_sent' => 'setAlertsSent',
-            'last_alert_at' => 'setLastAlertAt',
-            'updated_at' => 'setUpdatedAt',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'active' => 'getActive',
-            'alerts_sent' => 'getAlertsSent',
-            'last_alert_at' => 'getLastAlertAt',
-            'updated_at' => 'getUpdatedAt',
-            'config' => 'getConfig'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -86,7 +63,7 @@ final class Alert implements JsonSerializable
         public readonly int $alerts_sent,
         public readonly \DateTime $last_alert_at,
         public readonly \DateTime $updated_at,
-        public readonly object $config
+        public readonly object $config,
     ) {
     }
 

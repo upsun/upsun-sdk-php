@@ -44,25 +44,10 @@ final class SumoLogicLogForwardingIntegrationConfigurations implements JsonSeria
             'role' => 'getRole'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'role' => 'getRole'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
-        public readonly string $role
+        public readonly string $role,
     ) {
     }
 

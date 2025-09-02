@@ -68,52 +68,18 @@ final class UpstreamRouteCreateInput implements JsonSerializable
             'redirects' => 'getRedirects'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'primary' => 'setPrimary',
-            'id' => 'setId',
-            'production_url' => 'setProductionUrl',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'tls' => 'setTls',
-            'cache' => 'setCache',
-            'ssi' => 'setSsi',
-            'upstream' => 'setUpstream',
-            'redirects' => 'setRedirects'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'primary' => 'getPrimary',
-            'id' => 'getId',
-            'production_url' => 'getProductionUrl',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'tls' => 'getTls',
-            'cache' => 'getCache',
-            'ssi' => 'getSsi',
-            'upstream' => 'getUpstream',
-            'redirects' => 'getRedirects'
-        ];
     
     public function __construct(
         public readonly ?bool $primary,
         public readonly ?string $id,
         public readonly ?string $production_url,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $type,
         public readonly \Upsun\Model\TLSSettingsForTheRoute1 $tls,
         public readonly \Upsun\Model\CacheConfiguration1 $cache,
         public readonly \Upsun\Model\ServerSideIncludeConfiguration $ssi,
         public readonly string $upstream,
-        public readonly \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects
+        public readonly \Upsun\Model\TheConfigurationOfTheRedirects1 $redirects,
     ) {
     }
 

@@ -44,27 +44,9 @@ final class UpdateTeamRequest implements JsonSerializable
             'project_permissions' => 'getProjectPermissions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'label' => 'setLabel',
-            'project_permissions' => 'setProjectPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'label' => 'getLabel',
-            'project_permissions' => 'getProjectPermissions'
-        ];
     
     public function __construct(
         public readonly string $label,
-        /**
-         * @var array
-         */
         public readonly array $project_permissions
     ) {
     }

@@ -44,27 +44,9 @@ final class DefaultConfig1 implements JsonSerializable
             'schedule' => 'getSchedule'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'manual_count' => 'setManualCount',
-            'schedule' => 'setSchedule'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'manual_count' => 'getManualCount',
-            'schedule' => 'getSchedule'
-        ];
     
     public function __construct(
         public readonly int $manual_count,
-        /**
-         * @var array
-         */
         public readonly array $schedule
     ) {
     }

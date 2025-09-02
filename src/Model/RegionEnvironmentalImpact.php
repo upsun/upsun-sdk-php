@@ -47,28 +47,11 @@ final class RegionEnvironmentalImpact implements JsonSerializable
             'green' => 'getGreen'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'zone' => 'setZone',
-            'carbon_intensity' => 'setCarbonIntensity',
-            'green' => 'setGreen'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'zone' => 'getZone',
-            'carbon_intensity' => 'getCarbonIntensity',
-            'green' => 'getGreen'
-        ];
     
     public function __construct(
         public readonly string $zone,
         public readonly string $carbon_intensity,
-        public readonly bool $green
+        public readonly bool $green,
     ) {
     }
 

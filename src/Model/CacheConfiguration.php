@@ -50,36 +50,11 @@ final class CacheConfiguration implements JsonSerializable
             'headers' => 'getHeaders'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'default_ttl' => 'setDefaultTtl',
-            'cookies' => 'setCookies',
-            'headers' => 'setHeaders'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'default_ttl' => 'getDefaultTtl',
-            'cookies' => 'getCookies',
-            'headers' => 'getHeaders'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
         public readonly int $default_ttl,
-        /**
-         * @var array
-         */
         public readonly array $cookies,
-        /**
-         * @var array
-         */
         public readonly array $headers
     ) {
     }

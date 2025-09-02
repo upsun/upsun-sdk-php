@@ -47,28 +47,11 @@ final class DiscountCommitmentNet implements JsonSerializable
             'contract_total' => 'getContractTotal'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'monthly' => 'setMonthly',
-            'commitment_period' => 'setCommitmentPeriod',
-            'contract_total' => 'setContractTotal'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'monthly' => 'getMonthly',
-            'commitment_period' => 'getCommitmentPeriod',
-            'contract_total' => 'getContractTotal'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\CurrencyAmount $monthly,
         public readonly \Upsun\Model\CurrencyAmount $commitment_period,
-        public readonly \Upsun\Model\CurrencyAmount $contract_total
+        public readonly \Upsun\Model\CurrencyAmount $contract_total,
     ) {
     }
 

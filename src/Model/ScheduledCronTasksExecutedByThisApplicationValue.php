@@ -53,34 +53,13 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
             'cmd' => 'getCmd'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'spec' => 'setSpec',
-            'commands' => 'setCommands',
-            'shutdown_timeout' => 'setShutdownTimeout',
-            'timeout' => 'setTimeout',
-            'cmd' => 'setCmd'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'spec' => 'getSpec',
-            'commands' => 'getCommands',
-            'shutdown_timeout' => 'getShutdownTimeout',
-            'timeout' => 'getTimeout',
-            'cmd' => 'getCmd'
-        ];
     
     public function __construct(
         public readonly string $spec,
         public readonly \Upsun\Model\TheCommandsDefinition $commands,
         public readonly ?int $shutdown_timeout,
         public readonly int $timeout,
-        public readonly string $cmd
+        public readonly string $cmd,
     ) {
     }
 

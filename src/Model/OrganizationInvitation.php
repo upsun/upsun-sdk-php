@@ -65,35 +65,6 @@ final class OrganizationInvitation implements JsonSerializable
             'permissions' => 'getPermissions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'state' => 'setState',
-            'organization_id' => 'setOrganizationId',
-            'email' => 'setEmail',
-            'owner' => 'setOwner',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'finished_at' => 'setFinishedAt',
-            'permissions' => 'setPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'state' => 'getState',
-            'organization_id' => 'getOrganizationId',
-            'email' => 'getEmail',
-            'owner' => 'getOwner',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'finished_at' => 'getFinishedAt',
-            'permissions' => 'getPermissions'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -104,9 +75,6 @@ final class OrganizationInvitation implements JsonSerializable
         public readonly \DateTime $created_at,
         public readonly \DateTime $updated_at,
         public readonly ?\DateTime $finished_at,
-        /**
-         * @var array
-         */
         public readonly array $permissions
     ) {
     }

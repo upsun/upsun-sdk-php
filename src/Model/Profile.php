@@ -107,63 +107,6 @@ final class Profile implements JsonSerializable
             'invoiced' => 'getInvoiced'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'display_name' => 'setDisplayName',
-            'email' => 'setEmail',
-            'username' => 'setUsername',
-            'type' => 'setType',
-            'picture' => 'setPicture',
-            'company_type' => 'setCompanyType',
-            'company_name' => 'setCompanyName',
-            'currency' => 'setCurrency',
-            'vat_number' => 'setVatNumber',
-            'company_role' => 'setCompanyRole',
-            'website_url' => 'setWebsiteUrl',
-            'new_ui' => 'setNewUi',
-            'ui_colorscheme' => 'setUiColorscheme',
-            'default_catalog' => 'setDefaultCatalog',
-            'project_options_url' => 'setProjectOptionsUrl',
-            'marketing' => 'setMarketing',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'billing_contact' => 'setBillingContact',
-            'security_contact' => 'setSecurityContact',
-            'current_trial' => 'setCurrentTrial',
-            'invoiced' => 'setInvoiced'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'display_name' => 'getDisplayName',
-            'email' => 'getEmail',
-            'username' => 'getUsername',
-            'type' => 'getType',
-            'picture' => 'getPicture',
-            'company_type' => 'getCompanyType',
-            'company_name' => 'getCompanyName',
-            'currency' => 'getCurrency',
-            'vat_number' => 'getVatNumber',
-            'company_role' => 'getCompanyRole',
-            'website_url' => 'getWebsiteUrl',
-            'new_ui' => 'getNewUi',
-            'ui_colorscheme' => 'getUiColorscheme',
-            'default_catalog' => 'getDefaultCatalog',
-            'project_options_url' => 'getProjectOptionsUrl',
-            'marketing' => 'getMarketing',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'billing_contact' => 'getBillingContact',
-            'security_contact' => 'getSecurityContact',
-            'current_trial' => 'getCurrentTrial',
-            'invoiced' => 'getInvoiced'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -188,7 +131,7 @@ final class Profile implements JsonSerializable
         public readonly string $billing_contact,
         public readonly string $security_contact,
         public readonly \Upsun\Model\ProfileCurrentTrial $current_trial,
-        public readonly bool $invoiced
+        public readonly bool $invoiced,
     ) {
     }
 

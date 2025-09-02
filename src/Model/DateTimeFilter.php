@@ -59,31 +59,6 @@ final class DateTimeFilter implements JsonSerializable
             'lte' => 'getLte'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eq' => 'setEq',
-            'ne' => 'setNe',
-            'between' => 'setBetween',
-            'gt' => 'setGt',
-            'gte' => 'setGte',
-            'lt' => 'setLt',
-            'lte' => 'setLte'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eq' => 'getEq',
-            'ne' => 'getNe',
-            'between' => 'getBetween',
-            'gt' => 'getGt',
-            'gte' => 'getGte',
-            'lt' => 'getLt',
-            'lte' => 'getLte'
-        ];
     
     public function __construct(
         public readonly string $eq,
@@ -92,7 +67,7 @@ final class DateTimeFilter implements JsonSerializable
         public readonly string $gt,
         public readonly string $gte,
         public readonly string $lt,
-        public readonly string $lte
+        public readonly string $lte,
     ) {
     }
 

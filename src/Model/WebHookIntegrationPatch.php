@@ -62,55 +62,16 @@ final class WebHookIntegrationPatch implements JsonSerializable
             'url' => 'getUrl'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'events' => 'setEvents',
-            'environments' => 'setEnvironments',
-            'excluded_environments' => 'setExcludedEnvironments',
-            'states' => 'setStates',
-            'result' => 'setResult',
-            'shared_key' => 'setSharedKey',
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'events' => 'getEvents',
-            'environments' => 'getEnvironments',
-            'excluded_environments' => 'getExcludedEnvironments',
-            'states' => 'getStates',
-            'result' => 'getResult',
-            'shared_key' => 'getSharedKey',
-            'url' => 'getUrl'
-        ];
     
     public function __construct(
         public readonly string $type,
-        /**
-         * @var array
-         */
         public readonly array $events,
-        /**
-         * @var array
-         */
         public readonly array $environments,
-        /**
-         * @var array
-         */
         public readonly array $excluded_environments,
-        /**
-         * @var array
-         */
         public readonly array $states,
         public readonly string $result,
         public readonly ?string $shared_key,
-        public readonly string $url
+        public readonly string $url,
     ) {
     }
 

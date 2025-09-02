@@ -44,25 +44,10 @@ final class TeamCounts implements JsonSerializable
             'project_count' => 'getProjectCount'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'member_count' => 'setMemberCount',
-            'project_count' => 'setProjectCount'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'member_count' => 'getMemberCount',
-            'project_count' => 'getProjectCount'
-        ];
     
     public function __construct(
         public readonly int $member_count,
-        public readonly int $project_count
+        public readonly int $project_count,
     ) {
     }
 

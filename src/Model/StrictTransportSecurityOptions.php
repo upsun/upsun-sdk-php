@@ -47,28 +47,11 @@ final class StrictTransportSecurityOptions implements JsonSerializable
             'preload' => 'getPreload'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'include_subdomains' => 'setIncludeSubdomains',
-            'preload' => 'setPreload'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'include_subdomains' => 'getIncludeSubdomains',
-            'preload' => 'getPreload'
-        ];
     
     public function __construct(
         public readonly ?bool $enabled,
         public readonly ?bool $include_subdomains,
-        public readonly ?bool $preload
+        public readonly ?bool $preload,
     ) {
     }
 

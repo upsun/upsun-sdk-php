@@ -53,34 +53,13 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
             'fallback' => 'getFallback'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'organization_id' => 'setOrganizationId',
-            'balance' => 'setBalance',
-            'last_updated_at' => 'setLastUpdatedAt',
-            'sufficient' => 'setSufficient',
-            'fallback' => 'setFallback'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'organization_id' => 'getOrganizationId',
-            'balance' => 'getBalance',
-            'last_updated_at' => 'getLastUpdatedAt',
-            'sufficient' => 'getSufficient',
-            'fallback' => 'getFallback'
-        ];
     
     public function __construct(
         public readonly string $organization_id,
         public readonly \Upsun\Model\PrepaymentObjectPrepaymentBalance $balance,
         public readonly ?string $last_updated_at,
         public readonly bool $sufficient,
-        public readonly ?string $fallback
+        public readonly ?string $fallback,
     ) {
     }
 

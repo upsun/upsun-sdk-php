@@ -47,28 +47,11 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
             'enforced_mounts' => 'getEnforcedMounts'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'enforced_mounts' => 'setEnforcedMounts'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'enforced_mounts' => 'getEnforcedMounts'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $name,
-        public readonly object $enforced_mounts
+        public readonly object $enforced_mounts,
     ) {
     }
 

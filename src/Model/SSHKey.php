@@ -56,29 +56,6 @@ final class SSHKey implements JsonSerializable
             'changed' => 'getChanged'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'key_id' => 'setKeyId',
-            'uid' => 'setUid',
-            'fingerprint' => 'setFingerprint',
-            'title' => 'setTitle',
-            'value' => 'setValue',
-            'changed' => 'setChanged'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'key_id' => 'getKeyId',
-            'uid' => 'getUid',
-            'fingerprint' => 'getFingerprint',
-            'title' => 'getTitle',
-            'value' => 'getValue',
-            'changed' => 'getChanged'
-        ];
     
     public function __construct(
         public readonly int $key_id,
@@ -86,7 +63,7 @@ final class SSHKey implements JsonSerializable
         public readonly string $fingerprint,
         public readonly string $title,
         public readonly string $value,
-        public readonly string $changed
+        public readonly string $changed,
     ) {
     }
 

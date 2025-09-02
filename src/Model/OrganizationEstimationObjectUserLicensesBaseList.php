@@ -44,25 +44,10 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
             'viewer_user' => 'getViewerUser'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'admin_user' => 'setAdminUser',
-            'viewer_user' => 'setViewerUser'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'admin_user' => 'getAdminUser',
-            'viewer_user' => 'getViewerUser'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $admin_user,
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewer_user
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewer_user,
     ) {
     }
 

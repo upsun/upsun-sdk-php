@@ -44,27 +44,9 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
             'variables' => 'getVariables'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'operation' => 'setOperation',
-            'variables' => 'setVariables'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'operation' => 'getOperation',
-            'variables' => 'getVariables'
-        ];
     
     public function __construct(
         public readonly string $operation,
-        /**
-         * @var string[]
-         */
         public readonly array $variables
     ) {
     }

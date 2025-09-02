@@ -65,35 +65,6 @@ final class EnvironmentInfo implements JsonSerializable
             'links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'status' => 'setStatus',
-            'is_main' => 'setIsMain',
-            'is_production' => 'setIsProduction',
-            'constraints' => 'setConstraints',
-            'reference' => 'setReference',
-            'machine_name' => 'setMachineName',
-            'environment_type' => 'setEnvironmentType',
-            'links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'status' => 'getStatus',
-            'is_main' => 'getIsMain',
-            'is_production' => 'getIsProduction',
-            'constraints' => 'getConstraints',
-            'reference' => 'getReference',
-            'machine_name' => 'getMachineName',
-            'environment_type' => 'getEnvironmentType',
-            'links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly string $name,
@@ -104,7 +75,7 @@ final class EnvironmentInfo implements JsonSerializable
         public readonly string $reference,
         public readonly string $machine_name,
         public readonly string $environment_type,
-        public readonly object $links
+        public readonly object $links,
     ) {
     }
 

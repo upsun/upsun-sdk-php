@@ -47,33 +47,10 @@ final class HttpAccessPermissions1 implements JsonSerializable
             'basic_auth' => 'getBasicAuth'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'is_enabled' => 'setIsEnabled',
-            'addresses' => 'setAddresses',
-            'basic_auth' => 'setBasicAuth'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'is_enabled' => 'getIsEnabled',
-            'addresses' => 'getAddresses',
-            'basic_auth' => 'getBasicAuth'
-        ];
     
     public function __construct(
         public readonly bool $is_enabled,
-        /**
-         * @var array
-         */
         public readonly array $addresses,
-        /**
-         * @var string[]
-         */
         public readonly array $basic_auth
     ) {
     }

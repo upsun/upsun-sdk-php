@@ -44,28 +44,10 @@ final class CertificatePatch implements JsonSerializable
             'is_invalid' => 'getIsInvalid'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'chain' => 'setChain',
-            'is_invalid' => 'setIsInvalid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'chain' => 'getChain',
-            'is_invalid' => 'getIsInvalid'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $chain,
-        public readonly bool $is_invalid
+        public readonly bool $is_invalid,
     ) {
     }
 

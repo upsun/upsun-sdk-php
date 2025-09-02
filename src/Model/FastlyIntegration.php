@@ -65,58 +65,17 @@ final class FastlyIntegration implements JsonSerializable
             'service_id' => 'getServiceId'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'events' => 'setEvents',
-            'environments' => 'setEnvironments',
-            'excluded_environments' => 'setExcludedEnvironments',
-            'states' => 'setStates',
-            'result' => 'setResult',
-            'service_id' => 'setServiceId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'events' => 'getEvents',
-            'environments' => 'getEnvironments',
-            'excluded_environments' => 'getExcludedEnvironments',
-            'states' => 'getStates',
-            'result' => 'getResult',
-            'service_id' => 'getServiceId'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $type,
-        /**
-         * @var array
-         */
         public readonly array $events,
-        /**
-         * @var array
-         */
         public readonly array $environments,
-        /**
-         * @var array
-         */
         public readonly array $excluded_environments,
-        /**
-         * @var array
-         */
         public readonly array $states,
         public readonly string $result,
-        public readonly string $service_id
+        public readonly string $service_id,
     ) {
     }
 

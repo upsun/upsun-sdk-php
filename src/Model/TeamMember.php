@@ -50,31 +50,12 @@ final class TeamMember implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'team_id' => 'setTeamId',
-            'user_id' => 'setUserId',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'team_id' => 'getTeamId',
-            'user_id' => 'getUserId',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $team_id,
         public readonly string $user_id,
         public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 

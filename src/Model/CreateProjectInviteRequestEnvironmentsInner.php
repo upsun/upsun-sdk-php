@@ -44,25 +44,10 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
             'role' => 'getRole'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'role' => 'setRole'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'role' => 'getRole'
-        ];
     
     public function __construct(
         public readonly string $id,
-        public readonly string $role
+        public readonly string $role,
     ) {
     }
 

@@ -47,28 +47,11 @@ final class OrganizationAddonsObject implements JsonSerializable
             'upgrades_available' => 'getUpgradesAvailable'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'available' => 'setAvailable',
-            'current' => 'setCurrent',
-            'upgrades_available' => 'setUpgradesAvailable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'available' => 'getAvailable',
-            'current' => 'getCurrent',
-            'upgrades_available' => 'getUpgradesAvailable'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationAddonsObjectAvailable $available,
         public readonly \Upsun\Model\OrganizationAddonsObjectCurrent $current,
-        public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgrades_available
+        public readonly \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgrades_available,
     ) {
     }
 

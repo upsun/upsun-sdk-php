@@ -44,25 +44,10 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
             'routing_key' => 'getRoutingKey'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'routing_key' => 'setRoutingKey'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'routing_key' => 'getRoutingKey'
-        ];
     
     public function __construct(
         public readonly string $type,
-        public readonly string $routing_key
+        public readonly string $routing_key,
     ) {
     }
 

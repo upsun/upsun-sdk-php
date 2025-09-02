@@ -77,43 +77,6 @@ final class OrganizationProject implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'subscription_id' => 'setSubscriptionId',
-            'region' => 'setRegion',
-            'title' => 'setTitle',
-            'type' => 'setType',
-            'plan' => 'setPlan',
-            'access_migration_status' => 'setAccessMigrationStatus',
-            'status' => 'setStatus',
-            'vendor' => 'setVendor',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'subscription_id' => 'getSubscriptionId',
-            'region' => 'getRegion',
-            'title' => 'getTitle',
-            'type' => 'getType',
-            'plan' => 'getPlan',
-            'access_migration_status' => 'getAccessMigrationStatus',
-            'status' => 'getStatus',
-            'vendor' => 'getVendor',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -128,7 +91,7 @@ final class OrganizationProject implements JsonSerializable
         public readonly string $vendor,
         public readonly \DateTime $created_at,
         public readonly \DateTime $updated_at,
-        public readonly \Upsun\Model\OrganizationProjectLinks $_links
+        public readonly \Upsun\Model\OrganizationProjectLinks $_links,
     ) {
     }
 

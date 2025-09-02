@@ -95,55 +95,6 @@ final class Deployment implements JsonSerializable
             'container_profiles' => 'getContainerProfiles'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'fingerprint' => 'setFingerprint',
-            'cluster_name' => 'setClusterName',
-            'project_info' => 'setProjectInfo',
-            'environment_info' => 'setEnvironmentInfo',
-            'deployment_target' => 'setDeploymentTarget',
-            'vpn' => 'setVpn',
-            'http_access' => 'setHttpAccess',
-            'enable_smtp' => 'setEnableSmtp',
-            'restrict_robots' => 'setRestrictRobots',
-            'variables' => 'setVariables',
-            'access' => 'setAccess',
-            'subscription' => 'setSubscription',
-            'services' => 'setServices',
-            'routes' => 'setRoutes',
-            'webapps' => 'setWebapps',
-            'workers' => 'setWorkers',
-            'container_profiles' => 'setContainerProfiles'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'fingerprint' => 'getFingerprint',
-            'cluster_name' => 'getClusterName',
-            'project_info' => 'getProjectInfo',
-            'environment_info' => 'getEnvironmentInfo',
-            'deployment_target' => 'getDeploymentTarget',
-            'vpn' => 'getVpn',
-            'http_access' => 'getHttpAccess',
-            'enable_smtp' => 'getEnableSmtp',
-            'restrict_robots' => 'getRestrictRobots',
-            'variables' => 'getVariables',
-            'access' => 'getAccess',
-            'subscription' => 'getSubscription',
-            'services' => 'getServices',
-            'routes' => 'getRoutes',
-            'webapps' => 'getWebapps',
-            'workers' => 'getWorkers',
-            'container_profiles' => 'getContainerProfiles'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -157,34 +108,13 @@ final class Deployment implements JsonSerializable
         public readonly \Upsun\Model\HTTPAccessPermissions $http_access,
         public readonly bool $enable_smtp,
         public readonly bool $restrict_robots,
-        /**
-         * @var array
-         */
         public readonly array $variables,
-        /**
-         * @var array
-         */
         public readonly array $access,
         public readonly \Upsun\Model\Subscription1 $subscription,
-        /**
-         * @var string[]
-         */
         public readonly array $services,
-        /**
-         * @var string[]
-         */
         public readonly array $routes,
-        /**
-         * @var string[]
-         */
         public readonly array $webapps,
-        /**
-         * @var string[]
-         */
         public readonly array $workers,
-        /**
-         * @var string[]
-         */
         public readonly array $container_profiles
     ) {
     }

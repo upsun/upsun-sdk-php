@@ -56,29 +56,6 @@ final class ThePathsToRedirectValue implements JsonSerializable
             'expires' => 'getExpires'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'regexp' => 'setRegexp',
-            'to' => 'setTo',
-            'prefix' => 'setPrefix',
-            'append_suffix' => 'setAppendSuffix',
-            'code' => 'setCode',
-            'expires' => 'setExpires'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'regexp' => 'getRegexp',
-            'to' => 'getTo',
-            'prefix' => 'getPrefix',
-            'append_suffix' => 'getAppendSuffix',
-            'code' => 'getCode',
-            'expires' => 'getExpires'
-        ];
     
     public function __construct(
         public readonly bool $regexp,
@@ -86,7 +63,7 @@ final class ThePathsToRedirectValue implements JsonSerializable
         public readonly ?bool $prefix,
         public readonly ?bool $append_suffix,
         public readonly int $code,
-        public readonly ?string $expires
+        public readonly ?string $expires,
     ) {
     }
 

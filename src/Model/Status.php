@@ -44,25 +44,10 @@ final class Status implements JsonSerializable
             'message' => 'getMessage'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'code' => 'setCode',
-            'message' => 'setMessage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'code' => 'getCode',
-            'message' => 'getMessage'
-        ];
     
     public function __construct(
         public readonly string $code,
-        public readonly string $message
+        public readonly string $message,
     ) {
     }
 

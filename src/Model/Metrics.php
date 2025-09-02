@@ -41,22 +41,9 @@ final class Metrics implements JsonSerializable
             'max_range' => 'getMaxRange'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'max_range' => 'setMaxRange'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'max_range' => 'getMaxRange'
-        ];
     
     public function __construct(
-        public readonly string $max_range
+        public readonly string $max_range,
     ) {
     }
 

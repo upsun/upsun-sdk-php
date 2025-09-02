@@ -41,22 +41,9 @@ final class LogsForwarding implements JsonSerializable
             'max_extra_payload_size' => 'getMaxExtraPayloadSize'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'max_extra_payload_size' => 'setMaxExtraPayloadSize'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'max_extra_payload_size' => 'getMaxExtraPayloadSize'
-        ];
     
     public function __construct(
-        public readonly int $max_extra_payload_size
+        public readonly int $max_extra_payload_size,
     ) {
     }
 

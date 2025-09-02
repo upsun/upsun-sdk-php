@@ -26,40 +26,14 @@ final class {{classname}} implements JsonSerializable
             {{/-last}}{{/vars}}
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            {{#vars}}'{{name}}' => '{{setter}}'{{^-last}},
-            {{/-last}}{{/vars}}
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            {{#vars}}'{{name}}' => '{{getter}}'{{^-last}},
-            {{/-last}}{{/vars}}
-        ];
     
     public function __construct(
     {{#vars}}
         {{#isContainer}}
-        {{#isMap}}
-        /**{{#mapValueType}}
-         * @var array<string,{{mapValueType}}>{{/mapValueType}}
-         {{^mapValueType}}* @var string[]{{/mapValueType}}
-         */
-        {{/isMap}}
-        {{^isMap}}
-        /**
-         * @var {{containerType}}
-         */
-        {{/isMap}}
         public readonly {{#isNullable}}?{{/isNullable}}array ${{name}}{{^-last}},{{/-last}}
         {{/isContainer}}
         {{^isContainer}}
-        public readonly {{#isNullable}}?{{/isNullable}}{{{dataType}}} ${{name}}{{#defaultValue}} = {{defaultValue}}{{/defaultValue}}{{^-last}},{{/-last}}
+        public readonly {{#isNullable}}?{{/isNullable}}{{{dataType}}} ${{name}}{{#defaultValue}} = {{defaultValue}}{{/defaultValue}},
         {{/isContainer}}
     {{/vars}}
     ) {

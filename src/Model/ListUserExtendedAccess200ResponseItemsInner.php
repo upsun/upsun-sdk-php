@@ -59,43 +59,15 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_id' => 'setUserId',
-            'resource_id' => 'setResourceId',
-            'resource_type' => 'setResourceType',
-            'organization_id' => 'setOrganizationId',
-            'permissions' => 'setPermissions',
-            'granted_at' => 'setGrantedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_id' => 'getUserId',
-            'resource_id' => 'getResourceId',
-            'resource_type' => 'getResourceType',
-            'organization_id' => 'getOrganizationId',
-            'permissions' => 'getPermissions',
-            'granted_at' => 'getGrantedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $user_id,
         public readonly string $resource_id,
         public readonly string $resource_type,
         public readonly string $organization_id,
-        /**
-         * @var array
-         */
         public readonly array $permissions,
         public readonly \DateTime $granted_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 

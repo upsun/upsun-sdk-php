@@ -44,25 +44,10 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
             'label' => 'getLabel'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'label' => 'setLabel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'label' => 'getLabel'
-        ];
     
     public function __construct(
         public readonly string $id,
-        public readonly string $label
+        public readonly string $label,
     ) {
     }
 

@@ -77,43 +77,6 @@ final class GithubIntegration implements JsonSerializable
             'token_type' => 'getTokenType'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'base_url' => 'setBaseUrl',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
-            'token_type' => 'setTokenType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'base_url' => 'getBaseUrl',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
-            'token_type' => 'getTokenType'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -128,7 +91,7 @@ final class GithubIntegration implements JsonSerializable
         public readonly bool $build_draft_pull_requests,
         public readonly bool $build_pull_requests_post_merge,
         public readonly bool $pull_requests_clone_parent_data,
-        public readonly string $token_type
+        public readonly string $token_type,
     ) {
     }
 

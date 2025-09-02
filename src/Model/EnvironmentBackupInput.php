@@ -41,22 +41,9 @@ final class EnvironmentBackupInput implements JsonSerializable
             'safe' => 'getSafe'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'safe' => 'setSafe'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'safe' => 'getSafe'
-        ];
     
     public function __construct(
-        public readonly bool $safe
+        public readonly bool $safe,
     ) {
     }
 

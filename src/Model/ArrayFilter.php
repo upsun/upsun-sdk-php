@@ -50,31 +50,12 @@ final class ArrayFilter implements JsonSerializable
             'nin' => 'getNin'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eq' => 'setEq',
-            'ne' => 'setNe',
-            'in' => 'setIn',
-            'nin' => 'setNin'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eq' => 'getEq',
-            'ne' => 'getNe',
-            'in' => 'getIn',
-            'nin' => 'getNin'
-        ];
     
     public function __construct(
         public readonly string $eq,
         public readonly string $ne,
         public readonly string $in,
-        public readonly string $nin
+        public readonly string $nin,
     ) {
     }
 

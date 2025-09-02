@@ -41,22 +41,9 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
             'verify_phone' => 'getVerifyPhone'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'verify_phone' => 'setVerifyPhone'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'verify_phone' => 'getVerifyPhone'
-        ];
     
     public function __construct(
-        public readonly bool $verify_phone
+        public readonly bool $verify_phone,
     ) {
     }
 

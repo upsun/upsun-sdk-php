@@ -56,29 +56,6 @@ final class Commit implements JsonSerializable
             'parents' => 'getParents'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sha' => 'setSha',
-            'author' => 'setAuthor',
-            'committer' => 'setCommitter',
-            'message' => 'setMessage',
-            'tree' => 'setTree',
-            'parents' => 'setParents'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sha' => 'getSha',
-            'author' => 'getAuthor',
-            'committer' => 'getCommitter',
-            'message' => 'getMessage',
-            'tree' => 'getTree',
-            'parents' => 'getParents'
-        ];
     
     public function __construct(
         public readonly string $sha,
@@ -86,9 +63,6 @@ final class Commit implements JsonSerializable
         public readonly \Upsun\Model\TheInformationAboutTheCommitter $committer,
         public readonly string $message,
         public readonly string $tree,
-        /**
-         * @var array
-         */
         public readonly array $parents
     ) {
     }

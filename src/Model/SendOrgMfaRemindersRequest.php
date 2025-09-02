@@ -41,24 +41,8 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
             'user_ids' => 'getUserIds'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'user_ids' => 'setUserIds'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'user_ids' => 'getUserIds'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $user_ids
     ) {
     }

@@ -50,31 +50,12 @@ final class ProjectOptionsDefaults implements JsonSerializable
             'capabilities' => 'getCapabilities'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'settings' => 'setSettings',
-            'variables' => 'setVariables',
-            'access' => 'setAccess',
-            'capabilities' => 'setCapabilities'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'settings' => 'getSettings',
-            'variables' => 'getVariables',
-            'access' => 'getAccess',
-            'capabilities' => 'getCapabilities'
-        ];
     
     public function __construct(
         public readonly object $settings,
         public readonly object $variables,
         public readonly object $access,
-        public readonly object $capabilities
+        public readonly object $capabilities,
     ) {
     }
 

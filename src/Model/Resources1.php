@@ -41,22 +41,9 @@ final class Resources1 implements JsonSerializable
             'init' => 'getInit'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'init' => 'setInit'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'init' => 'getInit'
-        ];
     
     public function __construct(
-        public readonly ?string $init
+        public readonly ?string $init,
     ) {
     }
 

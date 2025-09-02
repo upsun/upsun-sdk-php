@@ -47,31 +47,11 @@ final class ProjectSettingsPatch implements JsonSerializable
             'build_resources' => 'getBuildResources'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'initialize' => 'setInitialize',
-            'data_retention' => 'setDataRetention',
-            'build_resources' => 'setBuildResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'initialize' => 'getInitialize',
-            'data_retention' => 'getDataRetention',
-            'build_resources' => 'getBuildResources'
-        ];
     
     public function __construct(
         public readonly object $initialize,
-        /**
-         * @var string[]
-         */
         public readonly ?array $data_retention,
-        public readonly \Upsun\Model\BuildResources2 $build_resources
+        public readonly \Upsun\Model\BuildResources2 $build_resources,
     ) {
     }
 

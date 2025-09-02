@@ -47,28 +47,11 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
             'contents' => 'getContents'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'path' => 'setPath',
-            'mode' => 'setMode',
-            'contents' => 'setContents'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'path' => 'getPath',
-            'mode' => 'getMode',
-            'contents' => 'getContents'
-        ];
     
     public function __construct(
         public readonly string $path,
         public readonly int $mode,
-        public readonly string $contents
+        public readonly string $contents,
     ) {
     }
 

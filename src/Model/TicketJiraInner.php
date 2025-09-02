@@ -56,29 +56,6 @@ final class TicketJiraInner implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'ticket_id' => 'setTicketId',
-            'issue_id' => 'setIssueId',
-            'issue_key' => 'setIssueKey',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'ticket_id' => 'getTicketId',
-            'issue_id' => 'getIssueId',
-            'issue_key' => 'getIssueKey',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly int $id,
@@ -86,7 +63,7 @@ final class TicketJiraInner implements JsonSerializable
         public readonly int $issue_id,
         public readonly string $issue_key,
         public readonly float $created_at,
-        public readonly float $updated_at
+        public readonly float $updated_at,
     ) {
     }
 

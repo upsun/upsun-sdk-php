@@ -65,49 +65,17 @@ final class OrganizationMember implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'user_id' => 'setUserId',
-            'permissions' => 'setPermissions',
-            'level' => 'setLevel',
-            'owner' => 'setOwner',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'user_id' => 'getUserId',
-            'permissions' => 'getPermissions',
-            'level' => 'getLevel',
-            'owner' => 'getOwner',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly string $id,
         public readonly string $organization_id,
         public readonly string $user_id,
-        /**
-         * @var array
-         */
         public readonly array $permissions,
         public readonly string $level,
         public readonly bool $owner,
         public readonly \DateTime $created_at,
         public readonly \DateTime $updated_at,
-        public readonly \Upsun\Model\OrganizationMemberLinks $_links
+        public readonly \Upsun\Model\OrganizationMemberLinks $_links,
     ) {
     }
 

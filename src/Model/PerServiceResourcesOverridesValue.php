@@ -47,28 +47,11 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
             'disk' => 'getDisk'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu' => 'setCpu',
-            'memory' => 'setMemory',
-            'disk' => 'setDisk'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu' => 'getCpu',
-            'memory' => 'getMemory',
-            'disk' => 'getDisk'
-        ];
     
     public function __construct(
         public readonly ?float $cpu,
         public readonly ?int $memory,
-        public readonly ?int $disk
+        public readonly ?int $disk,
     ) {
     }
 

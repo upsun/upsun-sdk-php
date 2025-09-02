@@ -44,27 +44,9 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
             'operations' => 'getOperations'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'root' => 'setRoot',
-            'operations' => 'setOperations'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'root' => 'getRoot',
-            'operations' => 'getOperations'
-        ];
     
     public function __construct(
         public readonly ?string $root,
-        /**
-         * @var string[]
-         */
         public readonly array $operations
     ) {
     }

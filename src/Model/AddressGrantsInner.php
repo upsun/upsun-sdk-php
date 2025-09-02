@@ -44,25 +44,10 @@ final class AddressGrantsInner implements JsonSerializable
             'address' => 'getAddress'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'permission' => 'setPermission',
-            'address' => 'setAddress'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'permission' => 'getPermission',
-            'address' => 'getAddress'
-        ];
     
     public function __construct(
         public readonly string $permission,
-        public readonly string $address
+        public readonly string $address,
     ) {
     }
 

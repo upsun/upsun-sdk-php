@@ -41,24 +41,8 @@ final class Firewall implements JsonSerializable
             'outbound' => 'getOutbound'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'outbound' => 'setOutbound'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'outbound' => 'getOutbound'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $outbound
     ) {
     }

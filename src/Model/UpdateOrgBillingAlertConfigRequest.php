@@ -44,25 +44,10 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
             'config' => 'getConfig'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'active' => 'setActive',
-            'config' => 'setConfig'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'active' => 'getActive',
-            'config' => 'getConfig'
-        ];
     
     public function __construct(
         public readonly bool $active,
-        public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config
+        public readonly \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config,
     ) {
     }
 

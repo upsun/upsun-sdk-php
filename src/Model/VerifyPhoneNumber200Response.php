@@ -41,22 +41,9 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
             'sid' => 'getSid'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sid' => 'setSid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sid' => 'getSid'
-        ];
     
     public function __construct(
-        public readonly string $sid
+        public readonly string $sid,
     ) {
     }
 

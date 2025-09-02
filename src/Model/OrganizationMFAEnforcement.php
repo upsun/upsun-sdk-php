@@ -41,22 +41,9 @@ final class OrganizationMFAEnforcement implements JsonSerializable
             'enforce_mfa' => 'getEnforceMfa'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enforce_mfa' => 'setEnforceMfa'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enforce_mfa' => 'getEnforceMfa'
-        ];
     
     public function __construct(
-        public readonly bool $enforce_mfa
+        public readonly bool $enforce_mfa,
     ) {
     }
 

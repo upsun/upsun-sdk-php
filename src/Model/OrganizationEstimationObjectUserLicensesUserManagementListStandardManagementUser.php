@@ -44,25 +44,10 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListStandardMa
             'total' => 'getTotal'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'total' => 'setTotal'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'total' => 'getTotal'
-        ];
     
     public function __construct(
         public readonly int $count,
-        public readonly string $total
+        public readonly string $total,
     ) {
     }
 

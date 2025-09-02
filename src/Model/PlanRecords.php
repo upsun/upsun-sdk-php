@@ -65,35 +65,6 @@ final class PlanRecords implements JsonSerializable
             'status' => 'getStatus'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'owner' => 'setOwner',
-            'subscription_id' => 'setSubscriptionId',
-            'sku' => 'setSku',
-            'plan' => 'setPlan',
-            'options' => 'setOptions',
-            'start' => 'setStart',
-            'end' => 'setEnd',
-            'status' => 'setStatus'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'owner' => 'getOwner',
-            'subscription_id' => 'getSubscriptionId',
-            'sku' => 'getSku',
-            'plan' => 'getPlan',
-            'options' => 'getOptions',
-            'start' => 'getStart',
-            'end' => 'getEnd',
-            'status' => 'getStatus'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -101,13 +72,10 @@ final class PlanRecords implements JsonSerializable
         public readonly string $subscription_id,
         public readonly string $sku,
         public readonly string $plan,
-        /**
-         * @var array
-         */
         public readonly array $options,
         public readonly \DateTime $start,
         public readonly ?\DateTime $end,
-        public readonly string $status
+        public readonly string $status,
     ) {
     }
 

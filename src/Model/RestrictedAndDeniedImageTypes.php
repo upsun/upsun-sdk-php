@@ -44,30 +44,9 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
             'exclude' => 'getExclude'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'only' => 'setOnly',
-            'exclude' => 'setExclude'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'only' => 'getOnly',
-            'exclude' => 'getExclude'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $only,
-        /**
-         * @var array
-         */
         public readonly array $exclude
     ) {
     }

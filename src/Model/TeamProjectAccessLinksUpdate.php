@@ -44,25 +44,10 @@ final class TeamProjectAccessLinksUpdate implements JsonSerializable
             'method' => 'getMethod'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'href' => 'setHref',
-            'method' => 'setMethod'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'href' => 'getHref',
-            'method' => 'getMethod'
-        ];
     
     public function __construct(
         public readonly string $href,
-        public readonly string $method
+        public readonly string $method,
     ) {
     }
 

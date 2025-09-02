@@ -44,25 +44,10 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
             'start' => 'getStart'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'pre_start' => 'setPreStart',
-            'start' => 'setStart'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'pre_start' => 'getPreStart',
-            'start' => 'getStart'
-        ];
     
     public function __construct(
         public readonly ?string $pre_start,
-        public readonly string $start
+        public readonly string $start,
     ) {
     }
 

@@ -44,25 +44,10 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
             'type' => 'getType'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'action' => 'setAction',
-            'type' => 'setType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'action' => 'getAction',
-            'type' => 'getType'
-        ];
     
     public function __construct(
         public readonly string $action,
-        public readonly string $type
+        public readonly string $type,
     ) {
     }
 

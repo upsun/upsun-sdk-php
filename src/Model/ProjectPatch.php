@@ -59,43 +59,15 @@ final class ProjectPatch implements JsonSerializable
             'default_domain' => 'getDefaultDomain'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'attributes' => 'setAttributes',
-            'title' => 'setTitle',
-            'description' => 'setDescription',
-            'default_branch' => 'setDefaultBranch',
-            'timezone' => 'setTimezone',
-            'region' => 'setRegion',
-            'default_domain' => 'setDefaultDomain'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'attributes' => 'getAttributes',
-            'title' => 'getTitle',
-            'description' => 'getDescription',
-            'default_branch' => 'getDefaultBranch',
-            'timezone' => 'getTimezone',
-            'region' => 'getRegion',
-            'default_domain' => 'getDefaultDomain'
-        ];
     
     public function __construct(
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $title,
         public readonly string $description,
         public readonly ?string $default_branch,
         public readonly string $timezone,
         public readonly string $region,
-        public readonly ?string $default_domain
+        public readonly ?string $default_domain,
     ) {
     }
 

@@ -50,31 +50,12 @@ final class OrderBillingPeriodLabel implements JsonSerializable
             'next_month' => 'getNextMonth'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'formatted' => 'setFormatted',
-            'month' => 'setMonth',
-            'year' => 'setYear',
-            'next_month' => 'setNextMonth'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'formatted' => 'getFormatted',
-            'month' => 'getMonth',
-            'year' => 'getYear',
-            'next_month' => 'getNextMonth'
-        ];
     
     public function __construct(
         public readonly string $formatted,
         public readonly string $month,
         public readonly string $year,
-        public readonly string $next_month
+        public readonly string $next_month,
     ) {
     }
 

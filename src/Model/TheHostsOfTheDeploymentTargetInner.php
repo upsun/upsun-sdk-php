@@ -47,30 +47,10 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
             'services' => 'getServices'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'type' => 'setType',
-            'services' => 'setServices'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'type' => 'getType',
-            'services' => 'getServices'
-        ];
     
     public function __construct(
         public readonly ?string $id,
         public readonly string $type,
-        /**
-         * @var array
-         */
         public readonly ?array $services
     ) {
     }

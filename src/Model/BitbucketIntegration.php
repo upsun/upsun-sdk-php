@@ -74,41 +74,6 @@ final class BitbucketIntegration implements JsonSerializable
             'resync_pull_requests' => 'getResyncPullRequests'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'app_credentials' => 'setAppCredentials',
-            'addon_credentials' => 'setAddonCredentials',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
-            'resync_pull_requests' => 'setResyncPullRequests'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'app_credentials' => 'getAppCredentials',
-            'addon_credentials' => 'getAddonCredentials',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
-            'resync_pull_requests' => 'getResyncPullRequests'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -122,7 +87,7 @@ final class BitbucketIntegration implements JsonSerializable
         public readonly string $repository,
         public readonly bool $build_pull_requests,
         public readonly bool $pull_requests_clone_parent_data,
-        public readonly bool $resync_pull_requests
+        public readonly bool $resync_pull_requests,
     ) {
     }
 

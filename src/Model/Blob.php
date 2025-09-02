@@ -50,31 +50,12 @@ final class Blob implements JsonSerializable
             'content' => 'getContent'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sha' => 'setSha',
-            'size' => 'setSize',
-            'encoding' => 'setEncoding',
-            'content' => 'setContent'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sha' => 'getSha',
-            'size' => 'getSize',
-            'encoding' => 'getEncoding',
-            'content' => 'getContent'
-        ];
     
     public function __construct(
         public readonly string $sha,
         public readonly int $size,
         public readonly string $encoding,
-        public readonly string $content
+        public readonly string $content,
     ) {
     }
 

@@ -47,28 +47,11 @@ final class TheDisksResources implements JsonSerializable
             'storage' => 'getStorage'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'temporary' => 'setTemporary',
-            'instance' => 'setInstance',
-            'storage' => 'setStorage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'temporary' => 'getTemporary',
-            'instance' => 'getInstance',
-            'storage' => 'getStorage'
-        ];
     
     public function __construct(
         public readonly ?int $temporary,
         public readonly ?int $instance,
-        public readonly ?int $storage
+        public readonly ?int $storage,
     ) {
     }
 

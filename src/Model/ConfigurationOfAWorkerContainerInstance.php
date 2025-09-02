@@ -44,25 +44,10 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
             'disk' => 'getDisk'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'commands' => 'setCommands',
-            'disk' => 'setDisk'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'commands' => 'getCommands',
-            'disk' => 'getDisk'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\TheCommandsToManageTheWorker $commands,
-        public readonly ?int $disk
+        public readonly ?int $disk,
     ) {
     }
 

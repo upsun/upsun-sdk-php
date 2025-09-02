@@ -44,25 +44,10 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
             'mode' => 'getMode'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'threshold' => 'setThreshold',
-            'mode' => 'setMode'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'threshold' => 'getThreshold',
-            'mode' => 'getMode'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold,
-        public readonly string $mode
+        public readonly string $mode,
     ) {
     }
 

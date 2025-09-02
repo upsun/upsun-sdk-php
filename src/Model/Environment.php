@@ -134,81 +134,6 @@ final class Environment implements JsonSerializable
             'supports_restrict_robots' => 'getSupportsRestrictRobots'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'name' => 'setName',
-            'machine_name' => 'setMachineName',
-            'title' => 'setTitle',
-            'attributes' => 'setAttributes',
-            'type' => 'setType',
-            'parent' => 'setParent',
-            'default_domain' => 'setDefaultDomain',
-            'has_domains' => 'setHasDomains',
-            'clone_parent_on_create' => 'setCloneParentOnCreate',
-            'deployment_target' => 'setDeploymentTarget',
-            'is_pr' => 'setIsPr',
-            'has_remote' => 'setHasRemote',
-            'status' => 'setStatus',
-            'http_access' => 'setHttpAccess',
-            'enable_smtp' => 'setEnableSmtp',
-            'restrict_robots' => 'setRestrictRobots',
-            'edge_hostname' => 'setEdgeHostname',
-            'deployment_state' => 'setDeploymentState',
-            'resources_overrides' => 'setResourcesOverrides',
-            'max_instance_count' => 'setMaxInstanceCount',
-            'last_active_at' => 'setLastActiveAt',
-            'last_backup_at' => 'setLastBackupAt',
-            'project' => 'setProject',
-            'is_main' => 'setIsMain',
-            'is_dirty' => 'setIsDirty',
-            'has_code' => 'setHasCode',
-            'head_commit' => 'setHeadCommit',
-            'merge_info' => 'setMergeInfo',
-            'has_deployment' => 'setHasDeployment',
-            'supports_restrict_robots' => 'setSupportsRestrictRobots'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'name' => 'getName',
-            'machine_name' => 'getMachineName',
-            'title' => 'getTitle',
-            'attributes' => 'getAttributes',
-            'type' => 'getType',
-            'parent' => 'getParent',
-            'default_domain' => 'getDefaultDomain',
-            'has_domains' => 'getHasDomains',
-            'clone_parent_on_create' => 'getCloneParentOnCreate',
-            'deployment_target' => 'getDeploymentTarget',
-            'is_pr' => 'getIsPr',
-            'has_remote' => 'getHasRemote',
-            'status' => 'getStatus',
-            'http_access' => 'getHttpAccess',
-            'enable_smtp' => 'getEnableSmtp',
-            'restrict_robots' => 'getRestrictRobots',
-            'edge_hostname' => 'getEdgeHostname',
-            'deployment_state' => 'getDeploymentState',
-            'resources_overrides' => 'getResourcesOverrides',
-            'max_instance_count' => 'getMaxInstanceCount',
-            'last_active_at' => 'getLastActiveAt',
-            'last_backup_at' => 'getLastBackupAt',
-            'project' => 'getProject',
-            'is_main' => 'getIsMain',
-            'is_dirty' => 'getIsDirty',
-            'has_code' => 'getHasCode',
-            'head_commit' => 'getHeadCommit',
-            'merge_info' => 'getMergeInfo',
-            'has_deployment' => 'getHasDeployment',
-            'supports_restrict_robots' => 'getSupportsRestrictRobots'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -216,9 +141,6 @@ final class Environment implements JsonSerializable
         public readonly string $name,
         public readonly string $machine_name,
         public readonly string $title,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $type,
         public readonly ?string $parent,
@@ -234,9 +156,6 @@ final class Environment implements JsonSerializable
         public readonly bool $restrict_robots,
         public readonly string $edge_hostname,
         public readonly ?\Upsun\Model\TheEnvironmentDeploymentState $deployment_state,
-        /**
-         * @var string[]
-         */
         public readonly array $resources_overrides,
         public readonly ?int $max_instance_count,
         public readonly ?\DateTime $last_active_at,
@@ -248,7 +167,7 @@ final class Environment implements JsonSerializable
         public readonly ?string $head_commit,
         public readonly \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $merge_info,
         public readonly bool $has_deployment,
-        public readonly bool $supports_restrict_robots
+        public readonly bool $supports_restrict_robots,
     ) {
     }
 

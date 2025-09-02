@@ -44,25 +44,10 @@ final class InvoicePDF implements JsonSerializable
             'status' => 'getStatus'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'url' => 'setUrl',
-            'status' => 'setStatus'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'url' => 'getUrl',
-            'status' => 'getStatus'
-        ];
     
     public function __construct(
         public readonly string $url,
-        public readonly string $status
+        public readonly string $status,
     ) {
     }
 

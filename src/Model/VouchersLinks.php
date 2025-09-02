@@ -41,22 +41,9 @@ final class VouchersLinks implements JsonSerializable
             'self' => 'getSelf'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf'
-        ];
     
     public function __construct(
-        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self
+        public readonly \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self,
     ) {
     }
 

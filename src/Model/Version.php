@@ -47,28 +47,11 @@ final class Version implements JsonSerializable
             'routing' => 'getRouting'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'commit' => 'setCommit',
-            'locked' => 'setLocked',
-            'routing' => 'setRouting'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'commit' => 'getCommit',
-            'locked' => 'getLocked',
-            'routing' => 'getRouting'
-        ];
     
     public function __construct(
         public readonly ?string $commit,
         public readonly bool $locked,
-        public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing
+        public readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
     ) {
     }
 

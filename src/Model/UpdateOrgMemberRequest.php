@@ -41,24 +41,8 @@ final class UpdateOrgMemberRequest implements JsonSerializable
             'permissions' => 'getPermissions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'permissions' => 'setPermissions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'permissions' => 'getPermissions'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $permissions
     ) {
     }

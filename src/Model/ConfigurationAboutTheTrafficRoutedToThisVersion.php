@@ -41,22 +41,9 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
             'percentage' => 'getPercentage'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'percentage' => 'setPercentage'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'percentage' => 'getPercentage'
-        ];
     
     public function __construct(
-        public readonly int $percentage
+        public readonly int $percentage,
     ) {
     }
 

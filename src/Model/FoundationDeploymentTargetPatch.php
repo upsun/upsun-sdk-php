@@ -50,34 +50,12 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
             'use_dedicated_grid' => 'getUseDedicatedGrid'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'name' => 'setName',
-            'hosts' => 'setHosts',
-            'use_dedicated_grid' => 'setUseDedicatedGrid'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'name' => 'getName',
-            'hosts' => 'getHosts',
-            'use_dedicated_grid' => 'getUseDedicatedGrid'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly string $name,
-        /**
-         * @var array
-         */
         public readonly ?array $hosts,
-        public readonly bool $use_dedicated_grid
+        public readonly bool $use_dedicated_grid,
     ) {
     }
 

@@ -47,30 +47,10 @@ final class EmailIntegrationPatch implements JsonSerializable
             'recipients' => 'getRecipients'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'from_address' => 'setFromAddress',
-            'recipients' => 'setRecipients'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'from_address' => 'getFromAddress',
-            'recipients' => 'getRecipients'
-        ];
     
     public function __construct(
         public readonly string $type,
         public readonly ?string $from_address,
-        /**
-         * @var array
-         */
         public readonly array $recipients
     ) {
     }

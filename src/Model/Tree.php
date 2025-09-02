@@ -44,27 +44,9 @@ final class Tree implements JsonSerializable
             'tree' => 'getTree'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'sha' => 'setSha',
-            'tree' => 'setTree'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'sha' => 'getSha',
-            'tree' => 'getTree'
-        ];
     
     public function __construct(
         public readonly string $sha,
-        /**
-         * @var array
-         */
         public readonly array $tree
     ) {
     }

@@ -44,25 +44,10 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
             'type' => 'getType'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'redirect_to_url' => 'setRedirectToUrl',
-            'type' => 'setType'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'redirect_to_url' => 'getRedirectToUrl',
-            'type' => 'getType'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirect_to_url,
-        public readonly string $type
+        public readonly string $type,
     ) {
     }
 

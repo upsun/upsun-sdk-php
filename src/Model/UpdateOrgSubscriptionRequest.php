@@ -74,41 +74,6 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
             'project_support_level' => 'getProjectSupportLevel'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'project_title' => 'setProjectTitle',
-            'plan' => 'setPlan',
-            'timezone' => 'setTimezone',
-            'environments' => 'setEnvironments',
-            'storage' => 'setStorage',
-            'big_dev' => 'setBigDev',
-            'big_dev_service' => 'setBigDevService',
-            'backups' => 'setBackups',
-            'observability_suite' => 'setObservabilitySuite',
-            'blackfire' => 'setBlackfire',
-            'continuous_profiling' => 'setContinuousProfiling',
-            'project_support_level' => 'setProjectSupportLevel'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'project_title' => 'getProjectTitle',
-            'plan' => 'getPlan',
-            'timezone' => 'getTimezone',
-            'environments' => 'getEnvironments',
-            'storage' => 'getStorage',
-            'big_dev' => 'getBigDev',
-            'big_dev_service' => 'getBigDevService',
-            'backups' => 'getBackups',
-            'observability_suite' => 'getObservabilitySuite',
-            'blackfire' => 'getBlackfire',
-            'continuous_profiling' => 'getContinuousProfiling',
-            'project_support_level' => 'getProjectSupportLevel'
-        ];
     
     public function __construct(
         public readonly string $project_title,
@@ -122,7 +87,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
         public readonly string $observability_suite,
         public readonly string $blackfire,
         public readonly string $continuous_profiling,
-        public readonly string $project_support_level
+        public readonly string $project_support_level,
     ) {
     }
 

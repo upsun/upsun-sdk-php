@@ -53,37 +53,13 @@ final class EnvironmentInitializeInput implements JsonSerializable
             'resources' => 'getResources'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'profile' => 'setProfile',
-            'repository' => 'setRepository',
-            'config' => 'setConfig',
-            'files' => 'setFiles',
-            'resources' => 'setResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'profile' => 'getProfile',
-            'repository' => 'getRepository',
-            'config' => 'getConfig',
-            'files' => 'getFiles',
-            'resources' => 'getResources'
-        ];
     
     public function __construct(
         public readonly string $profile,
         public readonly string $repository,
         public readonly ?string $config,
-        /**
-         * @var array
-         */
         public readonly array $files,
-        public readonly ?\Upsun\Model\Resources3 $resources
+        public readonly ?\Upsun\Model\Resources3 $resources,
     ) {
     }
 

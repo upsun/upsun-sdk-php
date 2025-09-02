@@ -44,25 +44,10 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
             'sha' => 'getSha'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'sha' => 'setSha'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'sha' => 'getSha'
-        ];
     
     public function __construct(
         public readonly string $type,
-        public readonly string $sha
+        public readonly string $sha,
     ) {
     }
 

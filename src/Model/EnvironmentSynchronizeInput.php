@@ -50,31 +50,12 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
             'synchronize_resources' => 'getSynchronizeResources'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'synchronize_code' => 'setSynchronizeCode',
-            'rebase' => 'setRebase',
-            'synchronize_data' => 'setSynchronizeData',
-            'synchronize_resources' => 'setSynchronizeResources'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'synchronize_code' => 'getSynchronizeCode',
-            'rebase' => 'getRebase',
-            'synchronize_data' => 'getSynchronizeData',
-            'synchronize_resources' => 'getSynchronizeResources'
-        ];
     
     public function __construct(
         public readonly bool $synchronize_code,
         public readonly bool $rebase,
         public readonly bool $synchronize_data,
-        public readonly bool $synchronize_resources
+        public readonly bool $synchronize_resources,
     ) {
     }
 

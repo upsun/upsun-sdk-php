@@ -53,36 +53,12 @@ final class SpecificOverridesValue implements JsonSerializable
             'headers' => 'getHeaders'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'expires' => 'setExpires',
-            'passthru' => 'setPassthru',
-            'scripts' => 'setScripts',
-            'allow' => 'setAllow',
-            'headers' => 'setHeaders'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'expires' => 'getExpires',
-            'passthru' => 'getPassthru',
-            'scripts' => 'getScripts',
-            'allow' => 'getAllow',
-            'headers' => 'getHeaders'
-        ];
     
     public function __construct(
         public readonly ?string $expires,
         public readonly string $passthru,
         public readonly bool $scripts,
         public readonly bool $allow,
-        /**
-         * @var string[]
-         */
         public readonly array $headers
     ) {
     }

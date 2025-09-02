@@ -47,28 +47,11 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
             'service' => 'getService'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'source' => 'setSource',
-            'source_path' => 'setSourcePath',
-            'service' => 'setService'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'source' => 'getSource',
-            'source_path' => 'getSourcePath',
-            'service' => 'getService'
-        ];
     
     public function __construct(
         public readonly string $source,
         public readonly string $source_path,
-        public readonly ?string $service
+        public readonly ?string $service,
     ) {
     }
 

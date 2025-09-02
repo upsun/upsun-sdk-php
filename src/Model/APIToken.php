@@ -59,31 +59,6 @@ final class APIToken implements JsonSerializable
             'last_used_at' => 'getLastUsedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'name' => 'setName',
-            'mfa_on_creation' => 'setMfaOnCreation',
-            'token' => 'setToken',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'last_used_at' => 'setLastUsedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'name' => 'getName',
-            'mfa_on_creation' => 'getMfaOnCreation',
-            'token' => 'getToken',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'last_used_at' => 'getLastUsedAt'
-        ];
     
     public function __construct(
         public readonly string $id,
@@ -92,7 +67,7 @@ final class APIToken implements JsonSerializable
         public readonly string $token,
         public readonly \DateTime $created_at,
         public readonly \DateTime $updated_at,
-        public readonly ?\DateTime $last_used_at
+        public readonly ?\DateTime $last_used_at,
     ) {
     }
 

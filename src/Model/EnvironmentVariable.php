@@ -80,53 +80,11 @@ final class EnvironmentVariable implements JsonSerializable
             'is_inheritable' => 'getIsInheritable'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'value' => 'setValue',
-            'is_json' => 'setIsJson',
-            'is_sensitive' => 'setIsSensitive',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime',
-            'project' => 'setProject',
-            'environment' => 'setEnvironment',
-            'inherited' => 'setInherited',
-            'is_enabled' => 'setIsEnabled',
-            'is_inheritable' => 'setIsInheritable'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'value' => 'getValue',
-            'is_json' => 'getIsJson',
-            'is_sensitive' => 'getIsSensitive',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime',
-            'project' => 'getProject',
-            'environment' => 'getEnvironment',
-            'inherited' => 'getInherited',
-            'is_enabled' => 'getIsEnabled',
-            'is_inheritable' => 'getIsInheritable'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
         public readonly string $value,
         public readonly bool $is_json,
@@ -137,7 +95,7 @@ final class EnvironmentVariable implements JsonSerializable
         public readonly string $environment,
         public readonly bool $inherited,
         public readonly bool $is_enabled,
-        public readonly bool $is_inheritable
+        public readonly bool $is_inheritable,
     ) {
     }
 

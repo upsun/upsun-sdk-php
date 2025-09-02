@@ -65,55 +65,17 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
             'request_buffering' => 'getRequestBuffering'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'root' => 'setRoot',
-            'expires' => 'setExpires',
-            'passthru' => 'setPassthru',
-            'scripts' => 'setScripts',
-            'index' => 'setIndex',
-            'allow' => 'setAllow',
-            'headers' => 'setHeaders',
-            'rules' => 'setRules',
-            'request_buffering' => 'setRequestBuffering'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'root' => 'getRoot',
-            'expires' => 'getExpires',
-            'passthru' => 'getPassthru',
-            'scripts' => 'getScripts',
-            'index' => 'getIndex',
-            'allow' => 'getAllow',
-            'headers' => 'getHeaders',
-            'rules' => 'getRules',
-            'request_buffering' => 'getRequestBuffering'
-        ];
     
     public function __construct(
         public readonly ?string $root,
         public readonly string $expires,
         public readonly string $passthru,
         public readonly bool $scripts,
-        /**
-         * @var array
-         */
         public readonly ?array $index,
         public readonly bool $allow,
-        /**
-         * @var string[]
-         */
         public readonly array $headers,
-        /**
-         * @var string[]
-         */
         public readonly array $rules,
-        public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering
+        public readonly \Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering,
     ) {
     }
 

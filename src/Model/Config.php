@@ -89,51 +89,6 @@ final class Config implements JsonSerializable
             'blackfire' => 'getBlackfire'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'newrelic' => 'setNewrelic',
-            'sumologic' => 'setSumologic',
-            'splunk' => 'setSplunk',
-            'httplog' => 'setHttplog',
-            'syslog' => 'setSyslog',
-            'webhook' => 'setWebhook',
-            'script' => 'setScript',
-            'github' => 'setGithub',
-            'gitlab' => 'setGitlab',
-            'bitbucket' => 'setBitbucket',
-            'bitbucket_server' => 'setBitbucketServer',
-            'health_email' => 'setHealthEmail',
-            'health_webhook' => 'setHealthWebhook',
-            'health_pagerduty' => 'setHealthPagerduty',
-            'health_slack' => 'setHealthSlack',
-            'cdn_fastly' => 'setCdnFastly',
-            'blackfire' => 'setBlackfire'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'newrelic' => 'getNewrelic',
-            'sumologic' => 'getSumologic',
-            'splunk' => 'getSplunk',
-            'httplog' => 'getHttplog',
-            'syslog' => 'getSyslog',
-            'webhook' => 'getWebhook',
-            'script' => 'getScript',
-            'github' => 'getGithub',
-            'gitlab' => 'getGitlab',
-            'bitbucket' => 'getBitbucket',
-            'bitbucket_server' => 'getBitbucketServer',
-            'health_email' => 'getHealthEmail',
-            'health_webhook' => 'getHealthWebhook',
-            'health_pagerduty' => 'getHealthPagerduty',
-            'health_slack' => 'getHealthSlack',
-            'cdn_fastly' => 'getCdnFastly',
-            'blackfire' => 'getBlackfire'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic,
@@ -152,7 +107,7 @@ final class Config implements JsonSerializable
         public readonly \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $health_pagerduty,
         public readonly \Upsun\Model\HealthSlackNotificationIntegrationConfigurations $health_slack,
         public readonly \Upsun\Model\FastlyCDNIntegrationConfigurations $cdn_fastly,
-        public readonly \Upsun\Model\BlackfireIntegrationConfigurations $blackfire
+        public readonly \Upsun\Model\BlackfireIntegrationConfigurations $blackfire,
     ) {
     }
 

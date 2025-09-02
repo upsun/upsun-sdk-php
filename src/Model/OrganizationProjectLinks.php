@@ -53,34 +53,13 @@ final class OrganizationProjectLinks implements JsonSerializable
             'api' => 'getApi'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'update' => 'setUpdate',
-            'delete' => 'setDelete',
-            'subscription' => 'setSubscription',
-            'api' => 'setApi'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'update' => 'getUpdate',
-            'delete' => 'getDelete',
-            'subscription' => 'getSubscription',
-            'api' => 'getApi'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationProjectLinksSelf $self,
         public readonly \Upsun\Model\OrganizationProjectLinksUpdate $update,
         public readonly \Upsun\Model\OrganizationProjectLinksDelete $delete,
         public readonly \Upsun\Model\OrganizationProjectLinksSubscription $subscription,
-        public readonly \Upsun\Model\OrganizationProjectLinksApi $api
+        public readonly \Upsun\Model\OrganizationProjectLinksApi $api,
     ) {
     }
 

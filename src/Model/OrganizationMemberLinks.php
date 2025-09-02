@@ -47,28 +47,11 @@ final class OrganizationMemberLinks implements JsonSerializable
             'delete' => 'getDelete'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'update' => 'setUpdate',
-            'delete' => 'setDelete'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'update' => 'getUpdate',
-            'delete' => 'getDelete'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\OrganizationMemberLinksSelf $self,
         public readonly \Upsun\Model\OrganizationMemberLinksUpdate $update,
-        public readonly \Upsun\Model\OrganizationMemberLinksDelete $delete
+        public readonly \Upsun\Model\OrganizationMemberLinksDelete $delete,
     ) {
     }
 

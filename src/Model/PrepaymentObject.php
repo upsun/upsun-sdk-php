@@ -41,22 +41,9 @@ final class PrepaymentObject implements JsonSerializable
             'prepayment' => 'getPrepayment'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'prepayment' => 'setPrepayment'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'prepayment' => 'getPrepayment'
-        ];
     
     public function __construct(
-        public readonly \Upsun\Model\PrepaymentObjectPrepayment $prepayment
+        public readonly \Upsun\Model\PrepaymentObjectPrepayment $prepayment,
     ) {
     }
 

@@ -47,28 +47,11 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
             'required_action' => 'getRequiredAction'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'can_create' => 'setCanCreate',
-            'message' => 'setMessage',
-            'required_action' => 'setRequiredAction'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'can_create' => 'getCanCreate',
-            'message' => 'getMessage',
-            'required_action' => 'getRequiredAction'
-        ];
     
     public function __construct(
         public readonly bool $can_create,
         public readonly string $message,
-        public readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $required_action
+        public readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $required_action,
     ) {
     }
 

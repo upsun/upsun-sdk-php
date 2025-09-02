@@ -41,24 +41,8 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
             'supported_runtimes' => 'getSupportedRuntimes'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'supported_runtimes' => 'setSupportedRuntimes'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'supported_runtimes' => 'getSupportedRuntimes'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $supported_runtimes
     ) {
     }

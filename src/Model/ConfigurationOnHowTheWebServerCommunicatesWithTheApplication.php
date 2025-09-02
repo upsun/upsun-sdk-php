@@ -44,25 +44,10 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
             'protocol' => 'getProtocol'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'socket_family' => 'setSocketFamily',
-            'protocol' => 'setProtocol'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'socket_family' => 'getSocketFamily',
-            'protocol' => 'getProtocol'
-        ];
     
     public function __construct(
         public readonly string $socket_family,
-        public readonly ?string $protocol
+        public readonly ?string $protocol,
     ) {
     }
 

@@ -44,25 +44,10 @@ final class TheCommandsDefinition implements JsonSerializable
             'stop' => 'getStop'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'start' => 'setStart',
-            'stop' => 'setStop'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'start' => 'getStart',
-            'stop' => 'getStop'
-        ];
     
     public function __construct(
         public readonly string $start,
-        public readonly ?string $stop
+        public readonly ?string $stop,
     ) {
     }
 

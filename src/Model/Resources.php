@@ -56,29 +56,6 @@ final class Resources implements JsonSerializable
             'disk' => 'getDisk'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'base_memory' => 'setBaseMemory',
-            'memory_ratio' => 'setMemoryRatio',
-            'profile_size' => 'setProfileSize',
-            'minimum' => 'setMinimum',
-            'default' => 'setDefault',
-            'disk' => 'setDisk'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'base_memory' => 'getBaseMemory',
-            'memory_ratio' => 'getMemoryRatio',
-            'profile_size' => 'getProfileSize',
-            'minimum' => 'getMinimum',
-            'default' => 'getDefault',
-            'disk' => 'getDisk'
-        ];
     
     public function __construct(
         public readonly ?int $base_memory,
@@ -86,7 +63,7 @@ final class Resources implements JsonSerializable
         public readonly ?string $profile_size,
         public readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum,
         public readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default,
-        public readonly ?\Upsun\Model\TheDisksResources $disk
+        public readonly ?\Upsun\Model\TheDisksResources $disk,
     ) {
     }
 

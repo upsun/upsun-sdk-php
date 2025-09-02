@@ -47,31 +47,11 @@ final class ListTeams200Response implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'items' => 'setItems',
-            'count' => 'setCount',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'items' => 'getItems',
-            'count' => 'getCount',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $items,
         public readonly int $count,
-        public readonly \Upsun\Model\ListLinks $_links
+        public readonly \Upsun\Model\ListLinks $_links,
     ) {
     }
 

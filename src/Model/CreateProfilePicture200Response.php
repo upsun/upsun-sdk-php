@@ -41,22 +41,9 @@ final class CreateProfilePicture200Response implements JsonSerializable
             'url' => 'getUrl'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'url' => 'setUrl'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'url' => 'getUrl'
-        ];
     
     public function __construct(
-        public readonly string $url
+        public readonly string $url,
     ) {
     }
 

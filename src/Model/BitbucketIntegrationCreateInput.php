@@ -68,37 +68,6 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
             'resync_pull_requests' => 'getResyncPullRequests'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'app_credentials' => 'setAppCredentials',
-            'addon_credentials' => 'setAddonCredentials',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
-            'resync_pull_requests' => 'setResyncPullRequests'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'app_credentials' => 'getAppCredentials',
-            'addon_credentials' => 'getAddonCredentials',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
-            'resync_pull_requests' => 'getResyncPullRequests'
-        ];
     
     public function __construct(
         public readonly string $type,
@@ -110,7 +79,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
         public readonly string $repository,
         public readonly bool $build_pull_requests,
         public readonly bool $pull_requests_clone_parent_data,
-        public readonly bool $resync_pull_requests
+        public readonly bool $resync_pull_requests,
     ) {
     }
 

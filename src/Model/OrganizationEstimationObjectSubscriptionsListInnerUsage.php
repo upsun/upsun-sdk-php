@@ -50,31 +50,12 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
             'environments' => 'getEnvironments'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'cpu' => 'setCpu',
-            'memory' => 'setMemory',
-            'storage' => 'setStorage',
-            'environments' => 'setEnvironments'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'cpu' => 'getCpu',
-            'memory' => 'getMemory',
-            'storage' => 'getStorage',
-            'environments' => 'getEnvironments'
-        ];
     
     public function __construct(
         public readonly float $cpu,
         public readonly float $memory,
         public readonly float $storage,
-        public readonly int $environments
+        public readonly int $environments,
     ) {
     }
 

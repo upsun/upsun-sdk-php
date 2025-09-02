@@ -47,28 +47,11 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
             'parent_ref' => 'getParentRef'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'commits_ahead' => 'setCommitsAhead',
-            'commits_behind' => 'setCommitsBehind',
-            'parent_ref' => 'setParentRef'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'commits_ahead' => 'getCommitsAhead',
-            'commits_behind' => 'getCommitsBehind',
-            'parent_ref' => 'getParentRef'
-        ];
     
     public function __construct(
         public readonly ?int $commits_ahead,
         public readonly ?int $commits_behind,
-        public readonly ?string $parent_ref
+        public readonly ?string $parent_ref,
     ) {
     }
 

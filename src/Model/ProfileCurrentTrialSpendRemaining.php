@@ -53,34 +53,13 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
             'unlimited' => 'getUnlimited'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'formatted' => 'setFormatted',
-            'amount' => 'setAmount',
-            'currency' => 'setCurrency',
-            'currency_symbol' => 'setCurrencySymbol',
-            'unlimited' => 'setUnlimited'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'formatted' => 'getFormatted',
-            'amount' => 'getAmount',
-            'currency' => 'getCurrency',
-            'currency_symbol' => 'getCurrencySymbol',
-            'unlimited' => 'getUnlimited'
-        ];
     
     public function __construct(
         public readonly string $formatted,
         public readonly string $amount,
         public readonly string $currency,
         public readonly string $currency_symbol,
-        public readonly bool $unlimited
+        public readonly bool $unlimited,
     ) {
     }
 

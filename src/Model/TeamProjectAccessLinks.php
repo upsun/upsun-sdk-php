@@ -47,28 +47,11 @@ final class TeamProjectAccessLinks implements JsonSerializable
             'delete' => 'getDelete'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'self' => 'setSelf',
-            'update' => 'setUpdate',
-            'delete' => 'setDelete'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'self' => 'getSelf',
-            'update' => 'getUpdate',
-            'delete' => 'getDelete'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\TeamProjectAccessLinksSelf $self,
         public readonly \Upsun\Model\TeamProjectAccessLinksUpdate $update,
-        public readonly \Upsun\Model\TeamProjectAccessLinksDelete $delete
+        public readonly \Upsun\Model\TeamProjectAccessLinksDelete $delete,
     ) {
     }
 

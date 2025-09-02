@@ -50,31 +50,12 @@ final class GetTotpEnrollment200Response implements JsonSerializable
             'qr_code' => 'getQrCode'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'issuer' => 'setIssuer',
-            'account_name' => 'setAccountName',
-            'secret' => 'setSecret',
-            'qr_code' => 'setQrCode'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'issuer' => 'getIssuer',
-            'account_name' => 'getAccountName',
-            'secret' => 'getSecret',
-            'qr_code' => 'getQrCode'
-        ];
     
     public function __construct(
         public readonly string $issuer,
         public readonly string $account_name,
         public readonly string $secret,
-        public readonly string $qr_code
+        public readonly string $qr_code,
     ) {
     }
 

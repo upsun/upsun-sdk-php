@@ -59,31 +59,6 @@ final class OrganizationEstimationObject implements JsonSerializable
             'subscriptions' => 'getSubscriptions'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'total' => 'setTotal',
-            'sub_total' => 'setSubTotal',
-            'vouchers' => 'setVouchers',
-            'user_licenses' => 'setUserLicenses',
-            'user_management' => 'setUserManagement',
-            'support_level' => 'setSupportLevel',
-            'subscriptions' => 'setSubscriptions'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'total' => 'getTotal',
-            'sub_total' => 'getSubTotal',
-            'vouchers' => 'getVouchers',
-            'user_licenses' => 'getUserLicenses',
-            'user_management' => 'getUserManagement',
-            'support_level' => 'getSupportLevel',
-            'subscriptions' => 'getSubscriptions'
-        ];
     
     public function __construct(
         public readonly string $total,
@@ -92,7 +67,7 @@ final class OrganizationEstimationObject implements JsonSerializable
         public readonly \Upsun\Model\OrganizationEstimationObjectUserLicenses $user_licenses,
         public readonly string $user_management,
         public readonly string $support_level,
-        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions
+        public readonly \Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions,
     ) {
     }
 

@@ -56,29 +56,6 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
             'visible_runtime' => 'getVisibleRuntime'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'value' => 'setValue',
-            'is_sensitive' => 'setIsSensitive',
-            'is_json' => 'setIsJson',
-            'visible_build' => 'setVisibleBuild',
-            'visible_runtime' => 'setVisibleRuntime'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'value' => 'getValue',
-            'is_sensitive' => 'getIsSensitive',
-            'is_json' => 'getIsJson',
-            'visible_build' => 'getVisibleBuild',
-            'visible_runtime' => 'getVisibleRuntime'
-        ];
     
     public function __construct(
         public readonly string $name,
@@ -86,7 +63,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         public readonly bool $is_sensitive,
         public readonly bool $is_json,
         public readonly bool $visible_build,
-        public readonly bool $visible_runtime
+        public readonly bool $visible_runtime,
     ) {
     }
 

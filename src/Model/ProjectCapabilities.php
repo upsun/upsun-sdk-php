@@ -71,39 +71,6 @@ final class ProjectCapabilities implements JsonSerializable
             'integrations' => 'getIntegrations'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'custom_domains' => 'setCustomDomains',
-            'source_operations' => 'setSourceOperations',
-            'runtime_operations' => 'setRuntimeOperations',
-            'outbound_firewall' => 'setOutboundFirewall',
-            'metrics' => 'setMetrics',
-            'logs_forwarding' => 'setLogsForwarding',
-            'images' => 'setImages',
-            'instance_limit' => 'setInstanceLimit',
-            'build_resources' => 'setBuildResources',
-            'data_retention' => 'setDataRetention',
-            'integrations' => 'setIntegrations'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'custom_domains' => 'getCustomDomains',
-            'source_operations' => 'getSourceOperations',
-            'runtime_operations' => 'getRuntimeOperations',
-            'outbound_firewall' => 'getOutboundFirewall',
-            'metrics' => 'getMetrics',
-            'logs_forwarding' => 'getLogsForwarding',
-            'images' => 'getImages',
-            'instance_limit' => 'getInstanceLimit',
-            'build_resources' => 'getBuildResources',
-            'data_retention' => 'getDataRetention',
-            'integrations' => 'getIntegrations'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\CustomDomains $custom_domains,
@@ -112,14 +79,11 @@ final class ProjectCapabilities implements JsonSerializable
         public readonly \Upsun\Model\OutboundFirewall $outbound_firewall,
         public readonly \Upsun\Model\Metrics $metrics,
         public readonly \Upsun\Model\LogsForwarding $logs_forwarding,
-        /**
-         * @var string[]
-         */
         public readonly array $images,
         public readonly int $instance_limit,
         public readonly \Upsun\Model\BuildResources $build_resources,
         public readonly \Upsun\Model\DataRetention $data_retention,
-        public readonly \Upsun\Model\Integrations $integrations
+        public readonly \Upsun\Model\Integrations $integrations,
     ) {
     }
 

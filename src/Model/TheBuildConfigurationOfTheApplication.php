@@ -44,27 +44,9 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
             'caches' => 'getCaches'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'flavor' => 'setFlavor',
-            'caches' => 'setCaches'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'flavor' => 'getFlavor',
-            'caches' => 'getCaches'
-        ];
     
     public function __construct(
         public readonly ?string $flavor,
-        /**
-         * @var string[]
-         */
         public readonly array $caches
     ) {
     }

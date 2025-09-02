@@ -44,25 +44,10 @@ final class ProjectOptionsEnforced implements JsonSerializable
             'capabilities' => 'getCapabilities'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'settings' => 'setSettings',
-            'capabilities' => 'setCapabilities'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'settings' => 'getSettings',
-            'capabilities' => 'getCapabilities'
-        ];
     
     public function __construct(
         public readonly object $settings,
-        public readonly object $capabilities
+        public readonly object $capabilities,
     ) {
     }
 

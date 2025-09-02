@@ -80,45 +80,6 @@ final class VPNConfiguration implements JsonSerializable
             'margintime' => 'getMargintime'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'version' => 'setVersion',
-            'aggressive' => 'setAggressive',
-            'modeconfig' => 'setModeconfig',
-            'authentication' => 'setAuthentication',
-            'gateway_ip' => 'setGatewayIp',
-            'identity' => 'setIdentity',
-            'second_identity' => 'setSecondIdentity',
-            'remote_identity' => 'setRemoteIdentity',
-            'remote_subnets' => 'setRemoteSubnets',
-            'ike' => 'setIke',
-            'esp' => 'setEsp',
-            'ikelifetime' => 'setIkelifetime',
-            'lifetime' => 'setLifetime',
-            'margintime' => 'setMargintime'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'version' => 'getVersion',
-            'aggressive' => 'getAggressive',
-            'modeconfig' => 'getModeconfig',
-            'authentication' => 'getAuthentication',
-            'gateway_ip' => 'getGatewayIp',
-            'identity' => 'getIdentity',
-            'second_identity' => 'getSecondIdentity',
-            'remote_identity' => 'getRemoteIdentity',
-            'remote_subnets' => 'getRemoteSubnets',
-            'ike' => 'getIke',
-            'esp' => 'getEsp',
-            'ikelifetime' => 'getIkelifetime',
-            'lifetime' => 'getLifetime',
-            'margintime' => 'getMargintime'
-        ];
     
     public function __construct(
         public readonly int $version,
@@ -129,15 +90,12 @@ final class VPNConfiguration implements JsonSerializable
         public readonly ?string $identity,
         public readonly ?string $second_identity,
         public readonly ?string $remote_identity,
-        /**
-         * @var array
-         */
         public readonly array $remote_subnets,
         public readonly string $ike,
         public readonly string $esp,
         public readonly string $ikelifetime,
         public readonly string $lifetime,
-        public readonly string $margintime
+        public readonly string $margintime,
     ) {
     }
 

@@ -53,34 +53,13 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
             'cad' => 'getCad'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'eur' => 'setEur',
-            'usd' => 'setUsd',
-            'gbp' => 'setGbp',
-            'aud' => 'setAud',
-            'cad' => 'setCad'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'eur' => 'getEur',
-            'usd' => 'getUsd',
-            'gbp' => 'getGbp',
-            'aud' => 'getAud',
-            'cad' => 'getCad'
-        ];
     
     public function __construct(
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur,
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd,
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gbp,
         public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aud,
-        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad
+        public readonly \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad,
     ) {
     }
 

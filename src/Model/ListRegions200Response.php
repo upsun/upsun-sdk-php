@@ -44,28 +44,10 @@ final class ListRegions200Response implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'regions' => 'setRegions',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'regions' => 'getRegions',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $regions,
-        public readonly \Upsun\Model\ListLinks $_links
+        public readonly \Upsun\Model\ListLinks $_links,
     ) {
     }
 

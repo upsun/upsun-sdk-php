@@ -47,31 +47,11 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'transactions' => 'setTransactions',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'transactions' => 'getTransactions',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly int $count,
-        /**
-         * @var array
-         */
         public readonly array $transactions,
-        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links
+        public readonly \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links,
     ) {
     }
 

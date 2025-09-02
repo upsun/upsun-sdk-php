@@ -47,31 +47,11 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
             'replacement_for' => 'getReplacementFor'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'name' => 'setName',
-            'attributes' => 'setAttributes',
-            'replacement_for' => 'setReplacementFor'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'name' => 'getName',
-            'attributes' => 'getAttributes',
-            'replacement_for' => 'getReplacementFor'
-        ];
     
     public function __construct(
         public readonly string $name,
-        /**
-         * @var string[]
-         */
         public readonly array $attributes,
-        public readonly string $replacement_for
+        public readonly string $replacement_for,
     ) {
     }
 

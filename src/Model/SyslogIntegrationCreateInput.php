@@ -68,43 +68,9 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
             'tls_verify' => 'getTlsVerify'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'type' => 'setType',
-            'extra' => 'setExtra',
-            'host' => 'setHost',
-            'port' => 'setPort',
-            'protocol' => 'setProtocol',
-            'facility' => 'setFacility',
-            'message_format' => 'setMessageFormat',
-            'auth_token' => 'setAuthToken',
-            'auth_mode' => 'setAuthMode',
-            'tls_verify' => 'setTlsVerify'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'type' => 'getType',
-            'extra' => 'getExtra',
-            'host' => 'getHost',
-            'port' => 'getPort',
-            'protocol' => 'getProtocol',
-            'facility' => 'getFacility',
-            'message_format' => 'getMessageFormat',
-            'auth_token' => 'getAuthToken',
-            'auth_mode' => 'getAuthMode',
-            'tls_verify' => 'getTlsVerify'
-        ];
     
     public function __construct(
         public readonly string $type,
-        /**
-         * @var string[]
-         */
         public readonly array $extra,
         public readonly string $host,
         public readonly int $port,
@@ -113,7 +79,7 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         public readonly string $message_format,
         public readonly string $auth_token,
         public readonly string $auth_mode,
-        public readonly bool $tls_verify
+        public readonly bool $tls_verify,
     ) {
     }
 

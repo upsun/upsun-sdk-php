@@ -53,36 +53,12 @@ final class EmailIntegration implements JsonSerializable
             'recipients' => 'getRecipients'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'from_address' => 'setFromAddress',
-            'recipients' => 'setRecipients'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'from_address' => 'getFromAddress',
-            'recipients' => 'getRecipients'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
         public readonly ?\DateTime $updated_at,
         public readonly string $type,
         public readonly ?string $from_address,
-        /**
-         * @var array
-         */
         public readonly array $recipients
     ) {
     }

@@ -41,24 +41,8 @@ final class ListOrgInvoices200Response implements JsonSerializable
             'items' => 'getItems'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'items' => 'setItems'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'items' => 'getItems'
-        ];
     
     public function __construct(
-        /**
-         * @var array
-         */
         public readonly array $items
     ) {
     }

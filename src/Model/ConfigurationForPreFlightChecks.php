@@ -44,27 +44,9 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
             'ignored_rules' => 'getIgnoredRules'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'enabled' => 'setEnabled',
-            'ignored_rules' => 'setIgnoredRules'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'enabled' => 'getEnabled',
-            'ignored_rules' => 'getIgnoredRules'
-        ];
     
     public function __construct(
         public readonly bool $enabled,
-        /**
-         * @var array
-         */
         public readonly array $ignored_rules
     ) {
     }

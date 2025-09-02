@@ -47,28 +47,11 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
             'list' => 'getList'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'total' => 'setTotal',
-            'list' => 'setList'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'total' => 'getTotal',
-            'list' => 'getList'
-        ];
     
     public function __construct(
         public readonly int $count,
         public readonly string $total,
-        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list
+        public readonly \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list,
     ) {
     }
 

@@ -71,39 +71,6 @@ final class Discount implements JsonSerializable
             'end_at' => 'getEndAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'type' => 'setType',
-            'type_label' => 'setTypeLabel',
-            'status' => 'setStatus',
-            'commitment' => 'setCommitment',
-            'total_months' => 'setTotalMonths',
-            'discount' => 'setDiscount',
-            'config' => 'setConfig',
-            'start_at' => 'setStartAt',
-            'end_at' => 'setEndAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'type' => 'getType',
-            'type_label' => 'getTypeLabel',
-            'status' => 'getStatus',
-            'commitment' => 'getCommitment',
-            'total_months' => 'getTotalMonths',
-            'discount' => 'getDiscount',
-            'config' => 'getConfig',
-            'start_at' => 'getStartAt',
-            'end_at' => 'getEndAt'
-        ];
     
     public function __construct(
         public readonly int $id,
@@ -116,7 +83,7 @@ final class Discount implements JsonSerializable
         public readonly \Upsun\Model\DiscountDiscount $discount,
         public readonly object $config,
         public readonly \DateTime $start_at,
-        public readonly ?\DateTime $end_at
+        public readonly ?\DateTime $end_at,
     ) {
     }
 

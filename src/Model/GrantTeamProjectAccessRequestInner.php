@@ -41,22 +41,9 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
             'project_id' => 'getProjectId'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'project_id' => 'setProjectId'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'project_id' => 'getProjectId'
-        ];
     
     public function __construct(
-        public readonly string $project_id
+        public readonly string $project_id,
     ) {
     }
 

@@ -179,111 +179,6 @@ final class Integration implements JsonSerializable
             'shared_key' => 'getSharedKey'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt',
-            'type' => 'setType',
-            'fetch_branches' => 'setFetchBranches',
-            'prune_branches' => 'setPruneBranches',
-            'environment_init_resources' => 'setEnvironmentInitResources',
-            'app_credentials' => 'setAppCredentials',
-            'addon_credentials' => 'setAddonCredentials',
-            'repository' => 'setRepository',
-            'build_pull_requests' => 'setBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'setPullRequestsCloneParentData',
-            'resync_pull_requests' => 'setResyncPullRequests',
-            'url' => 'setUrl',
-            'username' => 'setUsername',
-            'project' => 'setProject',
-            'environments_credentials' => 'setEnvironmentsCredentials',
-            'continuous_profiling' => 'setContinuousProfiling',
-            'events' => 'setEvents',
-            'environments' => 'setEnvironments',
-            'excluded_environments' => 'setExcludedEnvironments',
-            'states' => 'setStates',
-            'result' => 'setResult',
-            'service_id' => 'setServiceId',
-            'base_url' => 'setBaseUrl',
-            'build_draft_pull_requests' => 'setBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'setBuildPullRequestsPostMerge',
-            'token_type' => 'setTokenType',
-            'build_merge_requests' => 'setBuildMergeRequests',
-            'build_wip_merge_requests' => 'setBuildWipMergeRequests',
-            'merge_requests_clone_parent_data' => 'setMergeRequestsCloneParentData',
-            'from_address' => 'setFromAddress',
-            'recipients' => 'setRecipients',
-            'routing_key' => 'setRoutingKey',
-            'channel' => 'setChannel',
-            'extra' => 'setExtra',
-            'headers' => 'setHeaders',
-            'tls_verify' => 'setTlsVerify',
-            'script' => 'setScript',
-            'index' => 'setIndex',
-            'sourcetype' => 'setSourcetype',
-            'category' => 'setCategory',
-            'host' => 'setHost',
-            'port' => 'setPort',
-            'protocol' => 'setProtocol',
-            'facility' => 'setFacility',
-            'message_format' => 'setMessageFormat',
-            'shared_key' => 'setSharedKey'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt',
-            'type' => 'getType',
-            'fetch_branches' => 'getFetchBranches',
-            'prune_branches' => 'getPruneBranches',
-            'environment_init_resources' => 'getEnvironmentInitResources',
-            'app_credentials' => 'getAppCredentials',
-            'addon_credentials' => 'getAddonCredentials',
-            'repository' => 'getRepository',
-            'build_pull_requests' => 'getBuildPullRequests',
-            'pull_requests_clone_parent_data' => 'getPullRequestsCloneParentData',
-            'resync_pull_requests' => 'getResyncPullRequests',
-            'url' => 'getUrl',
-            'username' => 'getUsername',
-            'project' => 'getProject',
-            'environments_credentials' => 'getEnvironmentsCredentials',
-            'continuous_profiling' => 'getContinuousProfiling',
-            'events' => 'getEvents',
-            'environments' => 'getEnvironments',
-            'excluded_environments' => 'getExcludedEnvironments',
-            'states' => 'getStates',
-            'result' => 'getResult',
-            'service_id' => 'getServiceId',
-            'base_url' => 'getBaseUrl',
-            'build_draft_pull_requests' => 'getBuildDraftPullRequests',
-            'build_pull_requests_post_merge' => 'getBuildPullRequestsPostMerge',
-            'token_type' => 'getTokenType',
-            'build_merge_requests' => 'getBuildMergeRequests',
-            'build_wip_merge_requests' => 'getBuildWipMergeRequests',
-            'merge_requests_clone_parent_data' => 'getMergeRequestsCloneParentData',
-            'from_address' => 'getFromAddress',
-            'recipients' => 'getRecipients',
-            'routing_key' => 'getRoutingKey',
-            'channel' => 'getChannel',
-            'extra' => 'getExtra',
-            'headers' => 'getHeaders',
-            'tls_verify' => 'getTlsVerify',
-            'script' => 'getScript',
-            'index' => 'getIndex',
-            'sourcetype' => 'getSourcetype',
-            'category' => 'getCategory',
-            'host' => 'getHost',
-            'port' => 'getPort',
-            'protocol' => 'getProtocol',
-            'facility' => 'getFacility',
-            'message_format' => 'getMessageFormat',
-            'shared_key' => 'getSharedKey'
-        ];
     
     public function __construct(
         public readonly ?\DateTime $created_at,
@@ -301,26 +196,11 @@ final class Integration implements JsonSerializable
         public readonly string $url,
         public readonly string $username,
         public readonly string $project,
-        /**
-         * @var string[]
-         */
         public readonly array $environments_credentials,
         public readonly bool $continuous_profiling,
-        /**
-         * @var array
-         */
         public readonly array $events,
-        /**
-         * @var array
-         */
         public readonly array $environments,
-        /**
-         * @var array
-         */
         public readonly array $excluded_environments,
-        /**
-         * @var array
-         */
         public readonly array $states,
         public readonly string $result,
         public readonly string $service_id,
@@ -332,19 +212,10 @@ final class Integration implements JsonSerializable
         public readonly bool $build_wip_merge_requests,
         public readonly bool $merge_requests_clone_parent_data,
         public readonly ?string $from_address,
-        /**
-         * @var array
-         */
         public readonly array $recipients,
         public readonly string $routing_key,
         public readonly string $channel,
-        /**
-         * @var string[]
-         */
         public readonly array $extra,
-        /**
-         * @var string[]
-         */
         public readonly array $headers,
         public readonly bool $tls_verify,
         public readonly string $script,
@@ -356,7 +227,7 @@ final class Integration implements JsonSerializable
         public readonly string $protocol,
         public readonly int $facility,
         public readonly string $message_format,
-        public readonly ?string $shared_key
+        public readonly ?string $shared_key,
     ) {
     }
 

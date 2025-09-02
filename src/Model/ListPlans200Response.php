@@ -47,31 +47,11 @@ final class ListPlans200Response implements JsonSerializable
             '_links' => 'getLinks'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'count' => 'setCount',
-            'plans' => 'setPlans',
-            '_links' => 'setLinks'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'count' => 'getCount',
-            'plans' => 'getPlans',
-            '_links' => 'getLinks'
-        ];
     
     public function __construct(
         public readonly int $count,
-        /**
-         * @var array
-         */
         public readonly array $plans,
-        public readonly \Upsun\Model\HalLinks $_links
+        public readonly \Upsun\Model\HalLinks $_links,
     ) {
     }
 

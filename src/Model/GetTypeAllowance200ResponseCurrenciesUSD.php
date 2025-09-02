@@ -50,31 +50,12 @@ final class GetTypeAllowance200ResponseCurrenciesUSD implements JsonSerializable
             'currency_symbol' => 'getCurrencySymbol'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'formatted' => 'setFormatted',
-            'amount' => 'setAmount',
-            'currency' => 'setCurrency',
-            'currency_symbol' => 'setCurrencySymbol'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'formatted' => 'getFormatted',
-            'amount' => 'getAmount',
-            'currency' => 'getCurrency',
-            'currency_symbol' => 'getCurrencySymbol'
-        ];
     
     public function __construct(
         public readonly string $formatted,
         public readonly float $amount,
         public readonly string $currency,
-        public readonly string $currency_symbol
+        public readonly string $currency_symbol,
     ) {
     }
 

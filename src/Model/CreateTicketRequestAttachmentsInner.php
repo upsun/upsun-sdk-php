@@ -44,25 +44,10 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
             'data' => 'getData'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'filename' => 'setFilename',
-            'data' => 'setData'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'filename' => 'getFilename',
-            'data' => 'getData'
-        ];
     
     public function __construct(
         public readonly string $filename,
-        public readonly string $data
+        public readonly string $data,
     ) {
     }
 

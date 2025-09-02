@@ -41,22 +41,9 @@ final class OrderLinks implements JsonSerializable
             'invoices' => 'getInvoices'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'invoices' => 'setInvoices'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'invoices' => 'getInvoices'
-        ];
     
     public function __construct(
-        public readonly \Upsun\Model\OrderLinksInvoices $invoices
+        public readonly \Upsun\Model\OrderLinksInvoices $invoices,
     ) {
     }
 

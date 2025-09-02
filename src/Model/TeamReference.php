@@ -59,43 +59,15 @@ final class TeamReference implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'id' => 'setId',
-            'organization_id' => 'setOrganizationId',
-            'label' => 'setLabel',
-            'project_permissions' => 'setProjectPermissions',
-            'counts' => 'setCounts',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'id' => 'getId',
-            'organization_id' => 'getOrganizationId',
-            'label' => 'getLabel',
-            'project_permissions' => 'getProjectPermissions',
-            'counts' => 'getCounts',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $id,
         public readonly string $organization_id,
         public readonly string $label,
-        /**
-         * @var array
-         */
         public readonly array $project_permissions,
         public readonly \Upsun\Model\TeamCounts $counts,
         public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 

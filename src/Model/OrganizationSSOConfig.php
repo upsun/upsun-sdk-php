@@ -56,29 +56,6 @@ final class OrganizationSSOConfig implements JsonSerializable
             'updated_at' => 'getUpdatedAt'
         ];
     
-        /**
-         * Array of attributes to setter functions (for deserialization of responses)
-         */
-        private static $setters = [
-            'provider_type' => 'setProviderType',
-            'domain' => 'setDomain',
-            'organization_id' => 'setOrganizationId',
-            'enforced' => 'setEnforced',
-            'created_at' => 'setCreatedAt',
-            'updated_at' => 'setUpdatedAt'
-        ];
-    
-        /**
-         * Array of attributes to getter functions (for serialization of requests)
-         */
-        private static $getters = [
-            'provider_type' => 'getProviderType',
-            'domain' => 'getDomain',
-            'organization_id' => 'getOrganizationId',
-            'enforced' => 'getEnforced',
-            'created_at' => 'getCreatedAt',
-            'updated_at' => 'getUpdatedAt'
-        ];
     
     public function __construct(
         public readonly string $provider_type,
@@ -86,7 +63,7 @@ final class OrganizationSSOConfig implements JsonSerializable
         public readonly string $organization_id,
         public readonly bool $enforced,
         public readonly \DateTime $created_at,
-        public readonly \DateTime $updated_at
+        public readonly \DateTime $updated_at,
     ) {
     }
 
