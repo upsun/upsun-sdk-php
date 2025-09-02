@@ -127,6 +127,8 @@ class TeamTask extends TaskBase
         ?string $pageAfter = null,
         ?string $sort = null
     ): Error|ListTeams200Response {
+        var_dump($filterId, $filterOrganizationId);
+        
         return $this->teamsApi->listTeams(
             new StringFilter($filterOrganizationId),
             new StringFilter($filterId),
