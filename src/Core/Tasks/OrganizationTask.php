@@ -236,7 +236,7 @@ class OrganizationTask extends TaskBase
     ): array {
         return $this->client->team->list(
             ['eq' => $organizationId],
-            null,
+            [],
             $filterUpdatedAt,
             $pageSize,
             $pageBefore,
