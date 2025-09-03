@@ -24,27 +24,36 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     private static string $openAPIModelName = 'Blackfire_environments_credentials_value';
 
     private static array $attributeMap = [
-        'server_uuid' => 'server_uuid',
-        'server_token' => 'server_token'
+        'serverUuid' => 'server_uuid',
+        'serverToken' => 'server_token'
     ];
 
     public function __construct(
-        public readonly ?string $server_uuid = null,
-        public readonly ?string $server_token = null,
+        private readonly ?string $serverUuid = null,
+        private readonly ?string $serverToken = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'server_uuid' => $this->server_uuid,
-            'server_token' => $this->server_token,
+            'serverUuid' => $this->serverUuid,
+            'serverToken' => $this->serverToken,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getServerUuid(): ?string
+    {
+        return $this->serverUuid;
+    }
+    public function getServerToken(): ?string
+    {
+        return $this->serverToken;
     }
 }
 

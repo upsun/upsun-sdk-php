@@ -125,13 +125,13 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function confirmPhoneNumber(
         string $sid,
-        string $user_id,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+        string $userId,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): array {
         list($response) = $this->confirmPhoneNumberWithHttpInfo(
             $sid,
-            $user_id,
-            $confirm_phone_number_request
+            $userId,
+            $confirmPhoneNumberRequest
         );
         return $response;
     }
@@ -143,13 +143,13 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function confirmPhoneNumberWithHttpInfo(
         string $sid,
-        string $user_id,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+        string $userId,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): array {
         $request = $this->confirmPhoneNumberRequest(
             $sid,
-            $user_id,
-            $confirm_phone_number_request
+            $userId,
+            $confirmPhoneNumberRequest
         );
 
         try {
@@ -177,13 +177,13 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function confirmPhoneNumberAsync(
         string $sid,
-        string $user_id,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+        string $userId,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): Promise {
         return $this->confirmPhoneNumberAsyncWithHttpInfo(
             $sid,
-            $user_id,
-            $confirm_phone_number_request
+            $userId,
+            $confirmPhoneNumberRequest
         )
             ->then(
                 function ($response) {
@@ -199,14 +199,14 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function confirmPhoneNumberAsyncWithHttpInfo(
         string $sid,
-        string $user_id,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+        string $userId,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): Promise {
         $returnType = '';
         $request = $this->confirmPhoneNumberRequest(
             $sid,
-            $user_id,
-            $confirm_phone_number_request
+            $userId,
+            $confirmPhoneNumberRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -238,8 +238,8 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function confirmPhoneNumberRequest(
         string $sid,
-        string $user_id,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirm_phone_number_request = null
+        string $userId,
+        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): RequestInterface {
         // verify the required parameter 'sid' is set
         if ($sid === null || (is_array($sid) && count($sid) === 0)) {
@@ -247,10 +247,10 @@ final class PhoneNumberApi extends AbstractApi
                 'Missing the required parameter $sid when calling confirmPhoneNumber'
             );
         }
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling confirmPhoneNumber'
+                'Missing the required parameter $userId when calling confirmPhoneNumber'
             );
         }
 
@@ -272,10 +272,10 @@ final class PhoneNumberApi extends AbstractApi
             );
         }
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -288,11 +288,11 @@ final class PhoneNumberApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($confirm_phone_number_request)) {
+        if (isset($confirmPhoneNumberRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($confirm_phone_number_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($confirmPhoneNumberRequest));
             } else {
-                $httpBody = $confirm_phone_number_request;
+                $httpBody = $confirmPhoneNumberRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -342,12 +342,12 @@ final class PhoneNumberApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function verifyPhoneNumber(
-        string $user_id,
-        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+        string $userId,
+        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): array {
         list($response) = $this->verifyPhoneNumberWithHttpInfo(
-            $user_id,
-            $verify_phone_number_request
+            $userId,
+            $verifyPhoneNumberRequest
         );
         return $response;
     }
@@ -358,12 +358,12 @@ final class PhoneNumberApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function verifyPhoneNumberWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+        string $userId,
+        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): array {
         $request = $this->verifyPhoneNumberRequest(
-            $user_id,
-            $verify_phone_number_request
+            $userId,
+            $verifyPhoneNumberRequest
         );
 
         try {
@@ -390,12 +390,12 @@ final class PhoneNumberApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function verifyPhoneNumberAsync(
-        string $user_id,
-        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+        string $userId,
+        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): Promise {
         return $this->verifyPhoneNumberAsyncWithHttpInfo(
-            $user_id,
-            $verify_phone_number_request
+            $userId,
+            $verifyPhoneNumberRequest
         )
             ->then(
                 function ($response) {
@@ -410,13 +410,13 @@ final class PhoneNumberApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function verifyPhoneNumberAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+        string $userId,
+        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\VerifyPhoneNumber200Response';
         $request = $this->verifyPhoneNumberRequest(
-            $user_id,
-            $verify_phone_number_request
+            $userId,
+            $verifyPhoneNumberRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -457,13 +457,13 @@ final class PhoneNumberApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function verifyPhoneNumberRequest(
-        string $user_id,
-        \Upsun\Model\VerifyPhoneNumberRequest $verify_phone_number_request = null
+        string $userId,
+        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling verifyPhoneNumber'
+                'Missing the required parameter $userId when calling verifyPhoneNumber'
             );
         }
 
@@ -477,10 +477,10 @@ final class PhoneNumberApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -493,11 +493,11 @@ final class PhoneNumberApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($verify_phone_number_request)) {
+        if (isset($verifyPhoneNumberRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($verify_phone_number_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($verifyPhoneNumberRequest));
             } else {
-                $httpBody = $verify_phone_number_request;
+                $httpBody = $verifyPhoneNumberRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

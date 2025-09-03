@@ -29,8 +29,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     ];
 
     public function __construct(
-        public readonly ?string $service = null,
-        public readonly ?string $endpoint = null,
+        private readonly ?string $service = null,
+        private readonly ?string $endpoint = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+    public function getEndpoint(): ?string
+    {
+        return $this->endpoint;
     }
 }
 

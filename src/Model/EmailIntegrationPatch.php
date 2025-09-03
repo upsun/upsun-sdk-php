@@ -25,14 +25,14 @@ final class EmailIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'from_address' => 'from_address',
+        'fromAddress' => 'from_address',
         'recipients' => 'recipients'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $from_address = null,
-        public readonly ?array $recipients = [],
+        private readonly ?string $type = null,
+        private readonly ?string $fromAddress = null,
+        private readonly ?array $recipients = [],
     ) {
     }
 
@@ -40,7 +40,7 @@ final class EmailIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'from_address' => $this->from_address,
+            'fromAddress' => $this->fromAddress,
             'recipients' => $this->recipients,
         ];
     }
@@ -48,6 +48,19 @@ final class EmailIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getFromAddress(): ?string
+    {
+        return $this->fromAddress;
+    }
+    public function getRecipients(): ?array
+    {
+        return $this->recipients;
     }
 }
 

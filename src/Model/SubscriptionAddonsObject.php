@@ -26,13 +26,13 @@ final class SubscriptionAddonsObject implements JsonSerializable
     private static array $attributeMap = [
         'available' => 'available',
         'current' => 'current',
-        'upgrades_available' => 'upgrades_available'
+        'upgradesAvailable' => 'upgrades_available'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
-        public readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
-        public readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgrades_available = null,
+        private readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
+        private readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
+        private readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class SubscriptionAddonsObject implements JsonSerializable
         return [
             'available' => $this->available,
             'current' => $this->current,
-            'upgrades_available' => $this->upgrades_available,
+            'upgradesAvailable' => $this->upgradesAvailable,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectAvailable
+    {
+        return $this->available;
+    }
+    public function getCurrent(): ?\Upsun\Model\SubscriptionAddonsObjectCurrent
+    {
+        return $this->current;
+    }
+    public function getUpgradesAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable
+    {
+        return $this->upgradesAvailable;
     }
 }
 

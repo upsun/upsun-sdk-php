@@ -126,12 +126,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @return array
      */
     public function cancelOrgInvite(
-        string $organization_id,
-        string $invitation_id
+        string $organizationId,
+        string $invitationId
     ): array {
         list($response) = $this->cancelOrgInviteWithHttpInfo(
-            $organization_id,
-            $invitation_id
+            $organizationId,
+            $invitationId
         );
         return $response;
     }
@@ -142,12 +142,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function cancelOrgInviteWithHttpInfo(
-        string $organization_id,
-        string $invitation_id
+        string $organizationId,
+        string $invitationId
     ): array {
         $request = $this->cancelOrgInviteRequest(
-            $organization_id,
-            $invitation_id
+            $organizationId,
+            $invitationId
         );
 
         try {
@@ -174,12 +174,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function cancelOrgInviteAsync(
-        string $organization_id,
-        string $invitation_id
+        string $organizationId,
+        string $invitationId
     ): Promise {
         return $this->cancelOrgInviteAsyncWithHttpInfo(
-            $organization_id,
-            $invitation_id
+            $organizationId,
+            $invitationId
         )
             ->then(
                 function ($response) {
@@ -194,13 +194,13 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function cancelOrgInviteAsyncWithHttpInfo(
-        string $organization_id,
-        string $invitation_id
+        string $organizationId,
+        string $invitationId
     ): Promise {
         $returnType = '';
         $request = $this->cancelOrgInviteRequest(
-            $organization_id,
-            $invitation_id
+            $organizationId,
+            $invitationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,19 +231,19 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function cancelOrgInviteRequest(
-        string $organization_id,
-        string $invitation_id
+        string $organizationId,
+        string $invitationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling cancelOrgInvite'
+                'Missing the required parameter $organizationId when calling cancelOrgInvite'
             );
         }
-        // verify the required parameter 'invitation_id' is set
-        if ($invitation_id === null || (is_array($invitation_id) && count($invitation_id) === 0)) {
+        // verify the required parameter 'invitationId' is set
+        if ($invitationId === null || (is_array($invitationId) && count($invitationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $invitation_id when calling cancelOrgInvite'
+                'Missing the required parameter $invitationId when calling cancelOrgInvite'
             );
         }
 
@@ -257,18 +257,18 @@ final class OrganizationInvitationsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
         // path params
-        if ($invitation_id !== null) {
+        if ($invitationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'invitation_id' . '}',
-                ObjectSerializer::toPathValue($invitation_id),
+                ObjectSerializer::toPathValue($invitationId),
                 $resourcePath
             );
         }
@@ -329,12 +329,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgInvite(
-        string $organization_id,
-        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+        string $organizationId,
+        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): \Upsun\Model\OrganizationInvitation {
         list($response) = $this->createOrgInviteWithHttpInfo(
-            $organization_id,
-            $create_org_invite_request
+            $organizationId,
+            $createOrgInviteRequest
         );
         return $response;
     }
@@ -345,12 +345,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgInviteWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+        string $organizationId,
+        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): array {
         $request = $this->createOrgInviteRequest(
-            $organization_id,
-            $create_org_invite_request
+            $organizationId,
+            $createOrgInviteRequest
         );
 
         try {
@@ -377,12 +377,12 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgInviteAsync(
-        string $organization_id,
-        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+        string $organizationId,
+        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): Promise {
         return $this->createOrgInviteAsyncWithHttpInfo(
-            $organization_id,
-            $create_org_invite_request
+            $organizationId,
+            $createOrgInviteRequest
         )
             ->then(
                 function ($response) {
@@ -397,13 +397,13 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgInviteAsyncWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+        string $organizationId,
+        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationInvitation';
         $request = $this->createOrgInviteRequest(
-            $organization_id,
-            $create_org_invite_request
+            $organizationId,
+            $createOrgInviteRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -444,13 +444,13 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createOrgInviteRequest(
-        string $organization_id,
-        \Upsun\Model\CreateOrgInviteRequest $create_org_invite_request = null
+        string $organizationId,
+        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling createOrgInvite'
+                'Missing the required parameter $organizationId when calling createOrgInvite'
             );
         }
 
@@ -464,10 +464,10 @@ final class OrganizationInvitationsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -480,11 +480,11 @@ final class OrganizationInvitationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($create_org_invite_request)) {
+        if (isset($createOrgInviteRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($create_org_invite_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createOrgInviteRequest));
             } else {
-                $httpBody = $create_org_invite_request;
+                $httpBody = $createOrgInviteRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -536,19 +536,19 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @return array
      */
     public function listOrgInvites(
-        string $organization_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $organizationId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listOrgInvitesWithHttpInfo(
-            $organization_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $organizationId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -560,19 +560,19 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvitesWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $organizationId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listOrgInvitesRequest(
-            $organization_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $organizationId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -600,19 +600,19 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvitesAsync(
-        string $organization_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $organizationId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listOrgInvitesAsyncWithHttpInfo(
-            $organization_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $organizationId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -628,20 +628,20 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgInvitesAsyncWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $organizationId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationInvitation[]';
         $request = $this->listOrgInvitesRequest(
-            $organization_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $organizationId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -683,28 +683,28 @@ final class OrganizationInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgInvitesRequest(
-        string $organization_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $organizationId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling listOrgInvites'
+                'Missing the required parameter $organizationId when calling listOrgInvites'
             );
         }
-        if ($page_size !== null && $page_size > 100) {
+        if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling OrganizationInvitationsApi.listOrgInvites, 
+                'invalid value for "$pageSize" when calling OrganizationInvitationsApi.listOrgInvites, 
                 must be smaller than or equal to 100.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling OrganizationInvitationsApi.listOrgInvites,
+                'invalid value for "$pageSize" when calling OrganizationInvitationsApi.listOrgInvites,
                 must be bigger than or equal to 1.'
             );
         }
@@ -718,46 +718,46 @@ final class OrganizationInvitationsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_state !== null) {
-            if ('form' === 'deepObject' && is_array($filter_state)) {
-                foreach ($filter_state as $key => $value) {
+        if ($filterState !== null) {
+            if ('form' === 'deepObject' && is_array($filterState)) {
+                foreach ($filterState as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[state]'] = $filter_state->eq;
+                $queryParams['filter[state]'] = $filterState->getEq();
             }
         }
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 
@@ -775,10 +775,10 @@ final class OrganizationInvitationsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }

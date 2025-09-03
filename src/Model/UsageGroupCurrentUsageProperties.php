@@ -26,25 +26,25 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     private static array $attributeMap = [
         'title' => 'title',
         'type' => 'type',
-        'current_usage' => 'current_usage',
-        'current_usage_formatted' => 'current_usage_formatted',
-        'not_charged' => 'not_charged',
-        'free_quantity' => 'free_quantity',
-        'free_quantity_formatted' => 'free_quantity_formatted',
-        'daily_average' => 'daily_average',
-        'daily_average_formatted' => 'daily_average_formatted'
+        'currentUsage' => 'current_usage',
+        'currentUsageFormatted' => 'current_usage_formatted',
+        'notCharged' => 'not_charged',
+        'freeQuantity' => 'free_quantity',
+        'freeQuantityFormatted' => 'free_quantity_formatted',
+        'dailyAverage' => 'daily_average',
+        'dailyAverageFormatted' => 'daily_average_formatted'
     ];
 
     public function __construct(
-        public readonly ?string $title = null,
-        public readonly ?bool $type = null,
-        public readonly ?float $current_usage = null,
-        public readonly ?string $current_usage_formatted = null,
-        public readonly ?bool $not_charged = null,
-        public readonly ?float $free_quantity = null,
-        public readonly ?string $free_quantity_formatted = null,
-        public readonly ?float $daily_average = null,
-        public readonly ?string $daily_average_formatted = null,
+        private readonly ?string $title = null,
+        private readonly ?bool $type = null,
+        private readonly ?float $currentUsage = null,
+        private readonly ?string $currentUsageFormatted = null,
+        private readonly ?bool $notCharged = null,
+        private readonly ?float $freeQuantity = null,
+        private readonly ?string $freeQuantityFormatted = null,
+        private readonly ?float $dailyAverage = null,
+        private readonly ?string $dailyAverageFormatted = null,
     ) {
     }
 
@@ -53,19 +53,56 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         return [
             'title' => $this->title,
             'type' => $this->type,
-            'current_usage' => $this->current_usage,
-            'current_usage_formatted' => $this->current_usage_formatted,
-            'not_charged' => $this->not_charged,
-            'free_quantity' => $this->free_quantity,
-            'free_quantity_formatted' => $this->free_quantity_formatted,
-            'daily_average' => $this->daily_average,
-            'daily_average_formatted' => $this->daily_average_formatted,
+            'currentUsage' => $this->currentUsage,
+            'currentUsageFormatted' => $this->currentUsageFormatted,
+            'notCharged' => $this->notCharged,
+            'freeQuantity' => $this->freeQuantity,
+            'freeQuantityFormatted' => $this->freeQuantityFormatted,
+            'dailyAverage' => $this->dailyAverage,
+            'dailyAverageFormatted' => $this->dailyAverageFormatted,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getType(): ?bool
+    {
+        return $this->type;
+    }
+    public function getCurrentUsage(): ?float
+    {
+        return $this->currentUsage;
+    }
+    public function getCurrentUsageFormatted(): ?string
+    {
+        return $this->currentUsageFormatted;
+    }
+    public function getNotCharged(): ?bool
+    {
+        return $this->notCharged;
+    }
+    public function getFreeQuantity(): ?float
+    {
+        return $this->freeQuantity;
+    }
+    public function getFreeQuantityFormatted(): ?string
+    {
+        return $this->freeQuantityFormatted;
+    }
+    public function getDailyAverage(): ?float
+    {
+        return $this->dailyAverage;
+    }
+    public function getDailyAverageFormatted(): ?string
+    {
+        return $this->dailyAverageFormatted;
     }
 }
 

@@ -30,9 +30,9 @@ final class Ref implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $ref = null,
-        public readonly ?\Upsun\Model\TheObjectTheReferencePointsTo $object = null,
-        public readonly ?string $sha = null,
+        private readonly ?string $ref = null,
+        private readonly ?\Upsun\Model\TheObjectTheReferencePointsTo $object = null,
+        private readonly ?string $sha = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class Ref implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+    public function getObject(): ?\Upsun\Model\TheObjectTheReferencePointsTo
+    {
+        return $this->object;
+    }
+    public function getSha(): ?string
+    {
+        return $this->sha;
     }
 }
 

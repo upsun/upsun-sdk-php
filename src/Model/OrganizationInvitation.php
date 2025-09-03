@@ -26,25 +26,25 @@ final class OrganizationInvitation implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'state' => 'state',
-        'organization_id' => 'organization_id',
+        'organizationId' => 'organization_id',
         'email' => 'email',
         'owner' => 'owner',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'finished_at' => 'finished_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'finishedAt' => 'finished_at',
         'permissions' => 'permissions'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $state = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?string $email = null,
-        public readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?\DateTime $finished_at = null,
-        public readonly ?array $permissions = [],
+        private readonly ?string $id = null,
+        private readonly ?string $state = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $email = null,
+        private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $finishedAt = null,
+        private readonly ?array $permissions = [],
     ) {
     }
 
@@ -53,12 +53,12 @@ final class OrganizationInvitation implements JsonSerializable
         return [
             'id' => $this->id,
             'state' => $this->state,
-            'organization_id' => $this->organization_id,
+            'organizationId' => $this->organizationId,
             'email' => $this->email,
             'owner' => $this->owner,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'finished_at' => $this->finished_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'finishedAt' => $this->finishedAt,
             'permissions' => $this->permissions,
         ];
     }
@@ -66,6 +66,43 @@ final class OrganizationInvitation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+    public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
+    {
+        return $this->owner;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getFinishedAt(): ?\DateTime
+    {
+        return $this->finishedAt;
+    }
+    public function getPermissions(): ?array
+    {
+        return $this->permissions;
     }
 }
 

@@ -28,7 +28,7 @@ final class VersionPatch implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
+        private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class VersionPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRouting(): ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1
+    {
+        return $this->routing;
     }
 }
 

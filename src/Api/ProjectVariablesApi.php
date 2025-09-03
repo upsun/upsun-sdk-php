@@ -124,12 +124,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsVariables(
-        string $project_id,
-        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+        string $projectId,
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsVariablesWithHttpInfo(
-            $project_id,
-            $project_variable_create_input
+            $projectId,
+            $projectVariableCreateInput
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsVariablesWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+        string $projectId,
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
     ): array {
         $request = $this->createProjectsVariablesRequest(
-            $project_id,
-            $project_variable_create_input
+            $projectId,
+            $projectVariableCreateInput
         );
 
         try {
@@ -172,12 +172,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsVariablesAsync(
-        string $project_id,
-        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+        string $projectId,
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
     ): Promise {
         return $this->createProjectsVariablesAsyncWithHttpInfo(
-            $project_id,
-            $project_variable_create_input
+            $projectId,
+            $projectVariableCreateInput
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsVariablesAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+        string $projectId,
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsVariablesRequest(
-            $project_id,
-            $project_variable_create_input
+            $projectId,
+            $projectVariableCreateInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectsVariablesRequest(
-        string $project_id,
-        \Upsun\Model\ProjectVariableCreateInput $project_variable_create_input
+        string $projectId,
+        \Upsun\Model\ProjectVariableCreateInput $projectVariableCreateInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectsVariables'
+                'Missing the required parameter $projectId when calling createProjectsVariables'
             );
         }
-        // verify the required parameter 'project_variable_create_input' is set
-        if ($project_variable_create_input === null || (is_array($project_variable_create_input) && count($project_variable_create_input) === 0)) {
+        // verify the required parameter 'projectVariableCreateInput' is set
+        if ($projectVariableCreateInput === null || (is_array($projectVariableCreateInput) && count($projectVariableCreateInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_variable_create_input when calling createProjectsVariables'
+                'Missing the required parameter $projectVariableCreateInput when calling createProjectsVariables'
             );
         }
 
@@ -265,10 +265,10 @@ final class ProjectVariablesApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -281,11 +281,11 @@ final class ProjectVariablesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($project_variable_create_input)) {
+        if (isset($projectVariableCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($project_variable_create_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($projectVariableCreateInput));
             } else {
-                $httpBody = $project_variable_create_input;
+                $httpBody = $projectVariableCreateInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -335,12 +335,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsVariables(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsVariablesWithHttpInfo(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         );
         return $response;
     }
@@ -351,12 +351,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsVariablesWithHttpInfo(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): array {
         $request = $this->deleteProjectsVariablesRequest(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         );
 
         try {
@@ -383,12 +383,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsVariablesAsync(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): Promise {
         return $this->deleteProjectsVariablesAsyncWithHttpInfo(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         )
             ->then(
                 function ($response) {
@@ -403,13 +403,13 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsVariablesAsyncWithHttpInfo(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsVariablesRequest(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -450,19 +450,19 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsVariablesRequest(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsVariables'
+                'Missing the required parameter $projectId when calling deleteProjectsVariables'
             );
         }
-        // verify the required parameter 'project_variable_id' is set
-        if ($project_variable_id === null || (is_array($project_variable_id) && count($project_variable_id) === 0)) {
+        // verify the required parameter 'projectVariableId' is set
+        if ($projectVariableId === null || (is_array($projectVariableId) && count($projectVariableId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_variable_id when calling deleteProjectsVariables'
+                'Missing the required parameter $projectVariableId when calling deleteProjectsVariables'
             );
         }
 
@@ -476,18 +476,18 @@ final class ProjectVariablesApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($project_variable_id !== null) {
+        if ($projectVariableId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectVariableId' . '}',
-                ObjectSerializer::toPathValue($project_variable_id),
+                ObjectSerializer::toPathValue($projectVariableId),
                 $resourcePath
             );
         }
@@ -548,12 +548,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsVariables(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): \Upsun\Model\ProjectVariable {
         list($response) = $this->getProjectsVariablesWithHttpInfo(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         );
         return $response;
     }
@@ -564,12 +564,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsVariablesWithHttpInfo(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): array {
         $request = $this->getProjectsVariablesRequest(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         );
 
         try {
@@ -596,12 +596,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsVariablesAsync(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): Promise {
         return $this->getProjectsVariablesAsyncWithHttpInfo(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         )
             ->then(
                 function ($response) {
@@ -616,13 +616,13 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsVariablesAsyncWithHttpInfo(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): Promise {
         $returnType = '\Upsun\Model\ProjectVariable';
         $request = $this->getProjectsVariablesRequest(
-            $project_id,
-            $project_variable_id
+            $projectId,
+            $projectVariableId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -663,19 +663,19 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsVariablesRequest(
-        string $project_id,
-        string $project_variable_id
+        string $projectId,
+        string $projectVariableId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsVariables'
+                'Missing the required parameter $projectId when calling getProjectsVariables'
             );
         }
-        // verify the required parameter 'project_variable_id' is set
-        if ($project_variable_id === null || (is_array($project_variable_id) && count($project_variable_id) === 0)) {
+        // verify the required parameter 'projectVariableId' is set
+        if ($projectVariableId === null || (is_array($projectVariableId) && count($projectVariableId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_variable_id when calling getProjectsVariables'
+                'Missing the required parameter $projectVariableId when calling getProjectsVariables'
             );
         }
 
@@ -689,18 +689,18 @@ final class ProjectVariablesApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($project_variable_id !== null) {
+        if ($projectVariableId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectVariableId' . '}',
-                ObjectSerializer::toPathValue($project_variable_id),
+                ObjectSerializer::toPathValue($projectVariableId),
                 $resourcePath
             );
         }
@@ -761,10 +761,10 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsVariables(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsVariablesWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -775,10 +775,10 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsVariablesWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsVariablesRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -805,10 +805,10 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsVariablesAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsVariablesAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -823,11 +823,11 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsVariablesAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\ProjectVariable[]';
         $request = $this->listProjectsVariablesRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -868,12 +868,12 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsVariablesRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsVariables'
+                'Missing the required parameter $projectId when calling listProjectsVariables'
             );
         }
 
@@ -887,10 +887,10 @@ final class ProjectVariablesApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -951,14 +951,14 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsVariables(
-        string $project_id,
-        string $project_variable_id,
-        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+        string $projectId,
+        string $projectVariableId,
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsVariablesWithHttpInfo(
-            $project_id,
-            $project_variable_id,
-            $project_variable_patch
+            $projectId,
+            $projectVariableId,
+            $projectVariablePatch
         );
         return $response;
     }
@@ -969,14 +969,14 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsVariablesWithHttpInfo(
-        string $project_id,
-        string $project_variable_id,
-        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+        string $projectId,
+        string $projectVariableId,
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
     ): array {
         $request = $this->updateProjectsVariablesRequest(
-            $project_id,
-            $project_variable_id,
-            $project_variable_patch
+            $projectId,
+            $projectVariableId,
+            $projectVariablePatch
         );
 
         try {
@@ -1003,14 +1003,14 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsVariablesAsync(
-        string $project_id,
-        string $project_variable_id,
-        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+        string $projectId,
+        string $projectVariableId,
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
     ): Promise {
         return $this->updateProjectsVariablesAsyncWithHttpInfo(
-            $project_id,
-            $project_variable_id,
-            $project_variable_patch
+            $projectId,
+            $projectVariableId,
+            $projectVariablePatch
         )
             ->then(
                 function ($response) {
@@ -1025,15 +1025,15 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsVariablesAsyncWithHttpInfo(
-        string $project_id,
-        string $project_variable_id,
-        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+        string $projectId,
+        string $projectVariableId,
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsVariablesRequest(
-            $project_id,
-            $project_variable_id,
-            $project_variable_patch
+            $projectId,
+            $projectVariableId,
+            $projectVariablePatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1074,26 +1074,26 @@ final class ProjectVariablesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsVariablesRequest(
-        string $project_id,
-        string $project_variable_id,
-        \Upsun\Model\ProjectVariablePatch $project_variable_patch
+        string $projectId,
+        string $projectVariableId,
+        \Upsun\Model\ProjectVariablePatch $projectVariablePatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsVariables'
+                'Missing the required parameter $projectId when calling updateProjectsVariables'
             );
         }
-        // verify the required parameter 'project_variable_id' is set
-        if ($project_variable_id === null || (is_array($project_variable_id) && count($project_variable_id) === 0)) {
+        // verify the required parameter 'projectVariableId' is set
+        if ($projectVariableId === null || (is_array($projectVariableId) && count($projectVariableId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_variable_id when calling updateProjectsVariables'
+                'Missing the required parameter $projectVariableId when calling updateProjectsVariables'
             );
         }
-        // verify the required parameter 'project_variable_patch' is set
-        if ($project_variable_patch === null || (is_array($project_variable_patch) && count($project_variable_patch) === 0)) {
+        // verify the required parameter 'projectVariablePatch' is set
+        if ($projectVariablePatch === null || (is_array($projectVariablePatch) && count($projectVariablePatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_variable_patch when calling updateProjectsVariables'
+                'Missing the required parameter $projectVariablePatch when calling updateProjectsVariables'
             );
         }
 
@@ -1107,18 +1107,18 @@ final class ProjectVariablesApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($project_variable_id !== null) {
+        if ($projectVariableId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectVariableId' . '}',
-                ObjectSerializer::toPathValue($project_variable_id),
+                ObjectSerializer::toPathValue($projectVariableId),
                 $resourcePath
             );
         }
@@ -1131,11 +1131,11 @@ final class ProjectVariablesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($project_variable_patch)) {
+        if (isset($projectVariablePatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($project_variable_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($projectVariablePatch));
             } else {
-                $httpBody = $project_variable_patch;
+                $httpBody = $projectVariablePatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

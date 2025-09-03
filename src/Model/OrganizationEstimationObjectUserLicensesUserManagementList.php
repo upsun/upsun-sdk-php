@@ -24,27 +24,36 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_user_management_list';
 
     private static array $attributeMap = [
-        'standard_management_user' => 'standard_management_user',
-        'advanced_management_user' => 'advanced_management_user'
+        'standardManagementUser' => 'standard_management_user',
+        'advancedManagementUser' => 'advanced_management_user'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standard_management_user = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advanced_management_user = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'standard_management_user' => $this->standard_management_user,
-            'advanced_management_user' => $this->advanced_management_user,
+            'standardManagementUser' => $this->standardManagementUser,
+            'advancedManagementUser' => $this->advancedManagementUser,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getStandardManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
+    {
+        return $this->standardManagementUser;
+    }
+    public function getAdvancedManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
+    {
+        return $this->advancedManagementUser;
     }
 }
 

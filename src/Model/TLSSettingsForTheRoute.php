@@ -24,33 +24,50 @@ final class TLSSettingsForTheRoute implements JsonSerializable
     private static string $openAPIModelName = 'TLS_settings_for_the_route_';
 
     private static array $attributeMap = [
-        'strict_transport_security' => 'strict_transport_security',
-        'min_version' => 'min_version',
-        'client_authentication' => 'client_authentication',
-        'client_certificate_authorities' => 'client_certificate_authorities'
+        'strictTransportSecurity' => 'strict_transport_security',
+        'minVersion' => 'min_version',
+        'clientAuthentication' => 'client_authentication',
+        'clientCertificateAuthorities' => 'client_certificate_authorities'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\StrictTransportSecurityOptions $strict_transport_security = null,
-        public readonly ?string $min_version = null,
-        public readonly ?string $client_authentication = null,
-        public readonly ?array $client_certificate_authorities = [],
+        private readonly ?\Upsun\Model\StrictTransportSecurityOptions $strictTransportSecurity = null,
+        private readonly ?string $minVersion = null,
+        private readonly ?string $clientAuthentication = null,
+        private readonly ?array $clientCertificateAuthorities = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'strict_transport_security' => $this->strict_transport_security,
-            'min_version' => $this->min_version,
-            'client_authentication' => $this->client_authentication,
-            'client_certificate_authorities' => $this->client_certificate_authorities,
+            'strictTransportSecurity' => $this->strictTransportSecurity,
+            'minVersion' => $this->minVersion,
+            'clientAuthentication' => $this->clientAuthentication,
+            'clientCertificateAuthorities' => $this->clientCertificateAuthorities,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getStrictTransportSecurity(): ?\Upsun\Model\StrictTransportSecurityOptions
+    {
+        return $this->strictTransportSecurity;
+    }
+    public function getMinVersion(): ?string
+    {
+        return $this->minVersion;
+    }
+    public function getClientAuthentication(): ?string
+    {
+        return $this->clientAuthentication;
+    }
+    public function getClientCertificateAuthorities(): ?array
+    {
+        return $this->clientCertificateAuthorities;
     }
 }
 

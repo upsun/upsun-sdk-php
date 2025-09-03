@@ -26,17 +26,17 @@ final class EnvironmentBranchInput implements JsonSerializable
     private static array $attributeMap = [
         'title' => 'title',
         'name' => 'name',
-        'clone_parent' => 'clone_parent',
+        'cloneParent' => 'clone_parent',
         'type' => 'type',
         'resources' => 'resources'
     ];
 
     public function __construct(
-        public readonly ?string $title = null,
-        public readonly ?string $name = null,
-        public readonly ?bool $clone_parent = null,
-        public readonly ?string $type = null,
-        public readonly ?\Upsun\Model\Resources2 $resources = null,
+        private readonly ?string $title = null,
+        private readonly ?string $name = null,
+        private readonly ?bool $cloneParent = null,
+        private readonly ?string $type = null,
+        private readonly ?\Upsun\Model\Resources2 $resources = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class EnvironmentBranchInput implements JsonSerializable
         return [
             'title' => $this->title,
             'name' => $this->name,
-            'clone_parent' => $this->clone_parent,
+            'cloneParent' => $this->cloneParent,
             'type' => $this->type,
             'resources' => $this->resources,
         ];
@@ -54,6 +54,27 @@ final class EnvironmentBranchInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getCloneParent(): ?bool
+    {
+        return $this->cloneParent;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getResources(): ?\Upsun\Model\Resources2
+    {
+        return $this->resources;
     }
 }
 

@@ -24,24 +24,29 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     private static string $openAPIModelName = 'get_current_user_verification_status_200_response';
 
     private static array $attributeMap = [
-        'verify_phone' => 'verify_phone'
+        'verifyPhone' => 'verify_phone'
     ];
 
     public function __construct(
-        public readonly ?bool $verify_phone = null,
+        private readonly ?bool $verifyPhone = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'verify_phone' => $this->verify_phone,
+            'verifyPhone' => $this->verifyPhone,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getVerifyPhone(): ?bool
+    {
+        return $this->verifyPhone;
     }
 }
 

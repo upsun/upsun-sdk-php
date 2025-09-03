@@ -24,30 +24,43 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     private static string $openAPIModelName = 'The_addon_credential_information__optional___1';
 
     private static array $attributeMap = [
-        'addon_key' => 'addon_key',
-        'client_key' => 'client_key',
-        'shared_secret' => 'shared_secret'
+        'addonKey' => 'addon_key',
+        'clientKey' => 'client_key',
+        'sharedSecret' => 'shared_secret'
     ];
 
     public function __construct(
-        public readonly ?string $addon_key = null,
-        public readonly ?string $client_key = null,
-        public readonly ?string $shared_secret = null,
+        private readonly ?string $addonKey = null,
+        private readonly ?string $clientKey = null,
+        private readonly ?string $sharedSecret = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'addon_key' => $this->addon_key,
-            'client_key' => $this->client_key,
-            'shared_secret' => $this->shared_secret,
+            'addonKey' => $this->addonKey,
+            'clientKey' => $this->clientKey,
+            'sharedSecret' => $this->sharedSecret,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAddonKey(): ?string
+    {
+        return $this->addonKey;
+    }
+    public function getClientKey(): ?string
+    {
+        return $this->clientKey;
+    }
+    public function getSharedSecret(): ?string
+    {
+        return $this->sharedSecret;
     }
 }
 

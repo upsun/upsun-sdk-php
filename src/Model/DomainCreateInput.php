@@ -26,15 +26,15 @@ final class DomainCreateInput implements JsonSerializable
     private static array $attributeMap = [
         'name' => 'name',
         'attributes' => 'attributes',
-        'is_default' => 'is_default',
-        'replacement_for' => 'replacement_for'
+        'isDefault' => 'is_default',
+        'replacementFor' => 'replacement_for'
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?array $attributes = [],
-        public readonly ?bool $is_default = null,
-        public readonly ?string $replacement_for = null,
+        private readonly ?string $name = null,
+        private readonly ?array $attributes = [],
+        private readonly ?bool $isDefault = null,
+        private readonly ?string $replacementFor = null,
     ) {
     }
 
@@ -43,14 +43,31 @@ final class DomainCreateInput implements JsonSerializable
         return [
             'name' => $this->name,
             'attributes' => $this->attributes,
-            'is_default' => $this->is_default,
-            'replacement_for' => $this->replacement_for,
+            'isDefault' => $this->isDefault,
+            'replacementFor' => $this->replacementFor,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getIsDefault(): ?bool
+    {
+        return $this->isDefault;
+    }
+    public function getReplacementFor(): ?string
+    {
+        return $this->replacementFor;
     }
 }
 

@@ -24,20 +24,20 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     private static string $openAPIModelName = 'Access_control_definition_for_this_enviroment_inner';
 
     private static array $attributeMap = [
-        'entity_id' => 'entity_id',
+        'entityId' => 'entity_id',
         'role' => 'role'
     ];
 
     public function __construct(
-        public readonly ?string $entity_id = null,
-        public readonly ?string $role = null,
+        private readonly ?string $entityId = null,
+        private readonly ?string $role = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'entity_id' => $this->entity_id,
+            'entityId' => $this->entityId,
             'role' => $this->role,
         ];
     }
@@ -45,6 +45,15 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEntityId(): ?string
+    {
+        return $this->entityId;
+    }
+    public function getRole(): ?string
+    {
+        return $this->role;
     }
 }
 

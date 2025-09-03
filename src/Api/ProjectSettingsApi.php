@@ -124,10 +124,10 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSettings(
-        string $project_id
+        string $projectId
     ): \Upsun\Model\ProjectSettings {
         list($response) = $this->getProjectsSettingsWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -138,10 +138,10 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSettingsWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->getProjectsSettingsRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -168,10 +168,10 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSettingsAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->getProjectsSettingsAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -186,11 +186,11 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSettingsAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\ProjectSettings';
         $request = $this->getProjectsSettingsRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,12 +231,12 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsSettingsRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsSettings'
+                'Missing the required parameter $projectId when calling getProjectsSettings'
             );
         }
 
@@ -250,10 +250,10 @@ final class ProjectSettingsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -314,12 +314,12 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsSettings(
-        string $project_id,
-        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+        string $projectId,
+        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsSettingsWithHttpInfo(
-            $project_id,
-            $project_settings_patch
+            $projectId,
+            $projectSettingsPatch
         );
         return $response;
     }
@@ -330,12 +330,12 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsSettingsWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+        string $projectId,
+        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): array {
         $request = $this->updateProjectsSettingsRequest(
-            $project_id,
-            $project_settings_patch
+            $projectId,
+            $projectSettingsPatch
         );
 
         try {
@@ -362,12 +362,12 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsSettingsAsync(
-        string $project_id,
-        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+        string $projectId,
+        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): Promise {
         return $this->updateProjectsSettingsAsyncWithHttpInfo(
-            $project_id,
-            $project_settings_patch
+            $projectId,
+            $projectSettingsPatch
         )
             ->then(
                 function ($response) {
@@ -382,13 +382,13 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsSettingsAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+        string $projectId,
+        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsSettingsRequest(
-            $project_id,
-            $project_settings_patch
+            $projectId,
+            $projectSettingsPatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -429,19 +429,19 @@ final class ProjectSettingsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsSettingsRequest(
-        string $project_id,
-        \Upsun\Model\ProjectSettingsPatch $project_settings_patch
+        string $projectId,
+        \Upsun\Model\ProjectSettingsPatch $projectSettingsPatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsSettings'
+                'Missing the required parameter $projectId when calling updateProjectsSettings'
             );
         }
-        // verify the required parameter 'project_settings_patch' is set
-        if ($project_settings_patch === null || (is_array($project_settings_patch) && count($project_settings_patch) === 0)) {
+        // verify the required parameter 'projectSettingsPatch' is set
+        if ($projectSettingsPatch === null || (is_array($projectSettingsPatch) && count($projectSettingsPatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_settings_patch when calling updateProjectsSettings'
+                'Missing the required parameter $projectSettingsPatch when calling updateProjectsSettings'
             );
         }
 
@@ -455,10 +455,10 @@ final class ProjectSettingsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -471,11 +471,11 @@ final class ProjectSettingsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($project_settings_patch)) {
+        if (isset($projectSettingsPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($project_settings_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($projectSettingsPatch));
             } else {
-                $httpBody = $project_settings_patch;
+                $httpBody = $projectSettingsPatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

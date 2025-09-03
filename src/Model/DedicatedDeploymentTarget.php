@@ -26,33 +26,33 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'name' => 'name',
-        'deploy_host' => 'deploy_host',
-        'deploy_port' => 'deploy_port',
-        'ssh_host' => 'ssh_host',
+        'deployHost' => 'deploy_host',
+        'deployPort' => 'deploy_port',
+        'sshHost' => 'ssh_host',
         'hosts' => 'hosts',
-        'auto_mounts' => 'auto_mounts',
-        'excluded_mounts' => 'excluded_mounts',
-        'enforced_mounts' => 'enforced_mounts',
-        'auto_crons' => 'auto_crons',
-        'auto_nginx' => 'auto_nginx',
-        'maintenance_mode' => 'maintenance_mode',
-        'guardrails_phase' => 'guardrails_phase'
+        'autoMounts' => 'auto_mounts',
+        'excludedMounts' => 'excluded_mounts',
+        'enforcedMounts' => 'enforced_mounts',
+        'autoCrons' => 'auto_crons',
+        'autoNginx' => 'auto_nginx',
+        'maintenanceMode' => 'maintenance_mode',
+        'guardrailsPhase' => 'guardrails_phase'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?string $deploy_host = null,
-        public readonly ?int $deploy_port = null,
-        public readonly ?string $ssh_host = null,
-        public readonly ?array $hosts = [],
-        public readonly ?bool $auto_mounts = null,
-        public readonly ?array $excluded_mounts = [],
-        public readonly ?object $enforced_mounts = null,
-        public readonly ?bool $auto_crons = null,
-        public readonly ?bool $auto_nginx = null,
-        public readonly ?bool $maintenance_mode = null,
-        public readonly ?int $guardrails_phase = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?string $deployHost = null,
+        private readonly ?int $deployPort = null,
+        private readonly ?string $sshHost = null,
+        private readonly ?array $hosts = [],
+        private readonly ?bool $autoMounts = null,
+        private readonly ?array $excludedMounts = [],
+        private readonly ?object $enforcedMounts = null,
+        private readonly ?bool $autoCrons = null,
+        private readonly ?bool $autoNginx = null,
+        private readonly ?bool $maintenanceMode = null,
+        private readonly ?int $guardrailsPhase = null,
     ) {
     }
 
@@ -61,23 +61,76 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         return [
             'type' => $this->type,
             'name' => $this->name,
-            'deploy_host' => $this->deploy_host,
-            'deploy_port' => $this->deploy_port,
-            'ssh_host' => $this->ssh_host,
+            'deployHost' => $this->deployHost,
+            'deployPort' => $this->deployPort,
+            'sshHost' => $this->sshHost,
             'hosts' => $this->hosts,
-            'auto_mounts' => $this->auto_mounts,
-            'excluded_mounts' => $this->excluded_mounts,
-            'enforced_mounts' => $this->enforced_mounts,
-            'auto_crons' => $this->auto_crons,
-            'auto_nginx' => $this->auto_nginx,
-            'maintenance_mode' => $this->maintenance_mode,
-            'guardrails_phase' => $this->guardrails_phase,
+            'autoMounts' => $this->autoMounts,
+            'excludedMounts' => $this->excludedMounts,
+            'enforcedMounts' => $this->enforcedMounts,
+            'autoCrons' => $this->autoCrons,
+            'autoNginx' => $this->autoNginx,
+            'maintenanceMode' => $this->maintenanceMode,
+            'guardrailsPhase' => $this->guardrailsPhase,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getDeployHost(): ?string
+    {
+        return $this->deployHost;
+    }
+    public function getDeployPort(): ?int
+    {
+        return $this->deployPort;
+    }
+    public function getSshHost(): ?string
+    {
+        return $this->sshHost;
+    }
+    public function getHosts(): ?array
+    {
+        return $this->hosts;
+    }
+    public function getAutoMounts(): ?bool
+    {
+        return $this->autoMounts;
+    }
+    public function getExcludedMounts(): ?array
+    {
+        return $this->excludedMounts;
+    }
+    public function getEnforcedMounts(): ?object
+    {
+        return $this->enforcedMounts;
+    }
+    public function getAutoCrons(): ?bool
+    {
+        return $this->autoCrons;
+    }
+    public function getAutoNginx(): ?bool
+    {
+        return $this->autoNginx;
+    }
+    public function getMaintenanceMode(): ?bool
+    {
+        return $this->maintenanceMode;
+    }
+    public function getGuardrailsPhase(): ?int
+    {
+        return $this->guardrailsPhase;
     }
 }
 

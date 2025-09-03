@@ -24,24 +24,29 @@ final class ResetEmailAddressRequest implements JsonSerializable
     private static string $openAPIModelName = 'reset_email_address_request';
 
     private static array $attributeMap = [
-        'email_address' => 'email_address'
+        'emailAddress' => 'email_address'
     ];
 
     public function __construct(
-        public readonly ?string $email_address = null,
+        private readonly ?string $emailAddress = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'email_address' => $this->email_address,
+            'emailAddress' => $this->emailAddress,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEmailAddress(): ?string
+    {
+        return $this->emailAddress;
     }
 }
 

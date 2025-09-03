@@ -24,54 +24,99 @@ final class Certificate implements JsonSerializable
     private static string $openAPIModelName = 'Certificate';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'certificate' => 'certificate',
         'chain' => 'chain',
-        'is_provisioned' => 'is_provisioned',
-        'is_invalid' => 'is_invalid',
-        'is_root' => 'is_root',
+        'isProvisioned' => 'is_provisioned',
+        'isInvalid' => 'is_invalid',
+        'isRoot' => 'is_root',
         'domains' => 'domains',
-        'auth_type' => 'auth_type',
+        'authType' => 'auth_type',
         'issuer' => 'issuer',
-        'expires_at' => 'expires_at'
+        'expiresAt' => 'expires_at'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $certificate = null,
-        public readonly ?array $chain = [],
-        public readonly ?bool $is_provisioned = null,
-        public readonly ?bool $is_invalid = null,
-        public readonly ?bool $is_root = null,
-        public readonly ?array $domains = [],
-        public readonly ?array $auth_type = [],
-        public readonly ?array $issuer = [],
-        public readonly ?\DateTime $expires_at = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $certificate = null,
+        private readonly ?array $chain = [],
+        private readonly ?bool $isProvisioned = null,
+        private readonly ?bool $isInvalid = null,
+        private readonly ?bool $isRoot = null,
+        private readonly ?array $domains = [],
+        private readonly ?array $authType = [],
+        private readonly ?array $issuer = [],
+        private readonly ?\DateTime $expiresAt = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'certificate' => $this->certificate,
             'chain' => $this->chain,
-            'is_provisioned' => $this->is_provisioned,
-            'is_invalid' => $this->is_invalid,
-            'is_root' => $this->is_root,
+            'isProvisioned' => $this->isProvisioned,
+            'isInvalid' => $this->isInvalid,
+            'isRoot' => $this->isRoot,
             'domains' => $this->domains,
-            'auth_type' => $this->auth_type,
+            'authType' => $this->authType,
             'issuer' => $this->issuer,
-            'expires_at' => $this->expires_at,
+            'expiresAt' => $this->expiresAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getCertificate(): ?string
+    {
+        return $this->certificate;
+    }
+    public function getChain(): ?array
+    {
+        return $this->chain;
+    }
+    public function getIsProvisioned(): ?bool
+    {
+        return $this->isProvisioned;
+    }
+    public function getIsInvalid(): ?bool
+    {
+        return $this->isInvalid;
+    }
+    public function getIsRoot(): ?bool
+    {
+        return $this->isRoot;
+    }
+    public function getDomains(): ?array
+    {
+        return $this->domains;
+    }
+    public function getAuthType(): ?array
+    {
+        return $this->authType;
+    }
+    public function getIssuer(): ?array
+    {
+        return $this->issuer;
+    }
+    public function getExpiresAt(): ?\DateTime
+    {
+        return $this->expiresAt;
     }
 }
 

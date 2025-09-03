@@ -24,48 +24,85 @@ final class ProjectVariable implements JsonSerializable
     private static string $openAPIModelName = 'ProjectVariable';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'name' => 'name',
         'attributes' => 'attributes',
         'value' => 'value',
-        'is_json' => 'is_json',
-        'is_sensitive' => 'is_sensitive',
-        'visible_build' => 'visible_build',
-        'visible_runtime' => 'visible_runtime'
+        'isJson' => 'is_json',
+        'isSensitive' => 'is_sensitive',
+        'visibleBuild' => 'visible_build',
+        'visibleRuntime' => 'visible_runtime'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $name = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $value = null,
-        public readonly ?bool $is_json = null,
-        public readonly ?bool $is_sensitive = null,
-        public readonly ?bool $visible_build = null,
-        public readonly ?bool $visible_runtime = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $name = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $value = null,
+        private readonly ?bool $isJson = null,
+        private readonly ?bool $isSensitive = null,
+        private readonly ?bool $visibleBuild = null,
+        private readonly ?bool $visibleRuntime = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'name' => $this->name,
             'attributes' => $this->attributes,
             'value' => $this->value,
-            'is_json' => $this->is_json,
-            'is_sensitive' => $this->is_sensitive,
-            'visible_build' => $this->visible_build,
-            'visible_runtime' => $this->visible_runtime,
+            'isJson' => $this->isJson,
+            'isSensitive' => $this->isSensitive,
+            'visibleBuild' => $this->visibleBuild,
+            'visibleRuntime' => $this->visibleRuntime,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+    public function getIsJson(): ?bool
+    {
+        return $this->isJson;
+    }
+    public function getIsSensitive(): ?bool
+    {
+        return $this->isSensitive;
+    }
+    public function getVisibleBuild(): ?bool
+    {
+        return $this->visibleBuild;
+    }
+    public function getVisibleRuntime(): ?bool
+    {
+        return $this->visibleRuntime;
     }
 }
 

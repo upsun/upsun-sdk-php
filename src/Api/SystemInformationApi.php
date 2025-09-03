@@ -124,10 +124,10 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsSystemRestart(
-        string $project_id
+        string $projectId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsSystemRestartWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -138,10 +138,10 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsSystemRestartWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->actionProjectsSystemRestartRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -168,10 +168,10 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsSystemRestartAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->actionProjectsSystemRestartAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -186,11 +186,11 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsSystemRestartAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsSystemRestartRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,12 +231,12 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsSystemRestartRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling actionProjectsSystemRestart'
+                'Missing the required parameter $projectId when calling actionProjectsSystemRestart'
             );
         }
 
@@ -250,10 +250,10 @@ final class SystemInformationApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -314,10 +314,10 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSystem(
-        string $project_id
+        string $projectId
     ): \Upsun\Model\SystemInformation {
         list($response) = $this->getProjectsSystemWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -328,10 +328,10 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSystemWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->getProjectsSystemRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -358,10 +358,10 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSystemAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->getProjectsSystemAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -376,11 +376,11 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsSystemAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\SystemInformation';
         $request = $this->getProjectsSystemRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -421,12 +421,12 @@ final class SystemInformationApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsSystemRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsSystem'
+                'Missing the required parameter $projectId when calling getProjectsSystem'
             );
         }
 
@@ -440,10 +440,10 @@ final class SystemInformationApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }

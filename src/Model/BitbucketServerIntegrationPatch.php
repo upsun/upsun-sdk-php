@@ -25,30 +25,30 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'fetch_branches' => 'fetch_branches',
-        'prune_branches' => 'prune_branches',
-        'environment_init_resources' => 'environment_init_resources',
+        'fetchBranches' => 'fetch_branches',
+        'pruneBranches' => 'prune_branches',
+        'environmentInitResources' => 'environment_init_resources',
         'url' => 'url',
         'username' => 'username',
         'token' => 'token',
         'project' => 'project',
         'repository' => 'repository',
-        'build_pull_requests' => 'build_pull_requests',
-        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
+        'buildPullRequests' => 'build_pull_requests',
+        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?bool $fetch_branches = null,
-        public readonly ?bool $prune_branches = null,
-        public readonly ?string $environment_init_resources = null,
-        public readonly ?string $url = null,
-        public readonly ?string $username = null,
-        public readonly ?string $token = null,
-        public readonly ?string $project = null,
-        public readonly ?string $repository = null,
-        public readonly ?bool $build_pull_requests = null,
-        public readonly ?bool $pull_requests_clone_parent_data = null,
+        private readonly ?string $type = null,
+        private readonly ?bool $fetchBranches = null,
+        private readonly ?bool $pruneBranches = null,
+        private readonly ?string $environmentInitResources = null,
+        private readonly ?string $url = null,
+        private readonly ?string $username = null,
+        private readonly ?string $token = null,
+        private readonly ?string $project = null,
+        private readonly ?string $repository = null,
+        private readonly ?bool $buildPullRequests = null,
+        private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 
@@ -56,22 +56,67 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'fetch_branches' => $this->fetch_branches,
-            'prune_branches' => $this->prune_branches,
-            'environment_init_resources' => $this->environment_init_resources,
+            'fetchBranches' => $this->fetchBranches,
+            'pruneBranches' => $this->pruneBranches,
+            'environmentInitResources' => $this->environmentInitResources,
             'url' => $this->url,
             'username' => $this->username,
             'token' => $this->token,
             'project' => $this->project,
             'repository' => $this->repository,
-            'build_pull_requests' => $this->build_pull_requests,
-            'pull_requests_clone_parent_data' => $this->pull_requests_clone_parent_data,
+            'buildPullRequests' => $this->buildPullRequests,
+            'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getFetchBranches(): ?bool
+    {
+        return $this->fetchBranches;
+    }
+    public function getPruneBranches(): ?bool
+    {
+        return $this->pruneBranches;
+    }
+    public function getEnvironmentInitResources(): ?string
+    {
+        return $this->environmentInitResources;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getProject(): ?string
+    {
+        return $this->project;
+    }
+    public function getRepository(): ?string
+    {
+        return $this->repository;
+    }
+    public function getBuildPullRequests(): ?bool
+    {
+        return $this->buildPullRequests;
+    }
+    public function getPullRequestsCloneParentData(): ?bool
+    {
+        return $this->pullRequestsCloneParentData;
     }
 }
 

@@ -24,20 +24,20 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     private static string $openAPIModelName = 'create_authorization_credentials_200_response_redirect_to_url';
 
     private static array $attributeMap = [
-        'return_url' => 'return_url',
+        'returnUrl' => 'return_url',
         'url' => 'url'
     ];
 
     public function __construct(
-        public readonly ?string $return_url = null,
-        public readonly ?string $url = null,
+        private readonly ?string $returnUrl = null,
+        private readonly ?string $url = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'return_url' => $this->return_url,
+            'returnUrl' => $this->returnUrl,
             'url' => $this->url,
         ];
     }
@@ -45,6 +45,15 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getReturnUrl(): ?string
+    {
+        return $this->returnUrl;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 }
 

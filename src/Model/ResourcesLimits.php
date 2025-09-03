@@ -24,22 +24,22 @@ final class ResourcesLimits implements JsonSerializable
     private static string $openAPIModelName = 'Resources_limits';
 
     private static array $attributeMap = [
-        'container_profiles' => 'container_profiles',
+        'containerProfiles' => 'container_profiles',
         'production' => 'production',
         'development' => 'development'
     ];
 
     public function __construct(
-        public readonly ?bool $container_profiles = null,
-        public readonly ?\Upsun\Model\ResourcesForProductionEnvironments $production = null,
-        public readonly ?\Upsun\Model\ResourcesForDevelopmentEnvironments $development = null,
+        private readonly ?bool $containerProfiles = null,
+        private readonly ?\Upsun\Model\ResourcesForProductionEnvironments $production = null,
+        private readonly ?\Upsun\Model\ResourcesForDevelopmentEnvironments $development = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'container_profiles' => $this->container_profiles,
+            'containerProfiles' => $this->containerProfiles,
             'production' => $this->production,
             'development' => $this->development,
         ];
@@ -48,6 +48,19 @@ final class ResourcesLimits implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getContainerProfiles(): ?bool
+    {
+        return $this->containerProfiles;
+    }
+    public function getProduction(): ?\Upsun\Model\ResourcesForProductionEnvironments
+    {
+        return $this->production;
+    }
+    public function getDevelopment(): ?\Upsun\Model\ResourcesForDevelopmentEnvironments
+    {
+        return $this->development;
     }
 }
 

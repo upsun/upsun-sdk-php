@@ -24,33 +24,50 @@ final class TeamMember implements JsonSerializable
     private static string $openAPIModelName = 'TeamMember';
 
     private static array $attributeMap = [
-        'team_id' => 'team_id',
-        'user_id' => 'user_id',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'teamId' => 'team_id',
+        'userId' => 'user_id',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $team_id = null,
-        public readonly ?string $user_id = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $teamId = null,
+        private readonly ?string $userId = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'team_id' => $this->team_id,
-            'user_id' => $this->user_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'teamId' => $this->teamId,
+            'userId' => $this->userId,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTeamId(): ?string
+    {
+        return $this->teamId;
+    }
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

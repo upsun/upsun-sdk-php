@@ -26,55 +26,55 @@ final class Subscription implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'status' => 'status',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'owner' => 'owner',
-        'owner_info' => 'owner_info',
+        'ownerInfo' => 'owner_info',
         'vendor' => 'vendor',
         'plan' => 'plan',
         'environments' => 'environments',
         'storage' => 'storage',
-        'user_licenses' => 'user_licenses',
-        'project_id' => 'project_id',
-        'project_endpoint' => 'project_endpoint',
-        'project_title' => 'project_title',
-        'project_region' => 'project_region',
-        'project_region_label' => 'project_region_label',
-        'project_ui' => 'project_ui',
-        'project_options' => 'project_options',
-        'agency_site' => 'agency_site',
+        'userLicenses' => 'user_licenses',
+        'projectId' => 'project_id',
+        'projectEndpoint' => 'project_endpoint',
+        'projectTitle' => 'project_title',
+        'projectRegion' => 'project_region',
+        'projectRegionLabel' => 'project_region_label',
+        'projectUi' => 'project_ui',
+        'projectOptions' => 'project_options',
+        'agencySite' => 'agency_site',
         'invoiced' => 'invoiced',
         'hipaa' => 'hipaa',
-        'is_trial_plan' => 'is_trial_plan',
+        'isTrialPlan' => 'is_trial_plan',
         'services' => 'services',
         'green' => 'green'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $status = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $owner = null,
-        public readonly ?\Upsun\Model\OwnerInfo $owner_info = null,
-        public readonly ?string $vendor = null,
-        public readonly ?string $plan = null,
-        public readonly ?int $environments = null,
-        public readonly ?int $storage = null,
-        public readonly ?int $user_licenses = null,
-        public readonly ?string $project_id = null,
-        public readonly ?string $project_endpoint = null,
-        public readonly ?string $project_title = null,
-        public readonly ?string $project_region = null,
-        public readonly ?string $project_region_label = null,
-        public readonly ?string $project_ui = null,
-        public readonly ?\Upsun\Model\ProjectOptions $project_options = null,
-        public readonly ?bool $agency_site = null,
-        public readonly ?bool $invoiced = null,
-        public readonly ?bool $hipaa = null,
-        public readonly ?bool $is_trial_plan = null,
-        public readonly ?array $services = [],
-        public readonly ?bool $green = null,
+        private readonly ?string $id = null,
+        private readonly ?string $status = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $owner = null,
+        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private readonly ?string $vendor = null,
+        private readonly ?string $plan = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
+        private readonly ?int $userLicenses = null,
+        private readonly ?string $projectId = null,
+        private readonly ?string $projectEndpoint = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $projectRegion = null,
+        private readonly ?string $projectRegionLabel = null,
+        private readonly ?string $projectUi = null,
+        private readonly ?\Upsun\Model\ProjectOptions $projectOptions = null,
+        private readonly ?bool $agencySite = null,
+        private readonly ?bool $invoiced = null,
+        private readonly ?bool $hipaa = null,
+        private readonly ?bool $isTrialPlan = null,
+        private readonly ?array $services = [],
+        private readonly ?bool $green = null,
     ) {
     }
 
@@ -83,26 +83,26 @@ final class Subscription implements JsonSerializable
         return [
             'id' => $this->id,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'owner' => $this->owner,
-            'owner_info' => $this->owner_info,
+            'ownerInfo' => $this->ownerInfo,
             'vendor' => $this->vendor,
             'plan' => $this->plan,
             'environments' => $this->environments,
             'storage' => $this->storage,
-            'user_licenses' => $this->user_licenses,
-            'project_id' => $this->project_id,
-            'project_endpoint' => $this->project_endpoint,
-            'project_title' => $this->project_title,
-            'project_region' => $this->project_region,
-            'project_region_label' => $this->project_region_label,
-            'project_ui' => $this->project_ui,
-            'project_options' => $this->project_options,
-            'agency_site' => $this->agency_site,
+            'userLicenses' => $this->userLicenses,
+            'projectId' => $this->projectId,
+            'projectEndpoint' => $this->projectEndpoint,
+            'projectTitle' => $this->projectTitle,
+            'projectRegion' => $this->projectRegion,
+            'projectRegionLabel' => $this->projectRegionLabel,
+            'projectUi' => $this->projectUi,
+            'projectOptions' => $this->projectOptions,
+            'agencySite' => $this->agencySite,
             'invoiced' => $this->invoiced,
             'hipaa' => $this->hipaa,
-            'is_trial_plan' => $this->is_trial_plan,
+            'isTrialPlan' => $this->isTrialPlan,
             'services' => $this->services,
             'green' => $this->green,
         ];
@@ -111,6 +111,103 @@ final class Subscription implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+    public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    {
+        return $this->ownerInfo;
+    }
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getEnvironments(): ?int
+    {
+        return $this->environments;
+    }
+    public function getStorage(): ?int
+    {
+        return $this->storage;
+    }
+    public function getUserLicenses(): ?int
+    {
+        return $this->userLicenses;
+    }
+    public function getProjectId(): ?string
+    {
+        return $this->projectId;
+    }
+    public function getProjectEndpoint(): ?string
+    {
+        return $this->projectEndpoint;
+    }
+    public function getProjectTitle(): ?string
+    {
+        return $this->projectTitle;
+    }
+    public function getProjectRegion(): ?string
+    {
+        return $this->projectRegion;
+    }
+    public function getProjectRegionLabel(): ?string
+    {
+        return $this->projectRegionLabel;
+    }
+    public function getProjectUi(): ?string
+    {
+        return $this->projectUi;
+    }
+    public function getProjectOptions(): ?\Upsun\Model\ProjectOptions
+    {
+        return $this->projectOptions;
+    }
+    public function getAgencySite(): ?bool
+    {
+        return $this->agencySite;
+    }
+    public function getInvoiced(): ?bool
+    {
+        return $this->invoiced;
+    }
+    public function getHipaa(): ?bool
+    {
+        return $this->hipaa;
+    }
+    public function getIsTrialPlan(): ?bool
+    {
+        return $this->isTrialPlan;
+    }
+    public function getServices(): ?array
+    {
+        return $this->services;
+    }
+    public function getGreen(): ?bool
+    {
+        return $this->green;
     }
 }
 

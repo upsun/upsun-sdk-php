@@ -28,7 +28,7 @@ final class UpdateUsageAlertRequest implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+        private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class UpdateUsageAlertRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getConfig(): ?\Upsun\Model\CreateUsageAlertRequestConfig
+    {
+        return $this->config;
     }
 }
 

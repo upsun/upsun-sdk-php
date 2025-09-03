@@ -25,26 +25,26 @@ final class OrganizationMember implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'organization_id' => 'organization_id',
-        'user_id' => 'user_id',
+        'organizationId' => 'organization_id',
+        'userId' => 'user_id',
         'permissions' => 'permissions',
         'level' => 'level',
         'owner' => 'owner',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        '_links' => '_links'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?string $user_id = null,
-        public readonly ?array $permissions = [],
-        public readonly ?string $level = null,
-        public readonly ?bool $owner = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?\Upsun\Model\OrganizationMemberLinks $_links = null,
+        private readonly ?string $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $userId = null,
+        private readonly ?array $permissions = [],
+        private readonly ?string $level = null,
+        private readonly ?bool $owner = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationMemberLinks $links = null,
     ) {
     }
 
@@ -52,20 +52,57 @@ final class OrganizationMember implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'organization_id' => $this->organization_id,
-            'user_id' => $this->user_id,
+            'organizationId' => $this->organizationId,
+            'userId' => $this->userId,
             'permissions' => $this->permissions,
             'level' => $this->level,
             'owner' => $this->owner,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            '_links' => $this->_links,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+    public function getPermissions(): ?array
+    {
+        return $this->permissions;
+    }
+    public function getLevel(): ?string
+    {
+        return $this->level;
+    }
+    public function getOwner(): ?bool
+    {
+        return $this->owner;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getLinks(): ?\Upsun\Model\OrganizationMemberLinks
+    {
+        return $this->links;
     }
 }
 

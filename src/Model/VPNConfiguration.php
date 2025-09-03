@@ -28,11 +28,11 @@ final class VPNConfiguration implements JsonSerializable
         'aggressive' => 'aggressive',
         'modeconfig' => 'modeconfig',
         'authentication' => 'authentication',
-        'gateway_ip' => 'gateway_ip',
+        'gatewayIp' => 'gateway_ip',
         'identity' => 'identity',
-        'second_identity' => 'second_identity',
-        'remote_identity' => 'remote_identity',
-        'remote_subnets' => 'remote_subnets',
+        'secondIdentity' => 'second_identity',
+        'remoteIdentity' => 'remote_identity',
+        'remoteSubnets' => 'remote_subnets',
         'ike' => 'ike',
         'esp' => 'esp',
         'ikelifetime' => 'ikelifetime',
@@ -41,20 +41,20 @@ final class VPNConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?int $version = null,
-        public readonly ?string $aggressive = null,
-        public readonly ?string $modeconfig = null,
-        public readonly ?string $authentication = null,
-        public readonly ?string $gateway_ip = null,
-        public readonly ?string $identity = null,
-        public readonly ?string $second_identity = null,
-        public readonly ?string $remote_identity = null,
-        public readonly ?array $remote_subnets = [],
-        public readonly ?string $ike = null,
-        public readonly ?string $esp = null,
-        public readonly ?string $ikelifetime = null,
-        public readonly ?string $lifetime = null,
-        public readonly ?string $margintime = null,
+        private readonly ?int $version = null,
+        private readonly ?string $aggressive = null,
+        private readonly ?string $modeconfig = null,
+        private readonly ?string $authentication = null,
+        private readonly ?string $gatewayIp = null,
+        private readonly ?string $identity = null,
+        private readonly ?string $secondIdentity = null,
+        private readonly ?string $remoteIdentity = null,
+        private readonly ?array $remoteSubnets = [],
+        private readonly ?string $ike = null,
+        private readonly ?string $esp = null,
+        private readonly ?string $ikelifetime = null,
+        private readonly ?string $lifetime = null,
+        private readonly ?string $margintime = null,
     ) {
     }
 
@@ -65,11 +65,11 @@ final class VPNConfiguration implements JsonSerializable
             'aggressive' => $this->aggressive,
             'modeconfig' => $this->modeconfig,
             'authentication' => $this->authentication,
-            'gateway_ip' => $this->gateway_ip,
+            'gatewayIp' => $this->gatewayIp,
             'identity' => $this->identity,
-            'second_identity' => $this->second_identity,
-            'remote_identity' => $this->remote_identity,
-            'remote_subnets' => $this->remote_subnets,
+            'secondIdentity' => $this->secondIdentity,
+            'remoteIdentity' => $this->remoteIdentity,
+            'remoteSubnets' => $this->remoteSubnets,
             'ike' => $this->ike,
             'esp' => $this->esp,
             'ikelifetime' => $this->ikelifetime,
@@ -81,6 +81,63 @@ final class VPNConfiguration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getVersion(): ?int
+    {
+        return $this->version;
+    }
+    public function getAggressive(): ?string
+    {
+        return $this->aggressive;
+    }
+    public function getModeconfig(): ?string
+    {
+        return $this->modeconfig;
+    }
+    public function getAuthentication(): ?string
+    {
+        return $this->authentication;
+    }
+    public function getGatewayIp(): ?string
+    {
+        return $this->gatewayIp;
+    }
+    public function getIdentity(): ?string
+    {
+        return $this->identity;
+    }
+    public function getSecondIdentity(): ?string
+    {
+        return $this->secondIdentity;
+    }
+    public function getRemoteIdentity(): ?string
+    {
+        return $this->remoteIdentity;
+    }
+    public function getRemoteSubnets(): ?array
+    {
+        return $this->remoteSubnets;
+    }
+    public function getIke(): ?string
+    {
+        return $this->ike;
+    }
+    public function getEsp(): ?string
+    {
+        return $this->esp;
+    }
+    public function getIkelifetime(): ?string
+    {
+        return $this->ikelifetime;
+    }
+    public function getLifetime(): ?string
+    {
+        return $this->lifetime;
+    }
+    public function getMargintime(): ?string
+    {
+        return $this->margintime;
     }
 }
 

@@ -124,10 +124,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrg(
-        \Upsun\Model\CreateOrgRequest $create_org_request
+        \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): \Upsun\Model\Organization {
         list($response) = $this->createOrgWithHttpInfo(
-            $create_org_request
+            $createOrgRequest
         );
         return $response;
     }
@@ -138,10 +138,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgWithHttpInfo(
-        \Upsun\Model\CreateOrgRequest $create_org_request
+        \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): array {
         $request = $this->createOrgRequest(
-            $create_org_request
+            $createOrgRequest
         );
 
         try {
@@ -168,10 +168,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgAsync(
-        \Upsun\Model\CreateOrgRequest $create_org_request
+        \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): Promise {
         return $this->createOrgAsyncWithHttpInfo(
-            $create_org_request
+            $createOrgRequest
         )
             ->then(
                 function ($response) {
@@ -186,11 +186,11 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createOrgAsyncWithHttpInfo(
-        \Upsun\Model\CreateOrgRequest $create_org_request
+        \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): Promise {
         $returnType = '\Upsun\Model\Organization';
         $request = $this->createOrgRequest(
-            $create_org_request
+            $createOrgRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,12 +231,12 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createOrgRequest(
-        \Upsun\Model\CreateOrgRequest $create_org_request
+        \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): RequestInterface {
-        // verify the required parameter 'create_org_request' is set
-        if ($create_org_request === null || (is_array($create_org_request) && count($create_org_request) === 0)) {
+        // verify the required parameter 'createOrgRequest' is set
+        if ($createOrgRequest === null || (is_array($createOrgRequest) && count($createOrgRequest) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $create_org_request when calling createOrg'
+                'Missing the required parameter $createOrgRequest when calling createOrg'
             );
         }
 
@@ -258,11 +258,11 @@ final class OrganizationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($create_org_request)) {
+        if (isset($createOrgRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($create_org_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createOrgRequest));
             } else {
-                $httpBody = $create_org_request;
+                $httpBody = $createOrgRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -312,10 +312,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteOrg(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\Organization {
         list($response) = $this->deleteOrgWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -326,10 +326,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->deleteOrgRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -356,10 +356,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->deleteOrgAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -374,11 +374,11 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteOrgAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '';
         $request = $this->deleteOrgRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -409,12 +409,12 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteOrgRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling deleteOrg'
+                'Missing the required parameter $organizationId when calling deleteOrg'
             );
         }
 
@@ -428,10 +428,10 @@ final class OrganizationsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -492,10 +492,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrg(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\Organization {
         list($response) = $this->getOrgWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -506,10 +506,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->getOrgRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -536,10 +536,10 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->getOrgAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -554,11 +554,11 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '\Upsun\Model\Organization';
         $request = $this->getOrgRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -599,12 +599,12 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getOrgRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling getOrg'
+                'Missing the required parameter $organizationId when calling getOrg'
             );
         }
 
@@ -618,10 +618,10 @@ final class OrganizationsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -682,31 +682,31 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgs(
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_owner_id = null,
-        \Upsun\Model\StringFilter $filter_name = null,
-        \Upsun\Model\StringFilter $filter_label = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\ArrayFilter $filter_capabilities = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterOwnerId = null,
+        \Upsun\Model\StringFilter $filterName = null,
+        \Upsun\Model\StringFilter $filterLabel = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\ArrayFilter $filterCapabilities = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listOrgsWithHttpInfo(
-            $filter_id,
-            $filter_owner_id,
-            $filter_name,
-            $filter_label,
-            $filter_vendor,
-            $filter_capabilities,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterId,
+            $filterOwnerId,
+            $filterName,
+            $filterLabel,
+            $filterVendor,
+            $filterCapabilities,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -718,31 +718,31 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgsWithHttpInfo(
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_owner_id = null,
-        \Upsun\Model\StringFilter $filter_name = null,
-        \Upsun\Model\StringFilter $filter_label = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\ArrayFilter $filter_capabilities = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterOwnerId = null,
+        \Upsun\Model\StringFilter $filterName = null,
+        \Upsun\Model\StringFilter $filterLabel = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\ArrayFilter $filterCapabilities = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listOrgsRequest(
-            $filter_id,
-            $filter_owner_id,
-            $filter_name,
-            $filter_label,
-            $filter_vendor,
-            $filter_capabilities,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterId,
+            $filterOwnerId,
+            $filterName,
+            $filterLabel,
+            $filterVendor,
+            $filterCapabilities,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -770,31 +770,31 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgsAsync(
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_owner_id = null,
-        \Upsun\Model\StringFilter $filter_name = null,
-        \Upsun\Model\StringFilter $filter_label = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\ArrayFilter $filter_capabilities = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterOwnerId = null,
+        \Upsun\Model\StringFilter $filterName = null,
+        \Upsun\Model\StringFilter $filterLabel = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\ArrayFilter $filterCapabilities = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listOrgsAsyncWithHttpInfo(
-            $filter_id,
-            $filter_owner_id,
-            $filter_name,
-            $filter_label,
-            $filter_vendor,
-            $filter_capabilities,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterId,
+            $filterOwnerId,
+            $filterName,
+            $filterLabel,
+            $filterVendor,
+            $filterCapabilities,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -810,32 +810,32 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgsAsyncWithHttpInfo(
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_owner_id = null,
-        \Upsun\Model\StringFilter $filter_name = null,
-        \Upsun\Model\StringFilter $filter_label = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\ArrayFilter $filter_capabilities = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterOwnerId = null,
+        \Upsun\Model\StringFilter $filterName = null,
+        \Upsun\Model\StringFilter $filterLabel = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\ArrayFilter $filterCapabilities = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgs200Response';
         $request = $this->listOrgsRequest(
-            $filter_id,
-            $filter_owner_id,
-            $filter_name,
-            $filter_label,
-            $filter_vendor,
-            $filter_capabilities,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterId,
+            $filterOwnerId,
+            $filterName,
+            $filterLabel,
+            $filterVendor,
+            $filterCapabilities,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -877,28 +877,28 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgsRequest(
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_owner_id = null,
-        \Upsun\Model\StringFilter $filter_name = null,
-        \Upsun\Model\StringFilter $filter_label = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\ArrayFilter $filter_capabilities = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterOwnerId = null,
+        \Upsun\Model\StringFilter $filterName = null,
+        \Upsun\Model\StringFilter $filterLabel = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\ArrayFilter $filterCapabilities = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        if ($page_size !== null && $page_size > 100) {
+        if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling OrganizationsApi.listOrgs, 
+                'invalid value for "$pageSize" when calling OrganizationsApi.listOrgs, 
                 must be smaller than or equal to 100.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling OrganizationsApi.listOrgs,
+                'invalid value for "$pageSize" when calling OrganizationsApi.listOrgs,
                 must be bigger than or equal to 1.'
             );
         }
@@ -912,123 +912,123 @@ final class OrganizationsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_id !== null) {
-            if ('form' === 'deepObject' && is_array($filter_id)) {
-                foreach ($filter_id as $key => $value) {
+        if ($filterId !== null) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
+                foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id->eq;
+                $queryParams['filter[id]'] = $filterId->getEq();
             }
         }
 
         // query params
-        if ($filter_owner_id !== null) {
-            if ('form' === 'deepObject' && is_array($filter_owner_id)) {
-                foreach ($filter_owner_id as $key => $value) {
+        if ($filterOwnerId !== null) {
+            if ('form' === 'deepObject' && is_array($filterOwnerId)) {
+                foreach ($filterOwnerId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[owner_id]'] = $filter_owner_id->eq;
+                $queryParams['filter[owner_id]'] = $filterOwnerId->getEq();
             }
         }
 
         // query params
-        if ($filter_name !== null) {
-            if ('form' === 'deepObject' && is_array($filter_name)) {
-                foreach ($filter_name as $key => $value) {
+        if ($filterName !== null) {
+            if ('form' === 'deepObject' && is_array($filterName)) {
+                foreach ($filterName as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[name]'] = $filter_name->eq;
+                $queryParams['filter[name]'] = $filterName->getEq();
             }
         }
 
         // query params
-        if ($filter_label !== null) {
-            if ('form' === 'deepObject' && is_array($filter_label)) {
-                foreach ($filter_label as $key => $value) {
+        if ($filterLabel !== null) {
+            if ('form' === 'deepObject' && is_array($filterLabel)) {
+                foreach ($filterLabel as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[label]'] = $filter_label->eq;
+                $queryParams['filter[label]'] = $filterLabel->getEq();
             }
         }
 
         // query params
-        if ($filter_vendor !== null) {
-            if ('form' === 'deepObject' && is_array($filter_vendor)) {
-                foreach ($filter_vendor as $key => $value) {
+        if ($filterVendor !== null) {
+            if ('form' === 'deepObject' && is_array($filterVendor)) {
+                foreach ($filterVendor as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[vendor]'] = $filter_vendor->eq;
+                $queryParams['filter[vendor]'] = $filterVendor->getEq();
             }
         }
 
         // query params
-        if ($filter_capabilities !== null) {
-            if ('form' === 'deepObject' && is_array($filter_capabilities)) {
-                foreach ($filter_capabilities as $key => $value) {
+        if ($filterCapabilities !== null) {
+            if ('form' === 'deepObject' && is_array($filterCapabilities)) {
+                foreach ($filterCapabilities as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[capabilities]'] = $filter_capabilities->eq;
+                $queryParams['filter[capabilities]'] = $filterCapabilities->getEq();
             }
         }
 
         // query params
-        if ($filter_status !== null) {
-            if ('form' === 'deepObject' && is_array($filter_status)) {
-                foreach ($filter_status as $key => $value) {
+        if ($filterStatus !== null) {
+            if ('form' === 'deepObject' && is_array($filterStatus)) {
+                foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status->eq;
+                $queryParams['filter[status]'] = $filterStatus->getEq();
             }
         }
 
         // query params
-        if ($filter_updated_at !== null) {
-            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach ($filter_updated_at as $key => $value) {
+        if ($filterUpdatedAt !== null) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
+                foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->eq;
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
             }
         }
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 
@@ -1102,25 +1102,25 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserOrgs(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listUserOrgsWithHttpInfo(
-            $user_id,
-            $filter_id,
-            $filter_vendor,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterId,
+            $filterVendor,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -1132,25 +1132,25 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserOrgsWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listUserOrgsRequest(
-            $user_id,
-            $filter_id,
-            $filter_vendor,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterId,
+            $filterVendor,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -1178,25 +1178,25 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserOrgsAsync(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listUserOrgsAsyncWithHttpInfo(
-            $user_id,
-            $filter_id,
-            $filter_vendor,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterId,
+            $filterVendor,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -1212,26 +1212,26 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserOrgsAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListUserOrgs200Response';
         $request = $this->listUserOrgsRequest(
-            $user_id,
-            $filter_id,
-            $filter_vendor,
-            $filter_status,
-            $filter_updated_at,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterId,
+            $filterVendor,
+            $filterStatus,
+            $filterUpdatedAt,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -1273,31 +1273,31 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listUserOrgsRequest(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_id = null,
-        \Upsun\Model\StringFilter $filter_vendor = null,
-        \Upsun\Model\StringFilter $filter_status = null,
-        \Upsun\Model\DateTimeFilter $filter_updated_at = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        \Upsun\Model\StringFilter $filterId = null,
+        \Upsun\Model\StringFilter $filterVendor = null,
+        \Upsun\Model\StringFilter $filterStatus = null,
+        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling listUserOrgs'
+                'Missing the required parameter $userId when calling listUserOrgs'
             );
         }
-        if ($page_size !== null && $page_size > 100) {
+        if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling OrganizationsApi.listUserOrgs, 
+                'invalid value for "$pageSize" when calling OrganizationsApi.listUserOrgs, 
                 must be smaller than or equal to 100.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling OrganizationsApi.listUserOrgs,
+                'invalid value for "$pageSize" when calling OrganizationsApi.listUserOrgs,
                 must be bigger than or equal to 1.'
             );
         }
@@ -1311,79 +1311,79 @@ final class OrganizationsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_id !== null) {
-            if ('form' === 'deepObject' && is_array($filter_id)) {
-                foreach ($filter_id as $key => $value) {
+        if ($filterId !== null) {
+            if ('form' === 'deepObject' && is_array($filterId)) {
+                foreach ($filterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filter_id->eq;
+                $queryParams['filter[id]'] = $filterId->getEq();
             }
         }
 
         // query params
-        if ($filter_vendor !== null) {
-            if ('form' === 'deepObject' && is_array($filter_vendor)) {
-                foreach ($filter_vendor as $key => $value) {
+        if ($filterVendor !== null) {
+            if ('form' === 'deepObject' && is_array($filterVendor)) {
+                foreach ($filterVendor as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[vendor]'] = $filter_vendor->eq;
+                $queryParams['filter[vendor]'] = $filterVendor->getEq();
             }
         }
 
         // query params
-        if ($filter_status !== null) {
-            if ('form' === 'deepObject' && is_array($filter_status)) {
-                foreach ($filter_status as $key => $value) {
+        if ($filterStatus !== null) {
+            if ('form' === 'deepObject' && is_array($filterStatus)) {
+                foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status->eq;
+                $queryParams['filter[status]'] = $filterStatus->getEq();
             }
         }
 
         // query params
-        if ($filter_updated_at !== null) {
-            if ('form' === 'deepObject' && is_array($filter_updated_at)) {
-                foreach ($filter_updated_at as $key => $value) {
+        if ($filterUpdatedAt !== null) {
+            if ('form' === 'deepObject' && is_array($filterUpdatedAt)) {
+                foreach ($filterUpdatedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filter_updated_at->eq;
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
             }
         }
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 
@@ -1401,10 +1401,10 @@ final class OrganizationsApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1465,12 +1465,12 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateOrg(
-        string $organization_id,
-        \Upsun\Model\UpdateOrgRequest $update_org_request = null
+        string $organizationId,
+        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): \Upsun\Model\Organization {
         list($response) = $this->updateOrgWithHttpInfo(
-            $organization_id,
-            $update_org_request
+            $organizationId,
+            $updateOrgRequest
         );
         return $response;
     }
@@ -1481,12 +1481,12 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateOrgWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\UpdateOrgRequest $update_org_request = null
+        string $organizationId,
+        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): array {
         $request = $this->updateOrgRequest(
-            $organization_id,
-            $update_org_request
+            $organizationId,
+            $updateOrgRequest
         );
 
         try {
@@ -1513,12 +1513,12 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateOrgAsync(
-        string $organization_id,
-        \Upsun\Model\UpdateOrgRequest $update_org_request = null
+        string $organizationId,
+        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): Promise {
         return $this->updateOrgAsyncWithHttpInfo(
-            $organization_id,
-            $update_org_request
+            $organizationId,
+            $updateOrgRequest
         )
             ->then(
                 function ($response) {
@@ -1533,13 +1533,13 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateOrgAsyncWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\UpdateOrgRequest $update_org_request = null
+        string $organizationId,
+        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\Organization';
         $request = $this->updateOrgRequest(
-            $organization_id,
-            $update_org_request
+            $organizationId,
+            $updateOrgRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1580,13 +1580,13 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateOrgRequest(
-        string $organization_id,
-        \Upsun\Model\UpdateOrgRequest $update_org_request = null
+        string $organizationId,
+        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling updateOrg'
+                'Missing the required parameter $organizationId when calling updateOrg'
             );
         }
 
@@ -1600,10 +1600,10 @@ final class OrganizationsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -1616,11 +1616,11 @@ final class OrganizationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($update_org_request)) {
+        if (isset($updateOrgRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($update_org_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateOrgRequest));
             } else {
-                $httpBody = $update_org_request;
+                $httpBody = $updateOrgRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

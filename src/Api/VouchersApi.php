@@ -124,12 +124,12 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function applyOrgVoucher(
-        string $organization_id,
-        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+        string $organizationId,
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): \Upsun\Model\Vouchers {
         list($response) = $this->applyOrgVoucherWithHttpInfo(
-            $organization_id,
-            $apply_org_voucher_request
+            $organizationId,
+            $applyOrgVoucherRequest
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function applyOrgVoucherWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+        string $organizationId,
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): array {
         $request = $this->applyOrgVoucherRequest(
-            $organization_id,
-            $apply_org_voucher_request
+            $organizationId,
+            $applyOrgVoucherRequest
         );
 
         try {
@@ -172,12 +172,12 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function applyOrgVoucherAsync(
-        string $organization_id,
-        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+        string $organizationId,
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): Promise {
         return $this->applyOrgVoucherAsyncWithHttpInfo(
-            $organization_id,
-            $apply_org_voucher_request
+            $organizationId,
+            $applyOrgVoucherRequest
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function applyOrgVoucherAsyncWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+        string $organizationId,
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): Promise {
         $returnType = '';
         $request = $this->applyOrgVoucherRequest(
-            $organization_id,
-            $apply_org_voucher_request
+            $organizationId,
+            $applyOrgVoucherRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -229,19 +229,19 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function applyOrgVoucherRequest(
-        string $organization_id,
-        \Upsun\Model\ApplyOrgVoucherRequest $apply_org_voucher_request
+        string $organizationId,
+        \Upsun\Model\ApplyOrgVoucherRequest $applyOrgVoucherRequest
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling applyOrgVoucher'
+                'Missing the required parameter $organizationId when calling applyOrgVoucher'
             );
         }
-        // verify the required parameter 'apply_org_voucher_request' is set
-        if ($apply_org_voucher_request === null || (is_array($apply_org_voucher_request) && count($apply_org_voucher_request) === 0)) {
+        // verify the required parameter 'applyOrgVoucherRequest' is set
+        if ($applyOrgVoucherRequest === null || (is_array($applyOrgVoucherRequest) && count($applyOrgVoucherRequest) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $apply_org_voucher_request when calling applyOrgVoucher'
+                'Missing the required parameter $applyOrgVoucherRequest when calling applyOrgVoucher'
             );
         }
 
@@ -255,10 +255,10 @@ final class VouchersApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -271,11 +271,11 @@ final class VouchersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($apply_org_voucher_request)) {
+        if (isset($applyOrgVoucherRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($apply_org_voucher_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($applyOrgVoucherRequest));
             } else {
-                $httpBody = $apply_org_voucher_request;
+                $httpBody = $applyOrgVoucherRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -325,10 +325,10 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgVouchers(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\Vouchers {
         list($response) = $this->listOrgVouchersWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -339,10 +339,10 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgVouchersWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->listOrgVouchersRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -369,10 +369,10 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgVouchersAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->listOrgVouchersAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -387,11 +387,11 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgVouchersAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '\Upsun\Model\Vouchers';
         $request = $this->listOrgVouchersRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -432,12 +432,12 @@ final class VouchersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgVouchersRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling listOrgVouchers'
+                'Missing the required parameter $organizationId when calling listOrgVouchers'
             );
         }
 
@@ -451,10 +451,10 @@ final class VouchersApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }

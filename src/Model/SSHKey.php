@@ -24,7 +24,7 @@ final class SSHKey implements JsonSerializable
     private static string $openAPIModelName = 'SSHKey';
 
     private static array $attributeMap = [
-        'key_id' => 'key_id',
+        'keyId' => 'key_id',
         'uid' => 'uid',
         'fingerprint' => 'fingerprint',
         'title' => 'title',
@@ -33,19 +33,19 @@ final class SSHKey implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?int $key_id = null,
-        public readonly ?int $uid = null,
-        public readonly ?string $fingerprint = null,
-        public readonly ?string $title = null,
-        public readonly ?string $value = null,
-        public readonly ?string $changed = null,
+        private readonly ?int $keyId = null,
+        private readonly ?int $uid = null,
+        private readonly ?string $fingerprint = null,
+        private readonly ?string $title = null,
+        private readonly ?string $value = null,
+        private readonly ?string $changed = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'key_id' => $this->key_id,
+            'keyId' => $this->keyId,
             'uid' => $this->uid,
             'fingerprint' => $this->fingerprint,
             'title' => $this->title,
@@ -57,6 +57,31 @@ final class SSHKey implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getKeyId(): ?int
+    {
+        return $this->keyId;
+    }
+    public function getUid(): ?int
+    {
+        return $this->uid;
+    }
+    public function getFingerprint(): ?string
+    {
+        return $this->fingerprint;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+    public function getChanged(): ?string
+    {
+        return $this->changed;
     }
 }
 

@@ -31,10 +31,10 @@ final class ArrayFilter implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $eq = null,
-        public readonly ?string $ne = null,
-        public readonly ?string $in = null,
-        public readonly ?string $nin = null,
+        private readonly ?string $eq = null,
+        private readonly ?string $ne = null,
+        private readonly ?string $in = null,
+        private readonly ?string $nin = null,
     ) {
     }
 
@@ -51,6 +51,23 @@ final class ArrayFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEq(): ?string
+    {
+        return $this->eq;
+    }
+    public function getNe(): ?string
+    {
+        return $this->ne;
+    }
+    public function getIn(): ?string
+    {
+        return $this->in;
+    }
+    public function getNin(): ?string
+    {
+        return $this->nin;
     }
 }
 

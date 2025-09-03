@@ -25,26 +25,26 @@ final class LineItem implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'license_id' => 'license_id',
-        'project_id' => 'project_id',
+        'licenseId' => 'license_id',
+        'projectId' => 'project_id',
         'product' => 'product',
         'sku' => 'sku',
         'total' => 'total',
-        'total_formatted' => 'total_formatted',
+        'totalFormatted' => 'total_formatted',
         'components' => 'components',
-        'exclude_from_invoice' => 'exclude_from_invoice'
+        'excludeFromInvoice' => 'exclude_from_invoice'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?float $license_id = null,
-        public readonly ?string $project_id = null,
-        public readonly ?string $product = null,
-        public readonly ?string $sku = null,
-        public readonly ?float $total = null,
-        public readonly ?string $total_formatted = null,
-        public readonly ?array $components = [],
-        public readonly ?bool $exclude_from_invoice = null,
+        private readonly ?string $type = null,
+        private readonly ?float $licenseId = null,
+        private readonly ?string $projectId = null,
+        private readonly ?string $product = null,
+        private readonly ?string $sku = null,
+        private readonly ?float $total = null,
+        private readonly ?string $totalFormatted = null,
+        private readonly ?array $components = [],
+        private readonly ?bool $excludeFromInvoice = null,
     ) {
     }
 
@@ -52,20 +52,57 @@ final class LineItem implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'license_id' => $this->license_id,
-            'project_id' => $this->project_id,
+            'licenseId' => $this->licenseId,
+            'projectId' => $this->projectId,
             'product' => $this->product,
             'sku' => $this->sku,
             'total' => $this->total,
-            'total_formatted' => $this->total_formatted,
+            'totalFormatted' => $this->totalFormatted,
             'components' => $this->components,
-            'exclude_from_invoice' => $this->exclude_from_invoice,
+            'excludeFromInvoice' => $this->excludeFromInvoice,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getLicenseId(): ?float
+    {
+        return $this->licenseId;
+    }
+    public function getProjectId(): ?string
+    {
+        return $this->projectId;
+    }
+    public function getProduct(): ?string
+    {
+        return $this->product;
+    }
+    public function getSku(): ?string
+    {
+        return $this->sku;
+    }
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+    public function getTotalFormatted(): ?string
+    {
+        return $this->totalFormatted;
+    }
+    public function getComponents(): ?array
+    {
+        return $this->components;
+    }
+    public function getExcludeFromInvoice(): ?bool
+    {
+        return $this->excludeFromInvoice;
     }
 }
 

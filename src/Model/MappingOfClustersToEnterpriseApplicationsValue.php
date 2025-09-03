@@ -24,27 +24,36 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     private static string $openAPIModelName = 'Mapping_of_clusters_to_Enterprise_applications_value';
 
     private static array $attributeMap = [
-        'active_docroot' => 'active_docroot',
-        'docroot_versions' => 'docroot_versions'
+        'activeDocroot' => 'active_docroot',
+        'docrootVersions' => 'docroot_versions'
     ];
 
     public function __construct(
-        public readonly ?string $active_docroot = null,
-        public readonly ?array $docroot_versions = [],
+        private readonly ?string $activeDocroot = null,
+        private readonly ?array $docrootVersions = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'active_docroot' => $this->active_docroot,
-            'docroot_versions' => $this->docroot_versions,
+            'activeDocroot' => $this->activeDocroot,
+            'docrootVersions' => $this->docrootVersions,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getActiveDocroot(): ?string
+    {
+        return $this->activeDocroot;
+    }
+    public function getDocrootVersions(): ?array
+    {
+        return $this->docrootVersions;
     }
 }
 

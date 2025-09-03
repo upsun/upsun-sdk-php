@@ -126,12 +126,12 @@ final class ProjectInvitationsApi extends AbstractApi
      * @return array
      */
     public function cancelProjectInvite(
-        string $project_id,
-        string $invitation_id
+        string $projectId,
+        string $invitationId
     ): array {
         list($response) = $this->cancelProjectInviteWithHttpInfo(
-            $project_id,
-            $invitation_id
+            $projectId,
+            $invitationId
         );
         return $response;
     }
@@ -142,12 +142,12 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function cancelProjectInviteWithHttpInfo(
-        string $project_id,
-        string $invitation_id
+        string $projectId,
+        string $invitationId
     ): array {
         $request = $this->cancelProjectInviteRequest(
-            $project_id,
-            $invitation_id
+            $projectId,
+            $invitationId
         );
 
         try {
@@ -174,12 +174,12 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function cancelProjectInviteAsync(
-        string $project_id,
-        string $invitation_id
+        string $projectId,
+        string $invitationId
     ): Promise {
         return $this->cancelProjectInviteAsyncWithHttpInfo(
-            $project_id,
-            $invitation_id
+            $projectId,
+            $invitationId
         )
             ->then(
                 function ($response) {
@@ -194,13 +194,13 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function cancelProjectInviteAsyncWithHttpInfo(
-        string $project_id,
-        string $invitation_id
+        string $projectId,
+        string $invitationId
     ): Promise {
         $returnType = '';
         $request = $this->cancelProjectInviteRequest(
-            $project_id,
-            $invitation_id
+            $projectId,
+            $invitationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,19 +231,19 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function cancelProjectInviteRequest(
-        string $project_id,
-        string $invitation_id
+        string $projectId,
+        string $invitationId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling cancelProjectInvite'
+                'Missing the required parameter $projectId when calling cancelProjectInvite'
             );
         }
-        // verify the required parameter 'invitation_id' is set
-        if ($invitation_id === null || (is_array($invitation_id) && count($invitation_id) === 0)) {
+        // verify the required parameter 'invitationId' is set
+        if ($invitationId === null || (is_array($invitationId) && count($invitationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $invitation_id when calling cancelProjectInvite'
+                'Missing the required parameter $invitationId when calling cancelProjectInvite'
             );
         }
 
@@ -257,18 +257,18 @@ final class ProjectInvitationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($invitation_id !== null) {
+        if ($invitationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'invitation_id' . '}',
-                ObjectSerializer::toPathValue($invitation_id),
+                ObjectSerializer::toPathValue($invitationId),
                 $resourcePath
             );
         }
@@ -329,12 +329,12 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectInvite(
-        string $project_id,
-        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+        string $projectId,
+        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): \Upsun\Model\ProjectInvitation {
         list($response) = $this->createProjectInviteWithHttpInfo(
-            $project_id,
-            $create_project_invite_request
+            $projectId,
+            $createProjectInviteRequest
         );
         return $response;
     }
@@ -345,12 +345,12 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectInviteWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+        string $projectId,
+        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): array {
         $request = $this->createProjectInviteRequest(
-            $project_id,
-            $create_project_invite_request
+            $projectId,
+            $createProjectInviteRequest
         );
 
         try {
@@ -377,12 +377,12 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectInviteAsync(
-        string $project_id,
-        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+        string $projectId,
+        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): Promise {
         return $this->createProjectInviteAsyncWithHttpInfo(
-            $project_id,
-            $create_project_invite_request
+            $projectId,
+            $createProjectInviteRequest
         )
             ->then(
                 function ($response) {
@@ -397,13 +397,13 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectInviteAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+        string $projectId,
+        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\ProjectInvitation';
         $request = $this->createProjectInviteRequest(
-            $project_id,
-            $create_project_invite_request
+            $projectId,
+            $createProjectInviteRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -444,13 +444,13 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectInviteRequest(
-        string $project_id,
-        \Upsun\Model\CreateProjectInviteRequest $create_project_invite_request = null
+        string $projectId,
+        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectInvite'
+                'Missing the required parameter $projectId when calling createProjectInvite'
             );
         }
 
@@ -464,10 +464,10 @@ final class ProjectInvitationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -480,11 +480,11 @@ final class ProjectInvitationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($create_project_invite_request)) {
+        if (isset($createProjectInviteRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($create_project_invite_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createProjectInviteRequest));
             } else {
-                $httpBody = $create_project_invite_request;
+                $httpBody = $createProjectInviteRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -536,19 +536,19 @@ final class ProjectInvitationsApi extends AbstractApi
      * @return array
      */
     public function listProjectInvites(
-        string $project_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listProjectInvitesWithHttpInfo(
-            $project_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -560,19 +560,19 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectInvitesWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listProjectInvitesRequest(
-            $project_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -600,19 +600,19 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectInvitesAsync(
-        string $project_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listProjectInvitesAsyncWithHttpInfo(
-            $project_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -628,20 +628,20 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectInvitesAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ProjectInvitation[]';
         $request = $this->listProjectInvitesRequest(
-            $project_id,
-            $filter_state,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $filterState,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -683,28 +683,28 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectInvitesRequest(
-        string $project_id,
-        \Upsun\Model\StringFilter $filter_state = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        \Upsun\Model\StringFilter $filterState = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectInvites'
+                'Missing the required parameter $projectId when calling listProjectInvites'
             );
         }
-        if ($page_size !== null && $page_size > 100) {
+        if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling ProjectInvitationsApi.listProjectInvites, 
+                'invalid value for "$pageSize" when calling ProjectInvitationsApi.listProjectInvites, 
                 must be smaller than or equal to 100.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling ProjectInvitationsApi.listProjectInvites,
+                'invalid value for "$pageSize" when calling ProjectInvitationsApi.listProjectInvites,
                 must be bigger than or equal to 1.'
             );
         }
@@ -718,46 +718,46 @@ final class ProjectInvitationsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_state !== null) {
-            if ('form' === 'deepObject' && is_array($filter_state)) {
-                foreach ($filter_state as $key => $value) {
+        if ($filterState !== null) {
+            if ('form' === 'deepObject' && is_array($filterState)) {
+                foreach ($filterState as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[state]'] = $filter_state->eq;
+                $queryParams['filter[state]'] = $filterState->getEq();
             }
         }
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 
@@ -775,10 +775,10 @@ final class ProjectInvitationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }

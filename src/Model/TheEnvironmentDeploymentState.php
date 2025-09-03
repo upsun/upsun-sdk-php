@@ -24,23 +24,23 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     private static string $openAPIModelName = 'The_environment_deployment_state';
 
     private static array $attributeMap = [
-        'last_deployment_successful' => 'last_deployment_successful',
-        'last_deployment_at' => 'last_deployment_at',
+        'lastDeploymentSuccessful' => 'last_deployment_successful',
+        'lastDeploymentAt' => 'last_deployment_at',
         'crons' => 'crons'
     ];
 
     public function __construct(
-        public readonly ?bool $last_deployment_successful = null,
-        public readonly ?\DateTime $last_deployment_at = null,
-        public readonly ?\Upsun\Model\TheCronsDeploymentState $crons = null,
+        private readonly ?bool $lastDeploymentSuccessful = null,
+        private readonly ?\DateTime $lastDeploymentAt = null,
+        private readonly ?\Upsun\Model\TheCronsDeploymentState $crons = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'last_deployment_successful' => $this->last_deployment_successful,
-            'last_deployment_at' => $this->last_deployment_at,
+            'lastDeploymentSuccessful' => $this->lastDeploymentSuccessful,
+            'lastDeploymentAt' => $this->lastDeploymentAt,
             'crons' => $this->crons,
         ];
     }
@@ -48,6 +48,19 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getLastDeploymentSuccessful(): ?bool
+    {
+        return $this->lastDeploymentSuccessful;
+    }
+    public function getLastDeploymentAt(): ?\DateTime
+    {
+        return $this->lastDeploymentAt;
+    }
+    public function getCrons(): ?\Upsun\Model\TheCronsDeploymentState
+    {
+        return $this->crons;
     }
 }
 

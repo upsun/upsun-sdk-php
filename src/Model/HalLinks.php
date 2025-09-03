@@ -30,9 +30,9 @@ final class HalLinks implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\HalLinksSelf $self = null,
-        public readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
-        public readonly ?\Upsun\Model\HalLinksNext $next = null,
+        private readonly ?\Upsun\Model\HalLinksSelf $self = null,
+        private readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
+        private readonly ?\Upsun\Model\HalLinksNext $next = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class HalLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSelf(): ?\Upsun\Model\HalLinksSelf
+    {
+        return $this->self;
+    }
+    public function getPrevious(): ?\Upsun\Model\HalLinksPrevious
+    {
+        return $this->previous;
+    }
+    public function getNext(): ?\Upsun\Model\HalLinksNext
+    {
+        return $this->next;
     }
 }
 

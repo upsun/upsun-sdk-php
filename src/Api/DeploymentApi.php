@@ -124,14 +124,14 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDeployments(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id
+        string $projectId,
+        string $environmentId,
+        string $deploymentId
     ): \Upsun\Model\Deployment {
         list($response) = $this->getProjectsEnvironmentsDeploymentsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $deployment_id
+            $projectId,
+            $environmentId,
+            $deploymentId
         );
         return $response;
     }
@@ -142,14 +142,14 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDeploymentsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id
+        string $projectId,
+        string $environmentId,
+        string $deploymentId
     ): array {
         $request = $this->getProjectsEnvironmentsDeploymentsRequest(
-            $project_id,
-            $environment_id,
-            $deployment_id
+            $projectId,
+            $environmentId,
+            $deploymentId
         );
 
         try {
@@ -176,14 +176,14 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDeploymentsAsync(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id
+        string $projectId,
+        string $environmentId,
+        string $deploymentId
     ): Promise {
         return $this->getProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $deployment_id
+            $projectId,
+            $environmentId,
+            $deploymentId
         )
             ->then(
                 function ($response) {
@@ -198,15 +198,15 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id
+        string $projectId,
+        string $environmentId,
+        string $deploymentId
     ): Promise {
         $returnType = '\Upsun\Model\Deployment';
         $request = $this->getProjectsEnvironmentsDeploymentsRequest(
-            $project_id,
-            $environment_id,
-            $deployment_id
+            $projectId,
+            $environmentId,
+            $deploymentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -247,26 +247,26 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsDeploymentsRequest(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id
+        string $projectId,
+        string $environmentId,
+        string $deploymentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsEnvironmentsDeployments'
+                'Missing the required parameter $projectId when calling getProjectsEnvironmentsDeployments'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling getProjectsEnvironmentsDeployments'
+                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsDeployments'
             );
         }
-        // verify the required parameter 'deployment_id' is set
-        if ($deployment_id === null || (is_array($deployment_id) && count($deployment_id) === 0)) {
+        // verify the required parameter 'deploymentId' is set
+        if ($deploymentId === null || (is_array($deploymentId) && count($deploymentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_id when calling getProjectsEnvironmentsDeployments'
+                'Missing the required parameter $deploymentId when calling getProjectsEnvironmentsDeployments'
             );
         }
 
@@ -280,26 +280,26 @@ final class DeploymentApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($deployment_id !== null) {
+        if ($deploymentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'deploymentId' . '}',
-                ObjectSerializer::toPathValue($deployment_id),
+                ObjectSerializer::toPathValue($deploymentId),
                 $resourcePath
             );
         }
@@ -360,12 +360,12 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDeployments(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         list($response) = $this->listProjectsEnvironmentsDeploymentsWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
         return $response;
     }
@@ -376,12 +376,12 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDeploymentsWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         $request = $this->listProjectsEnvironmentsDeploymentsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         try {
@@ -408,12 +408,12 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDeploymentsAsync(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         return $this->listProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         )
             ->then(
                 function ($response) {
@@ -428,13 +428,13 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDeploymentsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         $returnType = '\Upsun\Model\Deployment[]';
         $request = $this->listProjectsEnvironmentsDeploymentsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -475,19 +475,19 @@ final class DeploymentApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentsDeploymentsRequest(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentsDeployments'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentsDeployments'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling listProjectsEnvironmentsDeployments'
+                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsDeployments'
             );
         }
 
@@ -501,18 +501,18 @@ final class DeploymentApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }

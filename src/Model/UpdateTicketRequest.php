@@ -25,14 +25,14 @@ final class UpdateTicketRequest implements JsonSerializable
 
     private static array $attributeMap = [
         'status' => 'status',
-        'collaborator_ids' => 'collaborator_ids',
-        'collaborators_replace' => 'collaborators_replace'
+        'collaboratorIds' => 'collaborator_ids',
+        'collaboratorsReplace' => 'collaborators_replace'
     ];
 
     public function __construct(
-        public readonly ?string $status = null,
-        public readonly ?array $collaborator_ids = [],
-        public readonly ?bool $collaborators_replace = null,
+        private readonly ?string $status = null,
+        private readonly ?array $collaboratorIds = [],
+        private readonly ?bool $collaboratorsReplace = null,
     ) {
     }
 
@@ -40,14 +40,27 @@ final class UpdateTicketRequest implements JsonSerializable
     {
         return [
             'status' => $this->status,
-            'collaborator_ids' => $this->collaborator_ids,
-            'collaborators_replace' => $this->collaborators_replace,
+            'collaboratorIds' => $this->collaboratorIds,
+            'collaboratorsReplace' => $this->collaboratorsReplace,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getCollaboratorIds(): ?array
+    {
+        return $this->collaboratorIds;
+    }
+    public function getCollaboratorsReplace(): ?bool
+    {
+        return $this->collaboratorsReplace;
     }
 }
 

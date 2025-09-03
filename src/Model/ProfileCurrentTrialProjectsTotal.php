@@ -25,16 +25,16 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 
     private static array $attributeMap = [
         'amount' => 'amount',
-        'currency_code' => 'currency_code',
-        'currency_symbol' => 'currency_symbol',
+        'currencyCode' => 'currency_code',
+        'currencySymbol' => 'currency_symbol',
         'formatted' => 'formatted'
     ];
 
     public function __construct(
-        public readonly ?int $amount = null,
-        public readonly ?string $currency_code = null,
-        public readonly ?string $currency_symbol = null,
-        public readonly ?string $formatted = null,
+        private readonly ?int $amount = null,
+        private readonly ?string $currencyCode = null,
+        private readonly ?string $currencySymbol = null,
+        private readonly ?string $formatted = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     {
         return [
             'amount' => $this->amount,
-            'currency_code' => $this->currency_code,
-            'currency_symbol' => $this->currency_symbol,
+            'currencyCode' => $this->currencyCode,
+            'currencySymbol' => $this->currencySymbol,
             'formatted' => $this->formatted,
         ];
     }
@@ -51,6 +51,23 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAmount(): ?int
+    {
+        return $this->amount;
+    }
+    public function getCurrencyCode(): ?string
+    {
+        return $this->currencyCode;
+    }
+    public function getCurrencySymbol(): ?string
+    {
+        return $this->currencySymbol;
+    }
+    public function getFormatted(): ?string
+    {
+        return $this->formatted;
     }
 }
 

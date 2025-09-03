@@ -24,24 +24,29 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     private static string $openAPIModelName = 'send_org_mfa_reminders_request';
 
     private static array $attributeMap = [
-        'user_ids' => 'user_ids'
+        'userIds' => 'user_ids'
     ];
 
     public function __construct(
-        public readonly ?array $user_ids = [],
+        private readonly ?array $userIds = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'user_ids' => $this->user_ids,
+            'userIds' => $this->userIds,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUserIds(): ?array
+    {
+        return $this->userIds;
     }
 }
 

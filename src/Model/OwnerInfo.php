@@ -26,13 +26,13 @@ final class OwnerInfo implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'username' => 'username',
-        'display_name' => 'display_name'
+        'displayName' => 'display_name'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $username = null,
-        public readonly ?string $display_name = null,
+        private readonly ?string $type = null,
+        private readonly ?string $username = null,
+        private readonly ?string $displayName = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class OwnerInfo implements JsonSerializable
         return [
             'type' => $this->type,
             'username' => $this->username,
-            'display_name' => $this->display_name,
+            'displayName' => $this->displayName,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getDisplayName(): ?string
+    {
+        return $this->displayName;
     }
 }
 

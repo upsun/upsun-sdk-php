@@ -24,30 +24,30 @@ final class Resources implements JsonSerializable
     private static string $openAPIModelName = 'Resources';
 
     private static array $attributeMap = [
-        'base_memory' => 'base_memory',
-        'memory_ratio' => 'memory_ratio',
-        'profile_size' => 'profile_size',
+        'baseMemory' => 'base_memory',
+        'memoryRatio' => 'memory_ratio',
+        'profileSize' => 'profile_size',
         'minimum' => 'minimum',
         'default' => 'default',
         'disk' => 'disk'
     ];
 
     public function __construct(
-        public readonly ?int $base_memory = null,
-        public readonly ?int $memory_ratio = null,
-        public readonly ?string $profile_size = null,
-        public readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
-        public readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default = null,
-        public readonly ?\Upsun\Model\TheDisksResources $disk = null,
+        private readonly ?int $baseMemory = null,
+        private readonly ?int $memoryRatio = null,
+        private readonly ?string $profileSize = null,
+        private readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
+        private readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default = null,
+        private readonly ?\Upsun\Model\TheDisksResources $disk = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'base_memory' => $this->base_memory,
-            'memory_ratio' => $this->memory_ratio,
-            'profile_size' => $this->profile_size,
+            'baseMemory' => $this->baseMemory,
+            'memoryRatio' => $this->memoryRatio,
+            'profileSize' => $this->profileSize,
             'minimum' => $this->minimum,
             'default' => $this->default,
             'disk' => $this->disk,
@@ -57,6 +57,31 @@ final class Resources implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getBaseMemory(): ?int
+    {
+        return $this->baseMemory;
+    }
+    public function getMemoryRatio(): ?int
+    {
+        return $this->memoryRatio;
+    }
+    public function getProfileSize(): ?string
+    {
+        return $this->profileSize;
+    }
+    public function getMinimum(): ?\Upsun\Model\TheMinimumResourcesForThisService
+    {
+        return $this->minimum;
+    }
+    public function getDefault(): ?\Upsun\Model\TheDefaultResourcesForThisService
+    {
+        return $this->default;
+    }
+    public function getDisk(): ?\Upsun\Model\TheDisksResources
+    {
+        return $this->disk;
     }
 }
 

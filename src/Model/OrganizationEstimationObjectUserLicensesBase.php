@@ -30,9 +30,9 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     ];
 
     public function __construct(
-        public readonly ?int $count = null,
-        public readonly ?string $total = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
+        private readonly ?int $count = null,
+        private readonly ?string $total = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+    public function getTotal(): ?string
+    {
+        return $this->total;
+    }
+    public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList
+    {
+        return $this->list;
     }
 }
 

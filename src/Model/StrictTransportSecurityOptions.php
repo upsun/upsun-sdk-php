@@ -25,14 +25,14 @@ final class StrictTransportSecurityOptions implements JsonSerializable
 
     private static array $attributeMap = [
         'enabled' => 'enabled',
-        'include_subdomains' => 'include_subdomains',
+        'includeSubdomains' => 'include_subdomains',
         'preload' => 'preload'
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
-        public readonly ?bool $include_subdomains = null,
-        public readonly ?bool $preload = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?bool $includeSubdomains = null,
+        private readonly ?bool $preload = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class StrictTransportSecurityOptions implements JsonSerializable
     {
         return [
             'enabled' => $this->enabled,
-            'include_subdomains' => $this->include_subdomains,
+            'includeSubdomains' => $this->includeSubdomains,
             'preload' => $this->preload,
         ];
     }
@@ -48,6 +48,19 @@ final class StrictTransportSecurityOptions implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    public function getIncludeSubdomains(): ?bool
+    {
+        return $this->includeSubdomains;
+    }
+    public function getPreload(): ?bool
+    {
+        return $this->preload;
     }
 }
 

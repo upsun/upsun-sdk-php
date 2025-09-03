@@ -25,22 +25,22 @@ final class Vouchers implements JsonSerializable
 
     private static array $attributeMap = [
         'uuid' => 'uuid',
-        'vouchers_total' => 'vouchers_total',
-        'vouchers_applied' => 'vouchers_applied',
-        'vouchers_remaining_balance' => 'vouchers_remaining_balance',
+        'vouchersTotal' => 'vouchers_total',
+        'vouchersApplied' => 'vouchers_applied',
+        'vouchersRemainingBalance' => 'vouchers_remaining_balance',
         'currency' => 'currency',
         'vouchers' => 'vouchers',
-        '_links' => '_links'
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?string $uuid = null,
-        public readonly ?string $vouchers_total = null,
-        public readonly ?string $vouchers_applied = null,
-        public readonly ?string $vouchers_remaining_balance = null,
-        public readonly ?string $currency = null,
-        public readonly ?array $vouchers = [],
-        public readonly ?\Upsun\Model\VouchersLinks $_links = null,
+        private readonly ?string $uuid = null,
+        private readonly ?string $vouchersTotal = null,
+        private readonly ?string $vouchersApplied = null,
+        private readonly ?string $vouchersRemainingBalance = null,
+        private readonly ?string $currency = null,
+        private readonly ?array $vouchers = [],
+        private readonly ?\Upsun\Model\VouchersLinks $links = null,
     ) {
     }
 
@@ -48,18 +48,47 @@ final class Vouchers implements JsonSerializable
     {
         return [
             'uuid' => $this->uuid,
-            'vouchers_total' => $this->vouchers_total,
-            'vouchers_applied' => $this->vouchers_applied,
-            'vouchers_remaining_balance' => $this->vouchers_remaining_balance,
+            'vouchersTotal' => $this->vouchersTotal,
+            'vouchersApplied' => $this->vouchersApplied,
+            'vouchersRemainingBalance' => $this->vouchersRemainingBalance,
             'currency' => $this->currency,
             'vouchers' => $this->vouchers,
-            '_links' => $this->_links,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+    public function getVouchersTotal(): ?string
+    {
+        return $this->vouchersTotal;
+    }
+    public function getVouchersApplied(): ?string
+    {
+        return $this->vouchersApplied;
+    }
+    public function getVouchersRemainingBalance(): ?string
+    {
+        return $this->vouchersRemainingBalance;
+    }
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+    public function getVouchers(): ?array
+    {
+        return $this->vouchers;
+    }
+    public function getLinks(): ?\Upsun\Model\VouchersLinks
+    {
+        return $this->links;
     }
 }
 

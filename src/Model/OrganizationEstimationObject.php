@@ -25,22 +25,22 @@ final class OrganizationEstimationObject implements JsonSerializable
 
     private static array $attributeMap = [
         'total' => 'total',
-        'sub_total' => 'sub_total',
+        'subTotal' => 'sub_total',
         'vouchers' => 'vouchers',
-        'user_licenses' => 'user_licenses',
-        'user_management' => 'user_management',
-        'support_level' => 'support_level',
+        'userLicenses' => 'user_licenses',
+        'userManagement' => 'user_management',
+        'supportLevel' => 'support_level',
         'subscriptions' => 'subscriptions'
     ];
 
     public function __construct(
-        public readonly ?string $total = null,
-        public readonly ?string $sub_total = null,
-        public readonly ?string $vouchers = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $user_licenses = null,
-        public readonly ?string $user_management = null,
-        public readonly ?string $support_level = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+        private readonly ?string $total = null,
+        private readonly ?string $subTotal = null,
+        private readonly ?string $vouchers = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
+        private readonly ?string $userManagement = null,
+        private readonly ?string $supportLevel = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return [
             'total' => $this->total,
-            'sub_total' => $this->sub_total,
+            'subTotal' => $this->subTotal,
             'vouchers' => $this->vouchers,
-            'user_licenses' => $this->user_licenses,
-            'user_management' => $this->user_management,
-            'support_level' => $this->support_level,
+            'userLicenses' => $this->userLicenses,
+            'userManagement' => $this->userManagement,
+            'supportLevel' => $this->supportLevel,
             'subscriptions' => $this->subscriptions,
         ];
     }
@@ -60,6 +60,35 @@ final class OrganizationEstimationObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTotal(): ?string
+    {
+        return $this->total;
+    }
+    public function getSubTotal(): ?string
+    {
+        return $this->subTotal;
+    }
+    public function getVouchers(): ?string
+    {
+        return $this->vouchers;
+    }
+    public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
+    {
+        return $this->userLicenses;
+    }
+    public function getUserManagement(): ?string
+    {
+        return $this->userManagement;
+    }
+    public function getSupportLevel(): ?string
+    {
+        return $this->supportLevel;
+    }
+    public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
+    {
+        return $this->subscriptions;
     }
 }
 

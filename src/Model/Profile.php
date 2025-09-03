@@ -25,54 +25,54 @@ final class Profile implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'display_name' => 'display_name',
+        'displayName' => 'display_name',
         'email' => 'email',
         'username' => 'username',
         'type' => 'type',
         'picture' => 'picture',
-        'company_type' => 'company_type',
-        'company_name' => 'company_name',
+        'companyType' => 'company_type',
+        'companyName' => 'company_name',
         'currency' => 'currency',
-        'vat_number' => 'vat_number',
-        'company_role' => 'company_role',
-        'website_url' => 'website_url',
-        'new_ui' => 'new_ui',
-        'ui_colorscheme' => 'ui_colorscheme',
-        'default_catalog' => 'default_catalog',
-        'project_options_url' => 'project_options_url',
+        'vatNumber' => 'vat_number',
+        'companyRole' => 'company_role',
+        'websiteUrl' => 'website_url',
+        'newUi' => 'new_ui',
+        'uiColorscheme' => 'ui_colorscheme',
+        'defaultCatalog' => 'default_catalog',
+        'projectOptionsUrl' => 'project_options_url',
         'marketing' => 'marketing',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'billing_contact' => 'billing_contact',
-        'security_contact' => 'security_contact',
-        'current_trial' => 'current_trial',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'billingContact' => 'billing_contact',
+        'securityContact' => 'security_contact',
+        'currentTrial' => 'current_trial',
         'invoiced' => 'invoiced'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $display_name = null,
-        public readonly ?string $email = null,
-        public readonly ?string $username = null,
-        public readonly ?string $type = null,
-        public readonly ?string $picture = null,
-        public readonly ?string $company_type = null,
-        public readonly ?string $company_name = null,
-        public readonly ?string $currency = null,
-        public readonly ?string $vat_number = null,
-        public readonly ?string $company_role = null,
-        public readonly ?string $website_url = null,
-        public readonly ?bool $new_ui = null,
-        public readonly ?string $ui_colorscheme = null,
-        public readonly ?string $default_catalog = null,
-        public readonly ?string $project_options_url = null,
-        public readonly ?bool $marketing = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $billing_contact = null,
-        public readonly ?string $security_contact = null,
-        public readonly ?\Upsun\Model\ProfileCurrentTrial $current_trial = null,
-        public readonly ?bool $invoiced = null,
+        private readonly ?string $id = null,
+        private readonly ?string $displayName = null,
+        private readonly ?string $email = null,
+        private readonly ?string $username = null,
+        private readonly ?string $type = null,
+        private readonly ?string $picture = null,
+        private readonly ?string $companyType = null,
+        private readonly ?string $companyName = null,
+        private readonly ?string $currency = null,
+        private readonly ?string $vatNumber = null,
+        private readonly ?string $companyRole = null,
+        private readonly ?string $websiteUrl = null,
+        private readonly ?bool $newUi = null,
+        private readonly ?string $uiColorscheme = null,
+        private readonly ?string $defaultCatalog = null,
+        private readonly ?string $projectOptionsUrl = null,
+        private readonly ?bool $marketing = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $billingContact = null,
+        private readonly ?string $securityContact = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrial $currentTrial = null,
+        private readonly ?bool $invoiced = null,
     ) {
     }
 
@@ -80,27 +80,27 @@ final class Profile implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'display_name' => $this->display_name,
+            'displayName' => $this->displayName,
             'email' => $this->email,
             'username' => $this->username,
             'type' => $this->type,
             'picture' => $this->picture,
-            'company_type' => $this->company_type,
-            'company_name' => $this->company_name,
+            'companyType' => $this->companyType,
+            'companyName' => $this->companyName,
             'currency' => $this->currency,
-            'vat_number' => $this->vat_number,
-            'company_role' => $this->company_role,
-            'website_url' => $this->website_url,
-            'new_ui' => $this->new_ui,
-            'ui_colorscheme' => $this->ui_colorscheme,
-            'default_catalog' => $this->default_catalog,
-            'project_options_url' => $this->project_options_url,
+            'vatNumber' => $this->vatNumber,
+            'companyRole' => $this->companyRole,
+            'websiteUrl' => $this->websiteUrl,
+            'newUi' => $this->newUi,
+            'uiColorscheme' => $this->uiColorscheme,
+            'defaultCatalog' => $this->defaultCatalog,
+            'projectOptionsUrl' => $this->projectOptionsUrl,
             'marketing' => $this->marketing,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'billing_contact' => $this->billing_contact,
-            'security_contact' => $this->security_contact,
-            'current_trial' => $this->current_trial,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'billingContact' => $this->billingContact,
+            'securityContact' => $this->securityContact,
+            'currentTrial' => $this->currentTrial,
             'invoiced' => $this->invoiced,
         ];
     }
@@ -108,6 +108,99 @@ final class Profile implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getDisplayName(): ?string
+    {
+        return $this->displayName;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+    public function getCompanyType(): ?string
+    {
+        return $this->companyType;
+    }
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+    public function getVatNumber(): ?string
+    {
+        return $this->vatNumber;
+    }
+    public function getCompanyRole(): ?string
+    {
+        return $this->companyRole;
+    }
+    public function getWebsiteUrl(): ?string
+    {
+        return $this->websiteUrl;
+    }
+    public function getNewUi(): ?bool
+    {
+        return $this->newUi;
+    }
+    public function getUiColorscheme(): ?string
+    {
+        return $this->uiColorscheme;
+    }
+    public function getDefaultCatalog(): ?string
+    {
+        return $this->defaultCatalog;
+    }
+    public function getProjectOptionsUrl(): ?string
+    {
+        return $this->projectOptionsUrl;
+    }
+    public function getMarketing(): ?bool
+    {
+        return $this->marketing;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getBillingContact(): ?string
+    {
+        return $this->billingContact;
+    }
+    public function getSecurityContact(): ?string
+    {
+        return $this->securityContact;
+    }
+    public function getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
+    {
+        return $this->currentTrial;
+    }
+    public function getInvoiced(): ?bool
+    {
+        return $this->invoiced;
     }
 }
 

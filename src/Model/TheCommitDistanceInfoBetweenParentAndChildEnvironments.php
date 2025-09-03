@@ -24,30 +24,43 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     private static string $openAPIModelName = 'The_commit_distance_info_between_parent_and_child_environments';
 
     private static array $attributeMap = [
-        'commits_ahead' => 'commits_ahead',
-        'commits_behind' => 'commits_behind',
-        'parent_ref' => 'parent_ref'
+        'commitsAhead' => 'commits_ahead',
+        'commitsBehind' => 'commits_behind',
+        'parentRef' => 'parent_ref'
     ];
 
     public function __construct(
-        public readonly ?int $commits_ahead = null,
-        public readonly ?int $commits_behind = null,
-        public readonly ?string $parent_ref = null,
+        private readonly ?int $commitsAhead = null,
+        private readonly ?int $commitsBehind = null,
+        private readonly ?string $parentRef = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'commits_ahead' => $this->commits_ahead,
-            'commits_behind' => $this->commits_behind,
-            'parent_ref' => $this->parent_ref,
+            'commitsAhead' => $this->commitsAhead,
+            'commitsBehind' => $this->commitsBehind,
+            'parentRef' => $this->parentRef,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCommitsAhead(): ?int
+    {
+        return $this->commitsAhead;
+    }
+    public function getCommitsBehind(): ?int
+    {
+        return $this->commitsBehind;
+    }
+    public function getParentRef(): ?string
+    {
+        return $this->parentRef;
     }
 }
 

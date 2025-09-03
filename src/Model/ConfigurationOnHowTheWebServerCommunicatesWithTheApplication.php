@@ -24,20 +24,20 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     private static string $openAPIModelName = 'Configuration_on_how_the_web_server_communicates_with_the_application_';
 
     private static array $attributeMap = [
-        'socket_family' => 'socket_family',
+        'socketFamily' => 'socket_family',
         'protocol' => 'protocol'
     ];
 
     public function __construct(
-        public readonly ?string $socket_family = null,
-        public readonly ?string $protocol = null,
+        private readonly ?string $socketFamily = null,
+        private readonly ?string $protocol = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'socket_family' => $this->socket_family,
+            'socketFamily' => $this->socketFamily,
             'protocol' => $this->protocol,
         ];
     }
@@ -45,6 +45,15 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSocketFamily(): ?string
+    {
+        return $this->socketFamily;
+    }
+    public function getProtocol(): ?string
+    {
+        return $this->protocol;
     }
 }
 

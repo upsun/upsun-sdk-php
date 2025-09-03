@@ -26,25 +26,25 @@ final class EnvironmentInfo implements JsonSerializable
     private static array $attributeMap = [
         'name' => 'name',
         'status' => 'status',
-        'is_main' => 'is_main',
-        'is_production' => 'is_production',
+        'isMain' => 'is_main',
+        'isProduction' => 'is_production',
         'constraints' => 'constraints',
         'reference' => 'reference',
-        'machine_name' => 'machine_name',
-        'environment_type' => 'environment_type',
+        'machineName' => 'machine_name',
+        'environmentType' => 'environment_type',
         'links' => 'links'
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?string $status = null,
-        public readonly ?bool $is_main = null,
-        public readonly ?bool $is_production = null,
-        public readonly ?object $constraints = null,
-        public readonly ?string $reference = null,
-        public readonly ?string $machine_name = null,
-        public readonly ?string $environment_type = null,
-        public readonly ?object $links = null,
+        private readonly ?string $name = null,
+        private readonly ?string $status = null,
+        private readonly ?bool $isMain = null,
+        private readonly ?bool $isProduction = null,
+        private readonly ?object $constraints = null,
+        private readonly ?string $reference = null,
+        private readonly ?string $machineName = null,
+        private readonly ?string $environmentType = null,
+        private readonly ?object $links = null,
     ) {
     }
 
@@ -53,12 +53,12 @@ final class EnvironmentInfo implements JsonSerializable
         return [
             'name' => $this->name,
             'status' => $this->status,
-            'is_main' => $this->is_main,
-            'is_production' => $this->is_production,
+            'isMain' => $this->isMain,
+            'isProduction' => $this->isProduction,
             'constraints' => $this->constraints,
             'reference' => $this->reference,
-            'machine_name' => $this->machine_name,
-            'environment_type' => $this->environment_type,
+            'machineName' => $this->machineName,
+            'environmentType' => $this->environmentType,
             'links' => $this->links,
         ];
     }
@@ -66,6 +66,43 @@ final class EnvironmentInfo implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getIsMain(): ?bool
+    {
+        return $this->isMain;
+    }
+    public function getIsProduction(): ?bool
+    {
+        return $this->isProduction;
+    }
+    public function getConstraints(): ?object
+    {
+        return $this->constraints;
+    }
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+    public function getMachineName(): ?string
+    {
+        return $this->machineName;
+    }
+    public function getEnvironmentType(): ?string
+    {
+        return $this->environmentType;
+    }
+    public function getLinks(): ?object
+    {
+        return $this->links;
     }
 }
 

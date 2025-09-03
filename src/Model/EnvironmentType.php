@@ -28,7 +28,7 @@ final class EnvironmentType implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?array $attributes = [],
+        private readonly ?array $attributes = [],
     ) {
     }
 
@@ -42,6 +42,11 @@ final class EnvironmentType implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
     }
 }
 

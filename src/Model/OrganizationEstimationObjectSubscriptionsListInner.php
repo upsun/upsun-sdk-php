@@ -24,25 +24,25 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner';
 
     private static array $attributeMap = [
-        'license_id' => 'license_id',
-        'project_title' => 'project_title',
+        'licenseId' => 'license_id',
+        'projectTitle' => 'project_title',
         'total' => 'total',
         'usage' => 'usage'
     ];
 
     public function __construct(
-        public readonly ?string $license_id = null,
-        public readonly ?string $project_title = null,
-        public readonly ?string $total = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+        private readonly ?string $licenseId = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $total = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'license_id' => $this->license_id,
-            'project_title' => $this->project_title,
+            'licenseId' => $this->licenseId,
+            'projectTitle' => $this->projectTitle,
             'total' => $this->total,
             'usage' => $this->usage,
         ];
@@ -51,6 +51,23 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getLicenseId(): ?string
+    {
+        return $this->licenseId;
+    }
+    public function getProjectTitle(): ?string
+    {
+        return $this->projectTitle;
+    }
+    public function getTotal(): ?string
+    {
+        return $this->total;
+    }
+    public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
+    {
+        return $this->usage;
     }
 }
 

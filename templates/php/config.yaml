@@ -26,6 +26,11 @@ additionalProperties:
   projectName: Upsun SDK PHP
   authorizationUrl: https://auth.upsun.com/oauth2/token
   basicUser: "platform-api-user"
+  variableNamingConvention: "camelCase"
+  parameterNamingConvention: "camelCase"
+  propertyNamingConvention: "camelCase"
+  enumPropertyNaming: "camelCase"
+  modelPropertyNaming: "camelCase"
 files:
   abstract_api.mustache:
     templateType: SupportingFiles

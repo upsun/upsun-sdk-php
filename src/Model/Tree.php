@@ -29,8 +29,8 @@ final class Tree implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $sha = null,
-        public readonly ?array $tree = [],
+        private readonly ?string $sha = null,
+        private readonly ?array $tree = [],
     ) {
     }
 
@@ -45,6 +45,15 @@ final class Tree implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSha(): ?string
+    {
+        return $this->sha;
+    }
+    public function getTree(): ?array
+    {
+        return $this->tree;
     }
 }
 

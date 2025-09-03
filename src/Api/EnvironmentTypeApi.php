@@ -124,12 +124,12 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentType(
-        string $project_id,
-        string $environment_type_id
+        string $projectId,
+        string $environmentTypeId
     ): \Upsun\Model\EnvironmentType {
         list($response) = $this->getEnvironmentTypeWithHttpInfo(
-            $project_id,
-            $environment_type_id
+            $projectId,
+            $environmentTypeId
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentTypeWithHttpInfo(
-        string $project_id,
-        string $environment_type_id
+        string $projectId,
+        string $environmentTypeId
     ): array {
         $request = $this->getEnvironmentTypeRequest(
-            $project_id,
-            $environment_type_id
+            $projectId,
+            $environmentTypeId
         );
 
         try {
@@ -172,12 +172,12 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentTypeAsync(
-        string $project_id,
-        string $environment_type_id
+        string $projectId,
+        string $environmentTypeId
     ): Promise {
         return $this->getEnvironmentTypeAsyncWithHttpInfo(
-            $project_id,
-            $environment_type_id
+            $projectId,
+            $environmentTypeId
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getEnvironmentTypeAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_type_id
+        string $projectId,
+        string $environmentTypeId
     ): Promise {
         $returnType = '\Upsun\Model\EnvironmentType';
         $request = $this->getEnvironmentTypeRequest(
-            $project_id,
-            $environment_type_id
+            $projectId,
+            $environmentTypeId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getEnvironmentTypeRequest(
-        string $project_id,
-        string $environment_type_id
+        string $projectId,
+        string $environmentTypeId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getEnvironmentType'
+                'Missing the required parameter $projectId when calling getEnvironmentType'
             );
         }
-        // verify the required parameter 'environment_type_id' is set
-        if ($environment_type_id === null || (is_array($environment_type_id) && count($environment_type_id) === 0)) {
+        // verify the required parameter 'environmentTypeId' is set
+        if ($environmentTypeId === null || (is_array($environmentTypeId) && count($environmentTypeId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_type_id when calling getEnvironmentType'
+                'Missing the required parameter $environmentTypeId when calling getEnvironmentType'
             );
         }
 
@@ -265,18 +265,18 @@ final class EnvironmentTypeApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_type_id !== null) {
+        if ($environmentTypeId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentTypeId' . '}',
-                ObjectSerializer::toPathValue($environment_type_id),
+                ObjectSerializer::toPathValue($environmentTypeId),
                 $resourcePath
             );
         }
@@ -337,10 +337,10 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentTypes(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsEnvironmentTypesWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -351,10 +351,10 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentTypesWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsEnvironmentTypesRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -381,10 +381,10 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentTypesAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsEnvironmentTypesAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -399,11 +399,11 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentTypesAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\EnvironmentType[]';
         $request = $this->listProjectsEnvironmentTypesRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -444,12 +444,12 @@ final class EnvironmentTypeApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentTypesRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentTypes'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentTypes'
             );
         }
 
@@ -463,10 +463,10 @@ final class EnvironmentTypeApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }

@@ -25,30 +25,30 @@ final class GetAddress200Response implements JsonSerializable
 
     private static array $attributeMap = [
         'country' => 'country',
-        'name_line' => 'name_line',
+        'nameLine' => 'name_line',
         'premise' => 'premise',
-        'sub_premise' => 'sub_premise',
+        'subPremise' => 'sub_premise',
         'thoroughfare' => 'thoroughfare',
-        'administrative_area' => 'administrative_area',
-        'sub_administrative_area' => 'sub_administrative_area',
+        'administrativeArea' => 'administrative_area',
+        'subAdministrativeArea' => 'sub_administrative_area',
         'locality' => 'locality',
-        'dependent_locality' => 'dependent_locality',
-        'postal_code' => 'postal_code',
+        'dependentLocality' => 'dependent_locality',
+        'postalCode' => 'postal_code',
         'metadata' => 'metadata'
     ];
 
     public function __construct(
-        public readonly ?string $country = null,
-        public readonly ?string $name_line = null,
-        public readonly ?string $premise = null,
-        public readonly ?string $sub_premise = null,
-        public readonly ?string $thoroughfare = null,
-        public readonly ?string $administrative_area = null,
-        public readonly ?string $sub_administrative_area = null,
-        public readonly ?string $locality = null,
-        public readonly ?string $dependent_locality = null,
-        public readonly ?string $postal_code = null,
-        public readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
+        private readonly ?string $country = null,
+        private readonly ?string $nameLine = null,
+        private readonly ?string $premise = null,
+        private readonly ?string $subPremise = null,
+        private readonly ?string $thoroughfare = null,
+        private readonly ?string $administrativeArea = null,
+        private readonly ?string $subAdministrativeArea = null,
+        private readonly ?string $locality = null,
+        private readonly ?string $dependentLocality = null,
+        private readonly ?string $postalCode = null,
+        private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
     ) {
     }
 
@@ -56,15 +56,15 @@ final class GetAddress200Response implements JsonSerializable
     {
         return [
             'country' => $this->country,
-            'name_line' => $this->name_line,
+            'nameLine' => $this->nameLine,
             'premise' => $this->premise,
-            'sub_premise' => $this->sub_premise,
+            'subPremise' => $this->subPremise,
             'thoroughfare' => $this->thoroughfare,
-            'administrative_area' => $this->administrative_area,
-            'sub_administrative_area' => $this->sub_administrative_area,
+            'administrativeArea' => $this->administrativeArea,
+            'subAdministrativeArea' => $this->subAdministrativeArea,
             'locality' => $this->locality,
-            'dependent_locality' => $this->dependent_locality,
-            'postal_code' => $this->postal_code,
+            'dependentLocality' => $this->dependentLocality,
+            'postalCode' => $this->postalCode,
             'metadata' => $this->metadata,
         ];
     }
@@ -72,6 +72,51 @@ final class GetAddress200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+    public function getNameLine(): ?string
+    {
+        return $this->nameLine;
+    }
+    public function getPremise(): ?string
+    {
+        return $this->premise;
+    }
+    public function getSubPremise(): ?string
+    {
+        return $this->subPremise;
+    }
+    public function getThoroughfare(): ?string
+    {
+        return $this->thoroughfare;
+    }
+    public function getAdministrativeArea(): ?string
+    {
+        return $this->administrativeArea;
+    }
+    public function getSubAdministrativeArea(): ?string
+    {
+        return $this->subAdministrativeArea;
+    }
+    public function getLocality(): ?string
+    {
+        return $this->locality;
+    }
+    public function getDependentLocality(): ?string
+    {
+        return $this->dependentLocality;
+    }
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+    public function getMetadata(): ?\Upsun\Model\AddressMetadataMetadata
+    {
+        return $this->metadata;
     }
 }
 

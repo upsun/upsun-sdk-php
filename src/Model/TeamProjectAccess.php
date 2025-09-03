@@ -24,42 +24,71 @@ final class TeamProjectAccess implements JsonSerializable
     private static string $openAPIModelName = 'TeamProjectAccess';
 
     private static array $attributeMap = [
-        'team_id' => 'team_id',
-        'organization_id' => 'organization_id',
-        'project_id' => 'project_id',
-        'project_title' => 'project_title',
-        'granted_at' => 'granted_at',
-        'updated_at' => 'updated_at',
-        '_links' => '_links'
+        'teamId' => 'team_id',
+        'organizationId' => 'organization_id',
+        'projectId' => 'project_id',
+        'projectTitle' => 'project_title',
+        'grantedAt' => 'granted_at',
+        'updatedAt' => 'updated_at',
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?string $team_id = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?string $project_id = null,
-        public readonly ?string $project_title = null,
-        public readonly ?\DateTime $granted_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?\Upsun\Model\TeamProjectAccessLinks $_links = null,
+        private readonly ?string $teamId = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $projectId = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'team_id' => $this->team_id,
-            'organization_id' => $this->organization_id,
-            'project_id' => $this->project_id,
-            'project_title' => $this->project_title,
-            'granted_at' => $this->granted_at,
-            'updated_at' => $this->updated_at,
-            '_links' => $this->_links,
+            'teamId' => $this->teamId,
+            'organizationId' => $this->organizationId,
+            'projectId' => $this->projectId,
+            'projectTitle' => $this->projectTitle,
+            'grantedAt' => $this->grantedAt,
+            'updatedAt' => $this->updatedAt,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTeamId(): ?string
+    {
+        return $this->teamId;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getProjectId(): ?string
+    {
+        return $this->projectId;
+    }
+    public function getProjectTitle(): ?string
+    {
+        return $this->projectTitle;
+    }
+    public function getGrantedAt(): ?\DateTime
+    {
+        return $this->grantedAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
+    {
+        return $this->links;
     }
 }
 

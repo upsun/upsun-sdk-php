@@ -25,22 +25,22 @@ final class Connection implements JsonSerializable
 
     private static array $attributeMap = [
         'provider' => 'provider',
-        'provider_type' => 'provider_type',
-        'is_mandatory' => 'is_mandatory',
+        'providerType' => 'provider_type',
+        'isMandatory' => 'is_mandatory',
         'subject' => 'subject',
-        'email_address' => 'email_address',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'emailAddress' => 'email_address',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $provider = null,
-        public readonly ?string $provider_type = null,
-        public readonly ?bool $is_mandatory = null,
-        public readonly ?string $subject = null,
-        public readonly ?string $email_address = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $provider = null,
+        private readonly ?string $providerType = null,
+        private readonly ?bool $isMandatory = null,
+        private readonly ?string $subject = null,
+        private readonly ?string $emailAddress = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -48,18 +48,47 @@ final class Connection implements JsonSerializable
     {
         return [
             'provider' => $this->provider,
-            'provider_type' => $this->provider_type,
-            'is_mandatory' => $this->is_mandatory,
+            'providerType' => $this->providerType,
+            'isMandatory' => $this->isMandatory,
             'subject' => $this->subject,
-            'email_address' => $this->email_address,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'emailAddress' => $this->emailAddress,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getProvider(): ?string
+    {
+        return $this->provider;
+    }
+    public function getProviderType(): ?string
+    {
+        return $this->providerType;
+    }
+    public function getIsMandatory(): ?bool
+    {
+        return $this->isMandatory;
+    }
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+    public function getEmailAddress(): ?string
+    {
+        return $this->emailAddress;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

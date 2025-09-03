@@ -25,22 +25,22 @@ final class TeamReference implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'organization_id' => 'organization_id',
+        'organizationId' => 'organization_id',
         'label' => 'label',
-        'project_permissions' => 'project_permissions',
+        'projectPermissions' => 'project_permissions',
         'counts' => 'counts',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?string $label = null,
-        public readonly ?array $project_permissions = [],
-        public readonly ?\Upsun\Model\TeamCounts $counts = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $label = null,
+        private readonly ?array $projectPermissions = [],
+        private readonly ?\Upsun\Model\TeamCounts $counts = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -48,18 +48,47 @@ final class TeamReference implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'organization_id' => $this->organization_id,
+            'organizationId' => $this->organizationId,
             'label' => $this->label,
-            'project_permissions' => $this->project_permissions,
+            'projectPermissions' => $this->projectPermissions,
             'counts' => $this->counts,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getProjectPermissions(): ?array
+    {
+        return $this->projectPermissions;
+    }
+    public function getCounts(): ?\Upsun\Model\TeamCounts
+    {
+        return $this->counts;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

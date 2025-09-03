@@ -494,10 +494,10 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getAddress(
-        string $user_id
+        string $userId
     ): \Upsun\Model\GetAddress200Response {
         list($response) = $this->getAddressWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -508,10 +508,10 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getAddressWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->getAddressRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -538,10 +538,10 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getAddressAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->getAddressAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -556,11 +556,11 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getAddressAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\GetAddress200Response';
         $request = $this->getAddressRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -601,12 +601,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getAddressRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getAddress'
+                'Missing the required parameter $userId when calling getAddress'
             );
         }
 
@@ -620,10 +620,10 @@ final class UserProfilesApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'userId' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -684,10 +684,10 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProfile(
-        string $user_id
+        string $userId
     ): \Upsun\Model\Profile {
         list($response) = $this->getProfileWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -698,10 +698,10 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProfileWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->getProfileRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -728,10 +728,10 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProfileAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->getProfileAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -746,11 +746,11 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProfileAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\Profile';
         $request = $this->getProfileRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -791,12 +791,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProfileRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getProfile'
+                'Missing the required parameter $userId when calling getProfile'
             );
         }
 
@@ -810,10 +810,10 @@ final class UserProfilesApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'userId' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1050,11 +1050,11 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateAddress(
-        string $user_id,
+        string $userId,
         \Upsun\Model\Address $address = null
     ): \Upsun\Model\GetAddress200Response {
         list($response) = $this->updateAddressWithHttpInfo(
-            $user_id,
+            $userId,
             $address
         );
         return $response;
@@ -1066,11 +1066,11 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateAddressWithHttpInfo(
-        string $user_id,
+        string $userId,
         \Upsun\Model\Address $address = null
     ): array {
         $request = $this->updateAddressRequest(
-            $user_id,
+            $userId,
             $address
         );
 
@@ -1098,11 +1098,11 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateAddressAsync(
-        string $user_id,
+        string $userId,
         \Upsun\Model\Address $address = null
     ): Promise {
         return $this->updateAddressAsyncWithHttpInfo(
-            $user_id,
+            $userId,
             $address
         )
             ->then(
@@ -1118,12 +1118,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateAddressAsyncWithHttpInfo(
-        string $user_id,
+        string $userId,
         \Upsun\Model\Address $address = null
     ): Promise {
         $returnType = '\Upsun\Model\GetAddress200Response';
         $request = $this->updateAddressRequest(
-            $user_id,
+            $userId,
             $address
         );
 
@@ -1165,13 +1165,13 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateAddressRequest(
-        string $user_id,
+        string $userId,
         \Upsun\Model\Address $address = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateAddress'
+                'Missing the required parameter $userId when calling updateAddress'
             );
         }
 
@@ -1185,10 +1185,10 @@ final class UserProfilesApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'userId' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1255,12 +1255,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProfile(
-        string $user_id,
-        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+        string $userId,
+        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): \Upsun\Model\Profile {
         list($response) = $this->updateProfileWithHttpInfo(
-            $user_id,
-            $update_profile_request
+            $userId,
+            $updateProfileRequest
         );
         return $response;
     }
@@ -1271,12 +1271,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProfileWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+        string $userId,
+        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): array {
         $request = $this->updateProfileRequest(
-            $user_id,
-            $update_profile_request
+            $userId,
+            $updateProfileRequest
         );
 
         try {
@@ -1303,12 +1303,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProfileAsync(
-        string $user_id,
-        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+        string $userId,
+        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): Promise {
         return $this->updateProfileAsyncWithHttpInfo(
-            $user_id,
-            $update_profile_request
+            $userId,
+            $updateProfileRequest
         )
             ->then(
                 function ($response) {
@@ -1323,13 +1323,13 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProfileAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+        string $userId,
+        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\Profile';
         $request = $this->updateProfileRequest(
-            $user_id,
-            $update_profile_request
+            $userId,
+            $updateProfileRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1370,13 +1370,13 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProfileRequest(
-        string $user_id,
-        \Upsun\Model\UpdateProfileRequest $update_profile_request = null
+        string $userId,
+        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateProfile'
+                'Missing the required parameter $userId when calling updateProfile'
             );
         }
 
@@ -1390,10 +1390,10 @@ final class UserProfilesApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'userId' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1406,11 +1406,11 @@ final class UserProfilesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($update_profile_request)) {
+        if (isset($updateProfileRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($update_profile_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateProfileRequest));
             } else {
-                $httpBody = $update_profile_request;
+                $httpBody = $updateProfileRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -24,42 +24,71 @@ final class PrepaymentTransactionObject implements JsonSerializable
     private static string $openAPIModelName = 'PrepaymentTransactionObject';
 
     private static array $attributeMap = [
-        'order_id' => 'order_id',
+        'orderId' => 'order_id',
         'message' => 'message',
         'status' => 'status',
         'amount' => 'amount',
         'created' => 'created',
         'updated' => 'updated',
-        'expire_date' => 'expire_date'
+        'expireDate' => 'expire_date'
     ];
 
     public function __construct(
-        public readonly ?string $order_id = null,
-        public readonly ?string $message = null,
-        public readonly ?string $status = null,
-        public readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
-        public readonly ?string $created = null,
-        public readonly ?string $updated = null,
-        public readonly ?string $expire_date = null,
+        private readonly ?string $orderId = null,
+        private readonly ?string $message = null,
+        private readonly ?string $status = null,
+        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+        private readonly ?string $created = null,
+        private readonly ?string $updated = null,
+        private readonly ?string $expireDate = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'order_id' => $this->order_id,
+            'orderId' => $this->orderId,
             'message' => $this->message,
             'status' => $this->status,
             'amount' => $this->amount,
             'created' => $this->created,
             'updated' => $this->updated,
-            'expire_date' => $this->expire_date,
+            'expireDate' => $this->expireDate,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getOrderId(): ?string
+    {
+        return $this->orderId;
+    }
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    {
+        return $this->amount;
+    }
+    public function getCreated(): ?string
+    {
+        return $this->created;
+    }
+    public function getUpdated(): ?string
+    {
+        return $this->updated;
+    }
+    public function getExpireDate(): ?string
+    {
+        return $this->expireDate;
     }
 }
 

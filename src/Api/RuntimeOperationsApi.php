@@ -124,16 +124,16 @@ final class RuntimeOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runOperation(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id,
-        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runOperationWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $deployment_id,
-            $environment_operation_input
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            $environmentOperationInput
         );
         return $response;
     }
@@ -144,16 +144,16 @@ final class RuntimeOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runOperationWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id,
-        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): array {
         $request = $this->runOperationRequest(
-            $project_id,
-            $environment_id,
-            $deployment_id,
-            $environment_operation_input
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            $environmentOperationInput
         );
 
         try {
@@ -180,16 +180,16 @@ final class RuntimeOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runOperationAsync(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id,
-        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): Promise {
         return $this->runOperationAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $deployment_id,
-            $environment_operation_input
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            $environmentOperationInput
         )
             ->then(
                 function ($response) {
@@ -204,17 +204,17 @@ final class RuntimeOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runOperationAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id,
-        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->runOperationRequest(
-            $project_id,
-            $environment_id,
-            $deployment_id,
-            $environment_operation_input
+            $projectId,
+            $environmentId,
+            $deploymentId,
+            $environmentOperationInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -255,33 +255,33 @@ final class RuntimeOperationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function runOperationRequest(
-        string $project_id,
-        string $environment_id,
-        string $deployment_id,
-        \Upsun\Model\EnvironmentOperationInput $environment_operation_input
+        string $projectId,
+        string $environmentId,
+        string $deploymentId,
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling runOperation'
+                'Missing the required parameter $projectId when calling runOperation'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling runOperation'
+                'Missing the required parameter $environmentId when calling runOperation'
             );
         }
-        // verify the required parameter 'deployment_id' is set
-        if ($deployment_id === null || (is_array($deployment_id) && count($deployment_id) === 0)) {
+        // verify the required parameter 'deploymentId' is set
+        if ($deploymentId === null || (is_array($deploymentId) && count($deploymentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_id when calling runOperation'
+                'Missing the required parameter $deploymentId when calling runOperation'
             );
         }
-        // verify the required parameter 'environment_operation_input' is set
-        if ($environment_operation_input === null || (is_array($environment_operation_input) && count($environment_operation_input) === 0)) {
+        // verify the required parameter 'environmentOperationInput' is set
+        if ($environmentOperationInput === null || (is_array($environmentOperationInput) && count($environmentOperationInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_operation_input when calling runOperation'
+                'Missing the required parameter $environmentOperationInput when calling runOperation'
             );
         }
 
@@ -295,26 +295,26 @@ final class RuntimeOperationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($deployment_id !== null) {
+        if ($deploymentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'deploymentId' . '}',
-                ObjectSerializer::toPathValue($deployment_id),
+                ObjectSerializer::toPathValue($deploymentId),
                 $resourcePath
             );
         }
@@ -327,11 +327,11 @@ final class RuntimeOperationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($environment_operation_input)) {
+        if (isset($environmentOperationInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environment_operation_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentOperationInput));
             } else {
-                $httpBody = $environment_operation_input;
+                $httpBody = $environmentOperationInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

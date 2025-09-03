@@ -34,33 +34,33 @@ final class Config implements JsonSerializable
         'github' => 'github',
         'gitlab' => 'gitlab',
         'bitbucket' => 'bitbucket',
-        'bitbucket_server' => 'bitbucket_server',
-        'health_email' => 'health.email',
-        'health_webhook' => 'health.webhook',
-        'health_pagerduty' => 'health.pagerduty',
-        'health_slack' => 'health.slack',
-        'cdn_fastly' => 'cdn.fastly',
+        'bitbucketServer' => 'bitbucket_server',
+        'healthEmail' => 'health.email',
+        'healthWebhook' => 'health.webhook',
+        'healthPagerduty' => 'health.pagerduty',
+        'healthSlack' => 'health.slack',
+        'cdnFastly' => 'cdn.fastly',
         'blackfire' => 'blackfire'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
-        public readonly ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
-        public readonly ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk = null,
-        public readonly ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog = null,
-        public readonly ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog = null,
-        public readonly ?\Upsun\Model\WebhookIntegrationConfigurations $webhook = null,
-        public readonly ?\Upsun\Model\ScriptIntegrationConfigurations $script = null,
-        public readonly ?\Upsun\Model\GitHubIntegrationConfigurations $github = null,
-        public readonly ?\Upsun\Model\GitLabIntegrationConfigurations $gitlab = null,
-        public readonly ?\Upsun\Model\BitbucketIntegrationConfigurations $bitbucket = null,
-        public readonly ?\Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucket_server = null,
-        public readonly ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations $health_email = null,
-        public readonly ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $health_webhook = null,
-        public readonly ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $health_pagerduty = null,
-        public readonly ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations $health_slack = null,
-        public readonly ?\Upsun\Model\FastlyCDNIntegrationConfigurations $cdn_fastly = null,
-        public readonly ?\Upsun\Model\BlackfireIntegrationConfigurations $blackfire = null,
+        private readonly ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
+        private readonly ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
+        private readonly ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations $splunk = null,
+        private readonly ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations $httplog = null,
+        private readonly ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations $syslog = null,
+        private readonly ?\Upsun\Model\WebhookIntegrationConfigurations $webhook = null,
+        private readonly ?\Upsun\Model\ScriptIntegrationConfigurations $script = null,
+        private readonly ?\Upsun\Model\GitHubIntegrationConfigurations $github = null,
+        private readonly ?\Upsun\Model\GitLabIntegrationConfigurations $gitlab = null,
+        private readonly ?\Upsun\Model\BitbucketIntegrationConfigurations $bitbucket = null,
+        private readonly ?\Upsun\Model\BitbucketServerIntegrationConfigurations $bitbucketServer = null,
+        private readonly ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations $healthEmail = null,
+        private readonly ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations $healthWebhook = null,
+        private readonly ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations $healthPagerduty = null,
+        private readonly ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations $healthSlack = null,
+        private readonly ?\Upsun\Model\FastlyCDNIntegrationConfigurations $cdnFastly = null,
+        private readonly ?\Upsun\Model\BlackfireIntegrationConfigurations $blackfire = null,
     ) {
     }
 
@@ -77,12 +77,12 @@ final class Config implements JsonSerializable
             'github' => $this->github,
             'gitlab' => $this->gitlab,
             'bitbucket' => $this->bitbucket,
-            'bitbucket_server' => $this->bitbucket_server,
-            'health_email' => $this->health_email,
-            'health_webhook' => $this->health_webhook,
-            'health_pagerduty' => $this->health_pagerduty,
-            'health_slack' => $this->health_slack,
-            'cdn_fastly' => $this->cdn_fastly,
+            'bitbucketServer' => $this->bitbucketServer,
+            'healthEmail' => $this->healthEmail,
+            'healthWebhook' => $this->healthWebhook,
+            'healthPagerduty' => $this->healthPagerduty,
+            'healthSlack' => $this->healthSlack,
+            'cdnFastly' => $this->cdnFastly,
             'blackfire' => $this->blackfire,
         ];
     }
@@ -90,6 +90,75 @@ final class Config implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getNewrelic(): ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations
+    {
+        return $this->newrelic;
+    }
+    public function getSumologic(): ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations
+    {
+        return $this->sumologic;
+    }
+    public function getSplunk(): ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations
+    {
+        return $this->splunk;
+    }
+    public function getHttplog(): ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations
+    {
+        return $this->httplog;
+    }
+    public function getSyslog(): ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations
+    {
+        return $this->syslog;
+    }
+    public function getWebhook(): ?\Upsun\Model\WebhookIntegrationConfigurations
+    {
+        return $this->webhook;
+    }
+    public function getScript(): ?\Upsun\Model\ScriptIntegrationConfigurations
+    {
+        return $this->script;
+    }
+    public function getGithub(): ?\Upsun\Model\GitHubIntegrationConfigurations
+    {
+        return $this->github;
+    }
+    public function getGitlab(): ?\Upsun\Model\GitLabIntegrationConfigurations
+    {
+        return $this->gitlab;
+    }
+    public function getBitbucket(): ?\Upsun\Model\BitbucketIntegrationConfigurations
+    {
+        return $this->bitbucket;
+    }
+    public function getBitbucketServer(): ?\Upsun\Model\BitbucketServerIntegrationConfigurations
+    {
+        return $this->bitbucketServer;
+    }
+    public function getHealthEmail(): ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations
+    {
+        return $this->healthEmail;
+    }
+    public function getHealthWebhook(): ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations
+    {
+        return $this->healthWebhook;
+    }
+    public function getHealthPagerduty(): ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations
+    {
+        return $this->healthPagerduty;
+    }
+    public function getHealthSlack(): ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations
+    {
+        return $this->healthSlack;
+    }
+    public function getCdnFastly(): ?\Upsun\Model\FastlyCDNIntegrationConfigurations
+    {
+        return $this->cdnFastly;
+    }
+    public function getBlackfire(): ?\Upsun\Model\BlackfireIntegrationConfigurations
+    {
+        return $this->blackfire;
     }
 }
 

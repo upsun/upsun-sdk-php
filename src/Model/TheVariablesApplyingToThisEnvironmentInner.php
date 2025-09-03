@@ -26,19 +26,19 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     private static array $attributeMap = [
         'name' => 'name',
         'value' => 'value',
-        'is_sensitive' => 'is_sensitive',
-        'is_json' => 'is_json',
-        'visible_build' => 'visible_build',
-        'visible_runtime' => 'visible_runtime'
+        'isSensitive' => 'is_sensitive',
+        'isJson' => 'is_json',
+        'visibleBuild' => 'visible_build',
+        'visibleRuntime' => 'visible_runtime'
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?string $value = null,
-        public readonly ?bool $is_sensitive = null,
-        public readonly ?bool $is_json = null,
-        public readonly ?bool $visible_build = null,
-        public readonly ?bool $visible_runtime = null,
+        private readonly ?string $name = null,
+        private readonly ?string $value = null,
+        private readonly ?bool $isSensitive = null,
+        private readonly ?bool $isJson = null,
+        private readonly ?bool $visibleBuild = null,
+        private readonly ?bool $visibleRuntime = null,
     ) {
     }
 
@@ -47,16 +47,41 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         return [
             'name' => $this->name,
             'value' => $this->value,
-            'is_sensitive' => $this->is_sensitive,
-            'is_json' => $this->is_json,
-            'visible_build' => $this->visible_build,
-            'visible_runtime' => $this->visible_runtime,
+            'isSensitive' => $this->isSensitive,
+            'isJson' => $this->isJson,
+            'visibleBuild' => $this->visibleBuild,
+            'visibleRuntime' => $this->visibleRuntime,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+    public function getIsSensitive(): ?bool
+    {
+        return $this->isSensitive;
+    }
+    public function getIsJson(): ?bool
+    {
+        return $this->isJson;
+    }
+    public function getVisibleBuild(): ?bool
+    {
+        return $this->visibleBuild;
+    }
+    public function getVisibleRuntime(): ?bool
+    {
+        return $this->visibleRuntime;
     }
 }
 

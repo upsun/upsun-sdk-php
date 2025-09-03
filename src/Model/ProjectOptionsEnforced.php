@@ -29,8 +29,8 @@ final class ProjectOptionsEnforced implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?object $settings = null,
-        public readonly ?object $capabilities = null,
+        private readonly ?object $settings = null,
+        private readonly ?object $capabilities = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class ProjectOptionsEnforced implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSettings(): ?object
+    {
+        return $this->settings;
+    }
+    public function getCapabilities(): ?object
+    {
+        return $this->capabilities;
     }
 }
 

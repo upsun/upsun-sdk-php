@@ -27,14 +27,14 @@ final class GetTypeAllowance200ResponseCurrenciesGBP implements JsonSerializable
         'formatted' => 'formatted',
         'amount' => 'amount',
         'currency' => 'currency',
-        'currency_symbol' => 'currency_symbol'
+        'currencySymbol' => 'currency_symbol'
     ];
 
     public function __construct(
-        public readonly ?string $formatted = null,
-        public readonly ?float $amount = null,
-        public readonly ?string $currency = null,
-        public readonly ?string $currency_symbol = null,
+        private readonly ?string $formatted = null,
+        private readonly ?float $amount = null,
+        private readonly ?string $currency = null,
+        private readonly ?string $currencySymbol = null,
     ) {
     }
 
@@ -44,13 +44,30 @@ final class GetTypeAllowance200ResponseCurrenciesGBP implements JsonSerializable
             'formatted' => $this->formatted,
             'amount' => $this->amount,
             'currency' => $this->currency,
-            'currency_symbol' => $this->currency_symbol,
+            'currencySymbol' => $this->currencySymbol,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getFormatted(): ?string
+    {
+        return $this->formatted;
+    }
+    public function getAmount(): ?float
+    {
+        return $this->amount;
+    }
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+    public function getCurrencySymbol(): ?string
+    {
+        return $this->currencySymbol;
     }
 }
 

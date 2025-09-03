@@ -25,12 +25,12 @@ final class UpdateTeamRequest implements JsonSerializable
 
     private static array $attributeMap = [
         'label' => 'label',
-        'project_permissions' => 'project_permissions'
+        'projectPermissions' => 'project_permissions'
     ];
 
     public function __construct(
-        public readonly ?string $label = null,
-        public readonly ?array $project_permissions = [],
+        private readonly ?string $label = null,
+        private readonly ?array $projectPermissions = [],
     ) {
     }
 
@@ -38,13 +38,22 @@ final class UpdateTeamRequest implements JsonSerializable
     {
         return [
             'label' => $this->label,
-            'project_permissions' => $this->project_permissions,
+            'projectPermissions' => $this->projectPermissions,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getProjectPermissions(): ?array
+    {
+        return $this->projectPermissions;
     }
 }
 

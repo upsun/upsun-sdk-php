@@ -27,8 +27,8 @@ final class RegionReference implements JsonSerializable
         'id' => 'id',
         'label' => 'label',
         'zone' => 'zone',
-        'selection_label' => 'selection_label',
-        'project_label' => 'project_label',
+        'selectionLabel' => 'selection_label',
+        'projectLabel' => 'project_label',
         'timezone' => 'timezone',
         'available' => 'available',
         'private' => 'private',
@@ -38,27 +38,27 @@ final class RegionReference implements JsonSerializable
         'datacenter' => 'datacenter',
         'envimpact' => 'envimpact',
         'compliance' => 'compliance',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $label = null,
-        public readonly ?string $zone = null,
-        public readonly ?string $selection_label = null,
-        public readonly ?string $project_label = null,
-        public readonly ?string $timezone = null,
-        public readonly ?bool $available = null,
-        public readonly ?bool $private = null,
-        public readonly ?string $endpoint = null,
-        public readonly ?string $code = null,
-        public readonly ?object $provider = null,
-        public readonly ?object $datacenter = null,
-        public readonly ?object $envimpact = null,
-        public readonly ?object $compliance = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $id = null,
+        private readonly ?string $label = null,
+        private readonly ?string $zone = null,
+        private readonly ?string $selectionLabel = null,
+        private readonly ?string $projectLabel = null,
+        private readonly ?string $timezone = null,
+        private readonly ?bool $available = null,
+        private readonly ?bool $private = null,
+        private readonly ?string $endpoint = null,
+        private readonly ?string $code = null,
+        private readonly ?object $provider = null,
+        private readonly ?object $datacenter = null,
+        private readonly ?object $envimpact = null,
+        private readonly ?object $compliance = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -68,8 +68,8 @@ final class RegionReference implements JsonSerializable
             'id' => $this->id,
             'label' => $this->label,
             'zone' => $this->zone,
-            'selection_label' => $this->selection_label,
-            'project_label' => $this->project_label,
+            'selectionLabel' => $this->selectionLabel,
+            'projectLabel' => $this->projectLabel,
             'timezone' => $this->timezone,
             'available' => $this->available,
             'private' => $this->private,
@@ -79,14 +79,79 @@ final class RegionReference implements JsonSerializable
             'datacenter' => $this->datacenter,
             'envimpact' => $this->envimpact,
             'compliance' => $this->compliance,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getZone(): ?string
+    {
+        return $this->zone;
+    }
+    public function getSelectionLabel(): ?string
+    {
+        return $this->selectionLabel;
+    }
+    public function getProjectLabel(): ?string
+    {
+        return $this->projectLabel;
+    }
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+    public function getAvailable(): ?bool
+    {
+        return $this->available;
+    }
+    public function getPrivate(): ?bool
+    {
+        return $this->private;
+    }
+    public function getEndpoint(): ?string
+    {
+        return $this->endpoint;
+    }
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+    public function getProvider(): ?object
+    {
+        return $this->provider;
+    }
+    public function getDatacenter(): ?object
+    {
+        return $this->datacenter;
+    }
+    public function getEnvimpact(): ?object
+    {
+        return $this->envimpact;
+    }
+    public function getCompliance(): ?object
+    {
+        return $this->compliance;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

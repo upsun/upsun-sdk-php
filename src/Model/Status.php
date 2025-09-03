@@ -29,8 +29,8 @@ final class Status implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $code = null,
-        public readonly ?string $message = null,
+        private readonly ?string $code = null,
+        private readonly ?string $message = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class Status implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+    public function getMessage(): ?string
+    {
+        return $this->message;
     }
 }
 

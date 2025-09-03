@@ -25,12 +25,12 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
 
     private static array $attributeMap = [
         'enabled' => 'enabled',
-        'ignored_rules' => 'ignored_rules'
+        'ignoredRules' => 'ignored_rules'
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
-        public readonly ?array $ignored_rules = [],
+        private readonly ?bool $enabled = null,
+        private readonly ?array $ignoredRules = [],
     ) {
     }
 
@@ -38,13 +38,22 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     {
         return [
             'enabled' => $this->enabled,
-            'ignored_rules' => $this->ignored_rules,
+            'ignoredRules' => $this->ignoredRules,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    public function getIgnoredRules(): ?array
+    {
+        return $this->ignoredRules;
     }
 }
 

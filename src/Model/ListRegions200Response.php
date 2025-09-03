@@ -25,12 +25,12 @@ final class ListRegions200Response implements JsonSerializable
 
     private static array $attributeMap = [
         'regions' => 'regions',
-        '_links' => '_links'
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?array $regions = [],
-        public readonly ?\Upsun\Model\ListLinks $_links = null,
+        private readonly ?array $regions = [],
+        private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class ListRegions200Response implements JsonSerializable
     {
         return [
             'regions' => $this->regions,
-            '_links' => $this->_links,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRegions(): ?array
+    {
+        return $this->regions;
+    }
+    public function getLinks(): ?\Upsun\Model\ListLinks
+    {
+        return $this->links;
     }
 }
 

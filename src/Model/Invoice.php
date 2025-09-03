@@ -25,40 +25,40 @@ final class Invoice implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'invoice_number' => 'invoice_number',
+        'invoiceNumber' => 'invoice_number',
         'type' => 'type',
-        'order_id' => 'order_id',
-        'related_invoice_id' => 'related_invoice_id',
+        'orderId' => 'order_id',
+        'relatedInvoiceId' => 'related_invoice_id',
         'status' => 'status',
         'owner' => 'owner',
-        'invoice_date' => 'invoice_date',
-        'invoice_due' => 'invoice_due',
+        'invoiceDate' => 'invoice_date',
+        'invoiceDue' => 'invoice_due',
         'created' => 'created',
         'changed' => 'changed',
         'company' => 'company',
         'total' => 'total',
         'address' => 'address',
         'notes' => 'notes',
-        'invoice_pdf' => 'invoice_pdf'
+        'invoicePdf' => 'invoice_pdf'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $invoice_number = null,
-        public readonly ?string $type = null,
-        public readonly ?string $order_id = null,
-        public readonly ?string $related_invoice_id = null,
-        public readonly ?string $status = null,
-        public readonly ?string $owner = null,
-        public readonly ?\DateTime $invoice_date = null,
-        public readonly ?\DateTime $invoice_due = null,
-        public readonly ?\DateTime $created = null,
-        public readonly ?\DateTime $changed = null,
-        public readonly ?string $company = null,
-        public readonly ?float $total = null,
-        public readonly ?\Upsun\Model\Address $address = null,
-        public readonly ?string $notes = null,
-        public readonly ?\Upsun\Model\InvoicePDF $invoice_pdf = null,
+        private readonly ?string $id = null,
+        private readonly ?string $invoiceNumber = null,
+        private readonly ?string $type = null,
+        private readonly ?string $orderId = null,
+        private readonly ?string $relatedInvoiceId = null,
+        private readonly ?string $status = null,
+        private readonly ?string $owner = null,
+        private readonly ?\DateTime $invoiceDate = null,
+        private readonly ?\DateTime $invoiceDue = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?\DateTime $changed = null,
+        private readonly ?string $company = null,
+        private readonly ?float $total = null,
+        private readonly ?\Upsun\Model\Address $address = null,
+        private readonly ?string $notes = null,
+        private readonly ?\Upsun\Model\InvoicePDF $invoicePdf = null,
     ) {
     }
 
@@ -66,27 +66,92 @@ final class Invoice implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'invoice_number' => $this->invoice_number,
+            'invoiceNumber' => $this->invoiceNumber,
             'type' => $this->type,
-            'order_id' => $this->order_id,
-            'related_invoice_id' => $this->related_invoice_id,
+            'orderId' => $this->orderId,
+            'relatedInvoiceId' => $this->relatedInvoiceId,
             'status' => $this->status,
             'owner' => $this->owner,
-            'invoice_date' => $this->invoice_date,
-            'invoice_due' => $this->invoice_due,
+            'invoiceDate' => $this->invoiceDate,
+            'invoiceDue' => $this->invoiceDue,
             'created' => $this->created,
             'changed' => $this->changed,
             'company' => $this->company,
             'total' => $this->total,
             'address' => $this->address,
             'notes' => $this->notes,
-            'invoice_pdf' => $this->invoice_pdf,
+            'invoicePdf' => $this->invoicePdf,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getInvoiceNumber(): ?string
+    {
+        return $this->invoiceNumber;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getOrderId(): ?string
+    {
+        return $this->orderId;
+    }
+    public function getRelatedInvoiceId(): ?string
+    {
+        return $this->relatedInvoiceId;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+    public function getInvoiceDate(): ?\DateTime
+    {
+        return $this->invoiceDate;
+    }
+    public function getInvoiceDue(): ?\DateTime
+    {
+        return $this->invoiceDue;
+    }
+    public function getCreated(): ?\DateTime
+    {
+        return $this->created;
+    }
+    public function getChanged(): ?\DateTime
+    {
+        return $this->changed;
+    }
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+    public function getAddress(): ?\Upsun\Model\Address
+    {
+        return $this->address;
+    }
+    public function getNotes(): ?string
+    {
+        return $this->notes;
+    }
+    public function getInvoicePdf(): ?\Upsun\Model\InvoicePDF
+    {
+        return $this->invoicePdf;
     }
 }
 

@@ -24,8 +24,8 @@ final class Activity implements JsonSerializable
     private static string $openAPIModelName = 'Activity';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'type' => 'type',
         'parameters' => 'parameters',
         'project' => 'project',
@@ -33,46 +33,46 @@ final class Activity implements JsonSerializable
         'environments' => 'environments',
         'state' => 'state',
         'result' => 'result',
-        'started_at' => 'started_at',
-        'completed_at' => 'completed_at',
-        'completion_percent' => 'completion_percent',
-        'cancelled_at' => 'cancelled_at',
+        'startedAt' => 'started_at',
+        'completedAt' => 'completed_at',
+        'completionPercent' => 'completion_percent',
+        'cancelledAt' => 'cancelled_at',
         'timings' => 'timings',
         'log' => 'log',
         'payload' => 'payload',
         'description' => 'description',
         'text' => 'text',
-        'expires_at' => 'expires_at'
+        'expiresAt' => 'expires_at'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $type = null,
-        public readonly ?object $parameters = null,
-        public readonly ?string $project = null,
-        public readonly ?string $integration = null,
-        public readonly ?array $environments = [],
-        public readonly ?string $state = null,
-        public readonly ?string $result = null,
-        public readonly ?\DateTime $started_at = null,
-        public readonly ?\DateTime $completed_at = null,
-        public readonly ?int $completion_percent = null,
-        public readonly ?\DateTime $cancelled_at = null,
-        public readonly ?array $timings = [],
-        public readonly ?string $log = null,
-        public readonly ?object $payload = null,
-        public readonly ?string $description = null,
-        public readonly ?string $text = null,
-        public readonly ?\DateTime $expires_at = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $type = null,
+        private readonly ?object $parameters = null,
+        private readonly ?string $project = null,
+        private readonly ?string $integration = null,
+        private readonly ?array $environments = [],
+        private readonly ?string $state = null,
+        private readonly ?string $result = null,
+        private readonly ?\DateTime $startedAt = null,
+        private readonly ?\DateTime $completedAt = null,
+        private readonly ?int $completionPercent = null,
+        private readonly ?\DateTime $cancelledAt = null,
+        private readonly ?array $timings = [],
+        private readonly ?string $log = null,
+        private readonly ?object $payload = null,
+        private readonly ?string $description = null,
+        private readonly ?string $text = null,
+        private readonly ?\DateTime $expiresAt = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'type' => $this->type,
             'parameters' => $this->parameters,
             'project' => $this->project,
@@ -80,22 +80,99 @@ final class Activity implements JsonSerializable
             'environments' => $this->environments,
             'state' => $this->state,
             'result' => $this->result,
-            'started_at' => $this->started_at,
-            'completed_at' => $this->completed_at,
-            'completion_percent' => $this->completion_percent,
-            'cancelled_at' => $this->cancelled_at,
+            'startedAt' => $this->startedAt,
+            'completedAt' => $this->completedAt,
+            'completionPercent' => $this->completionPercent,
+            'cancelledAt' => $this->cancelledAt,
             'timings' => $this->timings,
             'log' => $this->log,
             'payload' => $this->payload,
             'description' => $this->description,
             'text' => $this->text,
-            'expires_at' => $this->expires_at,
+            'expiresAt' => $this->expiresAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getParameters(): ?object
+    {
+        return $this->parameters;
+    }
+    public function getProject(): ?string
+    {
+        return $this->project;
+    }
+    public function getIntegration(): ?string
+    {
+        return $this->integration;
+    }
+    public function getEnvironments(): ?array
+    {
+        return $this->environments;
+    }
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+    public function getResult(): ?string
+    {
+        return $this->result;
+    }
+    public function getStartedAt(): ?\DateTime
+    {
+        return $this->startedAt;
+    }
+    public function getCompletedAt(): ?\DateTime
+    {
+        return $this->completedAt;
+    }
+    public function getCompletionPercent(): ?int
+    {
+        return $this->completionPercent;
+    }
+    public function getCancelledAt(): ?\DateTime
+    {
+        return $this->cancelledAt;
+    }
+    public function getTimings(): ?array
+    {
+        return $this->timings;
+    }
+    public function getLog(): ?string
+    {
+        return $this->log;
+    }
+    public function getPayload(): ?object
+    {
+        return $this->payload;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+    public function getExpiresAt(): ?\DateTime
+    {
+        return $this->expiresAt;
     }
 }
 

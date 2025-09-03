@@ -828,10 +828,10 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUser(
-        string $user_id
+        string $userId
     ): \Upsun\Model\User {
         list($response) = $this->getUserWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -842,10 +842,10 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->getUserRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -872,10 +872,10 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->getUserAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -890,11 +890,11 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\User';
         $request = $this->getUserRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -935,12 +935,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getUserRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getUser'
+                'Missing the required parameter $userId when calling getUser'
             );
         }
 
@@ -954,10 +954,10 @@ final class UsersApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1398,12 +1398,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetEmailAddress(
-        string $user_id,
-        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+        string $userId,
+        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): \Upsun\Model\User {
         list($response) = $this->resetEmailAddressWithHttpInfo(
-            $user_id,
-            $reset_email_address_request
+            $userId,
+            $resetEmailAddressRequest
         );
         return $response;
     }
@@ -1414,12 +1414,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetEmailAddressWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+        string $userId,
+        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): array {
         $request = $this->resetEmailAddressRequest(
-            $user_id,
-            $reset_email_address_request
+            $userId,
+            $resetEmailAddressRequest
         );
 
         try {
@@ -1446,12 +1446,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetEmailAddressAsync(
-        string $user_id,
-        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+        string $userId,
+        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): Promise {
         return $this->resetEmailAddressAsyncWithHttpInfo(
-            $user_id,
-            $reset_email_address_request
+            $userId,
+            $resetEmailAddressRequest
         )
             ->then(
                 function ($response) {
@@ -1466,13 +1466,13 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetEmailAddressAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+        string $userId,
+        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): Promise {
         $returnType = '';
         $request = $this->resetEmailAddressRequest(
-            $user_id,
-            $reset_email_address_request
+            $userId,
+            $resetEmailAddressRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1503,13 +1503,13 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function resetEmailAddressRequest(
-        string $user_id,
-        \Upsun\Model\ResetEmailAddressRequest $reset_email_address_request = null
+        string $userId,
+        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling resetEmailAddress'
+                'Missing the required parameter $userId when calling resetEmailAddress'
             );
         }
 
@@ -1523,10 +1523,10 @@ final class UsersApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1539,11 +1539,11 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($reset_email_address_request)) {
+        if (isset($resetEmailAddressRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($reset_email_address_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($resetEmailAddressRequest));
             } else {
-                $httpBody = $reset_email_address_request;
+                $httpBody = $resetEmailAddressRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1593,10 +1593,10 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetPassword(
-        string $user_id
+        string $userId
     ): \Upsun\Model\User {
         list($response) = $this->resetPasswordWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -1607,10 +1607,10 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetPasswordWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->resetPasswordRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -1637,10 +1637,10 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetPasswordAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->resetPasswordAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -1655,11 +1655,11 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function resetPasswordAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '';
         $request = $this->resetPasswordRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1690,12 +1690,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function resetPasswordRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling resetPassword'
+                'Missing the required parameter $userId when calling resetPassword'
             );
         }
 
@@ -1709,10 +1709,10 @@ final class UsersApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1773,12 +1773,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUser(
-        string $user_id,
-        \Upsun\Model\UpdateUserRequest $update_user_request = null
+        string $userId,
+        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): \Upsun\Model\User {
         list($response) = $this->updateUserWithHttpInfo(
-            $user_id,
-            $update_user_request
+            $userId,
+            $updateUserRequest
         );
         return $response;
     }
@@ -1789,12 +1789,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\UpdateUserRequest $update_user_request = null
+        string $userId,
+        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): array {
         $request = $this->updateUserRequest(
-            $user_id,
-            $update_user_request
+            $userId,
+            $updateUserRequest
         );
 
         try {
@@ -1821,12 +1821,12 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserAsync(
-        string $user_id,
-        \Upsun\Model\UpdateUserRequest $update_user_request = null
+        string $userId,
+        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): Promise {
         return $this->updateUserAsyncWithHttpInfo(
-            $user_id,
-            $update_user_request
+            $userId,
+            $updateUserRequest
         )
             ->then(
                 function ($response) {
@@ -1841,13 +1841,13 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\UpdateUserRequest $update_user_request = null
+        string $userId,
+        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\User';
         $request = $this->updateUserRequest(
-            $user_id,
-            $update_user_request
+            $userId,
+            $updateUserRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1888,13 +1888,13 @@ final class UsersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateUserRequest(
-        string $user_id,
-        \Upsun\Model\UpdateUserRequest $update_user_request = null
+        string $userId,
+        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateUser'
+                'Missing the required parameter $userId when calling updateUser'
             );
         }
 
@@ -1908,10 +1908,10 @@ final class UsersApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1924,11 +1924,11 @@ final class UsersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($update_user_request)) {
+        if (isset($updateUserRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($update_user_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateUserRequest));
             } else {
-                $httpBody = $update_user_request;
+                $httpBody = $updateUserRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

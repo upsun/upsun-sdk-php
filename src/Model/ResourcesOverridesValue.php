@@ -25,18 +25,18 @@ final class ResourcesOverridesValue implements JsonSerializable
 
     private static array $attributeMap = [
         'services' => 'services',
-        'starts_at' => 'starts_at',
-        'ends_at' => 'ends_at',
-        'redeployed_start' => 'redeployed_start',
-        'redeployed_end' => 'redeployed_end'
+        'startsAt' => 'starts_at',
+        'endsAt' => 'ends_at',
+        'redeployedStart' => 'redeployed_start',
+        'redeployedEnd' => 'redeployed_end'
     ];
 
     public function __construct(
-        public readonly ?array $services = [],
-        public readonly ?\DateTime $starts_at = null,
-        public readonly ?\DateTime $ends_at = null,
-        public readonly ?bool $redeployed_start = null,
-        public readonly ?bool $redeployed_end = null,
+        private readonly ?array $services = [],
+        private readonly ?\DateTime $startsAt = null,
+        private readonly ?\DateTime $endsAt = null,
+        private readonly ?bool $redeployedStart = null,
+        private readonly ?bool $redeployedEnd = null,
     ) {
     }
 
@@ -44,16 +44,37 @@ final class ResourcesOverridesValue implements JsonSerializable
     {
         return [
             'services' => $this->services,
-            'starts_at' => $this->starts_at,
-            'ends_at' => $this->ends_at,
-            'redeployed_start' => $this->redeployed_start,
-            'redeployed_end' => $this->redeployed_end,
+            'startsAt' => $this->startsAt,
+            'endsAt' => $this->endsAt,
+            'redeployedStart' => $this->redeployedStart,
+            'redeployedEnd' => $this->redeployedEnd,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getServices(): ?array
+    {
+        return $this->services;
+    }
+    public function getStartsAt(): ?\DateTime
+    {
+        return $this->startsAt;
+    }
+    public function getEndsAt(): ?\DateTime
+    {
+        return $this->endsAt;
+    }
+    public function getRedeployedStart(): ?bool
+    {
+        return $this->redeployedStart;
+    }
+    public function getRedeployedEnd(): ?bool
+    {
+        return $this->redeployedEnd;
     }
 }
 

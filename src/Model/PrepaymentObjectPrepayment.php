@@ -24,28 +24,28 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     private static string $openAPIModelName = 'PrepaymentObject_prepayment';
 
     private static array $attributeMap = [
-        'organization_id' => 'organization_id',
+        'organizationId' => 'organization_id',
         'balance' => 'balance',
-        'last_updated_at' => 'last_updated_at',
+        'lastUpdatedAt' => 'last_updated_at',
         'sufficient' => 'sufficient',
         'fallback' => 'fallback'
     ];
 
     public function __construct(
-        public readonly ?string $organization_id = null,
-        public readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
-        public readonly ?string $last_updated_at = null,
-        public readonly ?bool $sufficient = null,
-        public readonly ?string $fallback = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
+        private readonly ?string $lastUpdatedAt = null,
+        private readonly ?bool $sufficient = null,
+        private readonly ?string $fallback = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'organization_id' => $this->organization_id,
+            'organizationId' => $this->organizationId,
             'balance' => $this->balance,
-            'last_updated_at' => $this->last_updated_at,
+            'lastUpdatedAt' => $this->lastUpdatedAt,
             'sufficient' => $this->sufficient,
             'fallback' => $this->fallback,
         ];
@@ -54,6 +54,27 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    {
+        return $this->balance;
+    }
+    public function getLastUpdatedAt(): ?string
+    {
+        return $this->lastUpdatedAt;
+    }
+    public function getSufficient(): ?bool
+    {
+        return $this->sufficient;
+    }
+    public function getFallback(): ?string
+    {
+        return $this->fallback;
     }
 }
 

@@ -124,12 +124,12 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsSourceOperations(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         list($response) = $this->listProjectsEnvironmentsSourceOperationsWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsSourceOperationsWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         try {
@@ -172,12 +172,12 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsSourceOperationsAsync(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         return $this->listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsSourceOperationsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         $returnType = '\Upsun\Model\EnvironmentSourceOperation[]';
         $request = $this->listProjectsEnvironmentsSourceOperationsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentsSourceOperationsRequest(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentsSourceOperations'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentsSourceOperations'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling listProjectsEnvironmentsSourceOperations'
+                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsSourceOperations'
             );
         }
 
@@ -265,18 +265,18 @@ final class SourceOperationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -337,14 +337,14 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runSourceOperation(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->runSourceOperationWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $environment_source_operation_input
+            $projectId,
+            $environmentId,
+            $environmentSourceOperationInput
         );
         return $response;
     }
@@ -355,14 +355,14 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runSourceOperationWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): array {
         $request = $this->runSourceOperationRequest(
-            $project_id,
-            $environment_id,
-            $environment_source_operation_input
+            $projectId,
+            $environmentId,
+            $environmentSourceOperationInput
         );
 
         try {
@@ -389,14 +389,14 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runSourceOperationAsync(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): Promise {
         return $this->runSourceOperationAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $environment_source_operation_input
+            $projectId,
+            $environmentId,
+            $environmentSourceOperationInput
         )
             ->then(
                 function ($response) {
@@ -411,15 +411,15 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function runSourceOperationAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->runSourceOperationRequest(
-            $project_id,
-            $environment_id,
-            $environment_source_operation_input
+            $projectId,
+            $environmentId,
+            $environmentSourceOperationInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -460,26 +460,26 @@ final class SourceOperationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function runSourceOperationRequest(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentSourceOperationInput $environment_source_operation_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentSourceOperationInput $environmentSourceOperationInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling runSourceOperation'
+                'Missing the required parameter $projectId when calling runSourceOperation'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling runSourceOperation'
+                'Missing the required parameter $environmentId when calling runSourceOperation'
             );
         }
-        // verify the required parameter 'environment_source_operation_input' is set
-        if ($environment_source_operation_input === null || (is_array($environment_source_operation_input) && count($environment_source_operation_input) === 0)) {
+        // verify the required parameter 'environmentSourceOperationInput' is set
+        if ($environmentSourceOperationInput === null || (is_array($environmentSourceOperationInput) && count($environmentSourceOperationInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_source_operation_input when calling runSourceOperation'
+                'Missing the required parameter $environmentSourceOperationInput when calling runSourceOperation'
             );
         }
 
@@ -493,18 +493,18 @@ final class SourceOperationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -517,11 +517,11 @@ final class SourceOperationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($environment_source_operation_input)) {
+        if (isset($environmentSourceOperationInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environment_source_operation_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentSourceOperationInput));
             } else {
-                $httpBody = $environment_source_operation_input;
+                $httpBody = $environmentSourceOperationInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

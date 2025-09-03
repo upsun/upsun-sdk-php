@@ -25,12 +25,12 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
 
     private static array $attributeMap = [
         'base' => 'base',
-        'user_management' => 'user_management'
+        'userManagement' => 'user_management'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $user_management = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     {
         return [
             'base' => $this->base,
-            'user_management' => $this->user_management,
+            'userManagement' => $this->userManagement,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getBase(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase
+    {
+        return $this->base;
+    }
+    public function getUserManagement(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement
+    {
+        return $this->userManagement;
     }
 }
 

@@ -24,17 +24,17 @@ final class Deployment implements JsonSerializable
     private static string $openAPIModelName = 'Deployment';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'fingerprint' => 'fingerprint',
-        'cluster_name' => 'cluster_name',
-        'project_info' => 'project_info',
-        'environment_info' => 'environment_info',
-        'deployment_target' => 'deployment_target',
+        'clusterName' => 'cluster_name',
+        'projectInfo' => 'project_info',
+        'environmentInfo' => 'environment_info',
+        'deploymentTarget' => 'deployment_target',
         'vpn' => 'vpn',
-        'http_access' => 'http_access',
-        'enable_smtp' => 'enable_smtp',
-        'restrict_robots' => 'restrict_robots',
+        'httpAccess' => 'http_access',
+        'enableSmtp' => 'enable_smtp',
+        'restrictRobots' => 'restrict_robots',
         'variables' => 'variables',
         'access' => 'access',
         'subscription' => 'subscription',
@@ -42,46 +42,46 @@ final class Deployment implements JsonSerializable
         'routes' => 'routes',
         'webapps' => 'webapps',
         'workers' => 'workers',
-        'container_profiles' => 'container_profiles'
+        'containerProfiles' => 'container_profiles'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $fingerprint = null,
-        public readonly ?string $cluster_name = null,
-        public readonly ?\Upsun\Model\ProjectInfo $project_info = null,
-        public readonly ?\Upsun\Model\EnvironmentInfo $environment_info = null,
-        public readonly ?string $deployment_target = null,
-        public readonly ?\Upsun\Model\VPNConfiguration $vpn = null,
-        public readonly ?\Upsun\Model\HTTPAccessPermissions $http_access = null,
-        public readonly ?bool $enable_smtp = null,
-        public readonly ?bool $restrict_robots = null,
-        public readonly ?array $variables = [],
-        public readonly ?array $access = [],
-        public readonly ?\Upsun\Model\Subscription1 $subscription = null,
-        public readonly ?array $services = [],
-        public readonly ?array $routes = [],
-        public readonly ?array $webapps = [],
-        public readonly ?array $workers = [],
-        public readonly ?array $container_profiles = [],
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $fingerprint = null,
+        private readonly ?string $clusterName = null,
+        private readonly ?\Upsun\Model\ProjectInfo $projectInfo = null,
+        private readonly ?\Upsun\Model\EnvironmentInfo $environmentInfo = null,
+        private readonly ?string $deploymentTarget = null,
+        private readonly ?\Upsun\Model\VPNConfiguration $vpn = null,
+        private readonly ?\Upsun\Model\HTTPAccessPermissions $httpAccess = null,
+        private readonly ?bool $enableSmtp = null,
+        private readonly ?bool $restrictRobots = null,
+        private readonly ?array $variables = [],
+        private readonly ?array $access = [],
+        private readonly ?\Upsun\Model\Subscription1 $subscription = null,
+        private readonly ?array $services = [],
+        private readonly ?array $routes = [],
+        private readonly ?array $webapps = [],
+        private readonly ?array $workers = [],
+        private readonly ?array $containerProfiles = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'fingerprint' => $this->fingerprint,
-            'cluster_name' => $this->cluster_name,
-            'project_info' => $this->project_info,
-            'environment_info' => $this->environment_info,
-            'deployment_target' => $this->deployment_target,
+            'clusterName' => $this->clusterName,
+            'projectInfo' => $this->projectInfo,
+            'environmentInfo' => $this->environmentInfo,
+            'deploymentTarget' => $this->deploymentTarget,
             'vpn' => $this->vpn,
-            'http_access' => $this->http_access,
-            'enable_smtp' => $this->enable_smtp,
-            'restrict_robots' => $this->restrict_robots,
+            'httpAccess' => $this->httpAccess,
+            'enableSmtp' => $this->enableSmtp,
+            'restrictRobots' => $this->restrictRobots,
             'variables' => $this->variables,
             'access' => $this->access,
             'subscription' => $this->subscription,
@@ -89,13 +89,90 @@ final class Deployment implements JsonSerializable
             'routes' => $this->routes,
             'webapps' => $this->webapps,
             'workers' => $this->workers,
-            'container_profiles' => $this->container_profiles,
+            'containerProfiles' => $this->containerProfiles,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getFingerprint(): ?string
+    {
+        return $this->fingerprint;
+    }
+    public function getClusterName(): ?string
+    {
+        return $this->clusterName;
+    }
+    public function getProjectInfo(): ?\Upsun\Model\ProjectInfo
+    {
+        return $this->projectInfo;
+    }
+    public function getEnvironmentInfo(): ?\Upsun\Model\EnvironmentInfo
+    {
+        return $this->environmentInfo;
+    }
+    public function getDeploymentTarget(): ?string
+    {
+        return $this->deploymentTarget;
+    }
+    public function getVpn(): ?\Upsun\Model\VPNConfiguration
+    {
+        return $this->vpn;
+    }
+    public function getHttpAccess(): ?\Upsun\Model\HTTPAccessPermissions
+    {
+        return $this->httpAccess;
+    }
+    public function getEnableSmtp(): ?bool
+    {
+        return $this->enableSmtp;
+    }
+    public function getRestrictRobots(): ?bool
+    {
+        return $this->restrictRobots;
+    }
+    public function getVariables(): ?array
+    {
+        return $this->variables;
+    }
+    public function getAccess(): ?array
+    {
+        return $this->access;
+    }
+    public function getSubscription(): ?\Upsun\Model\Subscription1
+    {
+        return $this->subscription;
+    }
+    public function getServices(): ?array
+    {
+        return $this->services;
+    }
+    public function getRoutes(): ?array
+    {
+        return $this->routes;
+    }
+    public function getWebapps(): ?array
+    {
+        return $this->webapps;
+    }
+    public function getWorkers(): ?array
+    {
+        return $this->workers;
+    }
+    public function getContainerProfiles(): ?array
+    {
+        return $this->containerProfiles;
     }
 }
 

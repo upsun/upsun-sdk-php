@@ -25,7 +25,7 @@ final class EstimationObject implements JsonSerializable
 
     private static array $attributeMap = [
         'plan' => 'plan',
-        'user_licenses' => 'user_licenses',
+        'userLicenses' => 'user_licenses',
         'environments' => 'environments',
         'storage' => 'storage',
         'total' => 'total',
@@ -33,12 +33,12 @@ final class EstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $plan = null,
-        public readonly ?string $user_licenses = null,
-        public readonly ?string $environments = null,
-        public readonly ?string $storage = null,
-        public readonly ?string $total = null,
-        public readonly ?object $options = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $userLicenses = null,
+        private readonly ?string $environments = null,
+        private readonly ?string $storage = null,
+        private readonly ?string $total = null,
+        private readonly ?object $options = null,
     ) {
     }
 
@@ -46,7 +46,7 @@ final class EstimationObject implements JsonSerializable
     {
         return [
             'plan' => $this->plan,
-            'user_licenses' => $this->user_licenses,
+            'userLicenses' => $this->userLicenses,
             'environments' => $this->environments,
             'storage' => $this->storage,
             'total' => $this->total,
@@ -57,6 +57,31 @@ final class EstimationObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getUserLicenses(): ?string
+    {
+        return $this->userLicenses;
+    }
+    public function getEnvironments(): ?string
+    {
+        return $this->environments;
+    }
+    public function getStorage(): ?string
+    {
+        return $this->storage;
+    }
+    public function getTotal(): ?string
+    {
+        return $this->total;
+    }
+    public function getOptions(): ?object
+    {
+        return $this->options;
     }
 }
 

@@ -24,24 +24,29 @@ final class CreateTeamMemberRequest implements JsonSerializable
     private static string $openAPIModelName = 'create_team_member_request';
 
     private static array $attributeMap = [
-        'user_id' => 'user_id'
+        'userId' => 'user_id'
     ];
 
     public function __construct(
-        public readonly ?string $user_id = null,
+        private readonly ?string $userId = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'user_id' => $this->user_id,
+            'userId' => $this->userId,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
     }
 }
 

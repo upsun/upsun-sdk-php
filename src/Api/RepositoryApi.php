@@ -124,12 +124,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitBlobs(
-        string $project_id,
-        string $repository_blob_id
+        string $projectId,
+        string $repositoryBlobId
     ): \Upsun\Model\Blob {
         list($response) = $this->getProjectsGitBlobsWithHttpInfo(
-            $project_id,
-            $repository_blob_id
+            $projectId,
+            $repositoryBlobId
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitBlobsWithHttpInfo(
-        string $project_id,
-        string $repository_blob_id
+        string $projectId,
+        string $repositoryBlobId
     ): array {
         $request = $this->getProjectsGitBlobsRequest(
-            $project_id,
-            $repository_blob_id
+            $projectId,
+            $repositoryBlobId
         );
 
         try {
@@ -172,12 +172,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitBlobsAsync(
-        string $project_id,
-        string $repository_blob_id
+        string $projectId,
+        string $repositoryBlobId
     ): Promise {
         return $this->getProjectsGitBlobsAsyncWithHttpInfo(
-            $project_id,
-            $repository_blob_id
+            $projectId,
+            $repositoryBlobId
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitBlobsAsyncWithHttpInfo(
-        string $project_id,
-        string $repository_blob_id
+        string $projectId,
+        string $repositoryBlobId
     ): Promise {
         $returnType = '\Upsun\Model\Blob';
         $request = $this->getProjectsGitBlobsRequest(
-            $project_id,
-            $repository_blob_id
+            $projectId,
+            $repositoryBlobId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitBlobsRequest(
-        string $project_id,
-        string $repository_blob_id
+        string $projectId,
+        string $repositoryBlobId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsGitBlobs'
+                'Missing the required parameter $projectId when calling getProjectsGitBlobs'
             );
         }
-        // verify the required parameter 'repository_blob_id' is set
-        if ($repository_blob_id === null || (is_array($repository_blob_id) && count($repository_blob_id) === 0)) {
+        // verify the required parameter 'repositoryBlobId' is set
+        if ($repositoryBlobId === null || (is_array($repositoryBlobId) && count($repositoryBlobId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $repository_blob_id when calling getProjectsGitBlobs'
+                'Missing the required parameter $repositoryBlobId when calling getProjectsGitBlobs'
             );
         }
 
@@ -265,18 +265,18 @@ final class RepositoryApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($repository_blob_id !== null) {
+        if ($repositoryBlobId !== null) {
             $resourcePath = str_replace(
                 '{' . 'repositoryBlobId' . '}',
-                ObjectSerializer::toPathValue($repository_blob_id),
+                ObjectSerializer::toPathValue($repositoryBlobId),
                 $resourcePath
             );
         }
@@ -337,12 +337,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitCommits(
-        string $project_id,
-        string $repository_commit_id
+        string $projectId,
+        string $repositoryCommitId
     ): \Upsun\Model\Commit {
         list($response) = $this->getProjectsGitCommitsWithHttpInfo(
-            $project_id,
-            $repository_commit_id
+            $projectId,
+            $repositoryCommitId
         );
         return $response;
     }
@@ -353,12 +353,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitCommitsWithHttpInfo(
-        string $project_id,
-        string $repository_commit_id
+        string $projectId,
+        string $repositoryCommitId
     ): array {
         $request = $this->getProjectsGitCommitsRequest(
-            $project_id,
-            $repository_commit_id
+            $projectId,
+            $repositoryCommitId
         );
 
         try {
@@ -385,12 +385,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitCommitsAsync(
-        string $project_id,
-        string $repository_commit_id
+        string $projectId,
+        string $repositoryCommitId
     ): Promise {
         return $this->getProjectsGitCommitsAsyncWithHttpInfo(
-            $project_id,
-            $repository_commit_id
+            $projectId,
+            $repositoryCommitId
         )
             ->then(
                 function ($response) {
@@ -405,13 +405,13 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitCommitsAsyncWithHttpInfo(
-        string $project_id,
-        string $repository_commit_id
+        string $projectId,
+        string $repositoryCommitId
     ): Promise {
         $returnType = '\Upsun\Model\Commit';
         $request = $this->getProjectsGitCommitsRequest(
-            $project_id,
-            $repository_commit_id
+            $projectId,
+            $repositoryCommitId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -452,19 +452,19 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitCommitsRequest(
-        string $project_id,
-        string $repository_commit_id
+        string $projectId,
+        string $repositoryCommitId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsGitCommits'
+                'Missing the required parameter $projectId when calling getProjectsGitCommits'
             );
         }
-        // verify the required parameter 'repository_commit_id' is set
-        if ($repository_commit_id === null || (is_array($repository_commit_id) && count($repository_commit_id) === 0)) {
+        // verify the required parameter 'repositoryCommitId' is set
+        if ($repositoryCommitId === null || (is_array($repositoryCommitId) && count($repositoryCommitId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $repository_commit_id when calling getProjectsGitCommits'
+                'Missing the required parameter $repositoryCommitId when calling getProjectsGitCommits'
             );
         }
 
@@ -478,18 +478,18 @@ final class RepositoryApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($repository_commit_id !== null) {
+        if ($repositoryCommitId !== null) {
             $resourcePath = str_replace(
                 '{' . 'repositoryCommitId' . '}',
-                ObjectSerializer::toPathValue($repository_commit_id),
+                ObjectSerializer::toPathValue($repositoryCommitId),
                 $resourcePath
             );
         }
@@ -550,12 +550,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitRefs(
-        string $project_id,
-        string $repository_ref_id
+        string $projectId,
+        string $repositoryRefId
     ): \Upsun\Model\Ref {
         list($response) = $this->getProjectsGitRefsWithHttpInfo(
-            $project_id,
-            $repository_ref_id
+            $projectId,
+            $repositoryRefId
         );
         return $response;
     }
@@ -566,12 +566,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitRefsWithHttpInfo(
-        string $project_id,
-        string $repository_ref_id
+        string $projectId,
+        string $repositoryRefId
     ): array {
         $request = $this->getProjectsGitRefsRequest(
-            $project_id,
-            $repository_ref_id
+            $projectId,
+            $repositoryRefId
         );
 
         try {
@@ -598,12 +598,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitRefsAsync(
-        string $project_id,
-        string $repository_ref_id
+        string $projectId,
+        string $repositoryRefId
     ): Promise {
         return $this->getProjectsGitRefsAsyncWithHttpInfo(
-            $project_id,
-            $repository_ref_id
+            $projectId,
+            $repositoryRefId
         )
             ->then(
                 function ($response) {
@@ -618,13 +618,13 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitRefsAsyncWithHttpInfo(
-        string $project_id,
-        string $repository_ref_id
+        string $projectId,
+        string $repositoryRefId
     ): Promise {
         $returnType = '\Upsun\Model\Ref';
         $request = $this->getProjectsGitRefsRequest(
-            $project_id,
-            $repository_ref_id
+            $projectId,
+            $repositoryRefId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -665,19 +665,19 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitRefsRequest(
-        string $project_id,
-        string $repository_ref_id
+        string $projectId,
+        string $repositoryRefId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsGitRefs'
+                'Missing the required parameter $projectId when calling getProjectsGitRefs'
             );
         }
-        // verify the required parameter 'repository_ref_id' is set
-        if ($repository_ref_id === null || (is_array($repository_ref_id) && count($repository_ref_id) === 0)) {
+        // verify the required parameter 'repositoryRefId' is set
+        if ($repositoryRefId === null || (is_array($repositoryRefId) && count($repositoryRefId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $repository_ref_id when calling getProjectsGitRefs'
+                'Missing the required parameter $repositoryRefId when calling getProjectsGitRefs'
             );
         }
 
@@ -691,18 +691,18 @@ final class RepositoryApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($repository_ref_id !== null) {
+        if ($repositoryRefId !== null) {
             $resourcePath = str_replace(
                 '{' . 'repositoryRefId' . '}',
-                ObjectSerializer::toPathValue($repository_ref_id),
+                ObjectSerializer::toPathValue($repositoryRefId),
                 $resourcePath
             );
         }
@@ -763,12 +763,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitTrees(
-        string $project_id,
-        string $repository_tree_id
+        string $projectId,
+        string $repositoryTreeId
     ): \Upsun\Model\Tree {
         list($response) = $this->getProjectsGitTreesWithHttpInfo(
-            $project_id,
-            $repository_tree_id
+            $projectId,
+            $repositoryTreeId
         );
         return $response;
     }
@@ -779,12 +779,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitTreesWithHttpInfo(
-        string $project_id,
-        string $repository_tree_id
+        string $projectId,
+        string $repositoryTreeId
     ): array {
         $request = $this->getProjectsGitTreesRequest(
-            $project_id,
-            $repository_tree_id
+            $projectId,
+            $repositoryTreeId
         );
 
         try {
@@ -811,12 +811,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitTreesAsync(
-        string $project_id,
-        string $repository_tree_id
+        string $projectId,
+        string $repositoryTreeId
     ): Promise {
         return $this->getProjectsGitTreesAsyncWithHttpInfo(
-            $project_id,
-            $repository_tree_id
+            $projectId,
+            $repositoryTreeId
         )
             ->then(
                 function ($response) {
@@ -831,13 +831,13 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsGitTreesAsyncWithHttpInfo(
-        string $project_id,
-        string $repository_tree_id
+        string $projectId,
+        string $repositoryTreeId
     ): Promise {
         $returnType = '\Upsun\Model\Tree';
         $request = $this->getProjectsGitTreesRequest(
-            $project_id,
-            $repository_tree_id
+            $projectId,
+            $repositoryTreeId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -878,19 +878,19 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsGitTreesRequest(
-        string $project_id,
-        string $repository_tree_id
+        string $projectId,
+        string $repositoryTreeId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsGitTrees'
+                'Missing the required parameter $projectId when calling getProjectsGitTrees'
             );
         }
-        // verify the required parameter 'repository_tree_id' is set
-        if ($repository_tree_id === null || (is_array($repository_tree_id) && count($repository_tree_id) === 0)) {
+        // verify the required parameter 'repositoryTreeId' is set
+        if ($repositoryTreeId === null || (is_array($repositoryTreeId) && count($repositoryTreeId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $repository_tree_id when calling getProjectsGitTrees'
+                'Missing the required parameter $repositoryTreeId when calling getProjectsGitTrees'
             );
         }
 
@@ -904,18 +904,18 @@ final class RepositoryApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($repository_tree_id !== null) {
+        if ($repositoryTreeId !== null) {
             $resourcePath = str_replace(
                 '{' . 'repositoryTreeId' . '}',
-                ObjectSerializer::toPathValue($repository_tree_id),
+                ObjectSerializer::toPathValue($repositoryTreeId),
                 $resourcePath
             );
         }
@@ -976,10 +976,10 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsGitRefs(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsGitRefsWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -990,10 +990,10 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsGitRefsWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsGitRefsRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -1020,10 +1020,10 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsGitRefsAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsGitRefsAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -1038,11 +1038,11 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsGitRefsAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\Ref[]';
         $request = $this->listProjectsGitRefsRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1083,12 +1083,12 @@ final class RepositoryApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsGitRefsRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsGitRefs'
+                'Missing the required parameter $projectId when calling listProjectsGitRefs'
             );
         }
 
@@ -1102,10 +1102,10 @@ final class RepositoryApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }

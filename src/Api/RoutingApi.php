@@ -124,14 +124,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsRoutes(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\RouteCreateInput $route_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\RouteCreateInput $routeCreateInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_create_input
+            $projectId,
+            $environmentId,
+            $routeCreateInput
         );
         return $response;
     }
@@ -142,14 +142,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsRoutesWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\RouteCreateInput $route_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\RouteCreateInput $routeCreateInput
     ): array {
         $request = $this->createProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_create_input
+            $projectId,
+            $environmentId,
+            $routeCreateInput
         );
 
         try {
@@ -176,14 +176,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsRoutesAsync(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\RouteCreateInput $route_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\RouteCreateInput $routeCreateInput
     ): Promise {
         return $this->createProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_create_input
+            $projectId,
+            $environmentId,
+            $routeCreateInput
         )
             ->then(
                 function ($response) {
@@ -198,15 +198,15 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\RouteCreateInput $route_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\RouteCreateInput $routeCreateInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_create_input
+            $projectId,
+            $environmentId,
+            $routeCreateInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -247,26 +247,26 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectsEnvironmentsRoutesRequest(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\RouteCreateInput $route_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\RouteCreateInput $routeCreateInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId when calling createProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling createProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId when calling createProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'route_create_input' is set
-        if ($route_create_input === null || (is_array($route_create_input) && count($route_create_input) === 0)) {
+        // verify the required parameter 'routeCreateInput' is set
+        if ($routeCreateInput === null || (is_array($routeCreateInput) && count($routeCreateInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $route_create_input when calling createProjectsEnvironmentsRoutes'
+                'Missing the required parameter $routeCreateInput when calling createProjectsEnvironmentsRoutes'
             );
         }
 
@@ -280,18 +280,18 @@ final class RoutingApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -304,11 +304,11 @@ final class RoutingApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($route_create_input)) {
+        if (isset($routeCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($route_create_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($routeCreateInput));
             } else {
-                $httpBody = $route_create_input;
+                $httpBody = $routeCreateInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -358,14 +358,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsRoutes(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         );
         return $response;
     }
@@ -376,14 +376,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsRoutesWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): array {
         $request = $this->deleteProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         );
 
         try {
@@ -410,14 +410,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsRoutesAsync(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): Promise {
         return $this->deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         )
             ->then(
                 function ($response) {
@@ -432,15 +432,15 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -481,26 +481,26 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsRoutesRequest(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling deleteProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'route_id' is set
-        if ($route_id === null || (is_array($route_id) && count($route_id) === 0)) {
+        // verify the required parameter 'routeId' is set
+        if ($routeId === null || (is_array($routeId) && count($routeId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $route_id when calling deleteProjectsEnvironmentsRoutes'
+                'Missing the required parameter $routeId when calling deleteProjectsEnvironmentsRoutes'
             );
         }
 
@@ -514,26 +514,26 @@ final class RoutingApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($route_id !== null) {
+        if ($routeId !== null) {
             $resourcePath = str_replace(
                 '{' . 'routeId' . '}',
-                ObjectSerializer::toPathValue($route_id),
+                ObjectSerializer::toPathValue($routeId),
                 $resourcePath
             );
         }
@@ -594,14 +594,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsRoutes(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): \Upsun\Model\Route {
         list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         );
         return $response;
     }
@@ -612,14 +612,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsRoutesWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): array {
         $request = $this->getProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         );
 
         try {
@@ -646,14 +646,14 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsRoutesAsync(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): Promise {
         return $this->getProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         )
             ->then(
                 function ($response) {
@@ -668,15 +668,15 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): Promise {
         $returnType = '\Upsun\Model\Route';
         $request = $this->getProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_id
+            $projectId,
+            $environmentId,
+            $routeId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -717,26 +717,26 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsRoutesRequest(
-        string $project_id,
-        string $environment_id,
-        string $route_id
+        string $projectId,
+        string $environmentId,
+        string $routeId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId when calling getProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling getProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'route_id' is set
-        if ($route_id === null || (is_array($route_id) && count($route_id) === 0)) {
+        // verify the required parameter 'routeId' is set
+        if ($routeId === null || (is_array($routeId) && count($routeId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $route_id when calling getProjectsEnvironmentsRoutes'
+                'Missing the required parameter $routeId when calling getProjectsEnvironmentsRoutes'
             );
         }
 
@@ -750,26 +750,26 @@ final class RoutingApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($route_id !== null) {
+        if ($routeId !== null) {
             $resourcePath = str_replace(
                 '{' . 'routeId' . '}',
-                ObjectSerializer::toPathValue($route_id),
+                ObjectSerializer::toPathValue($routeId),
                 $resourcePath
             );
         }
@@ -830,12 +830,12 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsRoutes(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
         return $response;
     }
@@ -846,12 +846,12 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsRoutesWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         $request = $this->listProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         try {
@@ -878,12 +878,12 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsRoutesAsync(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         return $this->listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         )
             ->then(
                 function ($response) {
@@ -898,13 +898,13 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         $returnType = '\Upsun\Model\Route[]';
         $request = $this->listProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -945,19 +945,19 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentsRoutesRequest(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling listProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsRoutes'
             );
         }
 
@@ -971,18 +971,18 @@ final class RoutingApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -1043,16 +1043,16 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsRoutes(
-        string $project_id,
-        string $environment_id,
-        string $route_id,
-        \Upsun\Model\RoutePatch $route_patch
+        string $projectId,
+        string $environmentId,
+        string $routeId,
+        \Upsun\Model\RoutePatch $routePatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_id,
-            $route_patch
+            $projectId,
+            $environmentId,
+            $routeId,
+            $routePatch
         );
         return $response;
     }
@@ -1063,16 +1063,16 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsRoutesWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $route_id,
-        \Upsun\Model\RoutePatch $route_patch
+        string $projectId,
+        string $environmentId,
+        string $routeId,
+        \Upsun\Model\RoutePatch $routePatch
     ): array {
         $request = $this->updateProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_id,
-            $route_patch
+            $projectId,
+            $environmentId,
+            $routeId,
+            $routePatch
         );
 
         try {
@@ -1099,16 +1099,16 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsRoutesAsync(
-        string $project_id,
-        string $environment_id,
-        string $route_id,
-        \Upsun\Model\RoutePatch $route_patch
+        string $projectId,
+        string $environmentId,
+        string $routeId,
+        \Upsun\Model\RoutePatch $routePatch
     ): Promise {
         return $this->updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $route_id,
-            $route_patch
+            $projectId,
+            $environmentId,
+            $routeId,
+            $routePatch
         )
             ->then(
                 function ($response) {
@@ -1123,17 +1123,17 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $route_id,
-        \Upsun\Model\RoutePatch $route_patch
+        string $projectId,
+        string $environmentId,
+        string $routeId,
+        \Upsun\Model\RoutePatch $routePatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsRoutesRequest(
-            $project_id,
-            $environment_id,
-            $route_id,
-            $route_patch
+            $projectId,
+            $environmentId,
+            $routeId,
+            $routePatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1174,33 +1174,33 @@ final class RoutingApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsEnvironmentsRoutesRequest(
-        string $project_id,
-        string $environment_id,
-        string $route_id,
-        \Upsun\Model\RoutePatch $route_patch
+        string $projectId,
+        string $environmentId,
+        string $routeId,
+        \Upsun\Model\RoutePatch $routePatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsEnvironmentsRoutes'
+                'Missing the required parameter $projectId when calling updateProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling updateProjectsEnvironmentsRoutes'
+                'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'route_id' is set
-        if ($route_id === null || (is_array($route_id) && count($route_id) === 0)) {
+        // verify the required parameter 'routeId' is set
+        if ($routeId === null || (is_array($routeId) && count($routeId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $route_id when calling updateProjectsEnvironmentsRoutes'
+                'Missing the required parameter $routeId when calling updateProjectsEnvironmentsRoutes'
             );
         }
-        // verify the required parameter 'route_patch' is set
-        if ($route_patch === null || (is_array($route_patch) && count($route_patch) === 0)) {
+        // verify the required parameter 'routePatch' is set
+        if ($routePatch === null || (is_array($routePatch) && count($routePatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $route_patch when calling updateProjectsEnvironmentsRoutes'
+                'Missing the required parameter $routePatch when calling updateProjectsEnvironmentsRoutes'
             );
         }
 
@@ -1214,26 +1214,26 @@ final class RoutingApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($route_id !== null) {
+        if ($routeId !== null) {
             $resourcePath = str_replace(
                 '{' . 'routeId' . '}',
-                ObjectSerializer::toPathValue($route_id),
+                ObjectSerializer::toPathValue($routeId),
                 $resourcePath
             );
         }
@@ -1246,11 +1246,11 @@ final class RoutingApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($route_patch)) {
+        if (isset($routePatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($route_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($routePatch));
             } else {
-                $httpBody = $route_patch;
+                $httpBody = $routePatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -28,7 +28,7 @@ final class ApplyOrgVoucherRequest implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $code = null,
+        private readonly ?string $code = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class ApplyOrgVoucherRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
     }
 }
 

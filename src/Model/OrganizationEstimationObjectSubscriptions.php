@@ -29,8 +29,8 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     ];
 
     public function __construct(
-        public readonly ?string $total = null,
-        public readonly ?array $list = [],
+        private readonly ?string $total = null,
+        private readonly ?array $list = [],
     ) {
     }
 
@@ -45,6 +45,15 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTotal(): ?string
+    {
+        return $this->total;
+    }
+    public function getList(): ?array
+    {
+        return $this->list;
     }
 }
 

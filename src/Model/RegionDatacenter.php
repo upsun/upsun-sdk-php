@@ -30,9 +30,9 @@ final class RegionDatacenter implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?string $label = null,
-        public readonly ?string $location = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
+        private readonly ?string $location = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class RegionDatacenter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getLocation(): ?string
+    {
+        return $this->location;
     }
 }
 

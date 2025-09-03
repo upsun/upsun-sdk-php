@@ -29,18 +29,18 @@ final class WebApplicationsValue implements JsonSerializable
         'disk' => 'disk',
         'access' => 'access',
         'relationships' => 'relationships',
-        'additional_hosts' => 'additional_hosts',
+        'additionalHosts' => 'additional_hosts',
         'mounts' => 'mounts',
         'timezone' => 'timezone',
         'variables' => 'variables',
         'firewall' => 'firewall',
-        'container_profile' => 'container_profile',
+        'containerProfile' => 'container_profile',
         'operations' => 'operations',
         'name' => 'name',
         'type' => 'type',
         'preflight' => 'preflight',
-        'tree_id' => 'tree_id',
-        'app_dir' => 'app_dir',
+        'treeId' => 'tree_id',
+        'appDir' => 'app_dir',
         'endpoints' => 'endpoints',
         'runtime' => 'runtime',
         'web' => 'web',
@@ -50,43 +50,43 @@ final class WebApplicationsValue implements JsonSerializable
         'build' => 'build',
         'dependencies' => 'dependencies',
         'stack' => 'stack',
-        'is_across_submodule' => 'is_across_submodule',
-        'instance_count' => 'instance_count',
-        'config_id' => 'config_id',
-        'slug_id' => 'slug_id'
+        'isAcrossSubmodule' => 'is_across_submodule',
+        'instanceCount' => 'instance_count',
+        'configId' => 'config_id',
+        'slugId' => 'slug_id'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\Resources $resources = null,
-        public readonly ?string $size = null,
-        public readonly ?int $disk = null,
-        public readonly ?array $access = [],
-        public readonly ?array $relationships = [],
-        public readonly ?array $additional_hosts = [],
-        public readonly ?array $mounts = [],
-        public readonly ?string $timezone = null,
-        public readonly ?array $variables = [],
-        public readonly ?\Upsun\Model\Firewall $firewall = null,
-        public readonly ?string $container_profile = null,
-        public readonly ?array $operations = [],
-        public readonly ?string $name = null,
-        public readonly ?string $type = null,
-        public readonly ?\Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
-        public readonly ?string $tree_id = null,
-        public readonly ?string $app_dir = null,
-        public readonly ?object $endpoints = null,
-        public readonly ?object $runtime = null,
-        public readonly ?\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web = null,
-        public readonly ?\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks = null,
-        public readonly ?array $crons = [],
-        public readonly ?\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source = null,
-        public readonly ?\Upsun\Model\TheBuildConfigurationOfTheApplication $build = null,
-        public readonly ?array $dependencies = [],
-        public readonly ?array $stack = [],
-        public readonly ?bool $is_across_submodule = null,
-        public readonly ?int $instance_count = null,
-        public readonly ?string $config_id = null,
-        public readonly ?string $slug_id = null,
+        private readonly ?\Upsun\Model\Resources $resources = null,
+        private readonly ?string $size = null,
+        private readonly ?int $disk = null,
+        private readonly ?array $access = [],
+        private readonly ?array $relationships = [],
+        private readonly ?array $additionalHosts = [],
+        private readonly ?array $mounts = [],
+        private readonly ?string $timezone = null,
+        private readonly ?array $variables = [],
+        private readonly ?\Upsun\Model\Firewall $firewall = null,
+        private readonly ?string $containerProfile = null,
+        private readonly ?array $operations = [],
+        private readonly ?string $name = null,
+        private readonly ?string $type = null,
+        private readonly ?\Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
+        private readonly ?string $treeId = null,
+        private readonly ?string $appDir = null,
+        private readonly ?object $endpoints = null,
+        private readonly ?object $runtime = null,
+        private readonly ?\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web = null,
+        private readonly ?\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks = null,
+        private readonly ?array $crons = [],
+        private readonly ?\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source = null,
+        private readonly ?\Upsun\Model\TheBuildConfigurationOfTheApplication $build = null,
+        private readonly ?array $dependencies = [],
+        private readonly ?array $stack = [],
+        private readonly ?bool $isAcrossSubmodule = null,
+        private readonly ?int $instanceCount = null,
+        private readonly ?string $configId = null,
+        private readonly ?string $slugId = null,
     ) {
     }
 
@@ -98,18 +98,18 @@ final class WebApplicationsValue implements JsonSerializable
             'disk' => $this->disk,
             'access' => $this->access,
             'relationships' => $this->relationships,
-            'additional_hosts' => $this->additional_hosts,
+            'additionalHosts' => $this->additionalHosts,
             'mounts' => $this->mounts,
             'timezone' => $this->timezone,
             'variables' => $this->variables,
             'firewall' => $this->firewall,
-            'container_profile' => $this->container_profile,
+            'containerProfile' => $this->containerProfile,
             'operations' => $this->operations,
             'name' => $this->name,
             'type' => $this->type,
             'preflight' => $this->preflight,
-            'tree_id' => $this->tree_id,
-            'app_dir' => $this->app_dir,
+            'treeId' => $this->treeId,
+            'appDir' => $this->appDir,
             'endpoints' => $this->endpoints,
             'runtime' => $this->runtime,
             'web' => $this->web,
@@ -119,16 +119,137 @@ final class WebApplicationsValue implements JsonSerializable
             'build' => $this->build,
             'dependencies' => $this->dependencies,
             'stack' => $this->stack,
-            'is_across_submodule' => $this->is_across_submodule,
-            'instance_count' => $this->instance_count,
-            'config_id' => $this->config_id,
-            'slug_id' => $this->slug_id,
+            'isAcrossSubmodule' => $this->isAcrossSubmodule,
+            'instanceCount' => $this->instanceCount,
+            'configId' => $this->configId,
+            'slugId' => $this->slugId,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getResources(): ?\Upsun\Model\Resources
+    {
+        return $this->resources;
+    }
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+    public function getDisk(): ?int
+    {
+        return $this->disk;
+    }
+    public function getAccess(): ?array
+    {
+        return $this->access;
+    }
+    public function getRelationships(): ?array
+    {
+        return $this->relationships;
+    }
+    public function getAdditionalHosts(): ?array
+    {
+        return $this->additionalHosts;
+    }
+    public function getMounts(): ?array
+    {
+        return $this->mounts;
+    }
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+    public function getVariables(): ?array
+    {
+        return $this->variables;
+    }
+    public function getFirewall(): ?\Upsun\Model\Firewall
+    {
+        return $this->firewall;
+    }
+    public function getContainerProfile(): ?string
+    {
+        return $this->containerProfile;
+    }
+    public function getOperations(): ?array
+    {
+        return $this->operations;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getPreflight(): ?\Upsun\Model\ConfigurationForPreFlightChecks
+    {
+        return $this->preflight;
+    }
+    public function getTreeId(): ?string
+    {
+        return $this->treeId;
+    }
+    public function getAppDir(): ?string
+    {
+        return $this->appDir;
+    }
+    public function getEndpoints(): ?object
+    {
+        return $this->endpoints;
+    }
+    public function getRuntime(): ?object
+    {
+        return $this->runtime;
+    }
+    public function getWeb(): ?\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
+    {
+        return $this->web;
+    }
+    public function getHooks(): ?\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
+    {
+        return $this->hooks;
+    }
+    public function getCrons(): ?array
+    {
+        return $this->crons;
+    }
+    public function getSource(): ?\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
+    {
+        return $this->source;
+    }
+    public function getBuild(): ?\Upsun\Model\TheBuildConfigurationOfTheApplication
+    {
+        return $this->build;
+    }
+    public function getDependencies(): ?array
+    {
+        return $this->dependencies;
+    }
+    public function getStack(): ?array
+    {
+        return $this->stack;
+    }
+    public function getIsAcrossSubmodule(): ?bool
+    {
+        return $this->isAcrossSubmodule;
+    }
+    public function getInstanceCount(): ?int
+    {
+        return $this->instanceCount;
+    }
+    public function getConfigId(): ?string
+    {
+        return $this->configId;
+    }
+    public function getSlugId(): ?string
+    {
+        return $this->slugId;
     }
 }
 

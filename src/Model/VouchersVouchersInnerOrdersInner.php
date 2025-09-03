@@ -24,35 +24,35 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     private static string $openAPIModelName = 'Vouchers_vouchers_inner_orders_inner';
 
     private static array $attributeMap = [
-        'order_id' => 'order_id',
+        'orderId' => 'order_id',
         'status' => 'status',
-        'billing_period_start' => 'billing_period_start',
-        'billing_period_end' => 'billing_period_end',
-        'order_total' => 'order_total',
-        'order_discount' => 'order_discount',
+        'billingPeriodStart' => 'billing_period_start',
+        'billingPeriodEnd' => 'billing_period_end',
+        'orderTotal' => 'order_total',
+        'orderDiscount' => 'order_discount',
         'currency' => 'currency'
     ];
 
     public function __construct(
-        public readonly ?string $order_id = null,
-        public readonly ?string $status = null,
-        public readonly ?string $billing_period_start = null,
-        public readonly ?string $billing_period_end = null,
-        public readonly ?string $order_total = null,
-        public readonly ?string $order_discount = null,
-        public readonly ?string $currency = null,
+        private readonly ?string $orderId = null,
+        private readonly ?string $status = null,
+        private readonly ?string $billingPeriodStart = null,
+        private readonly ?string $billingPeriodEnd = null,
+        private readonly ?string $orderTotal = null,
+        private readonly ?string $orderDiscount = null,
+        private readonly ?string $currency = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'order_id' => $this->order_id,
+            'orderId' => $this->orderId,
             'status' => $this->status,
-            'billing_period_start' => $this->billing_period_start,
-            'billing_period_end' => $this->billing_period_end,
-            'order_total' => $this->order_total,
-            'order_discount' => $this->order_discount,
+            'billingPeriodStart' => $this->billingPeriodStart,
+            'billingPeriodEnd' => $this->billingPeriodEnd,
+            'orderTotal' => $this->orderTotal,
+            'orderDiscount' => $this->orderDiscount,
             'currency' => $this->currency,
         ];
     }
@@ -60,6 +60,35 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getOrderId(): ?string
+    {
+        return $this->orderId;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getBillingPeriodStart(): ?string
+    {
+        return $this->billingPeriodStart;
+    }
+    public function getBillingPeriodEnd(): ?string
+    {
+        return $this->billingPeriodEnd;
+    }
+    public function getOrderTotal(): ?string
+    {
+        return $this->orderTotal;
+    }
+    public function getOrderDiscount(): ?string
+    {
+        return $this->orderDiscount;
+    }
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
     }
 }
 

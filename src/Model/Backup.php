@@ -24,57 +24,57 @@ final class Backup implements JsonSerializable
     private static string $openAPIModelName = 'Backup';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'id' => 'id',
         'attributes' => 'attributes',
         'status' => 'status',
-        'expires_at' => 'expires_at',
+        'expiresAt' => 'expires_at',
         'index' => 'index',
-        'commit_id' => 'commit_id',
+        'commitId' => 'commit_id',
         'environment' => 'environment',
         'safe' => 'safe',
-        'size_of_volumes' => 'size_of_volumes',
-        'size_used' => 'size_used',
+        'sizeOfVolumes' => 'size_of_volumes',
+        'sizeUsed' => 'size_used',
         'deployment' => 'deployment',
         'restorable' => 'restorable',
         'automated' => 'automated'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $id = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $status = null,
-        public readonly ?\DateTime $expires_at = null,
-        public readonly ?int $index = null,
-        public readonly ?string $commit_id = null,
-        public readonly ?string $environment = null,
-        public readonly ?bool $safe = null,
-        public readonly ?int $size_of_volumes = null,
-        public readonly ?int $size_used = null,
-        public readonly ?string $deployment = null,
-        public readonly ?bool $restorable = null,
-        public readonly ?bool $automated = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $id = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $status = null,
+        private readonly ?\DateTime $expiresAt = null,
+        private readonly ?int $index = null,
+        private readonly ?string $commitId = null,
+        private readonly ?string $environment = null,
+        private readonly ?bool $safe = null,
+        private readonly ?int $sizeOfVolumes = null,
+        private readonly ?int $sizeUsed = null,
+        private readonly ?string $deployment = null,
+        private readonly ?bool $restorable = null,
+        private readonly ?bool $automated = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'id' => $this->id,
             'attributes' => $this->attributes,
             'status' => $this->status,
-            'expires_at' => $this->expires_at,
+            'expiresAt' => $this->expiresAt,
             'index' => $this->index,
-            'commit_id' => $this->commit_id,
+            'commitId' => $this->commitId,
             'environment' => $this->environment,
             'safe' => $this->safe,
-            'size_of_volumes' => $this->size_of_volumes,
-            'size_used' => $this->size_used,
+            'sizeOfVolumes' => $this->sizeOfVolumes,
+            'sizeUsed' => $this->sizeUsed,
             'deployment' => $this->deployment,
             'restorable' => $this->restorable,
             'automated' => $this->automated,
@@ -84,6 +84,67 @@ final class Backup implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getExpiresAt(): ?\DateTime
+    {
+        return $this->expiresAt;
+    }
+    public function getIndex(): ?int
+    {
+        return $this->index;
+    }
+    public function getCommitId(): ?string
+    {
+        return $this->commitId;
+    }
+    public function getEnvironment(): ?string
+    {
+        return $this->environment;
+    }
+    public function getSafe(): ?bool
+    {
+        return $this->safe;
+    }
+    public function getSizeOfVolumes(): ?int
+    {
+        return $this->sizeOfVolumes;
+    }
+    public function getSizeUsed(): ?int
+    {
+        return $this->sizeUsed;
+    }
+    public function getDeployment(): ?string
+    {
+        return $this->deployment;
+    }
+    public function getRestorable(): ?bool
+    {
+        return $this->restorable;
+    }
+    public function getAutomated(): ?bool
+    {
+        return $this->automated;
     }
 }
 

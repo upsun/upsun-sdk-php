@@ -124,32 +124,32 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTickets(
-        int $filter_ticket_id = null,
-        \DateTime $filter_created = null,
-        \DateTime $filter_updated = null,
-        string $filter_type = null,
-        string $filter_priority = null,
-        string $filter_status = null,
-        string $filter_requester_id = null,
-        string $filter_submitter_id = null,
-        string $filter_assignee_id = null,
-        bool $filter_has_incidents = null,
-        \DateTime $filter_due = null,
+        int $filterTicketId = null,
+        \DateTime $filterCreated = null,
+        \DateTime $filterUpdated = null,
+        string $filterType = null,
+        string $filterPriority = null,
+        string $filterStatus = null,
+        string $filterRequesterId = null,
+        string $filterSubmitterId = null,
+        string $filterAssigneeId = null,
+        bool $filterHasIncidents = null,
+        \DateTime $filterDue = null,
         string $search = null,
         int $page = null
     ): array {
         list($response) = $this->listTicketsWithHttpInfo(
-            $filter_ticket_id,
-            $filter_created,
-            $filter_updated,
-            $filter_type,
-            $filter_priority,
-            $filter_status,
-            $filter_requester_id,
-            $filter_submitter_id,
-            $filter_assignee_id,
-            $filter_has_incidents,
-            $filter_due,
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
             $search,
             $page
         );
@@ -162,32 +162,32 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketsWithHttpInfo(
-        int $filter_ticket_id = null,
-        \DateTime $filter_created = null,
-        \DateTime $filter_updated = null,
-        string $filter_type = null,
-        string $filter_priority = null,
-        string $filter_status = null,
-        string $filter_requester_id = null,
-        string $filter_submitter_id = null,
-        string $filter_assignee_id = null,
-        bool $filter_has_incidents = null,
-        \DateTime $filter_due = null,
+        int $filterTicketId = null,
+        \DateTime $filterCreated = null,
+        \DateTime $filterUpdated = null,
+        string $filterType = null,
+        string $filterPriority = null,
+        string $filterStatus = null,
+        string $filterRequesterId = null,
+        string $filterSubmitterId = null,
+        string $filterAssigneeId = null,
+        bool $filterHasIncidents = null,
+        \DateTime $filterDue = null,
         string $search = null,
         int $page = null
     ): array {
         $request = $this->listTicketsRequest(
-            $filter_ticket_id,
-            $filter_created,
-            $filter_updated,
-            $filter_type,
-            $filter_priority,
-            $filter_status,
-            $filter_requester_id,
-            $filter_submitter_id,
-            $filter_assignee_id,
-            $filter_has_incidents,
-            $filter_due,
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
             $search,
             $page
         );
@@ -216,32 +216,32 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketsAsync(
-        int $filter_ticket_id = null,
-        \DateTime $filter_created = null,
-        \DateTime $filter_updated = null,
-        string $filter_type = null,
-        string $filter_priority = null,
-        string $filter_status = null,
-        string $filter_requester_id = null,
-        string $filter_submitter_id = null,
-        string $filter_assignee_id = null,
-        bool $filter_has_incidents = null,
-        \DateTime $filter_due = null,
+        int $filterTicketId = null,
+        \DateTime $filterCreated = null,
+        \DateTime $filterUpdated = null,
+        string $filterType = null,
+        string $filterPriority = null,
+        string $filterStatus = null,
+        string $filterRequesterId = null,
+        string $filterSubmitterId = null,
+        string $filterAssigneeId = null,
+        bool $filterHasIncidents = null,
+        \DateTime $filterDue = null,
         string $search = null,
         int $page = null
     ): Promise {
         return $this->listTicketsAsyncWithHttpInfo(
-            $filter_ticket_id,
-            $filter_created,
-            $filter_updated,
-            $filter_type,
-            $filter_priority,
-            $filter_status,
-            $filter_requester_id,
-            $filter_submitter_id,
-            $filter_assignee_id,
-            $filter_has_incidents,
-            $filter_due,
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
             $search,
             $page
         )
@@ -258,33 +258,33 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketsAsyncWithHttpInfo(
-        int $filter_ticket_id = null,
-        \DateTime $filter_created = null,
-        \DateTime $filter_updated = null,
-        string $filter_type = null,
-        string $filter_priority = null,
-        string $filter_status = null,
-        string $filter_requester_id = null,
-        string $filter_submitter_id = null,
-        string $filter_assignee_id = null,
-        bool $filter_has_incidents = null,
-        \DateTime $filter_due = null,
+        int $filterTicketId = null,
+        \DateTime $filterCreated = null,
+        \DateTime $filterUpdated = null,
+        string $filterType = null,
+        string $filterPriority = null,
+        string $filterStatus = null,
+        string $filterRequesterId = null,
+        string $filterSubmitterId = null,
+        string $filterAssigneeId = null,
+        bool $filterHasIncidents = null,
+        \DateTime $filterDue = null,
         string $search = null,
         int $page = null
     ): Promise {
         $returnType = '\Upsun\Model\ListTickets200Response';
         $request = $this->listTicketsRequest(
-            $filter_ticket_id,
-            $filter_created,
-            $filter_updated,
-            $filter_type,
-            $filter_priority,
-            $filter_status,
-            $filter_requester_id,
-            $filter_submitter_id,
-            $filter_assignee_id,
-            $filter_has_incidents,
-            $filter_due,
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
             $search,
             $page
         );
@@ -327,17 +327,17 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listTicketsRequest(
-        int $filter_ticket_id = null,
-        \DateTime $filter_created = null,
-        \DateTime $filter_updated = null,
-        string $filter_type = null,
-        string $filter_priority = null,
-        string $filter_status = null,
-        string $filter_requester_id = null,
-        string $filter_submitter_id = null,
-        string $filter_assignee_id = null,
-        bool $filter_has_incidents = null,
-        \DateTime $filter_due = null,
+        int $filterTicketId = null,
+        \DateTime $filterCreated = null,
+        \DateTime $filterUpdated = null,
+        string $filterType = null,
+        string $filterPriority = null,
+        string $filterStatus = null,
+        string $filterRequesterId = null,
+        string $filterSubmitterId = null,
+        string $filterAssigneeId = null,
+        bool $filterHasIncidents = null,
+        \DateTime $filterDue = null,
         string $search = null,
         int $page = null
     ): RequestInterface {
@@ -350,123 +350,123 @@ final class DefaultApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_ticket_id !== null) {
-            if ('form' === 'form' && is_array($filter_ticket_id)) {
-                foreach ($filter_ticket_id as $key => $value) {
+        if ($filterTicketId !== null) {
+            if ('form' === 'form' && is_array($filterTicketId)) {
+                foreach ($filterTicketId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ticket_id]'] = $filter_ticket_id;
+                $queryParams['filter[ticket_id]'] = $filterTicketId;
             }
         }
 
         // query params
-        if ($filter_created !== null) {
-            if ('form' === 'form' && is_array($filter_created)) {
-                foreach ($filter_created as $key => $value) {
+        if ($filterCreated !== null) {
+            if ('form' === 'form' && is_array($filterCreated)) {
+                foreach ($filterCreated as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[created]'] = $filter_created;
+                $queryParams['filter[created]'] = $filterCreated;
             }
         }
 
         // query params
-        if ($filter_updated !== null) {
-            if ('form' === 'form' && is_array($filter_updated)) {
-                foreach ($filter_updated as $key => $value) {
+        if ($filterUpdated !== null) {
+            if ('form' === 'form' && is_array($filterUpdated)) {
+                foreach ($filterUpdated as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated]'] = $filter_updated;
+                $queryParams['filter[updated]'] = $filterUpdated;
             }
         }
 
         // query params
-        if ($filter_type !== null) {
-            if ('form' === 'form' && is_array($filter_type)) {
-                foreach ($filter_type as $key => $value) {
+        if ($filterType !== null) {
+            if ('form' === 'form' && is_array($filterType)) {
+                foreach ($filterType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[type]'] = $filter_type;
+                $queryParams['filter[type]'] = $filterType;
             }
         }
 
         // query params
-        if ($filter_priority !== null) {
-            if ('form' === 'form' && is_array($filter_priority)) {
-                foreach ($filter_priority as $key => $value) {
+        if ($filterPriority !== null) {
+            if ('form' === 'form' && is_array($filterPriority)) {
+                foreach ($filterPriority as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[priority]'] = $filter_priority;
+                $queryParams['filter[priority]'] = $filterPriority;
             }
         }
 
         // query params
-        if ($filter_status !== null) {
-            if ('form' === 'form' && is_array($filter_status)) {
-                foreach ($filter_status as $key => $value) {
+        if ($filterStatus !== null) {
+            if ('form' === 'form' && is_array($filterStatus)) {
+                foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status;
+                $queryParams['filter[status]'] = $filterStatus;
             }
         }
 
         // query params
-        if ($filter_requester_id !== null) {
-            if ('form' === 'form' && is_array($filter_requester_id)) {
-                foreach ($filter_requester_id as $key => $value) {
+        if ($filterRequesterId !== null) {
+            if ('form' === 'form' && is_array($filterRequesterId)) {
+                foreach ($filterRequesterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[requester_id]'] = $filter_requester_id;
+                $queryParams['filter[requester_id]'] = $filterRequesterId;
             }
         }
 
         // query params
-        if ($filter_submitter_id !== null) {
-            if ('form' === 'form' && is_array($filter_submitter_id)) {
-                foreach ($filter_submitter_id as $key => $value) {
+        if ($filterSubmitterId !== null) {
+            if ('form' === 'form' && is_array($filterSubmitterId)) {
+                foreach ($filterSubmitterId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[submitter_id]'] = $filter_submitter_id;
+                $queryParams['filter[submitter_id]'] = $filterSubmitterId;
             }
         }
 
         // query params
-        if ($filter_assignee_id !== null) {
-            if ('form' === 'form' && is_array($filter_assignee_id)) {
-                foreach ($filter_assignee_id as $key => $value) {
+        if ($filterAssigneeId !== null) {
+            if ('form' === 'form' && is_array($filterAssigneeId)) {
+                foreach ($filterAssigneeId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[assignee_id]'] = $filter_assignee_id;
+                $queryParams['filter[assignee_id]'] = $filterAssigneeId;
             }
         }
 
         // query params
-        if ($filter_has_incidents !== null) {
-            if ('form' === 'form' && is_array($filter_has_incidents)) {
-                foreach ($filter_has_incidents as $key => $value) {
+        if ($filterHasIncidents !== null) {
+            if ('form' === 'form' && is_array($filterHasIncidents)) {
+                foreach ($filterHasIncidents as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[has_incidents]'] = $filter_has_incidents;
+                $queryParams['filter[has_incidents]'] = $filterHasIncidents;
             }
         }
 
         // query params
-        if ($filter_due !== null) {
-            if ('form' === 'form' && is_array($filter_due)) {
-                foreach ($filter_due as $key => $value) {
+        if ($filterDue !== null) {
+            if ('form' === 'form' && is_array($filterDue)) {
+                foreach ($filterDue as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[due]'] = $filter_due;
+                $queryParams['filter[due]'] = $filterDue;
             }
         }
 

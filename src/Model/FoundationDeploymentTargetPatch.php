@@ -27,14 +27,14 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
         'type' => 'type',
         'name' => 'name',
         'hosts' => 'hosts',
-        'use_dedicated_grid' => 'use_dedicated_grid'
+        'useDedicatedGrid' => 'use_dedicated_grid'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?array $hosts = [],
-        public readonly ?bool $use_dedicated_grid = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?array $hosts = [],
+        private readonly ?bool $useDedicatedGrid = null,
     ) {
     }
 
@@ -44,13 +44,30 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
             'type' => $this->type,
             'name' => $this->name,
             'hosts' => $this->hosts,
-            'use_dedicated_grid' => $this->use_dedicated_grid,
+            'useDedicatedGrid' => $this->useDedicatedGrid,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getHosts(): ?array
+    {
+        return $this->hosts;
+    }
+    public function getUseDedicatedGrid(): ?bool
+    {
+        return $this->useDedicatedGrid;
     }
 }
 

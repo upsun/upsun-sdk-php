@@ -24,24 +24,29 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
     private static string $openAPIModelName = 'grant_team_project_access_request_inner';
 
     private static array $attributeMap = [
-        'project_id' => 'project_id'
+        'projectId' => 'project_id'
     ];
 
     public function __construct(
-        public readonly ?string $project_id = null,
+        private readonly ?string $projectId = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'project_id' => $this->project_id,
+            'projectId' => $this->projectId,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getProjectId(): ?string
+    {
+        return $this->projectId;
     }
 }
 

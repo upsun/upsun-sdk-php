@@ -29,22 +29,22 @@ final class EnvironmentPatch implements JsonSerializable
         'attributes' => 'attributes',
         'type' => 'type',
         'parent' => 'parent',
-        'clone_parent_on_create' => 'clone_parent_on_create',
-        'http_access' => 'http_access',
-        'enable_smtp' => 'enable_smtp',
-        'restrict_robots' => 'restrict_robots'
+        'cloneParentOnCreate' => 'clone_parent_on_create',
+        'httpAccess' => 'http_access',
+        'enableSmtp' => 'enable_smtp',
+        'restrictRobots' => 'restrict_robots'
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?string $title = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $type = null,
-        public readonly ?string $parent = null,
-        public readonly ?bool $clone_parent_on_create = null,
-        public readonly ?\Upsun\Model\HttpAccessPermissions1 $http_access = null,
-        public readonly ?bool $enable_smtp = null,
-        public readonly ?bool $restrict_robots = null,
+        private readonly ?string $name = null,
+        private readonly ?string $title = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $type = null,
+        private readonly ?string $parent = null,
+        private readonly ?bool $cloneParentOnCreate = null,
+        private readonly ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
+        private readonly ?bool $enableSmtp = null,
+        private readonly ?bool $restrictRobots = null,
     ) {
     }
 
@@ -56,16 +56,53 @@ final class EnvironmentPatch implements JsonSerializable
             'attributes' => $this->attributes,
             'type' => $this->type,
             'parent' => $this->parent,
-            'clone_parent_on_create' => $this->clone_parent_on_create,
-            'http_access' => $this->http_access,
-            'enable_smtp' => $this->enable_smtp,
-            'restrict_robots' => $this->restrict_robots,
+            'cloneParentOnCreate' => $this->cloneParentOnCreate,
+            'httpAccess' => $this->httpAccess,
+            'enableSmtp' => $this->enableSmtp,
+            'restrictRobots' => $this->restrictRobots,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getParent(): ?string
+    {
+        return $this->parent;
+    }
+    public function getCloneParentOnCreate(): ?bool
+    {
+        return $this->cloneParentOnCreate;
+    }
+    public function getHttpAccess(): ?\Upsun\Model\HttpAccessPermissions1
+    {
+        return $this->httpAccess;
+    }
+    public function getEnableSmtp(): ?bool
+    {
+        return $this->enableSmtp;
+    }
+    public function getRestrictRobots(): ?bool
+    {
+        return $this->restrictRobots;
     }
 }
 

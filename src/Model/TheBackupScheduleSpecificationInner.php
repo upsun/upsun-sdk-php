@@ -29,8 +29,8 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $interval = null,
-        public readonly ?int $count = null,
+        private readonly ?string $interval = null,
+        private readonly ?int $count = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getInterval(): ?string
+    {
+        return $this->interval;
+    }
+    public function getCount(): ?int
+    {
+        return $this->count;
     }
 }
 

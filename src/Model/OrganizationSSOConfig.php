@@ -24,39 +24,64 @@ final class OrganizationSSOConfig implements JsonSerializable
     private static string $openAPIModelName = 'OrganizationSSOConfig';
 
     private static array $attributeMap = [
-        'provider_type' => 'provider_type',
+        'providerType' => 'provider_type',
         'domain' => 'domain',
-        'organization_id' => 'organization_id',
+        'organizationId' => 'organization_id',
         'enforced' => 'enforced',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $provider_type = null,
-        public readonly ?string $domain = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?bool $enforced = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $providerType = null,
+        private readonly ?string $domain = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?bool $enforced = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'provider_type' => $this->provider_type,
+            'providerType' => $this->providerType,
             'domain' => $this->domain,
-            'organization_id' => $this->organization_id,
+            'organizationId' => $this->organizationId,
             'enforced' => $this->enforced,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getProviderType(): ?string
+    {
+        return $this->providerType;
+    }
+    public function getDomain(): ?string
+    {
+        return $this->domain;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getEnforced(): ?bool
+    {
+        return $this->enforced;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

@@ -24,30 +24,43 @@ final class AddressMetadataMetadata implements JsonSerializable
     private static string $openAPIModelName = 'AddressMetadata_metadata';
 
     private static array $attributeMap = [
-        'required_fields' => 'required_fields',
-        'field_labels' => 'field_labels',
-        'show_vat' => 'show_vat'
+        'requiredFields' => 'required_fields',
+        'fieldLabels' => 'field_labels',
+        'showVat' => 'show_vat'
     ];
 
     public function __construct(
-        public readonly ?array $required_fields = [],
-        public readonly ?object $field_labels = null,
-        public readonly ?bool $show_vat = null,
+        private readonly ?array $requiredFields = [],
+        private readonly ?object $fieldLabels = null,
+        private readonly ?bool $showVat = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'required_fields' => $this->required_fields,
-            'field_labels' => $this->field_labels,
-            'show_vat' => $this->show_vat,
+            'requiredFields' => $this->requiredFields,
+            'fieldLabels' => $this->fieldLabels,
+            'showVat' => $this->showVat,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRequiredFields(): ?array
+    {
+        return $this->requiredFields;
+    }
+    public function getFieldLabels(): ?object
+    {
+        return $this->fieldLabels;
+    }
+    public function getShowVat(): ?bool
+    {
+        return $this->showVat;
     }
 }
 

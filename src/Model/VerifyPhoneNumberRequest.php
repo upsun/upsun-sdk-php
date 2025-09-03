@@ -25,12 +25,12 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
 
     private static array $attributeMap = [
         'channel' => 'channel',
-        'phone_number' => 'phone_number'
+        'phoneNumber' => 'phone_number'
     ];
 
     public function __construct(
-        public readonly ?string $channel = null,
-        public readonly ?string $phone_number = null,
+        private readonly ?string $channel = null,
+        private readonly ?string $phoneNumber = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     {
         return [
             'channel' => $this->channel,
-            'phone_number' => $this->phone_number,
+            'phoneNumber' => $this->phoneNumber,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getChannel(): ?string
+    {
+        return $this->channel;
+    }
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
     }
 }
 

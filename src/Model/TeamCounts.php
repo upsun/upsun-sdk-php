@@ -24,27 +24,36 @@ final class TeamCounts implements JsonSerializable
     private static string $openAPIModelName = 'Team_counts';
 
     private static array $attributeMap = [
-        'member_count' => 'member_count',
-        'project_count' => 'project_count'
+        'memberCount' => 'member_count',
+        'projectCount' => 'project_count'
     ];
 
     public function __construct(
-        public readonly ?int $member_count = null,
-        public readonly ?int $project_count = null,
+        private readonly ?int $memberCount = null,
+        private readonly ?int $projectCount = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'member_count' => $this->member_count,
-            'project_count' => $this->project_count,
+            'memberCount' => $this->memberCount,
+            'projectCount' => $this->projectCount,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMemberCount(): ?int
+    {
+        return $this->memberCount;
+    }
+    public function getProjectCount(): ?int
+    {
+        return $this->projectCount;
     }
 }
 

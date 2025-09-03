@@ -32,21 +32,21 @@ final class ServicesValue implements JsonSerializable
         'relationships' => 'relationships',
         'firewall' => 'firewall',
         'resources' => 'resources',
-        'container_profile' => 'container_profile',
+        'containerProfile' => 'container_profile',
         'endpoints' => 'endpoints'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $size = null,
-        public readonly ?int $disk = null,
-        public readonly ?object $access = null,
-        public readonly ?object $configuration = null,
-        public readonly ?array $relationships = [],
-        public readonly ?\Upsun\Model\Firewall $firewall = null,
-        public readonly ?\Upsun\Model\Resources $resources = null,
-        public readonly ?string $container_profile = null,
-        public readonly ?object $endpoints = null,
+        private readonly ?string $type = null,
+        private readonly ?string $size = null,
+        private readonly ?int $disk = null,
+        private readonly ?object $access = null,
+        private readonly ?object $configuration = null,
+        private readonly ?array $relationships = [],
+        private readonly ?\Upsun\Model\Firewall $firewall = null,
+        private readonly ?\Upsun\Model\Resources $resources = null,
+        private readonly ?string $containerProfile = null,
+        private readonly ?object $endpoints = null,
     ) {
     }
 
@@ -61,7 +61,7 @@ final class ServicesValue implements JsonSerializable
             'relationships' => $this->relationships,
             'firewall' => $this->firewall,
             'resources' => $this->resources,
-            'container_profile' => $this->container_profile,
+            'containerProfile' => $this->containerProfile,
             'endpoints' => $this->endpoints,
         ];
     }
@@ -69,6 +69,47 @@ final class ServicesValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getSize(): ?string
+    {
+        return $this->size;
+    }
+    public function getDisk(): ?int
+    {
+        return $this->disk;
+    }
+    public function getAccess(): ?object
+    {
+        return $this->access;
+    }
+    public function getConfiguration(): ?object
+    {
+        return $this->configuration;
+    }
+    public function getRelationships(): ?array
+    {
+        return $this->relationships;
+    }
+    public function getFirewall(): ?\Upsun\Model\Firewall
+    {
+        return $this->firewall;
+    }
+    public function getResources(): ?\Upsun\Model\Resources
+    {
+        return $this->resources;
+    }
+    public function getContainerProfile(): ?string
+    {
+        return $this->containerProfile;
+    }
+    public function getEndpoints(): ?object
+    {
+        return $this->endpoints;
     }
 }
 

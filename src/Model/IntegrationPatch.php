@@ -25,40 +25,40 @@ final class IntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'fetch_branches' => 'fetch_branches',
-        'prune_branches' => 'prune_branches',
-        'environment_init_resources' => 'environment_init_resources',
-        'app_credentials' => 'app_credentials',
-        'addon_credentials' => 'addon_credentials',
+        'fetchBranches' => 'fetch_branches',
+        'pruneBranches' => 'prune_branches',
+        'environmentInitResources' => 'environment_init_resources',
+        'appCredentials' => 'app_credentials',
+        'addonCredentials' => 'addon_credentials',
         'repository' => 'repository',
-        'build_pull_requests' => 'build_pull_requests',
-        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data',
-        'resync_pull_requests' => 'resync_pull_requests',
+        'buildPullRequests' => 'build_pull_requests',
+        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+        'resyncPullRequests' => 'resync_pull_requests',
         'url' => 'url',
         'username' => 'username',
         'token' => 'token',
         'project' => 'project',
         'events' => 'events',
         'environments' => 'environments',
-        'excluded_environments' => 'excluded_environments',
+        'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
         'result' => 'result',
-        'service_id' => 'service_id',
-        'base_url' => 'base_url',
-        'build_draft_pull_requests' => 'build_draft_pull_requests',
-        'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
-        'build_merge_requests' => 'build_merge_requests',
-        'build_wip_merge_requests' => 'build_wip_merge_requests',
-        'merge_requests_clone_parent_data' => 'merge_requests_clone_parent_data',
-        'from_address' => 'from_address',
+        'serviceId' => 'service_id',
+        'baseUrl' => 'base_url',
+        'buildDraftPullRequests' => 'build_draft_pull_requests',
+        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+        'buildMergeRequests' => 'build_merge_requests',
+        'buildWipMergeRequests' => 'build_wip_merge_requests',
+        'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
+        'fromAddress' => 'from_address',
         'recipients' => 'recipients',
-        'routing_key' => 'routing_key',
+        'routingKey' => 'routing_key',
         'channel' => 'channel',
-        'shared_key' => 'shared_key',
+        'sharedKey' => 'shared_key',
         'extra' => 'extra',
         'headers' => 'headers',
-        'tls_verify' => 'tls_verify',
-        'license_key' => 'license_key',
+        'tlsVerify' => 'tls_verify',
+        'licenseKey' => 'license_key',
         'script' => 'script',
         'index' => 'index',
         'sourcetype' => 'sourcetype',
@@ -67,58 +67,58 @@ final class IntegrationPatch implements JsonSerializable
         'port' => 'port',
         'protocol' => 'protocol',
         'facility' => 'facility',
-        'message_format' => 'message_format',
-        'auth_token' => 'auth_token',
-        'auth_mode' => 'auth_mode'
+        'messageFormat' => 'message_format',
+        'authToken' => 'auth_token',
+        'authMode' => 'auth_mode'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?bool $fetch_branches = null,
-        public readonly ?bool $prune_branches = null,
-        public readonly ?string $environment_init_resources = null,
-        public readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $app_credentials = null,
-        public readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addon_credentials = null,
-        public readonly ?string $repository = null,
-        public readonly ?bool $build_pull_requests = null,
-        public readonly ?bool $pull_requests_clone_parent_data = null,
-        public readonly ?bool $resync_pull_requests = null,
-        public readonly ?string $url = null,
-        public readonly ?string $username = null,
-        public readonly ?string $token = null,
-        public readonly ?string $project = null,
-        public readonly ?array $events = [],
-        public readonly ?array $environments = [],
-        public readonly ?array $excluded_environments = [],
-        public readonly ?array $states = [],
-        public readonly ?string $result = null,
-        public readonly ?string $service_id = null,
-        public readonly ?string $base_url = null,
-        public readonly ?bool $build_draft_pull_requests = null,
-        public readonly ?bool $build_pull_requests_post_merge = null,
-        public readonly ?bool $build_merge_requests = null,
-        public readonly ?bool $build_wip_merge_requests = null,
-        public readonly ?bool $merge_requests_clone_parent_data = null,
-        public readonly ?string $from_address = null,
-        public readonly ?array $recipients = [],
-        public readonly ?string $routing_key = null,
-        public readonly ?string $channel = null,
-        public readonly ?string $shared_key = null,
-        public readonly ?array $extra = [],
-        public readonly ?array $headers = [],
-        public readonly ?bool $tls_verify = null,
-        public readonly ?string $license_key = null,
-        public readonly ?string $script = null,
-        public readonly ?string $index = null,
-        public readonly ?string $sourcetype = null,
-        public readonly ?string $category = null,
-        public readonly ?string $host = null,
-        public readonly ?int $port = null,
-        public readonly ?string $protocol = null,
-        public readonly ?int $facility = null,
-        public readonly ?string $message_format = null,
-        public readonly ?string $auth_token = null,
-        public readonly ?string $auth_mode = null,
+        private readonly ?string $type = null,
+        private readonly ?bool $fetchBranches = null,
+        private readonly ?bool $pruneBranches = null,
+        private readonly ?string $environmentInitResources = null,
+        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
+        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
+        private readonly ?string $repository = null,
+        private readonly ?bool $buildPullRequests = null,
+        private readonly ?bool $pullRequestsCloneParentData = null,
+        private readonly ?bool $resyncPullRequests = null,
+        private readonly ?string $url = null,
+        private readonly ?string $username = null,
+        private readonly ?string $token = null,
+        private readonly ?string $project = null,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+        private readonly ?string $result = null,
+        private readonly ?string $serviceId = null,
+        private readonly ?string $baseUrl = null,
+        private readonly ?bool $buildDraftPullRequests = null,
+        private readonly ?bool $buildPullRequestsPostMerge = null,
+        private readonly ?bool $buildMergeRequests = null,
+        private readonly ?bool $buildWipMergeRequests = null,
+        private readonly ?bool $mergeRequestsCloneParentData = null,
+        private readonly ?string $fromAddress = null,
+        private readonly ?array $recipients = [],
+        private readonly ?string $routingKey = null,
+        private readonly ?string $channel = null,
+        private readonly ?string $sharedKey = null,
+        private readonly ?array $extra = [],
+        private readonly ?array $headers = [],
+        private readonly ?bool $tlsVerify = null,
+        private readonly ?string $licenseKey = null,
+        private readonly ?string $script = null,
+        private readonly ?string $index = null,
+        private readonly ?string $sourcetype = null,
+        private readonly ?string $category = null,
+        private readonly ?string $host = null,
+        private readonly ?int $port = null,
+        private readonly ?string $protocol = null,
+        private readonly ?int $facility = null,
+        private readonly ?string $messageFormat = null,
+        private readonly ?string $authToken = null,
+        private readonly ?string $authMode = null,
     ) {
     }
 
@@ -126,40 +126,40 @@ final class IntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'fetch_branches' => $this->fetch_branches,
-            'prune_branches' => $this->prune_branches,
-            'environment_init_resources' => $this->environment_init_resources,
-            'app_credentials' => $this->app_credentials,
-            'addon_credentials' => $this->addon_credentials,
+            'fetchBranches' => $this->fetchBranches,
+            'pruneBranches' => $this->pruneBranches,
+            'environmentInitResources' => $this->environmentInitResources,
+            'appCredentials' => $this->appCredentials,
+            'addonCredentials' => $this->addonCredentials,
             'repository' => $this->repository,
-            'build_pull_requests' => $this->build_pull_requests,
-            'pull_requests_clone_parent_data' => $this->pull_requests_clone_parent_data,
-            'resync_pull_requests' => $this->resync_pull_requests,
+            'buildPullRequests' => $this->buildPullRequests,
+            'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
+            'resyncPullRequests' => $this->resyncPullRequests,
             'url' => $this->url,
             'username' => $this->username,
             'token' => $this->token,
             'project' => $this->project,
             'events' => $this->events,
             'environments' => $this->environments,
-            'excluded_environments' => $this->excluded_environments,
+            'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
-            'service_id' => $this->service_id,
-            'base_url' => $this->base_url,
-            'build_draft_pull_requests' => $this->build_draft_pull_requests,
-            'build_pull_requests_post_merge' => $this->build_pull_requests_post_merge,
-            'build_merge_requests' => $this->build_merge_requests,
-            'build_wip_merge_requests' => $this->build_wip_merge_requests,
-            'merge_requests_clone_parent_data' => $this->merge_requests_clone_parent_data,
-            'from_address' => $this->from_address,
+            'serviceId' => $this->serviceId,
+            'baseUrl' => $this->baseUrl,
+            'buildDraftPullRequests' => $this->buildDraftPullRequests,
+            'buildPullRequestsPostMerge' => $this->buildPullRequestsPostMerge,
+            'buildMergeRequests' => $this->buildMergeRequests,
+            'buildWipMergeRequests' => $this->buildWipMergeRequests,
+            'mergeRequestsCloneParentData' => $this->mergeRequestsCloneParentData,
+            'fromAddress' => $this->fromAddress,
             'recipients' => $this->recipients,
-            'routing_key' => $this->routing_key,
+            'routingKey' => $this->routingKey,
             'channel' => $this->channel,
-            'shared_key' => $this->shared_key,
+            'sharedKey' => $this->sharedKey,
             'extra' => $this->extra,
             'headers' => $this->headers,
-            'tls_verify' => $this->tls_verify,
-            'license_key' => $this->license_key,
+            'tlsVerify' => $this->tlsVerify,
+            'licenseKey' => $this->licenseKey,
             'script' => $this->script,
             'index' => $this->index,
             'sourcetype' => $this->sourcetype,
@@ -168,15 +168,200 @@ final class IntegrationPatch implements JsonSerializable
             'port' => $this->port,
             'protocol' => $this->protocol,
             'facility' => $this->facility,
-            'message_format' => $this->message_format,
-            'auth_token' => $this->auth_token,
-            'auth_mode' => $this->auth_mode,
+            'messageFormat' => $this->messageFormat,
+            'authToken' => $this->authToken,
+            'authMode' => $this->authMode,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getFetchBranches(): ?bool
+    {
+        return $this->fetchBranches;
+    }
+    public function getPruneBranches(): ?bool
+    {
+        return $this->pruneBranches;
+    }
+    public function getEnvironmentInitResources(): ?string
+    {
+        return $this->environmentInitResources;
+    }
+    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
+    {
+        return $this->appCredentials;
+    }
+    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
+    {
+        return $this->addonCredentials;
+    }
+    public function getRepository(): ?string
+    {
+        return $this->repository;
+    }
+    public function getBuildPullRequests(): ?bool
+    {
+        return $this->buildPullRequests;
+    }
+    public function getPullRequestsCloneParentData(): ?bool
+    {
+        return $this->pullRequestsCloneParentData;
+    }
+    public function getResyncPullRequests(): ?bool
+    {
+        return $this->resyncPullRequests;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getProject(): ?string
+    {
+        return $this->project;
+    }
+    public function getEvents(): ?array
+    {
+        return $this->events;
+    }
+    public function getEnvironments(): ?array
+    {
+        return $this->environments;
+    }
+    public function getExcludedEnvironments(): ?array
+    {
+        return $this->excludedEnvironments;
+    }
+    public function getStates(): ?array
+    {
+        return $this->states;
+    }
+    public function getResult(): ?string
+    {
+        return $this->result;
+    }
+    public function getServiceId(): ?string
+    {
+        return $this->serviceId;
+    }
+    public function getBaseUrl(): ?string
+    {
+        return $this->baseUrl;
+    }
+    public function getBuildDraftPullRequests(): ?bool
+    {
+        return $this->buildDraftPullRequests;
+    }
+    public function getBuildPullRequestsPostMerge(): ?bool
+    {
+        return $this->buildPullRequestsPostMerge;
+    }
+    public function getBuildMergeRequests(): ?bool
+    {
+        return $this->buildMergeRequests;
+    }
+    public function getBuildWipMergeRequests(): ?bool
+    {
+        return $this->buildWipMergeRequests;
+    }
+    public function getMergeRequestsCloneParentData(): ?bool
+    {
+        return $this->mergeRequestsCloneParentData;
+    }
+    public function getFromAddress(): ?string
+    {
+        return $this->fromAddress;
+    }
+    public function getRecipients(): ?array
+    {
+        return $this->recipients;
+    }
+    public function getRoutingKey(): ?string
+    {
+        return $this->routingKey;
+    }
+    public function getChannel(): ?string
+    {
+        return $this->channel;
+    }
+    public function getSharedKey(): ?string
+    {
+        return $this->sharedKey;
+    }
+    public function getExtra(): ?array
+    {
+        return $this->extra;
+    }
+    public function getHeaders(): ?array
+    {
+        return $this->headers;
+    }
+    public function getTlsVerify(): ?bool
+    {
+        return $this->tlsVerify;
+    }
+    public function getLicenseKey(): ?string
+    {
+        return $this->licenseKey;
+    }
+    public function getScript(): ?string
+    {
+        return $this->script;
+    }
+    public function getIndex(): ?string
+    {
+        return $this->index;
+    }
+    public function getSourcetype(): ?string
+    {
+        return $this->sourcetype;
+    }
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+    public function getHost(): ?string
+    {
+        return $this->host;
+    }
+    public function getPort(): ?int
+    {
+        return $this->port;
+    }
+    public function getProtocol(): ?string
+    {
+        return $this->protocol;
+    }
+    public function getFacility(): ?int
+    {
+        return $this->facility;
+    }
+    public function getMessageFormat(): ?string
+    {
+        return $this->messageFormat;
+    }
+    public function getAuthToken(): ?string
+    {
+        return $this->authToken;
+    }
+    public function getAuthMode(): ?string
+    {
+        return $this->authMode;
     }
 }
 

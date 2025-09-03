@@ -29,8 +29,8 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
-        public readonly ?string $mode = null,
+        private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
+        private readonly ?string $mode = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getThreshold(): ?\Upsun\Model\OrganizationAlertConfigConfigThreshold
+    {
+        return $this->threshold;
+    }
+    public function getMode(): ?string
+    {
+        return $this->mode;
     }
 }
 

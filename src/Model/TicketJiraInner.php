@@ -25,20 +25,20 @@ final class TicketJiraInner implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'ticket_id' => 'ticket_id',
-        'issue_id' => 'issue_id',
-        'issue_key' => 'issue_key',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'ticketId' => 'ticket_id',
+        'issueId' => 'issue_id',
+        'issueKey' => 'issue_key',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?int $id = null,
-        public readonly ?int $ticket_id = null,
-        public readonly ?int $issue_id = null,
-        public readonly ?string $issue_key = null,
-        public readonly ?float $created_at = null,
-        public readonly ?float $updated_at = null,
+        private readonly ?int $id = null,
+        private readonly ?int $ticketId = null,
+        private readonly ?int $issueId = null,
+        private readonly ?string $issueKey = null,
+        private readonly ?float $createdAt = null,
+        private readonly ?float $updatedAt = null,
     ) {
     }
 
@@ -46,17 +46,42 @@ final class TicketJiraInner implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'ticket_id' => $this->ticket_id,
-            'issue_id' => $this->issue_id,
-            'issue_key' => $this->issue_key,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'ticketId' => $this->ticketId,
+            'issueId' => $this->issueId,
+            'issueKey' => $this->issueKey,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+    public function getTicketId(): ?int
+    {
+        return $this->ticketId;
+    }
+    public function getIssueId(): ?int
+    {
+        return $this->issueId;
+    }
+    public function getIssueKey(): ?string
+    {
+        return $this->issueKey;
+    }
+    public function getCreatedAt(): ?float
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?float
+    {
+        return $this->updatedAt;
     }
 }
 

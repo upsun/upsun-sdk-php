@@ -124,12 +124,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDeployments(
-        string $project_id,
-        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+        string $projectId,
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDeploymentsWithHttpInfo(
-            $project_id,
-            $deployment_target_create_input
+            $projectId,
+            $deploymentTargetCreateInput
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDeploymentsWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+        string $projectId,
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): array {
         $request = $this->createProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_create_input
+            $projectId,
+            $deploymentTargetCreateInput
         );
 
         try {
@@ -172,12 +172,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDeploymentsAsync(
-        string $project_id,
-        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+        string $projectId,
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): Promise {
         return $this->createProjectsDeploymentsAsyncWithHttpInfo(
-            $project_id,
-            $deployment_target_create_input
+            $projectId,
+            $deploymentTargetCreateInput
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDeploymentsAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+        string $projectId,
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_create_input
+            $projectId,
+            $deploymentTargetCreateInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectsDeploymentsRequest(
-        string $project_id,
-        \Upsun\Model\DeploymentTargetCreateInput $deployment_target_create_input
+        string $projectId,
+        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectsDeployments'
+                'Missing the required parameter $projectId when calling createProjectsDeployments'
             );
         }
-        // verify the required parameter 'deployment_target_create_input' is set
-        if ($deployment_target_create_input === null || (is_array($deployment_target_create_input) && count($deployment_target_create_input) === 0)) {
+        // verify the required parameter 'deploymentTargetCreateInput' is set
+        if ($deploymentTargetCreateInput === null || (is_array($deploymentTargetCreateInput) && count($deploymentTargetCreateInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_target_create_input when calling createProjectsDeployments'
+                'Missing the required parameter $deploymentTargetCreateInput when calling createProjectsDeployments'
             );
         }
 
@@ -265,10 +265,10 @@ final class DeploymentTargetApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -281,11 +281,11 @@ final class DeploymentTargetApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($deployment_target_create_input)) {
+        if (isset($deploymentTargetCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($deployment_target_create_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($deploymentTargetCreateInput));
             } else {
-                $httpBody = $deployment_target_create_input;
+                $httpBody = $deploymentTargetCreateInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -335,12 +335,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDeployments(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDeploymentsWithHttpInfo(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         );
         return $response;
     }
@@ -351,12 +351,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDeploymentsWithHttpInfo(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): array {
         $request = $this->deleteProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         );
 
         try {
@@ -383,12 +383,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDeploymentsAsync(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): Promise {
         return $this->deleteProjectsDeploymentsAsyncWithHttpInfo(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         )
             ->then(
                 function ($response) {
@@ -403,13 +403,13 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDeploymentsAsyncWithHttpInfo(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -450,19 +450,19 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsDeploymentsRequest(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsDeployments'
+                'Missing the required parameter $projectId when calling deleteProjectsDeployments'
             );
         }
-        // verify the required parameter 'deployment_target_configuration_id' is set
-        if ($deployment_target_configuration_id === null || (is_array($deployment_target_configuration_id) && count($deployment_target_configuration_id) === 0)) {
+        // verify the required parameter 'deploymentTargetConfigurationId' is set
+        if ($deploymentTargetConfigurationId === null || (is_array($deploymentTargetConfigurationId) && count($deploymentTargetConfigurationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_target_configuration_id when calling deleteProjectsDeployments'
+                'Missing the required parameter $deploymentTargetConfigurationId when calling deleteProjectsDeployments'
             );
         }
 
@@ -476,18 +476,18 @@ final class DeploymentTargetApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($deployment_target_configuration_id !== null) {
+        if ($deploymentTargetConfigurationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'deploymentTargetConfigurationId' . '}',
-                ObjectSerializer::toPathValue($deployment_target_configuration_id),
+                ObjectSerializer::toPathValue($deploymentTargetConfigurationId),
                 $resourcePath
             );
         }
@@ -548,12 +548,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDeployments(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): \Upsun\Model\DeploymentTarget {
         list($response) = $this->getProjectsDeploymentsWithHttpInfo(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         );
         return $response;
     }
@@ -564,12 +564,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDeploymentsWithHttpInfo(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): array {
         $request = $this->getProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         );
 
         try {
@@ -596,12 +596,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDeploymentsAsync(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): Promise {
         return $this->getProjectsDeploymentsAsyncWithHttpInfo(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         )
             ->then(
                 function ($response) {
@@ -616,13 +616,13 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDeploymentsAsyncWithHttpInfo(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): Promise {
         $returnType = '\Upsun\Model\DeploymentTarget';
         $request = $this->getProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_configuration_id
+            $projectId,
+            $deploymentTargetConfigurationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -663,19 +663,19 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsDeploymentsRequest(
-        string $project_id,
-        string $deployment_target_configuration_id
+        string $projectId,
+        string $deploymentTargetConfigurationId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsDeployments'
+                'Missing the required parameter $projectId when calling getProjectsDeployments'
             );
         }
-        // verify the required parameter 'deployment_target_configuration_id' is set
-        if ($deployment_target_configuration_id === null || (is_array($deployment_target_configuration_id) && count($deployment_target_configuration_id) === 0)) {
+        // verify the required parameter 'deploymentTargetConfigurationId' is set
+        if ($deploymentTargetConfigurationId === null || (is_array($deploymentTargetConfigurationId) && count($deploymentTargetConfigurationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_target_configuration_id when calling getProjectsDeployments'
+                'Missing the required parameter $deploymentTargetConfigurationId when calling getProjectsDeployments'
             );
         }
 
@@ -689,18 +689,18 @@ final class DeploymentTargetApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($deployment_target_configuration_id !== null) {
+        if ($deploymentTargetConfigurationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'deploymentTargetConfigurationId' . '}',
-                ObjectSerializer::toPathValue($deployment_target_configuration_id),
+                ObjectSerializer::toPathValue($deploymentTargetConfigurationId),
                 $resourcePath
             );
         }
@@ -761,10 +761,10 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDeployments(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsDeploymentsWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -775,10 +775,10 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDeploymentsWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsDeploymentsRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -805,10 +805,10 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDeploymentsAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsDeploymentsAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -823,11 +823,11 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDeploymentsAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\DeploymentTarget[]';
         $request = $this->listProjectsDeploymentsRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -868,12 +868,12 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsDeploymentsRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsDeployments'
+                'Missing the required parameter $projectId when calling listProjectsDeployments'
             );
         }
 
@@ -887,10 +887,10 @@ final class DeploymentTargetApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -951,14 +951,14 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDeployments(
-        string $project_id,
-        string $deployment_target_configuration_id,
-        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDeploymentsWithHttpInfo(
-            $project_id,
-            $deployment_target_configuration_id,
-            $deployment_target_patch
+            $projectId,
+            $deploymentTargetConfigurationId,
+            $deploymentTargetPatch
         );
         return $response;
     }
@@ -969,14 +969,14 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDeploymentsWithHttpInfo(
-        string $project_id,
-        string $deployment_target_configuration_id,
-        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): array {
         $request = $this->updateProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_configuration_id,
-            $deployment_target_patch
+            $projectId,
+            $deploymentTargetConfigurationId,
+            $deploymentTargetPatch
         );
 
         try {
@@ -1003,14 +1003,14 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDeploymentsAsync(
-        string $project_id,
-        string $deployment_target_configuration_id,
-        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): Promise {
         return $this->updateProjectsDeploymentsAsyncWithHttpInfo(
-            $project_id,
-            $deployment_target_configuration_id,
-            $deployment_target_patch
+            $projectId,
+            $deploymentTargetConfigurationId,
+            $deploymentTargetPatch
         )
             ->then(
                 function ($response) {
@@ -1025,15 +1025,15 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDeploymentsAsyncWithHttpInfo(
-        string $project_id,
-        string $deployment_target_configuration_id,
-        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsDeploymentsRequest(
-            $project_id,
-            $deployment_target_configuration_id,
-            $deployment_target_patch
+            $projectId,
+            $deploymentTargetConfigurationId,
+            $deploymentTargetPatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1074,26 +1074,26 @@ final class DeploymentTargetApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsDeploymentsRequest(
-        string $project_id,
-        string $deployment_target_configuration_id,
-        \Upsun\Model\DeploymentTargetPatch $deployment_target_patch
+        string $projectId,
+        string $deploymentTargetConfigurationId,
+        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsDeployments'
+                'Missing the required parameter $projectId when calling updateProjectsDeployments'
             );
         }
-        // verify the required parameter 'deployment_target_configuration_id' is set
-        if ($deployment_target_configuration_id === null || (is_array($deployment_target_configuration_id) && count($deployment_target_configuration_id) === 0)) {
+        // verify the required parameter 'deploymentTargetConfigurationId' is set
+        if ($deploymentTargetConfigurationId === null || (is_array($deploymentTargetConfigurationId) && count($deploymentTargetConfigurationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_target_configuration_id when calling updateProjectsDeployments'
+                'Missing the required parameter $deploymentTargetConfigurationId when calling updateProjectsDeployments'
             );
         }
-        // verify the required parameter 'deployment_target_patch' is set
-        if ($deployment_target_patch === null || (is_array($deployment_target_patch) && count($deployment_target_patch) === 0)) {
+        // verify the required parameter 'deploymentTargetPatch' is set
+        if ($deploymentTargetPatch === null || (is_array($deploymentTargetPatch) && count($deploymentTargetPatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deployment_target_patch when calling updateProjectsDeployments'
+                'Missing the required parameter $deploymentTargetPatch when calling updateProjectsDeployments'
             );
         }
 
@@ -1107,18 +1107,18 @@ final class DeploymentTargetApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($deployment_target_configuration_id !== null) {
+        if ($deploymentTargetConfigurationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'deploymentTargetConfigurationId' . '}',
-                ObjectSerializer::toPathValue($deployment_target_configuration_id),
+                ObjectSerializer::toPathValue($deploymentTargetConfigurationId),
                 $resourcePath
             );
         }
@@ -1131,11 +1131,11 @@ final class DeploymentTargetApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($deployment_target_patch)) {
+        if (isset($deploymentTargetPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($deployment_target_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($deploymentTargetPatch));
             } else {
-                $httpBody = $deployment_target_patch;
+                $httpBody = $deploymentTargetPatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

@@ -25,18 +25,18 @@ final class CreateOrgRequest implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'owner_id' => 'owner_id',
+        'ownerId' => 'owner_id',
         'name' => 'name',
         'label' => 'label',
         'country' => 'country'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $owner_id = null,
-        public readonly ?string $name = null,
-        public readonly ?string $label = null,
-        public readonly ?string $country = null,
+        private readonly ?string $type = null,
+        private readonly ?string $ownerId = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
+        private readonly ?string $country = null,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class CreateOrgRequest implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'owner_id' => $this->owner_id,
+            'ownerId' => $this->ownerId,
             'name' => $this->name,
             'label' => $this->label,
             'country' => $this->country,
@@ -54,6 +54,27 @@ final class CreateOrgRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getOwnerId(): ?string
+    {
+        return $this->ownerId;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getCountry(): ?string
+    {
+        return $this->country;
     }
 }
 

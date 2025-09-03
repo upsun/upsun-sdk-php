@@ -29,8 +29,8 @@ final class GetUsageAlerts200Response implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?array $available = [],
-        public readonly ?array $current = [],
+        private readonly ?array $available = [],
+        private readonly ?array $current = [],
     ) {
     }
 
@@ -45,6 +45,15 @@ final class GetUsageAlerts200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAvailable(): ?array
+    {
+        return $this->available;
+    }
+    public function getCurrent(): ?array
+    {
+        return $this->current;
     }
 }
 

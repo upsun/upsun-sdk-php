@@ -26,7 +26,7 @@ final class PlanRecords implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'owner' => 'owner',
-        'subscription_id' => 'subscription_id',
+        'subscriptionId' => 'subscription_id',
         'sku' => 'sku',
         'plan' => 'plan',
         'options' => 'options',
@@ -36,15 +36,15 @@ final class PlanRecords implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $owner = null,
-        public readonly ?string $subscription_id = null,
-        public readonly ?string $sku = null,
-        public readonly ?string $plan = null,
-        public readonly ?array $options = [],
-        public readonly ?\DateTime $start = null,
-        public readonly ?\DateTime $end = null,
-        public readonly ?string $status = null,
+        private readonly ?string $id = null,
+        private readonly ?string $owner = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $sku = null,
+        private readonly ?string $plan = null,
+        private readonly ?array $options = [],
+        private readonly ?\DateTime $start = null,
+        private readonly ?\DateTime $end = null,
+        private readonly ?string $status = null,
     ) {
     }
 
@@ -53,7 +53,7 @@ final class PlanRecords implements JsonSerializable
         return [
             'id' => $this->id,
             'owner' => $this->owner,
-            'subscription_id' => $this->subscription_id,
+            'subscriptionId' => $this->subscriptionId,
             'sku' => $this->sku,
             'plan' => $this->plan,
             'options' => $this->options,
@@ -66,6 +66,43 @@ final class PlanRecords implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+    public function getSubscriptionId(): ?string
+    {
+        return $this->subscriptionId;
+    }
+    public function getSku(): ?string
+    {
+        return $this->sku;
+    }
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getOptions(): ?array
+    {
+        return $this->options;
+    }
+    public function getStart(): ?\DateTime
+    {
+        return $this->start;
+    }
+    public function getEnd(): ?\DateTime
+    {
+        return $this->end;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
     }
 }
 

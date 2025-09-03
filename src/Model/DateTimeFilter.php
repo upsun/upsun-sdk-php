@@ -34,13 +34,13 @@ final class DateTimeFilter implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $eq = null,
-        public readonly ?string $ne = null,
-        public readonly ?string $between = null,
-        public readonly ?string $gt = null,
-        public readonly ?string $gte = null,
-        public readonly ?string $lt = null,
-        public readonly ?string $lte = null,
+        private readonly ?string $eq = null,
+        private readonly ?string $ne = null,
+        private readonly ?string $between = null,
+        private readonly ?string $gt = null,
+        private readonly ?string $gte = null,
+        private readonly ?string $lt = null,
+        private readonly ?string $lte = null,
     ) {
     }
 
@@ -60,6 +60,35 @@ final class DateTimeFilter implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEq(): ?string
+    {
+        return $this->eq;
+    }
+    public function getNe(): ?string
+    {
+        return $this->ne;
+    }
+    public function getBetween(): ?string
+    {
+        return $this->between;
+    }
+    public function getGt(): ?string
+    {
+        return $this->gt;
+    }
+    public function getGte(): ?string
+    {
+        return $this->gte;
+    }
+    public function getLt(): ?string
+    {
+        return $this->lt;
+    }
+    public function getLte(): ?string
+    {
+        return $this->lte;
     }
 }
 

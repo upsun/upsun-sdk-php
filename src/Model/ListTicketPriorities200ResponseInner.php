@@ -26,15 +26,15 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'label' => 'label',
-        'short_description' => 'short_description',
+        'shortDescription' => 'short_description',
         'description' => 'description'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $label = null,
-        public readonly ?string $short_description = null,
-        public readonly ?string $description = null,
+        private readonly ?string $id = null,
+        private readonly ?string $label = null,
+        private readonly ?string $shortDescription = null,
+        private readonly ?string $description = null,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
         return [
             'id' => $this->id,
             'label' => $this->label,
-            'short_description' => $this->short_description,
+            'shortDescription' => $this->shortDescription,
             'description' => $this->description,
         ];
     }
@@ -51,6 +51,23 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
     }
 }
 

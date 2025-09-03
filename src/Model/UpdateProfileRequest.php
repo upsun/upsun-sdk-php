@@ -24,53 +24,53 @@ final class UpdateProfileRequest implements JsonSerializable
     private static string $openAPIModelName = 'update_profile_request';
 
     private static array $attributeMap = [
-        'display_name' => 'display_name',
+        'displayName' => 'display_name',
         'username' => 'username',
-        'current_password' => 'current_password',
+        'currentPassword' => 'current_password',
         'password' => 'password',
-        'company_type' => 'company_type',
-        'company_name' => 'company_name',
-        'vat_number' => 'vat_number',
-        'company_role' => 'company_role',
+        'companyType' => 'company_type',
+        'companyName' => 'company_name',
+        'vatNumber' => 'vat_number',
+        'companyRole' => 'company_role',
         'marketing' => 'marketing',
-        'ui_colorscheme' => 'ui_colorscheme',
-        'default_catalog' => 'default_catalog',
-        'project_options_url' => 'project_options_url',
+        'uiColorscheme' => 'ui_colorscheme',
+        'defaultCatalog' => 'default_catalog',
+        'projectOptionsUrl' => 'project_options_url',
         'picture' => 'picture'
     ];
 
     public function __construct(
-        public readonly ?string $display_name = null,
-        public readonly ?string $username = null,
-        public readonly ?string $current_password = null,
-        public readonly ?string $password = null,
-        public readonly ?string $company_type = null,
-        public readonly ?string $company_name = null,
-        public readonly ?string $vat_number = null,
-        public readonly ?string $company_role = null,
-        public readonly ?bool $marketing = null,
-        public readonly ?string $ui_colorscheme = null,
-        public readonly ?string $default_catalog = null,
-        public readonly ?string $project_options_url = null,
-        public readonly ?string $picture = null,
+        private readonly ?string $displayName = null,
+        private readonly ?string $username = null,
+        private readonly ?string $currentPassword = null,
+        private readonly ?string $password = null,
+        private readonly ?string $companyType = null,
+        private readonly ?string $companyName = null,
+        private readonly ?string $vatNumber = null,
+        private readonly ?string $companyRole = null,
+        private readonly ?bool $marketing = null,
+        private readonly ?string $uiColorscheme = null,
+        private readonly ?string $defaultCatalog = null,
+        private readonly ?string $projectOptionsUrl = null,
+        private readonly ?string $picture = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'display_name' => $this->display_name,
+            'displayName' => $this->displayName,
             'username' => $this->username,
-            'current_password' => $this->current_password,
+            'currentPassword' => $this->currentPassword,
             'password' => $this->password,
-            'company_type' => $this->company_type,
-            'company_name' => $this->company_name,
-            'vat_number' => $this->vat_number,
-            'company_role' => $this->company_role,
+            'companyType' => $this->companyType,
+            'companyName' => $this->companyName,
+            'vatNumber' => $this->vatNumber,
+            'companyRole' => $this->companyRole,
             'marketing' => $this->marketing,
-            'ui_colorscheme' => $this->ui_colorscheme,
-            'default_catalog' => $this->default_catalog,
-            'project_options_url' => $this->project_options_url,
+            'uiColorscheme' => $this->uiColorscheme,
+            'defaultCatalog' => $this->defaultCatalog,
+            'projectOptionsUrl' => $this->projectOptionsUrl,
             'picture' => $this->picture,
         ];
     }
@@ -78,6 +78,59 @@ final class UpdateProfileRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getDisplayName(): ?string
+    {
+        return $this->displayName;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getCurrentPassword(): ?string
+    {
+        return $this->currentPassword;
+    }
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+    public function getCompanyType(): ?string
+    {
+        return $this->companyType;
+    }
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+    public function getVatNumber(): ?string
+    {
+        return $this->vatNumber;
+    }
+    public function getCompanyRole(): ?string
+    {
+        return $this->companyRole;
+    }
+    public function getMarketing(): ?bool
+    {
+        return $this->marketing;
+    }
+    public function getUiColorscheme(): ?string
+    {
+        return $this->uiColorscheme;
+    }
+    public function getDefaultCatalog(): ?string
+    {
+        return $this->defaultCatalog;
+    }
+    public function getProjectOptionsUrl(): ?string
+    {
+        return $this->projectOptionsUrl;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
     }
 }
 

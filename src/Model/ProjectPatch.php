@@ -27,20 +27,20 @@ final class ProjectPatch implements JsonSerializable
         'attributes' => 'attributes',
         'title' => 'title',
         'description' => 'description',
-        'default_branch' => 'default_branch',
+        'defaultBranch' => 'default_branch',
         'timezone' => 'timezone',
         'region' => 'region',
-        'default_domain' => 'default_domain'
+        'defaultDomain' => 'default_domain'
     ];
 
     public function __construct(
-        public readonly ?array $attributes = [],
-        public readonly ?string $title = null,
-        public readonly ?string $description = null,
-        public readonly ?string $default_branch = null,
-        public readonly ?string $timezone = null,
-        public readonly ?string $region = null,
-        public readonly ?string $default_domain = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $title = null,
+        private readonly ?string $description = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?string $timezone = null,
+        private readonly ?string $region = null,
+        private readonly ?string $defaultDomain = null,
     ) {
     }
 
@@ -50,16 +50,45 @@ final class ProjectPatch implements JsonSerializable
             'attributes' => $this->attributes,
             'title' => $this->title,
             'description' => $this->description,
-            'default_branch' => $this->default_branch,
+            'defaultBranch' => $this->defaultBranch,
             'timezone' => $this->timezone,
             'region' => $this->region,
-            'default_domain' => $this->default_domain,
+            'defaultDomain' => $this->defaultDomain,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    public function getDefaultBranch(): ?string
+    {
+        return $this->defaultBranch;
+    }
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+    public function getDefaultDomain(): ?string
+    {
+        return $this->defaultDomain;
     }
 }
 

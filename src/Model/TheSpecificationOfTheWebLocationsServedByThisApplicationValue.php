@@ -32,19 +32,19 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         'allow' => 'allow',
         'headers' => 'headers',
         'rules' => 'rules',
-        'request_buffering' => 'request_buffering'
+        'requestBuffering' => 'request_buffering'
     ];
 
     public function __construct(
-        public readonly ?string $root = null,
-        public readonly ?string $expires = null,
-        public readonly ?string $passthru = null,
-        public readonly ?bool $scripts = null,
-        public readonly ?array $index = [],
-        public readonly ?bool $allow = null,
-        public readonly ?array $headers = [],
-        public readonly ?array $rules = [],
-        public readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $request_buffering = null,
+        private readonly ?string $root = null,
+        private readonly ?string $expires = null,
+        private readonly ?string $passthru = null,
+        private readonly ?bool $scripts = null,
+        private readonly ?array $index = [],
+        private readonly ?bool $allow = null,
+        private readonly ?array $headers = [],
+        private readonly ?array $rules = [],
+        private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
     }
 
@@ -59,13 +59,50 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
             'allow' => $this->allow,
             'headers' => $this->headers,
             'rules' => $this->rules,
-            'request_buffering' => $this->request_buffering,
+            'requestBuffering' => $this->requestBuffering,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRoot(): ?string
+    {
+        return $this->root;
+    }
+    public function getExpires(): ?string
+    {
+        return $this->expires;
+    }
+    public function getPassthru(): ?string
+    {
+        return $this->passthru;
+    }
+    public function getScripts(): ?bool
+    {
+        return $this->scripts;
+    }
+    public function getIndex(): ?array
+    {
+        return $this->index;
+    }
+    public function getAllow(): ?bool
+    {
+        return $this->allow;
+    }
+    public function getHeaders(): ?array
+    {
+        return $this->headers;
+    }
+    public function getRules(): ?array
+    {
+        return $this->rules;
+    }
+    public function getRequestBuffering(): ?\Upsun\Model\ConfigurationForSupportingRequestBuffering
+    {
+        return $this->requestBuffering;
     }
 }
 

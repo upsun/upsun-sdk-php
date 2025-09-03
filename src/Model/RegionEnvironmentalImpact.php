@@ -25,14 +25,14 @@ final class RegionEnvironmentalImpact implements JsonSerializable
 
     private static array $attributeMap = [
         'zone' => 'zone',
-        'carbon_intensity' => 'carbon_intensity',
+        'carbonIntensity' => 'carbon_intensity',
         'green' => 'green'
     ];
 
     public function __construct(
-        public readonly ?string $zone = null,
-        public readonly ?string $carbon_intensity = null,
-        public readonly ?bool $green = null,
+        private readonly ?string $zone = null,
+        private readonly ?string $carbonIntensity = null,
+        private readonly ?bool $green = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     {
         return [
             'zone' => $this->zone,
-            'carbon_intensity' => $this->carbon_intensity,
+            'carbonIntensity' => $this->carbonIntensity,
             'green' => $this->green,
         ];
     }
@@ -48,6 +48,19 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getZone(): ?string
+    {
+        return $this->zone;
+    }
+    public function getCarbonIntensity(): ?string
+    {
+        return $this->carbonIntensity;
+    }
+    public function getGreen(): ?bool
+    {
+        return $this->green;
     }
 }
 

@@ -27,26 +27,26 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         'locations' => 'locations',
         'commands' => 'commands',
         'upstream' => 'upstream',
-        'document_root' => 'document_root',
+        'documentRoot' => 'document_root',
         'passthru' => 'passthru',
-        'index_files' => 'index_files',
+        'indexFiles' => 'index_files',
         'whitelist' => 'whitelist',
         'blacklist' => 'blacklist',
         'expires' => 'expires',
-        'move_to_root' => 'move_to_root'
+        'moveToRoot' => 'move_to_root'
     ];
 
     public function __construct(
-        public readonly ?array $locations = [],
-        public readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-        public readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
-        public readonly ?string $document_root = null,
-        public readonly ?string $passthru = null,
-        public readonly ?array $index_files = [],
-        public readonly ?array $whitelist = [],
-        public readonly ?array $blacklist = [],
-        public readonly ?string $expires = null,
-        public readonly ?bool $move_to_root = null,
+        private readonly ?array $locations = [],
+        private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
+        private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
+        private readonly ?string $documentRoot = null,
+        private readonly ?string $passthru = null,
+        private readonly ?array $indexFiles = [],
+        private readonly ?array $whitelist = [],
+        private readonly ?array $blacklist = [],
+        private readonly ?string $expires = null,
+        private readonly ?bool $moveToRoot = null,
     ) {
     }
 
@@ -56,19 +56,60 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
             'locations' => $this->locations,
             'commands' => $this->commands,
             'upstream' => $this->upstream,
-            'document_root' => $this->document_root,
+            'documentRoot' => $this->documentRoot,
             'passthru' => $this->passthru,
-            'index_files' => $this->index_files,
+            'indexFiles' => $this->indexFiles,
             'whitelist' => $this->whitelist,
             'blacklist' => $this->blacklist,
             'expires' => $this->expires,
-            'move_to_root' => $this->move_to_root,
+            'moveToRoot' => $this->moveToRoot,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getLocations(): ?array
+    {
+        return $this->locations;
+    }
+    public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
+    {
+        return $this->commands;
+    }
+    public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
+    {
+        return $this->upstream;
+    }
+    public function getDocumentRoot(): ?string
+    {
+        return $this->documentRoot;
+    }
+    public function getPassthru(): ?string
+    {
+        return $this->passthru;
+    }
+    public function getIndexFiles(): ?array
+    {
+        return $this->indexFiles;
+    }
+    public function getWhitelist(): ?array
+    {
+        return $this->whitelist;
+    }
+    public function getBlacklist(): ?array
+    {
+        return $this->blacklist;
+    }
+    public function getExpires(): ?string
+    {
+        return $this->expires;
+    }
+    public function getMoveToRoot(): ?bool
+    {
+        return $this->moveToRoot;
     }
 }
 

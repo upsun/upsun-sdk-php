@@ -25,22 +25,22 @@ final class OrganizationReference implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'owner_id' => 'owner_id',
+        'ownerId' => 'owner_id',
         'name' => 'name',
         'label' => 'label',
         'vendor' => 'vendor',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $owner_id = null,
-        public readonly ?string $name = null,
-        public readonly ?string $label = null,
-        public readonly ?string $vendor = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $id = null,
+        private readonly ?string $ownerId = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
+        private readonly ?string $vendor = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -48,18 +48,47 @@ final class OrganizationReference implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'owner_id' => $this->owner_id,
+            'ownerId' => $this->ownerId,
             'name' => $this->name,
             'label' => $this->label,
             'vendor' => $this->vendor,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getOwnerId(): ?string
+    {
+        return $this->ownerId;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

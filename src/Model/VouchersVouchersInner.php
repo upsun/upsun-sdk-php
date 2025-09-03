@@ -31,10 +31,10 @@ final class VouchersVouchersInner implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $code = null,
-        public readonly ?string $amount = null,
-        public readonly ?string $currency = null,
-        public readonly ?array $orders = [],
+        private readonly ?string $code = null,
+        private readonly ?string $amount = null,
+        private readonly ?string $currency = null,
+        private readonly ?array $orders = [],
     ) {
     }
 
@@ -51,6 +51,23 @@ final class VouchersVouchersInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+    public function getAmount(): ?string
+    {
+        return $this->amount;
+    }
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
+    }
+    public function getOrders(): ?array
+    {
+        return $this->orders;
     }
 }
 

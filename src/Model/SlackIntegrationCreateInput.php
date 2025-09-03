@@ -30,9 +30,9 @@ final class SlackIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $token = null,
-        public readonly ?string $channel = null,
+        private readonly ?string $type = null,
+        private readonly ?string $token = null,
+        private readonly ?string $channel = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class SlackIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getChannel(): ?string
+    {
+        return $this->channel;
     }
 }
 

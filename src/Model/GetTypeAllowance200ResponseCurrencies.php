@@ -24,36 +24,57 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     private static string $openAPIModelName = 'get_type_allowance_200_response_currencies';
 
     private static array $attributeMap = [
-        'eur' => 'EUR',
-        'usd' => 'USD',
-        'gbp' => 'GBP',
-        'aud' => 'AUD',
-        'cad' => 'CAD'
+        'eUR' => 'EUR',
+        'uSD' => 'USD',
+        'gBP' => 'GBP',
+        'aUD' => 'AUD',
+        'cAD' => 'CAD'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eur = null,
-        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $usd = null,
-        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gbp = null,
-        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aud = null,
-        public readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cad = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'eur' => $this->eur,
-            'usd' => $this->usd,
-            'gbp' => $this->gbp,
-            'aud' => $this->aud,
-            'cad' => $this->cad,
+            'eUR' => $this->eUR,
+            'uSD' => $this->uSD,
+            'gBP' => $this->gBP,
+            'aUD' => $this->aUD,
+            'cAD' => $this->cAD,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEUR(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR
+    {
+        return $this->eUR;
+    }
+    public function getUSD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD
+    {
+        return $this->uSD;
+    }
+    public function getGBP(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP
+    {
+        return $this->gBP;
+    }
+    public function getAUD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD
+    {
+        return $this->aUD;
+    }
+    public function getCAD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD
+    {
+        return $this->cAD;
     }
 }
 

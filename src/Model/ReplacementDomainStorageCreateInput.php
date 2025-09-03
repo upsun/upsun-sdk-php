@@ -26,13 +26,13 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
     private static array $attributeMap = [
         'name' => 'name',
         'attributes' => 'attributes',
-        'replacement_for' => 'replacement_for'
+        'replacementFor' => 'replacement_for'
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $replacement_for = null,
+        private readonly ?string $name = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $replacementFor = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
         return [
             'name' => $this->name,
             'attributes' => $this->attributes,
-            'replacement_for' => $this->replacement_for,
+            'replacementFor' => $this->replacementFor,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getReplacementFor(): ?string
+    {
+        return $this->replacementFor;
     }
 }
 

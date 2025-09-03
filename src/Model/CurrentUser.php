@@ -27,36 +27,36 @@ final class CurrentUser implements JsonSerializable
         'id' => 'id',
         'uuid' => 'uuid',
         'username' => 'username',
-        'display_name' => 'display_name',
+        'displayName' => 'display_name',
         'status' => 'status',
         'mail' => 'mail',
-        'ssh_keys' => 'ssh_keys',
-        'has_key' => 'has_key',
+        'sshKeys' => 'ssh_keys',
+        'hasKey' => 'has_key',
         'projects' => 'projects',
         'sequence' => 'sequence',
         'roles' => 'roles',
         'picture' => 'picture',
         'tickets' => 'tickets',
         'trial' => 'trial',
-        'current_trial' => 'current_trial'
+        'currentTrial' => 'current_trial'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $uuid = null,
-        public readonly ?string $username = null,
-        public readonly ?string $display_name = null,
-        public readonly ?int $status = null,
-        public readonly ?string $mail = null,
-        public readonly ?array $ssh_keys = [],
-        public readonly ?bool $has_key = null,
-        public readonly ?array $projects = [],
-        public readonly ?int $sequence = null,
-        public readonly ?array $roles = [],
-        public readonly ?string $picture = null,
-        public readonly ?object $tickets = null,
-        public readonly ?bool $trial = null,
-        public readonly ?array $current_trial = [],
+        private readonly ?string $id = null,
+        private readonly ?string $uuid = null,
+        private readonly ?string $username = null,
+        private readonly ?string $displayName = null,
+        private readonly ?int $status = null,
+        private readonly ?string $mail = null,
+        private readonly ?array $sshKeys = [],
+        private readonly ?bool $hasKey = null,
+        private readonly ?array $projects = [],
+        private readonly ?int $sequence = null,
+        private readonly ?array $roles = [],
+        private readonly ?string $picture = null,
+        private readonly ?object $tickets = null,
+        private readonly ?bool $trial = null,
+        private readonly ?array $currentTrial = [],
     ) {
     }
 
@@ -66,24 +66,85 @@ final class CurrentUser implements JsonSerializable
             'id' => $this->id,
             'uuid' => $this->uuid,
             'username' => $this->username,
-            'display_name' => $this->display_name,
+            'displayName' => $this->displayName,
             'status' => $this->status,
             'mail' => $this->mail,
-            'ssh_keys' => $this->ssh_keys,
-            'has_key' => $this->has_key,
+            'sshKeys' => $this->sshKeys,
+            'hasKey' => $this->hasKey,
             'projects' => $this->projects,
             'sequence' => $this->sequence,
             'roles' => $this->roles,
             'picture' => $this->picture,
             'tickets' => $this->tickets,
             'trial' => $this->trial,
-            'current_trial' => $this->current_trial,
+            'currentTrial' => $this->currentTrial,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getUuid(): ?string
+    {
+        return $this->uuid;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getDisplayName(): ?string
+    {
+        return $this->displayName;
+    }
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+    public function getSshKeys(): ?array
+    {
+        return $this->sshKeys;
+    }
+    public function getHasKey(): ?bool
+    {
+        return $this->hasKey;
+    }
+    public function getProjects(): ?array
+    {
+        return $this->projects;
+    }
+    public function getSequence(): ?int
+    {
+        return $this->sequence;
+    }
+    public function getRoles(): ?array
+    {
+        return $this->roles;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+    public function getTickets(): ?object
+    {
+        return $this->tickets;
+    }
+    public function getTrial(): ?bool
+    {
+        return $this->trial;
+    }
+    public function getCurrentTrial(): ?array
+    {
+        return $this->currentTrial;
     }
 }
 

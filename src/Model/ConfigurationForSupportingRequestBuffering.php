@@ -25,12 +25,12 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
 
     private static array $attributeMap = [
         'enabled' => 'enabled',
-        'max_request_size' => 'max_request_size'
+        'maxRequestSize' => 'max_request_size'
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
-        public readonly ?string $max_request_size = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?string $maxRequestSize = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     {
         return [
             'enabled' => $this->enabled,
-            'max_request_size' => $this->max_request_size,
+            'maxRequestSize' => $this->maxRequestSize,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    public function getMaxRequestSize(): ?string
+    {
+        return $this->maxRequestSize;
     }
 }
 

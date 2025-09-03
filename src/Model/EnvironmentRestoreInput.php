@@ -24,29 +24,29 @@ final class EnvironmentRestoreInput implements JsonSerializable
     private static string $openAPIModelName = 'EnvironmentRestoreInput';
 
     private static array $attributeMap = [
-        'environment_name' => 'environment_name',
-        'branch_from' => 'branch_from',
-        'restore_code' => 'restore_code',
-        'restore_resources' => 'restore_resources',
+        'environmentName' => 'environment_name',
+        'branchFrom' => 'branch_from',
+        'restoreCode' => 'restore_code',
+        'restoreResources' => 'restore_resources',
         'resources' => 'resources'
     ];
 
     public function __construct(
-        public readonly ?string $environment_name = null,
-        public readonly ?string $branch_from = null,
-        public readonly ?bool $restore_code = null,
-        public readonly ?bool $restore_resources = null,
-        public readonly ?\Upsun\Model\Resources5 $resources = null,
+        private readonly ?string $environmentName = null,
+        private readonly ?string $branchFrom = null,
+        private readonly ?bool $restoreCode = null,
+        private readonly ?bool $restoreResources = null,
+        private readonly ?\Upsun\Model\Resources5 $resources = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'environment_name' => $this->environment_name,
-            'branch_from' => $this->branch_from,
-            'restore_code' => $this->restore_code,
-            'restore_resources' => $this->restore_resources,
+            'environmentName' => $this->environmentName,
+            'branchFrom' => $this->branchFrom,
+            'restoreCode' => $this->restoreCode,
+            'restoreResources' => $this->restoreResources,
             'resources' => $this->resources,
         ];
     }
@@ -54,6 +54,27 @@ final class EnvironmentRestoreInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnvironmentName(): ?string
+    {
+        return $this->environmentName;
+    }
+    public function getBranchFrom(): ?string
+    {
+        return $this->branchFrom;
+    }
+    public function getRestoreCode(): ?bool
+    {
+        return $this->restoreCode;
+    }
+    public function getRestoreResources(): ?bool
+    {
+        return $this->restoreResources;
+    }
+    public function getResources(): ?\Upsun\Model\Resources5
+    {
+        return $this->resources;
     }
 }
 

@@ -31,10 +31,10 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $protocol = null,
-        public readonly ?array $ips = [],
-        public readonly ?array $domains = [],
-        public readonly ?array $ports = [],
+        private readonly ?string $protocol = null,
+        private readonly ?array $ips = [],
+        private readonly ?array $domains = [],
+        private readonly ?array $ports = [],
     ) {
     }
 
@@ -51,6 +51,23 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getProtocol(): ?string
+    {
+        return $this->protocol;
+    }
+    public function getIps(): ?array
+    {
+        return $this->ips;
+    }
+    public function getDomains(): ?array
+    {
+        return $this->domains;
+    }
+    public function getPorts(): ?array
+    {
+        return $this->ports;
     }
 }
 

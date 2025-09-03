@@ -27,22 +27,22 @@ final class UserReference implements JsonSerializable
         'id' => 'id',
         'username' => 'username',
         'email' => 'email',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
+        'firstName' => 'first_name',
+        'lastName' => 'last_name',
         'picture' => 'picture',
-        'mfa_enabled' => 'mfa_enabled',
-        'sso_enabled' => 'sso_enabled'
+        'mfaEnabled' => 'mfa_enabled',
+        'ssoEnabled' => 'sso_enabled'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $username = null,
-        public readonly ?string $email = null,
-        public readonly ?string $first_name = null,
-        public readonly ?string $last_name = null,
-        public readonly ?string $picture = null,
-        public readonly ?bool $mfa_enabled = null,
-        public readonly ?bool $sso_enabled = null,
+        private readonly ?string $id = null,
+        private readonly ?string $username = null,
+        private readonly ?string $email = null,
+        private readonly ?string $firstName = null,
+        private readonly ?string $lastName = null,
+        private readonly ?string $picture = null,
+        private readonly ?bool $mfaEnabled = null,
+        private readonly ?bool $ssoEnabled = null,
     ) {
     }
 
@@ -52,17 +52,50 @@ final class UserReference implements JsonSerializable
             'id' => $this->id,
             'username' => $this->username,
             'email' => $this->email,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
             'picture' => $this->picture,
-            'mfa_enabled' => $this->mfa_enabled,
-            'sso_enabled' => $this->sso_enabled,
+            'mfaEnabled' => $this->mfaEnabled,
+            'ssoEnabled' => $this->ssoEnabled,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+    public function getMfaEnabled(): ?bool
+    {
+        return $this->mfaEnabled;
+    }
+    public function getSsoEnabled(): ?bool
+    {
+        return $this->ssoEnabled;
     }
 }
 

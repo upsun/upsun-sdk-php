@@ -24,20 +24,20 @@ final class DefaultConfig implements JsonSerializable
     private static string $openAPIModelName = 'Default_Config';
 
     private static array $attributeMap = [
-        'manual_count' => 'manual_count',
+        'manualCount' => 'manual_count',
         'schedule' => 'schedule'
     ];
 
     public function __construct(
-        public readonly ?int $manual_count = null,
-        public readonly ?array $schedule = [],
+        private readonly ?int $manualCount = null,
+        private readonly ?array $schedule = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'manual_count' => $this->manual_count,
+            'manualCount' => $this->manualCount,
             'schedule' => $this->schedule,
         ];
     }
@@ -45,6 +45,15 @@ final class DefaultConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getManualCount(): ?int
+    {
+        return $this->manualCount;
+    }
+    public function getSchedule(): ?array
+    {
+        return $this->schedule;
     }
 }
 

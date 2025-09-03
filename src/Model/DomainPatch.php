@@ -25,12 +25,12 @@ final class DomainPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'attributes' => 'attributes',
-        'is_default' => 'is_default'
+        'isDefault' => 'is_default'
     ];
 
     public function __construct(
-        public readonly ?array $attributes = [],
-        public readonly ?bool $is_default = null,
+        private readonly ?array $attributes = [],
+        private readonly ?bool $isDefault = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class DomainPatch implements JsonSerializable
     {
         return [
             'attributes' => $this->attributes,
-            'is_default' => $this->is_default,
+            'isDefault' => $this->isDefault,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getIsDefault(): ?bool
+    {
+        return $this->isDefault;
     }
 }
 

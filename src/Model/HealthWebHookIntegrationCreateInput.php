@@ -25,14 +25,14 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'shared_key' => 'shared_key',
+        'sharedKey' => 'shared_key',
         'url' => 'url'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $shared_key = null,
-        public readonly ?string $url = null,
+        private readonly ?string $type = null,
+        private readonly ?string $sharedKey = null,
+        private readonly ?string $url = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'shared_key' => $this->shared_key,
+            'sharedKey' => $this->sharedKey,
             'url' => $this->url,
         ];
     }
@@ -48,6 +48,19 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getSharedKey(): ?string
+    {
+        return $this->sharedKey;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 }
 

@@ -26,13 +26,13 @@ final class ListTickets200Response implements JsonSerializable
     private static array $attributeMap = [
         'count' => 'count',
         'tickets' => 'tickets',
-        '_links' => '_links'
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?int $count = null,
-        public readonly ?array $tickets = [],
-        public readonly ?\Upsun\Model\HalLinks $_links = null,
+        private readonly ?int $count = null,
+        private readonly ?array $tickets = [],
+        private readonly ?\Upsun\Model\HalLinks $links = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class ListTickets200Response implements JsonSerializable
         return [
             'count' => $this->count,
             'tickets' => $this->tickets,
-            '_links' => $this->_links,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+    public function getTickets(): ?array
+    {
+        return $this->tickets;
+    }
+    public function getLinks(): ?\Upsun\Model\HalLinks
+    {
+        return $this->links;
     }
 }
 

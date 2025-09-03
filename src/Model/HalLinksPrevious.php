@@ -29,8 +29,8 @@ final class HalLinksPrevious implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $title = null,
-        public readonly ?string $href = null,
+        private readonly ?string $title = null,
+        private readonly ?string $href = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class HalLinksPrevious implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getHref(): ?string
+    {
+        return $this->href;
     }
 }
 

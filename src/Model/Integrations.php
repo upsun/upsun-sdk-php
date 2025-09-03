@@ -26,13 +26,13 @@ final class Integrations implements JsonSerializable
     private static array $attributeMap = [
         'enabled' => 'enabled',
         'config' => 'config',
-        'allowed_integrations' => 'allowed_integrations'
+        'allowedIntegrations' => 'allowed_integrations'
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
-        public readonly ?\Upsun\Model\Config $config = null,
-        public readonly ?array $allowed_integrations = [],
+        private readonly ?bool $enabled = null,
+        private readonly ?\Upsun\Model\Config $config = null,
+        private readonly ?array $allowedIntegrations = [],
     ) {
     }
 
@@ -41,13 +41,26 @@ final class Integrations implements JsonSerializable
         return [
             'enabled' => $this->enabled,
             'config' => $this->config,
-            'allowed_integrations' => $this->allowed_integrations,
+            'allowedIntegrations' => $this->allowedIntegrations,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    public function getConfig(): ?\Upsun\Model\Config
+    {
+        return $this->config;
+    }
+    public function getAllowedIntegrations(): ?array
+    {
+        return $this->allowedIntegrations;
     }
 }
 

@@ -24,20 +24,20 @@ final class CreateOrgMemberRequest implements JsonSerializable
     private static string $openAPIModelName = 'create_org_member_request';
 
     private static array $attributeMap = [
-        'user_id' => 'user_id',
+        'userId' => 'user_id',
         'permissions' => 'permissions'
     ];
 
     public function __construct(
-        public readonly ?string $user_id = null,
-        public readonly ?array $permissions = [],
+        private readonly ?string $userId = null,
+        private readonly ?array $permissions = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'user_id' => $this->user_id,
+            'userId' => $this->userId,
             'permissions' => $this->permissions,
         ];
     }
@@ -45,6 +45,15 @@ final class CreateOrgMemberRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+    public function getPermissions(): ?array
+    {
+        return $this->permissions;
     }
 }
 

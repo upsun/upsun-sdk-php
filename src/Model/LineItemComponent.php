@@ -25,16 +25,16 @@ final class LineItemComponent implements JsonSerializable
 
     private static array $attributeMap = [
         'amount' => 'amount',
-        'amount_formatted' => 'amount_formatted',
-        'display_title' => 'display_title',
+        'amountFormatted' => 'amount_formatted',
+        'displayTitle' => 'display_title',
         'currency' => 'currency'
     ];
 
     public function __construct(
-        public readonly ?float $amount = null,
-        public readonly ?string $amount_formatted = null,
-        public readonly ?string $display_title = null,
-        public readonly ?string $currency = null,
+        private readonly ?float $amount = null,
+        private readonly ?string $amountFormatted = null,
+        private readonly ?string $displayTitle = null,
+        private readonly ?string $currency = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class LineItemComponent implements JsonSerializable
     {
         return [
             'amount' => $this->amount,
-            'amount_formatted' => $this->amount_formatted,
-            'display_title' => $this->display_title,
+            'amountFormatted' => $this->amountFormatted,
+            'displayTitle' => $this->displayTitle,
             'currency' => $this->currency,
         ];
     }
@@ -51,6 +51,23 @@ final class LineItemComponent implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAmount(): ?float
+    {
+        return $this->amount;
+    }
+    public function getAmountFormatted(): ?string
+    {
+        return $this->amountFormatted;
+    }
+    public function getDisplayTitle(): ?string
+    {
+        return $this->displayTitle;
+    }
+    public function getCurrency(): ?string
+    {
+        return $this->currency;
     }
 }
 

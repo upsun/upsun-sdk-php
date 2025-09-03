@@ -124,16 +124,16 @@ final class GrantsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserExtendedAccess(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_resource_type = null,
-        \Upsun\Model\StringFilter $filter_organization_id = null,
-        \Upsun\Model\StringFilter $filter_permissions = null
+        string $userId,
+        \Upsun\Model\StringFilter $filterResourceType = null,
+        \Upsun\Model\StringFilter $filterOrganizationId = null,
+        \Upsun\Model\StringFilter $filterPermissions = null
     ): array {
         list($response) = $this->listUserExtendedAccessWithHttpInfo(
-            $user_id,
-            $filter_resource_type,
-            $filter_organization_id,
-            $filter_permissions
+            $userId,
+            $filterResourceType,
+            $filterOrganizationId,
+            $filterPermissions
         );
         return $response;
     }
@@ -144,16 +144,16 @@ final class GrantsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserExtendedAccessWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_resource_type = null,
-        \Upsun\Model\StringFilter $filter_organization_id = null,
-        \Upsun\Model\StringFilter $filter_permissions = null
+        string $userId,
+        \Upsun\Model\StringFilter $filterResourceType = null,
+        \Upsun\Model\StringFilter $filterOrganizationId = null,
+        \Upsun\Model\StringFilter $filterPermissions = null
     ): array {
         $request = $this->listUserExtendedAccessRequest(
-            $user_id,
-            $filter_resource_type,
-            $filter_organization_id,
-            $filter_permissions
+            $userId,
+            $filterResourceType,
+            $filterOrganizationId,
+            $filterPermissions
         );
 
         try {
@@ -180,16 +180,16 @@ final class GrantsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserExtendedAccessAsync(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_resource_type = null,
-        \Upsun\Model\StringFilter $filter_organization_id = null,
-        \Upsun\Model\StringFilter $filter_permissions = null
+        string $userId,
+        \Upsun\Model\StringFilter $filterResourceType = null,
+        \Upsun\Model\StringFilter $filterOrganizationId = null,
+        \Upsun\Model\StringFilter $filterPermissions = null
     ): Promise {
         return $this->listUserExtendedAccessAsyncWithHttpInfo(
-            $user_id,
-            $filter_resource_type,
-            $filter_organization_id,
-            $filter_permissions
+            $userId,
+            $filterResourceType,
+            $filterOrganizationId,
+            $filterPermissions
         )
             ->then(
                 function ($response) {
@@ -204,17 +204,17 @@ final class GrantsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserExtendedAccessAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_resource_type = null,
-        \Upsun\Model\StringFilter $filter_organization_id = null,
-        \Upsun\Model\StringFilter $filter_permissions = null
+        string $userId,
+        \Upsun\Model\StringFilter $filterResourceType = null,
+        \Upsun\Model\StringFilter $filterOrganizationId = null,
+        \Upsun\Model\StringFilter $filterPermissions = null
     ): Promise {
         $returnType = '\Upsun\Model\ListUserExtendedAccess200Response';
         $request = $this->listUserExtendedAccessRequest(
-            $user_id,
-            $filter_resource_type,
-            $filter_organization_id,
-            $filter_permissions
+            $userId,
+            $filterResourceType,
+            $filterOrganizationId,
+            $filterPermissions
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -255,15 +255,15 @@ final class GrantsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listUserExtendedAccessRequest(
-        string $user_id,
-        \Upsun\Model\StringFilter $filter_resource_type = null,
-        \Upsun\Model\StringFilter $filter_organization_id = null,
-        \Upsun\Model\StringFilter $filter_permissions = null
+        string $userId,
+        \Upsun\Model\StringFilter $filterResourceType = null,
+        \Upsun\Model\StringFilter $filterOrganizationId = null,
+        \Upsun\Model\StringFilter $filterPermissions = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling listUserExtendedAccess'
+                'Missing the required parameter $userId when calling listUserExtendedAccess'
             );
         }
 
@@ -275,45 +275,45 @@ final class GrantsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_resource_type !== null) {
-            if ('form' === 'deepObject' && is_array($filter_resource_type)) {
-                foreach ($filter_resource_type as $key => $value) {
+        if ($filterResourceType !== null) {
+            if ('form' === 'deepObject' && is_array($filterResourceType)) {
+                foreach ($filterResourceType as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[resource_type]'] = $filter_resource_type->eq;
+                $queryParams['filter[resource_type]'] = $filterResourceType->getEq();
             }
         }
 
         // query params
-        if ($filter_organization_id !== null) {
-            if ('form' === 'deepObject' && is_array($filter_organization_id)) {
-                foreach ($filter_organization_id as $key => $value) {
+        if ($filterOrganizationId !== null) {
+            if ('form' === 'deepObject' && is_array($filterOrganizationId)) {
+                foreach ($filterOrganizationId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id->eq;
+                $queryParams['filter[organization_id]'] = $filterOrganizationId->getEq();
             }
         }
 
         // query params
-        if ($filter_permissions !== null) {
-            if ('form' === 'deepObject' && is_array($filter_permissions)) {
-                foreach ($filter_permissions as $key => $value) {
+        if ($filterPermissions !== null) {
+            if ('form' === 'deepObject' && is_array($filterPermissions)) {
+                foreach ($filterPermissions as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filter_permissions->eq;
+                $queryParams['filter[permissions]'] = $filterPermissions->getEq();
             }
         }
 
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }

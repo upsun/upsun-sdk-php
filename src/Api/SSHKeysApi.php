@@ -124,10 +124,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKey(
-        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): \Upsun\Model\SSHKey {
         list($response) = $this->createSshKeyWithHttpInfo(
-            $create_ssh_key_request
+            $createSshKeyRequest
         );
         return $response;
     }
@@ -138,10 +138,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKeyWithHttpInfo(
-        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): array {
         $request = $this->createSshKeyRequest(
-            $create_ssh_key_request
+            $createSshKeyRequest
         );
 
         try {
@@ -168,10 +168,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKeyAsync(
-        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): Promise {
         return $this->createSshKeyAsyncWithHttpInfo(
-            $create_ssh_key_request
+            $createSshKeyRequest
         )
             ->then(
                 function ($response) {
@@ -186,11 +186,11 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKeyAsyncWithHttpInfo(
-        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\SSHKey';
         $request = $this->createSshKeyRequest(
-            $create_ssh_key_request
+            $createSshKeyRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,7 +231,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createSshKeyRequest(
-        \Upsun\Model\CreateSshKeyRequest $create_ssh_key_request = null
+        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): RequestInterface {
 
         $resourcePath = '/ssh_keys';
@@ -252,11 +252,11 @@ final class SSHKeysApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($create_ssh_key_request)) {
+        if (isset($createSshKeyRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($create_ssh_key_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createSshKeyRequest));
             } else {
-                $httpBody = $create_ssh_key_request;
+                $httpBody = $createSshKeyRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -306,10 +306,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteSshKey(
-        int $key_id
+        int $keyId
     ): \Upsun\Model\SSHKey {
         list($response) = $this->deleteSshKeyWithHttpInfo(
-            $key_id
+            $keyId
         );
         return $response;
     }
@@ -320,10 +320,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteSshKeyWithHttpInfo(
-        int $key_id
+        int $keyId
     ): array {
         $request = $this->deleteSshKeyRequest(
-            $key_id
+            $keyId
         );
 
         try {
@@ -350,10 +350,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteSshKeyAsync(
-        int $key_id
+        int $keyId
     ): Promise {
         return $this->deleteSshKeyAsyncWithHttpInfo(
-            $key_id
+            $keyId
         )
             ->then(
                 function ($response) {
@@ -368,11 +368,11 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteSshKeyAsyncWithHttpInfo(
-        int $key_id
+        int $keyId
     ): Promise {
         $returnType = '';
         $request = $this->deleteSshKeyRequest(
-            $key_id
+            $keyId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -403,12 +403,12 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteSshKeyRequest(
-        int $key_id
+        int $keyId
     ): RequestInterface {
-        // verify the required parameter 'key_id' is set
-        if ($key_id === null || (is_array($key_id) && count($key_id) === 0)) {
+        // verify the required parameter 'keyId' is set
+        if ($keyId === null || (is_array($keyId) && count($keyId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $key_id when calling deleteSshKey'
+                'Missing the required parameter $keyId when calling deleteSshKey'
             );
         }
 
@@ -422,10 +422,10 @@ final class SSHKeysApi extends AbstractApi
 
 
         // path params
-        if ($key_id !== null) {
+        if ($keyId !== null) {
             $resourcePath = str_replace(
                 '{' . 'key_id' . '}',
-                ObjectSerializer::toPathValue($key_id),
+                ObjectSerializer::toPathValue($keyId),
                 $resourcePath
             );
         }
@@ -486,10 +486,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getSshKey(
-        int $key_id
+        int $keyId
     ): \Upsun\Model\SSHKey {
         list($response) = $this->getSshKeyWithHttpInfo(
-            $key_id
+            $keyId
         );
         return $response;
     }
@@ -500,10 +500,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getSshKeyWithHttpInfo(
-        int $key_id
+        int $keyId
     ): array {
         $request = $this->getSshKeyRequest(
-            $key_id
+            $keyId
         );
 
         try {
@@ -530,10 +530,10 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getSshKeyAsync(
-        int $key_id
+        int $keyId
     ): Promise {
         return $this->getSshKeyAsyncWithHttpInfo(
-            $key_id
+            $keyId
         )
             ->then(
                 function ($response) {
@@ -548,11 +548,11 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getSshKeyAsyncWithHttpInfo(
-        int $key_id
+        int $keyId
     ): Promise {
         $returnType = '\Upsun\Model\SSHKey';
         $request = $this->getSshKeyRequest(
-            $key_id
+            $keyId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -593,12 +593,12 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getSshKeyRequest(
-        int $key_id
+        int $keyId
     ): RequestInterface {
-        // verify the required parameter 'key_id' is set
-        if ($key_id === null || (is_array($key_id) && count($key_id) === 0)) {
+        // verify the required parameter 'keyId' is set
+        if ($keyId === null || (is_array($keyId) && count($keyId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $key_id when calling getSshKey'
+                'Missing the required parameter $keyId when calling getSshKey'
             );
         }
 
@@ -612,10 +612,10 @@ final class SSHKeysApi extends AbstractApi
 
 
         // path params
-        if ($key_id !== null) {
+        if ($keyId !== null) {
             $resourcePath = str_replace(
                 '{' . 'key_id' . '}',
-                ObjectSerializer::toPathValue($key_id),
+                ObjectSerializer::toPathValue($keyId),
                 $resourcePath
             );
         }

@@ -25,28 +25,28 @@ final class ProjectReference implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'organization_id' => 'organization_id',
-        'subscription_id' => 'subscription_id',
+        'organizationId' => 'organization_id',
+        'subscriptionId' => 'subscription_id',
         'region' => 'region',
         'title' => 'title',
         'type' => 'type',
         'plan' => 'plan',
         'status' => 'status',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?string $subscription_id = null,
-        public readonly ?string $region = null,
-        public readonly ?string $title = null,
-        public readonly ?\Upsun\Model\OrganizationProjectType $type = null,
-        public readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
-        public readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $region = null,
+        private readonly ?string $title = null,
+        private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
+        private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
+        private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -54,21 +54,62 @@ final class ProjectReference implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'organization_id' => $this->organization_id,
-            'subscription_id' => $this->subscription_id,
+            'organizationId' => $this->organizationId,
+            'subscriptionId' => $this->subscriptionId,
             'region' => $this->region,
             'title' => $this->title,
             'type' => $this->type,
             'plan' => $this->plan,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getSubscriptionId(): ?string
+    {
+        return $this->subscriptionId;
+    }
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getType(): ?\Upsun\Model\OrganizationProjectType
+    {
+        return $this->type;
+    }
+    public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
+    {
+        return $this->plan;
+    }
+    public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
+    {
+        return $this->status;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

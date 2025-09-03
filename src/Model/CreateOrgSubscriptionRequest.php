@@ -25,22 +25,22 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     private static array $attributeMap = [
         'plan' => 'plan',
-        'project_region' => 'project_region',
-        'project_title' => 'project_title',
-        'options_url' => 'options_url',
-        'default_branch' => 'default_branch',
+        'projectRegion' => 'project_region',
+        'projectTitle' => 'project_title',
+        'optionsUrl' => 'options_url',
+        'defaultBranch' => 'default_branch',
         'environments' => 'environments',
         'storage' => 'storage'
     ];
 
     public function __construct(
-        public readonly ?string $plan = null,
-        public readonly ?string $project_region = null,
-        public readonly ?string $project_title = null,
-        public readonly ?string $options_url = null,
-        public readonly ?string $default_branch = null,
-        public readonly ?int $environments = null,
-        public readonly ?int $storage = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $projectRegion = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $optionsUrl = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
     ) {
     }
 
@@ -48,10 +48,10 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return [
             'plan' => $this->plan,
-            'project_region' => $this->project_region,
-            'project_title' => $this->project_title,
-            'options_url' => $this->options_url,
-            'default_branch' => $this->default_branch,
+            'projectRegion' => $this->projectRegion,
+            'projectTitle' => $this->projectTitle,
+            'optionsUrl' => $this->optionsUrl,
+            'defaultBranch' => $this->defaultBranch,
             'environments' => $this->environments,
             'storage' => $this->storage,
         ];
@@ -60,6 +60,35 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getProjectRegion(): ?string
+    {
+        return $this->projectRegion;
+    }
+    public function getProjectTitle(): ?string
+    {
+        return $this->projectTitle;
+    }
+    public function getOptionsUrl(): ?string
+    {
+        return $this->optionsUrl;
+    }
+    public function getDefaultBranch(): ?string
+    {
+        return $this->defaultBranch;
+    }
+    public function getEnvironments(): ?int
+    {
+        return $this->environments;
+    }
+    public function getStorage(): ?int
+    {
+        return $this->storage;
     }
 }
 

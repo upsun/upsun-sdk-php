@@ -27,14 +27,14 @@ final class CertificateCreateInput implements JsonSerializable
         'certificate' => 'certificate',
         'key' => 'key',
         'chain' => 'chain',
-        'is_invalid' => 'is_invalid'
+        'isInvalid' => 'is_invalid'
     ];
 
     public function __construct(
-        public readonly ?string $certificate = null,
-        public readonly ?string $key = null,
-        public readonly ?array $chain = [],
-        public readonly ?bool $is_invalid = null,
+        private readonly ?string $certificate = null,
+        private readonly ?string $key = null,
+        private readonly ?array $chain = [],
+        private readonly ?bool $isInvalid = null,
     ) {
     }
 
@@ -44,13 +44,30 @@ final class CertificateCreateInput implements JsonSerializable
             'certificate' => $this->certificate,
             'key' => $this->key,
             'chain' => $this->chain,
-            'is_invalid' => $this->is_invalid,
+            'isInvalid' => $this->isInvalid,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCertificate(): ?string
+    {
+        return $this->certificate;
+    }
+    public function getKey(): ?string
+    {
+        return $this->key;
+    }
+    public function getChain(): ?array
+    {
+        return $this->chain;
+    }
+    public function getIsInvalid(): ?bool
+    {
+        return $this->isInvalid;
     }
 }
 

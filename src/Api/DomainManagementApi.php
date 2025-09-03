@@ -124,12 +124,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDomains(
-        string $project_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsDomainsWithHttpInfo(
-            $project_id,
-            $domain_create_input
+            $projectId,
+            $domainCreateInput
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDomainsWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): array {
         $request = $this->createProjectsDomainsRequest(
-            $project_id,
-            $domain_create_input
+            $projectId,
+            $domainCreateInput
         );
 
         try {
@@ -172,12 +172,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDomainsAsync(
-        string $project_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): Promise {
         return $this->createProjectsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $domain_create_input
+            $projectId,
+            $domainCreateInput
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsDomainsRequest(
-            $project_id,
-            $domain_create_input
+            $projectId,
+            $domainCreateInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectsDomainsRequest(
-        string $project_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectsDomains'
+                'Missing the required parameter $projectId when calling createProjectsDomains'
             );
         }
-        // verify the required parameter 'domain_create_input' is set
-        if ($domain_create_input === null || (is_array($domain_create_input) && count($domain_create_input) === 0)) {
+        // verify the required parameter 'domainCreateInput' is set
+        if ($domainCreateInput === null || (is_array($domainCreateInput) && count($domainCreateInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_create_input when calling createProjectsDomains'
+                'Missing the required parameter $domainCreateInput when calling createProjectsDomains'
             );
         }
 
@@ -265,10 +265,10 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -281,11 +281,11 @@ final class DomainManagementApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($domain_create_input)) {
+        if (isset($domainCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domain_create_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domainCreateInput));
             } else {
-                $httpBody = $domain_create_input;
+                $httpBody = $domainCreateInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -335,14 +335,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsDomains(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_create_input
+            $projectId,
+            $environmentId,
+            $domainCreateInput
         );
         return $response;
     }
@@ -353,14 +353,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsDomainsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): array {
         $request = $this->createProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_create_input
+            $projectId,
+            $environmentId,
+            $domainCreateInput
         );
 
         try {
@@ -387,14 +387,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsDomainsAsync(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): Promise {
         return $this->createProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_create_input
+            $projectId,
+            $environmentId,
+            $domainCreateInput
         )
             ->then(
                 function ($response) {
@@ -409,15 +409,15 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_create_input
+            $projectId,
+            $environmentId,
+            $domainCreateInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -458,26 +458,26 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectsEnvironmentsDomainsRequest(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\DomainCreateInput $domain_create_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\DomainCreateInput $domainCreateInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectsEnvironmentsDomains'
+                'Missing the required parameter $projectId when calling createProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling createProjectsEnvironmentsDomains'
+                'Missing the required parameter $environmentId when calling createProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'domain_create_input' is set
-        if ($domain_create_input === null || (is_array($domain_create_input) && count($domain_create_input) === 0)) {
+        // verify the required parameter 'domainCreateInput' is set
+        if ($domainCreateInput === null || (is_array($domainCreateInput) && count($domainCreateInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_create_input when calling createProjectsEnvironmentsDomains'
+                'Missing the required parameter $domainCreateInput when calling createProjectsEnvironmentsDomains'
             );
         }
 
@@ -491,18 +491,18 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -515,11 +515,11 @@ final class DomainManagementApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($domain_create_input)) {
+        if (isset($domainCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domain_create_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domainCreateInput));
             } else {
-                $httpBody = $domain_create_input;
+                $httpBody = $domainCreateInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -569,12 +569,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDomains(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsDomainsWithHttpInfo(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         );
         return $response;
     }
@@ -585,12 +585,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDomainsWithHttpInfo(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): array {
         $request = $this->deleteProjectsDomainsRequest(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         );
 
         try {
@@ -617,12 +617,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDomainsAsync(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): Promise {
         return $this->deleteProjectsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         )
             ->then(
                 function ($response) {
@@ -637,13 +637,13 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsDomainsRequest(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -684,19 +684,19 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsDomainsRequest(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsDomains'
+                'Missing the required parameter $projectId when calling deleteProjectsDomains'
             );
         }
-        // verify the required parameter 'domain_id' is set
-        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+        // verify the required parameter 'domainId' is set
+        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_id when calling deleteProjectsDomains'
+                'Missing the required parameter $domainId when calling deleteProjectsDomains'
             );
         }
 
@@ -710,18 +710,18 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($domain_id !== null) {
+        if ($domainId !== null) {
             $resourcePath = str_replace(
                 '{' . 'domainId' . '}',
-                ObjectSerializer::toPathValue($domain_id),
+                ObjectSerializer::toPathValue($domainId),
                 $resourcePath
             );
         }
@@ -782,14 +782,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsDomains(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         );
         return $response;
     }
@@ -800,14 +800,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsDomainsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): array {
         $request = $this->deleteProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         );
 
         try {
@@ -834,14 +834,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsDomainsAsync(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): Promise {
         return $this->deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         )
             ->then(
                 function ($response) {
@@ -856,15 +856,15 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -905,26 +905,26 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsDomainsRequest(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsEnvironmentsDomains'
+                'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling deleteProjectsEnvironmentsDomains'
+                'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'domain_id' is set
-        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+        // verify the required parameter 'domainId' is set
+        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_id when calling deleteProjectsEnvironmentsDomains'
+                'Missing the required parameter $domainId when calling deleteProjectsEnvironmentsDomains'
             );
         }
 
@@ -938,26 +938,26 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($domain_id !== null) {
+        if ($domainId !== null) {
             $resourcePath = str_replace(
                 '{' . 'domainId' . '}',
-                ObjectSerializer::toPathValue($domain_id),
+                ObjectSerializer::toPathValue($domainId),
                 $resourcePath
             );
         }
@@ -1018,12 +1018,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDomains(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): \Upsun\Model\Domain {
         list($response) = $this->getProjectsDomainsWithHttpInfo(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         );
         return $response;
     }
@@ -1034,12 +1034,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDomainsWithHttpInfo(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): array {
         $request = $this->getProjectsDomainsRequest(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         );
 
         try {
@@ -1066,12 +1066,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDomainsAsync(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): Promise {
         return $this->getProjectsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         )
             ->then(
                 function ($response) {
@@ -1086,13 +1086,13 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): Promise {
         $returnType = '\Upsun\Model\Domain';
         $request = $this->getProjectsDomainsRequest(
-            $project_id,
-            $domain_id
+            $projectId,
+            $domainId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1133,19 +1133,19 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsDomainsRequest(
-        string $project_id,
-        string $domain_id
+        string $projectId,
+        string $domainId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsDomains'
+                'Missing the required parameter $projectId when calling getProjectsDomains'
             );
         }
-        // verify the required parameter 'domain_id' is set
-        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+        // verify the required parameter 'domainId' is set
+        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_id when calling getProjectsDomains'
+                'Missing the required parameter $domainId when calling getProjectsDomains'
             );
         }
 
@@ -1159,18 +1159,18 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($domain_id !== null) {
+        if ($domainId !== null) {
             $resourcePath = str_replace(
                 '{' . 'domainId' . '}',
-                ObjectSerializer::toPathValue($domain_id),
+                ObjectSerializer::toPathValue($domainId),
                 $resourcePath
             );
         }
@@ -1231,14 +1231,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDomains(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): \Upsun\Model\Domain {
         list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         );
         return $response;
     }
@@ -1249,14 +1249,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDomainsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): array {
         $request = $this->getProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         );
 
         try {
@@ -1283,14 +1283,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDomainsAsync(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): Promise {
         return $this->getProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         )
             ->then(
                 function ($response) {
@@ -1305,15 +1305,15 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): Promise {
         $returnType = '\Upsun\Model\Domain';
         $request = $this->getProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_id
+            $projectId,
+            $environmentId,
+            $domainId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1354,26 +1354,26 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsDomainsRequest(
-        string $project_id,
-        string $environment_id,
-        string $domain_id
+        string $projectId,
+        string $environmentId,
+        string $domainId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsEnvironmentsDomains'
+                'Missing the required parameter $projectId when calling getProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling getProjectsEnvironmentsDomains'
+                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'domain_id' is set
-        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+        // verify the required parameter 'domainId' is set
+        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_id when calling getProjectsEnvironmentsDomains'
+                'Missing the required parameter $domainId when calling getProjectsEnvironmentsDomains'
             );
         }
 
@@ -1387,26 +1387,26 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($domain_id !== null) {
+        if ($domainId !== null) {
             $resourcePath = str_replace(
                 '{' . 'domainId' . '}',
-                ObjectSerializer::toPathValue($domain_id),
+                ObjectSerializer::toPathValue($domainId),
                 $resourcePath
             );
         }
@@ -1467,10 +1467,10 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDomains(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsDomainsWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -1481,10 +1481,10 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDomainsWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsDomainsRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -1511,10 +1511,10 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDomainsAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsDomainsAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -1529,11 +1529,11 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsDomainsAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\Domain[]';
         $request = $this->listProjectsDomainsRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1574,12 +1574,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsDomainsRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsDomains'
+                'Missing the required parameter $projectId when calling listProjectsDomains'
             );
         }
 
@@ -1593,10 +1593,10 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -1657,12 +1657,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDomains(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
         return $response;
     }
@@ -1673,12 +1673,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDomainsWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         $request = $this->listProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         try {
@@ -1705,12 +1705,12 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDomainsAsync(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         return $this->listProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         )
             ->then(
                 function ($response) {
@@ -1725,13 +1725,13 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         $returnType = '\Upsun\Model\Domain[]';
         $request = $this->listProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1772,19 +1772,19 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentsDomainsRequest(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentsDomains'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling listProjectsEnvironmentsDomains'
+                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsDomains'
             );
         }
 
@@ -1798,18 +1798,18 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -1870,14 +1870,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDomains(
-        string $project_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsDomainsWithHttpInfo(
-            $project_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $domainId,
+            $domainPatch
         );
         return $response;
     }
@@ -1888,14 +1888,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDomainsWithHttpInfo(
-        string $project_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): array {
         $request = $this->updateProjectsDomainsRequest(
-            $project_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $domainId,
+            $domainPatch
         );
 
         try {
@@ -1922,14 +1922,14 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDomainsAsync(
-        string $project_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): Promise {
         return $this->updateProjectsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $domainId,
+            $domainPatch
         )
             ->then(
                 function ($response) {
@@ -1944,15 +1944,15 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsDomainsRequest(
-            $project_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $domainId,
+            $domainPatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1993,26 +1993,26 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsDomainsRequest(
-        string $project_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsDomains'
+                'Missing the required parameter $projectId when calling updateProjectsDomains'
             );
         }
-        // verify the required parameter 'domain_id' is set
-        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+        // verify the required parameter 'domainId' is set
+        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_id when calling updateProjectsDomains'
+                'Missing the required parameter $domainId when calling updateProjectsDomains'
             );
         }
-        // verify the required parameter 'domain_patch' is set
-        if ($domain_patch === null || (is_array($domain_patch) && count($domain_patch) === 0)) {
+        // verify the required parameter 'domainPatch' is set
+        if ($domainPatch === null || (is_array($domainPatch) && count($domainPatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_patch when calling updateProjectsDomains'
+                'Missing the required parameter $domainPatch when calling updateProjectsDomains'
             );
         }
 
@@ -2026,18 +2026,18 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($domain_id !== null) {
+        if ($domainId !== null) {
             $resourcePath = str_replace(
                 '{' . 'domainId' . '}',
-                ObjectSerializer::toPathValue($domain_id),
+                ObjectSerializer::toPathValue($domainId),
                 $resourcePath
             );
         }
@@ -2050,11 +2050,11 @@ final class DomainManagementApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($domain_patch)) {
+        if (isset($domainPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domain_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domainPatch));
             } else {
-                $httpBody = $domain_patch;
+                $httpBody = $domainPatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2104,16 +2104,16 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsDomains(
-        string $project_id,
-        string $environment_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $environmentId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $environmentId,
+            $domainId,
+            $domainPatch
         );
         return $response;
     }
@@ -2124,16 +2124,16 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsDomainsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $environmentId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): array {
         $request = $this->updateProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $environmentId,
+            $domainId,
+            $domainPatch
         );
 
         try {
@@ -2160,16 +2160,16 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsDomainsAsync(
-        string $project_id,
-        string $environment_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $environmentId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): Promise {
         return $this->updateProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $environmentId,
+            $domainId,
+            $domainPatch
         )
             ->then(
                 function ($response) {
@@ -2184,17 +2184,17 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $environmentId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsEnvironmentsDomainsRequest(
-            $project_id,
-            $environment_id,
-            $domain_id,
-            $domain_patch
+            $projectId,
+            $environmentId,
+            $domainId,
+            $domainPatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -2235,33 +2235,33 @@ final class DomainManagementApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsEnvironmentsDomainsRequest(
-        string $project_id,
-        string $environment_id,
-        string $domain_id,
-        \Upsun\Model\DomainPatch $domain_patch
+        string $projectId,
+        string $environmentId,
+        string $domainId,
+        \Upsun\Model\DomainPatch $domainPatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsEnvironmentsDomains'
+                'Missing the required parameter $projectId when calling updateProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling updateProjectsEnvironmentsDomains'
+                'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'domain_id' is set
-        if ($domain_id === null || (is_array($domain_id) && count($domain_id) === 0)) {
+        // verify the required parameter 'domainId' is set
+        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_id when calling updateProjectsEnvironmentsDomains'
+                'Missing the required parameter $domainId when calling updateProjectsEnvironmentsDomains'
             );
         }
-        // verify the required parameter 'domain_patch' is set
-        if ($domain_patch === null || (is_array($domain_patch) && count($domain_patch) === 0)) {
+        // verify the required parameter 'domainPatch' is set
+        if ($domainPatch === null || (is_array($domainPatch) && count($domainPatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $domain_patch when calling updateProjectsEnvironmentsDomains'
+                'Missing the required parameter $domainPatch when calling updateProjectsEnvironmentsDomains'
             );
         }
 
@@ -2275,26 +2275,26 @@ final class DomainManagementApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($domain_id !== null) {
+        if ($domainId !== null) {
             $resourcePath = str_replace(
                 '{' . 'domainId' . '}',
-                ObjectSerializer::toPathValue($domain_id),
+                ObjectSerializer::toPathValue($domainId),
                 $resourcePath
             );
         }
@@ -2307,11 +2307,11 @@ final class DomainManagementApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($domain_patch)) {
+        if (isset($domainPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domain_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($domainPatch));
             } else {
-                $httpBody = $domain_patch;
+                $httpBody = $domainPatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

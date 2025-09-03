@@ -27,18 +27,18 @@ final class ThePathsToRedirectValue implements JsonSerializable
         'regexp' => 'regexp',
         'to' => 'to',
         'prefix' => 'prefix',
-        'append_suffix' => 'append_suffix',
+        'appendSuffix' => 'append_suffix',
         'code' => 'code',
         'expires' => 'expires'
     ];
 
     public function __construct(
-        public readonly ?bool $regexp = null,
-        public readonly ?string $to = null,
-        public readonly ?bool $prefix = null,
-        public readonly ?bool $append_suffix = null,
-        public readonly ?int $code = null,
-        public readonly ?string $expires = null,
+        private readonly ?bool $regexp = null,
+        private readonly ?string $to = null,
+        private readonly ?bool $prefix = null,
+        private readonly ?bool $appendSuffix = null,
+        private readonly ?int $code = null,
+        private readonly ?string $expires = null,
     ) {
     }
 
@@ -48,7 +48,7 @@ final class ThePathsToRedirectValue implements JsonSerializable
             'regexp' => $this->regexp,
             'to' => $this->to,
             'prefix' => $this->prefix,
-            'append_suffix' => $this->append_suffix,
+            'appendSuffix' => $this->appendSuffix,
             'code' => $this->code,
             'expires' => $this->expires,
         ];
@@ -57,6 +57,31 @@ final class ThePathsToRedirectValue implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRegexp(): ?bool
+    {
+        return $this->regexp;
+    }
+    public function getTo(): ?string
+    {
+        return $this->to;
+    }
+    public function getPrefix(): ?bool
+    {
+        return $this->prefix;
+    }
+    public function getAppendSuffix(): ?bool
+    {
+        return $this->appendSuffix;
+    }
+    public function getCode(): ?int
+    {
+        return $this->code;
+    }
+    public function getExpires(): ?string
+    {
+        return $this->expires;
     }
 }
 

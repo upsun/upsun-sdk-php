@@ -26,23 +26,23 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'name' => 'name',
-        'deploy_host' => 'deploy_host',
+        'deployHost' => 'deploy_host',
         'docroots' => 'docroots',
-        'site_urls' => 'site_urls',
-        'ssh_hosts' => 'ssh_hosts',
-        'maintenance_mode' => 'maintenance_mode',
-        'enterprise_environments_mapping' => 'enterprise_environments_mapping'
+        'siteUrls' => 'site_urls',
+        'sshHosts' => 'ssh_hosts',
+        'maintenanceMode' => 'maintenance_mode',
+        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?string $deploy_host = null,
-        public readonly ?array $docroots = [],
-        public readonly ?object $site_urls = null,
-        public readonly ?array $ssh_hosts = [],
-        public readonly ?bool $maintenance_mode = null,
-        public readonly ?object $enterprise_environments_mapping = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?string $deployHost = null,
+        private readonly ?array $docroots = [],
+        private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+        private readonly ?bool $maintenanceMode = null,
+        private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
@@ -51,18 +51,51 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         return [
             'type' => $this->type,
             'name' => $this->name,
-            'deploy_host' => $this->deploy_host,
+            'deployHost' => $this->deployHost,
             'docroots' => $this->docroots,
-            'site_urls' => $this->site_urls,
-            'ssh_hosts' => $this->ssh_hosts,
-            'maintenance_mode' => $this->maintenance_mode,
-            'enterprise_environments_mapping' => $this->enterprise_environments_mapping,
+            'siteUrls' => $this->siteUrls,
+            'sshHosts' => $this->sshHosts,
+            'maintenanceMode' => $this->maintenanceMode,
+            'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getDeployHost(): ?string
+    {
+        return $this->deployHost;
+    }
+    public function getDocroots(): ?array
+    {
+        return $this->docroots;
+    }
+    public function getSiteUrls(): ?object
+    {
+        return $this->siteUrls;
+    }
+    public function getSshHosts(): ?array
+    {
+        return $this->sshHosts;
+    }
+    public function getMaintenanceMode(): ?bool
+    {
+        return $this->maintenanceMode;
+    }
+    public function getEnterpriseEnvironmentsMapping(): ?object
+    {
+        return $this->enterpriseEnvironmentsMapping;
     }
 }
 

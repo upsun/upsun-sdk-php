@@ -25,16 +25,16 @@ final class GetTotpEnrollment200Response implements JsonSerializable
 
     private static array $attributeMap = [
         'issuer' => 'issuer',
-        'account_name' => 'account_name',
+        'accountName' => 'account_name',
         'secret' => 'secret',
-        'qr_code' => 'qr_code'
+        'qrCode' => 'qr_code'
     ];
 
     public function __construct(
-        public readonly ?string $issuer = null,
-        public readonly ?string $account_name = null,
-        public readonly ?string $secret = null,
-        public readonly ?string $qr_code = null,
+        private readonly ?string $issuer = null,
+        private readonly ?string $accountName = null,
+        private readonly ?string $secret = null,
+        private readonly ?string $qrCode = null,
     ) {
     }
 
@@ -42,15 +42,32 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     {
         return [
             'issuer' => $this->issuer,
-            'account_name' => $this->account_name,
+            'accountName' => $this->accountName,
             'secret' => $this->secret,
-            'qr_code' => $this->qr_code,
+            'qrCode' => $this->qrCode,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getIssuer(): ?string
+    {
+        return $this->issuer;
+    }
+    public function getAccountName(): ?string
+    {
+        return $this->accountName;
+    }
+    public function getSecret(): ?string
+    {
+        return $this->secret;
+    }
+    public function getQrCode(): ?string
+    {
+        return $this->qrCode;
     }
 }
 

@@ -24,24 +24,29 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     private static string $openAPIModelName = 'The_continuous_profiling_configuration';
 
     private static array $attributeMap = [
-        'supported_runtimes' => 'supported_runtimes'
+        'supportedRuntimes' => 'supported_runtimes'
     ];
 
     public function __construct(
-        public readonly ?array $supported_runtimes = [],
+        private readonly ?array $supportedRuntimes = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'supported_runtimes' => $this->supported_runtimes,
+            'supportedRuntimes' => $this->supportedRuntimes,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSupportedRuntimes(): ?array
+    {
+        return $this->supportedRuntimes;
     }
 }
 

@@ -30,9 +30,9 @@ final class DiscountCommitment implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?int $months = null,
-        public readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
-        public readonly ?\Upsun\Model\DiscountCommitmentNet $net = null,
+        private readonly ?int $months = null,
+        private readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
+        private readonly ?\Upsun\Model\DiscountCommitmentNet $net = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class DiscountCommitment implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMonths(): ?int
+    {
+        return $this->months;
+    }
+    public function getAmount(): ?\Upsun\Model\DiscountCommitmentAmount
+    {
+        return $this->amount;
+    }
+    public function getNet(): ?\Upsun\Model\DiscountCommitmentNet
+    {
+        return $this->net;
     }
 }
 

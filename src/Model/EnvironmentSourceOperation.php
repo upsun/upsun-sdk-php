@@ -30,9 +30,9 @@ final class EnvironmentSourceOperation implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $app = null,
-        public readonly ?string $operation = null,
-        public readonly ?string $command = null,
+        private readonly ?string $app = null,
+        private readonly ?string $operation = null,
+        private readonly ?string $command = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class EnvironmentSourceOperation implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getApp(): ?string
+    {
+        return $this->app;
+    }
+    public function getOperation(): ?string
+    {
+        return $this->operation;
+    }
+    public function getCommand(): ?string
+    {
+        return $this->command;
     }
 }
 

@@ -29,8 +29,8 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     ];
 
     public function __construct(
-        public readonly ?string $action = null,
-        public readonly ?string $type = null,
+        private readonly ?string $action = null,
+        private readonly ?string $type = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAction(): ?string
+    {
+        return $this->action;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
     }
 }
 

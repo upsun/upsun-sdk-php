@@ -26,19 +26,19 @@ final class OrganizationAlertConfig implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'active' => 'active',
-        'alerts_sent' => 'alerts_sent',
-        'last_alert_at' => 'last_alert_at',
-        'updated_at' => 'updated_at',
+        'alertsSent' => 'alerts_sent',
+        'lastAlertAt' => 'last_alert_at',
+        'updatedAt' => 'updated_at',
         'config' => 'config'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?bool $active = null,
-        public readonly ?float $alerts_sent = null,
-        public readonly ?string $last_alert_at = null,
-        public readonly ?string $updated_at = null,
-        public readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
+        private readonly ?string $id = null,
+        private readonly ?bool $active = null,
+        private readonly ?float $alertsSent = null,
+        private readonly ?string $lastAlertAt = null,
+        private readonly ?string $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
     ) {
     }
 
@@ -47,9 +47,9 @@ final class OrganizationAlertConfig implements JsonSerializable
         return [
             'id' => $this->id,
             'active' => $this->active,
-            'alerts_sent' => $this->alerts_sent,
-            'last_alert_at' => $this->last_alert_at,
-            'updated_at' => $this->updated_at,
+            'alertsSent' => $this->alertsSent,
+            'lastAlertAt' => $this->lastAlertAt,
+            'updatedAt' => $this->updatedAt,
             'config' => $this->config,
         ];
     }
@@ -57,6 +57,31 @@ final class OrganizationAlertConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+    public function getAlertsSent(): ?float
+    {
+        return $this->alertsSent;
+    }
+    public function getLastAlertAt(): ?string
+    {
+        return $this->lastAlertAt;
+    }
+    public function getUpdatedAt(): ?string
+    {
+        return $this->updatedAt;
+    }
+    public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
+    {
+        return $this->config;
     }
 }
 

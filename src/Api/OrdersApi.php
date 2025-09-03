@@ -124,12 +124,12 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentials(
-        string $organization_id,
-        string $order_id
+        string $organizationId,
+        string $orderId
     ): array {
         list($response) = $this->createAuthorizationCredentialsWithHttpInfo(
-            $organization_id,
-            $order_id
+            $organizationId,
+            $orderId
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentialsWithHttpInfo(
-        string $organization_id,
-        string $order_id
+        string $organizationId,
+        string $orderId
     ): array {
         $request = $this->createAuthorizationCredentialsRequest(
-            $organization_id,
-            $order_id
+            $organizationId,
+            $orderId
         );
 
         try {
@@ -172,12 +172,12 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentialsAsync(
-        string $organization_id,
-        string $order_id
+        string $organizationId,
+        string $orderId
     ): Promise {
         return $this->createAuthorizationCredentialsAsyncWithHttpInfo(
-            $organization_id,
-            $order_id
+            $organizationId,
+            $orderId
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createAuthorizationCredentialsAsyncWithHttpInfo(
-        string $organization_id,
-        string $order_id
+        string $organizationId,
+        string $orderId
     ): Promise {
         $returnType = '\Upsun\Model\CreateAuthorizationCredentials200Response';
         $request = $this->createAuthorizationCredentialsRequest(
-            $organization_id,
-            $order_id
+            $organizationId,
+            $orderId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createAuthorizationCredentialsRequest(
-        string $organization_id,
-        string $order_id
+        string $organizationId,
+        string $orderId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling createAuthorizationCredentials'
+                'Missing the required parameter $organizationId when calling createAuthorizationCredentials'
             );
         }
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
+        // verify the required parameter 'orderId' is set
+        if ($orderId === null || (is_array($orderId) && count($orderId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling createAuthorizationCredentials'
+                'Missing the required parameter $orderId when calling createAuthorizationCredentials'
             );
         }
 
@@ -265,18 +265,18 @@ final class OrdersApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
         // path params
-        if ($order_id !== null) {
+        if ($orderId !== null) {
             $resourcePath = str_replace(
                 '{' . 'order_id' . '}',
-                ObjectSerializer::toPathValue($order_id),
+                ObjectSerializer::toPathValue($orderId),
                 $resourcePath
             );
         }
@@ -520,13 +520,13 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrder(
-        string $organization_id,
-        string $order_id,
+        string $organizationId,
+        string $orderId,
         string $mode = null
     ): \Upsun\Model\Order {
         list($response) = $this->getOrgOrderWithHttpInfo(
-            $organization_id,
-            $order_id,
+            $organizationId,
+            $orderId,
             $mode
         );
         return $response;
@@ -538,13 +538,13 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrderWithHttpInfo(
-        string $organization_id,
-        string $order_id,
+        string $organizationId,
+        string $orderId,
         string $mode = null
     ): array {
         $request = $this->getOrgOrderRequest(
-            $organization_id,
-            $order_id,
+            $organizationId,
+            $orderId,
             $mode
         );
 
@@ -572,13 +572,13 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrderAsync(
-        string $organization_id,
-        string $order_id,
+        string $organizationId,
+        string $orderId,
         string $mode = null
     ): Promise {
         return $this->getOrgOrderAsyncWithHttpInfo(
-            $organization_id,
-            $order_id,
+            $organizationId,
+            $orderId,
             $mode
         )
             ->then(
@@ -594,14 +594,14 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgOrderAsyncWithHttpInfo(
-        string $organization_id,
-        string $order_id,
+        string $organizationId,
+        string $orderId,
         string $mode = null
     ): Promise {
         $returnType = '\Upsun\Model\Order';
         $request = $this->getOrgOrderRequest(
-            $organization_id,
-            $order_id,
+            $organizationId,
+            $orderId,
             $mode
         );
 
@@ -643,20 +643,20 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getOrgOrderRequest(
-        string $organization_id,
-        string $order_id,
+        string $organizationId,
+        string $orderId,
         string $mode = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling getOrgOrder'
+                'Missing the required parameter $organizationId when calling getOrgOrder'
             );
         }
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
+        // verify the required parameter 'orderId' is set
+        if ($orderId === null || (is_array($orderId) && count($orderId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling getOrgOrder'
+                'Missing the required parameter $orderId when calling getOrgOrder'
             );
         }
 
@@ -681,18 +681,18 @@ final class OrdersApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
         // path params
-        if ($order_id !== null) {
+        if ($orderId !== null) {
             $resourcePath = str_replace(
                 '{' . 'order_id' . '}',
-                ObjectSerializer::toPathValue($order_id),
+                ObjectSerializer::toPathValue($orderId),
                 $resourcePath
             );
         }
@@ -753,16 +753,16 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrders(
-        string $organization_id,
-        string $filter_status = null,
-        int $filter_total = null,
+        string $organizationId,
+        string $filterStatus = null,
+        int $filterTotal = null,
         int $page = null,
         string $mode = null
     ): array {
         list($response) = $this->listOrgOrdersWithHttpInfo(
-            $organization_id,
-            $filter_status,
-            $filter_total,
+            $organizationId,
+            $filterStatus,
+            $filterTotal,
             $page,
             $mode
         );
@@ -775,16 +775,16 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrdersWithHttpInfo(
-        string $organization_id,
-        string $filter_status = null,
-        int $filter_total = null,
+        string $organizationId,
+        string $filterStatus = null,
+        int $filterTotal = null,
         int $page = null,
         string $mode = null
     ): array {
         $request = $this->listOrgOrdersRequest(
-            $organization_id,
-            $filter_status,
-            $filter_total,
+            $organizationId,
+            $filterStatus,
+            $filterTotal,
             $page,
             $mode
         );
@@ -813,16 +813,16 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrdersAsync(
-        string $organization_id,
-        string $filter_status = null,
-        int $filter_total = null,
+        string $organizationId,
+        string $filterStatus = null,
+        int $filterTotal = null,
         int $page = null,
         string $mode = null
     ): Promise {
         return $this->listOrgOrdersAsyncWithHttpInfo(
-            $organization_id,
-            $filter_status,
-            $filter_total,
+            $organizationId,
+            $filterStatus,
+            $filterTotal,
             $page,
             $mode
         )
@@ -839,17 +839,17 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgOrdersAsyncWithHttpInfo(
-        string $organization_id,
-        string $filter_status = null,
-        int $filter_total = null,
+        string $organizationId,
+        string $filterStatus = null,
+        int $filterTotal = null,
         int $page = null,
         string $mode = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgOrders200Response';
         $request = $this->listOrgOrdersRequest(
-            $organization_id,
-            $filter_status,
-            $filter_total,
+            $organizationId,
+            $filterStatus,
+            $filterTotal,
             $page,
             $mode
         );
@@ -892,16 +892,16 @@ final class OrdersApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgOrdersRequest(
-        string $organization_id,
-        string $filter_status = null,
-        int $filter_total = null,
+        string $organizationId,
+        string $filterStatus = null,
+        int $filterTotal = null,
         int $page = null,
         string $mode = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling listOrgOrders'
+                'Missing the required parameter $organizationId when calling listOrgOrders'
             );
         }
 
@@ -913,24 +913,24 @@ final class OrdersApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_status !== null) {
-            if ('form' === 'form' && is_array($filter_status)) {
-                foreach ($filter_status as $key => $value) {
+        if ($filterStatus !== null) {
+            if ('form' === 'form' && is_array($filterStatus)) {
+                foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status;
+                $queryParams['filter[status]'] = $filterStatus;
             }
         }
 
         // query params
-        if ($filter_total !== null) {
-            if ('form' === 'form' && is_array($filter_total)) {
-                foreach ($filter_total as $key => $value) {
+        if ($filterTotal !== null) {
+            if ('form' === 'form' && is_array($filterTotal)) {
+                foreach ($filterTotal as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[total]'] = $filter_total;
+                $queryParams['filter[total]'] = $filterTotal;
             }
         }
 
@@ -959,10 +959,10 @@ final class OrdersApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }

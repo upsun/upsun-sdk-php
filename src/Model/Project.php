@@ -24,59 +24,59 @@ final class Project implements JsonSerializable
     private static string $openAPIModelName = 'Project';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'attributes' => 'attributes',
         'title' => 'title',
         'description' => 'description',
         'owner' => 'owner',
         'namespace' => 'namespace',
         'organization' => 'organization',
-        'default_branch' => 'default_branch',
+        'defaultBranch' => 'default_branch',
         'status' => 'status',
         'timezone' => 'timezone',
         'region' => 'region',
         'repository' => 'repository',
-        'default_domain' => 'default_domain',
+        'defaultDomain' => 'default_domain',
         'subscription' => 'subscription'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $title = null,
-        public readonly ?string $description = null,
-        public readonly ?string $owner = null,
-        public readonly ?string $namespace = null,
-        public readonly ?string $organization = null,
-        public readonly ?string $default_branch = null,
-        public readonly ?\Upsun\Model\Status $status = null,
-        public readonly ?string $timezone = null,
-        public readonly ?string $region = null,
-        public readonly ?\Upsun\Model\RepositoryInformation $repository = null,
-        public readonly ?string $default_domain = null,
-        public readonly ?\Upsun\Model\SubscriptionInformation $subscription = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $title = null,
+        private readonly ?string $description = null,
+        private readonly ?string $owner = null,
+        private readonly ?string $namespace = null,
+        private readonly ?string $organization = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?\Upsun\Model\Status $status = null,
+        private readonly ?string $timezone = null,
+        private readonly ?string $region = null,
+        private readonly ?\Upsun\Model\RepositoryInformation $repository = null,
+        private readonly ?string $defaultDomain = null,
+        private readonly ?\Upsun\Model\SubscriptionInformation $subscription = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'attributes' => $this->attributes,
             'title' => $this->title,
             'description' => $this->description,
             'owner' => $this->owner,
             'namespace' => $this->namespace,
             'organization' => $this->organization,
-            'default_branch' => $this->default_branch,
+            'defaultBranch' => $this->defaultBranch,
             'status' => $this->status,
             'timezone' => $this->timezone,
             'region' => $this->region,
             'repository' => $this->repository,
-            'default_domain' => $this->default_domain,
+            'defaultDomain' => $this->defaultDomain,
             'subscription' => $this->subscription,
         ];
     }
@@ -84,6 +84,67 @@ final class Project implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+    public function getNamespace(): ?string
+    {
+        return $this->namespace;
+    }
+    public function getOrganization(): ?string
+    {
+        return $this->organization;
+    }
+    public function getDefaultBranch(): ?string
+    {
+        return $this->defaultBranch;
+    }
+    public function getStatus(): ?\Upsun\Model\Status
+    {
+        return $this->status;
+    }
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+    public function getRepository(): ?\Upsun\Model\RepositoryInformation
+    {
+        return $this->repository;
+    }
+    public function getDefaultDomain(): ?string
+    {
+        return $this->defaultDomain;
+    }
+    public function getSubscription(): ?\Upsun\Model\SubscriptionInformation
+    {
+        return $this->subscription;
     }
 }
 

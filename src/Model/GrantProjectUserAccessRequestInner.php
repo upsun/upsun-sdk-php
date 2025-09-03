@@ -24,30 +24,43 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     private static string $openAPIModelName = 'grant_project_user_access_request_inner';
 
     private static array $attributeMap = [
-        'user_id' => 'user_id',
+        'userId' => 'user_id',
         'permissions' => 'permissions',
-        'auto_add_member' => 'auto_add_member'
+        'autoAddMember' => 'auto_add_member'
     ];
 
     public function __construct(
-        public readonly ?string $user_id = null,
-        public readonly ?array $permissions = [],
-        public readonly ?bool $auto_add_member = null,
+        private readonly ?string $userId = null,
+        private readonly ?array $permissions = [],
+        private readonly ?bool $autoAddMember = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'user_id' => $this->user_id,
+            'userId' => $this->userId,
             'permissions' => $this->permissions,
-            'auto_add_member' => $this->auto_add_member,
+            'autoAddMember' => $this->autoAddMember,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+    public function getPermissions(): ?array
+    {
+        return $this->permissions;
+    }
+    public function getAutoAddMember(): ?bool
+    {
+        return $this->autoAddMember;
     }
 }
 

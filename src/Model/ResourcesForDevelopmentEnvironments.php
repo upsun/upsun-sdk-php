@@ -24,33 +24,50 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     private static string $openAPIModelName = 'Resources_for_development_environments';
 
     private static array $attributeMap = [
-        'legacy_development' => 'legacy_development',
-        'max_cpu' => 'max_cpu',
-        'max_memory' => 'max_memory',
-        'max_environments' => 'max_environments'
+        'legacyDevelopment' => 'legacy_development',
+        'maxCpu' => 'max_cpu',
+        'maxMemory' => 'max_memory',
+        'maxEnvironments' => 'max_environments'
     ];
 
     public function __construct(
-        public readonly ?bool $legacy_development = null,
-        public readonly ?float $max_cpu = null,
-        public readonly ?int $max_memory = null,
-        public readonly ?int $max_environments = null,
+        private readonly ?bool $legacyDevelopment = null,
+        private readonly ?float $maxCpu = null,
+        private readonly ?int $maxMemory = null,
+        private readonly ?int $maxEnvironments = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'legacy_development' => $this->legacy_development,
-            'max_cpu' => $this->max_cpu,
-            'max_memory' => $this->max_memory,
-            'max_environments' => $this->max_environments,
+            'legacyDevelopment' => $this->legacyDevelopment,
+            'maxCpu' => $this->maxCpu,
+            'maxMemory' => $this->maxMemory,
+            'maxEnvironments' => $this->maxEnvironments,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getLegacyDevelopment(): ?bool
+    {
+        return $this->legacyDevelopment;
+    }
+    public function getMaxCpu(): ?float
+    {
+        return $this->maxCpu;
+    }
+    public function getMaxMemory(): ?int
+    {
+        return $this->maxMemory;
+    }
+    public function getMaxEnvironments(): ?int
+    {
+        return $this->maxEnvironments;
     }
 }
 

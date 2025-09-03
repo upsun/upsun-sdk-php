@@ -32,11 +32,11 @@ final class Error implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $status = null,
-        public readonly ?string $message = null,
-        public readonly ?float $code = null,
-        public readonly ?object $detail = null,
-        public readonly ?string $title = null,
+        private readonly ?string $status = null,
+        private readonly ?string $message = null,
+        private readonly ?float $code = null,
+        private readonly ?object $detail = null,
+        private readonly ?string $title = null,
     ) {
     }
 
@@ -54,6 +54,27 @@ final class Error implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+    public function getCode(): ?float
+    {
+        return $this->code;
+    }
+    public function getDetail(): ?object
+    {
+        return $this->detail;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
     }
 }
 

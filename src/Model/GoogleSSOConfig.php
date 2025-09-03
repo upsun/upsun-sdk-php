@@ -24,20 +24,20 @@ final class GoogleSSOConfig implements JsonSerializable
     private static string $openAPIModelName = 'GoogleSSOConfig';
 
     private static array $attributeMap = [
-        'provider_type' => 'provider_type',
+        'providerType' => 'provider_type',
         'domain' => 'domain'
     ];
 
     public function __construct(
-        public readonly ?string $provider_type = null,
-        public readonly ?string $domain = null,
+        private readonly ?string $providerType = null,
+        private readonly ?string $domain = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'provider_type' => $this->provider_type,
+            'providerType' => $this->providerType,
             'domain' => $this->domain,
         ];
     }
@@ -45,6 +45,15 @@ final class GoogleSSOConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getProviderType(): ?string
+    {
+        return $this->providerType;
+    }
+    public function getDomain(): ?string
+    {
+        return $this->domain;
     }
 }
 

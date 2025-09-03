@@ -24,39 +24,64 @@ final class NewRelicIntegration implements JsonSerializable
     private static string $openAPIModelName = 'NewRelicIntegration';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'type' => 'type',
         'extra' => 'extra',
         'url' => 'url',
-        'tls_verify' => 'tls_verify'
+        'tlsVerify' => 'tls_verify'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $type = null,
-        public readonly ?array $extra = [],
-        public readonly ?string $url = null,
-        public readonly ?bool $tls_verify = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $type = null,
+        private readonly ?array $extra = [],
+        private readonly ?string $url = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'type' => $this->type,
             'extra' => $this->extra,
             'url' => $this->url,
-            'tls_verify' => $this->tls_verify,
+            'tlsVerify' => $this->tlsVerify,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getExtra(): ?array
+    {
+        return $this->extra;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    public function getTlsVerify(): ?bool
+    {
+        return $this->tlsVerify;
     }
 }
 

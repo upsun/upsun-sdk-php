@@ -24,27 +24,36 @@ final class DataRetentionConfigurationValue implements JsonSerializable
     private static string $openAPIModelName = 'Data_retention_configuration_value';
 
     private static array $attributeMap = [
-        'max_backups' => 'max_backups',
-        'default_config' => 'default_config'
+        'maxBackups' => 'max_backups',
+        'defaultConfig' => 'default_config'
     ];
 
     public function __construct(
-        public readonly ?int $max_backups = null,
-        public readonly ?\Upsun\Model\DefaultConfig $default_config = null,
+        private readonly ?int $maxBackups = null,
+        private readonly ?\Upsun\Model\DefaultConfig $defaultConfig = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'max_backups' => $this->max_backups,
-            'default_config' => $this->default_config,
+            'maxBackups' => $this->maxBackups,
+            'defaultConfig' => $this->defaultConfig,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMaxBackups(): ?int
+    {
+        return $this->maxBackups;
+    }
+    public function getDefaultConfig(): ?\Upsun\Model\DefaultConfig
+    {
+        return $this->defaultConfig;
     }
 }
 

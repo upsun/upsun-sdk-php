@@ -28,7 +28,7 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?int $threshold = null,
+        private readonly ?int $threshold = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getThreshold(): ?int
+    {
+        return $this->threshold;
     }
 }
 

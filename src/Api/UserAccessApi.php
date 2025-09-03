@@ -124,12 +124,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectUserAccess(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->getProjectUserAccessWithHttpInfo(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectUserAccessWithHttpInfo(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): array {
         $request = $this->getProjectUserAccessRequest(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         );
 
         try {
@@ -172,12 +172,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectUserAccessAsync(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): Promise {
         return $this->getProjectUserAccessAsyncWithHttpInfo(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectUserAccessAsyncWithHttpInfo(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getProjectUserAccessRequest(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectUserAccessRequest(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectUserAccess'
+                'Missing the required parameter $projectId when calling getProjectUserAccess'
             );
         }
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getProjectUserAccess'
+                'Missing the required parameter $userId when calling getProjectUserAccess'
             );
         }
 
@@ -265,18 +265,18 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -337,12 +337,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserProjectAccess(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->getUserProjectAccessWithHttpInfo(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         );
         return $response;
     }
@@ -353,12 +353,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserProjectAccessWithHttpInfo(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): array {
         $request = $this->getUserProjectAccessRequest(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         );
 
         try {
@@ -385,12 +385,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserProjectAccessAsync(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): Promise {
         return $this->getUserProjectAccessAsyncWithHttpInfo(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -405,13 +405,13 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getUserProjectAccessAsyncWithHttpInfo(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\UserProjectAccess';
         $request = $this->getUserProjectAccessRequest(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -452,19 +452,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getUserProjectAccessRequest(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getUserProjectAccess'
+                'Missing the required parameter $userId when calling getUserProjectAccess'
             );
         }
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getUserProjectAccess'
+                'Missing the required parameter $projectId when calling getUserProjectAccess'
             );
         }
 
@@ -478,18 +478,18 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -550,12 +550,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantProjectUserAccess(
-        string $project_id,
-        array $grant_project_user_access_request_inner
+        string $projectId,
+        array $grantProjectUserAccessRequestInner
     ): array {
         list($response) = $this->grantProjectUserAccessWithHttpInfo(
-            $project_id,
-            $grant_project_user_access_request_inner
+            $projectId,
+            $grantProjectUserAccessRequestInner
         );
         return $response;
     }
@@ -566,12 +566,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantProjectUserAccessWithHttpInfo(
-        string $project_id,
-        array $grant_project_user_access_request_inner
+        string $projectId,
+        array $grantProjectUserAccessRequestInner
     ): array {
         $request = $this->grantProjectUserAccessRequest(
-            $project_id,
-            $grant_project_user_access_request_inner
+            $projectId,
+            $grantProjectUserAccessRequestInner
         );
 
         try {
@@ -598,12 +598,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantProjectUserAccessAsync(
-        string $project_id,
-        array $grant_project_user_access_request_inner
+        string $projectId,
+        array $grantProjectUserAccessRequestInner
     ): Promise {
         return $this->grantProjectUserAccessAsyncWithHttpInfo(
-            $project_id,
-            $grant_project_user_access_request_inner
+            $projectId,
+            $grantProjectUserAccessRequestInner
         )
             ->then(
                 function ($response) {
@@ -618,13 +618,13 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantProjectUserAccessAsyncWithHttpInfo(
-        string $project_id,
-        array $grant_project_user_access_request_inner
+        string $projectId,
+        array $grantProjectUserAccessRequestInner
     ): Promise {
         $returnType = '';
         $request = $this->grantProjectUserAccessRequest(
-            $project_id,
-            $grant_project_user_access_request_inner
+            $projectId,
+            $grantProjectUserAccessRequestInner
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -655,19 +655,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function grantProjectUserAccessRequest(
-        string $project_id,
-        array $grant_project_user_access_request_inner
+        string $projectId,
+        array $grantProjectUserAccessRequestInner
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling grantProjectUserAccess'
+                'Missing the required parameter $projectId when calling grantProjectUserAccess'
             );
         }
-        // verify the required parameter 'grant_project_user_access_request_inner' is set
-        if ($grant_project_user_access_request_inner === null || (is_array($grant_project_user_access_request_inner) && count($grant_project_user_access_request_inner) === 0)) {
+        // verify the required parameter 'grantProjectUserAccessRequestInner' is set
+        if ($grantProjectUserAccessRequestInner === null || (is_array($grantProjectUserAccessRequestInner) && count($grantProjectUserAccessRequestInner) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $grant_project_user_access_request_inner when calling grantProjectUserAccess'
+                'Missing the required parameter $grantProjectUserAccessRequestInner when calling grantProjectUserAccess'
             );
         }
 
@@ -681,10 +681,10 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -697,11 +697,11 @@ final class UserAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($grant_project_user_access_request_inner)) {
+        if (isset($grantProjectUserAccessRequestInner)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($grant_project_user_access_request_inner));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($grantProjectUserAccessRequestInner));
             } else {
-                $httpBody = $grant_project_user_access_request_inner;
+                $httpBody = $grantProjectUserAccessRequestInner;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -751,12 +751,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantUserProjectAccess(
-        string $user_id,
-        array $grant_user_project_access_request_inner
+        string $userId,
+        array $grantUserProjectAccessRequestInner
     ): array {
         list($response) = $this->grantUserProjectAccessWithHttpInfo(
-            $user_id,
-            $grant_user_project_access_request_inner
+            $userId,
+            $grantUserProjectAccessRequestInner
         );
         return $response;
     }
@@ -767,12 +767,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantUserProjectAccessWithHttpInfo(
-        string $user_id,
-        array $grant_user_project_access_request_inner
+        string $userId,
+        array $grantUserProjectAccessRequestInner
     ): array {
         $request = $this->grantUserProjectAccessRequest(
-            $user_id,
-            $grant_user_project_access_request_inner
+            $userId,
+            $grantUserProjectAccessRequestInner
         );
 
         try {
@@ -799,12 +799,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantUserProjectAccessAsync(
-        string $user_id,
-        array $grant_user_project_access_request_inner
+        string $userId,
+        array $grantUserProjectAccessRequestInner
     ): Promise {
         return $this->grantUserProjectAccessAsyncWithHttpInfo(
-            $user_id,
-            $grant_user_project_access_request_inner
+            $userId,
+            $grantUserProjectAccessRequestInner
         )
             ->then(
                 function ($response) {
@@ -819,13 +819,13 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function grantUserProjectAccessAsyncWithHttpInfo(
-        string $user_id,
-        array $grant_user_project_access_request_inner
+        string $userId,
+        array $grantUserProjectAccessRequestInner
     ): Promise {
         $returnType = '';
         $request = $this->grantUserProjectAccessRequest(
-            $user_id,
-            $grant_user_project_access_request_inner
+            $userId,
+            $grantUserProjectAccessRequestInner
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -856,19 +856,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function grantUserProjectAccessRequest(
-        string $user_id,
-        array $grant_user_project_access_request_inner
+        string $userId,
+        array $grantUserProjectAccessRequestInner
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling grantUserProjectAccess'
+                'Missing the required parameter $userId when calling grantUserProjectAccess'
             );
         }
-        // verify the required parameter 'grant_user_project_access_request_inner' is set
-        if ($grant_user_project_access_request_inner === null || (is_array($grant_user_project_access_request_inner) && count($grant_user_project_access_request_inner) === 0)) {
+        // verify the required parameter 'grantUserProjectAccessRequestInner' is set
+        if ($grantUserProjectAccessRequestInner === null || (is_array($grantUserProjectAccessRequestInner) && count($grantUserProjectAccessRequestInner) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $grant_user_project_access_request_inner when calling grantUserProjectAccess'
+                'Missing the required parameter $grantUserProjectAccessRequestInner when calling grantUserProjectAccess'
             );
         }
 
@@ -882,10 +882,10 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -898,11 +898,11 @@ final class UserAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($grant_user_project_access_request_inner)) {
+        if (isset($grantUserProjectAccessRequestInner)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($grant_user_project_access_request_inner));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($grantUserProjectAccessRequestInner));
             } else {
-                $httpBody = $grant_user_project_access_request_inner;
+                $httpBody = $grantUserProjectAccessRequestInner;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -952,17 +952,17 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectUserAccess(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listProjectUserAccessWithHttpInfo(
-            $project_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -974,17 +974,17 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectUserAccessWithHttpInfo(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listProjectUserAccessRequest(
-            $project_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -1012,17 +1012,17 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectUserAccessAsync(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listProjectUserAccessAsyncWithHttpInfo(
-            $project_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -1038,18 +1038,18 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectUserAccessAsyncWithHttpInfo(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listProjectUserAccessRequest(
-            $project_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $projectId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -1091,27 +1091,27 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectUserAccessRequest(
-        string $project_id,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $projectId,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectUserAccess'
+                'Missing the required parameter $projectId when calling listProjectUserAccess'
             );
         }
-        if ($page_size !== null && $page_size > 200) {
+        if ($pageSize !== null && $pageSize > 200) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling UserAccessApi.listProjectUserAccess, 
+                'invalid value for "$pageSize" when calling UserAccessApi.listProjectUserAccess, 
                 must be smaller than or equal to 200.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling UserAccessApi.listProjectUserAccess,
+                'invalid value for "$pageSize" when calling UserAccessApi.listProjectUserAccess,
                 must be bigger than or equal to 1.'
             );
         }
@@ -1125,35 +1125,35 @@ final class UserAccessApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 
@@ -1171,10 +1171,10 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -1235,19 +1235,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserProjectAccess(
-        string $user_id,
-        string $filter_organization_id = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        string $filterOrganizationId = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listUserProjectAccessWithHttpInfo(
-            $user_id,
-            $filter_organization_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterOrganizationId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -1259,19 +1259,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserProjectAccessWithHttpInfo(
-        string $user_id,
-        string $filter_organization_id = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        string $filterOrganizationId = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listUserProjectAccessRequest(
-            $user_id,
-            $filter_organization_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterOrganizationId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -1299,19 +1299,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserProjectAccessAsync(
-        string $user_id,
-        string $filter_organization_id = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        string $filterOrganizationId = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listUserProjectAccessAsyncWithHttpInfo(
-            $user_id,
-            $filter_organization_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterOrganizationId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -1327,20 +1327,20 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listUserProjectAccessAsyncWithHttpInfo(
-        string $user_id,
-        string $filter_organization_id = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        string $filterOrganizationId = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
         $request = $this->listUserProjectAccessRequest(
-            $user_id,
-            $filter_organization_id,
-            $page_size,
-            $page_before,
-            $page_after,
+            $userId,
+            $filterOrganizationId,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -1382,28 +1382,28 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listUserProjectAccessRequest(
-        string $user_id,
-        string $filter_organization_id = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        string $userId,
+        string $filterOrganizationId = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling listUserProjectAccess'
+                'Missing the required parameter $userId when calling listUserProjectAccess'
             );
         }
-        if ($page_size !== null && $page_size > 200) {
+        if ($pageSize !== null && $pageSize > 200) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling UserAccessApi.listUserProjectAccess, 
+                'invalid value for "$pageSize" when calling UserAccessApi.listUserProjectAccess, 
                 must be smaller than or equal to 200.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling UserAccessApi.listUserProjectAccess,
+                'invalid value for "$pageSize" when calling UserAccessApi.listUserProjectAccess,
                 must be bigger than or equal to 1.'
             );
         }
@@ -1417,46 +1417,46 @@ final class UserAccessApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_organization_id !== null) {
-            if ('form' === 'form' && is_array($filter_organization_id)) {
-                foreach ($filter_organization_id as $key => $value) {
+        if ($filterOrganizationId !== null) {
+            if ('form' === 'form' && is_array($filterOrganizationId)) {
+                foreach ($filterOrganizationId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filter_organization_id;
+                $queryParams['filter[organization_id]'] = $filterOrganizationId;
             }
         }
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 
@@ -1474,10 +1474,10 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1538,12 +1538,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeProjectUserAccess(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->removeProjectUserAccessWithHttpInfo(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         );
         return $response;
     }
@@ -1554,12 +1554,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeProjectUserAccessWithHttpInfo(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): array {
         $request = $this->removeProjectUserAccessRequest(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         );
 
         try {
@@ -1586,12 +1586,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeProjectUserAccessAsync(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): Promise {
         return $this->removeProjectUserAccessAsyncWithHttpInfo(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         )
             ->then(
                 function ($response) {
@@ -1606,13 +1606,13 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeProjectUserAccessAsyncWithHttpInfo(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): Promise {
         $returnType = '';
         $request = $this->removeProjectUserAccessRequest(
-            $project_id,
-            $user_id
+            $projectId,
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1643,19 +1643,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function removeProjectUserAccessRequest(
-        string $project_id,
-        string $user_id
+        string $projectId,
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling removeProjectUserAccess'
+                'Missing the required parameter $projectId when calling removeProjectUserAccess'
             );
         }
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling removeProjectUserAccess'
+                'Missing the required parameter $userId when calling removeProjectUserAccess'
             );
         }
 
@@ -1669,18 +1669,18 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1741,12 +1741,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeUserProjectAccess(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->removeUserProjectAccessWithHttpInfo(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         );
         return $response;
     }
@@ -1757,12 +1757,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeUserProjectAccessWithHttpInfo(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): array {
         $request = $this->removeUserProjectAccessRequest(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         );
 
         try {
@@ -1789,12 +1789,12 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeUserProjectAccessAsync(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): Promise {
         return $this->removeUserProjectAccessAsyncWithHttpInfo(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -1809,13 +1809,13 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function removeUserProjectAccessAsyncWithHttpInfo(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): Promise {
         $returnType = '';
         $request = $this->removeUserProjectAccessRequest(
-            $user_id,
-            $project_id
+            $userId,
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1846,19 +1846,19 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function removeUserProjectAccessRequest(
-        string $user_id,
-        string $project_id
+        string $userId,
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling removeUserProjectAccess'
+                'Missing the required parameter $userId when calling removeUserProjectAccess'
             );
         }
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling removeUserProjectAccess'
+                'Missing the required parameter $projectId when calling removeUserProjectAccess'
             );
         }
 
@@ -1872,18 +1872,18 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -1944,14 +1944,14 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectUserAccess(
-        string $project_id,
-        string $user_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $projectId,
+        string $userId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->updateProjectUserAccessWithHttpInfo(
-            $project_id,
-            $user_id,
-            $update_project_user_access_request
+            $projectId,
+            $userId,
+            $updateProjectUserAccessRequest
         );
         return $response;
     }
@@ -1962,14 +1962,14 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectUserAccessWithHttpInfo(
-        string $project_id,
-        string $user_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $projectId,
+        string $userId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): array {
         $request = $this->updateProjectUserAccessRequest(
-            $project_id,
-            $user_id,
-            $update_project_user_access_request
+            $projectId,
+            $userId,
+            $updateProjectUserAccessRequest
         );
 
         try {
@@ -1996,14 +1996,14 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectUserAccessAsync(
-        string $project_id,
-        string $user_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $projectId,
+        string $userId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): Promise {
         return $this->updateProjectUserAccessAsyncWithHttpInfo(
-            $project_id,
-            $user_id,
-            $update_project_user_access_request
+            $projectId,
+            $userId,
+            $updateProjectUserAccessRequest
         )
             ->then(
                 function ($response) {
@@ -2018,15 +2018,15 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectUserAccessAsyncWithHttpInfo(
-        string $project_id,
-        string $user_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $projectId,
+        string $userId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): Promise {
         $returnType = '';
         $request = $this->updateProjectUserAccessRequest(
-            $project_id,
-            $user_id,
-            $update_project_user_access_request
+            $projectId,
+            $userId,
+            $updateProjectUserAccessRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -2057,20 +2057,20 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectUserAccessRequest(
-        string $project_id,
-        string $user_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $projectId,
+        string $userId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectUserAccess'
+                'Missing the required parameter $projectId when calling updateProjectUserAccess'
             );
         }
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateProjectUserAccess'
+                'Missing the required parameter $userId when calling updateProjectUserAccess'
             );
         }
 
@@ -2084,18 +2084,18 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -2108,11 +2108,11 @@ final class UserAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($update_project_user_access_request)) {
+        if (isset($updateProjectUserAccessRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($update_project_user_access_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateProjectUserAccessRequest));
             } else {
-                $httpBody = $update_project_user_access_request;
+                $httpBody = $updateProjectUserAccessRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -2162,14 +2162,14 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserProjectAccess(
-        string $user_id,
-        string $project_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $userId,
+        string $projectId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->updateUserProjectAccessWithHttpInfo(
-            $user_id,
-            $project_id,
-            $update_project_user_access_request
+            $userId,
+            $projectId,
+            $updateProjectUserAccessRequest
         );
         return $response;
     }
@@ -2180,14 +2180,14 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserProjectAccessWithHttpInfo(
-        string $user_id,
-        string $project_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $userId,
+        string $projectId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): array {
         $request = $this->updateUserProjectAccessRequest(
-            $user_id,
-            $project_id,
-            $update_project_user_access_request
+            $userId,
+            $projectId,
+            $updateProjectUserAccessRequest
         );
 
         try {
@@ -2214,14 +2214,14 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserProjectAccessAsync(
-        string $user_id,
-        string $project_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $userId,
+        string $projectId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): Promise {
         return $this->updateUserProjectAccessAsyncWithHttpInfo(
-            $user_id,
-            $project_id,
-            $update_project_user_access_request
+            $userId,
+            $projectId,
+            $updateProjectUserAccessRequest
         )
             ->then(
                 function ($response) {
@@ -2236,15 +2236,15 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateUserProjectAccessAsyncWithHttpInfo(
-        string $user_id,
-        string $project_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $userId,
+        string $projectId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): Promise {
         $returnType = '';
         $request = $this->updateUserProjectAccessRequest(
-            $user_id,
-            $project_id,
-            $update_project_user_access_request
+            $userId,
+            $projectId,
+            $updateProjectUserAccessRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -2275,20 +2275,20 @@ final class UserAccessApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateUserProjectAccessRequest(
-        string $user_id,
-        string $project_id,
-        \Upsun\Model\UpdateProjectUserAccessRequest $update_project_user_access_request = null
+        string $userId,
+        string $projectId,
+        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling updateUserProjectAccess'
+                'Missing the required parameter $userId when calling updateUserProjectAccess'
             );
         }
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateUserProjectAccess'
+                'Missing the required parameter $projectId when calling updateUserProjectAccess'
             );
         }
 
@@ -2302,18 +2302,18 @@ final class UserAccessApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'project_id' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -2326,11 +2326,11 @@ final class UserAccessApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($update_project_user_access_request)) {
+        if (isset($updateProjectUserAccessRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($update_project_user_access_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateProjectUserAccessRequest));
             } else {
-                $httpBody = $update_project_user_access_request;
+                $httpBody = $updateProjectUserAccessRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

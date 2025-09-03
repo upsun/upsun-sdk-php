@@ -24,29 +24,29 @@ final class EmailIntegration implements JsonSerializable
     private static string $openAPIModelName = 'EmailIntegration';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'type' => 'type',
-        'from_address' => 'from_address',
+        'fromAddress' => 'from_address',
         'recipients' => 'recipients'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $type = null,
-        public readonly ?string $from_address = null,
-        public readonly ?array $recipients = [],
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $type = null,
+        private readonly ?string $fromAddress = null,
+        private readonly ?array $recipients = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'type' => $this->type,
-            'from_address' => $this->from_address,
+            'fromAddress' => $this->fromAddress,
             'recipients' => $this->recipients,
         ];
     }
@@ -54,6 +54,27 @@ final class EmailIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getFromAddress(): ?string
+    {
+        return $this->fromAddress;
+    }
+    public function getRecipients(): ?array
+    {
+        return $this->recipients;
     }
 }
 

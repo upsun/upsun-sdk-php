@@ -25,14 +25,14 @@ final class DiscountDiscount implements JsonSerializable
 
     private static array $attributeMap = [
         'monthly' => 'monthly',
-        'commitment_period' => 'commitment_period',
-        'contract_total' => 'contract_total'
+        'commitmentPeriod' => 'commitment_period',
+        'contractTotal' => 'contract_total'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
-        public readonly ?\Upsun\Model\CurrencyAmountNullable $commitment_period = null,
-        public readonly ?\Upsun\Model\CurrencyAmountNullable $contract_total = null,
+        private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
+        private readonly ?\Upsun\Model\CurrencyAmountNullable $commitmentPeriod = null,
+        private readonly ?\Upsun\Model\CurrencyAmountNullable $contractTotal = null,
     ) {
     }
 
@@ -40,14 +40,27 @@ final class DiscountDiscount implements JsonSerializable
     {
         return [
             'monthly' => $this->monthly,
-            'commitment_period' => $this->commitment_period,
-            'contract_total' => $this->contract_total,
+            'commitmentPeriod' => $this->commitmentPeriod,
+            'contractTotal' => $this->contractTotal,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMonthly(): ?\Upsun\Model\CurrencyAmount
+    {
+        return $this->monthly;
+    }
+    public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmountNullable
+    {
+        return $this->commitmentPeriod;
+    }
+    public function getContractTotal(): ?\Upsun\Model\CurrencyAmountNullable
+    {
+        return $this->contractTotal;
     }
 }
 

@@ -30,9 +30,9 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     ];
 
     public function __construct(
-        public readonly ?string $path = null,
-        public readonly ?int $mode = null,
-        public readonly ?string $contents = null,
+        private readonly ?string $path = null,
+        private readonly ?int $mode = null,
+        private readonly ?string $contents = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+    public function getMode(): ?int
+    {
+        return $this->mode;
+    }
+    public function getContents(): ?string
+    {
+        return $this->contents;
     }
 }
 

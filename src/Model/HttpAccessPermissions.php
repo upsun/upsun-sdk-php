@@ -24,30 +24,43 @@ final class HTTPAccessPermissions implements JsonSerializable
     private static string $openAPIModelName = 'HTTP_access_permissions';
 
     private static array $attributeMap = [
-        'is_enabled' => 'is_enabled',
+        'isEnabled' => 'is_enabled',
         'addresses' => 'addresses',
-        'basic_auth' => 'basic_auth'
+        'basicAuth' => 'basic_auth'
     ];
 
     public function __construct(
-        public readonly ?bool $is_enabled = null,
-        public readonly ?array $addresses = [],
-        public readonly ?array $basic_auth = [],
+        private readonly ?bool $isEnabled = null,
+        private readonly ?array $addresses = [],
+        private readonly ?array $basicAuth = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'is_enabled' => $this->is_enabled,
+            'isEnabled' => $this->isEnabled,
             'addresses' => $this->addresses,
-            'basic_auth' => $this->basic_auth,
+            'basicAuth' => $this->basicAuth,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getIsEnabled(): ?bool
+    {
+        return $this->isEnabled;
+    }
+    public function getAddresses(): ?array
+    {
+        return $this->addresses;
+    }
+    public function getBasicAuth(): ?array
+    {
+        return $this->basicAuth;
     }
 }
 

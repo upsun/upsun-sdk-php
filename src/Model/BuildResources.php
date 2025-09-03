@@ -25,14 +25,14 @@ final class BuildResources implements JsonSerializable
 
     private static array $attributeMap = [
         'enabled' => 'enabled',
-        'max_cpu' => 'max_cpu',
-        'max_memory' => 'max_memory'
+        'maxCpu' => 'max_cpu',
+        'maxMemory' => 'max_memory'
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
-        public readonly ?float $max_cpu = null,
-        public readonly ?int $max_memory = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?float $maxCpu = null,
+        private readonly ?int $maxMemory = null,
     ) {
     }
 
@@ -40,14 +40,27 @@ final class BuildResources implements JsonSerializable
     {
         return [
             'enabled' => $this->enabled,
-            'max_cpu' => $this->max_cpu,
-            'max_memory' => $this->max_memory,
+            'maxCpu' => $this->maxCpu,
+            'maxMemory' => $this->maxMemory,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    public function getMaxCpu(): ?float
+    {
+        return $this->maxCpu;
+    }
+    public function getMaxMemory(): ?int
+    {
+        return $this->maxMemory;
     }
 }
 

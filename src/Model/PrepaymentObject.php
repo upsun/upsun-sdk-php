@@ -28,7 +28,7 @@ final class PrepaymentObject implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
+        private readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class PrepaymentObject implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPrepayment(): ?\Upsun\Model\PrepaymentObjectPrepayment
+    {
+        return $this->prepayment;
     }
 }
 

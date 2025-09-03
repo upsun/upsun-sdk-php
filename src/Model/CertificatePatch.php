@@ -25,12 +25,12 @@ final class CertificatePatch implements JsonSerializable
 
     private static array $attributeMap = [
         'chain' => 'chain',
-        'is_invalid' => 'is_invalid'
+        'isInvalid' => 'is_invalid'
     ];
 
     public function __construct(
-        public readonly ?array $chain = [],
-        public readonly ?bool $is_invalid = null,
+        private readonly ?array $chain = [],
+        private readonly ?bool $isInvalid = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class CertificatePatch implements JsonSerializable
     {
         return [
             'chain' => $this->chain,
-            'is_invalid' => $this->is_invalid,
+            'isInvalid' => $this->isInvalid,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getChain(): ?array
+    {
+        return $this->chain;
+    }
+    public function getIsInvalid(): ?bool
+    {
+        return $this->isInvalid;
     }
 }
 

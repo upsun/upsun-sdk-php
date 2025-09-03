@@ -24,27 +24,36 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_base_list';
 
     private static array $attributeMap = [
-        'admin_user' => 'admin_user',
-        'viewer_user' => 'viewer_user'
+        'adminUser' => 'admin_user',
+        'viewerUser' => 'viewer_user'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $admin_user = null,
-        public readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewer_user = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'admin_user' => $this->admin_user,
-            'viewer_user' => $this->viewer_user,
+            'adminUser' => $this->adminUser,
+            'viewerUser' => $this->viewerUser,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getAdminUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser
+    {
+        return $this->adminUser;
+    }
+    public function getViewerUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser
+    {
+        return $this->viewerUser;
     }
 }
 

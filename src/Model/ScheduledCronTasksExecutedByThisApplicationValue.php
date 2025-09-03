@@ -26,17 +26,17 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     private static array $attributeMap = [
         'spec' => 'spec',
         'commands' => 'commands',
-        'shutdown_timeout' => 'shutdown_timeout',
+        'shutdownTimeout' => 'shutdown_timeout',
         'timeout' => 'timeout',
         'cmd' => 'cmd'
     ];
 
     public function __construct(
-        public readonly ?string $spec = null,
-        public readonly ?\Upsun\Model\TheCommandsDefinition $commands = null,
-        public readonly ?int $shutdown_timeout = null,
-        public readonly ?int $timeout = null,
-        public readonly ?string $cmd = null,
+        private readonly ?string $spec = null,
+        private readonly ?\Upsun\Model\TheCommandsDefinition $commands = null,
+        private readonly ?int $shutdownTimeout = null,
+        private readonly ?int $timeout = null,
+        private readonly ?string $cmd = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return [
             'spec' => $this->spec,
             'commands' => $this->commands,
-            'shutdown_timeout' => $this->shutdown_timeout,
+            'shutdownTimeout' => $this->shutdownTimeout,
             'timeout' => $this->timeout,
             'cmd' => $this->cmd,
         ];
@@ -54,6 +54,27 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSpec(): ?string
+    {
+        return $this->spec;
+    }
+    public function getCommands(): ?\Upsun\Model\TheCommandsDefinition
+    {
+        return $this->commands;
+    }
+    public function getShutdownTimeout(): ?int
+    {
+        return $this->shutdownTimeout;
+    }
+    public function getTimeout(): ?int
+    {
+        return $this->timeout;
+    }
+    public function getCmd(): ?string
+    {
+        return $this->cmd;
     }
 }
 

@@ -26,21 +26,21 @@ final class APIToken implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'name' => 'name',
-        'mfa_on_creation' => 'mfa_on_creation',
+        'mfaOnCreation' => 'mfa_on_creation',
         'token' => 'token',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'last_used_at' => 'last_used_at'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'lastUsedAt' => 'last_used_at'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $name = null,
-        public readonly ?bool $mfa_on_creation = null,
-        public readonly ?string $token = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?\DateTime $last_used_at = null,
+        private readonly ?string $id = null,
+        private readonly ?string $name = null,
+        private readonly ?bool $mfaOnCreation = null,
+        private readonly ?string $token = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $lastUsedAt = null,
     ) {
     }
 
@@ -49,17 +49,46 @@ final class APIToken implements JsonSerializable
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'mfa_on_creation' => $this->mfa_on_creation,
+            'mfaOnCreation' => $this->mfaOnCreation,
             'token' => $this->token,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'last_used_at' => $this->last_used_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'lastUsedAt' => $this->lastUsedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getMfaOnCreation(): ?bool
+    {
+        return $this->mfaOnCreation;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getLastUsedAt(): ?\DateTime
+    {
+        return $this->lastUsedAt;
     }
 }
 

@@ -28,7 +28,7 @@ final class AddressMetadata implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
+        private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class AddressMetadata implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMetadata(): ?\Upsun\Model\AddressMetadataMetadata
+    {
+        return $this->metadata;
     }
 }
 

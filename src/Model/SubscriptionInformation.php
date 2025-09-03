@@ -24,57 +24,106 @@ final class SubscriptionInformation implements JsonSerializable
     private static string $openAPIModelName = 'Subscription_information';
 
     private static array $attributeMap = [
-        'license_uri' => 'license_uri',
+        'licenseUri' => 'license_uri',
         'plan' => 'plan',
         'environments' => 'environments',
         'storage' => 'storage',
-        'included_users' => 'included_users',
-        'subscription_management_uri' => 'subscription_management_uri',
+        'includedUsers' => 'included_users',
+        'subscriptionManagementUri' => 'subscription_management_uri',
         'restricted' => 'restricted',
         'suspended' => 'suspended',
-        'user_licenses' => 'user_licenses',
+        'userLicenses' => 'user_licenses',
         'resources' => 'resources',
-        'resource_validation_url' => 'resource_validation_url',
-        'image_types' => 'image_types'
+        'resourceValidationUrl' => 'resource_validation_url',
+        'imageTypes' => 'image_types'
     ];
 
     public function __construct(
-        public readonly ?string $license_uri = null,
-        public readonly ?string $plan = null,
-        public readonly ?int $environments = null,
-        public readonly ?int $storage = null,
-        public readonly ?int $included_users = null,
-        public readonly ?string $subscription_management_uri = null,
-        public readonly ?bool $restricted = null,
-        public readonly ?bool $suspended = null,
-        public readonly ?int $user_licenses = null,
-        public readonly ?\Upsun\Model\ResourcesLimits $resources = null,
-        public readonly ?string $resource_validation_url = null,
-        public readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $image_types = null,
+        private readonly ?string $licenseUri = null,
+        private readonly ?string $plan = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
+        private readonly ?int $includedUsers = null,
+        private readonly ?string $subscriptionManagementUri = null,
+        private readonly ?bool $restricted = null,
+        private readonly ?bool $suspended = null,
+        private readonly ?int $userLicenses = null,
+        private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
+        private readonly ?string $resourceValidationUrl = null,
+        private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'license_uri' => $this->license_uri,
+            'licenseUri' => $this->licenseUri,
             'plan' => $this->plan,
             'environments' => $this->environments,
             'storage' => $this->storage,
-            'included_users' => $this->included_users,
-            'subscription_management_uri' => $this->subscription_management_uri,
+            'includedUsers' => $this->includedUsers,
+            'subscriptionManagementUri' => $this->subscriptionManagementUri,
             'restricted' => $this->restricted,
             'suspended' => $this->suspended,
-            'user_licenses' => $this->user_licenses,
+            'userLicenses' => $this->userLicenses,
             'resources' => $this->resources,
-            'resource_validation_url' => $this->resource_validation_url,
-            'image_types' => $this->image_types,
+            'resourceValidationUrl' => $this->resourceValidationUrl,
+            'imageTypes' => $this->imageTypes,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getLicenseUri(): ?string
+    {
+        return $this->licenseUri;
+    }
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getEnvironments(): ?int
+    {
+        return $this->environments;
+    }
+    public function getStorage(): ?int
+    {
+        return $this->storage;
+    }
+    public function getIncludedUsers(): ?int
+    {
+        return $this->includedUsers;
+    }
+    public function getSubscriptionManagementUri(): ?string
+    {
+        return $this->subscriptionManagementUri;
+    }
+    public function getRestricted(): ?bool
+    {
+        return $this->restricted;
+    }
+    public function getSuspended(): ?bool
+    {
+        return $this->suspended;
+    }
+    public function getUserLicenses(): ?int
+    {
+        return $this->userLicenses;
+    }
+    public function getResources(): ?\Upsun\Model\ResourcesLimits
+    {
+        return $this->resources;
+    }
+    public function getResourceValidationUrl(): ?string
+    {
+        return $this->resourceValidationUrl;
+    }
+    public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
+    {
+        return $this->imageTypes;
     }
 }
 

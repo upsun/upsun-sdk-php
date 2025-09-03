@@ -28,7 +28,7 @@ final class VouchersLinks implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+        private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class VouchersLinks implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSelf(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf
+    {
+        return $this->self;
     }
 }
 

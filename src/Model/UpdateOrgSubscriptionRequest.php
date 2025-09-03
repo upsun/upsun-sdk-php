@@ -24,57 +24,106 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     private static string $openAPIModelName = 'update_org_subscription_request';
 
     private static array $attributeMap = [
-        'project_title' => 'project_title',
+        'projectTitle' => 'project_title',
         'plan' => 'plan',
         'timezone' => 'timezone',
         'environments' => 'environments',
         'storage' => 'storage',
-        'big_dev' => 'big_dev',
-        'big_dev_service' => 'big_dev_service',
+        'bigDev' => 'big_dev',
+        'bigDevService' => 'big_dev_service',
         'backups' => 'backups',
-        'observability_suite' => 'observability_suite',
+        'observabilitySuite' => 'observability_suite',
         'blackfire' => 'blackfire',
-        'continuous_profiling' => 'continuous_profiling',
-        'project_support_level' => 'project_support_level'
+        'continuousProfiling' => 'continuous_profiling',
+        'projectSupportLevel' => 'project_support_level'
     ];
 
     public function __construct(
-        public readonly ?string $project_title = null,
-        public readonly ?string $plan = null,
-        public readonly ?string $timezone = null,
-        public readonly ?int $environments = null,
-        public readonly ?int $storage = null,
-        public readonly ?string $big_dev = null,
-        public readonly ?string $big_dev_service = null,
-        public readonly ?string $backups = null,
-        public readonly ?string $observability_suite = null,
-        public readonly ?string $blackfire = null,
-        public readonly ?string $continuous_profiling = null,
-        public readonly ?string $project_support_level = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $timezone = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
+        private readonly ?string $bigDev = null,
+        private readonly ?string $bigDevService = null,
+        private readonly ?string $backups = null,
+        private readonly ?string $observabilitySuite = null,
+        private readonly ?string $blackfire = null,
+        private readonly ?string $continuousProfiling = null,
+        private readonly ?string $projectSupportLevel = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'project_title' => $this->project_title,
+            'projectTitle' => $this->projectTitle,
             'plan' => $this->plan,
             'timezone' => $this->timezone,
             'environments' => $this->environments,
             'storage' => $this->storage,
-            'big_dev' => $this->big_dev,
-            'big_dev_service' => $this->big_dev_service,
+            'bigDev' => $this->bigDev,
+            'bigDevService' => $this->bigDevService,
             'backups' => $this->backups,
-            'observability_suite' => $this->observability_suite,
+            'observabilitySuite' => $this->observabilitySuite,
             'blackfire' => $this->blackfire,
-            'continuous_profiling' => $this->continuous_profiling,
-            'project_support_level' => $this->project_support_level,
+            'continuousProfiling' => $this->continuousProfiling,
+            'projectSupportLevel' => $this->projectSupportLevel,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getProjectTitle(): ?string
+    {
+        return $this->projectTitle;
+    }
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+    public function getEnvironments(): ?int
+    {
+        return $this->environments;
+    }
+    public function getStorage(): ?int
+    {
+        return $this->storage;
+    }
+    public function getBigDev(): ?string
+    {
+        return $this->bigDev;
+    }
+    public function getBigDevService(): ?string
+    {
+        return $this->bigDevService;
+    }
+    public function getBackups(): ?string
+    {
+        return $this->backups;
+    }
+    public function getObservabilitySuite(): ?string
+    {
+        return $this->observabilitySuite;
+    }
+    public function getBlackfire(): ?string
+    {
+        return $this->blackfire;
+    }
+    public function getContinuousProfiling(): ?string
+    {
+        return $this->continuousProfiling;
+    }
+    public function getProjectSupportLevel(): ?string
+    {
+        return $this->projectSupportLevel;
     }
 }
 

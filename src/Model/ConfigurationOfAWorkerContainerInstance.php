@@ -29,8 +29,8 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\TheCommandsToManageTheWorker $commands = null,
-        public readonly ?int $disk = null,
+        private readonly ?\Upsun\Model\TheCommandsToManageTheWorker $commands = null,
+        private readonly ?int $disk = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCommands(): ?\Upsun\Model\TheCommandsToManageTheWorker
+    {
+        return $this->commands;
+    }
+    public function getDisk(): ?int
+    {
+        return $this->disk;
     }
 }
 

@@ -29,8 +29,8 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?bool $active = null,
-        public readonly ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
+        private readonly ?bool $active = null,
+        private readonly ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+    public function getConfig(): ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig
+    {
+        return $this->config;
     }
 }
 

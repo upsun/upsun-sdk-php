@@ -24,20 +24,20 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     private static string $openAPIModelName = 'create_authorization_credentials_200_response';
 
     private static array $attributeMap = [
-        'redirect_to_url' => 'redirect_to_url',
+        'redirectToUrl' => 'redirect_to_url',
         'type' => 'type'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirect_to_url = null,
-        public readonly ?string $type = null,
+        private readonly ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
+        private readonly ?string $type = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'redirect_to_url' => $this->redirect_to_url,
+            'redirectToUrl' => $this->redirectToUrl,
             'type' => $this->type,
         ];
     }
@@ -45,6 +45,15 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRedirectToUrl(): ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl
+    {
+        return $this->redirectToUrl;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
     }
 }
 

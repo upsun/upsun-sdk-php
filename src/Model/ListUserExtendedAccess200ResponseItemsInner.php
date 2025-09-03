@@ -24,42 +24,71 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     private static string $openAPIModelName = 'list_user_extended_access_200_response_items_inner';
 
     private static array $attributeMap = [
-        'user_id' => 'user_id',
-        'resource_id' => 'resource_id',
-        'resource_type' => 'resource_type',
-        'organization_id' => 'organization_id',
+        'userId' => 'user_id',
+        'resourceId' => 'resource_id',
+        'resourceType' => 'resource_type',
+        'organizationId' => 'organization_id',
         'permissions' => 'permissions',
-        'granted_at' => 'granted_at',
-        'updated_at' => 'updated_at'
+        'grantedAt' => 'granted_at',
+        'updatedAt' => 'updated_at'
     ];
 
     public function __construct(
-        public readonly ?string $user_id = null,
-        public readonly ?string $resource_id = null,
-        public readonly ?string $resource_type = null,
-        public readonly ?string $organization_id = null,
-        public readonly ?array $permissions = [],
-        public readonly ?\DateTime $granted_at = null,
-        public readonly ?\DateTime $updated_at = null,
+        private readonly ?string $userId = null,
+        private readonly ?string $resourceId = null,
+        private readonly ?string $resourceType = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?array $permissions = [],
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'user_id' => $this->user_id,
-            'resource_id' => $this->resource_id,
-            'resource_type' => $this->resource_type,
-            'organization_id' => $this->organization_id,
+            'userId' => $this->userId,
+            'resourceId' => $this->resourceId,
+            'resourceType' => $this->resourceType,
+            'organizationId' => $this->organizationId,
             'permissions' => $this->permissions,
-            'granted_at' => $this->granted_at,
-            'updated_at' => $this->updated_at,
+            'grantedAt' => $this->grantedAt,
+            'updatedAt' => $this->updatedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUserId(): ?string
+    {
+        return $this->userId;
+    }
+    public function getResourceId(): ?string
+    {
+        return $this->resourceId;
+    }
+    public function getResourceType(): ?string
+    {
+        return $this->resourceType;
+    }
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getPermissions(): ?array
+    {
+        return $this->permissions;
+    }
+    public function getGrantedAt(): ?\DateTime
+    {
+        return $this->grantedAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
     }
 }
 

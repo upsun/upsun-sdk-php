@@ -24,25 +24,25 @@ final class HealthWebHookIntegration implements JsonSerializable
     private static string $openAPIModelName = 'HealthWebHookIntegration';
 
     private static array $attributeMap = [
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
         'type' => 'type',
         'url' => 'url'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?string $type = null,
-        public readonly ?string $url = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $type = null,
+        private readonly ?string $url = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
             'type' => $this->type,
             'url' => $this->url,
         ];
@@ -51,6 +51,23 @@ final class HealthWebHookIntegration implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
     }
 }
 

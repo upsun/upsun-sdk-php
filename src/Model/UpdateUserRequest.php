@@ -25,8 +25,8 @@ final class UpdateUserRequest implements JsonSerializable
 
     private static array $attributeMap = [
         'username' => 'username',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
+        'firstName' => 'first_name',
+        'lastName' => 'last_name',
         'picture' => 'picture',
         'company' => 'company',
         'website' => 'website',
@@ -34,13 +34,13 @@ final class UpdateUserRequest implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $username = null,
-        public readonly ?string $first_name = null,
-        public readonly ?string $last_name = null,
-        public readonly ?string $picture = null,
-        public readonly ?string $company = null,
-        public readonly ?string $website = null,
-        public readonly ?string $country = null,
+        private readonly ?string $username = null,
+        private readonly ?string $firstName = null,
+        private readonly ?string $lastName = null,
+        private readonly ?string $picture = null,
+        private readonly ?string $company = null,
+        private readonly ?string $website = null,
+        private readonly ?string $country = null,
     ) {
     }
 
@@ -48,8 +48,8 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return [
             'username' => $this->username,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
             'picture' => $this->picture,
             'company' => $this->company,
             'website' => $this->website,
@@ -60,6 +60,35 @@ final class UpdateUserRequest implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+    public function getCountry(): ?string
+    {
+        return $this->country;
     }
 }
 

@@ -29,8 +29,8 @@ final class AddressGrantsInner implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $permission = null,
-        public readonly ?string $address = null,
+        private readonly ?string $permission = null,
+        private readonly ?string $address = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class AddressGrantsInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPermission(): ?string
+    {
+        return $this->permission;
+    }
+    public function getAddress(): ?string
+    {
+        return $this->address;
     }
 }
 

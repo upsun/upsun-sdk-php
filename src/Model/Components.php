@@ -24,24 +24,29 @@ final class Components implements JsonSerializable
     private static string $openAPIModelName = 'Components';
 
     private static array $attributeMap = [
-        'voucher_vat_baseprice' => 'voucher/vat/baseprice'
+        'voucherVatBaseprice' => 'voucher/vat/baseprice'
     ];
 
     public function __construct(
-        public readonly ?object $voucher_vat_baseprice = null,
+        private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'voucher_vat_baseprice' => $this->voucher_vat_baseprice,
+            'voucherVatBaseprice' => $this->voucherVatBaseprice,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getVoucherVatBaseprice(): ?object
+    {
+        return $this->voucherVatBaseprice;
     }
 }
 

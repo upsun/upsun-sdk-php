@@ -124,12 +124,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsActivitiesCancel(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsActivitiesCancelWithHttpInfo(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsActivitiesCancelWithHttpInfo(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): array {
         $request = $this->actionProjectsActivitiesCancelRequest(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         );
 
         try {
@@ -172,12 +172,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsActivitiesCancelAsync(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): Promise {
         return $this->actionProjectsActivitiesCancelAsyncWithHttpInfo(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsActivitiesCancelAsyncWithHttpInfo(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsActivitiesCancelRequest(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsActivitiesCancelRequest(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling actionProjectsActivitiesCancel'
+                'Missing the required parameter $projectId when calling actionProjectsActivitiesCancel'
             );
         }
-        // verify the required parameter 'activity_id' is set
-        if ($activity_id === null || (is_array($activity_id) && count($activity_id) === 0)) {
+        // verify the required parameter 'activityId' is set
+        if ($activityId === null || (is_array($activityId) && count($activityId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $activity_id when calling actionProjectsActivitiesCancel'
+                'Missing the required parameter $activityId when calling actionProjectsActivitiesCancel'
             );
         }
 
@@ -265,18 +265,18 @@ final class ProjectActivityApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($activity_id !== null) {
+        if ($activityId !== null) {
             $resourcePath = str_replace(
                 '{' . 'activityId' . '}',
-                ObjectSerializer::toPathValue($activity_id),
+                ObjectSerializer::toPathValue($activityId),
                 $resourcePath
             );
         }
@@ -337,12 +337,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsActivities(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsActivitiesWithHttpInfo(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         );
         return $response;
     }
@@ -353,12 +353,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsActivitiesWithHttpInfo(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): array {
         $request = $this->getProjectsActivitiesRequest(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         );
 
         try {
@@ -385,12 +385,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsActivitiesAsync(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): Promise {
         return $this->getProjectsActivitiesAsyncWithHttpInfo(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         )
             ->then(
                 function ($response) {
@@ -405,13 +405,13 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsActivitiesAsyncWithHttpInfo(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): Promise {
         $returnType = '\Upsun\Model\Activity';
         $request = $this->getProjectsActivitiesRequest(
-            $project_id,
-            $activity_id
+            $projectId,
+            $activityId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -452,19 +452,19 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsActivitiesRequest(
-        string $project_id,
-        string $activity_id
+        string $projectId,
+        string $activityId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsActivities'
+                'Missing the required parameter $projectId when calling getProjectsActivities'
             );
         }
-        // verify the required parameter 'activity_id' is set
-        if ($activity_id === null || (is_array($activity_id) && count($activity_id) === 0)) {
+        // verify the required parameter 'activityId' is set
+        if ($activityId === null || (is_array($activityId) && count($activityId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $activity_id when calling getProjectsActivities'
+                'Missing the required parameter $activityId when calling getProjectsActivities'
             );
         }
 
@@ -478,18 +478,18 @@ final class ProjectActivityApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($activity_id !== null) {
+        if ($activityId !== null) {
             $resourcePath = str_replace(
                 '{' . 'activityId' . '}',
-                ObjectSerializer::toPathValue($activity_id),
+                ObjectSerializer::toPathValue($activityId),
                 $resourcePath
             );
         }
@@ -550,10 +550,10 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsActivities(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsActivitiesWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -564,10 +564,10 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsActivitiesWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsActivitiesRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -594,10 +594,10 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsActivitiesAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsActivitiesAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -612,11 +612,11 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsActivitiesAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\Activity[]';
         $request = $this->listProjectsActivitiesRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -657,12 +657,12 @@ final class ProjectActivityApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsActivitiesRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsActivities'
+                'Missing the required parameter $projectId when calling listProjectsActivities'
             );
         }
 
@@ -676,10 +676,10 @@ final class ProjectActivityApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }

@@ -24,20 +24,20 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     private static string $openAPIModelName = 'The_commands_to_manage_the_worker_';
 
     private static array $attributeMap = [
-        'pre_start' => 'pre_start',
+        'preStart' => 'pre_start',
         'start' => 'start'
     ];
 
     public function __construct(
-        public readonly ?string $pre_start = null,
-        public readonly ?string $start = null,
+        private readonly ?string $preStart = null,
+        private readonly ?string $start = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'pre_start' => $this->pre_start,
+            'preStart' => $this->preStart,
             'start' => $this->start,
         ];
     }
@@ -45,6 +45,15 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPreStart(): ?string
+    {
+        return $this->preStart;
+    }
+    public function getStart(): ?string
+    {
+        return $this->start;
     }
 }
 

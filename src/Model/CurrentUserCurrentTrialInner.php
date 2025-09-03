@@ -26,15 +26,15 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     private static array $attributeMap = [
         'created' => 'created',
         'description' => 'description',
-        'spend_remaining' => 'spend_remaining',
+        'spendRemaining' => 'spend_remaining',
         'expiration' => 'expiration'
     ];
 
     public function __construct(
-        public readonly ?\DateTime $created = null,
-        public readonly ?string $description = null,
-        public readonly ?string $spend_remaining = null,
-        public readonly ?\DateTime $expiration = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?string $description = null,
+        private readonly ?string $spendRemaining = null,
+        private readonly ?\DateTime $expiration = null,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
         return [
             'created' => $this->created,
             'description' => $this->description,
-            'spend_remaining' => $this->spend_remaining,
+            'spendRemaining' => $this->spendRemaining,
             'expiration' => $this->expiration,
         ];
     }
@@ -51,6 +51,23 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCreated(): ?\DateTime
+    {
+        return $this->created;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    public function getSpendRemaining(): ?string
+    {
+        return $this->spendRemaining;
+    }
+    public function getExpiration(): ?\DateTime
+    {
+        return $this->expiration;
     }
 }
 

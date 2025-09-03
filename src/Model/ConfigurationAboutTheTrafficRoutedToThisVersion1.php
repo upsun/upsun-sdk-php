@@ -28,7 +28,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
     ];
 
     public function __construct(
-        public readonly ?int $percentage = null,
+        private readonly ?int $percentage = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPercentage(): ?int
+    {
+        return $this->percentage;
     }
 }
 

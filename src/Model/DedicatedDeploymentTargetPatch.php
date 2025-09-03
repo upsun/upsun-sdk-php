@@ -26,13 +26,13 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'name' => 'name',
-        'enforced_mounts' => 'enforced_mounts'
+        'enforcedMounts' => 'enforced_mounts'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?object $enforced_mounts = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?object $enforcedMounts = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
         return [
             'type' => $this->type,
             'name' => $this->name,
-            'enforced_mounts' => $this->enforced_mounts,
+            'enforcedMounts' => $this->enforcedMounts,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getEnforcedMounts(): ?object
+    {
+        return $this->enforcedMounts;
     }
 }
 

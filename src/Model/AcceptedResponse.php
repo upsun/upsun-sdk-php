@@ -29,8 +29,8 @@ final class AcceptedResponse implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $status = null,
-        public readonly ?int $code = null,
+        private readonly ?string $status = null,
+        private readonly ?int $code = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class AcceptedResponse implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getCode(): ?int
+    {
+        return $this->code;
     }
 }
 

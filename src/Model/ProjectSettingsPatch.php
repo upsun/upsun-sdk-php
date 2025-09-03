@@ -25,14 +25,14 @@ final class ProjectSettingsPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'initialize' => 'initialize',
-        'data_retention' => 'data_retention',
-        'build_resources' => 'build_resources'
+        'dataRetention' => 'data_retention',
+        'buildResources' => 'build_resources'
     ];
 
     public function __construct(
-        public readonly ?object $initialize = null,
-        public readonly ?array $data_retention = [],
-        public readonly ?\Upsun\Model\BuildResources2 $build_resources = null,
+        private readonly ?object $initialize = null,
+        private readonly ?array $dataRetention = [],
+        private readonly ?\Upsun\Model\BuildResources2 $buildResources = null,
     ) {
     }
 
@@ -40,14 +40,27 @@ final class ProjectSettingsPatch implements JsonSerializable
     {
         return [
             'initialize' => $this->initialize,
-            'data_retention' => $this->data_retention,
-            'build_resources' => $this->build_resources,
+            'dataRetention' => $this->dataRetention,
+            'buildResources' => $this->buildResources,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getInitialize(): ?object
+    {
+        return $this->initialize;
+    }
+    public function getDataRetention(): ?array
+    {
+        return $this->dataRetention;
+    }
+    public function getBuildResources(): ?\Upsun\Model\BuildResources2
+    {
+        return $this->buildResources;
     }
 }
 

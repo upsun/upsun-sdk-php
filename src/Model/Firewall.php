@@ -28,7 +28,7 @@ final class Firewall implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?array $outbound = [],
+        private readonly ?array $outbound = [],
     ) {
     }
 
@@ -42,6 +42,11 @@ final class Firewall implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getOutbound(): ?array
+    {
+        return $this->outbound;
     }
 }
 

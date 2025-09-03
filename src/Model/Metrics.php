@@ -24,24 +24,29 @@ final class Metrics implements JsonSerializable
     private static string $openAPIModelName = 'Metrics';
 
     private static array $attributeMap = [
-        'max_range' => 'max_range'
+        'maxRange' => 'max_range'
     ];
 
     public function __construct(
-        public readonly ?string $max_range = null,
+        private readonly ?string $maxRange = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'max_range' => $this->max_range,
+            'maxRange' => $this->maxRange,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMaxRange(): ?string
+    {
+        return $this->maxRange;
     }
 }
 

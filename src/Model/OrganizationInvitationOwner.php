@@ -25,12 +25,12 @@ final class OrganizationInvitationOwner implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'display_name' => 'display_name'
+        'displayName' => 'display_name'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $display_name = null,
+        private readonly ?string $id = null,
+        private readonly ?string $displayName = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class OrganizationInvitationOwner implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'display_name' => $this->display_name,
+            'displayName' => $this->displayName,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getDisplayName(): ?string
+    {
+        return $this->displayName;
     }
 }
 

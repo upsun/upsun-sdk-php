@@ -490,10 +490,10 @@ final class DiscountsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgDiscounts(
-        string $organization_id
+        string $organizationId
     ): array {
         list($response) = $this->listOrgDiscountsWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -504,10 +504,10 @@ final class DiscountsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgDiscountsWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->listOrgDiscountsRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -534,10 +534,10 @@ final class DiscountsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgDiscountsAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->listOrgDiscountsAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -552,11 +552,11 @@ final class DiscountsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgDiscountsAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgDiscounts200Response';
         $request = $this->listOrgDiscountsRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -597,12 +597,12 @@ final class DiscountsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgDiscountsRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling listOrgDiscounts'
+                'Missing the required parameter $organizationId when calling listOrgDiscounts'
             );
         }
 
@@ -616,10 +616,10 @@ final class DiscountsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }

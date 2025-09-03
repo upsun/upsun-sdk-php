@@ -124,10 +124,10 @@ final class AddOnsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddons(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\OrganizationAddonsObject {
         list($response) = $this->getOrgAddonsWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -138,10 +138,10 @@ final class AddOnsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddonsWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->getOrgAddonsRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -168,10 +168,10 @@ final class AddOnsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddonsAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->getOrgAddonsAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -186,11 +186,11 @@ final class AddOnsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgAddonsAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationAddonsObject';
         $request = $this->getOrgAddonsRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,12 +231,12 @@ final class AddOnsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getOrgAddonsRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling getOrgAddons'
+                'Missing the required parameter $organizationId when calling getOrgAddons'
             );
         }
 
@@ -250,10 +250,10 @@ final class AddOnsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }

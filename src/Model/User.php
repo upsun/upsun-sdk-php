@@ -29,36 +29,36 @@ final class User implements JsonSerializable
         'namespace' => 'namespace',
         'username' => 'username',
         'email' => 'email',
-        'email_verified' => 'email_verified',
-        'first_name' => 'first_name',
-        'last_name' => 'last_name',
+        'emailVerified' => 'email_verified',
+        'firstName' => 'first_name',
+        'lastName' => 'last_name',
         'picture' => 'picture',
         'company' => 'company',
         'website' => 'website',
         'country' => 'country',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'consented_at' => 'consented_at',
-        'consent_method' => 'consent_method'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'consentedAt' => 'consented_at',
+        'consentMethod' => 'consent_method'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?bool $deactivated = null,
-        public readonly ?string $namespace = null,
-        public readonly ?string $username = null,
-        public readonly ?string $email = null,
-        public readonly ?bool $email_verified = null,
-        public readonly ?string $first_name = null,
-        public readonly ?string $last_name = null,
-        public readonly ?string $picture = null,
-        public readonly ?string $company = null,
-        public readonly ?string $website = null,
-        public readonly ?string $country = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?\DateTime $consented_at = null,
-        public readonly ?string $consent_method = null,
+        private readonly ?string $id = null,
+        private readonly ?bool $deactivated = null,
+        private readonly ?string $namespace = null,
+        private readonly ?string $username = null,
+        private readonly ?string $email = null,
+        private readonly ?bool $emailVerified = null,
+        private readonly ?string $firstName = null,
+        private readonly ?string $lastName = null,
+        private readonly ?string $picture = null,
+        private readonly ?string $company = null,
+        private readonly ?string $website = null,
+        private readonly ?string $country = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $consentedAt = null,
+        private readonly ?string $consentMethod = null,
     ) {
     }
 
@@ -70,23 +70,88 @@ final class User implements JsonSerializable
             'namespace' => $this->namespace,
             'username' => $this->username,
             'email' => $this->email,
-            'email_verified' => $this->email_verified,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'emailVerified' => $this->emailVerified,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
             'picture' => $this->picture,
             'company' => $this->company,
             'website' => $this->website,
             'country' => $this->country,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'consented_at' => $this->consented_at,
-            'consent_method' => $this->consent_method,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'consentedAt' => $this->consentedAt,
+            'consentMethod' => $this->consentMethod,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getDeactivated(): ?bool
+    {
+        return $this->deactivated;
+    }
+    public function getNamespace(): ?string
+    {
+        return $this->namespace;
+    }
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+    public function getEmailVerified(): ?bool
+    {
+        return $this->emailVerified;
+    }
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+    public function getWebsite(): ?string
+    {
+        return $this->website;
+    }
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getConsentedAt(): ?\DateTime
+    {
+        return $this->consentedAt;
+    }
+    public function getConsentMethod(): ?string
+    {
+        return $this->consentMethod;
     }
 }
 

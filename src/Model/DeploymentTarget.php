@@ -26,45 +26,45 @@ final class DeploymentTarget implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'name' => 'name',
-        'deploy_host' => 'deploy_host',
-        'deploy_port' => 'deploy_port',
-        'ssh_host' => 'ssh_host',
+        'deployHost' => 'deploy_host',
+        'deployPort' => 'deploy_port',
+        'sshHost' => 'ssh_host',
         'hosts' => 'hosts',
-        'auto_mounts' => 'auto_mounts',
-        'excluded_mounts' => 'excluded_mounts',
-        'enforced_mounts' => 'enforced_mounts',
-        'auto_crons' => 'auto_crons',
-        'auto_nginx' => 'auto_nginx',
-        'maintenance_mode' => 'maintenance_mode',
-        'guardrails_phase' => 'guardrails_phase',
+        'autoMounts' => 'auto_mounts',
+        'excludedMounts' => 'excluded_mounts',
+        'enforcedMounts' => 'enforced_mounts',
+        'autoCrons' => 'auto_crons',
+        'autoNginx' => 'auto_nginx',
+        'maintenanceMode' => 'maintenance_mode',
+        'guardrailsPhase' => 'guardrails_phase',
         'docroots' => 'docroots',
-        'site_urls' => 'site_urls',
-        'ssh_hosts' => 'ssh_hosts',
-        'enterprise_environments_mapping' => 'enterprise_environments_mapping',
-        'use_dedicated_grid' => 'use_dedicated_grid',
-        'storage_type' => 'storage_type'
+        'siteUrls' => 'site_urls',
+        'sshHosts' => 'ssh_hosts',
+        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping',
+        'useDedicatedGrid' => 'use_dedicated_grid',
+        'storageType' => 'storage_type'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?string $deploy_host = null,
-        public readonly ?int $deploy_port = null,
-        public readonly ?string $ssh_host = null,
-        public readonly ?array $hosts = [],
-        public readonly ?bool $auto_mounts = null,
-        public readonly ?array $excluded_mounts = [],
-        public readonly ?object $enforced_mounts = null,
-        public readonly ?bool $auto_crons = null,
-        public readonly ?bool $auto_nginx = null,
-        public readonly ?bool $maintenance_mode = null,
-        public readonly ?int $guardrails_phase = null,
-        public readonly ?array $docroots = [],
-        public readonly ?object $site_urls = null,
-        public readonly ?array $ssh_hosts = [],
-        public readonly ?object $enterprise_environments_mapping = null,
-        public readonly ?bool $use_dedicated_grid = null,
-        public readonly ?string $storage_type = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?string $deployHost = null,
+        private readonly ?int $deployPort = null,
+        private readonly ?string $sshHost = null,
+        private readonly ?array $hosts = [],
+        private readonly ?bool $autoMounts = null,
+        private readonly ?array $excludedMounts = [],
+        private readonly ?object $enforcedMounts = null,
+        private readonly ?bool $autoCrons = null,
+        private readonly ?bool $autoNginx = null,
+        private readonly ?bool $maintenanceMode = null,
+        private readonly ?int $guardrailsPhase = null,
+        private readonly ?array $docroots = [],
+        private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+        private readonly ?object $enterpriseEnvironmentsMapping = null,
+        private readonly ?bool $useDedicatedGrid = null,
+        private readonly ?string $storageType = null,
     ) {
     }
 
@@ -73,29 +73,106 @@ final class DeploymentTarget implements JsonSerializable
         return [
             'type' => $this->type,
             'name' => $this->name,
-            'deploy_host' => $this->deploy_host,
-            'deploy_port' => $this->deploy_port,
-            'ssh_host' => $this->ssh_host,
+            'deployHost' => $this->deployHost,
+            'deployPort' => $this->deployPort,
+            'sshHost' => $this->sshHost,
             'hosts' => $this->hosts,
-            'auto_mounts' => $this->auto_mounts,
-            'excluded_mounts' => $this->excluded_mounts,
-            'enforced_mounts' => $this->enforced_mounts,
-            'auto_crons' => $this->auto_crons,
-            'auto_nginx' => $this->auto_nginx,
-            'maintenance_mode' => $this->maintenance_mode,
-            'guardrails_phase' => $this->guardrails_phase,
+            'autoMounts' => $this->autoMounts,
+            'excludedMounts' => $this->excludedMounts,
+            'enforcedMounts' => $this->enforcedMounts,
+            'autoCrons' => $this->autoCrons,
+            'autoNginx' => $this->autoNginx,
+            'maintenanceMode' => $this->maintenanceMode,
+            'guardrailsPhase' => $this->guardrailsPhase,
             'docroots' => $this->docroots,
-            'site_urls' => $this->site_urls,
-            'ssh_hosts' => $this->ssh_hosts,
-            'enterprise_environments_mapping' => $this->enterprise_environments_mapping,
-            'use_dedicated_grid' => $this->use_dedicated_grid,
-            'storage_type' => $this->storage_type,
+            'siteUrls' => $this->siteUrls,
+            'sshHosts' => $this->sshHosts,
+            'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
+            'useDedicatedGrid' => $this->useDedicatedGrid,
+            'storageType' => $this->storageType,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getDeployHost(): ?string
+    {
+        return $this->deployHost;
+    }
+    public function getDeployPort(): ?int
+    {
+        return $this->deployPort;
+    }
+    public function getSshHost(): ?string
+    {
+        return $this->sshHost;
+    }
+    public function getHosts(): ?array
+    {
+        return $this->hosts;
+    }
+    public function getAutoMounts(): ?bool
+    {
+        return $this->autoMounts;
+    }
+    public function getExcludedMounts(): ?array
+    {
+        return $this->excludedMounts;
+    }
+    public function getEnforcedMounts(): ?object
+    {
+        return $this->enforcedMounts;
+    }
+    public function getAutoCrons(): ?bool
+    {
+        return $this->autoCrons;
+    }
+    public function getAutoNginx(): ?bool
+    {
+        return $this->autoNginx;
+    }
+    public function getMaintenanceMode(): ?bool
+    {
+        return $this->maintenanceMode;
+    }
+    public function getGuardrailsPhase(): ?int
+    {
+        return $this->guardrailsPhase;
+    }
+    public function getDocroots(): ?array
+    {
+        return $this->docroots;
+    }
+    public function getSiteUrls(): ?object
+    {
+        return $this->siteUrls;
+    }
+    public function getSshHosts(): ?array
+    {
+        return $this->sshHosts;
+    }
+    public function getEnterpriseEnvironmentsMapping(): ?object
+    {
+        return $this->enterpriseEnvironmentsMapping;
+    }
+    public function getUseDedicatedGrid(): ?bool
+    {
+        return $this->useDedicatedGrid;
+    }
+    public function getStorageType(): ?string
+    {
+        return $this->storageType;
     }
 }
 

@@ -30,9 +30,9 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $type = null,
-        public readonly ?array $services = [],
+        private readonly ?string $id = null,
+        private readonly ?string $type = null,
+        private readonly ?array $services = [],
     ) {
     }
 
@@ -48,6 +48,19 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getServices(): ?array
+    {
+        return $this->services;
     }
 }
 

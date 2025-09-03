@@ -25,12 +25,12 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'routing_key' => 'routing_key'
+        'routingKey' => 'routing_key'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $routing_key = null,
+        private readonly ?string $type = null,
+        private readonly ?string $routingKey = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'routing_key' => $this->routing_key,
+            'routingKey' => $this->routingKey,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getRoutingKey(): ?string
+    {
+        return $this->routingKey;
     }
 }
 

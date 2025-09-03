@@ -24,24 +24,29 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     private static string $openAPIModelName = 'OrganizationMFAEnforcement';
 
     private static array $attributeMap = [
-        'enforce_mfa' => 'enforce_mfa'
+        'enforceMfa' => 'enforce_mfa'
     ];
 
     public function __construct(
-        public readonly ?bool $enforce_mfa = null,
+        private readonly ?bool $enforceMfa = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'enforce_mfa' => $this->enforce_mfa,
+            'enforceMfa' => $this->enforceMfa,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnforceMfa(): ?bool
+    {
+        return $this->enforceMfa;
     }
 }
 

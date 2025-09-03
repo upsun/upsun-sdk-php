@@ -30,9 +30,9 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $name = null,
-        public readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
+        private readonly ?string $id = null,
+        private readonly ?string $name = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
     ) {
     }
 
@@ -48,6 +48,19 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getTotal(): ?\Upsun\Model\ProfileCurrentTrialProjectsTotal
+    {
+        return $this->total;
     }
 }
 

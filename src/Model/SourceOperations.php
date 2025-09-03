@@ -28,7 +28,7 @@ final class SourceOperations implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
+        private readonly ?bool $enabled = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class SourceOperations implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
     }
 }
 

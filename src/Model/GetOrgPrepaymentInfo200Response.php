@@ -25,12 +25,12 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
 
     private static array $attributeMap = [
         'prepayment' => 'prepayment',
-        '_links' => '_links'
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\PrepaymentObject $prepayment = null,
-        public readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $_links = null,
+        private readonly ?\Upsun\Model\PrepaymentObject $prepayment = null,
+        private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $links = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
     {
         return [
             'prepayment' => $this->prepayment,
-            '_links' => $this->_links,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPrepayment(): ?\Upsun\Model\PrepaymentObject
+    {
+        return $this->prepayment;
+    }
+    public function getLinks(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks
+    {
+        return $this->links;
     }
 }
 

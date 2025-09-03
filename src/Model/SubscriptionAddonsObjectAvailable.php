@@ -24,27 +24,36 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
     private static string $openAPIModelName = 'SubscriptionAddonsObject_available';
 
     private static array $attributeMap = [
-        'continuous_profiling' => 'continuous_profiling',
-        'project_support_level' => 'project_support_level'
+        'continuousProfiling' => 'continuous_profiling',
+        'projectSupportLevel' => 'project_support_level'
     ];
 
     public function __construct(
-        public readonly ?array $continuous_profiling = [],
-        public readonly ?array $project_support_level = [],
+        private readonly ?array $continuousProfiling = [],
+        private readonly ?array $projectSupportLevel = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'continuous_profiling' => $this->continuous_profiling,
-            'project_support_level' => $this->project_support_level,
+            'continuousProfiling' => $this->continuousProfiling,
+            'projectSupportLevel' => $this->projectSupportLevel,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getContinuousProfiling(): ?array
+    {
+        return $this->continuousProfiling;
+    }
+    public function getProjectSupportLevel(): ?array
+    {
+        return $this->projectSupportLevel;
     }
 }
 

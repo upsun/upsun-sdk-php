@@ -24,27 +24,36 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
     private static string $openAPIModelName = 'OrganizationAddonsObject_current';
 
     private static array $attributeMap = [
-        'user_management' => 'user_management',
-        'support_level' => 'support_level'
+        'userManagement' => 'user_management',
+        'supportLevel' => 'support_level'
     ];
 
     public function __construct(
-        public readonly ?array $user_management = [],
-        public readonly ?array $support_level = [],
+        private readonly ?array $userManagement = [],
+        private readonly ?array $supportLevel = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'user_management' => $this->user_management,
-            'support_level' => $this->support_level,
+            'userManagement' => $this->userManagement,
+            'supportLevel' => $this->supportLevel,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUserManagement(): ?array
+    {
+        return $this->userManagement;
+    }
+    public function getSupportLevel(): ?array
+    {
+        return $this->supportLevel;
     }
 }
 

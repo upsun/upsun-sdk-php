@@ -124,14 +124,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         );
         return $response;
     }
@@ -142,14 +142,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): array {
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         );
 
         try {
@@ -176,14 +176,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsEnvironmentsActivitiesCancelAsync(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): Promise {
         return $this->actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         )
             ->then(
                 function ($response) {
@@ -198,15 +198,15 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function actionProjectsEnvironmentsActivitiesCancelAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -247,26 +247,26 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function actionProjectsEnvironmentsActivitiesCancelRequest(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling actionProjectsEnvironmentsActivitiesCancel'
+                'Missing the required parameter $projectId when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling actionProjectsEnvironmentsActivitiesCancel'
+                'Missing the required parameter $environmentId when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
-        // verify the required parameter 'activity_id' is set
-        if ($activity_id === null || (is_array($activity_id) && count($activity_id) === 0)) {
+        // verify the required parameter 'activityId' is set
+        if ($activityId === null || (is_array($activityId) && count($activityId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $activity_id when calling actionProjectsEnvironmentsActivitiesCancel'
+                'Missing the required parameter $activityId when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
 
@@ -280,26 +280,26 @@ final class EnvironmentActivityApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($activity_id !== null) {
+        if ($activityId !== null) {
             $resourcePath = str_replace(
                 '{' . 'activityId' . '}',
-                ObjectSerializer::toPathValue($activity_id),
+                ObjectSerializer::toPathValue($activityId),
                 $resourcePath
             );
         }
@@ -360,14 +360,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsActivities(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): \Upsun\Model\Activity {
         list($response) = $this->getProjectsEnvironmentsActivitiesWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         );
         return $response;
     }
@@ -378,14 +378,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsActivitiesWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): array {
         $request = $this->getProjectsEnvironmentsActivitiesRequest(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         );
 
         try {
@@ -412,14 +412,14 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsActivitiesAsync(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): Promise {
         return $this->getProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         )
             ->then(
                 function ($response) {
@@ -434,15 +434,15 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): Promise {
         $returnType = '\Upsun\Model\Activity';
         $request = $this->getProjectsEnvironmentsActivitiesRequest(
-            $project_id,
-            $environment_id,
-            $activity_id
+            $projectId,
+            $environmentId,
+            $activityId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -483,26 +483,26 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsActivitiesRequest(
-        string $project_id,
-        string $environment_id,
-        string $activity_id
+        string $projectId,
+        string $environmentId,
+        string $activityId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsEnvironmentsActivities'
+                'Missing the required parameter $projectId when calling getProjectsEnvironmentsActivities'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling getProjectsEnvironmentsActivities'
+                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsActivities'
             );
         }
-        // verify the required parameter 'activity_id' is set
-        if ($activity_id === null || (is_array($activity_id) && count($activity_id) === 0)) {
+        // verify the required parameter 'activityId' is set
+        if ($activityId === null || (is_array($activityId) && count($activityId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $activity_id when calling getProjectsEnvironmentsActivities'
+                'Missing the required parameter $activityId when calling getProjectsEnvironmentsActivities'
             );
         }
 
@@ -516,26 +516,26 @@ final class EnvironmentActivityApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($activity_id !== null) {
+        if ($activityId !== null) {
             $resourcePath = str_replace(
                 '{' . 'activityId' . '}',
-                ObjectSerializer::toPathValue($activity_id),
+                ObjectSerializer::toPathValue($activityId),
                 $resourcePath
             );
         }
@@ -596,12 +596,12 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsActivities(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         list($response) = $this->listProjectsEnvironmentsActivitiesWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
         return $response;
     }
@@ -612,12 +612,12 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsActivitiesWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         $request = $this->listProjectsEnvironmentsActivitiesRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         try {
@@ -644,12 +644,12 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsActivitiesAsync(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         return $this->listProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         )
             ->then(
                 function ($response) {
@@ -664,13 +664,13 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsActivitiesAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         $returnType = '\Upsun\Model\Activity[]';
         $request = $this->listProjectsEnvironmentsActivitiesRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -711,19 +711,19 @@ final class EnvironmentActivityApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentsActivitiesRequest(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentsActivities'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentsActivities'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling listProjectsEnvironmentsActivities'
+                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsActivities'
             );
         }
 
@@ -737,18 +737,18 @@ final class EnvironmentActivityApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }

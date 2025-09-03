@@ -29,8 +29,8 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
     ];
 
     public function __construct(
-        public readonly ?int $count = null,
-        public readonly ?string $total = null,
+        private readonly ?int $count = null,
+        private readonly ?string $total = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+    public function getTotal(): ?string
+    {
+        return $this->total;
     }
 }
 

@@ -26,23 +26,23 @@ final class DeploymentTargetPatch implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'name' => 'name',
-        'enforced_mounts' => 'enforced_mounts',
-        'site_urls' => 'site_urls',
-        'ssh_hosts' => 'ssh_hosts',
-        'enterprise_environments_mapping' => 'enterprise_environments_mapping',
+        'enforcedMounts' => 'enforced_mounts',
+        'siteUrls' => 'site_urls',
+        'sshHosts' => 'ssh_hosts',
+        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping',
         'hosts' => 'hosts',
-        'use_dedicated_grid' => 'use_dedicated_grid'
+        'useDedicatedGrid' => 'use_dedicated_grid'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?object $enforced_mounts = null,
-        public readonly ?object $site_urls = null,
-        public readonly ?array $ssh_hosts = [],
-        public readonly ?object $enterprise_environments_mapping = null,
-        public readonly ?array $hosts = [],
-        public readonly ?bool $use_dedicated_grid = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?object $enforcedMounts = null,
+        private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+        private readonly ?object $enterpriseEnvironmentsMapping = null,
+        private readonly ?array $hosts = [],
+        private readonly ?bool $useDedicatedGrid = null,
     ) {
     }
 
@@ -51,18 +51,51 @@ final class DeploymentTargetPatch implements JsonSerializable
         return [
             'type' => $this->type,
             'name' => $this->name,
-            'enforced_mounts' => $this->enforced_mounts,
-            'site_urls' => $this->site_urls,
-            'ssh_hosts' => $this->ssh_hosts,
-            'enterprise_environments_mapping' => $this->enterprise_environments_mapping,
+            'enforcedMounts' => $this->enforcedMounts,
+            'siteUrls' => $this->siteUrls,
+            'sshHosts' => $this->sshHosts,
+            'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
             'hosts' => $this->hosts,
-            'use_dedicated_grid' => $this->use_dedicated_grid,
+            'useDedicatedGrid' => $this->useDedicatedGrid,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getEnforcedMounts(): ?object
+    {
+        return $this->enforcedMounts;
+    }
+    public function getSiteUrls(): ?object
+    {
+        return $this->siteUrls;
+    }
+    public function getSshHosts(): ?array
+    {
+        return $this->sshHosts;
+    }
+    public function getEnterpriseEnvironmentsMapping(): ?object
+    {
+        return $this->enterpriseEnvironmentsMapping;
+    }
+    public function getHosts(): ?array
+    {
+        return $this->hosts;
+    }
+    public function getUseDedicatedGrid(): ?bool
+    {
+        return $this->useDedicatedGrid;
     }
 }
 

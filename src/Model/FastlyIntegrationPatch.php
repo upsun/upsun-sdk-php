@@ -27,22 +27,22 @@ final class FastlyIntegrationPatch implements JsonSerializable
         'type' => 'type',
         'events' => 'events',
         'environments' => 'environments',
-        'excluded_environments' => 'excluded_environments',
+        'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
         'result' => 'result',
         'token' => 'token',
-        'service_id' => 'service_id'
+        'serviceId' => 'service_id'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?array $events = [],
-        public readonly ?array $environments = [],
-        public readonly ?array $excluded_environments = [],
-        public readonly ?array $states = [],
-        public readonly ?string $result = null,
-        public readonly ?string $token = null,
-        public readonly ?string $service_id = null,
+        private readonly ?string $type = null,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+        private readonly ?string $result = null,
+        private readonly ?string $token = null,
+        private readonly ?string $serviceId = null,
     ) {
     }
 
@@ -52,17 +52,50 @@ final class FastlyIntegrationPatch implements JsonSerializable
             'type' => $this->type,
             'events' => $this->events,
             'environments' => $this->environments,
-            'excluded_environments' => $this->excluded_environments,
+            'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
             'token' => $this->token,
-            'service_id' => $this->service_id,
+            'serviceId' => $this->serviceId,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getEvents(): ?array
+    {
+        return $this->events;
+    }
+    public function getEnvironments(): ?array
+    {
+        return $this->environments;
+    }
+    public function getExcludedEnvironments(): ?array
+    {
+        return $this->excludedEnvironments;
+    }
+    public function getStates(): ?array
+    {
+        return $this->states;
+    }
+    public function getResult(): ?string
+    {
+        return $this->result;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getServiceId(): ?string
+    {
+        return $this->serviceId;
     }
 }
 

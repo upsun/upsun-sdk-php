@@ -27,16 +27,16 @@ final class FoundationDeploymentTarget implements JsonSerializable
         'type' => 'type',
         'name' => 'name',
         'hosts' => 'hosts',
-        'use_dedicated_grid' => 'use_dedicated_grid',
-        'storage_type' => 'storage_type'
+        'useDedicatedGrid' => 'use_dedicated_grid',
+        'storageType' => 'storage_type'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?array $hosts = [],
-        public readonly ?bool $use_dedicated_grid = null,
-        public readonly ?string $storage_type = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?array $hosts = [],
+        private readonly ?bool $useDedicatedGrid = null,
+        private readonly ?string $storageType = null,
     ) {
     }
 
@@ -46,14 +46,35 @@ final class FoundationDeploymentTarget implements JsonSerializable
             'type' => $this->type,
             'name' => $this->name,
             'hosts' => $this->hosts,
-            'use_dedicated_grid' => $this->use_dedicated_grid,
-            'storage_type' => $this->storage_type,
+            'useDedicatedGrid' => $this->useDedicatedGrid,
+            'storageType' => $this->storageType,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getHosts(): ?array
+    {
+        return $this->hosts;
+    }
+    public function getUseDedicatedGrid(): ?bool
+    {
+        return $this->useDedicatedGrid;
+    }
+    public function getStorageType(): ?string
+    {
+        return $this->storageType;
     }
 }
 

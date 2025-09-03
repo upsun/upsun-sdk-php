@@ -26,15 +26,15 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     private static array $attributeMap = [
         'directory' => 'directory',
         'watch' => 'watch',
-        'allow_stale' => 'allow_stale',
-        'share_between_apps' => 'share_between_apps'
+        'allowStale' => 'allow_stale',
+        'shareBetweenApps' => 'share_between_apps'
     ];
 
     public function __construct(
-        public readonly ?string $directory = null,
-        public readonly ?array $watch = [],
-        public readonly ?bool $allow_stale = null,
-        public readonly ?bool $share_between_apps = null,
+        private readonly ?string $directory = null,
+        private readonly ?array $watch = [],
+        private readonly ?bool $allowStale = null,
+        private readonly ?bool $shareBetweenApps = null,
     ) {
     }
 
@@ -43,14 +43,31 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
         return [
             'directory' => $this->directory,
             'watch' => $this->watch,
-            'allow_stale' => $this->allow_stale,
-            'share_between_apps' => $this->share_between_apps,
+            'allowStale' => $this->allowStale,
+            'shareBetweenApps' => $this->shareBetweenApps,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getDirectory(): ?string
+    {
+        return $this->directory;
+    }
+    public function getWatch(): ?array
+    {
+        return $this->watch;
+    }
+    public function getAllowStale(): ?bool
+    {
+        return $this->allowStale;
+    }
+    public function getShareBetweenApps(): ?bool
+    {
+        return $this->shareBetweenApps;
     }
 }
 

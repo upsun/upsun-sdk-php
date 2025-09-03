@@ -24,33 +24,50 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     private static string $openAPIModelName = 'EnvironmentSynchronizeInput';
 
     private static array $attributeMap = [
-        'synchronize_code' => 'synchronize_code',
+        'synchronizeCode' => 'synchronize_code',
         'rebase' => 'rebase',
-        'synchronize_data' => 'synchronize_data',
-        'synchronize_resources' => 'synchronize_resources'
+        'synchronizeData' => 'synchronize_data',
+        'synchronizeResources' => 'synchronize_resources'
     ];
 
     public function __construct(
-        public readonly ?bool $synchronize_code = null,
-        public readonly ?bool $rebase = null,
-        public readonly ?bool $synchronize_data = null,
-        public readonly ?bool $synchronize_resources = null,
+        private readonly ?bool $synchronizeCode = null,
+        private readonly ?bool $rebase = null,
+        private readonly ?bool $synchronizeData = null,
+        private readonly ?bool $synchronizeResources = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'synchronize_code' => $this->synchronize_code,
+            'synchronizeCode' => $this->synchronizeCode,
             'rebase' => $this->rebase,
-            'synchronize_data' => $this->synchronize_data,
-            'synchronize_resources' => $this->synchronize_resources,
+            'synchronizeData' => $this->synchronizeData,
+            'synchronizeResources' => $this->synchronizeResources,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSynchronizeCode(): ?bool
+    {
+        return $this->synchronizeCode;
+    }
+    public function getRebase(): ?bool
+    {
+        return $this->rebase;
+    }
+    public function getSynchronizeData(): ?bool
+    {
+        return $this->synchronizeData;
+    }
+    public function getSynchronizeResources(): ?bool
+    {
+        return $this->synchronizeResources;
     }
 }
 

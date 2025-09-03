@@ -124,12 +124,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsIntegrations(
-        string $project_id,
-        \Upsun\Model\IntegrationCreateInput $integration_create_input
+        string $projectId,
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->createProjectsIntegrationsWithHttpInfo(
-            $project_id,
-            $integration_create_input
+            $projectId,
+            $integrationCreateInput
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsIntegrationsWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\IntegrationCreateInput $integration_create_input
+        string $projectId,
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
     ): array {
         $request = $this->createProjectsIntegrationsRequest(
-            $project_id,
-            $integration_create_input
+            $projectId,
+            $integrationCreateInput
         );
 
         try {
@@ -172,12 +172,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsIntegrationsAsync(
-        string $project_id,
-        \Upsun\Model\IntegrationCreateInput $integration_create_input
+        string $projectId,
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
     ): Promise {
         return $this->createProjectsIntegrationsAsyncWithHttpInfo(
-            $project_id,
-            $integration_create_input
+            $projectId,
+            $integrationCreateInput
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createProjectsIntegrationsAsyncWithHttpInfo(
-        string $project_id,
-        \Upsun\Model\IntegrationCreateInput $integration_create_input
+        string $projectId,
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->createProjectsIntegrationsRequest(
-            $project_id,
-            $integration_create_input
+            $projectId,
+            $integrationCreateInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,19 +239,19 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createProjectsIntegrationsRequest(
-        string $project_id,
-        \Upsun\Model\IntegrationCreateInput $integration_create_input
+        string $projectId,
+        \Upsun\Model\IntegrationCreateInput $integrationCreateInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling createProjectsIntegrations'
+                'Missing the required parameter $projectId when calling createProjectsIntegrations'
             );
         }
-        // verify the required parameter 'integration_create_input' is set
-        if ($integration_create_input === null || (is_array($integration_create_input) && count($integration_create_input) === 0)) {
+        // verify the required parameter 'integrationCreateInput' is set
+        if ($integrationCreateInput === null || (is_array($integrationCreateInput) && count($integrationCreateInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_create_input when calling createProjectsIntegrations'
+                'Missing the required parameter $integrationCreateInput when calling createProjectsIntegrations'
             );
         }
 
@@ -265,10 +265,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -281,11 +281,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($integration_create_input)) {
+        if (isset($integrationCreateInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($integration_create_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($integrationCreateInput));
             } else {
-                $httpBody = $integration_create_input;
+                $httpBody = $integrationCreateInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -335,12 +335,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsIntegrations(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsIntegrationsWithHttpInfo(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         );
         return $response;
     }
@@ -351,12 +351,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsIntegrationsWithHttpInfo(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): array {
         $request = $this->deleteProjectsIntegrationsRequest(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         );
 
         try {
@@ -383,12 +383,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsIntegrationsAsync(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): Promise {
         return $this->deleteProjectsIntegrationsAsyncWithHttpInfo(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         )
             ->then(
                 function ($response) {
@@ -403,13 +403,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsIntegrationsAsyncWithHttpInfo(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsIntegrationsRequest(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -450,19 +450,19 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsIntegrationsRequest(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsIntegrations'
+                'Missing the required parameter $projectId when calling deleteProjectsIntegrations'
             );
         }
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+        // verify the required parameter 'integrationId' is set
+        if ($integrationId === null || (is_array($integrationId) && count($integrationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling deleteProjectsIntegrations'
+                'Missing the required parameter $integrationId when calling deleteProjectsIntegrations'
             );
         }
 
@@ -476,18 +476,18 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($integration_id !== null) {
+        if ($integrationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'integrationId' . '}',
-                ObjectSerializer::toPathValue($integration_id),
+                ObjectSerializer::toPathValue($integrationId),
                 $resourcePath
             );
         }
@@ -548,12 +548,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsIntegrations(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): \Upsun\Model\Integration {
         list($response) = $this->getProjectsIntegrationsWithHttpInfo(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         );
         return $response;
     }
@@ -564,12 +564,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsIntegrationsWithHttpInfo(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): array {
         $request = $this->getProjectsIntegrationsRequest(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         );
 
         try {
@@ -596,12 +596,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsIntegrationsAsync(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): Promise {
         return $this->getProjectsIntegrationsAsyncWithHttpInfo(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         )
             ->then(
                 function ($response) {
@@ -616,13 +616,13 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsIntegrationsAsyncWithHttpInfo(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): Promise {
         $returnType = '\Upsun\Model\Integration';
         $request = $this->getProjectsIntegrationsRequest(
-            $project_id,
-            $integration_id
+            $projectId,
+            $integrationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -663,19 +663,19 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsIntegrationsRequest(
-        string $project_id,
-        string $integration_id
+        string $projectId,
+        string $integrationId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsIntegrations'
+                'Missing the required parameter $projectId when calling getProjectsIntegrations'
             );
         }
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+        // verify the required parameter 'integrationId' is set
+        if ($integrationId === null || (is_array($integrationId) && count($integrationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling getProjectsIntegrations'
+                'Missing the required parameter $integrationId when calling getProjectsIntegrations'
             );
         }
 
@@ -689,18 +689,18 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($integration_id !== null) {
+        if ($integrationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'integrationId' . '}',
-                ObjectSerializer::toPathValue($integration_id),
+                ObjectSerializer::toPathValue($integrationId),
                 $resourcePath
             );
         }
@@ -761,10 +761,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsIntegrations(
-        string $project_id
+        string $projectId
     ): array {
         list($response) = $this->listProjectsIntegrationsWithHttpInfo(
-            $project_id
+            $projectId
         );
         return $response;
     }
@@ -775,10 +775,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsIntegrationsWithHttpInfo(
-        string $project_id
+        string $projectId
     ): array {
         $request = $this->listProjectsIntegrationsRequest(
-            $project_id
+            $projectId
         );
 
         try {
@@ -805,10 +805,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsIntegrationsAsync(
-        string $project_id
+        string $projectId
     ): Promise {
         return $this->listProjectsIntegrationsAsyncWithHttpInfo(
-            $project_id
+            $projectId
         )
             ->then(
                 function ($response) {
@@ -823,11 +823,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsIntegrationsAsyncWithHttpInfo(
-        string $project_id
+        string $projectId
     ): Promise {
         $returnType = '\Upsun\Model\Integration[]';
         $request = $this->listProjectsIntegrationsRequest(
-            $project_id
+            $projectId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -868,12 +868,12 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsIntegrationsRequest(
-        string $project_id
+        string $projectId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsIntegrations'
+                'Missing the required parameter $projectId when calling listProjectsIntegrations'
             );
         }
 
@@ -887,10 +887,10 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
@@ -951,14 +951,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsIntegrations(
-        string $project_id,
-        string $integration_id,
-        \Upsun\Model\IntegrationPatch $integration_patch
+        string $projectId,
+        string $integrationId,
+        \Upsun\Model\IntegrationPatch $integrationPatch
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->updateProjectsIntegrationsWithHttpInfo(
-            $project_id,
-            $integration_id,
-            $integration_patch
+            $projectId,
+            $integrationId,
+            $integrationPatch
         );
         return $response;
     }
@@ -969,14 +969,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsIntegrationsWithHttpInfo(
-        string $project_id,
-        string $integration_id,
-        \Upsun\Model\IntegrationPatch $integration_patch
+        string $projectId,
+        string $integrationId,
+        \Upsun\Model\IntegrationPatch $integrationPatch
     ): array {
         $request = $this->updateProjectsIntegrationsRequest(
-            $project_id,
-            $integration_id,
-            $integration_patch
+            $projectId,
+            $integrationId,
+            $integrationPatch
         );
 
         try {
@@ -1003,14 +1003,14 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsIntegrationsAsync(
-        string $project_id,
-        string $integration_id,
-        \Upsun\Model\IntegrationPatch $integration_patch
+        string $projectId,
+        string $integrationId,
+        \Upsun\Model\IntegrationPatch $integrationPatch
     ): Promise {
         return $this->updateProjectsIntegrationsAsyncWithHttpInfo(
-            $project_id,
-            $integration_id,
-            $integration_patch
+            $projectId,
+            $integrationId,
+            $integrationPatch
         )
             ->then(
                 function ($response) {
@@ -1025,15 +1025,15 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function updateProjectsIntegrationsAsyncWithHttpInfo(
-        string $project_id,
-        string $integration_id,
-        \Upsun\Model\IntegrationPatch $integration_patch
+        string $projectId,
+        string $integrationId,
+        \Upsun\Model\IntegrationPatch $integrationPatch
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->updateProjectsIntegrationsRequest(
-            $project_id,
-            $integration_id,
-            $integration_patch
+            $projectId,
+            $integrationId,
+            $integrationPatch
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1074,26 +1074,26 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function updateProjectsIntegrationsRequest(
-        string $project_id,
-        string $integration_id,
-        \Upsun\Model\IntegrationPatch $integration_patch
+        string $projectId,
+        string $integrationId,
+        \Upsun\Model\IntegrationPatch $integrationPatch
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling updateProjectsIntegrations'
+                'Missing the required parameter $projectId when calling updateProjectsIntegrations'
             );
         }
-        // verify the required parameter 'integration_id' is set
-        if ($integration_id === null || (is_array($integration_id) && count($integration_id) === 0)) {
+        // verify the required parameter 'integrationId' is set
+        if ($integrationId === null || (is_array($integrationId) && count($integrationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_id when calling updateProjectsIntegrations'
+                'Missing the required parameter $integrationId when calling updateProjectsIntegrations'
             );
         }
-        // verify the required parameter 'integration_patch' is set
-        if ($integration_patch === null || (is_array($integration_patch) && count($integration_patch) === 0)) {
+        // verify the required parameter 'integrationPatch' is set
+        if ($integrationPatch === null || (is_array($integrationPatch) && count($integrationPatch) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $integration_patch when calling updateProjectsIntegrations'
+                'Missing the required parameter $integrationPatch when calling updateProjectsIntegrations'
             );
         }
 
@@ -1107,18 +1107,18 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($integration_id !== null) {
+        if ($integrationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'integrationId' . '}',
-                ObjectSerializer::toPathValue($integration_id),
+                ObjectSerializer::toPathValue($integrationId),
                 $resourcePath
             );
         }
@@ -1131,11 +1131,11 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($integration_patch)) {
+        if (isset($integrationPatch)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($integration_patch));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($integrationPatch));
             } else {
-                $httpBody = $integration_patch;
+                $httpBody = $integrationPatch;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

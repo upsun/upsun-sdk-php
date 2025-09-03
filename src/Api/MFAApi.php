@@ -124,12 +124,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function confirmTotpEnrollment(
-        string $user_id,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+        string $userId,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): array {
         list($response) = $this->confirmTotpEnrollmentWithHttpInfo(
-            $user_id,
-            $confirm_totp_enrollment_request
+            $userId,
+            $confirmTotpEnrollmentRequest
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function confirmTotpEnrollmentWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+        string $userId,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): array {
         $request = $this->confirmTotpEnrollmentRequest(
-            $user_id,
-            $confirm_totp_enrollment_request
+            $userId,
+            $confirmTotpEnrollmentRequest
         );
 
         try {
@@ -172,12 +172,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function confirmTotpEnrollmentAsync(
-        string $user_id,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+        string $userId,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): Promise {
         return $this->confirmTotpEnrollmentAsyncWithHttpInfo(
-            $user_id,
-            $confirm_totp_enrollment_request
+            $userId,
+            $confirmTotpEnrollmentRequest
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function confirmTotpEnrollmentAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+        string $userId,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
         $request = $this->confirmTotpEnrollmentRequest(
-            $user_id,
-            $confirm_totp_enrollment_request
+            $userId,
+            $confirmTotpEnrollmentRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,13 +239,13 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function confirmTotpEnrollmentRequest(
-        string $user_id,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirm_totp_enrollment_request = null
+        string $userId,
+        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling confirmTotpEnrollment'
+                'Missing the required parameter $userId when calling confirmTotpEnrollment'
             );
         }
 
@@ -259,10 +259,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -275,11 +275,11 @@ final class MFAApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($confirm_totp_enrollment_request)) {
+        if (isset($confirmTotpEnrollmentRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($confirm_totp_enrollment_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($confirmTotpEnrollmentRequest));
             } else {
-                $httpBody = $confirm_totp_enrollment_request;
+                $httpBody = $confirmTotpEnrollmentRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -329,10 +329,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function disableOrgMfaEnforcement(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\OrganizationMFAEnforcement {
         list($response) = $this->disableOrgMfaEnforcementWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -343,10 +343,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function disableOrgMfaEnforcementWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->disableOrgMfaEnforcementRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -373,10 +373,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function disableOrgMfaEnforcementAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->disableOrgMfaEnforcementAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -391,11 +391,11 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function disableOrgMfaEnforcementAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '';
         $request = $this->disableOrgMfaEnforcementRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -426,12 +426,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function disableOrgMfaEnforcementRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling disableOrgMfaEnforcement'
+                'Missing the required parameter $organizationId when calling disableOrgMfaEnforcement'
             );
         }
 
@@ -445,10 +445,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -509,10 +509,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function enableOrgMfaEnforcement(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\OrganizationMFAEnforcement {
         list($response) = $this->enableOrgMfaEnforcementWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -523,10 +523,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function enableOrgMfaEnforcementWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->enableOrgMfaEnforcementRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -553,10 +553,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function enableOrgMfaEnforcementAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->enableOrgMfaEnforcementAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -571,11 +571,11 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function enableOrgMfaEnforcementAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '';
         $request = $this->enableOrgMfaEnforcementRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -606,12 +606,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function enableOrgMfaEnforcementRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling enableOrgMfaEnforcement'
+                'Missing the required parameter $organizationId when calling enableOrgMfaEnforcement'
             );
         }
 
@@ -625,10 +625,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -689,10 +689,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgMfaEnforcement(
-        string $organization_id
+        string $organizationId
     ): \Upsun\Model\OrganizationMFAEnforcement {
         list($response) = $this->getOrgMfaEnforcementWithHttpInfo(
-            $organization_id
+            $organizationId
         );
         return $response;
     }
@@ -703,10 +703,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgMfaEnforcementWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): array {
         $request = $this->getOrgMfaEnforcementRequest(
-            $organization_id
+            $organizationId
         );
 
         try {
@@ -733,10 +733,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgMfaEnforcementAsync(
-        string $organization_id
+        string $organizationId
     ): Promise {
         return $this->getOrgMfaEnforcementAsyncWithHttpInfo(
-            $organization_id
+            $organizationId
         )
             ->then(
                 function ($response) {
@@ -751,11 +751,11 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getOrgMfaEnforcementAsyncWithHttpInfo(
-        string $organization_id
+        string $organizationId
     ): Promise {
         $returnType = '\Upsun\Model\OrganizationMFAEnforcement';
         $request = $this->getOrgMfaEnforcementRequest(
-            $organization_id
+            $organizationId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -796,12 +796,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getOrgMfaEnforcementRequest(
-        string $organization_id
+        string $organizationId
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling getOrgMfaEnforcement'
+                'Missing the required parameter $organizationId when calling getOrgMfaEnforcement'
             );
         }
 
@@ -815,10 +815,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -879,10 +879,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getTotpEnrollment(
-        string $user_id
+        string $userId
     ): array {
         list($response) = $this->getTotpEnrollmentWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -893,10 +893,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getTotpEnrollmentWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->getTotpEnrollmentRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -923,10 +923,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getTotpEnrollmentAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->getTotpEnrollmentAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -941,11 +941,11 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getTotpEnrollmentAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\GetTotpEnrollment200Response';
         $request = $this->getTotpEnrollmentRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -986,12 +986,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getTotpEnrollmentRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getTotpEnrollment'
+                'Missing the required parameter $userId when calling getTotpEnrollment'
             );
         }
 
@@ -1005,10 +1005,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1069,10 +1069,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function recreateRecoveryCodes(
-        string $user_id
+        string $userId
     ): array {
         list($response) = $this->recreateRecoveryCodesWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -1083,10 +1083,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function recreateRecoveryCodesWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->recreateRecoveryCodesRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -1113,10 +1113,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function recreateRecoveryCodesAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->recreateRecoveryCodesAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -1131,11 +1131,11 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function recreateRecoveryCodesAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\ConfirmTotpEnrollment200Response';
         $request = $this->recreateRecoveryCodesRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1176,12 +1176,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function recreateRecoveryCodesRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling recreateRecoveryCodes'
+                'Missing the required parameter $userId when calling recreateRecoveryCodes'
             );
         }
 
@@ -1195,10 +1195,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -1259,12 +1259,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function sendOrgMfaReminders(
-        string $organization_id,
-        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+        string $organizationId,
+        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): array {
         list($response) = $this->sendOrgMfaRemindersWithHttpInfo(
-            $organization_id,
-            $send_org_mfa_reminders_request
+            $organizationId,
+            $sendOrgMfaRemindersRequest
         );
         return $response;
     }
@@ -1275,12 +1275,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function sendOrgMfaRemindersWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+        string $organizationId,
+        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): array {
         $request = $this->sendOrgMfaRemindersRequest(
-            $organization_id,
-            $send_org_mfa_reminders_request
+            $organizationId,
+            $sendOrgMfaRemindersRequest
         );
 
         try {
@@ -1307,12 +1307,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function sendOrgMfaRemindersAsync(
-        string $organization_id,
-        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+        string $organizationId,
+        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): Promise {
         return $this->sendOrgMfaRemindersAsyncWithHttpInfo(
-            $organization_id,
-            $send_org_mfa_reminders_request
+            $organizationId,
+            $sendOrgMfaRemindersRequest
         )
             ->then(
                 function ($response) {
@@ -1327,13 +1327,13 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function sendOrgMfaRemindersAsyncWithHttpInfo(
-        string $organization_id,
-        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+        string $organizationId,
+        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): Promise {
         $returnType = 'array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>';
         $request = $this->sendOrgMfaRemindersRequest(
-            $organization_id,
-            $send_org_mfa_reminders_request
+            $organizationId,
+            $sendOrgMfaRemindersRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1374,13 +1374,13 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function sendOrgMfaRemindersRequest(
-        string $organization_id,
-        \Upsun\Model\SendOrgMfaRemindersRequest $send_org_mfa_reminders_request = null
+        string $organizationId,
+        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling sendOrgMfaReminders'
+                'Missing the required parameter $organizationId when calling sendOrgMfaReminders'
             );
         }
 
@@ -1394,10 +1394,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -1410,11 +1410,11 @@ final class MFAApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($send_org_mfa_reminders_request)) {
+        if (isset($sendOrgMfaRemindersRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($send_org_mfa_reminders_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($sendOrgMfaRemindersRequest));
             } else {
-                $httpBody = $send_org_mfa_reminders_request;
+                $httpBody = $sendOrgMfaRemindersRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -1464,10 +1464,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function withdrawTotpEnrollment(
-        string $user_id
+        string $userId
     ): array {
         list($response) = $this->withdrawTotpEnrollmentWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -1478,10 +1478,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function withdrawTotpEnrollmentWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->withdrawTotpEnrollmentRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -1508,10 +1508,10 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function withdrawTotpEnrollmentAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->withdrawTotpEnrollmentAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -1526,11 +1526,11 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function withdrawTotpEnrollmentAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '';
         $request = $this->withdrawTotpEnrollmentRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1561,12 +1561,12 @@ final class MFAApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function withdrawTotpEnrollmentRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling withdrawTotpEnrollment'
+                'Missing the required parameter $userId when calling withdrawTotpEnrollment'
             );
         }
 
@@ -1580,10 +1580,10 @@ final class MFAApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }

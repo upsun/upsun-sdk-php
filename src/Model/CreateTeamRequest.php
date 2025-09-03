@@ -24,30 +24,43 @@ final class CreateTeamRequest implements JsonSerializable
     private static string $openAPIModelName = 'create_team_request';
 
     private static array $attributeMap = [
-        'organization_id' => 'organization_id',
+        'organizationId' => 'organization_id',
         'label' => 'label',
-        'project_permissions' => 'project_permissions'
+        'projectPermissions' => 'project_permissions'
     ];
 
     public function __construct(
-        public readonly ?string $organization_id = null,
-        public readonly ?string $label = null,
-        public readonly ?array $project_permissions = [],
+        private readonly ?string $organizationId = null,
+        private readonly ?string $label = null,
+        private readonly ?array $projectPermissions = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'organization_id' => $this->organization_id,
+            'organizationId' => $this->organizationId,
             'label' => $this->label,
-            'project_permissions' => $this->project_permissions,
+            'projectPermissions' => $this->projectPermissions,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getOrganizationId(): ?string
+    {
+        return $this->organizationId;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getProjectPermissions(): ?array
+    {
+        return $this->projectPermissions;
     }
 }
 

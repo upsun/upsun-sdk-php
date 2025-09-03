@@ -29,8 +29,8 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $expires = null,
-        public readonly ?array $paths = [],
+        private readonly ?string $expires = null,
+        private readonly ?array $paths = [],
     ) {
     }
 
@@ -45,6 +45,15 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getExpires(): ?string
+    {
+        return $this->expires;
+    }
+    public function getPaths(): ?array
+    {
+        return $this->paths;
     }
 }
 

@@ -25,14 +25,14 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
 
     private static array $attributeMap = [
         'source' => 'source',
-        'source_path' => 'source_path',
+        'sourcePath' => 'source_path',
         'service' => 'service'
     ];
 
     public function __construct(
-        public readonly ?string $source = null,
-        public readonly ?string $source_path = null,
-        public readonly ?string $service = null,
+        private readonly ?string $source = null,
+        private readonly ?string $sourcePath = null,
+        private readonly ?string $service = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     {
         return [
             'source' => $this->source,
-            'source_path' => $this->source_path,
+            'sourcePath' => $this->sourcePath,
             'service' => $this->service,
         ];
     }
@@ -48,6 +48,19 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSource(): ?string
+    {
+        return $this->source;
+    }
+    public function getSourcePath(): ?string
+    {
+        return $this->sourcePath;
+    }
+    public function getService(): ?string
+    {
+        return $this->service;
     }
 }
 

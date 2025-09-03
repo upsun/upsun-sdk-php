@@ -26,17 +26,17 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     private static array $attributeMap = [
         'type' => 'type',
         'name' => 'name',
-        'site_urls' => 'site_urls',
-        'ssh_hosts' => 'ssh_hosts',
-        'enterprise_environments_mapping' => 'enterprise_environments_mapping'
+        'siteUrls' => 'site_urls',
+        'sshHosts' => 'ssh_hosts',
+        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?string $name = null,
-        public readonly ?object $site_urls = null,
-        public readonly ?array $ssh_hosts = [],
-        public readonly ?object $enterprise_environments_mapping = null,
+        private readonly ?string $type = null,
+        private readonly ?string $name = null,
+        private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+        private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
@@ -45,15 +45,36 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
         return [
             'type' => $this->type,
             'name' => $this->name,
-            'site_urls' => $this->site_urls,
-            'ssh_hosts' => $this->ssh_hosts,
-            'enterprise_environments_mapping' => $this->enterprise_environments_mapping,
+            'siteUrls' => $this->siteUrls,
+            'sshHosts' => $this->sshHosts,
+            'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getSiteUrls(): ?object
+    {
+        return $this->siteUrls;
+    }
+    public function getSshHosts(): ?array
+    {
+        return $this->sshHosts;
+    }
+    public function getEnterpriseEnvironmentsMapping(): ?object
+    {
+        return $this->enterpriseEnvironmentsMapping;
     }
 }
 

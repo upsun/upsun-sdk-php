@@ -25,12 +25,12 @@ final class CustomDomains implements JsonSerializable
 
     private static array $attributeMap = [
         'enabled' => 'enabled',
-        'environments_with_domains_limit' => 'environments_with_domains_limit'
+        'environmentsWithDomainsLimit' => 'environments_with_domains_limit'
     ];
 
     public function __construct(
-        public readonly ?bool $enabled = null,
-        public readonly ?int $environments_with_domains_limit = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?int $environmentsWithDomainsLimit = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class CustomDomains implements JsonSerializable
     {
         return [
             'enabled' => $this->enabled,
-            'environments_with_domains_limit' => $this->environments_with_domains_limit,
+            'environmentsWithDomainsLimit' => $this->environmentsWithDomainsLimit,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+    public function getEnvironmentsWithDomainsLimit(): ?int
+    {
+        return $this->environmentsWithDomainsLimit;
     }
 }
 

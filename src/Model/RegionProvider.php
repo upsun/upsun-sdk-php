@@ -29,8 +29,8 @@ final class RegionProvider implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?string $logo = null,
+        private readonly ?string $name = null,
+        private readonly ?string $logo = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class RegionProvider implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getLogo(): ?string
+    {
+        return $this->logo;
     }
 }
 

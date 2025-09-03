@@ -27,24 +27,24 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
         'name' => 'name',
         'attributes' => 'attributes',
         'value' => 'value',
-        'is_json' => 'is_json',
-        'is_sensitive' => 'is_sensitive',
-        'visible_build' => 'visible_build',
-        'visible_runtime' => 'visible_runtime',
-        'is_enabled' => 'is_enabled',
-        'is_inheritable' => 'is_inheritable'
+        'isJson' => 'is_json',
+        'isSensitive' => 'is_sensitive',
+        'visibleBuild' => 'visible_build',
+        'visibleRuntime' => 'visible_runtime',
+        'isEnabled' => 'is_enabled',
+        'isInheritable' => 'is_inheritable'
     ];
 
     public function __construct(
-        public readonly ?string $name = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $value = null,
-        public readonly ?bool $is_json = null,
-        public readonly ?bool $is_sensitive = null,
-        public readonly ?bool $visible_build = null,
-        public readonly ?bool $visible_runtime = null,
-        public readonly ?bool $is_enabled = null,
-        public readonly ?bool $is_inheritable = null,
+        private readonly ?string $name = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $value = null,
+        private readonly ?bool $isJson = null,
+        private readonly ?bool $isSensitive = null,
+        private readonly ?bool $visibleBuild = null,
+        private readonly ?bool $visibleRuntime = null,
+        private readonly ?bool $isEnabled = null,
+        private readonly ?bool $isInheritable = null,
     ) {
     }
 
@@ -54,18 +54,55 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
             'name' => $this->name,
             'attributes' => $this->attributes,
             'value' => $this->value,
-            'is_json' => $this->is_json,
-            'is_sensitive' => $this->is_sensitive,
-            'visible_build' => $this->visible_build,
-            'visible_runtime' => $this->visible_runtime,
-            'is_enabled' => $this->is_enabled,
-            'is_inheritable' => $this->is_inheritable,
+            'isJson' => $this->isJson,
+            'isSensitive' => $this->isSensitive,
+            'visibleBuild' => $this->visibleBuild,
+            'visibleRuntime' => $this->visibleRuntime,
+            'isEnabled' => $this->isEnabled,
+            'isInheritable' => $this->isInheritable,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getValue(): ?string
+    {
+        return $this->value;
+    }
+    public function getIsJson(): ?bool
+    {
+        return $this->isJson;
+    }
+    public function getIsSensitive(): ?bool
+    {
+        return $this->isSensitive;
+    }
+    public function getVisibleBuild(): ?bool
+    {
+        return $this->visibleBuild;
+    }
+    public function getVisibleRuntime(): ?bool
+    {
+        return $this->visibleRuntime;
+    }
+    public function getIsEnabled(): ?bool
+    {
+        return $this->isEnabled;
+    }
+    public function getIsInheritable(): ?bool
+    {
+        return $this->isInheritable;
     }
 }
 

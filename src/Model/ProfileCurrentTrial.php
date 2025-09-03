@@ -30,25 +30,25 @@ final class ProfileCurrentTrial implements JsonSerializable
         'expiration' => 'expiration',
         'current' => 'current',
         'spend' => 'spend',
-        'spend_remaining' => 'spend_remaining',
+        'spendRemaining' => 'spend_remaining',
         'projects' => 'projects',
-        'pending_verification' => 'pending_verification',
+        'pendingVerification' => 'pending_verification',
         'model' => 'model',
-        'days_remaining' => 'days_remaining'
+        'daysRemaining' => 'days_remaining'
     ];
 
     public function __construct(
-        public readonly ?bool $active = null,
-        public readonly ?\DateTime $created = null,
-        public readonly ?string $description = null,
-        public readonly ?\DateTime $expiration = null,
-        public readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
-        public readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
-        public readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spend_remaining = null,
-        public readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
-        public readonly ?string $pending_verification = null,
-        public readonly ?string $model = null,
-        public readonly ?int $days_remaining = null,
+        private readonly ?bool $active = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?string $description = null,
+        private readonly ?\DateTime $expiration = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        private readonly ?string $pendingVerification = null,
+        private readonly ?string $model = null,
+        private readonly ?int $daysRemaining = null,
     ) {
     }
 
@@ -61,17 +61,62 @@ final class ProfileCurrentTrial implements JsonSerializable
             'expiration' => $this->expiration,
             'current' => $this->current,
             'spend' => $this->spend,
-            'spend_remaining' => $this->spend_remaining,
+            'spendRemaining' => $this->spendRemaining,
             'projects' => $this->projects,
-            'pending_verification' => $this->pending_verification,
+            'pendingVerification' => $this->pendingVerification,
             'model' => $this->model,
-            'days_remaining' => $this->days_remaining,
+            'daysRemaining' => $this->daysRemaining,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+    public function getCreated(): ?\DateTime
+    {
+        return $this->created;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+    public function getExpiration(): ?\DateTime
+    {
+        return $this->expiration;
+    }
+    public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
+    {
+        return $this->current;
+    }
+    public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
+    {
+        return $this->spend;
+    }
+    public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
+    {
+        return $this->spendRemaining;
+    }
+    public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
+    {
+        return $this->projects;
+    }
+    public function getPendingVerification(): ?string
+    {
+        return $this->pendingVerification;
+    }
+    public function getModel(): ?string
+    {
+        return $this->model;
+    }
+    public function getDaysRemaining(): ?int
+    {
+        return $this->daysRemaining;
     }
 }
 

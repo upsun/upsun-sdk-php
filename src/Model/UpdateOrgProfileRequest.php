@@ -24,39 +24,64 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     private static string $openAPIModelName = 'update_org_profile_request';
 
     private static array $attributeMap = [
-        'default_catalog' => 'default_catalog',
-        'project_options_url' => 'project_options_url',
-        'security_contact' => 'security_contact',
-        'company_name' => 'company_name',
-        'vat_number' => 'vat_number',
-        'billing_contact' => 'billing_contact'
+        'defaultCatalog' => 'default_catalog',
+        'projectOptionsUrl' => 'project_options_url',
+        'securityContact' => 'security_contact',
+        'companyName' => 'company_name',
+        'vatNumber' => 'vat_number',
+        'billingContact' => 'billing_contact'
     ];
 
     public function __construct(
-        public readonly ?string $default_catalog = null,
-        public readonly ?string $project_options_url = null,
-        public readonly ?string $security_contact = null,
-        public readonly ?string $company_name = null,
-        public readonly ?string $vat_number = null,
-        public readonly ?string $billing_contact = null,
+        private readonly ?string $defaultCatalog = null,
+        private readonly ?string $projectOptionsUrl = null,
+        private readonly ?string $securityContact = null,
+        private readonly ?string $companyName = null,
+        private readonly ?string $vatNumber = null,
+        private readonly ?string $billingContact = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'default_catalog' => $this->default_catalog,
-            'project_options_url' => $this->project_options_url,
-            'security_contact' => $this->security_contact,
-            'company_name' => $this->company_name,
-            'vat_number' => $this->vat_number,
-            'billing_contact' => $this->billing_contact,
+            'defaultCatalog' => $this->defaultCatalog,
+            'projectOptionsUrl' => $this->projectOptionsUrl,
+            'securityContact' => $this->securityContact,
+            'companyName' => $this->companyName,
+            'vatNumber' => $this->vatNumber,
+            'billingContact' => $this->billingContact,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getDefaultCatalog(): ?string
+    {
+        return $this->defaultCatalog;
+    }
+    public function getProjectOptionsUrl(): ?string
+    {
+        return $this->projectOptionsUrl;
+    }
+    public function getSecurityContact(): ?string
+    {
+        return $this->securityContact;
+    }
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+    public function getVatNumber(): ?string
+    {
+        return $this->vatNumber;
+    }
+    public function getBillingContact(): ?string
+    {
+        return $this->billingContact;
     }
 }
 

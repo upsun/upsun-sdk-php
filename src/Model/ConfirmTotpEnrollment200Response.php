@@ -24,24 +24,29 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     private static string $openAPIModelName = 'confirm_totp_enrollment_200_response';
 
     private static array $attributeMap = [
-        'recovery_codes' => 'recovery_codes'
+        'recoveryCodes' => 'recovery_codes'
     ];
 
     public function __construct(
-        public readonly ?array $recovery_codes = [],
+        private readonly ?array $recoveryCodes = [],
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'recovery_codes' => $this->recovery_codes,
+            'recoveryCodes' => $this->recoveryCodes,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRecoveryCodes(): ?array
+    {
+        return $this->recoveryCodes;
     }
 }
 

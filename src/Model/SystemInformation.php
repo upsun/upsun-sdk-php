@@ -26,13 +26,13 @@ final class SystemInformation implements JsonSerializable
     private static array $attributeMap = [
         'version' => 'version',
         'image' => 'image',
-        'started_at' => 'started_at'
+        'startedAt' => 'started_at'
     ];
 
     public function __construct(
-        public readonly ?string $version = null,
-        public readonly ?string $image = null,
-        public readonly ?\DateTime $started_at = null,
+        private readonly ?string $version = null,
+        private readonly ?string $image = null,
+        private readonly ?\DateTime $startedAt = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class SystemInformation implements JsonSerializable
         return [
             'version' => $this->version,
             'image' => $this->image,
-            'started_at' => $this->started_at,
+            'startedAt' => $this->startedAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getVersion(): ?string
+    {
+        return $this->version;
+    }
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+    public function getStartedAt(): ?\DateTime
+    {
+        return $this->startedAt;
     }
 }
 

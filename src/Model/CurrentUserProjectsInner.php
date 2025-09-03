@@ -28,45 +28,45 @@ final class CurrentUserProjectsInner implements JsonSerializable
         'name' => 'name',
         'title' => 'title',
         'cluster' => 'cluster',
-        'cluster_label' => 'cluster_label',
+        'clusterLabel' => 'cluster_label',
         'region' => 'region',
-        'region_label' => 'region_label',
+        'regionLabel' => 'region_label',
         'uri' => 'uri',
         'endpoint' => 'endpoint',
-        'license_id' => 'license_id',
+        'licenseId' => 'license_id',
         'owner' => 'owner',
-        'owner_info' => 'owner_info',
+        'ownerInfo' => 'owner_info',
         'plan' => 'plan',
-        'subscription_id' => 'subscription_id',
+        'subscriptionId' => 'subscription_id',
         'status' => 'status',
         'vendor' => 'vendor',
-        'vendor_label' => 'vendor_label',
-        'vendor_website' => 'vendor_website',
-        'vendor_resources' => 'vendor_resources',
-        'created_at' => 'created_at'
+        'vendorLabel' => 'vendor_label',
+        'vendorWebsite' => 'vendor_website',
+        'vendorResources' => 'vendor_resources',
+        'createdAt' => 'created_at'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $name = null,
-        public readonly ?string $title = null,
-        public readonly ?string $cluster = null,
-        public readonly ?string $cluster_label = null,
-        public readonly ?string $region = null,
-        public readonly ?string $region_label = null,
-        public readonly ?string $uri = null,
-        public readonly ?string $endpoint = null,
-        public readonly ?int $license_id = null,
-        public readonly ?string $owner = null,
-        public readonly ?\Upsun\Model\OwnerInfo $owner_info = null,
-        public readonly ?string $plan = null,
-        public readonly ?int $subscription_id = null,
-        public readonly ?string $status = null,
-        public readonly ?string $vendor = null,
-        public readonly ?string $vendor_label = null,
-        public readonly ?string $vendor_website = null,
-        public readonly ?string $vendor_resources = null,
-        public readonly ?\DateTime $created_at = null,
+        private readonly ?string $id = null,
+        private readonly ?string $name = null,
+        private readonly ?string $title = null,
+        private readonly ?string $cluster = null,
+        private readonly ?string $clusterLabel = null,
+        private readonly ?string $region = null,
+        private readonly ?string $regionLabel = null,
+        private readonly ?string $uri = null,
+        private readonly ?string $endpoint = null,
+        private readonly ?int $licenseId = null,
+        private readonly ?string $owner = null,
+        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private readonly ?string $plan = null,
+        private readonly ?int $subscriptionId = null,
+        private readonly ?string $status = null,
+        private readonly ?string $vendor = null,
+        private readonly ?string $vendorLabel = null,
+        private readonly ?string $vendorWebsite = null,
+        private readonly ?string $vendorResources = null,
+        private readonly ?\DateTime $createdAt = null,
     ) {
     }
 
@@ -77,28 +77,109 @@ final class CurrentUserProjectsInner implements JsonSerializable
             'name' => $this->name,
             'title' => $this->title,
             'cluster' => $this->cluster,
-            'cluster_label' => $this->cluster_label,
+            'clusterLabel' => $this->clusterLabel,
             'region' => $this->region,
-            'region_label' => $this->region_label,
+            'regionLabel' => $this->regionLabel,
             'uri' => $this->uri,
             'endpoint' => $this->endpoint,
-            'license_id' => $this->license_id,
+            'licenseId' => $this->licenseId,
             'owner' => $this->owner,
-            'owner_info' => $this->owner_info,
+            'ownerInfo' => $this->ownerInfo,
             'plan' => $this->plan,
-            'subscription_id' => $this->subscription_id,
+            'subscriptionId' => $this->subscriptionId,
             'status' => $this->status,
             'vendor' => $this->vendor,
-            'vendor_label' => $this->vendor_label,
-            'vendor_website' => $this->vendor_website,
-            'vendor_resources' => $this->vendor_resources,
-            'created_at' => $this->created_at,
+            'vendorLabel' => $this->vendorLabel,
+            'vendorWebsite' => $this->vendorWebsite,
+            'vendorResources' => $this->vendorResources,
+            'createdAt' => $this->createdAt,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+    public function getCluster(): ?string
+    {
+        return $this->cluster;
+    }
+    public function getClusterLabel(): ?string
+    {
+        return $this->clusterLabel;
+    }
+    public function getRegion(): ?string
+    {
+        return $this->region;
+    }
+    public function getRegionLabel(): ?string
+    {
+        return $this->regionLabel;
+    }
+    public function getUri(): ?string
+    {
+        return $this->uri;
+    }
+    public function getEndpoint(): ?string
+    {
+        return $this->endpoint;
+    }
+    public function getLicenseId(): ?int
+    {
+        return $this->licenseId;
+    }
+    public function getOwner(): ?string
+    {
+        return $this->owner;
+    }
+    public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    {
+        return $this->ownerInfo;
+    }
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    public function getSubscriptionId(): ?int
+    {
+        return $this->subscriptionId;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+    public function getVendorLabel(): ?string
+    {
+        return $this->vendorLabel;
+    }
+    public function getVendorWebsite(): ?string
+    {
+        return $this->vendorWebsite;
+    }
+    public function getVendorResources(): ?string
+    {
+        return $this->vendorResources;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
     }
 }
 

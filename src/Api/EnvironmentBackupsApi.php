@@ -124,14 +124,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function backupEnvironment(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentBackupInput $environment_backup_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->backupEnvironmentWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $environment_backup_input
+            $projectId,
+            $environmentId,
+            $environmentBackupInput
         );
         return $response;
     }
@@ -142,14 +142,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function backupEnvironmentWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentBackupInput $environment_backup_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): array {
         $request = $this->backupEnvironmentRequest(
-            $project_id,
-            $environment_id,
-            $environment_backup_input
+            $projectId,
+            $environmentId,
+            $environmentBackupInput
         );
 
         try {
@@ -176,14 +176,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function backupEnvironmentAsync(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentBackupInput $environment_backup_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): Promise {
         return $this->backupEnvironmentAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $environment_backup_input
+            $projectId,
+            $environmentId,
+            $environmentBackupInput
         )
             ->then(
                 function ($response) {
@@ -198,15 +198,15 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function backupEnvironmentAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentBackupInput $environment_backup_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->backupEnvironmentRequest(
-            $project_id,
-            $environment_id,
-            $environment_backup_input
+            $projectId,
+            $environmentId,
+            $environmentBackupInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -247,26 +247,26 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function backupEnvironmentRequest(
-        string $project_id,
-        string $environment_id,
-        \Upsun\Model\EnvironmentBackupInput $environment_backup_input
+        string $projectId,
+        string $environmentId,
+        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling backupEnvironment'
+                'Missing the required parameter $projectId when calling backupEnvironment'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling backupEnvironment'
+                'Missing the required parameter $environmentId when calling backupEnvironment'
             );
         }
-        // verify the required parameter 'environment_backup_input' is set
-        if ($environment_backup_input === null || (is_array($environment_backup_input) && count($environment_backup_input) === 0)) {
+        // verify the required parameter 'environmentBackupInput' is set
+        if ($environmentBackupInput === null || (is_array($environmentBackupInput) && count($environmentBackupInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_backup_input when calling backupEnvironment'
+                'Missing the required parameter $environmentBackupInput when calling backupEnvironment'
             );
         }
 
@@ -280,18 +280,18 @@ final class EnvironmentBackupsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -304,11 +304,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($environment_backup_input)) {
+        if (isset($environmentBackupInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environment_backup_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentBackupInput));
             } else {
-                $httpBody = $environment_backup_input;
+                $httpBody = $environmentBackupInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -358,14 +358,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsBackups(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         );
         return $response;
     }
@@ -376,14 +376,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsBackupsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): array {
         $request = $this->deleteProjectsEnvironmentsBackupsRequest(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         );
 
         try {
@@ -410,14 +410,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsBackupsAsync(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): Promise {
         return $this->deleteProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         )
             ->then(
                 function ($response) {
@@ -432,15 +432,15 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->deleteProjectsEnvironmentsBackupsRequest(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -481,26 +481,26 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteProjectsEnvironmentsBackupsRequest(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling deleteProjectsEnvironmentsBackups'
+                'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsBackups'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling deleteProjectsEnvironmentsBackups'
+                'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsBackups'
             );
         }
-        // verify the required parameter 'backup_id' is set
-        if ($backup_id === null || (is_array($backup_id) && count($backup_id) === 0)) {
+        // verify the required parameter 'backupId' is set
+        if ($backupId === null || (is_array($backupId) && count($backupId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $backup_id when calling deleteProjectsEnvironmentsBackups'
+                'Missing the required parameter $backupId when calling deleteProjectsEnvironmentsBackups'
             );
         }
 
@@ -514,26 +514,26 @@ final class EnvironmentBackupsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($backup_id !== null) {
+        if ($backupId !== null) {
             $resourcePath = str_replace(
                 '{' . 'backupId' . '}',
-                ObjectSerializer::toPathValue($backup_id),
+                ObjectSerializer::toPathValue($backupId),
                 $resourcePath
             );
         }
@@ -594,14 +594,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsBackups(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): \Upsun\Model\Backup {
         list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         );
         return $response;
     }
@@ -612,14 +612,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsBackupsWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): array {
         $request = $this->getProjectsEnvironmentsBackupsRequest(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         );
 
         try {
@@ -646,14 +646,14 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsBackupsAsync(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): Promise {
         return $this->getProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         )
             ->then(
                 function ($response) {
@@ -668,15 +668,15 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): Promise {
         $returnType = '\Upsun\Model\Backup';
         $request = $this->getProjectsEnvironmentsBackupsRequest(
-            $project_id,
-            $environment_id,
-            $backup_id
+            $projectId,
+            $environmentId,
+            $backupId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -717,26 +717,26 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getProjectsEnvironmentsBackupsRequest(
-        string $project_id,
-        string $environment_id,
-        string $backup_id
+        string $projectId,
+        string $environmentId,
+        string $backupId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling getProjectsEnvironmentsBackups'
+                'Missing the required parameter $projectId when calling getProjectsEnvironmentsBackups'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling getProjectsEnvironmentsBackups'
+                'Missing the required parameter $environmentId when calling getProjectsEnvironmentsBackups'
             );
         }
-        // verify the required parameter 'backup_id' is set
-        if ($backup_id === null || (is_array($backup_id) && count($backup_id) === 0)) {
+        // verify the required parameter 'backupId' is set
+        if ($backupId === null || (is_array($backupId) && count($backupId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $backup_id when calling getProjectsEnvironmentsBackups'
+                'Missing the required parameter $backupId when calling getProjectsEnvironmentsBackups'
             );
         }
 
@@ -750,26 +750,26 @@ final class EnvironmentBackupsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($backup_id !== null) {
+        if ($backupId !== null) {
             $resourcePath = str_replace(
                 '{' . 'backupId' . '}',
-                ObjectSerializer::toPathValue($backup_id),
+                ObjectSerializer::toPathValue($backupId),
                 $resourcePath
             );
         }
@@ -830,12 +830,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsBackups(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         list($response) = $this->listProjectsEnvironmentsBackupsWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
         return $response;
     }
@@ -846,12 +846,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsBackupsWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): array {
         $request = $this->listProjectsEnvironmentsBackupsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         try {
@@ -878,12 +878,12 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsBackupsAsync(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         return $this->listProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         )
             ->then(
                 function ($response) {
@@ -898,13 +898,13 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): Promise {
         $returnType = '\Upsun\Model\Backup[]';
         $request = $this->listProjectsEnvironmentsBackupsRequest(
-            $project_id,
-            $environment_id
+            $projectId,
+            $environmentId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -945,19 +945,19 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listProjectsEnvironmentsBackupsRequest(
-        string $project_id,
-        string $environment_id
+        string $projectId,
+        string $environmentId
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling listProjectsEnvironmentsBackups'
+                'Missing the required parameter $projectId when calling listProjectsEnvironmentsBackups'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling listProjectsEnvironmentsBackups'
+                'Missing the required parameter $environmentId when calling listProjectsEnvironmentsBackups'
             );
         }
 
@@ -971,18 +971,18 @@ final class EnvironmentBackupsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
@@ -1043,16 +1043,16 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function restoreBackup(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): \Upsun\Model\AcceptedResponse {
         list($response) = $this->restoreBackupWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $backup_id,
-            $environment_restore_input
+            $projectId,
+            $environmentId,
+            $backupId,
+            $environmentRestoreInput
         );
         return $response;
     }
@@ -1063,16 +1063,16 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function restoreBackupWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): array {
         $request = $this->restoreBackupRequest(
-            $project_id,
-            $environment_id,
-            $backup_id,
-            $environment_restore_input
+            $projectId,
+            $environmentId,
+            $backupId,
+            $environmentRestoreInput
         );
 
         try {
@@ -1099,16 +1099,16 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function restoreBackupAsync(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): Promise {
         return $this->restoreBackupAsyncWithHttpInfo(
-            $project_id,
-            $environment_id,
-            $backup_id,
-            $environment_restore_input
+            $projectId,
+            $environmentId,
+            $backupId,
+            $environmentRestoreInput
         )
             ->then(
                 function ($response) {
@@ -1123,17 +1123,17 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function restoreBackupAsyncWithHttpInfo(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): Promise {
         $returnType = '\Upsun\Model\AcceptedResponse';
         $request = $this->restoreBackupRequest(
-            $project_id,
-            $environment_id,
-            $backup_id,
-            $environment_restore_input
+            $projectId,
+            $environmentId,
+            $backupId,
+            $environmentRestoreInput
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -1174,33 +1174,33 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function restoreBackupRequest(
-        string $project_id,
-        string $environment_id,
-        string $backup_id,
-        \Upsun\Model\EnvironmentRestoreInput $environment_restore_input
+        string $projectId,
+        string $environmentId,
+        string $backupId,
+        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): RequestInterface {
-        // verify the required parameter 'project_id' is set
-        if ($project_id === null || (is_array($project_id) && count($project_id) === 0)) {
+        // verify the required parameter 'projectId' is set
+        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $project_id when calling restoreBackup'
+                'Missing the required parameter $projectId when calling restoreBackup'
             );
         }
-        // verify the required parameter 'environment_id' is set
-        if ($environment_id === null || (is_array($environment_id) && count($environment_id) === 0)) {
+        // verify the required parameter 'environmentId' is set
+        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_id when calling restoreBackup'
+                'Missing the required parameter $environmentId when calling restoreBackup'
             );
         }
-        // verify the required parameter 'backup_id' is set
-        if ($backup_id === null || (is_array($backup_id) && count($backup_id) === 0)) {
+        // verify the required parameter 'backupId' is set
+        if ($backupId === null || (is_array($backupId) && count($backupId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $backup_id when calling restoreBackup'
+                'Missing the required parameter $backupId when calling restoreBackup'
             );
         }
-        // verify the required parameter 'environment_restore_input' is set
-        if ($environment_restore_input === null || (is_array($environment_restore_input) && count($environment_restore_input) === 0)) {
+        // verify the required parameter 'environmentRestoreInput' is set
+        if ($environmentRestoreInput === null || (is_array($environmentRestoreInput) && count($environmentRestoreInput) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environment_restore_input when calling restoreBackup'
+                'Missing the required parameter $environmentRestoreInput when calling restoreBackup'
             );
         }
 
@@ -1214,26 +1214,26 @@ final class EnvironmentBackupsApi extends AbstractApi
 
 
         // path params
-        if ($project_id !== null) {
+        if ($projectId !== null) {
             $resourcePath = str_replace(
                 '{' . 'projectId' . '}',
-                ObjectSerializer::toPathValue($project_id),
+                ObjectSerializer::toPathValue($projectId),
                 $resourcePath
             );
         }
         // path params
-        if ($environment_id !== null) {
+        if ($environmentId !== null) {
             $resourcePath = str_replace(
                 '{' . 'environmentId' . '}',
-                ObjectSerializer::toPathValue($environment_id),
+                ObjectSerializer::toPathValue($environmentId),
                 $resourcePath
             );
         }
         // path params
-        if ($backup_id !== null) {
+        if ($backupId !== null) {
             $resourcePath = str_replace(
                 '{' . 'backupId' . '}',
-                ObjectSerializer::toPathValue($backup_id),
+                ObjectSerializer::toPathValue($backupId),
                 $resourcePath
             );
         }
@@ -1246,11 +1246,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($environment_restore_input)) {
+        if (isset($environmentRestoreInput)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environment_restore_input));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($environmentRestoreInput));
             } else {
-                $httpBody = $environment_restore_input;
+                $httpBody = $environmentRestoreInput;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

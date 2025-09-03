@@ -24,30 +24,43 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     private static string $openAPIModelName = 'can_create_new_org_subscription_200_response';
 
     private static array $attributeMap = [
-        'can_create' => 'can_create',
+        'canCreate' => 'can_create',
         'message' => 'message',
-        'required_action' => 'required_action'
+        'requiredAction' => 'required_action'
     ];
 
     public function __construct(
-        public readonly ?bool $can_create = null,
-        public readonly ?string $message = null,
-        public readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $required_action = null,
+        private readonly ?bool $canCreate = null,
+        private readonly ?string $message = null,
+        private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'can_create' => $this->can_create,
+            'canCreate' => $this->canCreate,
             'message' => $this->message,
-            'required_action' => $this->required_action,
+            'requiredAction' => $this->requiredAction,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCanCreate(): ?bool
+    {
+        return $this->canCreate;
+    }
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+    public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
+    {
+        return $this->requiredAction;
     }
 }
 

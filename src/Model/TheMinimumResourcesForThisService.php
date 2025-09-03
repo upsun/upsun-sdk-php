@@ -27,14 +27,14 @@ final class TheMinimumResourcesForThisService implements JsonSerializable
         'cpu' => 'cpu',
         'memory' => 'memory',
         'disk' => 'disk',
-        'profile_size' => 'profile_size'
+        'profileSize' => 'profile_size'
     ];
 
     public function __construct(
-        public readonly ?float $cpu = null,
-        public readonly ?int $memory = null,
-        public readonly ?int $disk = null,
-        public readonly ?string $profile_size = null,
+        private readonly ?float $cpu = null,
+        private readonly ?int $memory = null,
+        private readonly ?int $disk = null,
+        private readonly ?string $profileSize = null,
     ) {
     }
 
@@ -44,13 +44,30 @@ final class TheMinimumResourcesForThisService implements JsonSerializable
             'cpu' => $this->cpu,
             'memory' => $this->memory,
             'disk' => $this->disk,
-            'profile_size' => $this->profile_size,
+            'profileSize' => $this->profileSize,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCpu(): ?float
+    {
+        return $this->cpu;
+    }
+    public function getMemory(): ?int
+    {
+        return $this->memory;
+    }
+    public function getDisk(): ?int
+    {
+        return $this->disk;
+    }
+    public function getProfileSize(): ?string
+    {
+        return $this->profileSize;
     }
 }
 

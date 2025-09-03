@@ -124,12 +124,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createApiToken(
-        string $user_id,
-        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+        string $userId,
+        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): \Upsun\Model\APIToken {
         list($response) = $this->createApiTokenWithHttpInfo(
-            $user_id,
-            $create_api_token_request
+            $userId,
+            $createApiTokenRequest
         );
         return $response;
     }
@@ -140,12 +140,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createApiTokenWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+        string $userId,
+        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): array {
         $request = $this->createApiTokenRequest(
-            $user_id,
-            $create_api_token_request
+            $userId,
+            $createApiTokenRequest
         );
 
         try {
@@ -172,12 +172,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createApiTokenAsync(
-        string $user_id,
-        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+        string $userId,
+        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): Promise {
         return $this->createApiTokenAsyncWithHttpInfo(
-            $user_id,
-            $create_api_token_request
+            $userId,
+            $createApiTokenRequest
         )
             ->then(
                 function ($response) {
@@ -192,13 +192,13 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createApiTokenAsyncWithHttpInfo(
-        string $user_id,
-        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+        string $userId,
+        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): Promise {
         $returnType = '\Upsun\Model\APIToken';
         $request = $this->createApiTokenRequest(
-            $user_id,
-            $create_api_token_request
+            $userId,
+            $createApiTokenRequest
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -239,13 +239,13 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createApiTokenRequest(
-        string $user_id,
-        \Upsun\Model\CreateApiTokenRequest $create_api_token_request = null
+        string $userId,
+        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling createApiToken'
+                'Missing the required parameter $userId when calling createApiToken'
             );
         }
 
@@ -259,10 +259,10 @@ final class APITokensApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -275,11 +275,11 @@ final class APITokensApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($create_api_token_request)) {
+        if (isset($createApiTokenRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($create_api_token_request));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($createApiTokenRequest));
             } else {
-                $httpBody = $create_api_token_request;
+                $httpBody = $createApiTokenRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {
@@ -329,12 +329,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteApiToken(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): \Upsun\Model\APIToken {
         list($response) = $this->deleteApiTokenWithHttpInfo(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         );
         return $response;
     }
@@ -345,12 +345,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteApiTokenWithHttpInfo(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): array {
         $request = $this->deleteApiTokenRequest(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         );
 
         try {
@@ -377,12 +377,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteApiTokenAsync(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): Promise {
         return $this->deleteApiTokenAsyncWithHttpInfo(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         )
             ->then(
                 function ($response) {
@@ -397,13 +397,13 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function deleteApiTokenAsyncWithHttpInfo(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): Promise {
         $returnType = '';
         $request = $this->deleteApiTokenRequest(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -434,19 +434,19 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function deleteApiTokenRequest(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling deleteApiToken'
+                'Missing the required parameter $userId when calling deleteApiToken'
             );
         }
-        // verify the required parameter 'token_id' is set
-        if ($token_id === null || (is_array($token_id) && count($token_id) === 0)) {
+        // verify the required parameter 'tokenId' is set
+        if ($tokenId === null || (is_array($tokenId) && count($tokenId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token_id when calling deleteApiToken'
+                'Missing the required parameter $tokenId when calling deleteApiToken'
             );
         }
 
@@ -460,18 +460,18 @@ final class APITokensApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
         // path params
-        if ($token_id !== null) {
+        if ($tokenId !== null) {
             $resourcePath = str_replace(
                 '{' . 'token_id' . '}',
-                ObjectSerializer::toPathValue($token_id),
+                ObjectSerializer::toPathValue($tokenId),
                 $resourcePath
             );
         }
@@ -532,12 +532,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getApiToken(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): \Upsun\Model\APIToken {
         list($response) = $this->getApiTokenWithHttpInfo(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         );
         return $response;
     }
@@ -548,12 +548,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getApiTokenWithHttpInfo(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): array {
         $request = $this->getApiTokenRequest(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         );
 
         try {
@@ -580,12 +580,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getApiTokenAsync(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): Promise {
         return $this->getApiTokenAsyncWithHttpInfo(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         )
             ->then(
                 function ($response) {
@@ -600,13 +600,13 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getApiTokenAsyncWithHttpInfo(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): Promise {
         $returnType = '\Upsun\Model\APIToken';
         $request = $this->getApiTokenRequest(
-            $user_id,
-            $token_id
+            $userId,
+            $tokenId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -647,19 +647,19 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getApiTokenRequest(
-        string $user_id,
-        string $token_id
+        string $userId,
+        string $tokenId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getApiToken'
+                'Missing the required parameter $userId when calling getApiToken'
             );
         }
-        // verify the required parameter 'token_id' is set
-        if ($token_id === null || (is_array($token_id) && count($token_id) === 0)) {
+        // verify the required parameter 'tokenId' is set
+        if ($tokenId === null || (is_array($tokenId) && count($tokenId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $token_id when calling getApiToken'
+                'Missing the required parameter $tokenId when calling getApiToken'
             );
         }
 
@@ -673,18 +673,18 @@ final class APITokensApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
         // path params
-        if ($token_id !== null) {
+        if ($tokenId !== null) {
             $resourcePath = str_replace(
                 '{' . 'token_id' . '}',
-                ObjectSerializer::toPathValue($token_id),
+                ObjectSerializer::toPathValue($tokenId),
                 $resourcePath
             );
         }
@@ -747,10 +747,10 @@ final class APITokensApi extends AbstractApi
      * @return array
      */
     public function listApiTokens(
-        string $user_id
+        string $userId
     ): array {
         list($response) = $this->listApiTokensWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -761,10 +761,10 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listApiTokensWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->listApiTokensRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -791,10 +791,10 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listApiTokensAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->listApiTokensAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -809,11 +809,11 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listApiTokensAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\APIToken[]';
         $request = $this->listApiTokensRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -854,12 +854,12 @@ final class APITokensApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listApiTokensRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling listApiTokens'
+                'Missing the required parameter $userId when calling listApiTokens'
             );
         }
 
@@ -873,10 +873,10 @@ final class APITokensApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }

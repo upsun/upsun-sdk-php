@@ -24,24 +24,29 @@ final class LogsForwarding implements JsonSerializable
     private static string $openAPIModelName = 'Logs_Forwarding';
 
     private static array $attributeMap = [
-        'max_extra_payload_size' => 'max_extra_payload_size'
+        'maxExtraPayloadSize' => 'max_extra_payload_size'
     ];
 
     public function __construct(
-        public readonly ?int $max_extra_payload_size = null,
+        private readonly ?int $maxExtraPayloadSize = null,
     ) {
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'max_extra_payload_size' => $this->max_extra_payload_size,
+            'maxExtraPayloadSize' => $this->maxExtraPayloadSize,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getMaxExtraPayloadSize(): ?int
+    {
+        return $this->maxExtraPayloadSize;
     }
 }
 

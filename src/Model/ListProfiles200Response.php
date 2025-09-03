@@ -26,13 +26,13 @@ final class ListProfiles200Response implements JsonSerializable
     private static array $attributeMap = [
         'count' => 'count',
         'profiles' => 'profiles',
-        '_links' => '_links'
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?int $count = null,
-        public readonly ?array $profiles = [],
-        public readonly ?\Upsun\Model\HalLinks $_links = null,
+        private readonly ?int $count = null,
+        private readonly ?array $profiles = [],
+        private readonly ?\Upsun\Model\HalLinks $links = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class ListProfiles200Response implements JsonSerializable
         return [
             'count' => $this->count,
             'profiles' => $this->profiles,
-            '_links' => $this->_links,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+    public function getProfiles(): ?array
+    {
+        return $this->profiles;
+    }
+    public function getLinks(): ?\Upsun\Model\HalLinks
+    {
+        return $this->links;
     }
 }
 

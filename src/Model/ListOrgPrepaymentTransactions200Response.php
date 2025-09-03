@@ -26,13 +26,13 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     private static array $attributeMap = [
         'count' => 'count',
         'transactions' => 'transactions',
-        '_links' => '_links'
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?int $count = null,
-        public readonly ?array $transactions = [],
-        public readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $_links = null,
+        private readonly ?int $count = null,
+        private readonly ?array $transactions = [],
+        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         return [
             'count' => $this->count,
             'transactions' => $this->transactions,
-            '_links' => $this->_links,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+    public function getTransactions(): ?array
+    {
+        return $this->transactions;
+    }
+    public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
+    {
+        return $this->links;
     }
 }
 

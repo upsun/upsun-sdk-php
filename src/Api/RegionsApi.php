@@ -124,10 +124,10 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getRegion(
-        string $region_id
+        string $regionId
     ): \Upsun\Model\Region {
         list($response) = $this->getRegionWithHttpInfo(
-            $region_id
+            $regionId
         );
         return $response;
     }
@@ -138,10 +138,10 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getRegionWithHttpInfo(
-        string $region_id
+        string $regionId
     ): array {
         $request = $this->getRegionRequest(
-            $region_id
+            $regionId
         );
 
         try {
@@ -168,10 +168,10 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getRegionAsync(
-        string $region_id
+        string $regionId
     ): Promise {
         return $this->getRegionAsyncWithHttpInfo(
-            $region_id
+            $regionId
         )
             ->then(
                 function ($response) {
@@ -186,11 +186,11 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function getRegionAsyncWithHttpInfo(
-        string $region_id
+        string $regionId
     ): Promise {
         $returnType = '\Upsun\Model\Region';
         $request = $this->getRegionRequest(
-            $region_id
+            $regionId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -231,12 +231,12 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function getRegionRequest(
-        string $region_id
+        string $regionId
     ): RequestInterface {
-        // verify the required parameter 'region_id' is set
-        if ($region_id === null || (is_array($region_id) && count($region_id) === 0)) {
+        // verify the required parameter 'regionId' is set
+        if ($regionId === null || (is_array($regionId) && count($regionId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $region_id when calling getRegion'
+                'Missing the required parameter $regionId when calling getRegion'
             );
         }
 
@@ -250,10 +250,10 @@ final class RegionsApi extends AbstractApi
 
 
         // path params
-        if ($region_id !== null) {
+        if ($regionId !== null) {
             $resourcePath = str_replace(
                 '{' . 'region_id' . '}',
-                ObjectSerializer::toPathValue($region_id),
+                ObjectSerializer::toPathValue($regionId),
                 $resourcePath
             );
         }
@@ -314,21 +314,21 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listRegions(
-        \Upsun\Model\StringFilter $filter_available = null,
-        \Upsun\Model\StringFilter $filter_private = null,
-        \Upsun\Model\StringFilter $filter_zone = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterAvailable = null,
+        \Upsun\Model\StringFilter $filterPrivate = null,
+        \Upsun\Model\StringFilter $filterZone = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         list($response) = $this->listRegionsWithHttpInfo(
-            $filter_available,
-            $filter_private,
-            $filter_zone,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterAvailable,
+            $filterPrivate,
+            $filterZone,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
         return $response;
@@ -340,21 +340,21 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listRegionsWithHttpInfo(
-        \Upsun\Model\StringFilter $filter_available = null,
-        \Upsun\Model\StringFilter $filter_private = null,
-        \Upsun\Model\StringFilter $filter_zone = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterAvailable = null,
+        \Upsun\Model\StringFilter $filterPrivate = null,
+        \Upsun\Model\StringFilter $filterZone = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): array {
         $request = $this->listRegionsRequest(
-            $filter_available,
-            $filter_private,
-            $filter_zone,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterAvailable,
+            $filterPrivate,
+            $filterZone,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -382,21 +382,21 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listRegionsAsync(
-        \Upsun\Model\StringFilter $filter_available = null,
-        \Upsun\Model\StringFilter $filter_private = null,
-        \Upsun\Model\StringFilter $filter_zone = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterAvailable = null,
+        \Upsun\Model\StringFilter $filterPrivate = null,
+        \Upsun\Model\StringFilter $filterZone = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         return $this->listRegionsAsyncWithHttpInfo(
-            $filter_available,
-            $filter_private,
-            $filter_zone,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterAvailable,
+            $filterPrivate,
+            $filterZone,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         )
             ->then(
@@ -412,22 +412,22 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listRegionsAsyncWithHttpInfo(
-        \Upsun\Model\StringFilter $filter_available = null,
-        \Upsun\Model\StringFilter $filter_private = null,
-        \Upsun\Model\StringFilter $filter_zone = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterAvailable = null,
+        \Upsun\Model\StringFilter $filterPrivate = null,
+        \Upsun\Model\StringFilter $filterZone = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): Promise {
         $returnType = '\Upsun\Model\ListRegions200Response';
         $request = $this->listRegionsRequest(
-            $filter_available,
-            $filter_private,
-            $filter_zone,
-            $page_size,
-            $page_before,
-            $page_after,
+            $filterAvailable,
+            $filterPrivate,
+            $filterZone,
+            $pageSize,
+            $pageBefore,
+            $pageAfter,
             $sort
         );
 
@@ -469,23 +469,23 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listRegionsRequest(
-        \Upsun\Model\StringFilter $filter_available = null,
-        \Upsun\Model\StringFilter $filter_private = null,
-        \Upsun\Model\StringFilter $filter_zone = null,
-        int $page_size = null,
-        string $page_before = null,
-        string $page_after = null,
+        \Upsun\Model\StringFilter $filterAvailable = null,
+        \Upsun\Model\StringFilter $filterPrivate = null,
+        \Upsun\Model\StringFilter $filterZone = null,
+        int $pageSize = null,
+        string $pageBefore = null,
+        string $pageAfter = null,
         string $sort = null
     ): RequestInterface {
-        if ($page_size !== null && $page_size > 100) {
+        if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling RegionsApi.listRegions, 
+                'invalid value for "$pageSize" when calling RegionsApi.listRegions, 
                 must be smaller than or equal to 100.'
             );
         }
-        if ($page_size !== null && $page_size < 1) {
+        if ($pageSize !== null && $pageSize < 1) {
             throw new \InvalidArgumentException(
-                'invalid value for "$page_size" when calling RegionsApi.listRegions,
+                'invalid value for "$pageSize" when calling RegionsApi.listRegions,
                 must be bigger than or equal to 1.'
             );
         }
@@ -499,68 +499,68 @@ final class RegionsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_available !== null) {
-            if ('form' === 'deepObject' && is_array($filter_available)) {
-                foreach ($filter_available as $key => $value) {
+        if ($filterAvailable !== null) {
+            if ('form' === 'deepObject' && is_array($filterAvailable)) {
+                foreach ($filterAvailable as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[available]'] = $filter_available->eq;
+                $queryParams['filter[available]'] = $filterAvailable->getEq();
             }
         }
 
         // query params
-        if ($filter_private !== null) {
-            if ('form' === 'deepObject' && is_array($filter_private)) {
-                foreach ($filter_private as $key => $value) {
+        if ($filterPrivate !== null) {
+            if ('form' === 'deepObject' && is_array($filterPrivate)) {
+                foreach ($filterPrivate as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[private]'] = $filter_private->eq;
+                $queryParams['filter[private]'] = $filterPrivate->getEq();
             }
         }
 
         // query params
-        if ($filter_zone !== null) {
-            if ('form' === 'deepObject' && is_array($filter_zone)) {
-                foreach ($filter_zone as $key => $value) {
+        if ($filterZone !== null) {
+            if ('form' === 'deepObject' && is_array($filterZone)) {
+                foreach ($filterZone as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[zone]'] = $filter_zone->eq;
+                $queryParams['filter[zone]'] = $filterZone->getEq();
             }
         }
 
         // query params
-        if ($page_size !== null) {
-            if ('form' === 'form' && is_array($page_size)) {
-                foreach ($page_size as $key => $value) {
+        if ($pageSize !== null) {
+            if ('form' === 'form' && is_array($pageSize)) {
+                foreach ($pageSize as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $page_size;
+                $queryParams['page[size]'] = $pageSize;
             }
         }
 
         // query params
-        if ($page_before !== null) {
-            if ('form' === 'form' && is_array($page_before)) {
-                foreach ($page_before as $key => $value) {
+        if ($pageBefore !== null) {
+            if ('form' === 'form' && is_array($pageBefore)) {
+                foreach ($pageBefore as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $page_before;
+                $queryParams['page[before]'] = $pageBefore;
             }
         }
 
         // query params
-        if ($page_after !== null) {
-            if ('form' === 'form' && is_array($page_after)) {
-                foreach ($page_after as $key => $value) {
+        if ($pageAfter !== null) {
+            if ('form' === 'form' && is_array($pageAfter)) {
+                foreach ($pageAfter as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $page_after;
+                $queryParams['page[after]'] = $pageAfter;
             }
         }
 

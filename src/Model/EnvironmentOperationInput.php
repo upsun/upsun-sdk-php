@@ -29,8 +29,8 @@ final class EnvironmentOperationInput implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $service = null,
-        public readonly ?string $operation = null,
+        private readonly ?string $service = null,
+        private readonly ?string $operation = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class EnvironmentOperationInput implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+    public function getOperation(): ?string
+    {
+        return $this->operation;
     }
 }
 

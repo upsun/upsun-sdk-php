@@ -26,7 +26,7 @@ final class Organization implements JsonSerializable
     private static array $attributeMap = [
         'id' => 'id',
         'type' => 'type',
-        'owner_id' => 'owner_id',
+        'ownerId' => 'owner_id',
         'namespace' => 'namespace',
         'name' => 'name',
         'label' => 'label',
@@ -34,25 +34,25 @@ final class Organization implements JsonSerializable
         'capabilities' => 'capabilities',
         'vendor' => 'vendor',
         'status' => 'status',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        '_links' => '_links'
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'links' => '_links'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $type = null,
-        public readonly ?string $owner_id = null,
-        public readonly ?string $namespace = null,
-        public readonly ?string $name = null,
-        public readonly ?string $label = null,
-        public readonly ?string $country = null,
-        public readonly ?array $capabilities = [],
-        public readonly ?string $vendor = null,
-        public readonly ?string $status = null,
-        public readonly ?\DateTime $created_at = null,
-        public readonly ?\DateTime $updated_at = null,
-        public readonly ?\Upsun\Model\OrganizationLinks $_links = null,
+        private readonly ?string $id = null,
+        private readonly ?string $type = null,
+        private readonly ?string $ownerId = null,
+        private readonly ?string $namespace = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
+        private readonly ?string $country = null,
+        private readonly ?array $capabilities = [],
+        private readonly ?string $vendor = null,
+        private readonly ?string $status = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationLinks $links = null,
     ) {
     }
 
@@ -61,7 +61,7 @@ final class Organization implements JsonSerializable
         return [
             'id' => $this->id,
             'type' => $this->type,
-            'owner_id' => $this->owner_id,
+            'ownerId' => $this->ownerId,
             'namespace' => $this->namespace,
             'name' => $this->name,
             'label' => $this->label,
@@ -69,15 +69,68 @@ final class Organization implements JsonSerializable
             'capabilities' => $this->capabilities,
             'vendor' => $this->vendor,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            '_links' => $this->_links,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'links' => $this->links,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getOwnerId(): ?string
+    {
+        return $this->ownerId;
+    }
+    public function getNamespace(): ?string
+    {
+        return $this->namespace;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+    public function getCapabilities(): ?array
+    {
+        return $this->capabilities;
+    }
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    public function getLinks(): ?\Upsun\Model\OrganizationLinks
+    {
+        return $this->links;
     }
 }
 

@@ -28,7 +28,7 @@ final class Resources3 implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $init = null,
+        private readonly ?string $init = null,
     ) {
     }
 
@@ -42,6 +42,11 @@ final class Resources3 implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getInit(): ?string
+    {
+        return $this->init;
     }
 }
 

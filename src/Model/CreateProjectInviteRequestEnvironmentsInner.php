@@ -29,8 +29,8 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $role = null,
+        private readonly ?string $id = null,
+        private readonly ?string $role = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getRole(): ?string
+    {
+        return $this->role;
     }
 }
 

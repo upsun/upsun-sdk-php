@@ -30,17 +30,17 @@ final class SplunkIntegrationPatch implements JsonSerializable
         'index' => 'index',
         'token' => 'token',
         'sourcetype' => 'sourcetype',
-        'tls_verify' => 'tls_verify'
+        'tlsVerify' => 'tls_verify'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?array $extra = [],
-        public readonly ?string $url = null,
-        public readonly ?string $index = null,
-        public readonly ?string $token = null,
-        public readonly ?string $sourcetype = null,
-        public readonly ?bool $tls_verify = null,
+        private readonly ?string $type = null,
+        private readonly ?array $extra = [],
+        private readonly ?string $url = null,
+        private readonly ?string $index = null,
+        private readonly ?string $token = null,
+        private readonly ?string $sourcetype = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -53,13 +53,42 @@ final class SplunkIntegrationPatch implements JsonSerializable
             'index' => $this->index,
             'token' => $this->token,
             'sourcetype' => $this->sourcetype,
-            'tls_verify' => $this->tls_verify,
+            'tlsVerify' => $this->tlsVerify,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getExtra(): ?array
+    {
+        return $this->extra;
+    }
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    public function getIndex(): ?string
+    {
+        return $this->index;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getSourcetype(): ?string
+    {
+        return $this->sourcetype;
+    }
+    public function getTlsVerify(): ?bool
+    {
+        return $this->tlsVerify;
     }
 }
 

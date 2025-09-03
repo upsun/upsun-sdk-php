@@ -124,25 +124,25 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgPlanRecords(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_plan = null,
-        string $filter_status = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_end = null,
-        \DateTime $filter_started_at = null,
-        \DateTime $filter_ended_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterPlan = null,
+        string $filterStatus = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterEnd = null,
+        \DateTime $filterStartedAt = null,
+        \DateTime $filterEndedAt = null,
         int $page = null
     ): array {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_plan,
-            $filter_status,
-            $filter_start,
-            $filter_end,
-            $filter_started_at,
-            $filter_ended_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterPlan,
+            $filterStatus,
+            $filterStart,
+            $filterEnd,
+            $filterStartedAt,
+            $filterEndedAt,
             $page
         );
         return $response;
@@ -154,25 +154,25 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgPlanRecordsWithHttpInfo(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_plan = null,
-        string $filter_status = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_end = null,
-        \DateTime $filter_started_at = null,
-        \DateTime $filter_ended_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterPlan = null,
+        string $filterStatus = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterEnd = null,
+        \DateTime $filterStartedAt = null,
+        \DateTime $filterEndedAt = null,
         int $page = null
     ): array {
         $request = $this->listOrgPlanRecordsRequest(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_plan,
-            $filter_status,
-            $filter_start,
-            $filter_end,
-            $filter_started_at,
-            $filter_ended_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterPlan,
+            $filterStatus,
+            $filterStart,
+            $filterEnd,
+            $filterStartedAt,
+            $filterEndedAt,
             $page
         );
 
@@ -200,25 +200,25 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgPlanRecordsAsync(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_plan = null,
-        string $filter_status = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_end = null,
-        \DateTime $filter_started_at = null,
-        \DateTime $filter_ended_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterPlan = null,
+        string $filterStatus = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterEnd = null,
+        \DateTime $filterStartedAt = null,
+        \DateTime $filterEndedAt = null,
         int $page = null
     ): Promise {
         return $this->listOrgPlanRecordsAsyncWithHttpInfo(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_plan,
-            $filter_status,
-            $filter_start,
-            $filter_end,
-            $filter_started_at,
-            $filter_ended_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterPlan,
+            $filterStatus,
+            $filterStart,
+            $filterEnd,
+            $filterStartedAt,
+            $filterEndedAt,
             $page
         )
             ->then(
@@ -234,26 +234,26 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgPlanRecordsAsyncWithHttpInfo(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_plan = null,
-        string $filter_status = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_end = null,
-        \DateTime $filter_started_at = null,
-        \DateTime $filter_ended_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterPlan = null,
+        string $filterStatus = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterEnd = null,
+        \DateTime $filterStartedAt = null,
+        \DateTime $filterEndedAt = null,
         int $page = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgPlanRecords200Response';
         $request = $this->listOrgPlanRecordsRequest(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_plan,
-            $filter_status,
-            $filter_start,
-            $filter_end,
-            $filter_started_at,
-            $filter_ended_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterPlan,
+            $filterStatus,
+            $filterStart,
+            $filterEnd,
+            $filterStartedAt,
+            $filterEndedAt,
             $page
         );
 
@@ -295,20 +295,20 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgPlanRecordsRequest(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_plan = null,
-        string $filter_status = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_end = null,
-        \DateTime $filter_started_at = null,
-        \DateTime $filter_ended_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterPlan = null,
+        string $filterStatus = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterEnd = null,
+        \DateTime $filterStartedAt = null,
+        \DateTime $filterEndedAt = null,
         int $page = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling listOrgPlanRecords'
+                'Missing the required parameter $organizationId when calling listOrgPlanRecords'
             );
         }
 
@@ -320,79 +320,79 @@ final class RecordsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_subscription_id !== null) {
-            if ('form' === 'form' && is_array($filter_subscription_id)) {
-                foreach ($filter_subscription_id as $key => $value) {
+        if ($filterSubscriptionId !== null) {
+            if ('form' === 'form' && is_array($filterSubscriptionId)) {
+                foreach ($filterSubscriptionId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filter_subscription_id;
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId;
             }
         }
 
         // query params
-        if ($filter_plan !== null) {
-            if ('form' === 'form' && is_array($filter_plan)) {
-                foreach ($filter_plan as $key => $value) {
+        if ($filterPlan !== null) {
+            if ('form' === 'form' && is_array($filterPlan)) {
+                foreach ($filterPlan as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[plan]'] = $filter_plan;
+                $queryParams['filter[plan]'] = $filterPlan;
             }
         }
 
         // query params
-        if ($filter_status !== null) {
-            if ('form' === 'form' && is_array($filter_status)) {
-                foreach ($filter_status as $key => $value) {
+        if ($filterStatus !== null) {
+            if ('form' === 'form' && is_array($filterStatus)) {
+                foreach ($filterStatus as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filter_status;
+                $queryParams['filter[status]'] = $filterStatus;
             }
         }
 
         // query params
-        if ($filter_start !== null) {
-            if ('form' === 'form' && is_array($filter_start)) {
-                foreach ($filter_start as $key => $value) {
+        if ($filterStart !== null) {
+            if ('form' === 'form' && is_array($filterStart)) {
+                foreach ($filterStart as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filter_start;
+                $queryParams['filter[start]'] = $filterStart;
             }
         }
 
         // query params
-        if ($filter_end !== null) {
-            if ('form' === 'form' && is_array($filter_end)) {
-                foreach ($filter_end as $key => $value) {
+        if ($filterEnd !== null) {
+            if ('form' === 'form' && is_array($filterEnd)) {
+                foreach ($filterEnd as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[end]'] = $filter_end;
+                $queryParams['filter[end]'] = $filterEnd;
             }
         }
 
         // query params
-        if ($filter_started_at !== null) {
-            if ('form' === 'form' && is_array($filter_started_at)) {
-                foreach ($filter_started_at as $key => $value) {
+        if ($filterStartedAt !== null) {
+            if ('form' === 'form' && is_array($filterStartedAt)) {
+                foreach ($filterStartedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filter_started_at;
+                $queryParams['filter[started_at]'] = $filterStartedAt;
             }
         }
 
         // query params
-        if ($filter_ended_at !== null) {
-            if ('form' === 'form' && is_array($filter_ended_at)) {
-                foreach ($filter_ended_at as $key => $value) {
+        if ($filterEndedAt !== null) {
+            if ('form' === 'form' && is_array($filterEndedAt)) {
+                foreach ($filterEndedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ended_at]'] = $filter_ended_at;
+                $queryParams['filter[ended_at]'] = $filterEndedAt;
             }
         }
 
@@ -410,10 +410,10 @@ final class RecordsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }
@@ -474,19 +474,19 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgUsageRecords(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_usage_group = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_started_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterUsageGroup = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterStartedAt = null,
         int $page = null
     ): array {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_usage_group,
-            $filter_start,
-            $filter_started_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterUsageGroup,
+            $filterStart,
+            $filterStartedAt,
             $page
         );
         return $response;
@@ -498,19 +498,19 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgUsageRecordsWithHttpInfo(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_usage_group = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_started_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterUsageGroup = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterStartedAt = null,
         int $page = null
     ): array {
         $request = $this->listOrgUsageRecordsRequest(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_usage_group,
-            $filter_start,
-            $filter_started_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterUsageGroup,
+            $filterStart,
+            $filterStartedAt,
             $page
         );
 
@@ -538,19 +538,19 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgUsageRecordsAsync(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_usage_group = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_started_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterUsageGroup = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterStartedAt = null,
         int $page = null
     ): Promise {
         return $this->listOrgUsageRecordsAsyncWithHttpInfo(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_usage_group,
-            $filter_start,
-            $filter_started_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterUsageGroup,
+            $filterStart,
+            $filterStartedAt,
             $page
         )
             ->then(
@@ -566,20 +566,20 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgUsageRecordsAsyncWithHttpInfo(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_usage_group = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_started_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterUsageGroup = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterStartedAt = null,
         int $page = null
     ): Promise {
         $returnType = '\Upsun\Model\ListOrgUsageRecords200Response';
         $request = $this->listOrgUsageRecordsRequest(
-            $organization_id,
-            $filter_subscription_id,
-            $filter_usage_group,
-            $filter_start,
-            $filter_started_at,
+            $organizationId,
+            $filterSubscriptionId,
+            $filterUsageGroup,
+            $filterStart,
+            $filterStartedAt,
             $page
         );
 
@@ -621,17 +621,17 @@ final class RecordsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgUsageRecordsRequest(
-        string $organization_id,
-        string $filter_subscription_id = null,
-        string $filter_usage_group = null,
-        \DateTime $filter_start = null,
-        \DateTime $filter_started_at = null,
+        string $organizationId,
+        string $filterSubscriptionId = null,
+        string $filterUsageGroup = null,
+        \DateTime $filterStart = null,
+        \DateTime $filterStartedAt = null,
         int $page = null
     ): RequestInterface {
-        // verify the required parameter 'organization_id' is set
-        if ($organization_id === null || (is_array($organization_id) && count($organization_id) === 0)) {
+        // verify the required parameter 'organizationId' is set
+        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $organization_id when calling listOrgUsageRecords'
+                'Missing the required parameter $organizationId when calling listOrgUsageRecords'
             );
         }
 
@@ -643,46 +643,46 @@ final class RecordsApi extends AbstractApi
         $multipart = false;
 
         // query params
-        if ($filter_subscription_id !== null) {
-            if ('form' === 'form' && is_array($filter_subscription_id)) {
-                foreach ($filter_subscription_id as $key => $value) {
+        if ($filterSubscriptionId !== null) {
+            if ('form' === 'form' && is_array($filterSubscriptionId)) {
+                foreach ($filterSubscriptionId as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filter_subscription_id;
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId;
             }
         }
 
         // query params
-        if ($filter_usage_group !== null) {
-            if ('form' === 'form' && is_array($filter_usage_group)) {
-                foreach ($filter_usage_group as $key => $value) {
+        if ($filterUsageGroup !== null) {
+            if ('form' === 'form' && is_array($filterUsageGroup)) {
+                foreach ($filterUsageGroup as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[usage_group]'] = $filter_usage_group;
+                $queryParams['filter[usage_group]'] = $filterUsageGroup;
             }
         }
 
         // query params
-        if ($filter_start !== null) {
-            if ('form' === 'form' && is_array($filter_start)) {
-                foreach ($filter_start as $key => $value) {
+        if ($filterStart !== null) {
+            if ('form' === 'form' && is_array($filterStart)) {
+                foreach ($filterStart as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filter_start;
+                $queryParams['filter[start]'] = $filterStart;
             }
         }
 
         // query params
-        if ($filter_started_at !== null) {
-            if ('form' === 'form' && is_array($filter_started_at)) {
-                foreach ($filter_started_at as $key => $value) {
+        if ($filterStartedAt !== null) {
+            if ('form' === 'form' && is_array($filterStartedAt)) {
+                foreach ($filterStartedAt as $key => $value) {
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filter_started_at;
+                $queryParams['filter[started_at]'] = $filterStartedAt;
             }
         }
 
@@ -700,10 +700,10 @@ final class RecordsApi extends AbstractApi
 
 
         // path params
-        if ($organization_id !== null) {
+        if ($organizationId !== null) {
             $resourcePath = str_replace(
                 '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organization_id),
+                ObjectSerializer::toPathValue($organizationId),
                 $resourcePath
             );
         }

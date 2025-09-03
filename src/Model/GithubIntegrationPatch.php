@@ -25,30 +25,30 @@ final class GithubIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'fetch_branches' => 'fetch_branches',
-        'prune_branches' => 'prune_branches',
-        'environment_init_resources' => 'environment_init_resources',
+        'fetchBranches' => 'fetch_branches',
+        'pruneBranches' => 'prune_branches',
+        'environmentInitResources' => 'environment_init_resources',
         'token' => 'token',
-        'base_url' => 'base_url',
+        'baseUrl' => 'base_url',
         'repository' => 'repository',
-        'build_pull_requests' => 'build_pull_requests',
-        'build_draft_pull_requests' => 'build_draft_pull_requests',
-        'build_pull_requests_post_merge' => 'build_pull_requests_post_merge',
-        'pull_requests_clone_parent_data' => 'pull_requests_clone_parent_data'
+        'buildPullRequests' => 'build_pull_requests',
+        'buildDraftPullRequests' => 'build_draft_pull_requests',
+        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
+        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?bool $fetch_branches = null,
-        public readonly ?bool $prune_branches = null,
-        public readonly ?string $environment_init_resources = null,
-        public readonly ?string $token = null,
-        public readonly ?string $base_url = null,
-        public readonly ?string $repository = null,
-        public readonly ?bool $build_pull_requests = null,
-        public readonly ?bool $build_draft_pull_requests = null,
-        public readonly ?bool $build_pull_requests_post_merge = null,
-        public readonly ?bool $pull_requests_clone_parent_data = null,
+        private readonly ?string $type = null,
+        private readonly ?bool $fetchBranches = null,
+        private readonly ?bool $pruneBranches = null,
+        private readonly ?string $environmentInitResources = null,
+        private readonly ?string $token = null,
+        private readonly ?string $baseUrl = null,
+        private readonly ?string $repository = null,
+        private readonly ?bool $buildPullRequests = null,
+        private readonly ?bool $buildDraftPullRequests = null,
+        private readonly ?bool $buildPullRequestsPostMerge = null,
+        private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 
@@ -56,22 +56,67 @@ final class GithubIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'fetch_branches' => $this->fetch_branches,
-            'prune_branches' => $this->prune_branches,
-            'environment_init_resources' => $this->environment_init_resources,
+            'fetchBranches' => $this->fetchBranches,
+            'pruneBranches' => $this->pruneBranches,
+            'environmentInitResources' => $this->environmentInitResources,
             'token' => $this->token,
-            'base_url' => $this->base_url,
+            'baseUrl' => $this->baseUrl,
             'repository' => $this->repository,
-            'build_pull_requests' => $this->build_pull_requests,
-            'build_draft_pull_requests' => $this->build_draft_pull_requests,
-            'build_pull_requests_post_merge' => $this->build_pull_requests_post_merge,
-            'pull_requests_clone_parent_data' => $this->pull_requests_clone_parent_data,
+            'buildPullRequests' => $this->buildPullRequests,
+            'buildDraftPullRequests' => $this->buildDraftPullRequests,
+            'buildPullRequestsPostMerge' => $this->buildPullRequestsPostMerge,
+            'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getFetchBranches(): ?bool
+    {
+        return $this->fetchBranches;
+    }
+    public function getPruneBranches(): ?bool
+    {
+        return $this->pruneBranches;
+    }
+    public function getEnvironmentInitResources(): ?string
+    {
+        return $this->environmentInitResources;
+    }
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+    public function getBaseUrl(): ?string
+    {
+        return $this->baseUrl;
+    }
+    public function getRepository(): ?string
+    {
+        return $this->repository;
+    }
+    public function getBuildPullRequests(): ?bool
+    {
+        return $this->buildPullRequests;
+    }
+    public function getBuildDraftPullRequests(): ?bool
+    {
+        return $this->buildDraftPullRequests;
+    }
+    public function getBuildPullRequestsPostMerge(): ?bool
+    {
+        return $this->buildPullRequestsPostMerge;
+    }
+    public function getPullRequestsCloneParentData(): ?bool
+    {
+        return $this->pullRequestsCloneParentData;
     }
 }
 

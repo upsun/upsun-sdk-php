@@ -27,30 +27,30 @@ final class Region implements JsonSerializable
         'id' => 'id',
         'label' => 'label',
         'zone' => 'zone',
-        'selection_label' => 'selection_label',
-        'project_label' => 'project_label',
+        'selectionLabel' => 'selection_label',
+        'projectLabel' => 'project_label',
         'timezone' => 'timezone',
         'available' => 'available',
         'private' => 'private',
         'endpoint' => 'endpoint',
         'provider' => 'provider',
         'datacenter' => 'datacenter',
-        'environmental_impact' => 'environmental_impact'
+        'environmentalImpact' => 'environmental_impact'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $label = null,
-        public readonly ?string $zone = null,
-        public readonly ?string $selection_label = null,
-        public readonly ?string $project_label = null,
-        public readonly ?string $timezone = null,
-        public readonly ?bool $available = null,
-        public readonly ?bool $private = null,
-        public readonly ?string $endpoint = null,
-        public readonly ?\Upsun\Model\RegionProvider $provider = null,
-        public readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
-        public readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmental_impact = null,
+        private readonly ?string $id = null,
+        private readonly ?string $label = null,
+        private readonly ?string $zone = null,
+        private readonly ?string $selectionLabel = null,
+        private readonly ?string $projectLabel = null,
+        private readonly ?string $timezone = null,
+        private readonly ?bool $available = null,
+        private readonly ?bool $private = null,
+        private readonly ?string $endpoint = null,
+        private readonly ?\Upsun\Model\RegionProvider $provider = null,
+        private readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
+        private readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
     ) {
     }
 
@@ -60,21 +60,70 @@ final class Region implements JsonSerializable
             'id' => $this->id,
             'label' => $this->label,
             'zone' => $this->zone,
-            'selection_label' => $this->selection_label,
-            'project_label' => $this->project_label,
+            'selectionLabel' => $this->selectionLabel,
+            'projectLabel' => $this->projectLabel,
             'timezone' => $this->timezone,
             'available' => $this->available,
             'private' => $this->private,
             'endpoint' => $this->endpoint,
             'provider' => $this->provider,
             'datacenter' => $this->datacenter,
-            'environmental_impact' => $this->environmental_impact,
+            'environmentalImpact' => $this->environmentalImpact,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+    public function getZone(): ?string
+    {
+        return $this->zone;
+    }
+    public function getSelectionLabel(): ?string
+    {
+        return $this->selectionLabel;
+    }
+    public function getProjectLabel(): ?string
+    {
+        return $this->projectLabel;
+    }
+    public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
+    public function getAvailable(): ?bool
+    {
+        return $this->available;
+    }
+    public function getPrivate(): ?bool
+    {
+        return $this->private;
+    }
+    public function getEndpoint(): ?string
+    {
+        return $this->endpoint;
+    }
+    public function getProvider(): ?\Upsun\Model\RegionProvider
+    {
+        return $this->provider;
+    }
+    public function getDatacenter(): ?\Upsun\Model\RegionDatacenter
+    {
+        return $this->datacenter;
+    }
+    public function getEnvironmentalImpact(): ?\Upsun\Model\RegionEnvironmentalImpact
+    {
+        return $this->environmentalImpact;
     }
 }
 

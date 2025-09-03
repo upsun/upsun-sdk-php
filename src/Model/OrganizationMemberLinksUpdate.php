@@ -29,8 +29,8 @@ final class OrganizationMemberLinksUpdate implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $href = null,
-        public readonly ?string $method = null,
+        private readonly ?string $href = null,
+        private readonly ?string $method = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class OrganizationMemberLinksUpdate implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getHref(): ?string
+    {
+        return $this->href;
+    }
+    public function getMethod(): ?string
+    {
+        return $this->method;
     }
 }
 

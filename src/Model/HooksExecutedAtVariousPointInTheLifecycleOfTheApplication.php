@@ -26,13 +26,13 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     private static array $attributeMap = [
         'build' => 'build',
         'deploy' => 'deploy',
-        'post_deploy' => 'post_deploy'
+        'postDeploy' => 'post_deploy'
     ];
 
     public function __construct(
-        public readonly ?string $build = null,
-        public readonly ?string $deploy = null,
-        public readonly ?string $post_deploy = null,
+        private readonly ?string $build = null,
+        private readonly ?string $deploy = null,
+        private readonly ?string $postDeploy = null,
     ) {
     }
 
@@ -41,13 +41,26 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return [
             'build' => $this->build,
             'deploy' => $this->deploy,
-            'post_deploy' => $this->post_deploy,
+            'postDeploy' => $this->postDeploy,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getBuild(): ?string
+    {
+        return $this->build;
+    }
+    public function getDeploy(): ?string
+    {
+        return $this->deploy;
+    }
+    public function getPostDeploy(): ?string
+    {
+        return $this->postDeploy;
     }
 }
 

@@ -29,8 +29,8 @@ final class TheCommandsDefinition implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?string $start = null,
-        public readonly ?string $stop = null,
+        private readonly ?string $start = null,
+        private readonly ?string $stop = null,
     ) {
     }
 
@@ -45,6 +45,15 @@ final class TheCommandsDefinition implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getStart(): ?string
+    {
+        return $this->start;
+    }
+    public function getStop(): ?string
+    {
+        return $this->stop;
     }
 }
 

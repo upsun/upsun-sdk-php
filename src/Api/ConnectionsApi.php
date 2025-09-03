@@ -125,11 +125,11 @@ final class ConnectionsApi extends AbstractApi
      */
     public function deleteLoginConnection(
         string $provider,
-        string $user_id
+        string $userId
     ): \Upsun\Model\Connection {
         list($response) = $this->deleteLoginConnectionWithHttpInfo(
             $provider,
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -141,11 +141,11 @@ final class ConnectionsApi extends AbstractApi
      */
     public function deleteLoginConnectionWithHttpInfo(
         string $provider,
-        string $user_id
+        string $userId
     ): array {
         $request = $this->deleteLoginConnectionRequest(
             $provider,
-            $user_id
+            $userId
         );
 
         try {
@@ -173,11 +173,11 @@ final class ConnectionsApi extends AbstractApi
      */
     public function deleteLoginConnectionAsync(
         string $provider,
-        string $user_id
+        string $userId
     ): Promise {
         return $this->deleteLoginConnectionAsyncWithHttpInfo(
             $provider,
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -193,12 +193,12 @@ final class ConnectionsApi extends AbstractApi
      */
     public function deleteLoginConnectionAsyncWithHttpInfo(
         string $provider,
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '';
         $request = $this->deleteLoginConnectionRequest(
             $provider,
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -230,7 +230,7 @@ final class ConnectionsApi extends AbstractApi
      */
     public function deleteLoginConnectionRequest(
         string $provider,
-        string $user_id
+        string $userId
     ): RequestInterface {
         // verify the required parameter 'provider' is set
         if ($provider === null || (is_array($provider) && count($provider) === 0)) {
@@ -238,10 +238,10 @@ final class ConnectionsApi extends AbstractApi
                 'Missing the required parameter $provider when calling deleteLoginConnection'
             );
         }
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling deleteLoginConnection'
+                'Missing the required parameter $userId when calling deleteLoginConnection'
             );
         }
 
@@ -263,10 +263,10 @@ final class ConnectionsApi extends AbstractApi
             );
         }
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -328,11 +328,11 @@ final class ConnectionsApi extends AbstractApi
      */
     public function getLoginConnection(
         string $provider,
-        string $user_id
+        string $userId
     ): \Upsun\Model\Connection {
         list($response) = $this->getLoginConnectionWithHttpInfo(
             $provider,
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -344,11 +344,11 @@ final class ConnectionsApi extends AbstractApi
      */
     public function getLoginConnectionWithHttpInfo(
         string $provider,
-        string $user_id
+        string $userId
     ): array {
         $request = $this->getLoginConnectionRequest(
             $provider,
-            $user_id
+            $userId
         );
 
         try {
@@ -376,11 +376,11 @@ final class ConnectionsApi extends AbstractApi
      */
     public function getLoginConnectionAsync(
         string $provider,
-        string $user_id
+        string $userId
     ): Promise {
         return $this->getLoginConnectionAsyncWithHttpInfo(
             $provider,
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -396,12 +396,12 @@ final class ConnectionsApi extends AbstractApi
      */
     public function getLoginConnectionAsyncWithHttpInfo(
         string $provider,
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\Connection';
         $request = $this->getLoginConnectionRequest(
             $provider,
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -443,7 +443,7 @@ final class ConnectionsApi extends AbstractApi
      */
     public function getLoginConnectionRequest(
         string $provider,
-        string $user_id
+        string $userId
     ): RequestInterface {
         // verify the required parameter 'provider' is set
         if ($provider === null || (is_array($provider) && count($provider) === 0)) {
@@ -451,10 +451,10 @@ final class ConnectionsApi extends AbstractApi
                 'Missing the required parameter $provider when calling getLoginConnection'
             );
         }
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling getLoginConnection'
+                'Missing the required parameter $userId when calling getLoginConnection'
             );
         }
 
@@ -476,10 +476,10 @@ final class ConnectionsApi extends AbstractApi
             );
         }
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }
@@ -542,10 +542,10 @@ final class ConnectionsApi extends AbstractApi
      * @return array
      */
     public function listLoginConnections(
-        string $user_id
+        string $userId
     ): array {
         list($response) = $this->listLoginConnectionsWithHttpInfo(
-            $user_id
+            $userId
         );
         return $response;
     }
@@ -556,10 +556,10 @@ final class ConnectionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listLoginConnectionsWithHttpInfo(
-        string $user_id
+        string $userId
     ): array {
         $request = $this->listLoginConnectionsRequest(
-            $user_id
+            $userId
         );
 
         try {
@@ -586,10 +586,10 @@ final class ConnectionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listLoginConnectionsAsync(
-        string $user_id
+        string $userId
     ): Promise {
         return $this->listLoginConnectionsAsyncWithHttpInfo(
-            $user_id
+            $userId
         )
             ->then(
                 function ($response) {
@@ -604,11 +604,11 @@ final class ConnectionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listLoginConnectionsAsyncWithHttpInfo(
-        string $user_id
+        string $userId
     ): Promise {
         $returnType = '\Upsun\Model\Connection[]';
         $request = $this->listLoginConnectionsRequest(
-            $user_id
+            $userId
         );
 
         return $this->httpAsyncClient->sendAsyncRequest($request)
@@ -649,12 +649,12 @@ final class ConnectionsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listLoginConnectionsRequest(
-        string $user_id
+        string $userId
     ): RequestInterface {
-        // verify the required parameter 'user_id' is set
-        if ($user_id === null || (is_array($user_id) && count($user_id) === 0)) {
+        // verify the required parameter 'userId' is set
+        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $user_id when calling listLoginConnections'
+                'Missing the required parameter $userId when calling listLoginConnections'
             );
         }
 
@@ -668,10 +668,10 @@ final class ConnectionsApi extends AbstractApi
 
 
         // path params
-        if ($user_id !== null) {
+        if ($userId !== null) {
             $resourcePath = str_replace(
                 '{' . 'user_id' . '}',
-                ObjectSerializer::toPathValue($user_id),
+                ObjectSerializer::toPathValue($userId),
                 $resourcePath
             );
         }

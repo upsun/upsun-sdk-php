@@ -28,7 +28,7 @@ final class ListOrgInvoices200Response implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?array $items = [],
+        private readonly ?array $items = [],
     ) {
     }
 
@@ -42,6 +42,11 @@ final class ListOrgInvoices200Response implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getItems(): ?array
+    {
+        return $this->items;
     }
 }
 

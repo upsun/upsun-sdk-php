@@ -25,18 +25,18 @@ final class Usage implements JsonSerializable
 
     private static array $attributeMap = [
         'id' => 'id',
-        'subscription_id' => 'subscription_id',
-        'usage_group' => 'usage_group',
+        'subscriptionId' => 'subscription_id',
+        'usageGroup' => 'usage_group',
         'quantity' => 'quantity',
         'start' => 'start'
     ];
 
     public function __construct(
-        public readonly ?string $id = null,
-        public readonly ?string $subscription_id = null,
-        public readonly ?string $usage_group = null,
-        public readonly ?float $quantity = null,
-        public readonly ?\DateTime $start = null,
+        private readonly ?string $id = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $usageGroup = null,
+        private readonly ?float $quantity = null,
+        private readonly ?\DateTime $start = null,
     ) {
     }
 
@@ -44,8 +44,8 @@ final class Usage implements JsonSerializable
     {
         return [
             'id' => $this->id,
-            'subscription_id' => $this->subscription_id,
-            'usage_group' => $this->usage_group,
+            'subscriptionId' => $this->subscriptionId,
+            'usageGroup' => $this->usageGroup,
             'quantity' => $this->quantity,
             'start' => $this->start,
         ];
@@ -54,6 +54,27 @@ final class Usage implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getSubscriptionId(): ?string
+    {
+        return $this->subscriptionId;
+    }
+    public function getUsageGroup(): ?string
+    {
+        return $this->usageGroup;
+    }
+    public function getQuantity(): ?float
+    {
+        return $this->quantity;
+    }
+    public function getStart(): ?\DateTime
+    {
+        return $this->start;
     }
 }
 

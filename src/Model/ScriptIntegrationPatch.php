@@ -27,20 +27,20 @@ final class ScriptIntegrationPatch implements JsonSerializable
         'type' => 'type',
         'events' => 'events',
         'environments' => 'environments',
-        'excluded_environments' => 'excluded_environments',
+        'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
         'result' => 'result',
         'script' => 'script'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?array $events = [],
-        public readonly ?array $environments = [],
-        public readonly ?array $excluded_environments = [],
-        public readonly ?array $states = [],
-        public readonly ?string $result = null,
-        public readonly ?string $script = null,
+        private readonly ?string $type = null,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+        private readonly ?string $result = null,
+        private readonly ?string $script = null,
     ) {
     }
 
@@ -50,7 +50,7 @@ final class ScriptIntegrationPatch implements JsonSerializable
             'type' => $this->type,
             'events' => $this->events,
             'environments' => $this->environments,
-            'excluded_environments' => $this->excluded_environments,
+            'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
             'script' => $this->script,
@@ -60,6 +60,35 @@ final class ScriptIntegrationPatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getEvents(): ?array
+    {
+        return $this->events;
+    }
+    public function getEnvironments(): ?array
+    {
+        return $this->environments;
+    }
+    public function getExcludedEnvironments(): ?array
+    {
+        return $this->excludedEnvironments;
+    }
+    public function getStates(): ?array
+    {
+        return $this->states;
+    }
+    public function getResult(): ?string
+    {
+        return $this->result;
+    }
+    public function getScript(): ?string
+    {
+        return $this->script;
     }
 }
 

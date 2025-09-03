@@ -30,23 +30,23 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         'port' => 'port',
         'protocol' => 'protocol',
         'facility' => 'facility',
-        'message_format' => 'message_format',
-        'auth_token' => 'auth_token',
-        'auth_mode' => 'auth_mode',
-        'tls_verify' => 'tls_verify'
+        'messageFormat' => 'message_format',
+        'authToken' => 'auth_token',
+        'authMode' => 'auth_mode',
+        'tlsVerify' => 'tls_verify'
     ];
 
     public function __construct(
-        public readonly ?string $type = null,
-        public readonly ?array $extra = [],
-        public readonly ?string $host = null,
-        public readonly ?int $port = null,
-        public readonly ?string $protocol = null,
-        public readonly ?int $facility = null,
-        public readonly ?string $message_format = null,
-        public readonly ?string $auth_token = null,
-        public readonly ?string $auth_mode = null,
-        public readonly ?bool $tls_verify = null,
+        private readonly ?string $type = null,
+        private readonly ?array $extra = [],
+        private readonly ?string $host = null,
+        private readonly ?int $port = null,
+        private readonly ?string $protocol = null,
+        private readonly ?int $facility = null,
+        private readonly ?string $messageFormat = null,
+        private readonly ?string $authToken = null,
+        private readonly ?string $authMode = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -59,16 +59,57 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
             'port' => $this->port,
             'protocol' => $this->protocol,
             'facility' => $this->facility,
-            'message_format' => $this->message_format,
-            'auth_token' => $this->auth_token,
-            'auth_mode' => $this->auth_mode,
-            'tls_verify' => $this->tls_verify,
+            'messageFormat' => $this->messageFormat,
+            'authToken' => $this->authToken,
+            'authMode' => $this->authMode,
+            'tlsVerify' => $this->tlsVerify,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getExtra(): ?array
+    {
+        return $this->extra;
+    }
+    public function getHost(): ?string
+    {
+        return $this->host;
+    }
+    public function getPort(): ?int
+    {
+        return $this->port;
+    }
+    public function getProtocol(): ?string
+    {
+        return $this->protocol;
+    }
+    public function getFacility(): ?int
+    {
+        return $this->facility;
+    }
+    public function getMessageFormat(): ?string
+    {
+        return $this->messageFormat;
+    }
+    public function getAuthToken(): ?string
+    {
+        return $this->authToken;
+    }
+    public function getAuthMode(): ?string
+    {
+        return $this->authMode;
+    }
+    public function getTlsVerify(): ?bool
+    {
+        return $this->tlsVerify;
     }
 }
 

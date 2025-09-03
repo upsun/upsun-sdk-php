@@ -25,12 +25,12 @@ final class RepositoryInformation implements JsonSerializable
 
     private static array $attributeMap = [
         'url' => 'url',
-        'client_ssh_key' => 'client_ssh_key'
+        'clientSshKey' => 'client_ssh_key'
     ];
 
     public function __construct(
-        public readonly ?string $url = null,
-        public readonly ?string $client_ssh_key = null,
+        private readonly ?string $url = null,
+        private readonly ?string $clientSshKey = null,
     ) {
     }
 
@@ -38,13 +38,22 @@ final class RepositoryInformation implements JsonSerializable
     {
         return [
             'url' => $this->url,
-            'client_ssh_key' => $this->client_ssh_key,
+            'clientSshKey' => $this->clientSshKey,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+    public function getClientSshKey(): ?string
+    {
+        return $this->clientSshKey;
     }
 }
 

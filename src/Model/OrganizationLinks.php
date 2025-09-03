@@ -28,35 +28,35 @@ final class OrganizationLinks implements JsonSerializable
         'update' => 'update',
         'delete' => 'delete',
         'members' => 'members',
-        'create_member' => 'create-member',
+        'createMember' => 'create-member',
         'address' => 'address',
         'profile' => 'profile',
-        'payment_source' => 'payment-source',
+        'paymentSource' => 'payment-source',
         'orders' => 'orders',
         'vouchers' => 'vouchers',
-        'apply_voucher' => 'apply-voucher',
+        'applyVoucher' => 'apply-voucher',
         'subscriptions' => 'subscriptions',
-        'create_subscription' => 'create-subscription',
-        'estimate_subscription' => 'estimate-subscription',
-        'mfa_enforcement' => 'mfa-enforcement'
+        'createSubscription' => 'create-subscription',
+        'estimateSubscription' => 'estimate-subscription',
+        'mfaEnforcement' => 'mfa-enforcement'
     ];
 
     public function __construct(
-        public readonly ?\Upsun\Model\OrganizationLinksSelf $self = null,
-        public readonly ?\Upsun\Model\OrganizationLinksUpdate $update = null,
-        public readonly ?\Upsun\Model\OrganizationLinksDelete $delete = null,
-        public readonly ?\Upsun\Model\OrganizationLinksMembers $members = null,
-        public readonly ?\Upsun\Model\OrganizationLinksCreateMember $create_member = null,
-        public readonly ?\Upsun\Model\OrganizationLinksAddress $address = null,
-        public readonly ?\Upsun\Model\OrganizationLinksProfile $profile = null,
-        public readonly ?\Upsun\Model\OrganizationLinksPaymentSource $payment_source = null,
-        public readonly ?\Upsun\Model\OrganizationLinksOrders $orders = null,
-        public readonly ?\Upsun\Model\OrganizationLinksVouchers $vouchers = null,
-        public readonly ?\Upsun\Model\OrganizationLinksApplyVoucher $apply_voucher = null,
-        public readonly ?\Upsun\Model\OrganizationLinksSubscriptions $subscriptions = null,
-        public readonly ?\Upsun\Model\OrganizationLinksCreateSubscription $create_subscription = null,
-        public readonly ?\Upsun\Model\OrganizationLinksEstimateSubscription $estimate_subscription = null,
-        public readonly ?\Upsun\Model\OrganizationLinksMfaEnforcement $mfa_enforcement = null,
+        private readonly ?\Upsun\Model\OrganizationLinksSelf $self = null,
+        private readonly ?\Upsun\Model\OrganizationLinksUpdate $update = null,
+        private readonly ?\Upsun\Model\OrganizationLinksDelete $delete = null,
+        private readonly ?\Upsun\Model\OrganizationLinksMembers $members = null,
+        private readonly ?\Upsun\Model\OrganizationLinksCreateMember $createMember = null,
+        private readonly ?\Upsun\Model\OrganizationLinksAddress $address = null,
+        private readonly ?\Upsun\Model\OrganizationLinksProfile $profile = null,
+        private readonly ?\Upsun\Model\OrganizationLinksPaymentSource $paymentSource = null,
+        private readonly ?\Upsun\Model\OrganizationLinksOrders $orders = null,
+        private readonly ?\Upsun\Model\OrganizationLinksVouchers $vouchers = null,
+        private readonly ?\Upsun\Model\OrganizationLinksApplyVoucher $applyVoucher = null,
+        private readonly ?\Upsun\Model\OrganizationLinksSubscriptions $subscriptions = null,
+        private readonly ?\Upsun\Model\OrganizationLinksCreateSubscription $createSubscription = null,
+        private readonly ?\Upsun\Model\OrganizationLinksEstimateSubscription $estimateSubscription = null,
+        private readonly ?\Upsun\Model\OrganizationLinksMfaEnforcement $mfaEnforcement = null,
     ) {
     }
 
@@ -67,23 +67,84 @@ final class OrganizationLinks implements JsonSerializable
             'update' => $this->update,
             'delete' => $this->delete,
             'members' => $this->members,
-            'create_member' => $this->create_member,
+            'createMember' => $this->createMember,
             'address' => $this->address,
             'profile' => $this->profile,
-            'payment_source' => $this->payment_source,
+            'paymentSource' => $this->paymentSource,
             'orders' => $this->orders,
             'vouchers' => $this->vouchers,
-            'apply_voucher' => $this->apply_voucher,
+            'applyVoucher' => $this->applyVoucher,
             'subscriptions' => $this->subscriptions,
-            'create_subscription' => $this->create_subscription,
-            'estimate_subscription' => $this->estimate_subscription,
-            'mfa_enforcement' => $this->mfa_enforcement,
+            'createSubscription' => $this->createSubscription,
+            'estimateSubscription' => $this->estimateSubscription,
+            'mfaEnforcement' => $this->mfaEnforcement,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getSelf(): ?\Upsun\Model\OrganizationLinksSelf
+    {
+        return $this->self;
+    }
+    public function getUpdate(): ?\Upsun\Model\OrganizationLinksUpdate
+    {
+        return $this->update;
+    }
+    public function getDelete(): ?\Upsun\Model\OrganizationLinksDelete
+    {
+        return $this->delete;
+    }
+    public function getMembers(): ?\Upsun\Model\OrganizationLinksMembers
+    {
+        return $this->members;
+    }
+    public function getCreateMember(): ?\Upsun\Model\OrganizationLinksCreateMember
+    {
+        return $this->createMember;
+    }
+    public function getAddress(): ?\Upsun\Model\OrganizationLinksAddress
+    {
+        return $this->address;
+    }
+    public function getProfile(): ?\Upsun\Model\OrganizationLinksProfile
+    {
+        return $this->profile;
+    }
+    public function getPaymentSource(): ?\Upsun\Model\OrganizationLinksPaymentSource
+    {
+        return $this->paymentSource;
+    }
+    public function getOrders(): ?\Upsun\Model\OrganizationLinksOrders
+    {
+        return $this->orders;
+    }
+    public function getVouchers(): ?\Upsun\Model\OrganizationLinksVouchers
+    {
+        return $this->vouchers;
+    }
+    public function getApplyVoucher(): ?\Upsun\Model\OrganizationLinksApplyVoucher
+    {
+        return $this->applyVoucher;
+    }
+    public function getSubscriptions(): ?\Upsun\Model\OrganizationLinksSubscriptions
+    {
+        return $this->subscriptions;
+    }
+    public function getCreateSubscription(): ?\Upsun\Model\OrganizationLinksCreateSubscription
+    {
+        return $this->createSubscription;
+    }
+    public function getEstimateSubscription(): ?\Upsun\Model\OrganizationLinksEstimateSubscription
+    {
+        return $this->estimateSubscription;
+    }
+    public function getMfaEnforcement(): ?\Upsun\Model\OrganizationLinksMfaEnforcement
+    {
+        return $this->mfaEnforcement;
     }
 }
 

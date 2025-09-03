@@ -29,8 +29,8 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     ];
 
     public function __construct(
-        public readonly ?string $root = null,
-        public readonly ?array $operations = [],
+        private readonly ?string $root = null,
+        private readonly ?array $operations = [],
     ) {
     }
 
@@ -45,6 +45,15 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getRoot(): ?string
+    {
+        return $this->root;
+    }
+    public function getOperations(): ?array
+    {
+        return $this->operations;
     }
 }
 

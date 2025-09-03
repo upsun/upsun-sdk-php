@@ -26,7 +26,7 @@ final class RoutePatch implements JsonSerializable
     private static array $attributeMap = [
         'primary' => 'primary',
         'id' => 'id',
-        'production_url' => 'production_url',
+        'productionUrl' => 'production_url',
         'attributes' => 'attributes',
         'type' => 'type',
         'tls' => 'tls',
@@ -38,17 +38,17 @@ final class RoutePatch implements JsonSerializable
     ];
 
     public function __construct(
-        public readonly ?bool $primary = null,
-        public readonly ?string $id = null,
-        public readonly ?string $production_url = null,
-        public readonly ?array $attributes = [],
-        public readonly ?string $type = null,
-        public readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        public readonly ?string $to = null,
-        public readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
-        public readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
-        public readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
-        public readonly ?string $upstream = null,
+        private readonly ?bool $primary = null,
+        private readonly ?string $id = null,
+        private readonly ?string $productionUrl = null,
+        private readonly ?array $attributes = [],
+        private readonly ?string $type = null,
+        private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+        private readonly ?string $to = null,
+        private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+        private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
+        private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        private readonly ?string $upstream = null,
     ) {
     }
 
@@ -57,7 +57,7 @@ final class RoutePatch implements JsonSerializable
         return [
             'primary' => $this->primary,
             'id' => $this->id,
-            'production_url' => $this->production_url,
+            'productionUrl' => $this->productionUrl,
             'attributes' => $this->attributes,
             'type' => $this->type,
             'tls' => $this->tls,
@@ -72,6 +72,51 @@ final class RoutePatch implements JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getPrimary(): ?bool
+    {
+        return $this->primary;
+    }
+    public function getId(): ?string
+    {
+        return $this->id;
+    }
+    public function getProductionUrl(): ?string
+    {
+        return $this->productionUrl;
+    }
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
+    }
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+    public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
+    {
+        return $this->tls;
+    }
+    public function getTo(): ?string
+    {
+        return $this->to;
+    }
+    public function getRedirects(): ?\Upsun\Model\TheConfigurationOfTheRedirects1
+    {
+        return $this->redirects;
+    }
+    public function getCache(): ?\Upsun\Model\CacheConfiguration1
+    {
+        return $this->cache;
+    }
+    public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
+    {
+        return $this->ssi;
+    }
+    public function getUpstream(): ?string
+    {
+        return $this->upstream;
     }
 }
 
