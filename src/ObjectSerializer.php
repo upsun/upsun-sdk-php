@@ -486,7 +486,28 @@ class ObjectSerializer
             case 'DateTime':
                 return new \DateTime($data);
             case 'SplFileObject':
-                return new \SplFileObject($data);
+                $data = Utils::streamFor($data);
+
+                /** @var \Psr\Http\Message\StreamInterface $data */
+    
+                // determine file name
+                if (
+                    is_array($httpHeaders)
+                    && array_key_exists('Content-Disposition', $httpHeaders)
+                    && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
+                ) {
+                    $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
+                } else {
+                    $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
+                }
+    
+                $file = fopen($filename, 'w');
+                while ($chunk = $data->read(200)) {
+                    fwrite($file, $chunk);
+                }
+                fclose($file);
+    
+                return new \SplFileObject($filename, 'r');
             default:
                 // Nested model
                 return self::deserializeSimplifiedModel($data, $class);
