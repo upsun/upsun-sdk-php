@@ -37,7 +37,7 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?array $extra = [],
         private readonly ?string $host = null,
         private readonly ?int $port = null,
@@ -71,7 +71,7 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }

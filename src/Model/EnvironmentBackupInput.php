@@ -28,7 +28,7 @@ final class EnvironmentBackupInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $safe = null,
+        private readonly bool $safe,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class EnvironmentBackupInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSafe(): ?bool
+    public function getSafe(): bool
     {
         return $this->safe;
     }

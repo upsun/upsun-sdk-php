@@ -30,7 +30,7 @@ final class Integrations implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $enabled = null,
+        private readonly bool $enabled,
         private readonly ?\Upsun\Model\Config $config = null,
         private readonly ?array $allowedIntegrations = [],
     ) {
@@ -50,7 +50,7 @@ final class Integrations implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getEnabled(): ?bool
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }

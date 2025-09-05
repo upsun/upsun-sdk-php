@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **id** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **status** | **string** |  |
-**expires_at** | **\DateTime** |  |
+**expiresAt** | **\DateTime** |  |
 **index** | **int** |  |
-**commit_id** | **string** |  |
+**commitId** | **string** |  |
 **environment** | **string** |  |
 **safe** | **bool** |  |
-**size_of_volumes** | **int** |  |
-**size_used** | **int** |  |
+**sizeOfVolumes** | **int** |  |
+**sizeUsed** | **int** |  |
 **deployment** | **string** |  |
 **restorable** | **bool** |  |
 **automated** | **bool** |  |

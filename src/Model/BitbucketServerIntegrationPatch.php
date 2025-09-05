@@ -38,15 +38,15 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
         private readonly ?string $environmentInitResources = null,
-        private readonly ?string $url = null,
-        private readonly ?string $username = null,
-        private readonly ?string $token = null,
-        private readonly ?string $project = null,
-        private readonly ?string $repository = null,
+        private readonly string $url,
+        private readonly string $username,
+        private readonly string $token,
+        private readonly string $project,
+        private readonly string $repository,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
@@ -74,7 +74,7 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -90,23 +90,23 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->username;
     }
-    public function getToken(): ?string
+    public function getToken(): string
     {
         return $this->token;
     }
-    public function getProject(): ?string
+    public function getProject(): string
     {
         return $this->project;
     }
-    public function getRepository(): ?string
+    public function getRepository(): string
     {
         return $this->repository;
     }

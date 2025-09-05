@@ -9,10 +9,6 @@ use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\DateTimeFilter;
-use Upsun\Model\Error;
-use Upsun\Model\ListTeamMembers200Response;
-use Upsun\Model\ListTeamProjectAccess200Response;
-use Upsun\Model\ListTeams200Response;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
@@ -41,10 +37,16 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function create(array $createTeamRequest): Team|Error
-    {
-        var_dump($createTeamRequest);
-        $createTeamRequest = new CreateTeamRequest($createTeamRequest);
+    public function create(
+        string $organizationId,
+        string $label,
+        ?array $projectPermissions = []
+    ): Team {
+        $createTeamRequest = new CreateTeamRequest(
+            organizationId: $organizationId,
+            label: $label,
+            projectPermissions: $projectPermissions
+        );
         return $this->teamsApi->createTeam($createTeamRequest);
     }
 
@@ -53,9 +55,9 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function createMember(string $teamId, array $createTeamMemberRequest): Error|TeamMember
+    public function createMember(string $teamId, string $userId): TeamMember
     {
-        $createTeamMemberRequest = new CreateTeamMemberRequest($createTeamMemberRequest);
+        $createTeamMemberRequest = new CreateTeamMemberRequest(userId: $userId);
         return $this->teamsApi->createTeamMember($teamId, $createTeamMemberRequest);
     }
 
@@ -84,7 +86,7 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $teamId): Team|Error
+    public function get(string $teamId): Team
     {
         return $this->teamsApi->getTeam($teamId);
     }
@@ -94,7 +96,7 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getMember(string $teamId, string $userId): Error|TeamMember
+    public function getMember(string $teamId, string $userId): TeamMember
     {
         return $this->teamsApi->getTeamMember($teamId, $userId);
     }
@@ -154,8 +156,8 @@ class TeamTask extends TaskBase
     ): array {
         return $this->teamsApi->listUserTeams(
             $userId,
-            new StringFilter($filterOrganizationId),
-            new DateTimeFilter($filterUpdatedAt),
+            new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
+            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -168,7 +170,7 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $teamId, ?array $updateTeamRequest = null): Team|Error
+    public function update(string $teamId, ?array $updateTeamRequest = null): Team
     {
         return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
     }
@@ -178,7 +180,7 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
+    public function getProjectTeamAccess(string $projectId, string $teamId): TeamProjectAccess
     {
         return $this->accessApi->getProjectTeamAccess($projectId, $teamId);
     }
@@ -189,7 +191,7 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
+    public function getTeamProjectAccess(string $teamId, string $projectId): TeamProjectAccess
     {
         return $this->accessApi->getTeamProjectAccess($teamId, $projectId);
     }
@@ -225,7 +227,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
+    ): array {
         return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -240,7 +242,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
+    ): array {
         return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 

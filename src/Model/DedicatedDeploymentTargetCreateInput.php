@@ -30,8 +30,8 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?string $name = null,
+        private readonly string $type,
+        private readonly string $name,
         private readonly ?object $enforcedMounts = null,
     ) {
     }
@@ -50,11 +50,11 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

@@ -30,9 +30,9 @@ final class ResourcesLimits implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $containerProfiles = null,
-        private readonly ?\Upsun\Model\ResourcesForProductionEnvironments $production = null,
-        private readonly ?\Upsun\Model\ResourcesForDevelopmentEnvironments $development = null,
+        private readonly bool $containerProfiles,
+        private readonly \Upsun\Model\ResourcesForProductionEnvironments $production,
+        private readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class ResourcesLimits implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getContainerProfiles(): ?bool
+    public function getContainerProfiles(): bool
     {
         return $this->containerProfiles;
     }
-    public function getProduction(): ?\Upsun\Model\ResourcesForProductionEnvironments
+    public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
     {
         return $this->production;
     }
-    public function getDevelopment(): ?\Upsun\Model\ResourcesForDevelopmentEnvironments
+    public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
     {
         return $this->development;
     }

@@ -105,19 +105,6 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get team access for a project
      *
      * @throws ApiException on non-2xx response
@@ -953,10 +940,10 @@ final class TeamAccessApi extends AbstractApi
      */
     public function listProjectTeamAccess(
         string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listProjectTeamAccessWithHttpInfo(
             $projectId,
@@ -1236,10 +1223,10 @@ final class TeamAccessApi extends AbstractApi
      */
     public function listTeamProjectAccess(
         string $teamId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listTeamProjectAccessWithHttpInfo(
             $teamId,

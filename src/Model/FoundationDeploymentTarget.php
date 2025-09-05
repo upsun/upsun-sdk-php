@@ -32,11 +32,11 @@ final class FoundationDeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?string $name = null,
-        private readonly ?array $hosts = [],
-        private readonly ?bool $useDedicatedGrid = null,
-        private readonly ?string $storageType = null,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly array $hosts,
+        private readonly bool $useDedicatedGrid,
+        private readonly string $storageType,
     ) {
     }
 
@@ -56,23 +56,23 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
-    public function getHosts(): ?array
+    public function getHosts(): array
     {
         return $this->hosts;
     }
-    public function getUseDedicatedGrid(): ?bool
+    public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
-    public function getStorageType(): ?string
+    public function getStorageType(): string
     {
         return $this->storageType;
     }

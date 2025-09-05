@@ -29,8 +29,8 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $channel = null,
-        private readonly ?string $phoneNumber = null,
+        private readonly string $channel,
+        private readonly string $phoneNumber,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getChannel(): ?string
+    public function getChannel(): string
     {
         return $this->channel;
     }
-    public function getPhoneNumber(): ?string
+    public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
     }

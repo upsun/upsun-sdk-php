@@ -231,7 +231,7 @@ No authorization required
 ## `getUser()`
 
 ```php
-getUser($user_id): \Upsun\Model\User
+getUser($userId): \Upsun\Model\User
 ```
 
 Get a user
@@ -251,10 +251,10 @@ $apiInstance = new Upsun\Api\UsersApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->getUser($user_id);
+    $result = $apiInstance->getUser($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->getUser: ', $e->getMessage(), PHP_EOL;
@@ -265,7 +265,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -399,7 +399,7 @@ No authorization required
 ## `resetEmailAddress()`
 
 ```php
-resetEmailAddress($user_id, $reset_email_address_request)
+resetEmailAddress($userId, $resetEmailAddressRequest)
 ```
 
 Reset email address
@@ -419,11 +419,11 @@ $apiInstance = new Upsun\Api\UsersApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$reset_email_address_request = new \Upsun\Model\ResetEmailAddressRequest(); // \Upsun\Model\ResetEmailAddressRequest | 
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$resetEmailAddressRequest = new \Upsun\Model\ResetEmailAddressRequest(); // \Upsun\Model\ResetEmailAddressRequest | 
 
 try {
-    $apiInstance->resetEmailAddress($user_id, $reset_email_address_request);
+    $apiInstance->resetEmailAddress($userId, $resetEmailAddressRequest);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->resetEmailAddress: ', $e->getMessage(), PHP_EOL;
 }
@@ -433,8 +433,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **reset_email_address_request** | [**\Upsun\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **resetEmailAddressRequest** | [**\Upsun\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional]
 
 ### Return type
 
@@ -456,7 +456,7 @@ No authorization required
 ## `resetPassword()`
 
 ```php
-resetPassword($user_id)
+resetPassword($userId)
 ```
 
 Reset user password
@@ -476,10 +476,10 @@ $apiInstance = new Upsun\Api\UsersApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $apiInstance->resetPassword($user_id);
+    $apiInstance->resetPassword($userId);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->resetPassword: ', $e->getMessage(), PHP_EOL;
 }
@@ -489,7 +489,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -511,7 +511,7 @@ No authorization required
 ## `updateUser()`
 
 ```php
-updateUser($user_id, $update_user_request): \Upsun\Model\User
+updateUser($userId, $updateUserRequest): \Upsun\Model\User
 ```
 
 Update a user
@@ -531,11 +531,11 @@ $apiInstance = new Upsun\Api\UsersApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$update_user_request = new \Upsun\Model\UpdateUserRequest(); // \Upsun\Model\UpdateUserRequest
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$updateUserRequest = new \Upsun\Model\UpdateUserRequest(); // \Upsun\Model\UpdateUserRequest
 
 try {
-    $result = $apiInstance->updateUser($user_id, $update_user_request);
+    $result = $apiInstance->updateUser($userId, $updateUserRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->updateUser: ', $e->getMessage(), PHP_EOL;
@@ -546,8 +546,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **update_user_request** | [**\Upsun\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **updateUserRequest** | [**\Upsun\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional]
 
 ### Return type
 

@@ -35,7 +35,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     public function __construct(
         private readonly ?string $plan = null,
-        private readonly ?string $projectRegion = null,
+        private readonly string $projectRegion,
         private readonly ?string $projectTitle = null,
         private readonly ?string $optionsUrl = null,
         private readonly ?string $defaultBranch = null,
@@ -66,7 +66,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->plan;
     }
-    public function getProjectRegion(): ?string
+    public function getProjectRegion(): string
     {
         return $this->projectRegion;
     }

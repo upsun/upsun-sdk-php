@@ -105,19 +105,6 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Checks if the user is able to create a new project.
      *
      * @throws ApiException on non-2xx response
@@ -733,7 +720,7 @@ final class SubscriptionsApi extends AbstractApi
         int $environments,
         int $storage,
         int $userLicenses,
-        string $format = null
+        ?string $format = null
     ): \Upsun\Model\EstimationObject {
         list($response) = $this->estimateNewOrgSubscriptionWithHttpInfo(
             $organizationId,
@@ -1045,10 +1032,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organizationId,
         string $subscriptionId,
         string $plan,
-        int $environments = null,
-        int $storage = null,
-        int $userLicenses = null,
-        string $format = null
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null,
+        ?string $format = null
     ): \Upsun\Model\EstimationObject {
         list($response) = $this->estimateOrgSubscriptionWithHttpInfo(
             $organizationId,
@@ -1576,8 +1563,8 @@ final class SubscriptionsApi extends AbstractApi
     public function getOrgSubscriptionCurrentUsage(
         string $organizationId,
         string $subscriptionId,
-        string $usageGroups = null,
-        bool $includeNotCharged = null
+        ?string $usageGroups = null,
+        ?bool $includeNotCharged = null
     ): \Upsun\Model\SubscriptionCurrentUsageObject {
         list($response) = $this->getOrgSubscriptionCurrentUsageWithHttpInfo(
             $organizationId,
@@ -1828,16 +1815,16 @@ final class SubscriptionsApi extends AbstractApi
      */
     public function listOrgSubscriptions(
         string $organizationId,
-        string $filterStatus = null,
-        string $filterId = null,
-        \Upsun\Model\StringFilter $filterProjectId = null,
-        \Upsun\Model\StringFilter $filterProjectTitle = null,
-        \Upsun\Model\StringFilter $filterRegion = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $filterStatus = null,
+        ?string $filterId = null,
+        ?\Upsun\Model\StringFilter $filterProjectId = null,
+        ?\Upsun\Model\StringFilter $filterProjectTitle = null,
+        ?\Upsun\Model\StringFilter $filterRegion = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listOrgSubscriptionsWithHttpInfo(
             $organizationId,
@@ -2445,7 +2432,7 @@ final class SubscriptionsApi extends AbstractApi
     public function updateOrgSubscription(
         string $organizationId,
         string $subscriptionId,
-        \Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
+        ?\Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
     ): \Upsun\Model\Subscription {
         list($response) = $this->updateOrgSubscriptionWithHttpInfo(
             $organizationId,

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createProjectsDeployments()`
 
 ```php
-createProjectsDeployments($project_id, $deployment_target_create_input): \Upsun\Model\AcceptedResponse
+createProjectsDeployments($projectId, $deploymentTargetCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Create a project deployment target
@@ -34,11 +34,11 @@ $apiInstance = new Upsun\Api\DeploymentTargetApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$deployment_target_create_input = new \Upsun\Model\DeploymentTargetCreateInput(); // \Upsun\Model\DeploymentTargetCreateInput | 
+$projectId = 'projectId_example'; // string
+$deploymentTargetCreateInput = new \Upsun\Model\DeploymentTargetCreateInput(); // \Upsun\Model\DeploymentTargetCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsDeployments($project_id, $deployment_target_create_input);
+    $result = $apiInstance->createProjectsDeployments($projectId, $deploymentTargetCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentTargetApi->createProjectsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -49,8 +49,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **deployment_target_create_input** | [**\Upsun\Model\DeploymentTargetCreateInput**](../Model/DeploymentTargetCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **deploymentTargetCreateInput** | [**\Upsun\Model\DeploymentTargetCreateInput**](../Model/DeploymentTargetCreateInput.md)|  |
 
 ### Return type
 
@@ -72,7 +72,7 @@ No authorization required
 ## `deleteProjectsDeployments()`
 
 ```php
-deleteProjectsDeployments($project_id, $deployment_target_configuration_id): \Upsun\Model\AcceptedResponse
+deleteProjectsDeployments($projectId, $deploymentTargetConfigurationId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete a single project deployment target
@@ -92,11 +92,11 @@ $apiInstance = new Upsun\Api\DeploymentTargetApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$deployment_target_configuration_id = 'deployment_target_configuration_id_example'; // string
+$projectId = 'projectId_example'; // string
+$deploymentTargetConfigurationId = 'deploymentTargetConfigurationId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsDeployments($project_id, $deployment_target_configuration_id);
+    $result = $apiInstance->deleteProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentTargetApi->deleteProjectsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -107,8 +107,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **deployment_target_configuration_id** | **string**|  |
+ **projectId** | **string**|  |
+ **deploymentTargetConfigurationId** | **string**|  |
 
 ### Return type
 
@@ -130,7 +130,7 @@ No authorization required
 ## `getProjectsDeployments()`
 
 ```php
-getProjectsDeployments($project_id, $deployment_target_configuration_id): \Upsun\Model\DeploymentTarget
+getProjectsDeployments($projectId, $deploymentTargetConfigurationId): \Upsun\Model\DeploymentTarget
 ```
 
 Get a single project deployment target
@@ -150,11 +150,11 @@ $apiInstance = new Upsun\Api\DeploymentTargetApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$deployment_target_configuration_id = 'deployment_target_configuration_id_example'; // string
+$projectId = 'projectId_example'; // string
+$deploymentTargetConfigurationId = 'deploymentTargetConfigurationId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsDeployments($project_id, $deployment_target_configuration_id);
+    $result = $apiInstance->getProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentTargetApi->getProjectsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -165,8 +165,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **deployment_target_configuration_id** | **string**|  |
+ **projectId** | **string**|  |
+ **deploymentTargetConfigurationId** | **string**|  |
 
 ### Return type
 
@@ -188,7 +188,7 @@ No authorization required
 ## `listProjectsDeployments()`
 
 ```php
-listProjectsDeployments($project_id): \Upsun\Model\DeploymentTarget[]
+listProjectsDeployments($projectId): \Upsun\Model\DeploymentTarget[]
 ```
 
 Get project deployment target info
@@ -208,10 +208,10 @@ $apiInstance = new Upsun\Api\DeploymentTargetApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsDeployments($project_id);
+    $result = $apiInstance->listProjectsDeployments($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentTargetApi->listProjectsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -222,7 +222,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -244,7 +244,7 @@ No authorization required
 ## `updateProjectsDeployments()`
 
 ```php
-updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch): \Upsun\Model\AcceptedResponse
+updateProjectsDeployments($projectId, $deploymentTargetConfigurationId, $deploymentTargetPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update a project deployment
@@ -262,12 +262,12 @@ $apiInstance = new Upsun\Api\DeploymentTargetApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$deployment_target_configuration_id = 'deployment_target_configuration_id_example'; // string
-$deployment_target_patch = new \Upsun\Model\DeploymentTargetPatch(); // \Upsun\Model\DeploymentTargetPatch | 
+$projectId = 'projectId_example'; // string
+$deploymentTargetConfigurationId = 'deploymentTargetConfigurationId_example'; // string
+$deploymentTargetPatch = new \Upsun\Model\DeploymentTargetPatch(); // \Upsun\Model\DeploymentTargetPatch | 
 
 try {
-    $result = $apiInstance->updateProjectsDeployments($project_id, $deployment_target_configuration_id, $deployment_target_patch);
+    $result = $apiInstance->updateProjectsDeployments($projectId, $deploymentTargetConfigurationId, $deploymentTargetPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentTargetApi->updateProjectsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -278,9 +278,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **deployment_target_configuration_id** | **string**|  |
- **deployment_target_patch** | [**\Upsun\Model\DeploymentTargetPatch**](../Model/DeploymentTargetPatch.md)|  |
+ **projectId** | **string**|  |
+ **deploymentTargetConfigurationId** | **string**|  |
+ **deploymentTargetPatch** | [**\Upsun\Model\DeploymentTargetPatch**](../Model/DeploymentTargetPatch.md)|  |
 
 ### Return type
 

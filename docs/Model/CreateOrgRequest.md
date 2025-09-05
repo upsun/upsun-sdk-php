@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** | The type of the organization. | [optional]
-**owner_id** | **string** | ID of the owner. | [optional]
+**ownerId** | **string** | ID of the owner. | [optional]
 **name** | **string** | A unique machine name representing the organization. | [optional]
 **label** | **string** | The human-readable label of the organization. |
 **country** | **string** | The organization country (2-letter country code). | [optional]

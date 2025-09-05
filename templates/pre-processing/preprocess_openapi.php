@@ -5,6 +5,13 @@ $outputFile = __DIR__ . '/../../schema/openapispec-platformsh-xreturn.json';
 
 $spec = json_decode(file_get_contents($specFile), true);
 
+// FIXME temp removal
+// remove /projects/{projectId}.delete from the action
+// (use /organizations/{organization_id}/subscriptions/{subscription_id}.delete instead)
+if (isset($spec['paths']['/projects/{projectId}']['delete'])) {
+    unset($spec['paths']['/projects/{projectId}']['delete']);
+}
+
 foreach ($spec['paths'] as $path => &$methods) {
     preg_match_all('/\{([^\}]+)\}/', $path, $matches);
     $pathParams = $matches[1] ?? [];
@@ -31,13 +38,23 @@ foreach ($spec['paths'] as $path => &$methods) {
         if (isset($operation['responses']) && is_array($operation['responses'])) {
             foreach ($operation['responses'] as $statusCode => $resp) {
                 // Only process success codes (2xx)
-                if ((!is_numeric($statusCode) || $statusCode < 200) && $statusCode !== 'default') {
+                if ((!is_numeric($statusCode) || $statusCode < 200 || $statusCode > 299) && $statusCode !== 'default') {
                     continue;
                 }
 
-                $schema = $resp['content']['application/json']['schema']
-                    ?? $resp['content']['application/problem+json']['schema']
-                    ?? null;
+                $contentTypes = array_keys($resp['content'] ?? []);
+
+                // JSON
+                if (isset($resp['content']['application/json']['schema'])) {
+                    $schema = $resp['content']['application/json']['schema'];
+                } elseif (isset($resp['content']['application/problem+json']['schema'])) {
+                    $schema = $resp['content']['application/problem+json']['schema'];
+                } elseif (
+                    isset($resp['content']['application/pdf']['schema'])
+                    || in_array('application/pdf', $contentTypes)
+                ) {
+                    $schema = ['type' => 'string', 'format' => 'binary'];
+                }
 
                 if ($schema && is_array($schema)) {
                     $has2xxWithSchema = true;
@@ -45,11 +62,14 @@ foreach ($spec['paths'] as $path => &$methods) {
                     foreach ($refs as $ref) {
                         $returnTypes[] = $ref;
                     }
-                }
-
-                // If no schema to the response, add `void`
-                if (!$schema) {
-                    $returnTypes[] = 'void';
+                } else {
+                    // Si pas de schema, déterminer type via content-type
+                    $contentTypes = array_keys($resp['content'] ?? []);
+                    if (in_array('application/pdf', $contentTypes)) {
+                        $returnTypes[] = 'string';
+                    } else {
+                        $returnTypes[] = 'void';
+                    }
                 }
             }
         }
@@ -70,7 +90,11 @@ foreach ($spec['paths'] as $path => &$methods) {
             }
             return $t;
         }, $returnTypes);
-        $operation['x-return-types-union'] = implode('|', array_values(array_unique($unionTypes)));
+
+        $returnTypeUnion = implode('|', array_values(array_unique($unionTypes)));
+        if ($returnTypeUnion) {
+            $operation['x-return-types-union'] = $returnTypeUnion;
+        }
         foreach ($returnTypes as $t) {
             if (str_ends_with($t, '[]')) {
                 $operation['x-return-types-displayReturn'] = true;
@@ -79,7 +103,7 @@ foreach ($spec['paths'] as $path => &$methods) {
         }
 
         // Determine if the operation has a real return type
-        $hasReturn = false;
+        $hasReturn = isset($operation['responses']['200']['content']);
         foreach ($returnTypes as $t) {
             if ($t !== 'null') {
                 $hasReturn = true;

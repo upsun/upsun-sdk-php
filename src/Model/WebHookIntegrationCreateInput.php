@@ -35,14 +35,14 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?array $events = [],
         private readonly ?array $environments = [],
         private readonly ?array $excludedEnvironments = [],
         private readonly ?array $states = [],
         private readonly ?string $result = null,
         private readonly ?string $sharedKey = null,
-        private readonly ?string $url = null,
+        private readonly string $url,
     ) {
     }
 
@@ -65,7 +65,7 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -93,7 +93,7 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
     {
         return $this->sharedKey;
     }
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }

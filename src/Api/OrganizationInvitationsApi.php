@@ -105,19 +105,6 @@ final class OrganizationInvitationsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Cancel a pending invitation to an organization
      *
      * @throws ApiException on non-2xx response
@@ -330,7 +317,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function createOrgInvite(
         string $organizationId,
-        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
+        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): \Upsun\Model\OrganizationInvitation {
         list($response) = $this->createOrgInviteWithHttpInfo(
             $organizationId,
@@ -537,11 +524,11 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function listOrgInvites(
         string $organizationId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterState = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listOrgInvitesWithHttpInfo(
             $organizationId,

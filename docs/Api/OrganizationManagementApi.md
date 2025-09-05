@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `estimateOrg()`
 
 ```php
-estimateOrg($organization_id): \Upsun\Model\OrganizationEstimationObject
+estimateOrg($organizationId): \Upsun\Model\OrganizationEstimationObject
 ```
 
 Estimate total spend
@@ -34,10 +34,10 @@ $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->estimateOrg($organization_id);
+    $result = $apiInstance->estimateOrg($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationManagementApi->estimateOrg: ', $e->getMessage(), PHP_EOL;
@@ -48,7 +48,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -70,7 +70,7 @@ No authorization required
 ## `getOrgBillingAlertConfig()`
 
 ```php
-getOrgBillingAlertConfig($organization_id): \Upsun\Model\OrganizationAlertConfig
+getOrgBillingAlertConfig($organizationId): \Upsun\Model\OrganizationAlertConfig
 ```
 
 Get billing alert configuration
@@ -90,10 +90,10 @@ $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->getOrgBillingAlertConfig($organization_id);
+    $result = $apiInstance->getOrgBillingAlertConfig($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationManagementApi->getOrgBillingAlertConfig: ', $e->getMessage(), PHP_EOL;
@@ -104,7 +104,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -126,7 +126,7 @@ No authorization required
 ## `getOrgPrepaymentInfo()`
 
 ```php
-getOrgPrepaymentInfo($organization_id): \Upsun\Model\GetOrgPrepaymentInfo200Response
+getOrgPrepaymentInfo($organizationId): \Upsun\Model\GetOrgPrepaymentInfo200Response
 ```
 
 Get organization prepayment information
@@ -146,10 +146,10 @@ $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
 
 try {
-    $result = $apiInstance->getOrgPrepaymentInfo($organization_id);
+    $result = $apiInstance->getOrgPrepaymentInfo($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationManagementApi->getOrgPrepaymentInfo: ', $e->getMessage(), PHP_EOL;
@@ -160,7 +160,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
+ **organizationId** | **string**| The ID of the organization. |
 
 ### Return type
 
@@ -182,7 +182,7 @@ No authorization required
 ## `listOrgPrepaymentTransactions()`
 
 ```php
-listOrgPrepaymentTransactions($organization_id): \Upsun\Model\ListOrgPrepaymentTransactions200Response
+listOrgPrepaymentTransactions($organizationId): \Upsun\Model\ListOrgPrepaymentTransactions200Response
 ```
 
 List organization prepayment transactions
@@ -202,10 +202,10 @@ $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
 
 try {
-    $result = $apiInstance->listOrgPrepaymentTransactions($organization_id);
+    $result = $apiInstance->listOrgPrepaymentTransactions($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationManagementApi->listOrgPrepaymentTransactions: ', $e->getMessage(), PHP_EOL;
@@ -216,7 +216,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
+ **organizationId** | **string**| The ID of the organization. |
 
 ### Return type
 
@@ -238,7 +238,7 @@ No authorization required
 ## `updateOrgBillingAlertConfig()`
 
 ```php
-updateOrgBillingAlertConfig($organization_id, $update_org_billing_alert_config_request): \Upsun\Model\OrganizationAlertConfig
+updateOrgBillingAlertConfig($organizationId, $updateOrgBillingAlertConfigRequest): \Upsun\Model\OrganizationAlertConfig
 ```
 
 Update billing alert configuration
@@ -258,11 +258,11 @@ $apiInstance = new Upsun\Api\OrganizationManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
-$update_org_billing_alert_config_request = new \Upsun\Model\UpdateOrgBillingAlertConfigRequest(); // \Upsun\Model\UpdateOrgBillingAlertConfigRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$updateOrgBillingAlertConfigRequest = new \Upsun\Model\UpdateOrgBillingAlertConfigRequest(); // \Upsun\Model\UpdateOrgBillingAlertConfigRequest
 
 try {
-    $result = $apiInstance->updateOrgBillingAlertConfig($organization_id, $update_org_billing_alert_config_request);
+    $result = $apiInstance->updateOrgBillingAlertConfig($organizationId, $updateOrgBillingAlertConfigRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationManagementApi->updateOrgBillingAlertConfig: ', $e->getMessage(), PHP_EOL;
@@ -273,8 +273,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **update_org_billing_alert_config_request** | [**\Upsun\Model\UpdateOrgBillingAlertConfigRequest**](../Model/UpdateOrgBillingAlertConfigRequest.md)|  | [optional]
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **updateOrgBillingAlertConfigRequest** | [**\Upsun\Model\UpdateOrgBillingAlertConfigRequest**](../Model/UpdateOrgBillingAlertConfigRequest.md)|  | [optional]
 
 ### Return type
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createProjectsVariables()`
 
 ```php
-createProjectsVariables($project_id, $project_variable_create_input): \Upsun\Model\AcceptedResponse
+createProjectsVariables($projectId, $projectVariableCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Add a project variable
@@ -34,11 +34,11 @@ $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$project_variable_create_input = new \Upsun\Model\ProjectVariableCreateInput(); // \Upsun\Model\ProjectVariableCreateInput | 
+$projectId = 'projectId_example'; // string
+$projectVariableCreateInput = new \Upsun\Model\ProjectVariableCreateInput(); // \Upsun\Model\ProjectVariableCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsVariables($project_id, $project_variable_create_input);
+    $result = $apiInstance->createProjectsVariables($projectId, $projectVariableCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectVariablesApi->createProjectsVariables: ', $e->getMessage(), PHP_EOL;
@@ -49,8 +49,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **project_variable_create_input** | [**\Upsun\Model\ProjectVariableCreateInput**](../Model/ProjectVariableCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **projectVariableCreateInput** | [**\Upsun\Model\ProjectVariableCreateInput**](../Model/ProjectVariableCreateInput.md)|  |
 
 ### Return type
 
@@ -72,7 +72,7 @@ No authorization required
 ## `deleteProjectsVariables()`
 
 ```php
-deleteProjectsVariables($project_id, $project_variable_id): \Upsun\Model\AcceptedResponse
+deleteProjectsVariables($projectId, $projectVariableId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete a project variable
@@ -92,11 +92,11 @@ $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$project_variable_id = 'project_variable_id_example'; // string
+$projectId = 'projectId_example'; // string
+$projectVariableId = 'projectVariableId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsVariables($project_id, $project_variable_id);
+    $result = $apiInstance->deleteProjectsVariables($projectId, $projectVariableId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectVariablesApi->deleteProjectsVariables: ', $e->getMessage(), PHP_EOL;
@@ -107,8 +107,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **project_variable_id** | **string**|  |
+ **projectId** | **string**|  |
+ **projectVariableId** | **string**|  |
 
 ### Return type
 
@@ -130,7 +130,7 @@ No authorization required
 ## `getProjectsVariables()`
 
 ```php
-getProjectsVariables($project_id, $project_variable_id): \Upsun\Model\ProjectVariable
+getProjectsVariables($projectId, $projectVariableId): \Upsun\Model\ProjectVariable
 ```
 
 Get a project variable
@@ -150,11 +150,11 @@ $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$project_variable_id = 'project_variable_id_example'; // string
+$projectId = 'projectId_example'; // string
+$projectVariableId = 'projectVariableId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsVariables($project_id, $project_variable_id);
+    $result = $apiInstance->getProjectsVariables($projectId, $projectVariableId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectVariablesApi->getProjectsVariables: ', $e->getMessage(), PHP_EOL;
@@ -165,8 +165,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **project_variable_id** | **string**|  |
+ **projectId** | **string**|  |
+ **projectVariableId** | **string**|  |
 
 ### Return type
 
@@ -188,7 +188,7 @@ No authorization required
 ## `listProjectsVariables()`
 
 ```php
-listProjectsVariables($project_id): \Upsun\Model\ProjectVariable[]
+listProjectsVariables($projectId): \Upsun\Model\ProjectVariable[]
 ```
 
 Get list of project variables
@@ -208,10 +208,10 @@ $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsVariables($project_id);
+    $result = $apiInstance->listProjectsVariables($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectVariablesApi->listProjectsVariables: ', $e->getMessage(), PHP_EOL;
@@ -222,7 +222,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -244,7 +244,7 @@ No authorization required
 ## `updateProjectsVariables()`
 
 ```php
-updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch): \Upsun\Model\AcceptedResponse
+updateProjectsVariables($projectId, $projectVariableId, $projectVariablePatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update a project variable
@@ -264,12 +264,12 @@ $apiInstance = new Upsun\Api\ProjectVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$project_variable_id = 'project_variable_id_example'; // string
-$project_variable_patch = new \Upsun\Model\ProjectVariablePatch(); // \Upsun\Model\ProjectVariablePatch | 
+$projectId = 'projectId_example'; // string
+$projectVariableId = 'projectVariableId_example'; // string
+$projectVariablePatch = new \Upsun\Model\ProjectVariablePatch(); // \Upsun\Model\ProjectVariablePatch | 
 
 try {
-    $result = $apiInstance->updateProjectsVariables($project_id, $project_variable_id, $project_variable_patch);
+    $result = $apiInstance->updateProjectsVariables($projectId, $projectVariableId, $projectVariablePatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectVariablesApi->updateProjectsVariables: ', $e->getMessage(), PHP_EOL;
@@ -280,9 +280,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **project_variable_id** | **string**|  |
- **project_variable_patch** | [**\Upsun\Model\ProjectVariablePatch**](../Model/ProjectVariablePatch.md)|  |
+ **projectId** | **string**|  |
+ **projectVariableId** | **string**|  |
+ **projectVariablePatch** | [**\Upsun\Model\ProjectVariablePatch**](../Model/ProjectVariablePatch.md)|  |
 
 ### Return type
 

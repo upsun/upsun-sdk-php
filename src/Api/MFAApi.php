@@ -105,19 +105,6 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Confirm TOTP enrollment
      *
      * @throws ApiException on non-2xx response
@@ -125,7 +112,7 @@ final class MFAApi extends AbstractApi
      */
     public function confirmTotpEnrollment(
         string $userId,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
+        ?\Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): array {
         list($response) = $this->confirmTotpEnrollmentWithHttpInfo(
             $userId,
@@ -1260,7 +1247,7 @@ final class MFAApi extends AbstractApi
      */
     public function sendOrgMfaReminders(
         string $organizationId,
-        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
+        ?\Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): array {
         list($response) = $this->sendOrgMfaRemindersWithHttpInfo(
             $organizationId,

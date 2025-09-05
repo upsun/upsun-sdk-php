@@ -35,8 +35,8 @@ final class DeploymentTargetPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?string $name = null,
+        private readonly string $type,
+        private readonly string $name,
         private readonly ?object $enforcedMounts = null,
         private readonly ?object $siteUrls = null,
         private readonly ?array $sshHosts = [],
@@ -65,11 +65,11 @@ final class DeploymentTargetPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

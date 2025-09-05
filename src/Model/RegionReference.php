@@ -43,22 +43,22 @@ final class RegionReference implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $label = null,
-        private readonly ?string $zone = null,
-        private readonly ?string $selectionLabel = null,
-        private readonly ?string $projectLabel = null,
-        private readonly ?string $timezone = null,
-        private readonly ?bool $available = null,
+        private readonly string $id,
+        private readonly string $label,
+        private readonly string $zone,
+        private readonly string $selectionLabel,
+        private readonly string $projectLabel,
+        private readonly string $timezone,
+        private readonly bool $available,
         private readonly ?bool $private = null,
-        private readonly ?string $endpoint = null,
+        private readonly string $endpoint,
         private readonly ?string $code = null,
-        private readonly ?object $provider = null,
-        private readonly ?object $datacenter = null,
+        private readonly object $provider,
+        private readonly object $datacenter,
         private readonly ?object $envimpact = null,
-        private readonly ?object $compliance = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly object $compliance,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
     ) {
     }
 
@@ -89,31 +89,31 @@ final class RegionReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return $this->label;
     }
-    public function getZone(): ?string
+    public function getZone(): string
     {
         return $this->zone;
     }
-    public function getSelectionLabel(): ?string
+    public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
-    public function getProjectLabel(): ?string
+    public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
-    public function getTimezone(): ?string
+    public function getTimezone(): string
     {
         return $this->timezone;
     }
-    public function getAvailable(): ?bool
+    public function getAvailable(): bool
     {
         return $this->available;
     }
@@ -121,7 +121,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->private;
     }
-    public function getEndpoint(): ?string
+    public function getEndpoint(): string
     {
         return $this->endpoint;
     }
@@ -129,11 +129,11 @@ final class RegionReference implements JsonSerializable
     {
         return $this->code;
     }
-    public function getProvider(): ?object
+    public function getProvider(): object
     {
         return $this->provider;
     }
-    public function getDatacenter(): ?object
+    public function getDatacenter(): object
     {
         return $this->datacenter;
     }
@@ -141,15 +141,15 @@ final class RegionReference implements JsonSerializable
     {
         return $this->envimpact;
     }
-    public function getCompliance(): ?object
+    public function getCompliance(): object
     {
         return $this->compliance;
     }
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }

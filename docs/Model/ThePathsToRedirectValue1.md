@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **regexp** | **bool** |  | [optional]
 **to** | **string** |  |
 **prefix** | **bool** |  | [optional]
-**append_suffix** | **bool** |  | [optional]
+**appendSuffix** | **bool** |  | [optional]
 **code** | **int** |  | [optional]
 **expires** | **string** |  | [optional]
 

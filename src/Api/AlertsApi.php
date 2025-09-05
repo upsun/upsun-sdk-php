@@ -105,19 +105,6 @@ final class AlertsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create a usage alert.
      *
      * @throws ApiException on non-2xx response
@@ -125,7 +112,7 @@ final class AlertsApi extends AbstractApi
      */
     public function createUsageAlert(
         string $subscriptionId,
-        \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
+        ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
     ): \Upsun\Model\Alert {
         list($response) = $this->createUsageAlertWithHttpInfo(
             $subscriptionId,
@@ -724,7 +711,7 @@ final class AlertsApi extends AbstractApi
     public function updateUsageAlert(
         string $subscriptionId,
         string $usageId,
-        \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
+        ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
     ): \Upsun\Model\Alert {
         list($response) = $this->updateUsageAlertWithHttpInfo(
             $subscriptionId,

@@ -28,7 +28,7 @@ final class CreateApiTokenRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $name = null,
+        private readonly string $name,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class CreateApiTokenRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }

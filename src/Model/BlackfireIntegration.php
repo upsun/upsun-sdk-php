@@ -32,11 +32,11 @@ final class BlackfireIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $type = null,
-        private readonly ?array $environmentsCredentials = [],
-        private readonly ?bool $continuousProfiling = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $type,
+        private readonly array $environmentsCredentials,
+        private readonly bool $continuousProfiling,
     ) {
     }
 
@@ -56,23 +56,23 @@ final class BlackfireIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getEnvironmentsCredentials(): ?array
+    public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
-    public function getContinuousProfiling(): ?bool
+    public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
     }

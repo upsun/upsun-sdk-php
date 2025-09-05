@@ -34,13 +34,13 @@ final class ScriptIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?array $events = [],
         private readonly ?array $environments = [],
         private readonly ?array $excludedEnvironments = [],
         private readonly ?array $states = [],
         private readonly ?string $result = null,
-        private readonly ?string $script = null,
+        private readonly string $script,
     ) {
     }
 
@@ -62,7 +62,7 @@ final class ScriptIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -86,7 +86,7 @@ final class ScriptIntegrationPatch implements JsonSerializable
     {
         return $this->result;
     }
-    public function getScript(): ?string
+    public function getScript(): string
     {
         return $this->script;
     }

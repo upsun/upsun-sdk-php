@@ -14,10 +14,10 @@ final class {{classname}} implements JsonSerializable
     public function __construct(
     {{#vars}}
         {{#isContainer}}
-        private readonly ?array ${{name}} = [],
+        private readonly {{^required}}?{{/required}}array ${{name}}{{^required}} = []{{/required}},
         {{/isContainer}}
         {{^isContainer}}
-        private readonly ?{{{dataType}}} ${{name}} = {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}},
+        private readonly {{^required}}?{{/required}}{{{dataType}}} ${{name}}{{^required}} = {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}},
         {{/isContainer}}
     {{/vars}}
     ) {
@@ -38,7 +38,7 @@ final class {{classname}} implements JsonSerializable
     }
 
     {{#vars}}
-    public function {{{getter}}}(): {{#isContainer}}?array{{/isContainer}}{{^isContainer}}?{{{datatype}}}{{/isContainer}}
+    public function {{{getter}}}(): {{#isContainer}}{{^required}}?{{/required}}array{{/isContainer}}{{^isContainer}}{{^required}}?{{/required}}{{{datatype}}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

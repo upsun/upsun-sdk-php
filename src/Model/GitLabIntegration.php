@@ -38,17 +38,17 @@ final class GitLabIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $type = null,
-        private readonly ?bool $fetchBranches = null,
-        private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
-        private readonly ?string $baseUrl = null,
-        private readonly ?string $project = null,
-        private readonly ?bool $buildMergeRequests = null,
-        private readonly ?bool $buildWipMergeRequests = null,
-        private readonly ?bool $mergeRequestsCloneParentData = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
+        private readonly string $baseUrl,
+        private readonly string $project,
+        private readonly bool $buildMergeRequests,
+        private readonly bool $buildWipMergeRequests,
+        private readonly bool $mergeRequestsCloneParentData,
     ) {
     }
 
@@ -74,47 +74,47 @@ final class GitLabIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getFetchBranches(): ?bool
+    public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
-    public function getPruneBranches(): ?bool
+    public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
-    public function getEnvironmentInitResources(): ?string
+    public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
-    public function getBaseUrl(): ?string
+    public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
-    public function getProject(): ?string
+    public function getProject(): string
     {
         return $this->project;
     }
-    public function getBuildMergeRequests(): ?bool
+    public function getBuildMergeRequests(): bool
     {
         return $this->buildMergeRequests;
     }
-    public function getBuildWipMergeRequests(): ?bool
+    public function getBuildWipMergeRequests(): bool
     {
         return $this->buildWipMergeRequests;
     }
-    public function getMergeRequestsCloneParentData(): ?bool
+    public function getMergeRequestsCloneParentData(): bool
     {
         return $this->mergeRequestsCloneParentData;
     }

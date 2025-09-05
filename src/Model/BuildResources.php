@@ -30,9 +30,9 @@ final class BuildResources implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $enabled = null,
-        private readonly ?float $maxCpu = null,
-        private readonly ?int $maxMemory = null,
+        private readonly bool $enabled,
+        private readonly float $maxCpu,
+        private readonly int $maxMemory,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class BuildResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getEnabled(): ?bool
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    public function getMaxCpu(): ?float
+    public function getMaxCpu(): float
     {
         return $this->maxCpu;
     }
-    public function getMaxMemory(): ?int
+    public function getMaxMemory(): int
     {
         return $this->maxMemory;
     }

@@ -105,19 +105,6 @@ final class ProjectInvitationsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Cancel a pending invitation to a project
      *
      * @throws ApiException on non-2xx response
@@ -330,7 +317,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function createProjectInvite(
         string $projectId,
-        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): \Upsun\Model\ProjectInvitation {
         list($response) = $this->createProjectInviteWithHttpInfo(
             $projectId,
@@ -537,11 +524,11 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function listProjectInvites(
         string $projectId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterState = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listProjectInvitesWithHttpInfo(
             $projectId,

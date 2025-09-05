@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createProjectsIntegrations()`
 
 ```php
-createProjectsIntegrations($project_id, $integration_create_input): \Upsun\Model\AcceptedResponse
+createProjectsIntegrations($projectId, $integrationCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Integrate project with a third-party service
@@ -32,11 +32,11 @@ $apiInstance = new Upsun\Api\ThirdPartyIntegrationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$integration_create_input = new \Upsun\Model\IntegrationCreateInput(); // \Upsun\Model\IntegrationCreateInput | 
+$projectId = 'projectId_example'; // string
+$integrationCreateInput = new \Upsun\Model\IntegrationCreateInput(); // \Upsun\Model\IntegrationCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsIntegrations($project_id, $integration_create_input);
+    $result = $apiInstance->createProjectsIntegrations($projectId, $integrationCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ThirdPartyIntegrationsApi->createProjectsIntegrations: ', $e->getMessage(), PHP_EOL;
@@ -47,8 +47,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **integration_create_input** | [**\Upsun\Model\IntegrationCreateInput**](../Model/IntegrationCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **integrationCreateInput** | [**\Upsun\Model\IntegrationCreateInput**](../Model/IntegrationCreateInput.md)|  |
 
 ### Return type
 
@@ -70,7 +70,7 @@ No authorization required
 ## `deleteProjectsIntegrations()`
 
 ```php
-deleteProjectsIntegrations($project_id, $integration_id): \Upsun\Model\AcceptedResponse
+deleteProjectsIntegrations($projectId, $integrationId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete an existing third-party integration
@@ -88,11 +88,11 @@ $apiInstance = new Upsun\Api\ThirdPartyIntegrationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$integration_id = 'integration_id_example'; // string
+$projectId = 'projectId_example'; // string
+$integrationId = 'integrationId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsIntegrations($project_id, $integration_id);
+    $result = $apiInstance->deleteProjectsIntegrations($projectId, $integrationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ThirdPartyIntegrationsApi->deleteProjectsIntegrations: ', $e->getMessage(), PHP_EOL;
@@ -103,8 +103,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **integration_id** | **string**|  |
+ **projectId** | **string**|  |
+ **integrationId** | **string**|  |
 
 ### Return type
 
@@ -126,7 +126,7 @@ No authorization required
 ## `getProjectsIntegrations()`
 
 ```php
-getProjectsIntegrations($project_id, $integration_id): \Upsun\Model\Integration
+getProjectsIntegrations($projectId, $integrationId): \Upsun\Model\Integration
 ```
 
 Get information about an existing third-party integration
@@ -144,11 +144,11 @@ $apiInstance = new Upsun\Api\ThirdPartyIntegrationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$integration_id = 'integration_id_example'; // string
+$projectId = 'projectId_example'; // string
+$integrationId = 'integrationId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsIntegrations($project_id, $integration_id);
+    $result = $apiInstance->getProjectsIntegrations($projectId, $integrationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ThirdPartyIntegrationsApi->getProjectsIntegrations: ', $e->getMessage(), PHP_EOL;
@@ -159,8 +159,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **integration_id** | **string**|  |
+ **projectId** | **string**|  |
+ **integrationId** | **string**|  |
 
 ### Return type
 
@@ -182,7 +182,7 @@ No authorization required
 ## `listProjectsIntegrations()`
 
 ```php
-listProjectsIntegrations($project_id): \Upsun\Model\Integration[]
+listProjectsIntegrations($projectId): \Upsun\Model\Integration[]
 ```
 
 Get list of existing integrations for a project
@@ -200,10 +200,10 @@ $apiInstance = new Upsun\Api\ThirdPartyIntegrationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsIntegrations($project_id);
+    $result = $apiInstance->listProjectsIntegrations($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ThirdPartyIntegrationsApi->listProjectsIntegrations: ', $e->getMessage(), PHP_EOL;
@@ -214,7 +214,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -236,7 +236,7 @@ No authorization required
 ## `updateProjectsIntegrations()`
 
 ```php
-updateProjectsIntegrations($project_id, $integration_id, $integration_patch): \Upsun\Model\AcceptedResponse
+updateProjectsIntegrations($projectId, $integrationId, $integrationPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update an existing third-party integration
@@ -254,12 +254,12 @@ $apiInstance = new Upsun\Api\ThirdPartyIntegrationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$integration_id = 'integration_id_example'; // string
-$integration_patch = new \Upsun\Model\IntegrationPatch(); // \Upsun\Model\IntegrationPatch | 
+$projectId = 'projectId_example'; // string
+$integrationId = 'integrationId_example'; // string
+$integrationPatch = new \Upsun\Model\IntegrationPatch(); // \Upsun\Model\IntegrationPatch | 
 
 try {
-    $result = $apiInstance->updateProjectsIntegrations($project_id, $integration_id, $integration_patch);
+    $result = $apiInstance->updateProjectsIntegrations($projectId, $integrationId, $integrationPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ThirdPartyIntegrationsApi->updateProjectsIntegrations: ', $e->getMessage(), PHP_EOL;
@@ -270,9 +270,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **integration_id** | **string**|  |
- **integration_patch** | [**\Upsun\Model\IntegrationPatch**](../Model/IntegrationPatch.md)|  |
+ **projectId** | **string**|  |
+ **integrationId** | **string**|  |
+ **integrationPatch** | [**\Upsun\Model\IntegrationPatch**](../Model/IntegrationPatch.md)|  |
 
 ### Return type
 

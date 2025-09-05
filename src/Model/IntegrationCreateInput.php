@@ -73,26 +73,26 @@ final class IntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
         private readonly ?string $environmentInitResources = null,
         private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
         private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
-        private readonly ?string $repository = null,
+        private readonly string $repository,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $pullRequestsCloneParentData = null,
         private readonly ?bool $resyncPullRequests = null,
-        private readonly ?string $url = null,
-        private readonly ?string $username = null,
-        private readonly ?string $token = null,
-        private readonly ?string $project = null,
+        private readonly string $url,
+        private readonly string $username,
+        private readonly string $token,
+        private readonly string $project,
         private readonly ?array $events = [],
         private readonly ?array $environments = [],
         private readonly ?array $excludedEnvironments = [],
         private readonly ?array $states = [],
         private readonly ?string $result = null,
-        private readonly ?string $serviceId = null,
+        private readonly string $serviceId,
         private readonly ?string $baseUrl = null,
         private readonly ?bool $buildDraftPullRequests = null,
         private readonly ?bool $buildPullRequestsPostMerge = null,
@@ -100,16 +100,16 @@ final class IntegrationCreateInput implements JsonSerializable
         private readonly ?bool $buildWipMergeRequests = null,
         private readonly ?bool $mergeRequestsCloneParentData = null,
         private readonly ?string $fromAddress = null,
-        private readonly ?array $recipients = [],
-        private readonly ?string $routingKey = null,
-        private readonly ?string $channel = null,
+        private readonly array $recipients,
+        private readonly string $routingKey,
+        private readonly string $channel,
         private readonly ?string $sharedKey = null,
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
-        private readonly ?string $licenseKey = null,
-        private readonly ?string $script = null,
-        private readonly ?string $index = null,
+        private readonly string $licenseKey,
+        private readonly string $script,
+        private readonly string $index,
         private readonly ?string $sourcetype = null,
         private readonly ?string $category = null,
         private readonly ?string $host = null,
@@ -179,7 +179,7 @@ final class IntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -203,7 +203,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->addonCredentials;
     }
-    public function getRepository(): ?string
+    public function getRepository(): string
     {
         return $this->repository;
     }
@@ -219,19 +219,19 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->resyncPullRequests;
     }
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->username;
     }
-    public function getToken(): ?string
+    public function getToken(): string
     {
         return $this->token;
     }
-    public function getProject(): ?string
+    public function getProject(): string
     {
         return $this->project;
     }
@@ -255,7 +255,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->result;
     }
-    public function getServiceId(): ?string
+    public function getServiceId(): string
     {
         return $this->serviceId;
     }
@@ -287,15 +287,15 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->fromAddress;
     }
-    public function getRecipients(): ?array
+    public function getRecipients(): array
     {
         return $this->recipients;
     }
-    public function getRoutingKey(): ?string
+    public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
-    public function getChannel(): ?string
+    public function getChannel(): string
     {
         return $this->channel;
     }
@@ -315,15 +315,15 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->tlsVerify;
     }
-    public function getLicenseKey(): ?string
+    public function getLicenseKey(): string
     {
         return $this->licenseKey;
     }
-    public function getScript(): ?string
+    public function getScript(): string
     {
         return $this->script;
     }
-    public function getIndex(): ?string
+    public function getIndex(): string
     {
         return $this->index;
     }

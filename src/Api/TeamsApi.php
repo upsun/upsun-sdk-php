@@ -105,19 +105,6 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create team
      *
      * @throws ApiException on non-2xx response
@@ -1310,9 +1297,9 @@ final class TeamsApi extends AbstractApi
      */
     public function listTeamMembers(
         string $teamId,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listTeamMembersWithHttpInfo(
             $teamId,
@@ -1559,13 +1546,13 @@ final class TeamsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTeams(
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listTeamsWithHttpInfo(
             $filterOrganizationId,
@@ -1880,12 +1867,12 @@ final class TeamsApi extends AbstractApi
      */
     public function listUserTeams(
         string $userId,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listUserTeamsWithHttpInfo(
             $userId,
@@ -2203,7 +2190,7 @@ final class TeamsApi extends AbstractApi
      */
     public function updateTeam(
         string $teamId,
-        \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
+        ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
     ): \Upsun\Model\Team {
         list($response) = $this->updateTeamWithHttpInfo(
             $teamId,

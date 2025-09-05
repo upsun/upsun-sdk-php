@@ -31,10 +31,17 @@ class CertificateTask extends TaskBase
      * Adds an SSL certificate
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     certificate?: string,
+     *     key?: string,
+     *     chain?: array,
+     *     isInvalid?: bool
+     * } $options Configuration options
      */
-    public function create(string $projectId, array $certificateCreateInput): AcceptedResponse
+    public function create(string $projectId, array $options = []): AcceptedResponse
     {
-        $certificateCreateInput = new CertificateCreateInput($certificateCreateInput);
+        $certificateCreateInput = new CertificateCreateInput(...$options);
         return $this->api->createProjectsCertificates($projectId, $certificateCreateInput);
     }
 
@@ -72,10 +79,15 @@ class CertificateTask extends TaskBase
      * Updates an SSL certificate
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     chain?: array,
+     *     isInvalid?: bool,
+     * } $data
      */
-    public function update(string $projectId, string $certificateId, array $certificatePatch): AcceptedResponse
+    public function update(string $projectId, string $certificateId, array $data): AcceptedResponse
     {
-        $certificatePatch = new CertificatePatch($certificatePatch);
+        $certificatePatch = new CertificatePatch(...$data);
         return $this->api->updateProjectsCertificates($projectId, $certificateId, $certificatePatch);
     }
 }

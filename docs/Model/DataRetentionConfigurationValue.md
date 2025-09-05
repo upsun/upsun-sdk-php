@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**max_backups** | **int** |  |
-**default_config** | [**\Upsun\Model\DefaultConfig**](DefaultConfig.md) |  |
+**maxBackups** | **int** |  |
+**defaultConfig** | [**\Upsun\Model\DefaultConfig**](DefaultConfig.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

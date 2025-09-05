@@ -37,7 +37,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     ];
 
     public function __construct(
-        private readonly ?array $locations = [],
+        private readonly array $locations,
         private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
         private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
         private readonly ?string $documentRoot = null,
@@ -46,7 +46,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         private readonly ?array $whitelist = [],
         private readonly ?array $blacklist = [],
         private readonly ?string $expires = null,
-        private readonly ?bool $moveToRoot = null,
+        private readonly bool $moveToRoot,
     ) {
     }
 
@@ -71,7 +71,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getLocations(): ?array
+    public function getLocations(): array
     {
         return $this->locations;
     }
@@ -107,7 +107,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->expires;
     }
-    public function getMoveToRoot(): ?bool
+    public function getMoveToRoot(): bool
     {
         return $this->moveToRoot;
     }

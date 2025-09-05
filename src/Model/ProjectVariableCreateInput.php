@@ -34,9 +34,9 @@ final class ProjectVariableCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $name = null,
+        private readonly string $name,
         private readonly ?array $attributes = [],
-        private readonly ?string $value = null,
+        private readonly string $value,
         private readonly ?bool $isJson = null,
         private readonly ?bool $isSensitive = null,
         private readonly ?bool $visibleBuild = null,
@@ -62,7 +62,7 @@ final class ProjectVariableCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -70,7 +70,7 @@ final class ProjectVariableCreateInput implements JsonSerializable
     {
         return $this->attributes;
     }
-    public function getValue(): ?string
+    public function getValue(): string
     {
         return $this->value;
     }

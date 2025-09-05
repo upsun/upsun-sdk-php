@@ -57,36 +57,36 @@ final class WebApplicationsValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\Resources $resources = null,
-        private readonly ?string $size = null,
-        private readonly ?int $disk = null,
-        private readonly ?array $access = [],
-        private readonly ?array $relationships = [],
-        private readonly ?array $additionalHosts = [],
-        private readonly ?array $mounts = [],
-        private readonly ?string $timezone = null,
-        private readonly ?array $variables = [],
-        private readonly ?\Upsun\Model\Firewall $firewall = null,
-        private readonly ?string $containerProfile = null,
-        private readonly ?array $operations = [],
-        private readonly ?string $name = null,
-        private readonly ?string $type = null,
-        private readonly ?\Upsun\Model\ConfigurationForPreFlightChecks $preflight = null,
-        private readonly ?string $treeId = null,
-        private readonly ?string $appDir = null,
-        private readonly ?object $endpoints = null,
-        private readonly ?object $runtime = null,
-        private readonly ?\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web = null,
-        private readonly ?\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks = null,
-        private readonly ?array $crons = [],
-        private readonly ?\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source = null,
-        private readonly ?\Upsun\Model\TheBuildConfigurationOfTheApplication $build = null,
-        private readonly ?array $dependencies = [],
-        private readonly ?array $stack = [],
-        private readonly ?bool $isAcrossSubmodule = null,
-        private readonly ?int $instanceCount = null,
-        private readonly ?string $configId = null,
-        private readonly ?string $slugId = null,
+        private readonly \Upsun\Model\Resources $resources,
+        private readonly string $size,
+        private readonly int $disk,
+        private readonly array $access,
+        private readonly array $relationships,
+        private readonly array $additionalHosts,
+        private readonly array $mounts,
+        private readonly string $timezone,
+        private readonly array $variables,
+        private readonly \Upsun\Model\Firewall $firewall,
+        private readonly string $containerProfile,
+        private readonly array $operations,
+        private readonly string $name,
+        private readonly string $type,
+        private readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
+        private readonly string $treeId,
+        private readonly string $appDir,
+        private readonly object $endpoints,
+        private readonly object $runtime,
+        private readonly \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web,
+        private readonly \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks,
+        private readonly array $crons,
+        private readonly \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source,
+        private readonly \Upsun\Model\TheBuildConfigurationOfTheApplication $build,
+        private readonly array $dependencies,
+        private readonly array $stack,
+        private readonly bool $isAcrossSubmodule,
+        private readonly int $instanceCount,
+        private readonly string $configId,
+        private readonly string $slugId,
     ) {
     }
 
@@ -131,123 +131,123 @@ final class WebApplicationsValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getResources(): ?\Upsun\Model\Resources
+    public function getResources(): \Upsun\Model\Resources
     {
         return $this->resources;
     }
-    public function getSize(): ?string
+    public function getSize(): string
     {
         return $this->size;
     }
-    public function getDisk(): ?int
+    public function getDisk(): int
     {
         return $this->disk;
     }
-    public function getAccess(): ?array
+    public function getAccess(): array
     {
         return $this->access;
     }
-    public function getRelationships(): ?array
+    public function getRelationships(): array
     {
         return $this->relationships;
     }
-    public function getAdditionalHosts(): ?array
+    public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
-    public function getMounts(): ?array
+    public function getMounts(): array
     {
         return $this->mounts;
     }
-    public function getTimezone(): ?string
+    public function getTimezone(): string
     {
         return $this->timezone;
     }
-    public function getVariables(): ?array
+    public function getVariables(): array
     {
         return $this->variables;
     }
-    public function getFirewall(): ?\Upsun\Model\Firewall
+    public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->firewall;
     }
-    public function getContainerProfile(): ?string
+    public function getContainerProfile(): string
     {
         return $this->containerProfile;
     }
-    public function getOperations(): ?array
+    public function getOperations(): array
     {
         return $this->operations;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getPreflight(): ?\Upsun\Model\ConfigurationForPreFlightChecks
+    public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     {
         return $this->preflight;
     }
-    public function getTreeId(): ?string
+    public function getTreeId(): string
     {
         return $this->treeId;
     }
-    public function getAppDir(): ?string
+    public function getAppDir(): string
     {
         return $this->appDir;
     }
-    public function getEndpoints(): ?object
+    public function getEndpoints(): object
     {
         return $this->endpoints;
     }
-    public function getRuntime(): ?object
+    public function getRuntime(): object
     {
         return $this->runtime;
     }
-    public function getWeb(): ?\Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
+    public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
     {
         return $this->web;
     }
-    public function getHooks(): ?\Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
+    public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
     {
         return $this->hooks;
     }
-    public function getCrons(): ?array
+    public function getCrons(): array
     {
         return $this->crons;
     }
-    public function getSource(): ?\Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
+    public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
     {
         return $this->source;
     }
-    public function getBuild(): ?\Upsun\Model\TheBuildConfigurationOfTheApplication
+    public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
     {
         return $this->build;
     }
-    public function getDependencies(): ?array
+    public function getDependencies(): array
     {
         return $this->dependencies;
     }
-    public function getStack(): ?array
+    public function getStack(): array
     {
         return $this->stack;
     }
-    public function getIsAcrossSubmodule(): ?bool
+    public function getIsAcrossSubmodule(): bool
     {
         return $this->isAcrossSubmodule;
     }
-    public function getInstanceCount(): ?int
+    public function getInstanceCount(): int
     {
         return $this->instanceCount;
     }
-    public function getConfigId(): ?string
+    public function getConfigId(): string
     {
         return $this->configId;
     }
-    public function getSlugId(): ?string
+    public function getSlugId(): string
     {
         return $this->slugId;
     }

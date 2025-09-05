@@ -117,7 +117,7 @@ No authorization required
 ## `listOrgDiscounts()`
 
 ```php
-listOrgDiscounts($organization_id): \Upsun\Model\ListOrgDiscounts200Response
+listOrgDiscounts($organizationId): \Upsun\Model\ListOrgDiscounts200Response
 ```
 
 List organization discounts
@@ -137,10 +137,10 @@ $apiInstance = new Upsun\Api\DiscountsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->listOrgDiscounts($organization_id);
+    $result = $apiInstance->listOrgDiscounts($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DiscountsApi->listOrgDiscounts: ', $e->getMessage(), PHP_EOL;
@@ -151,7 +151,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 

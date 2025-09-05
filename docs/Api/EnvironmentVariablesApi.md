@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createProjectsEnvironmentsVariables()`
 
 ```php
-createProjectsEnvironmentsVariables($project_id, $environment_id, $environment_variable_create_input): \Upsun\Model\AcceptedResponse
+createProjectsEnvironmentsVariables($projectId, $environmentId, $environmentVariableCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Add an environment variable
@@ -34,12 +34,12 @@ $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_variable_create_input = new \Upsun\Model\EnvironmentVariableCreateInput(); // \Upsun\Model\EnvironmentVariableCreateInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentVariableCreateInput = new \Upsun\Model\EnvironmentVariableCreateInput(); // \Upsun\Model\EnvironmentVariableCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsEnvironmentsVariables($project_id, $environment_id, $environment_variable_create_input);
+    $result = $apiInstance->createProjectsEnvironmentsVariables($projectId, $environmentId, $environmentVariableCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentVariablesApi->createProjectsEnvironmentsVariables: ', $e->getMessage(), PHP_EOL;
@@ -50,9 +50,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_variable_create_input** | [**\Upsun\Model\EnvironmentVariableCreateInput**](../Model/EnvironmentVariableCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentVariableCreateInput** | [**\Upsun\Model\EnvironmentVariableCreateInput**](../Model/EnvironmentVariableCreateInput.md)|  |
 
 ### Return type
 
@@ -74,7 +74,7 @@ No authorization required
 ## `deleteProjectsEnvironmentsVariables()`
 
 ```php
-deleteProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id): \Upsun\Model\AcceptedResponse
+deleteProjectsEnvironmentsVariables($projectId, $environmentId, $variableId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete an environment variable
@@ -94,12 +94,12 @@ $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$variable_id = 'variable_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$variableId = 'variableId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
+    $result = $apiInstance->deleteProjectsEnvironmentsVariables($projectId, $environmentId, $variableId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentVariablesApi->deleteProjectsEnvironmentsVariables: ', $e->getMessage(), PHP_EOL;
@@ -110,9 +110,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **variable_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **variableId** | **string**|  |
 
 ### Return type
 
@@ -134,7 +134,7 @@ No authorization required
 ## `getProjectsEnvironmentsVariables()`
 
 ```php
-getProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id): \Upsun\Model\EnvironmentVariable
+getProjectsEnvironmentsVariables($projectId, $environmentId, $variableId): \Upsun\Model\EnvironmentVariable
 ```
 
 Get an environment variable
@@ -154,12 +154,12 @@ $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$variable_id = 'variable_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$variableId = 'variableId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id);
+    $result = $apiInstance->getProjectsEnvironmentsVariables($projectId, $environmentId, $variableId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentVariablesApi->getProjectsEnvironmentsVariables: ', $e->getMessage(), PHP_EOL;
@@ -170,9 +170,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **variable_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **variableId** | **string**|  |
 
 ### Return type
 
@@ -194,7 +194,7 @@ No authorization required
 ## `listProjectsEnvironmentsVariables()`
 
 ```php
-listProjectsEnvironmentsVariables($project_id, $environment_id): \Upsun\Model\EnvironmentVariable[]
+listProjectsEnvironmentsVariables($projectId, $environmentId): \Upsun\Model\EnvironmentVariable[]
 ```
 
 Get list of environment variables
@@ -214,11 +214,11 @@ $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsVariables($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsVariables($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentVariablesApi->listProjectsEnvironmentsVariables: ', $e->getMessage(), PHP_EOL;
@@ -229,8 +229,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -252,7 +252,7 @@ No authorization required
 ## `updateProjectsEnvironmentsVariables()`
 
 ```php
-updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch): \Upsun\Model\AcceptedResponse
+updateProjectsEnvironmentsVariables($projectId, $environmentId, $variableId, $environmentVariablePatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update an environment variable
@@ -272,13 +272,13 @@ $apiInstance = new Upsun\Api\EnvironmentVariablesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$variable_id = 'variable_id_example'; // string
-$environment_variable_patch = new \Upsun\Model\EnvironmentVariablePatch(); // \Upsun\Model\EnvironmentVariablePatch | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$variableId = 'variableId_example'; // string
+$environmentVariablePatch = new \Upsun\Model\EnvironmentVariablePatch(); // \Upsun\Model\EnvironmentVariablePatch | 
 
 try {
-    $result = $apiInstance->updateProjectsEnvironmentsVariables($project_id, $environment_id, $variable_id, $environment_variable_patch);
+    $result = $apiInstance->updateProjectsEnvironmentsVariables($projectId, $environmentId, $variableId, $environmentVariablePatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentVariablesApi->updateProjectsEnvironmentsVariables: ', $e->getMessage(), PHP_EOL;
@@ -289,10 +289,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **variable_id** | **string**|  |
- **environment_variable_patch** | [**\Upsun\Model\EnvironmentVariablePatch**](../Model/EnvironmentVariablePatch.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **variableId** | **string**|  |
+ **environmentVariablePatch** | [**\Upsun\Model\EnvironmentVariablePatch**](../Model/EnvironmentVariablePatch.md)|  |
 
 ### Return type
 

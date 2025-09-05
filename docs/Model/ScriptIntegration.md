@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **type** | **string** |  |
 **events** | **string[]** |  |
 **environments** | **string[]** |  |
-**excluded_environments** | **string[]** |  |
+**excludedEnvironments** | **string[]** |  |
 **states** | **string[]** |  |
 **result** | **string** |  |
 **script** | **string** |  |

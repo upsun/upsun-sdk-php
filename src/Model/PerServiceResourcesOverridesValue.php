@@ -30,9 +30,9 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?float $cpu = null,
-        private readonly ?int $memory = null,
-        private readonly ?int $disk = null,
+        private readonly float $cpu,
+        private readonly int $memory,
+        private readonly int $disk,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCpu(): ?float
+    public function getCpu(): float
     {
         return $this->cpu;
     }
-    public function getMemory(): ?int
+    public function getMemory(): int
     {
         return $this->memory;
     }
-    public function getDisk(): ?int
+    public function getDisk(): int
     {
         return $this->disk;
     }

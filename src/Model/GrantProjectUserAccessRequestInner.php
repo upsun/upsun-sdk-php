@@ -30,8 +30,8 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $userId = null,
-        private readonly ?array $permissions = [],
+        private readonly string $userId,
+        private readonly array $permissions,
         private readonly ?bool $autoAddMember = null,
     ) {
     }
@@ -50,11 +50,11 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getUserId(): ?string
+    public function getUserId(): string
     {
         return $this->userId;
     }
-    public function getPermissions(): ?array
+    public function getPermissions(): array
     {
         return $this->permissions;
     }

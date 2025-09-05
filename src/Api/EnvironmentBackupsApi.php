@@ -105,19 +105,6 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create snapshot of environment
      *
      * @throws ApiException on non-2xx response

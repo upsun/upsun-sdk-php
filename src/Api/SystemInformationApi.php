@@ -105,19 +105,6 @@ final class SystemInformationApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Restart the Git server
      *
      * @throws ApiException on non-2xx response

@@ -34,13 +34,13 @@ final class ProxyRoute implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $primary = null,
-        private readonly ?string $id = null,
-        private readonly ?string $productionUrl = null,
-        private readonly ?array $attributes = [],
-        private readonly ?string $type = null,
-        private readonly ?\Upsun\Model\TLSSettingsForTheRoute $tls = null,
-        private readonly ?string $to = null,
+        private readonly bool $primary,
+        private readonly string $id,
+        private readonly string $productionUrl,
+        private readonly array $attributes,
+        private readonly string $type,
+        private readonly \Upsun\Model\TLSSettingsForTheRoute $tls,
+        private readonly string $to,
     ) {
     }
 
@@ -62,31 +62,31 @@ final class ProxyRoute implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getPrimary(): ?bool
+    public function getPrimary(): bool
     {
         return $this->primary;
     }
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }
-    public function getProductionUrl(): ?string
+    public function getProductionUrl(): string
     {
         return $this->productionUrl;
     }
-    public function getAttributes(): ?array
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute
+    public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
     {
         return $this->tls;
     }
-    public function getTo(): ?string
+    public function getTo(): string
     {
         return $this->to;
     }

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **spec** | **string** |  |
 **commands** | [**\Upsun\Model\TheCommandsDefinition**](TheCommandsDefinition.md) |  |
-**shutdown_timeout** | **int** |  | [optional]
+**shutdownTimeout** | **int** |  | [optional]
 **timeout** | **int** |  |
 **cmd** | **string** |  | [optional]
 

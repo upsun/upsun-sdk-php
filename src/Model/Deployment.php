@@ -49,22 +49,22 @@ final class Deployment implements JsonSerializable
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $fingerprint = null,
-        private readonly ?string $clusterName = null,
-        private readonly ?\Upsun\Model\ProjectInfo $projectInfo = null,
-        private readonly ?\Upsun\Model\EnvironmentInfo $environmentInfo = null,
-        private readonly ?string $deploymentTarget = null,
-        private readonly ?\Upsun\Model\VPNConfiguration $vpn = null,
-        private readonly ?\Upsun\Model\HTTPAccessPermissions $httpAccess = null,
-        private readonly ?bool $enableSmtp = null,
-        private readonly ?bool $restrictRobots = null,
-        private readonly ?array $variables = [],
-        private readonly ?array $access = [],
-        private readonly ?\Upsun\Model\Subscription1 $subscription = null,
-        private readonly ?array $services = [],
-        private readonly ?array $routes = [],
-        private readonly ?array $webapps = [],
-        private readonly ?array $workers = [],
-        private readonly ?array $containerProfiles = [],
+        private readonly string $clusterName,
+        private readonly \Upsun\Model\ProjectInfo $projectInfo,
+        private readonly \Upsun\Model\EnvironmentInfo $environmentInfo,
+        private readonly string $deploymentTarget,
+        private readonly \Upsun\Model\VPNConfiguration $vpn,
+        private readonly \Upsun\Model\HTTPAccessPermissions $httpAccess,
+        private readonly bool $enableSmtp,
+        private readonly bool $restrictRobots,
+        private readonly array $variables,
+        private readonly array $access,
+        private readonly \Upsun\Model\Subscription1 $subscription,
+        private readonly array $services,
+        private readonly array $routes,
+        private readonly array $webapps,
+        private readonly array $workers,
+        private readonly array $containerProfiles,
     ) {
     }
 
@@ -110,67 +110,67 @@ final class Deployment implements JsonSerializable
     {
         return $this->fingerprint;
     }
-    public function getClusterName(): ?string
+    public function getClusterName(): string
     {
         return $this->clusterName;
     }
-    public function getProjectInfo(): ?\Upsun\Model\ProjectInfo
+    public function getProjectInfo(): \Upsun\Model\ProjectInfo
     {
         return $this->projectInfo;
     }
-    public function getEnvironmentInfo(): ?\Upsun\Model\EnvironmentInfo
+    public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
     {
         return $this->environmentInfo;
     }
-    public function getDeploymentTarget(): ?string
+    public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
-    public function getVpn(): ?\Upsun\Model\VPNConfiguration
+    public function getVpn(): \Upsun\Model\VPNConfiguration
     {
         return $this->vpn;
     }
-    public function getHttpAccess(): ?\Upsun\Model\HTTPAccessPermissions
+    public function getHttpAccess(): \Upsun\Model\HTTPAccessPermissions
     {
         return $this->httpAccess;
     }
-    public function getEnableSmtp(): ?bool
+    public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
-    public function getRestrictRobots(): ?bool
+    public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
-    public function getVariables(): ?array
+    public function getVariables(): array
     {
         return $this->variables;
     }
-    public function getAccess(): ?array
+    public function getAccess(): array
     {
         return $this->access;
     }
-    public function getSubscription(): ?\Upsun\Model\Subscription1
+    public function getSubscription(): \Upsun\Model\Subscription1
     {
         return $this->subscription;
     }
-    public function getServices(): ?array
+    public function getServices(): array
     {
         return $this->services;
     }
-    public function getRoutes(): ?array
+    public function getRoutes(): array
     {
         return $this->routes;
     }
-    public function getWebapps(): ?array
+    public function getWebapps(): array
     {
         return $this->webapps;
     }
-    public function getWorkers(): ?array
+    public function getWorkers(): array
     {
         return $this->workers;
     }
-    public function getContainerProfiles(): ?array
+    public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
     }

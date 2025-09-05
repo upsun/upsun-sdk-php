@@ -29,8 +29,8 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $secret = null,
-        private readonly ?string $passcode = null,
+        private readonly string $secret,
+        private readonly string $passcode,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSecret(): ?string
+    public function getSecret(): string
     {
         return $this->secret;
     }
-    public function getPasscode(): ?string
+    public function getPasscode(): string
     {
         return $this->passcode;
     }

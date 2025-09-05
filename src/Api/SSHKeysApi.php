@@ -105,26 +105,13 @@ final class SSHKeysApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Add a new public SSH key to a user
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKey(
-        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): \Upsun\Model\SSHKey {
         list($response) = $this->createSshKeyWithHttpInfo(
             $createSshKeyRequest

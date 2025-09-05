@@ -38,8 +38,8 @@ final class CreateTicketRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $subject = null,
-        private readonly ?string $description = null,
+        private readonly string $subject,
+        private readonly string $description,
         private readonly ?string $requesterId = null,
         private readonly ?string $priority = null,
         private readonly ?string $subscriptionId = null,
@@ -74,11 +74,11 @@ final class CreateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSubject(): ?string
+    public function getSubject(): string
     {
         return $this->subject;
     }
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }

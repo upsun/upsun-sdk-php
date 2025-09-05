@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cpu_app** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**storage_app_services** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**memory_app** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**cpu_services** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**memory_services** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**backup_storage** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**build_cpu** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**build_memory** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**egress_bandwidth** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**ingress_requests** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**logs_fwd_content_size** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**fastly_bandwidth** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
-**fastly_requests** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**cpuApp** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**storageAppServices** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**memoryApp** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**cpuServices** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**memoryServices** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**backupStorage** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**buildCpu** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**buildMemory** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**egressBandwidth** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**ingressRequests** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**logsFwdContentSize** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**fastlyBandwidth** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
+**fastlyRequests** | [**\Upsun\Model\UsageGroupCurrentUsageProperties**](UsageGroupCurrentUsageProperties.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

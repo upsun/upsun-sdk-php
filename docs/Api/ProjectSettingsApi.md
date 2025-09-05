@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `getProjectsSettings()`
 
 ```php
-getProjectsSettings($project_id): \Upsun\Model\ProjectSettings
+getProjectsSettings($projectId): \Upsun\Model\ProjectSettings
 ```
 
 Get list of project settings
@@ -31,10 +31,10 @@ $apiInstance = new Upsun\Api\ProjectSettingsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsSettings($project_id);
+    $result = $apiInstance->getProjectsSettings($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectSettingsApi->getProjectsSettings: ', $e->getMessage(), PHP_EOL;
@@ -45,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ## `updateProjectsSettings()`
 
 ```php
-updateProjectsSettings($project_id, $project_settings_patch): \Upsun\Model\AcceptedResponse
+updateProjectsSettings($projectId, $projectSettingsPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update a project setting
@@ -87,11 +87,11 @@ $apiInstance = new Upsun\Api\ProjectSettingsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$project_settings_patch = new \Upsun\Model\ProjectSettingsPatch(); // \Upsun\Model\ProjectSettingsPatch | 
+$projectId = 'projectId_example'; // string
+$projectSettingsPatch = new \Upsun\Model\ProjectSettingsPatch(); // \Upsun\Model\ProjectSettingsPatch | 
 
 try {
-    $result = $apiInstance->updateProjectsSettings($project_id, $project_settings_patch);
+    $result = $apiInstance->updateProjectsSettings($projectId, $projectSettingsPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectSettingsApi->updateProjectsSettings: ', $e->getMessage(), PHP_EOL;
@@ -102,8 +102,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **project_settings_patch** | [**\Upsun\Model\ProjectSettingsPatch**](../Model/ProjectSettingsPatch.md)|  |
+ **projectId** | **string**|  |
+ **projectSettingsPatch** | [**\Upsun\Model\ProjectSettingsPatch**](../Model/ProjectSettingsPatch.md)|  |
 
 ### Return type
 

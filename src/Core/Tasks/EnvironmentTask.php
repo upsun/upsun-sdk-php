@@ -11,6 +11,7 @@ use Upsun\Api\EnvironmentTypeApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Backup;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
 use Upsun\Model\Deployment;
 use Upsun\Model\Domain;
 use Upsun\Model\Environment;
@@ -22,6 +23,11 @@ use Upsun\Model\EnvironmentPatch;
 use Upsun\Model\EnvironmentSynchronizeInput;
 use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\HttpAccessPermissions1;
+use Upsun\Model\Resources1;
+use Upsun\Model\Resources2;
+use Upsun\Model\Resources3;
+use Upsun\Model\Resources4;
 use Upsun\Model\Route;
 use Upsun\Model\Version;
 use Upsun\Model\VersionCreateInput;
@@ -54,9 +60,11 @@ class EnvironmentTask extends TaskBase
     public function activate(
         string $projectId,
         string $environmentId,
-        array $environmentActivateInput
+        string $init
     ): AcceptedResponse {
-        $environmentActivateInput = new EnvironmentActivateInput($environmentActivateInput);
+        $environmentActivateInput = new EnvironmentActivateInput(
+            new Resources1(init: $init)
+        );
         return $this->api->activateEnvironment($projectId, $environmentId, $environmentActivateInput);
     }
 
@@ -64,13 +72,44 @@ class EnvironmentTask extends TaskBase
      * Branchs an environment
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     title?: string,
+     *     name?: string,
+     *     cloneParent?: bool,
+     *     type?: string,
+     *     init?: string,
+     * } $data
+     *
+     * @example With all options:
+     * ```php
+     * $result = $upsunClient->environment->branch(
+     *     'project1234',
+     *     'main',
+     *     [
+     *         'title' => 'title',
+     *         'name' => 'name',
+     *         'cloneParent' => true,
+     *         'type' => 'development|staging',
+     *         'init' => true
+     *     ]
+     * );
+     * ```
+     *
+     * @see EnvironmentBranchInput For detailed parameter descriptions
      */
     public function branch(
         string $projectId,
         string $environmentId,
-        array $environmentBranchInput
+        array $data
     ): AcceptedResponse {
-        $environmentBranchInput = new EnvironmentBranchInput($environmentBranchInput);
+        $environmentBranchInput = new EnvironmentBranchInput(
+            title: $data['title'],
+            name: $data['name'],
+            cloneParent: $data['cloneParent'],
+            type: $data['type'],
+            resources: new Resources2($data['init']),
+        );
         return $this->api->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
     }
 
@@ -82,9 +121,11 @@ class EnvironmentTask extends TaskBase
     public function createVersions(
         string $projectId,
         string $environmentId,
-        array $versionCreateInput
+        ?int $percentage = null
     ): AcceptedResponse {
-        $versionCreateInput = new VersionCreateInput($versionCreateInput);
+        $versionCreateInput = new VersionCreateInput(
+            new ConfigurationAboutTheTrafficRoutedToThisVersion1(percentage: $percentage)
+        );
         return $this->api->createProjectsEnvironmentsVersions($projectId, $environmentId, $versionCreateInput);
     }
 
@@ -143,13 +184,31 @@ class EnvironmentTask extends TaskBase
      * Initializes a new environment
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     profile: string,
+     *     repository: string,
+     *     config: string,
+     *     files: array{
+     *       mode: string,
+     *       path: string,
+     *       contents: string
+     *     },
+     *     init: int,
+     * } $data
      */
     public function initialize(
         string $projectId,
         string $environmentId,
-        array $environmentInitializeInput
+        array $data
     ): AcceptedResponse {
-        $environmentInitializeInput = new EnvironmentInitializeInput($environmentInitializeInput);
+        $environmentInitializeInput = new EnvironmentInitializeInput(
+            profile: $data['profile'],
+            repository: $data['repository'],
+            config: $data['config'],
+            files: $data['files'],
+            resources: new Resources3(init: $data['init']),
+        );
         return $this->api->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
     }
 
@@ -178,9 +237,11 @@ class EnvironmentTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function merge(string $projectId, string $environmentId, array $environmentMergeInput): AcceptedResponse
+    public function merge(string $projectId, string $environmentId, int $init): AcceptedResponse
     {
-        $environmentMergeInput = new EnvironmentMergeInput($environmentMergeInput);
+        $environmentMergeInput = new EnvironmentMergeInput(
+            new Resources4(init: $init)
+        );
         return $this->api->mergeEnvironment($projectId, $environmentId, $environmentMergeInput);
     }
 
@@ -219,13 +280,20 @@ class EnvironmentTask extends TaskBase
      * Synchronizes a child environment with its parent
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     synchronizeCode: bool,
+     *     rebase: bool,
+     *     synchronizeData: bool,
+     *     synchronizeResources: bool,
+     * } $data
      */
     public function synchronize(
         string $projectId,
         string $environmentId,
-        array $environmentSynchronizeInput
+        array $data
     ): AcceptedResponse {
-        $environmentSynchronizeInput = new EnvironmentSynchronizeInput($environmentSynchronizeInput);
+        $environmentSynchronizeInput = new EnvironmentSynchronizeInput(...$data);
         return $this->api->synchronizeEnvironment($projectId, $environmentId, $environmentSynchronizeInput);
     }
 
@@ -233,10 +301,41 @@ class EnvironmentTask extends TaskBase
      * Updates an environment
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @param array{
+     *     name?: string,
+     *     title?: string,
+     *     attributes?: array,
+     *     type?: string,
+     *     parent?: string,
+     *     cloneParentOnCreate?: bool,
+     *     httpAccess?: array{
+     *        isEnabled?: bool,
+     *        addresses?: array{
+     *          permission: string,
+     *          address: string,
+     *        },
+     *        basicAuth?: array
+     *     },
+     *     enableSmtp?: bool,
+     *     restrictRobots?: bool,
+     * } $data
      */
-    public function update(string $projectId, string $environmentId, array $environmentPatch): AcceptedResponse
+    public function update(string $projectId, string $environmentId, array $data): AcceptedResponse
     {
-        $environmentPatch = new EnvironmentPatch($environmentPatch);
+        $environmentPatch = new EnvironmentPatch(
+            name: $data['name'],
+            title: $data['title'],
+            attributes: $data['attributes'],
+            type: $data['type'],
+            parent: $data['parent'],
+            cloneParentOnCreate: $data['cloneParentOnCreate'],
+            httpAccess: new HttpAccessPermissions1(
+                isEnabled: $data['httpAccess']['isEnabled'],
+                addresses: $data['httpAccess']['addresses']
+            ),
+            enableSmtp: $data['enableSmtp'],
+            restrictRobots: $data['restrictRobots']
+        );
         return $this->api->updateEnvironment($projectId, $environmentId, $environmentPatch);
     }
 
@@ -249,9 +348,11 @@ class EnvironmentTask extends TaskBase
         string $projectId,
         string $environmentId,
         string $versionId,
-        array $versionPatch
+        ?int $percentage = null
     ): AcceptedResponse {
-        $versionPatch = new VersionPatch($versionPatch);
+        $versionPatch = new VersionPatch(
+            new ConfigurationAboutTheTrafficRoutedToThisVersion1(percentage: $percentage)
+        );
         return $this->api->updateProjectsEnvironmentsVersions(
             $projectId,
             $environmentId,
@@ -298,9 +399,9 @@ class EnvironmentTask extends TaskBase
     public function backup(
         string $projectId,
         string $environmentId,
-        array $environmentBackupInput
+        bool $safe
     ): AcceptedResponse {
-        return $this->client->backup->backup($projectId, $environmentId, $environmentBackupInput);
+        return $this->client->backup->backup($projectId, $environmentId, $safe);
     }
 
     /**
@@ -337,14 +438,22 @@ class EnvironmentTask extends TaskBase
      * Restores an environment snapshot
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     environmentName: string,
+     *     branchFrom: string,
+     *     restoreCode: bool,
+     *     restoreResources: bool,
+     *     init: string
+     * } $options Configuration options for environment restoration
      */
     public function restoreBackup(
         string $projectId,
         string $environmentId,
         string $backupId,
-        array $environmentRestoreInput
+        array $options
     ): AcceptedResponse {
-        return $this->client->backup->restore($projectId, $environmentId, $backupId, $environmentRestoreInput);
+        return $this->client->backup->restore($projectId, $environmentId, $backupId, $options);
     }
 
     /**
@@ -491,13 +600,20 @@ class EnvironmentTask extends TaskBase
      * Adds an environment domain
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     attributes?: array,
+     *     isDefault?: bool,
+     *     replacementFor?: string,
+     * } $data
      */
     public function createDomain(
         string $projectId,
         string $environmentId,
-        array $domainCreateInput
+        array $data
     ): AcceptedResponse {
-        return $this->client->domain->create($projectId, $domainCreateInput, $environmentId);
+        return $this->client->domain->create($projectId, $data, $environmentId);
     }
 
     /**
@@ -582,8 +698,8 @@ class EnvironmentTask extends TaskBase
     public function runSourceOperation(
         string $projectId,
         string $environmentId,
-        array $environmentSourceOperationInput
+        array $data
     ): AcceptedResponse {
-        return $this->client->sourceOperation->run($projectId, $environmentId, $environmentSourceOperationInput);
+        return $this->client->sourceOperation->run($projectId, $environmentId, $data);
     }
 }

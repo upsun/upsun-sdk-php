@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `createApiToken()`
 
 ```php
-createApiToken($user_id, $create_api_token_request): \Upsun\Model\APIToken
+createApiToken($userId, $createApiTokenRequest): \Upsun\Model\APIToken
 ```
 
 Create an API token
@@ -33,11 +33,11 @@ $apiInstance = new Upsun\Api\APITokensApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$create_api_token_request = new \Upsun\Model\CreateApiTokenRequest(); // \Upsun\Model\CreateApiTokenRequest
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$createApiTokenRequest = new \Upsun\Model\CreateApiTokenRequest(); // \Upsun\Model\CreateApiTokenRequest
 
 try {
-    $result = $apiInstance->createApiToken($user_id, $create_api_token_request);
+    $result = $apiInstance->createApiToken($userId, $createApiTokenRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->createApiToken: ', $e->getMessage(), PHP_EOL;
@@ -48,8 +48,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **create_api_token_request** | [**\Upsun\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **createApiTokenRequest** | [**\Upsun\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional]
 
 ### Return type
 
@@ -71,7 +71,7 @@ No authorization required
 ## `deleteApiToken()`
 
 ```php
-deleteApiToken($user_id, $token_id)
+deleteApiToken($userId, $tokenId)
 ```
 
 Delete an API token
@@ -91,11 +91,11 @@ $apiInstance = new Upsun\Api\APITokensApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$token_id = 'token_id_example'; // string | The ID of the token.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$tokenId = 'tokenId_example'; // string | The ID of the token.
 
 try {
-    $apiInstance->deleteApiToken($user_id, $token_id);
+    $apiInstance->deleteApiToken($userId, $tokenId);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->deleteApiToken: ', $e->getMessage(), PHP_EOL;
 }
@@ -105,8 +105,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **token_id** | **string**| The ID of the token. |
+ **userId** | **string**| The ID of the user. |
+ **tokenId** | **string**| The ID of the token. |
 
 ### Return type
 
@@ -128,7 +128,7 @@ No authorization required
 ## `getApiToken()`
 
 ```php
-getApiToken($user_id, $token_id): \Upsun\Model\APIToken
+getApiToken($userId, $tokenId): \Upsun\Model\APIToken
 ```
 
 Get an API token
@@ -148,11 +148,11 @@ $apiInstance = new Upsun\Api\APITokensApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$token_id = 'token_id_example'; // string | The ID of the token.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$tokenId = 'tokenId_example'; // string | The ID of the token.
 
 try {
-    $result = $apiInstance->getApiToken($user_id, $token_id);
+    $result = $apiInstance->getApiToken($userId, $tokenId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->getApiToken: ', $e->getMessage(), PHP_EOL;
@@ -163,8 +163,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **token_id** | **string**| The ID of the token. |
+ **userId** | **string**| The ID of the user. |
+ **tokenId** | **string**| The ID of the token. |
 
 ### Return type
 
@@ -186,7 +186,7 @@ No authorization required
 ## `listApiTokens()`
 
 ```php
-listApiTokens($user_id): \Upsun\Model\APIToken[]
+listApiTokens($userId): \Upsun\Model\APIToken[]
 ```
 
 List a user's API tokens
@@ -206,10 +206,10 @@ $apiInstance = new Upsun\Api\APITokensApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->listApiTokens($user_id);
+    $result = $apiInstance->listApiTokens($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->listApiTokens: ', $e->getMessage(), PHP_EOL;
@@ -220,7 +220,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 

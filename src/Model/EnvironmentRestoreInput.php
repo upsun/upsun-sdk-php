@@ -32,11 +32,11 @@ final class EnvironmentRestoreInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $environmentName = null,
-        private readonly ?string $branchFrom = null,
-        private readonly ?bool $restoreCode = null,
-        private readonly ?bool $restoreResources = null,
-        private readonly ?\Upsun\Model\Resources5 $resources = null,
+        private readonly string $environmentName,
+        private readonly string $branchFrom,
+        private readonly bool $restoreCode,
+        private readonly bool $restoreResources,
+        private readonly \Upsun\Model\Resources5 $resources,
     ) {
     }
 
@@ -56,23 +56,23 @@ final class EnvironmentRestoreInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getEnvironmentName(): ?string
+    public function getEnvironmentName(): string
     {
         return $this->environmentName;
     }
-    public function getBranchFrom(): ?string
+    public function getBranchFrom(): string
     {
         return $this->branchFrom;
     }
-    public function getRestoreCode(): ?bool
+    public function getRestoreCode(): bool
     {
         return $this->restoreCode;
     }
-    public function getRestoreResources(): ?bool
+    public function getRestoreResources(): bool
     {
         return $this->restoreResources;
     }
-    public function getResources(): ?\Upsun\Model\Resources5
+    public function getResources(): \Upsun\Model\Resources5
     {
         return $this->resources;
     }

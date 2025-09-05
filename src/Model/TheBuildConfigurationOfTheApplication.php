@@ -29,8 +29,8 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $flavor = null,
-        private readonly ?array $caches = [],
+        private readonly string $flavor,
+        private readonly array $caches,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getFlavor(): ?string
+    public function getFlavor(): string
     {
         return $this->flavor;
     }
-    public function getCaches(): ?array
+    public function getCaches(): array
     {
         return $this->caches;
     }

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 ## `listUserExtendedAccess()`
 
 ```php
-listUserExtendedAccess($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions): \Upsun\Model\ListUserExtendedAccess200Response
+listUserExtendedAccess($userId, $filterResourceType, $filterOrganizationId, $filterPermissions): \Upsun\Model\ListUserExtendedAccess200Response
 ```
 
 List extended access of a user
@@ -30,13 +30,13 @@ $apiInstance = new Upsun\Api\GrantsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$filter_resource_type = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `resource_type` (project or organization) using one or more operators.
-$filter_organization_id = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `organization_id` using one or more operators.
-$filter_permissions = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `permissions` using one or more operators.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$filterResourceType = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `resource_type` (project or organization) using one or more operators.
+$filterOrganizationId = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `organization_id` using one or more operators.
+$filterPermissions = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `permissions` using one or more operators.
 
 try {
-    $result = $apiInstance->listUserExtendedAccess($user_id, $filter_resource_type, $filter_organization_id, $filter_permissions);
+    $result = $apiInstance->listUserExtendedAccess($userId, $filterResourceType, $filterOrganizationId, $filterPermissions);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling GrantsApi->listUserExtendedAccess: ', $e->getMessage(), PHP_EOL;
@@ -47,10 +47,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **filter_resource_type** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;resource_type&#x60; (project or organization) using one or more operators. | [optional]
- **filter_organization_id** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional]
- **filter_permissions** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional]
+ **userId** | **string**| The ID of the user. |
+ **filterResourceType** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;resource_type&#x60; (project or organization) using one or more operators. | [optional]
+ **filterOrganizationId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional]
+ **filterPermissions** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;permissions&#x60; using one or more operators. | [optional]
 
 ### Return type
 

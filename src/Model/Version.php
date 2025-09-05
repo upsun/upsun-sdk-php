@@ -30,9 +30,9 @@ final class Version implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $commit = null,
-        private readonly ?bool $locked = null,
-        private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing = null,
+        private readonly string $commit,
+        private readonly bool $locked,
+        private readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class Version implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCommit(): ?string
+    public function getCommit(): string
     {
         return $this->commit;
     }
-    public function getLocked(): ?bool
+    public function getLocked(): bool
     {
         return $this->locked;
     }
-    public function getRouting(): ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
+    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
     {
         return $this->routing;
     }

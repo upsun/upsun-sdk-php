@@ -105,19 +105,6 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get user access for a project
      *
      * @throws ApiException on non-2xx response
@@ -953,10 +940,10 @@ final class UserAccessApi extends AbstractApi
      */
     public function listProjectUserAccess(
         string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listProjectUserAccessWithHttpInfo(
             $projectId,
@@ -1236,11 +1223,11 @@ final class UserAccessApi extends AbstractApi
      */
     public function listUserProjectAccess(
         string $userId,
-        string $filterOrganizationId = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $filterOrganizationId = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listUserProjectAccessWithHttpInfo(
             $userId,
@@ -1946,7 +1933,7 @@ final class UserAccessApi extends AbstractApi
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->updateProjectUserAccessWithHttpInfo(
             $projectId,
@@ -2164,7 +2151,7 @@ final class UserAccessApi extends AbstractApi
     public function updateUserProjectAccess(
         string $userId,
         string $projectId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): \Upsun\Model\UserProjectAccess {
         list($response) = $this->updateUserProjectAccessWithHttpInfo(
             $userId,

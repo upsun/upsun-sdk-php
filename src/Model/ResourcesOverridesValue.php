@@ -32,11 +32,11 @@ final class ResourcesOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $services = [],
-        private readonly ?\DateTime $startsAt = null,
-        private readonly ?\DateTime $endsAt = null,
-        private readonly ?bool $redeployedStart = null,
-        private readonly ?bool $redeployedEnd = null,
+        private readonly array $services,
+        private readonly \DateTime $startsAt,
+        private readonly \DateTime $endsAt,
+        private readonly bool $redeployedStart,
+        private readonly bool $redeployedEnd,
     ) {
     }
 
@@ -56,23 +56,23 @@ final class ResourcesOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getServices(): ?array
+    public function getServices(): array
     {
         return $this->services;
     }
-    public function getStartsAt(): ?\DateTime
+    public function getStartsAt(): \DateTime
     {
         return $this->startsAt;
     }
-    public function getEndsAt(): ?\DateTime
+    public function getEndsAt(): \DateTime
     {
         return $this->endsAt;
     }
-    public function getRedeployedStart(): ?bool
+    public function getRedeployedStart(): bool
     {
         return $this->redeployedStart;
     }
-    public function getRedeployedEnd(): ?bool
+    public function getRedeployedEnd(): bool
     {
         return $this->redeployedEnd;
     }

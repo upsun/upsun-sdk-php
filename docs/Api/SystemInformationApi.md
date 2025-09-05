@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `actionProjectsSystemRestart()`
 
 ```php
-actionProjectsSystemRestart($project_id): \Upsun\Model\AcceptedResponse
+actionProjectsSystemRestart($projectId): \Upsun\Model\AcceptedResponse
 ```
 
 Restart the Git server
@@ -31,10 +31,10 @@ $apiInstance = new Upsun\Api\SystemInformationApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->actionProjectsSystemRestart($project_id);
+    $result = $apiInstance->actionProjectsSystemRestart($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SystemInformationApi->actionProjectsSystemRestart: ', $e->getMessage(), PHP_EOL;
@@ -45,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ## `getProjectsSystem()`
 
 ```php
-getProjectsSystem($project_id): \Upsun\Model\SystemInformation
+getProjectsSystem($projectId): \Upsun\Model\SystemInformation
 ```
 
 Get information about the Git server.
@@ -87,10 +87,10 @@ $apiInstance = new Upsun\Api\SystemInformationApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsSystem($project_id);
+    $result = $apiInstance->getProjectsSystem($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SystemInformationApi->getProjectsSystem: ', $e->getMessage(), PHP_EOL;
@@ -101,7 +101,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 

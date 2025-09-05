@@ -105,19 +105,6 @@ final class RegionsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get region
      *
      * @throws ApiException on non-2xx response
@@ -314,13 +301,13 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listRegions(
-        \Upsun\Model\StringFilter $filterAvailable = null,
-        \Upsun\Model\StringFilter $filterPrivate = null,
-        \Upsun\Model\StringFilter $filterZone = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterAvailable = null,
+        ?\Upsun\Model\StringFilter $filterPrivate = null,
+        ?\Upsun\Model\StringFilter $filterZone = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listRegionsWithHttpInfo(
             $filterAvailable,

@@ -37,13 +37,13 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
         private readonly ?string $environmentInitResources = null,
         private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
         private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
-        private readonly ?string $repository = null,
+        private readonly string $repository,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $pullRequestsCloneParentData = null,
         private readonly ?bool $resyncPullRequests = null,
@@ -71,7 +71,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -95,7 +95,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->addonCredentials;
     }
-    public function getRepository(): ?string
+    public function getRepository(): string
     {
         return $this->repository;
     }

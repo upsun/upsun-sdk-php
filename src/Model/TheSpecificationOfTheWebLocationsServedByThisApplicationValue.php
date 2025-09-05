@@ -36,14 +36,14 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     ];
 
     public function __construct(
-        private readonly ?string $root = null,
-        private readonly ?string $expires = null,
-        private readonly ?string $passthru = null,
-        private readonly ?bool $scripts = null,
+        private readonly string $root,
+        private readonly string $expires,
+        private readonly string $passthru,
+        private readonly bool $scripts,
         private readonly ?array $index = [],
-        private readonly ?bool $allow = null,
-        private readonly ?array $headers = [],
-        private readonly ?array $rules = [],
+        private readonly bool $allow,
+        private readonly array $headers,
+        private readonly array $rules,
         private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
     }
@@ -68,19 +68,19 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getRoot(): ?string
+    public function getRoot(): string
     {
         return $this->root;
     }
-    public function getExpires(): ?string
+    public function getExpires(): string
     {
         return $this->expires;
     }
-    public function getPassthru(): ?string
+    public function getPassthru(): string
     {
         return $this->passthru;
     }
-    public function getScripts(): ?bool
+    public function getScripts(): bool
     {
         return $this->scripts;
     }
@@ -88,15 +88,15 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->index;
     }
-    public function getAllow(): ?bool
+    public function getAllow(): bool
     {
         return $this->allow;
     }
-    public function getHeaders(): ?array
+    public function getHeaders(): array
     {
         return $this->headers;
     }
-    public function getRules(): ?array
+    public function getRules(): array
     {
         return $this->rules;
     }

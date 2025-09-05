@@ -30,9 +30,9 @@ final class ListLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
+        private readonly ?\Upsun\Model\LinkSelf $self = null,
+        private readonly ?\Upsun\Model\LinkPrevious $previous = null,
+        private readonly ?\Upsun\Model\LinkNext $next = null,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class ListLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSelf(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf
+    public function getSelf(): ?\Upsun\Model\LinkSelf
     {
         return $this->self;
     }
-    public function getPrevious(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious
+    public function getPrevious(): ?\Upsun\Model\LinkPrevious
     {
         return $this->previous;
     }
-    public function getNext(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext
+    public function getNext(): ?\Upsun\Model\LinkNext
     {
         return $this->next;
     }

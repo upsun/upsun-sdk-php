@@ -31,13 +31,20 @@ class DomainTask extends TaskBase
      * Adds a project (or environment) domain
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     attributes?: array,
+     *     isDefault?: bool,
+     *     replacementFor?: string,
+     * } $data
      */
     public function create(
         string $projectId,
-        array $domainCreateInput,
+        array $data = [],
         ?string $environmentId = null
     ): AcceptedResponse {
-        $domainCreateInput = new DomainCreateInput($domainCreateInput);
+        $domainCreateInput = new DomainCreateInput(...$data);
         if (!$environmentId) {
             return $this->api->createProjectsDomains($projectId, $domainCreateInput);
         } else {
@@ -95,14 +102,19 @@ class DomainTask extends TaskBase
      * Updates a project (or environment) domain
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     attributes?: array,
+     *     isDefault?: bool,
+     * } $data
      */
     public function update(
         string $projectId,
         string $domainId,
-        array $domainPatch,
+        array $data,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $domainPatch = new DomainPatch($domainPatch);
+        $domainPatch = new DomainPatch(...$data);
         if (!$environmentId) {
             return $this->api->updateProjectsDomains($projectId, $domainId, $domainPatch);
         } else {

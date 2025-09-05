@@ -30,9 +30,9 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $oid = null,
-        private readonly ?string $alias = null,
-        private readonly ?string $value = null,
+        private readonly string $oid,
+        private readonly string $alias,
+        private readonly string $value,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getOid(): ?string
+    public function getOid(): string
     {
         return $this->oid;
     }
-    public function getAlias(): ?string
+    public function getAlias(): string
     {
         return $this->alias;
     }
-    public function getValue(): ?string
+    public function getValue(): string
     {
         return $this->value;
     }

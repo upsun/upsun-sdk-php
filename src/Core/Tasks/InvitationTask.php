@@ -46,19 +46,19 @@ class InvitationTask extends TaskBase
     /**
      * Invites user to an organization by email
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
      */
     public function createOrgInvite(
         string $organizationId,
         string $email,
         array $permissions,
         ?bool $force = true
-    ): Error|OrganizationInvitation {
-        $inviteRequest = new CreateOrgInviteRequest([
-            'email' => $email,
-            'permissions' => $permissions,
-            'force' => $force
-        ]);
+    ): OrganizationInvitation {
+        $inviteRequest = new CreateOrgInviteRequest(
+            email: $email,
+            permissions: $permissions,
+            force: $force,
+        );
         return $this->orgInvApi->createOrgInvite($organizationId, $inviteRequest);
     }
 
@@ -74,10 +74,10 @@ class InvitationTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array {
+    ): array {
         return $this->orgInvApi->listOrgInvites(
             $organizationId,
-            new StringFilter($filterState),
+            new StringFilter(...$this->normalizeFilter($filterState)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -101,12 +101,19 @@ class InvitationTask extends TaskBase
      *
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @param array{
+     *     email: string,
+     *     role?: string,
+     *     permissions?: array,
+     *     environments?: bool,
+     *     force?: bool
+     * } $data
      */
     public function createProjectInvite(
         string $projectId,
-        ?array $createProjectInviteRequest = null
-    ): ProjectInvitation|Error {
-        $createProjectInviteRequest = new CreateProjectInviteRequest($createProjectInviteRequest);
+        array $data
+    ): ProjectInvitation {
+        $createProjectInviteRequest = new CreateProjectInviteRequest(...$data);
         return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
     }
 
@@ -122,10 +129,10 @@ class InvitationTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array {
+    ): array {
         return $this->prjInvApi->listProjectInvites(
             $projectId,
-            new StringFilter($filterState),
+            new StringFilter(...$this->normalizeFilter($filterState)),
             $pageSize,
             $pageBefore,
             $pageAfter,

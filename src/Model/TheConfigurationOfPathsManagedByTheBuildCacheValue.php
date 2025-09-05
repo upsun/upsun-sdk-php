@@ -31,10 +31,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     ];
 
     public function __construct(
-        private readonly ?string $directory = null,
-        private readonly ?array $watch = [],
-        private readonly ?bool $allowStale = null,
-        private readonly ?bool $shareBetweenApps = null,
+        private readonly string $directory,
+        private readonly array $watch,
+        private readonly bool $allowStale,
+        private readonly bool $shareBetweenApps,
     ) {
     }
 
@@ -53,19 +53,19 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getDirectory(): ?string
+    public function getDirectory(): string
     {
         return $this->directory;
     }
-    public function getWatch(): ?array
+    public function getWatch(): array
     {
         return $this->watch;
     }
-    public function getAllowStale(): ?bool
+    public function getAllowStale(): bool
     {
         return $this->allowStale;
     }
-    public function getShareBetweenApps(): ?bool
+    public function getShareBetweenApps(): bool
     {
         return $this->shareBetweenApps;
     }

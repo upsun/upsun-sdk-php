@@ -105,19 +105,6 @@ final class APITokensApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create an API token
      *
      * @throws ApiException on non-2xx response
@@ -125,7 +112,7 @@ final class APITokensApi extends AbstractApi
      */
     public function createApiToken(
         string $userId,
-        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
+        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): \Upsun\Model\APIToken {
         list($response) = $this->createApiTokenWithHttpInfo(
             $userId,

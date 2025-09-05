@@ -105,19 +105,6 @@ final class DiscountsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get an organization discount
      *
      * @throws ApiException on non-2xx response

@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
 **name** | **string** |  |
-**deploy_host** | **string** |  |
+**deployHost** | **string** |  |
 **docroots** | [**array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>**](MappingOfClustersToEnterpriseApplicationsValue.md) |  |
-**site_urls** | **object** |  |
-**ssh_hosts** | **string[]** |  |
-**maintenance_mode** | **bool** |  |
-**enterprise_environments_mapping** | **object** |  | [optional]
+**siteUrls** | **object** |  |
+**sshHosts** | **string[]** |  |
+**maintenanceMode** | **bool** |  |
+**enterpriseEnvironmentsMapping** | **object** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

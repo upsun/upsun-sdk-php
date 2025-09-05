@@ -10,7 +10,7 @@ Method | HTTP request | Description
 ## `runOperation()`
 
 ```php
-runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input): \Upsun\Model\AcceptedResponse
+runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput): \Upsun\Model\AcceptedResponse
 ```
 
 Execute a runtime operation
@@ -30,13 +30,13 @@ $apiInstance = new Upsun\Api\RuntimeOperationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$deployment_id = 'deployment_id_example'; // string
-$environment_operation_input = new \Upsun\Model\EnvironmentOperationInput(); // \Upsun\Model\EnvironmentOperationInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$deploymentId = 'deploymentId_example'; // string
+$environmentOperationInput = new \Upsun\Model\EnvironmentOperationInput(); // \Upsun\Model\EnvironmentOperationInput | 
 
 try {
-    $result = $apiInstance->runOperation($project_id, $environment_id, $deployment_id, $environment_operation_input);
+    $result = $apiInstance->runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RuntimeOperationsApi->runOperation: ', $e->getMessage(), PHP_EOL;
@@ -47,10 +47,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **deployment_id** | **string**|  |
- **environment_operation_input** | [**\Upsun\Model\EnvironmentOperationInput**](../Model/EnvironmentOperationInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **deploymentId** | **string**|  |
+ **environmentOperationInput** | [**\Upsun\Model\EnvironmentOperationInput**](../Model/EnvironmentOperationInput.md)|  |
 
 ### Return type
 

@@ -105,19 +105,6 @@ final class RoutingApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create a new route
      *
      * @throws ApiException on non-2xx response

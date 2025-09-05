@@ -105,38 +105,25 @@ final class DefaultApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * List support tickets
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function listTickets(
-        int $filterTicketId = null,
-        \DateTime $filterCreated = null,
-        \DateTime $filterUpdated = null,
-        string $filterType = null,
-        string $filterPriority = null,
-        string $filterStatus = null,
-        string $filterRequesterId = null,
-        string $filterSubmitterId = null,
-        string $filterAssigneeId = null,
-        bool $filterHasIncidents = null,
-        \DateTime $filterDue = null,
-        string $search = null,
-        int $page = null
+        ?int $filterTicketId = null,
+        ?\DateTime $filterCreated = null,
+        ?\DateTime $filterUpdated = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
+        ?\DateTime $filterDue = null,
+        ?string $search = null,
+        ?int $page = null
     ): array {
         list($response) = $this->listTicketsWithHttpInfo(
             $filterTicketId,

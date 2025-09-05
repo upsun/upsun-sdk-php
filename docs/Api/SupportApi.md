@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `createTicket()`
 
 ```php
-createTicket($create_ticket_request): \Upsun\Model\Ticket
+createTicket($createTicketRequest): \Upsun\Model\Ticket
 ```
 
 Create a new support ticket
@@ -31,10 +31,10 @@ $apiInstance = new Upsun\Api\SupportApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$create_ticket_request = new \Upsun\Model\CreateTicketRequest(); // \Upsun\Model\CreateTicketRequest
+$createTicketRequest = new \Upsun\Model\CreateTicketRequest(); // \Upsun\Model\CreateTicketRequest
 
 try {
-    $result = $apiInstance->createTicket($create_ticket_request);
+    $result = $apiInstance->createTicket($createTicketRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SupportApi->createTicket: ', $e->getMessage(), PHP_EOL;
@@ -45,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_ticket_request** | [**\Upsun\Model\CreateTicketRequest**](../Model/CreateTicketRequest.md)|  | [optional]
+ **createTicketRequest** | [**\Upsun\Model\CreateTicketRequest**](../Model/CreateTicketRequest.md)|  | [optional]
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ## `listTicketCategories()`
 
 ```php
-listTicketCategories($subscription_id, $organization_id): \Upsun\Model\ListTicketCategories200ResponseInner[]
+listTicketCategories($subscriptionId, $organizationId): \Upsun\Model\ListTicketCategories200ResponseInner[]
 ```
 
 List support ticket categories
@@ -85,11 +85,11 @@ $apiInstance = new Upsun\Api\SupportApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription the ticket should be related to
-$organization_id = 'organization_id_example'; // string | The ID of the organization the ticket should be related to
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription the ticket should be related to
+$organizationId = 'organizationId_example'; // string | The ID of the organization the ticket should be related to
 
 try {
-    $result = $apiInstance->listTicketCategories($subscription_id, $organization_id);
+    $result = $apiInstance->listTicketCategories($subscriptionId, $organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SupportApi->listTicketCategories: ', $e->getMessage(), PHP_EOL;
@@ -100,8 +100,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **string**| The ID of the subscription the ticket should be related to | [optional]
- **organization_id** | **string**| The ID of the organization the ticket should be related to | [optional]
+ **subscriptionId** | **string**| The ID of the subscription the ticket should be related to | [optional]
+ **organizationId** | **string**| The ID of the organization the ticket should be related to | [optional]
 
 ### Return type
 
@@ -123,7 +123,7 @@ No authorization required
 ## `listTicketPriorities()`
 
 ```php
-listTicketPriorities($subscription_id, $category): \Upsun\Model\ListTicketPriorities200ResponseInner[]
+listTicketPriorities($subscriptionId, $category): \Upsun\Model\ListTicketPriorities200ResponseInner[]
 ```
 
 List support ticket priorities
@@ -141,11 +141,11 @@ $apiInstance = new Upsun\Api\SupportApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription the ticket should be related to
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription the ticket should be related to
 $category = 'category_example'; // string | The category of the support ticket.
 
 try {
-    $result = $apiInstance->listTicketPriorities($subscription_id, $category);
+    $result = $apiInstance->listTicketPriorities($subscriptionId, $category);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SupportApi->listTicketPriorities: ', $e->getMessage(), PHP_EOL;
@@ -156,7 +156,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **string**| The ID of the subscription the ticket should be related to | [optional]
+ **subscriptionId** | **string**| The ID of the subscription the ticket should be related to | [optional]
  **category** | **string**| The category of the support ticket. | [optional]
 
 ### Return type
@@ -179,7 +179,7 @@ No authorization required
 ## `updateTicket()`
 
 ```php
-updateTicket($ticket_id, $update_ticket_request): \Upsun\Model\Ticket
+updateTicket($ticketId, $updateTicketRequest): \Upsun\Model\Ticket
 ```
 
 Update a ticket
@@ -197,11 +197,11 @@ $apiInstance = new Upsun\Api\SupportApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$ticket_id = 'ticket_id_example'; // string | The ID of the ticket
-$update_ticket_request = new \Upsun\Model\UpdateTicketRequest(); // \Upsun\Model\UpdateTicketRequest
+$ticketId = 'ticketId_example'; // string | The ID of the ticket
+$updateTicketRequest = new \Upsun\Model\UpdateTicketRequest(); // \Upsun\Model\UpdateTicketRequest
 
 try {
-    $result = $apiInstance->updateTicket($ticket_id, $update_ticket_request);
+    $result = $apiInstance->updateTicket($ticketId, $updateTicketRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SupportApi->updateTicket: ', $e->getMessage(), PHP_EOL;
@@ -212,8 +212,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ticket_id** | **string**| The ID of the ticket |
- **update_ticket_request** | [**\Upsun\Model\UpdateTicketRequest**](../Model/UpdateTicketRequest.md)|  | [optional]
+ **ticketId** | **string**| The ID of the ticket |
+ **updateTicketRequest** | [**\Upsun\Model\UpdateTicketRequest**](../Model/UpdateTicketRequest.md)|  | [optional]
 
 ### Return type
 

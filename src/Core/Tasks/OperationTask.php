@@ -29,14 +29,19 @@ class OperationTask extends TaskBase
      * Executes a runtime operation
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     service: string,
+     *     operation: string,
+     * } $data
      */
     public function run(
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        array $environmentOperationInput
+        array $data
     ): AcceptedResponse {
-        $environmentOperationInput = new EnvironmentOperationInput($environmentOperationInput);
+        $environmentOperationInput = new EnvironmentOperationInput(...$data);
         return $this->api->runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInput);
     }
 }

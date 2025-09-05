@@ -39,18 +39,18 @@ final class BitbucketIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $type = null,
-        private readonly ?bool $fetchBranches = null,
-        private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
         private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
         private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
-        private readonly ?string $repository = null,
-        private readonly ?bool $buildPullRequests = null,
-        private readonly ?bool $pullRequestsCloneParentData = null,
-        private readonly ?bool $resyncPullRequests = null,
+        private readonly string $repository,
+        private readonly bool $buildPullRequests,
+        private readonly bool $pullRequestsCloneParentData,
+        private readonly bool $resyncPullRequests,
     ) {
     }
 
@@ -77,27 +77,27 @@ final class BitbucketIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getFetchBranches(): ?bool
+    public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
-    public function getPruneBranches(): ?bool
+    public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
-    public function getEnvironmentInitResources(): ?string
+    public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
@@ -109,19 +109,19 @@ final class BitbucketIntegration implements JsonSerializable
     {
         return $this->addonCredentials;
     }
-    public function getRepository(): ?string
+    public function getRepository(): string
     {
         return $this->repository;
     }
-    public function getBuildPullRequests(): ?bool
+    public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
-    public function getPullRequestsCloneParentData(): ?bool
+    public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
-    public function getResyncPullRequests(): ?bool
+    public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
     }

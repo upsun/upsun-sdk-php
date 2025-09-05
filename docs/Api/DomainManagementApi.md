@@ -19,7 +19,7 @@ Method | HTTP request | Description
 ## `createProjectsDomains()`
 
 ```php
-createProjectsDomains($project_id, $domain_create_input): \Upsun\Model\AcceptedResponse
+createProjectsDomains($projectId, $domainCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Add a project domain
@@ -39,11 +39,11 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$domain_create_input = new \Upsun\Model\DomainCreateInput(); // \Upsun\Model\DomainCreateInput | 
+$projectId = 'projectId_example'; // string
+$domainCreateInput = new \Upsun\Model\DomainCreateInput(); // \Upsun\Model\DomainCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsDomains($project_id, $domain_create_input);
+    $result = $apiInstance->createProjectsDomains($projectId, $domainCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->createProjectsDomains: ', $e->getMessage(), PHP_EOL;
@@ -54,8 +54,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **domain_create_input** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **domainCreateInput** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
 
 ### Return type
 
@@ -77,7 +77,7 @@ No authorization required
 ## `createProjectsEnvironmentsDomains()`
 
 ```php
-createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input): \Upsun\Model\AcceptedResponse
+createProjectsEnvironmentsDomains($projectId, $environmentId, $domainCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Add an environment domain
@@ -97,12 +97,12 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$domain_create_input = new \Upsun\Model\DomainCreateInput(); // \Upsun\Model\DomainCreateInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$domainCreateInput = new \Upsun\Model\DomainCreateInput(); // \Upsun\Model\DomainCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsEnvironmentsDomains($project_id, $environment_id, $domain_create_input);
+    $result = $apiInstance->createProjectsEnvironmentsDomains($projectId, $environmentId, $domainCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->createProjectsEnvironmentsDomains: ', $e->getMessage(), PHP_EOL;
@@ -113,9 +113,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **domain_create_input** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **domainCreateInput** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
 
 ### Return type
 
@@ -137,7 +137,7 @@ No authorization required
 ## `deleteProjectsDomains()`
 
 ```php
-deleteProjectsDomains($project_id, $domain_id): \Upsun\Model\AcceptedResponse
+deleteProjectsDomains($projectId, $domainId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete a project domain
@@ -157,11 +157,11 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$domain_id = 'domain_id_example'; // string
+$projectId = 'projectId_example'; // string
+$domainId = 'domainId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsDomains($project_id, $domain_id);
+    $result = $apiInstance->deleteProjectsDomains($projectId, $domainId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->deleteProjectsDomains: ', $e->getMessage(), PHP_EOL;
@@ -172,8 +172,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **domain_id** | **string**|  |
+ **projectId** | **string**|  |
+ **domainId** | **string**|  |
 
 ### Return type
 
@@ -195,7 +195,7 @@ No authorization required
 ## `deleteProjectsEnvironmentsDomains()`
 
 ```php
-deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id): \Upsun\Model\AcceptedResponse
+deleteProjectsEnvironmentsDomains($projectId, $environmentId, $domainId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete an environment domain
@@ -215,12 +215,12 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$domain_id = 'domain_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$domainId = 'domainId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+    $result = $apiInstance->deleteProjectsEnvironmentsDomains($projectId, $environmentId, $domainId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->deleteProjectsEnvironmentsDomains: ', $e->getMessage(), PHP_EOL;
@@ -231,9 +231,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **domain_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **domainId** | **string**|  |
 
 ### Return type
 
@@ -255,7 +255,7 @@ No authorization required
 ## `getProjectsDomains()`
 
 ```php
-getProjectsDomains($project_id, $domain_id): \Upsun\Model\Domain
+getProjectsDomains($projectId, $domainId): \Upsun\Model\Domain
 ```
 
 Get a project domain
@@ -275,11 +275,11 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$domain_id = 'domain_id_example'; // string
+$projectId = 'projectId_example'; // string
+$domainId = 'domainId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsDomains($project_id, $domain_id);
+    $result = $apiInstance->getProjectsDomains($projectId, $domainId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->getProjectsDomains: ', $e->getMessage(), PHP_EOL;
@@ -290,8 +290,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **domain_id** | **string**|  |
+ **projectId** | **string**|  |
+ **domainId** | **string**|  |
 
 ### Return type
 
@@ -313,7 +313,7 @@ No authorization required
 ## `getProjectsEnvironmentsDomains()`
 
 ```php
-getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id): \Upsun\Model\Domain
+getProjectsEnvironmentsDomains($projectId, $environmentId, $domainId): \Upsun\Model\Domain
 ```
 
 Get an environment domain
@@ -333,12 +333,12 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$domain_id = 'domain_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$domainId = 'domainId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id);
+    $result = $apiInstance->getProjectsEnvironmentsDomains($projectId, $environmentId, $domainId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->getProjectsEnvironmentsDomains: ', $e->getMessage(), PHP_EOL;
@@ -349,9 +349,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **domain_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **domainId** | **string**|  |
 
 ### Return type
 
@@ -373,7 +373,7 @@ No authorization required
 ## `listProjectsDomains()`
 
 ```php
-listProjectsDomains($project_id): \Upsun\Model\Domain[]
+listProjectsDomains($projectId): \Upsun\Model\Domain[]
 ```
 
 Get list of project domains
@@ -393,10 +393,10 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsDomains($project_id);
+    $result = $apiInstance->listProjectsDomains($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->listProjectsDomains: ', $e->getMessage(), PHP_EOL;
@@ -407,7 +407,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -429,7 +429,7 @@ No authorization required
 ## `listProjectsEnvironmentsDomains()`
 
 ```php
-listProjectsEnvironmentsDomains($project_id, $environment_id): \Upsun\Model\Domain[]
+listProjectsEnvironmentsDomains($projectId, $environmentId): \Upsun\Model\Domain[]
 ```
 
 Get a list of environment domains
@@ -449,11 +449,11 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsDomains($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsDomains($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->listProjectsEnvironmentsDomains: ', $e->getMessage(), PHP_EOL;
@@ -464,8 +464,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -487,7 +487,7 @@ No authorization required
 ## `updateProjectsDomains()`
 
 ```php
-updateProjectsDomains($project_id, $domain_id, $domain_patch): \Upsun\Model\AcceptedResponse
+updateProjectsDomains($projectId, $domainId, $domainPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update a project domain
@@ -507,12 +507,12 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$domain_id = 'domain_id_example'; // string
-$domain_patch = new \Upsun\Model\DomainPatch(); // \Upsun\Model\DomainPatch | 
+$projectId = 'projectId_example'; // string
+$domainId = 'domainId_example'; // string
+$domainPatch = new \Upsun\Model\DomainPatch(); // \Upsun\Model\DomainPatch | 
 
 try {
-    $result = $apiInstance->updateProjectsDomains($project_id, $domain_id, $domain_patch);
+    $result = $apiInstance->updateProjectsDomains($projectId, $domainId, $domainPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->updateProjectsDomains: ', $e->getMessage(), PHP_EOL;
@@ -523,9 +523,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **domain_id** | **string**|  |
- **domain_patch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  |
+ **projectId** | **string**|  |
+ **domainId** | **string**|  |
+ **domainPatch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  |
 
 ### Return type
 
@@ -547,7 +547,7 @@ No authorization required
 ## `updateProjectsEnvironmentsDomains()`
 
 ```php
-updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch): \Upsun\Model\AcceptedResponse
+updateProjectsEnvironmentsDomains($projectId, $environmentId, $domainId, $domainPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update an environment domain
@@ -567,13 +567,13 @@ $apiInstance = new Upsun\Api\DomainManagementApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$domain_id = 'domain_id_example'; // string
-$domain_patch = new \Upsun\Model\DomainPatch(); // \Upsun\Model\DomainPatch | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$domainId = 'domainId_example'; // string
+$domainPatch = new \Upsun\Model\DomainPatch(); // \Upsun\Model\DomainPatch | 
 
 try {
-    $result = $apiInstance->updateProjectsEnvironmentsDomains($project_id, $environment_id, $domain_id, $domain_patch);
+    $result = $apiInstance->updateProjectsEnvironmentsDomains($projectId, $environmentId, $domainId, $domainPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DomainManagementApi->updateProjectsEnvironmentsDomains: ', $e->getMessage(), PHP_EOL;
@@ -584,10 +584,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **domain_id** | **string**|  |
- **domain_patch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **domainId** | **string**|  |
+ **domainPatch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  |
 
 ### Return type
 

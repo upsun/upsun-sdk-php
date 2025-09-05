@@ -33,7 +33,7 @@ final class CreateProjectInviteRequest implements JsonSerializable
 
     public function __construct(
         private readonly ?string $role = null,
-        private readonly ?string $email = null,
+        private readonly string $email,
         private readonly ?array $permissions = [],
         private readonly ?array $environments = [],
         private readonly ?bool $force = null,
@@ -60,7 +60,7 @@ final class CreateProjectInviteRequest implements JsonSerializable
     {
         return $this->role;
     }
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }

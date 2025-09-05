@@ -28,7 +28,7 @@ final class EnvironmentActivateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\Resources1 $resources = null,
+        private readonly \Upsun\Model\Resources1 $resources,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class EnvironmentActivateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getResources(): ?\Upsun\Model\Resources1
+    public function getResources(): \Upsun\Model\Resources1
     {
         return $this->resources;
     }

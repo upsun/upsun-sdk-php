@@ -249,7 +249,6 @@ Class | Method | HTTP request | Description
 *ProfilesApi* | [**updateOrgAddress**](docs/Api/ProfilesApi.md#updateorgaddress) | **PATCH** /organizations/{organization_id}/address | Update address
 *ProfilesApi* | [**updateOrgProfile**](docs/Api/ProfilesApi.md#updateorgprofile) | **PATCH** /organizations/{organization_id}/profile | Update profile
 *ProjectApi* | [**actionProjectsClearBuildCache**](docs/Api/ProjectApi.md#actionprojectsclearbuildcache) | **POST** /projects/{projectId}/clear_build_cache | Clear project build cache
-*ProjectApi* | [**deleteProjects**](docs/Api/ProjectApi.md#deleteprojects) | **DELETE** /projects/{projectId} | Delete a project
 *ProjectApi* | [**getProjects**](docs/Api/ProjectApi.md#getprojects) | **GET** /projects/{projectId} | Get a project
 *ProjectApi* | [**getProjectsCapabilities**](docs/Api/ProjectApi.md#getprojectscapabilities) | **GET** /projects/{projectId}/capabilities | Get a project&#39;s capabilities
 *ProjectApi* | [**updateProjects**](docs/Api/ProjectApi.md#updateprojects) | **PATCH** /projects/{projectId} | Update a project
@@ -552,6 +551,9 @@ Class | Method | HTTP request | Description
 - [InvoicePDF](docs/Model/InvoicePDF.md)
 - [LineItem](docs/Model/LineItem.md)
 - [LineItemComponent](docs/Model/LineItemComponent.md)
+- [LinkNext](docs/Model/LinkNext.md)
+- [LinkPrevious](docs/Model/LinkPrevious.md)
+- [LinkSelf](docs/Model/LinkSelf.md)
 - [ListLinks](docs/Model/ListLinks.md)
 - [ListOrgDiscounts200Response](docs/Model/ListOrgDiscounts200Response.md)
 - [ListOrgInvoices200Response](docs/Model/ListOrgInvoices200Response.md)

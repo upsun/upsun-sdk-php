@@ -36,15 +36,15 @@ final class ScriptIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $type = null,
-        private readonly ?array $events = [],
-        private readonly ?array $environments = [],
-        private readonly ?array $excludedEnvironments = [],
-        private readonly ?array $states = [],
-        private readonly ?string $result = null,
-        private readonly ?string $script = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $type,
+        private readonly array $events,
+        private readonly array $environments,
+        private readonly array $excludedEnvironments,
+        private readonly array $states,
+        private readonly string $result,
+        private readonly string $script,
     ) {
     }
 
@@ -68,39 +68,39 @@ final class ScriptIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getEvents(): ?array
+    public function getEvents(): array
     {
         return $this->events;
     }
-    public function getEnvironments(): ?array
+    public function getEnvironments(): array
     {
         return $this->environments;
     }
-    public function getExcludedEnvironments(): ?array
+    public function getExcludedEnvironments(): array
     {
         return $this->excludedEnvironments;
     }
-    public function getStates(): ?array
+    public function getStates(): array
     {
         return $this->states;
     }
-    public function getResult(): ?string
+    public function getResult(): string
     {
         return $this->result;
     }
-    public function getScript(): ?string
+    public function getScript(): string
     {
         return $this->script;
     }

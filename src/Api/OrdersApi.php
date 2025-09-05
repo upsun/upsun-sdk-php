@@ -105,19 +105,6 @@ final class OrdersApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create confirmation credentials for for 3D-Secure
      *
      * @throws ApiException on non-2xx response
@@ -522,7 +509,7 @@ final class OrdersApi extends AbstractApi
     public function getOrgOrder(
         string $organizationId,
         string $orderId,
-        string $mode = null
+        ?string $mode = null
     ): \Upsun\Model\Order {
         list($response) = $this->getOrgOrderWithHttpInfo(
             $organizationId,
@@ -754,10 +741,10 @@ final class OrdersApi extends AbstractApi
      */
     public function listOrgOrders(
         string $organizationId,
-        string $filterStatus = null,
-        int $filterTotal = null,
-        int $page = null,
-        string $mode = null
+        ?string $filterStatus = null,
+        ?int $filterTotal = null,
+        ?int $page = null,
+        ?string $mode = null
     ): array {
         list($response) = $this->listOrgOrdersWithHttpInfo(
             $organizationId,

@@ -30,9 +30,9 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $addonKey = null,
-        private readonly ?string $clientKey = null,
-        private readonly ?string $sharedSecret = null,
+        private readonly string $addonKey,
+        private readonly string $clientKey,
+        private readonly string $sharedSecret,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getAddonKey(): ?string
+    public function getAddonKey(): string
     {
         return $this->addonKey;
     }
-    public function getClientKey(): ?string
+    public function getClientKey(): string
     {
         return $this->clientKey;
     }
-    public function getSharedSecret(): ?string
+    public function getSharedSecret(): string
     {
         return $this->sharedSecret;
     }

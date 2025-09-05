@@ -35,14 +35,14 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?array $events = [],
         private readonly ?array $environments = [],
         private readonly ?array $excludedEnvironments = [],
         private readonly ?array $states = [],
         private readonly ?string $result = null,
-        private readonly ?string $token = null,
-        private readonly ?string $serviceId = null,
+        private readonly string $token,
+        private readonly string $serviceId,
     ) {
     }
 
@@ -65,7 +65,7 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -89,11 +89,11 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
     {
         return $this->result;
     }
-    public function getToken(): ?string
+    public function getToken(): string
     {
         return $this->token;
     }
-    public function getServiceId(): ?string
+    public function getServiceId(): string
     {
         return $this->serviceId;
     }

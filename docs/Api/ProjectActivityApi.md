@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `actionProjectsActivitiesCancel()`
 
 ```php
-actionProjectsActivitiesCancel($project_id, $activity_id): \Upsun\Model\AcceptedResponse
+actionProjectsActivitiesCancel($projectId, $activityId): \Upsun\Model\AcceptedResponse
 ```
 
 Cancel a project activity
@@ -32,11 +32,11 @@ $apiInstance = new Upsun\Api\ProjectActivityApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->actionProjectsActivitiesCancel($project_id, $activity_id);
+    $result = $apiInstance->actionProjectsActivitiesCancel($projectId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectActivityApi->actionProjectsActivitiesCancel: ', $e->getMessage(), PHP_EOL;
@@ -47,8 +47,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -70,7 +70,7 @@ No authorization required
 ## `getProjectsActivities()`
 
 ```php
-getProjectsActivities($project_id, $activity_id): \Upsun\Model\Activity
+getProjectsActivities($projectId, $activityId): \Upsun\Model\Activity
 ```
 
 Get a project activity log entry
@@ -90,11 +90,11 @@ $apiInstance = new Upsun\Api\ProjectActivityApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsActivities($project_id, $activity_id);
+    $result = $apiInstance->getProjectsActivities($projectId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectActivityApi->getProjectsActivities: ', $e->getMessage(), PHP_EOL;
@@ -105,8 +105,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -128,7 +128,7 @@ No authorization required
 ## `listProjectsActivities()`
 
 ```php
-listProjectsActivities($project_id): \Upsun\Model\Activity[]
+listProjectsActivities($projectId): \Upsun\Model\Activity[]
 ```
 
 Get project activity log
@@ -148,10 +148,10 @@ $apiInstance = new Upsun\Api\ProjectActivityApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsActivities($project_id);
+    $result = $apiInstance->listProjectsActivities($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectActivityApi->listProjectsActivities: ', $e->getMessage(), PHP_EOL;
@@ -162,7 +162,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 

@@ -36,13 +36,13 @@ final class Domain implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $type = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $type,
         private readonly ?string $project = null,
-        private readonly ?string $name = null,
+        private readonly string $name,
         private readonly ?string $registeredName = null,
-        private readonly ?array $attributes = [],
+        private readonly array $attributes,
         private readonly ?bool $isDefault = null,
         private readonly ?string $replacementFor = null,
     ) {
@@ -68,15 +68,15 @@ final class Domain implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -84,7 +84,7 @@ final class Domain implements JsonSerializable
     {
         return $this->project;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -92,7 +92,7 @@ final class Domain implements JsonSerializable
     {
         return $this->registeredName;
     }
-    public function getAttributes(): ?array
+    public function getAttributes(): array
     {
         return $this->attributes;
     }

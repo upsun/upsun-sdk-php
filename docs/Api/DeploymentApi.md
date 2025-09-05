@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `getProjectsEnvironmentsDeployments()`
 
 ```php
-getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id): \Upsun\Model\Deployment
+getProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId): \Upsun\Model\Deployment
 ```
 
 Get a single environment deployment
@@ -31,12 +31,12 @@ $apiInstance = new Upsun\Api\DeploymentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$deployment_id = 'deployment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$deploymentId = 'deploymentId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsDeployments($project_id, $environment_id, $deployment_id);
+    $result = $apiInstance->getProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentApi->getProjectsEnvironmentsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -47,9 +47,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **deployment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **deploymentId** | **string**|  |
 
 ### Return type
 
@@ -71,7 +71,7 @@ No authorization required
 ## `listProjectsEnvironmentsDeployments()`
 
 ```php
-listProjectsEnvironmentsDeployments($project_id, $environment_id): \Upsun\Model\Deployment[]
+listProjectsEnvironmentsDeployments($projectId, $environmentId): \Upsun\Model\Deployment[]
 ```
 
 Get an environment's deployment information
@@ -91,11 +91,11 @@ $apiInstance = new Upsun\Api\DeploymentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsDeployments($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsDeployments($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DeploymentApi->listProjectsEnvironmentsDeployments: ', $e->getMessage(), PHP_EOL;
@@ -106,8 +106,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 

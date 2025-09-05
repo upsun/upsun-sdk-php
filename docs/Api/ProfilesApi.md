@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `getOrgAddress()`
 
 ```php
-getOrgAddress($organization_id): \Upsun\Model\Address
+getOrgAddress($organizationId): \Upsun\Model\Address
 ```
 
 Get address
@@ -33,10 +33,10 @@ $apiInstance = new Upsun\Api\ProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->getOrgAddress($organization_id);
+    $result = $apiInstance->getOrgAddress($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->getOrgAddress: ', $e->getMessage(), PHP_EOL;
@@ -47,7 +47,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -69,7 +69,7 @@ No authorization required
 ## `getOrgProfile()`
 
 ```php
-getOrgProfile($organization_id): \Upsun\Model\Profile
+getOrgProfile($organizationId): \Upsun\Model\Profile
 ```
 
 Get profile
@@ -89,10 +89,10 @@ $apiInstance = new Upsun\Api\ProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->getOrgProfile($organization_id);
+    $result = $apiInstance->getOrgProfile($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->getOrgProfile: ', $e->getMessage(), PHP_EOL;
@@ -103,7 +103,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -125,7 +125,7 @@ No authorization required
 ## `updateOrgAddress()`
 
 ```php
-updateOrgAddress($organization_id, $address): \Upsun\Model\Address
+updateOrgAddress($organizationId, $address): \Upsun\Model\Address
 ```
 
 Update address
@@ -145,11 +145,11 @@ $apiInstance = new Upsun\Api\ProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
 $address = new \Upsun\Model\Address(); // \Upsun\Model\Address
 
 try {
-    $result = $apiInstance->updateOrgAddress($organization_id, $address);
+    $result = $apiInstance->updateOrgAddress($organizationId, $address);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->updateOrgAddress: ', $e->getMessage(), PHP_EOL;
@@ -160,7 +160,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
+ **organizationId** | **string**| The ID of the organization. |
  **address** | [**\Upsun\Model\Address**](../Model/Address.md)|  | [optional]
 
 ### Return type
@@ -183,7 +183,7 @@ No authorization required
 ## `updateOrgProfile()`
 
 ```php
-updateOrgProfile($organization_id, $update_org_profile_request): \Upsun\Model\Profile
+updateOrgProfile($organizationId, $updateOrgProfileRequest): \Upsun\Model\Profile
 ```
 
 Update profile
@@ -203,11 +203,11 @@ $apiInstance = new Upsun\Api\ProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$update_org_profile_request = new \Upsun\Model\UpdateOrgProfileRequest(); // \Upsun\Model\UpdateOrgProfileRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$updateOrgProfileRequest = new \Upsun\Model\UpdateOrgProfileRequest(); // \Upsun\Model\UpdateOrgProfileRequest
 
 try {
-    $result = $apiInstance->updateOrgProfile($organization_id, $update_org_profile_request);
+    $result = $apiInstance->updateOrgProfile($organizationId, $updateOrgProfileRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->updateOrgProfile: ', $e->getMessage(), PHP_EOL;
@@ -218,8 +218,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **update_org_profile_request** | [**\Upsun\Model\UpdateOrgProfileRequest**](../Model/UpdateOrgProfileRequest.md)|  | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **updateOrgProfileRequest** | [**\Upsun\Model\UpdateOrgProfileRequest**](../Model/UpdateOrgProfileRequest.md)|  | [optional]
 
 ### Return type
 

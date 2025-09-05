@@ -28,7 +28,7 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $code = null,
+        private readonly string $code,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCode(): ?string
+    public function getCode(): string
     {
         return $this->code;
     }

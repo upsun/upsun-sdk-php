@@ -29,8 +29,8 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $serverUuid = null,
-        private readonly ?string $serverToken = null,
+        private readonly string $serverUuid,
+        private readonly string $serverToken,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getServerUuid(): ?string
+    public function getServerUuid(): string
     {
         return $this->serverUuid;
     }
-    public function getServerToken(): ?string
+    public function getServerToken(): string
     {
         return $this->serverToken;
     }

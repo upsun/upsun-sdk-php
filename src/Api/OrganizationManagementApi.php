@@ -105,19 +105,6 @@ final class OrganizationManagementApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Estimate total spend
      *
      * @throws ApiException on non-2xx response
@@ -885,7 +872,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function updateOrgBillingAlertConfig(
         string $organizationId,
-        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
     ): \Upsun\Model\OrganizationAlertConfig {
         list($response) = $this->updateOrgBillingAlertConfigWithHttpInfo(
             $organizationId,

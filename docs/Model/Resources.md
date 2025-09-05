@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**base_memory** | **int** |  |
-**memory_ratio** | **int** |  |
-**profile_size** | **string** |  |
+**baseMemory** | **int** |  |
+**memoryRatio** | **int** |  |
+**profileSize** | **string** |  |
 **minimum** | [**\Upsun\Model\TheMinimumResourcesForThisService**](TheMinimumResourcesForThisService.md) |  |
 **default** | [**\Upsun\Model\TheDefaultResourcesForThisService**](TheDefaultResourcesForThisService.md) |  |
 **disk** | [**\Upsun\Model\TheDisksResources**](TheDisksResources.md) |  |

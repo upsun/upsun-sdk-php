@@ -30,7 +30,7 @@ final class CreateSshKeyRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $value = null,
+        private readonly string $value,
         private readonly ?string $title = null,
         private readonly ?string $uuid = null,
     ) {
@@ -50,7 +50,7 @@ final class CreateSshKeyRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getValue(): ?string
+    public function getValue(): string
     {
         return $this->value;
     }

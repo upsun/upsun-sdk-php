@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `deleteLoginConnection()`
 
 ```php
-deleteLoginConnection($provider, $user_id)
+deleteLoginConnection($provider, $userId)
 ```
 
 Delete a federated login connection
@@ -33,10 +33,10 @@ $apiInstance = new Upsun\Api\ConnectionsApi(
     new GuzzleHttp\Client()
 );
 $provider = 'provider_example'; // string | The name of the federation provider.
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $apiInstance->deleteLoginConnection($provider, $user_id);
+    $apiInstance->deleteLoginConnection($provider, $userId);
 } catch (Exception $e) {
     echo 'Exception when calling ConnectionsApi->deleteLoginConnection: ', $e->getMessage(), PHP_EOL;
 }
@@ -47,7 +47,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provider** | **string**| The name of the federation provider. |
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -69,7 +69,7 @@ No authorization required
 ## `getLoginConnection()`
 
 ```php
-getLoginConnection($provider, $user_id): \Upsun\Model\Connection
+getLoginConnection($provider, $userId): \Upsun\Model\Connection
 ```
 
 Get a federated login connection
@@ -90,10 +90,10 @@ $apiInstance = new Upsun\Api\ConnectionsApi(
     new GuzzleHttp\Client()
 );
 $provider = 'provider_example'; // string | The name of the federation provider.
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->getLoginConnection($provider, $user_id);
+    $result = $apiInstance->getLoginConnection($provider, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConnectionsApi->getLoginConnection: ', $e->getMessage(), PHP_EOL;
@@ -105,7 +105,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provider** | **string**| The name of the federation provider. |
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -127,7 +127,7 @@ No authorization required
 ## `listLoginConnections()`
 
 ```php
-listLoginConnections($user_id): \Upsun\Model\Connection[]
+listLoginConnections($userId): \Upsun\Model\Connection[]
 ```
 
 List federated login connections
@@ -147,10 +147,10 @@ $apiInstance = new Upsun\Api\ConnectionsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->listLoginConnections($user_id);
+    $result = $apiInstance->listLoginConnections($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConnectionsApi->listLoginConnections: ', $e->getMessage(), PHP_EOL;
@@ -161,7 +161,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 

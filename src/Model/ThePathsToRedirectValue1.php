@@ -34,7 +34,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
 
     public function __construct(
         private readonly ?bool $regexp = null,
-        private readonly ?string $to = null,
+        private readonly string $to,
         private readonly ?bool $prefix = null,
         private readonly ?bool $appendSuffix = null,
         private readonly ?int $code = null,
@@ -63,7 +63,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     {
         return $this->regexp;
     }
-    public function getTo(): ?string
+    public function getTo(): string
     {
         return $this->to;
     }

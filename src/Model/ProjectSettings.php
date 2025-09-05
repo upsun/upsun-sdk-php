@@ -87,66 +87,66 @@ final class ProjectSettings implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?object $initialize = null,
-        private readonly ?string $productName = null,
-        private readonly ?string $productCode = null,
-        private readonly ?string $uiUriTemplate = null,
-        private readonly ?string $variablesPrefix = null,
-        private readonly ?string $botEmail = null,
-        private readonly ?string $applicationConfigFile = null,
-        private readonly ?string $projectConfigDir = null,
-        private readonly ?bool $useDrupalDefaults = null,
-        private readonly ?bool $useLegacySubdomains = null,
-        private readonly ?string $developmentServiceSize = null,
-        private readonly ?string $developmentApplicationSize = null,
-        private readonly ?bool $enableCertificateProvisioning = null,
-        private readonly ?string $certificateStyle = null,
-        private readonly ?bool $certificateRenewalActivity = null,
-        private readonly ?string $developmentDomainTemplate = null,
-        private readonly ?bool $enableStateApiDeployments = null,
-        private readonly ?int $temporaryDiskSize = null,
-        private readonly ?int $localDiskSize = null,
-        private readonly ?int $cronMinimumInterval = null,
-        private readonly ?int $cronMaximumJitter = null,
-        private readonly ?array $concurrencyLimits = [],
-        private readonly ?bool $flexibleBuildCache = null,
-        private readonly ?bool $strictConfiguration = null,
-        private readonly ?bool $hasSleepyCrons = null,
-        private readonly ?bool $cronsInGit = null,
-        private readonly ?string $customErrorTemplate = null,
-        private readonly ?string $appErrorPageTemplate = null,
-        private readonly ?string $environmentNameStrategy = null,
-        private readonly ?array $dataRetention = [],
-        private readonly ?bool $enableCodesourceIntegrationPush = null,
-        private readonly ?bool $enforceMfa = null,
-        private readonly ?bool $systemd = null,
-        private readonly ?bool $routerGen2 = null,
-        private readonly ?\Upsun\Model\BuildResources1 $buildResources = null,
-        private readonly ?string $outboundRestrictionsDefaultPolicy = null,
-        private readonly ?bool $selfUpgrade = null,
-        private readonly ?array $additionalHosts = [],
-        private readonly ?int $maxAllowedRoutes = null,
-        private readonly ?int $maxAllowedRedirectsPaths = null,
-        private readonly ?bool $enableIncrementalBackups = null,
-        private readonly ?bool $sizingApiEnabled = null,
-        private readonly ?bool $enableCacheGracePeriod = null,
-        private readonly ?bool $enableZeroDowntimeDeployments = null,
-        private readonly ?bool $enableAdminAgent = null,
-        private readonly ?string $certifierUrl = null,
-        private readonly ?bool $centralizedPermissions = null,
-        private readonly ?int $glueServerMaxRequestSize = null,
-        private readonly ?bool $persistentEndpointsSsh = null,
-        private readonly ?bool $persistentEndpointsSslCertificates = null,
-        private readonly ?bool $enableDiskHealthMonitoring = null,
-        private readonly ?bool $enablePausedEnvironments = null,
-        private readonly ?bool $enableUnifiedConfiguration = null,
-        private readonly ?bool $enableRoutesTracing = null,
-        private readonly ?bool $imageDeploymentValidation = null,
-        private readonly ?bool $supportGenericImages = null,
-        private readonly ?bool $enableGithubAppTokenExchange = null,
-        private readonly ?\Upsun\Model\TheContinuousProfilingConfiguration $continuousProfiling = null,
-        private readonly ?bool $disableAgentErrorReporter = null,
-        private readonly ?bool $requiresDomainOwnership = null,
+        private readonly object $initialize,
+        private readonly string $productName,
+        private readonly string $productCode,
+        private readonly string $uiUriTemplate,
+        private readonly string $variablesPrefix,
+        private readonly string $botEmail,
+        private readonly string $applicationConfigFile,
+        private readonly string $projectConfigDir,
+        private readonly bool $useDrupalDefaults,
+        private readonly bool $useLegacySubdomains,
+        private readonly string $developmentServiceSize,
+        private readonly string $developmentApplicationSize,
+        private readonly bool $enableCertificateProvisioning,
+        private readonly string $certificateStyle,
+        private readonly bool $certificateRenewalActivity,
+        private readonly string $developmentDomainTemplate,
+        private readonly bool $enableStateApiDeployments,
+        private readonly int $temporaryDiskSize,
+        private readonly int $localDiskSize,
+        private readonly int $cronMinimumInterval,
+        private readonly int $cronMaximumJitter,
+        private readonly array $concurrencyLimits,
+        private readonly bool $flexibleBuildCache,
+        private readonly bool $strictConfiguration,
+        private readonly bool $hasSleepyCrons,
+        private readonly bool $cronsInGit,
+        private readonly string $customErrorTemplate,
+        private readonly string $appErrorPageTemplate,
+        private readonly string $environmentNameStrategy,
+        private readonly array $dataRetention,
+        private readonly bool $enableCodesourceIntegrationPush,
+        private readonly bool $enforceMfa,
+        private readonly bool $systemd,
+        private readonly bool $routerGen2,
+        private readonly \Upsun\Model\BuildResources1 $buildResources,
+        private readonly string $outboundRestrictionsDefaultPolicy,
+        private readonly bool $selfUpgrade,
+        private readonly array $additionalHosts,
+        private readonly int $maxAllowedRoutes,
+        private readonly int $maxAllowedRedirectsPaths,
+        private readonly bool $enableIncrementalBackups,
+        private readonly bool $sizingApiEnabled,
+        private readonly bool $enableCacheGracePeriod,
+        private readonly bool $enableZeroDowntimeDeployments,
+        private readonly bool $enableAdminAgent,
+        private readonly string $certifierUrl,
+        private readonly bool $centralizedPermissions,
+        private readonly int $glueServerMaxRequestSize,
+        private readonly bool $persistentEndpointsSsh,
+        private readonly bool $persistentEndpointsSslCertificates,
+        private readonly bool $enableDiskHealthMonitoring,
+        private readonly bool $enablePausedEnvironments,
+        private readonly bool $enableUnifiedConfiguration,
+        private readonly bool $enableRoutesTracing,
+        private readonly bool $imageDeploymentValidation,
+        private readonly bool $supportGenericImages,
+        private readonly bool $enableGithubAppTokenExchange,
+        private readonly \Upsun\Model\TheContinuousProfilingConfiguration $continuousProfiling,
+        private readonly bool $disableAgentErrorReporter,
+        private readonly bool $requiresDomainOwnership,
     ) {
     }
 
@@ -221,243 +221,243 @@ final class ProjectSettings implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getInitialize(): ?object
+    public function getInitialize(): object
     {
         return $this->initialize;
     }
-    public function getProductName(): ?string
+    public function getProductName(): string
     {
         return $this->productName;
     }
-    public function getProductCode(): ?string
+    public function getProductCode(): string
     {
         return $this->productCode;
     }
-    public function getUiUriTemplate(): ?string
+    public function getUiUriTemplate(): string
     {
         return $this->uiUriTemplate;
     }
-    public function getVariablesPrefix(): ?string
+    public function getVariablesPrefix(): string
     {
         return $this->variablesPrefix;
     }
-    public function getBotEmail(): ?string
+    public function getBotEmail(): string
     {
         return $this->botEmail;
     }
-    public function getApplicationConfigFile(): ?string
+    public function getApplicationConfigFile(): string
     {
         return $this->applicationConfigFile;
     }
-    public function getProjectConfigDir(): ?string
+    public function getProjectConfigDir(): string
     {
         return $this->projectConfigDir;
     }
-    public function getUseDrupalDefaults(): ?bool
+    public function getUseDrupalDefaults(): bool
     {
         return $this->useDrupalDefaults;
     }
-    public function getUseLegacySubdomains(): ?bool
+    public function getUseLegacySubdomains(): bool
     {
         return $this->useLegacySubdomains;
     }
-    public function getDevelopmentServiceSize(): ?string
+    public function getDevelopmentServiceSize(): string
     {
         return $this->developmentServiceSize;
     }
-    public function getDevelopmentApplicationSize(): ?string
+    public function getDevelopmentApplicationSize(): string
     {
         return $this->developmentApplicationSize;
     }
-    public function getEnableCertificateProvisioning(): ?bool
+    public function getEnableCertificateProvisioning(): bool
     {
         return $this->enableCertificateProvisioning;
     }
-    public function getCertificateStyle(): ?string
+    public function getCertificateStyle(): string
     {
         return $this->certificateStyle;
     }
-    public function getCertificateRenewalActivity(): ?bool
+    public function getCertificateRenewalActivity(): bool
     {
         return $this->certificateRenewalActivity;
     }
-    public function getDevelopmentDomainTemplate(): ?string
+    public function getDevelopmentDomainTemplate(): string
     {
         return $this->developmentDomainTemplate;
     }
-    public function getEnableStateApiDeployments(): ?bool
+    public function getEnableStateApiDeployments(): bool
     {
         return $this->enableStateApiDeployments;
     }
-    public function getTemporaryDiskSize(): ?int
+    public function getTemporaryDiskSize(): int
     {
         return $this->temporaryDiskSize;
     }
-    public function getLocalDiskSize(): ?int
+    public function getLocalDiskSize(): int
     {
         return $this->localDiskSize;
     }
-    public function getCronMinimumInterval(): ?int
+    public function getCronMinimumInterval(): int
     {
         return $this->cronMinimumInterval;
     }
-    public function getCronMaximumJitter(): ?int
+    public function getCronMaximumJitter(): int
     {
         return $this->cronMaximumJitter;
     }
-    public function getConcurrencyLimits(): ?array
+    public function getConcurrencyLimits(): array
     {
         return $this->concurrencyLimits;
     }
-    public function getFlexibleBuildCache(): ?bool
+    public function getFlexibleBuildCache(): bool
     {
         return $this->flexibleBuildCache;
     }
-    public function getStrictConfiguration(): ?bool
+    public function getStrictConfiguration(): bool
     {
         return $this->strictConfiguration;
     }
-    public function getHasSleepyCrons(): ?bool
+    public function getHasSleepyCrons(): bool
     {
         return $this->hasSleepyCrons;
     }
-    public function getCronsInGit(): ?bool
+    public function getCronsInGit(): bool
     {
         return $this->cronsInGit;
     }
-    public function getCustomErrorTemplate(): ?string
+    public function getCustomErrorTemplate(): string
     {
         return $this->customErrorTemplate;
     }
-    public function getAppErrorPageTemplate(): ?string
+    public function getAppErrorPageTemplate(): string
     {
         return $this->appErrorPageTemplate;
     }
-    public function getEnvironmentNameStrategy(): ?string
+    public function getEnvironmentNameStrategy(): string
     {
         return $this->environmentNameStrategy;
     }
-    public function getDataRetention(): ?array
+    public function getDataRetention(): array
     {
         return $this->dataRetention;
     }
-    public function getEnableCodesourceIntegrationPush(): ?bool
+    public function getEnableCodesourceIntegrationPush(): bool
     {
         return $this->enableCodesourceIntegrationPush;
     }
-    public function getEnforceMfa(): ?bool
+    public function getEnforceMfa(): bool
     {
         return $this->enforceMfa;
     }
-    public function getSystemd(): ?bool
+    public function getSystemd(): bool
     {
         return $this->systemd;
     }
-    public function getRouterGen2(): ?bool
+    public function getRouterGen2(): bool
     {
         return $this->routerGen2;
     }
-    public function getBuildResources(): ?\Upsun\Model\BuildResources1
+    public function getBuildResources(): \Upsun\Model\BuildResources1
     {
         return $this->buildResources;
     }
-    public function getOutboundRestrictionsDefaultPolicy(): ?string
+    public function getOutboundRestrictionsDefaultPolicy(): string
     {
         return $this->outboundRestrictionsDefaultPolicy;
     }
-    public function getSelfUpgrade(): ?bool
+    public function getSelfUpgrade(): bool
     {
         return $this->selfUpgrade;
     }
-    public function getAdditionalHosts(): ?array
+    public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
-    public function getMaxAllowedRoutes(): ?int
+    public function getMaxAllowedRoutes(): int
     {
         return $this->maxAllowedRoutes;
     }
-    public function getMaxAllowedRedirectsPaths(): ?int
+    public function getMaxAllowedRedirectsPaths(): int
     {
         return $this->maxAllowedRedirectsPaths;
     }
-    public function getEnableIncrementalBackups(): ?bool
+    public function getEnableIncrementalBackups(): bool
     {
         return $this->enableIncrementalBackups;
     }
-    public function getSizingApiEnabled(): ?bool
+    public function getSizingApiEnabled(): bool
     {
         return $this->sizingApiEnabled;
     }
-    public function getEnableCacheGracePeriod(): ?bool
+    public function getEnableCacheGracePeriod(): bool
     {
         return $this->enableCacheGracePeriod;
     }
-    public function getEnableZeroDowntimeDeployments(): ?bool
+    public function getEnableZeroDowntimeDeployments(): bool
     {
         return $this->enableZeroDowntimeDeployments;
     }
-    public function getEnableAdminAgent(): ?bool
+    public function getEnableAdminAgent(): bool
     {
         return $this->enableAdminAgent;
     }
-    public function getCertifierUrl(): ?string
+    public function getCertifierUrl(): string
     {
         return $this->certifierUrl;
     }
-    public function getCentralizedPermissions(): ?bool
+    public function getCentralizedPermissions(): bool
     {
         return $this->centralizedPermissions;
     }
-    public function getGlueServerMaxRequestSize(): ?int
+    public function getGlueServerMaxRequestSize(): int
     {
         return $this->glueServerMaxRequestSize;
     }
-    public function getPersistentEndpointsSsh(): ?bool
+    public function getPersistentEndpointsSsh(): bool
     {
         return $this->persistentEndpointsSsh;
     }
-    public function getPersistentEndpointsSslCertificates(): ?bool
+    public function getPersistentEndpointsSslCertificates(): bool
     {
         return $this->persistentEndpointsSslCertificates;
     }
-    public function getEnableDiskHealthMonitoring(): ?bool
+    public function getEnableDiskHealthMonitoring(): bool
     {
         return $this->enableDiskHealthMonitoring;
     }
-    public function getEnablePausedEnvironments(): ?bool
+    public function getEnablePausedEnvironments(): bool
     {
         return $this->enablePausedEnvironments;
     }
-    public function getEnableUnifiedConfiguration(): ?bool
+    public function getEnableUnifiedConfiguration(): bool
     {
         return $this->enableUnifiedConfiguration;
     }
-    public function getEnableRoutesTracing(): ?bool
+    public function getEnableRoutesTracing(): bool
     {
         return $this->enableRoutesTracing;
     }
-    public function getImageDeploymentValidation(): ?bool
+    public function getImageDeploymentValidation(): bool
     {
         return $this->imageDeploymentValidation;
     }
-    public function getSupportGenericImages(): ?bool
+    public function getSupportGenericImages(): bool
     {
         return $this->supportGenericImages;
     }
-    public function getEnableGithubAppTokenExchange(): ?bool
+    public function getEnableGithubAppTokenExchange(): bool
     {
         return $this->enableGithubAppTokenExchange;
     }
-    public function getContinuousProfiling(): ?\Upsun\Model\TheContinuousProfilingConfiguration
+    public function getContinuousProfiling(): \Upsun\Model\TheContinuousProfilingConfiguration
     {
         return $this->continuousProfiling;
     }
-    public function getDisableAgentErrorReporter(): ?bool
+    public function getDisableAgentErrorReporter(): bool
     {
         return $this->disableAgentErrorReporter;
     }
-    public function getRequiresDomainOwnership(): ?bool
+    public function getRequiresDomainOwnership(): bool
     {
         return $this->requiresDomainOwnership;
     }

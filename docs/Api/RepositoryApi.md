@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `getProjectsGitBlobs()`
 
 ```php
-getProjectsGitBlobs($project_id, $repository_blob_id): \Upsun\Model\Blob
+getProjectsGitBlobs($projectId, $repositoryBlobId): \Upsun\Model\Blob
 ```
 
 Get a blob object
@@ -34,11 +34,11 @@ $apiInstance = new Upsun\Api\RepositoryApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$repository_blob_id = 'repository_blob_id_example'; // string
+$projectId = 'projectId_example'; // string
+$repositoryBlobId = 'repositoryBlobId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsGitBlobs($project_id, $repository_blob_id);
+    $result = $apiInstance->getProjectsGitBlobs($projectId, $repositoryBlobId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RepositoryApi->getProjectsGitBlobs: ', $e->getMessage(), PHP_EOL;
@@ -49,8 +49,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **repository_blob_id** | **string**|  |
+ **projectId** | **string**|  |
+ **repositoryBlobId** | **string**|  |
 
 ### Return type
 
@@ -72,7 +72,7 @@ No authorization required
 ## `getProjectsGitCommits()`
 
 ```php
-getProjectsGitCommits($project_id, $repository_commit_id): \Upsun\Model\Commit
+getProjectsGitCommits($projectId, $repositoryCommitId): \Upsun\Model\Commit
 ```
 
 Get a commit object
@@ -92,11 +92,11 @@ $apiInstance = new Upsun\Api\RepositoryApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$repository_commit_id = 'repository_commit_id_example'; // string
+$projectId = 'projectId_example'; // string
+$repositoryCommitId = 'repositoryCommitId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsGitCommits($project_id, $repository_commit_id);
+    $result = $apiInstance->getProjectsGitCommits($projectId, $repositoryCommitId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RepositoryApi->getProjectsGitCommits: ', $e->getMessage(), PHP_EOL;
@@ -107,8 +107,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **repository_commit_id** | **string**|  |
+ **projectId** | **string**|  |
+ **repositoryCommitId** | **string**|  |
 
 ### Return type
 
@@ -130,7 +130,7 @@ No authorization required
 ## `getProjectsGitRefs()`
 
 ```php
-getProjectsGitRefs($project_id, $repository_ref_id): \Upsun\Model\Ref
+getProjectsGitRefs($projectId, $repositoryRefId): \Upsun\Model\Ref
 ```
 
 Get a ref object
@@ -150,11 +150,11 @@ $apiInstance = new Upsun\Api\RepositoryApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$repository_ref_id = 'repository_ref_id_example'; // string
+$projectId = 'projectId_example'; // string
+$repositoryRefId = 'repositoryRefId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsGitRefs($project_id, $repository_ref_id);
+    $result = $apiInstance->getProjectsGitRefs($projectId, $repositoryRefId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RepositoryApi->getProjectsGitRefs: ', $e->getMessage(), PHP_EOL;
@@ -165,8 +165,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **repository_ref_id** | **string**|  |
+ **projectId** | **string**|  |
+ **repositoryRefId** | **string**|  |
 
 ### Return type
 
@@ -188,7 +188,7 @@ No authorization required
 ## `getProjectsGitTrees()`
 
 ```php
-getProjectsGitTrees($project_id, $repository_tree_id): \Upsun\Model\Tree
+getProjectsGitTrees($projectId, $repositoryTreeId): \Upsun\Model\Tree
 ```
 
 Get a tree object
@@ -208,11 +208,11 @@ $apiInstance = new Upsun\Api\RepositoryApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$repository_tree_id = 'repository_tree_id_example'; // string
+$projectId = 'projectId_example'; // string
+$repositoryTreeId = 'repositoryTreeId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsGitTrees($project_id, $repository_tree_id);
+    $result = $apiInstance->getProjectsGitTrees($projectId, $repositoryTreeId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RepositoryApi->getProjectsGitTrees: ', $e->getMessage(), PHP_EOL;
@@ -223,8 +223,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **repository_tree_id** | **string**|  |
+ **projectId** | **string**|  |
+ **repositoryTreeId** | **string**|  |
 
 ### Return type
 
@@ -246,7 +246,7 @@ No authorization required
 ## `listProjectsGitRefs()`
 
 ```php
-listProjectsGitRefs($project_id): \Upsun\Model\Ref[]
+listProjectsGitRefs($projectId): \Upsun\Model\Ref[]
 ```
 
 Get list of repository refs
@@ -266,10 +266,10 @@ $apiInstance = new Upsun\Api\RepositoryApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsGitRefs($project_id);
+    $result = $apiInstance->listProjectsGitRefs($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RepositoryApi->listProjectsGitRefs: ', $e->getMessage(), PHP_EOL;
@@ -280,7 +280,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 

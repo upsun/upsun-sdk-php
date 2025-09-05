@@ -105,19 +105,6 @@ final class EnvironmentVariablesApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Add an environment variable
      *
      * @throws ApiException on non-2xx response

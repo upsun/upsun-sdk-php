@@ -29,8 +29,8 @@ final class BuildResources1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?float $cpu = null,
-        private readonly ?int $memory = null,
+        private readonly float $cpu,
+        private readonly int $memory,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class BuildResources1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCpu(): ?float
+    public function getCpu(): float
     {
         return $this->cpu;
     }
-    public function getMemory(): ?int
+    public function getMemory(): int
     {
         return $this->memory;
     }

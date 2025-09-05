@@ -29,8 +29,8 @@ final class DefaultConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $manualCount = null,
-        private readonly ?array $schedule = [],
+        private readonly int $manualCount,
+        private readonly array $schedule,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class DefaultConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getManualCount(): ?int
+    public function getManualCount(): int
     {
         return $this->manualCount;
     }
-    public function getSchedule(): ?array
+    public function getSchedule(): array
     {
         return $this->schedule;
     }

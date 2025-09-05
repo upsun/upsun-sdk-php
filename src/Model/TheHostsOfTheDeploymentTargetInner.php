@@ -30,9 +30,9 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $type = null,
-        private readonly ?array $services = [],
+        private readonly string $id,
+        private readonly string $type,
+        private readonly array $services,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getServices(): ?array
+    public function getServices(): array
     {
         return $this->services;
     }

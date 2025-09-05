@@ -42,21 +42,21 @@ final class Project implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?array $attributes = [],
-        private readonly ?string $title = null,
-        private readonly ?string $description = null,
-        private readonly ?string $owner = null,
-        private readonly ?string $namespace = null,
-        private readonly ?string $organization = null,
-        private readonly ?string $defaultBranch = null,
-        private readonly ?\Upsun\Model\Status $status = null,
-        private readonly ?string $timezone = null,
-        private readonly ?string $region = null,
-        private readonly ?\Upsun\Model\RepositoryInformation $repository = null,
-        private readonly ?string $defaultDomain = null,
-        private readonly ?\Upsun\Model\SubscriptionInformation $subscription = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly array $attributes,
+        private readonly string $title,
+        private readonly string $description,
+        private readonly string $owner,
+        private readonly string $namespace,
+        private readonly string $organization,
+        private readonly string $defaultBranch,
+        private readonly \Upsun\Model\Status $status,
+        private readonly string $timezone,
+        private readonly string $region,
+        private readonly \Upsun\Model\RepositoryInformation $repository,
+        private readonly string $defaultDomain,
+        private readonly \Upsun\Model\SubscriptionInformation $subscription,
     ) {
     }
 
@@ -86,63 +86,63 @@ final class Project implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getAttributes(): ?array
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
-    public function getOwner(): ?string
+    public function getOwner(): string
     {
         return $this->owner;
     }
-    public function getNamespace(): ?string
+    public function getNamespace(): string
     {
         return $this->namespace;
     }
-    public function getOrganization(): ?string
+    public function getOrganization(): string
     {
         return $this->organization;
     }
-    public function getDefaultBranch(): ?string
+    public function getDefaultBranch(): string
     {
         return $this->defaultBranch;
     }
-    public function getStatus(): ?\Upsun\Model\Status
+    public function getStatus(): \Upsun\Model\Status
     {
         return $this->status;
     }
-    public function getTimezone(): ?string
+    public function getTimezone(): string
     {
         return $this->timezone;
     }
-    public function getRegion(): ?string
+    public function getRegion(): string
     {
         return $this->region;
     }
-    public function getRepository(): ?\Upsun\Model\RepositoryInformation
+    public function getRepository(): \Upsun\Model\RepositoryInformation
     {
         return $this->repository;
     }
-    public function getDefaultDomain(): ?string
+    public function getDefaultDomain(): string
     {
         return $this->defaultDomain;
     }
-    public function getSubscription(): ?\Upsun\Model\SubscriptionInformation
+    public function getSubscription(): \Upsun\Model\SubscriptionInformation
     {
         return $this->subscription;
     }

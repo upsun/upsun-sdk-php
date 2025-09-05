@@ -105,26 +105,13 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create a new support ticket
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
     public function createTicket(
-        \Upsun\Model\CreateTicketRequest $createTicketRequest = null
+        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
     ): \Upsun\Model\Ticket {
         list($response) = $this->createTicketWithHttpInfo(
             $createTicketRequest
@@ -306,8 +293,8 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketCategories(
-        string $subscriptionId = null,
-        string $organizationId = null
+        ?string $subscriptionId = null,
+        ?string $organizationId = null
     ): array {
         list($response) = $this->listTicketCategoriesWithHttpInfo(
             $subscriptionId,
@@ -513,8 +500,8 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketPriorities(
-        string $subscriptionId = null,
-        string $category = null
+        ?string $subscriptionId = null,
+        ?string $category = null
     ): array {
         list($response) = $this->listTicketPrioritiesWithHttpInfo(
             $subscriptionId,
@@ -721,7 +708,7 @@ final class SupportApi extends AbstractApi
      */
     public function updateTicket(
         string $ticketId,
-        \Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
+        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
     ): \Upsun\Model\Ticket {
         list($response) = $this->updateTicketWithHttpInfo(
             $ticketId,

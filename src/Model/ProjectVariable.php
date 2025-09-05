@@ -36,15 +36,15 @@ final class ProjectVariable implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $name = null,
-        private readonly ?array $attributes = [],
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $name,
+        private readonly array $attributes,
         private readonly ?string $value = null,
-        private readonly ?bool $isJson = null,
-        private readonly ?bool $isSensitive = null,
-        private readonly ?bool $visibleBuild = null,
-        private readonly ?bool $visibleRuntime = null,
+        private readonly bool $isJson,
+        private readonly bool $isSensitive,
+        private readonly bool $visibleBuild,
+        private readonly bool $visibleRuntime,
     ) {
     }
 
@@ -68,19 +68,19 @@ final class ProjectVariable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
-    public function getAttributes(): ?array
+    public function getAttributes(): array
     {
         return $this->attributes;
     }
@@ -88,19 +88,19 @@ final class ProjectVariable implements JsonSerializable
     {
         return $this->value;
     }
-    public function getIsJson(): ?bool
+    public function getIsJson(): bool
     {
         return $this->isJson;
     }
-    public function getIsSensitive(): ?bool
+    public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
-    public function getVisibleBuild(): ?bool
+    public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
-    public function getVisibleRuntime(): ?bool
+    public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }

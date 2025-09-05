@@ -105,19 +105,6 @@ final class RecordsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * List plan records
      *
      * @throws ApiException on non-2xx response
@@ -125,14 +112,14 @@ final class RecordsApi extends AbstractApi
      */
     public function listOrgPlanRecords(
         string $organizationId,
-        string $filterSubscriptionId = null,
-        string $filterPlan = null,
-        string $filterStatus = null,
-        \DateTime $filterStart = null,
-        \DateTime $filterEnd = null,
-        \DateTime $filterStartedAt = null,
-        \DateTime $filterEndedAt = null,
-        int $page = null
+        ?string $filterSubscriptionId = null,
+        ?string $filterPlan = null,
+        ?string $filterStatus = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterEnd = null,
+        ?\DateTime $filterStartedAt = null,
+        ?\DateTime $filterEndedAt = null,
+        ?int $page = null
     ): array {
         list($response) = $this->listOrgPlanRecordsWithHttpInfo(
             $organizationId,
@@ -475,11 +462,11 @@ final class RecordsApi extends AbstractApi
      */
     public function listOrgUsageRecords(
         string $organizationId,
-        string $filterSubscriptionId = null,
-        string $filterUsageGroup = null,
-        \DateTime $filterStart = null,
-        \DateTime $filterStartedAt = null,
-        int $page = null
+        ?string $filterSubscriptionId = null,
+        ?string $filterUsageGroup = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterStartedAt = null,
+        ?int $page = null
     ): array {
         list($response) = $this->listOrgUsageRecordsWithHttpInfo(
             $organizationId,

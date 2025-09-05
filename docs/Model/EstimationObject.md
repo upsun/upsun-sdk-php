@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **plan** | **string** | The monthly price of the plan. | [optional]
-**user_licenses** | **string** | The monthly price of the user licenses. | [optional]
+**userLicenses** | **string** | The monthly price of the user licenses. | [optional]
 **environments** | **string** | The monthly price of the environments. | [optional]
 **storage** | **string** | The monthly price of the storage. | [optional]
 **total** | **string** | The total monthly price. | [optional]

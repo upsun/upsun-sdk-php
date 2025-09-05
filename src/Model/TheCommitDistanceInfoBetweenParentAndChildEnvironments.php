@@ -30,9 +30,9 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     ];
 
     public function __construct(
-        private readonly ?int $commitsAhead = null,
-        private readonly ?int $commitsBehind = null,
-        private readonly ?string $parentRef = null,
+        private readonly int $commitsAhead,
+        private readonly int $commitsBehind,
+        private readonly string $parentRef,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCommitsAhead(): ?int
+    public function getCommitsAhead(): int
     {
         return $this->commitsAhead;
     }
-    public function getCommitsBehind(): ?int
+    public function getCommitsBehind(): int
     {
         return $this->commitsBehind;
     }
-    public function getParentRef(): ?string
+    public function getParentRef(): string
     {
         return $this->parentRef;
     }

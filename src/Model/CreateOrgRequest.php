@@ -35,7 +35,7 @@ final class CreateOrgRequest implements JsonSerializable
         private readonly ?string $type = null,
         private readonly ?string $ownerId = null,
         private readonly ?string $name = null,
-        private readonly ?string $label = null,
+        private readonly string $label,
         private readonly ?string $country = null,
     ) {
     }
@@ -68,7 +68,7 @@ final class CreateOrgRequest implements JsonSerializable
     {
         return $this->name;
     }
-    public function getLabel(): ?string
+    public function getLabel(): string
     {
         return $this->label;
     }

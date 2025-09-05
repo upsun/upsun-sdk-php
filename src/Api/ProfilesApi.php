@@ -105,19 +105,6 @@ final class ProfilesApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get address
      *
      * @throws ApiException on non-2xx response
@@ -505,7 +492,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgAddress(
         string $organizationId,
-        \Upsun\Model\Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): \Upsun\Model\Address {
         list($response) = $this->updateOrgAddressWithHttpInfo(
             $organizationId,
@@ -710,7 +697,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgProfile(
         string $organizationId,
-        \Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
     ): \Upsun\Model\Profile {
         list($response) = $this->updateOrgProfileWithHttpInfo(
             $organizationId,

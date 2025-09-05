@@ -33,12 +33,12 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     ];
 
     public function __construct(
-        private readonly ?string $name = null,
+        private readonly string $name,
         private readonly ?string $value = null,
-        private readonly ?bool $isSensitive = null,
-        private readonly ?bool $isJson = null,
-        private readonly ?bool $visibleBuild = null,
-        private readonly ?bool $visibleRuntime = null,
+        private readonly bool $isSensitive,
+        private readonly bool $isJson,
+        private readonly bool $visibleBuild,
+        private readonly bool $visibleRuntime,
     ) {
     }
 
@@ -59,7 +59,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -67,19 +67,19 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return $this->value;
     }
-    public function getIsSensitive(): ?bool
+    public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
-    public function getIsJson(): ?bool
+    public function getIsJson(): bool
     {
         return $this->isJson;
     }
-    public function getVisibleBuild(): ?bool
+    public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
-    public function getVisibleRuntime(): ?bool
+    public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }

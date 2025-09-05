@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **string** | The unique ID of the plan record. | [optional]
 **owner** | **string** | The UUID of the owner. | [optional]
-**subscription_id** | **string** | The ID of the subscription this record pertains to. | [optional]
+**subscriptionId** | **string** | The ID of the subscription this record pertains to. | [optional]
 **sku** | **string** | The product SKU of the plan that this record represents. | [optional]
 **plan** | **string** | The machine name of the plan that this record represents. | [optional]
 **options** | **string[]** |  | [optional]

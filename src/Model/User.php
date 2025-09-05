@@ -43,20 +43,20 @@ final class User implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?bool $deactivated = null,
-        private readonly ?string $namespace = null,
-        private readonly ?string $username = null,
-        private readonly ?string $email = null,
-        private readonly ?bool $emailVerified = null,
-        private readonly ?string $firstName = null,
-        private readonly ?string $lastName = null,
-        private readonly ?string $picture = null,
-        private readonly ?string $company = null,
-        private readonly ?string $website = null,
-        private readonly ?string $country = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly string $id,
+        private readonly bool $deactivated,
+        private readonly string $namespace,
+        private readonly string $username,
+        private readonly string $email,
+        private readonly bool $emailVerified,
+        private readonly string $firstName,
+        private readonly string $lastName,
+        private readonly string $picture,
+        private readonly string $company,
+        private readonly string $website,
+        private readonly string $country,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
         private readonly ?\DateTime $consentedAt = null,
         private readonly ?string $consentMethod = null,
     ) {
@@ -89,59 +89,59 @@ final class User implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }
-    public function getDeactivated(): ?bool
+    public function getDeactivated(): bool
     {
         return $this->deactivated;
     }
-    public function getNamespace(): ?string
+    public function getNamespace(): string
     {
         return $this->namespace;
     }
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->username;
     }
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
-    public function getEmailVerified(): ?bool
+    public function getEmailVerified(): bool
     {
         return $this->emailVerified;
     }
-    public function getFirstName(): ?string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
-    public function getLastName(): ?string
+    public function getLastName(): string
     {
         return $this->lastName;
     }
-    public function getPicture(): ?string
+    public function getPicture(): string
     {
         return $this->picture;
     }
-    public function getCompany(): ?string
+    public function getCompany(): string
     {
         return $this->company;
     }
-    public function getWebsite(): ?string
+    public function getWebsite(): string
     {
         return $this->website;
     }
-    public function getCountry(): ?string
+    public function getCountry(): string
     {
         return $this->country;
     }
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }

@@ -36,15 +36,15 @@ final class EnvironmentInfo implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $name = null,
-        private readonly ?string $status = null,
-        private readonly ?bool $isMain = null,
-        private readonly ?bool $isProduction = null,
-        private readonly ?object $constraints = null,
-        private readonly ?string $reference = null,
-        private readonly ?string $machineName = null,
-        private readonly ?string $environmentType = null,
-        private readonly ?object $links = null,
+        private readonly string $name,
+        private readonly string $status,
+        private readonly bool $isMain,
+        private readonly bool $isProduction,
+        private readonly object $constraints,
+        private readonly string $reference,
+        private readonly string $machineName,
+        private readonly string $environmentType,
+        private readonly object $links,
     ) {
     }
 
@@ -68,39 +68,39 @@ final class EnvironmentInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
-    public function getStatus(): ?string
+    public function getStatus(): string
     {
         return $this->status;
     }
-    public function getIsMain(): ?bool
+    public function getIsMain(): bool
     {
         return $this->isMain;
     }
-    public function getIsProduction(): ?bool
+    public function getIsProduction(): bool
     {
         return $this->isProduction;
     }
-    public function getConstraints(): ?object
+    public function getConstraints(): object
     {
         return $this->constraints;
     }
-    public function getReference(): ?string
+    public function getReference(): string
     {
         return $this->reference;
     }
-    public function getMachineName(): ?string
+    public function getMachineName(): string
     {
         return $this->machineName;
     }
-    public function getEnvironmentType(): ?string
+    public function getEnvironmentType(): string
     {
         return $this->environmentType;
     }
-    public function getLinks(): ?object
+    public function getLinks(): object
     {
         return $this->links;
     }

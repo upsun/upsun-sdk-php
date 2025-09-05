@@ -38,9 +38,9 @@ final class ProxyRouteCreateInput implements JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?array $attributes = [],
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        private readonly ?string $to = null,
+        private readonly string $to,
     ) {
     }
 
@@ -78,7 +78,7 @@ final class ProxyRouteCreateInput implements JsonSerializable
     {
         return $this->attributes;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -86,7 +86,7 @@ final class ProxyRouteCreateInput implements JsonSerializable
     {
         return $this->tls;
     }
-    public function getTo(): ?string
+    public function getTo(): string
     {
         return $this->to;
     }

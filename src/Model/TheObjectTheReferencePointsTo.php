@@ -29,8 +29,8 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?string $sha = null,
+        private readonly string $type,
+        private readonly string $sha,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getSha(): ?string
+    public function getSha(): string
     {
         return $this->sha;
     }

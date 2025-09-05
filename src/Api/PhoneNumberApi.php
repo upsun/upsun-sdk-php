@@ -105,19 +105,6 @@ final class PhoneNumberApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Confirm phone number
      *
      * @throws ApiException on non-2xx response
@@ -126,7 +113,7 @@ final class PhoneNumberApi extends AbstractApi
     public function confirmPhoneNumber(
         string $sid,
         string $userId,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): array {
         list($response) = $this->confirmPhoneNumberWithHttpInfo(
             $sid,
@@ -343,7 +330,7 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function verifyPhoneNumber(
         string $userId,
-        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): array {
         list($response) = $this->verifyPhoneNumberWithHttpInfo(
             $userId,

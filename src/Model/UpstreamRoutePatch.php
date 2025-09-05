@@ -41,11 +41,11 @@ final class UpstreamRoutePatch implements JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?array $attributes = [],
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
         private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
         private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
-        private readonly ?string $upstream = null,
+        private readonly string $upstream,
         private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
     ) {
     }
@@ -87,7 +87,7 @@ final class UpstreamRoutePatch implements JsonSerializable
     {
         return $this->attributes;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -103,7 +103,7 @@ final class UpstreamRoutePatch implements JsonSerializable
     {
         return $this->ssi;
     }
-    public function getUpstream(): ?string
+    public function getUpstream(): string
     {
         return $this->upstream;
     }

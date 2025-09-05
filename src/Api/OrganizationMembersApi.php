@@ -105,19 +105,6 @@ final class OrganizationMembersApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create organization member
      *
      * @throws ApiException on non-2xx response
@@ -752,11 +739,11 @@ final class OrganizationMembersApi extends AbstractApi
      */
     public function listOrgMembers(
         string $organizationId,
-        \Upsun\Model\ArrayFilter $filterPermissions = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listOrgMembersWithHttpInfo(
             $organizationId,
@@ -1056,7 +1043,7 @@ final class OrganizationMembersApi extends AbstractApi
     public function updateOrgMember(
         string $organizationId,
         string $userId,
-        \Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
+        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
     ): \Upsun\Model\OrganizationMember {
         list($response) = $this->updateOrgMemberWithHttpInfo(
             $organizationId,

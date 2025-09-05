@@ -42,12 +42,12 @@ final class ProjectCapabilities implements JsonSerializable
         private readonly ?\Upsun\Model\SourceOperations $sourceOperations = null,
         private readonly ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
         private readonly ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
-        private readonly ?\Upsun\Model\Metrics $metrics = null,
-        private readonly ?\Upsun\Model\LogsForwarding $logsForwarding = null,
-        private readonly ?array $images = [],
-        private readonly ?int $instanceLimit = null,
-        private readonly ?\Upsun\Model\BuildResources $buildResources = null,
-        private readonly ?\Upsun\Model\DataRetention $dataRetention = null,
+        private readonly \Upsun\Model\Metrics $metrics,
+        private readonly \Upsun\Model\LogsForwarding $logsForwarding,
+        private readonly array $images,
+        private readonly int $instanceLimit,
+        private readonly \Upsun\Model\BuildResources $buildResources,
+        private readonly \Upsun\Model\DataRetention $dataRetention,
         private readonly ?\Upsun\Model\Integrations $integrations = null,
     ) {
     }
@@ -90,27 +90,27 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->outboundFirewall;
     }
-    public function getMetrics(): ?\Upsun\Model\Metrics
+    public function getMetrics(): \Upsun\Model\Metrics
     {
         return $this->metrics;
     }
-    public function getLogsForwarding(): ?\Upsun\Model\LogsForwarding
+    public function getLogsForwarding(): \Upsun\Model\LogsForwarding
     {
         return $this->logsForwarding;
     }
-    public function getImages(): ?array
+    public function getImages(): array
     {
         return $this->images;
     }
-    public function getInstanceLimit(): ?int
+    public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
     }
-    public function getBuildResources(): ?\Upsun\Model\BuildResources
+    public function getBuildResources(): \Upsun\Model\BuildResources
     {
         return $this->buildResources;
     }
-    public function getDataRetention(): ?\Upsun\Model\DataRetention
+    public function getDataRetention(): \Upsun\Model\DataRetention
     {
         return $this->dataRetention;
     }

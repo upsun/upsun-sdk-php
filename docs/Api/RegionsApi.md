@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `getRegion()`
 
 ```php
-getRegion($region_id): \Upsun\Model\Region
+getRegion($regionId): \Upsun\Model\Region
 ```
 
 Get region
@@ -31,10 +31,10 @@ $apiInstance = new Upsun\Api\RegionsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$region_id = 'region_id_example'; // string | The ID of the region.
+$regionId = 'regionId_example'; // string | The ID of the region.
 
 try {
-    $result = $apiInstance->getRegion($region_id);
+    $result = $apiInstance->getRegion($regionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RegionsApi->getRegion: ', $e->getMessage(), PHP_EOL;
@@ -45,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **region_id** | **string**| The ID of the region. |
+ **regionId** | **string**| The ID of the region. |
 
 ### Return type
 
@@ -67,7 +67,7 @@ No authorization required
 ## `listRegions()`
 
 ```php
-listRegions($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort): \Upsun\Model\ListRegions200Response
+listRegions($filterAvailable, $filterPrivate, $filterZone, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListRegions200Response
 ```
 
 List regions
@@ -87,16 +87,16 @@ $apiInstance = new Upsun\Api\RegionsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$filter_available = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `available` using one or more operators.
-$filter_private = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `private` using one or more operators.
-$filter_zone = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `zone` using one or more operators.
-$page_size = 56; // int | Determines the number of items to show.
-$page_before = 'page_before_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-$page_after = 'page_after_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$filterAvailable = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `available` using one or more operators.
+$filterPrivate = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `private` using one or more operators.
+$filterZone = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `zone` using one or more operators.
+$pageSize = 56; // int | Determines the number of items to show.
+$pageBefore = 'pageBefore_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
 $sort = -updated_at; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `id`, `created_at`, `updated_at`.
 
 try {
-    $result = $apiInstance->listRegions($filter_available, $filter_private, $filter_zone, $page_size, $page_before, $page_after, $sort);
+    $result = $apiInstance->listRegions($filterAvailable, $filterPrivate, $filterZone, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RegionsApi->listRegions: ', $e->getMessage(), PHP_EOL;
@@ -107,12 +107,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_available** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;available&#x60; using one or more operators. | [optional]
- **filter_private** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;private&#x60; using one or more operators. | [optional]
- **filter_zone** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;zone&#x60; using one or more operators. | [optional]
- **page_size** | **int**| Determines the number of items to show. | [optional]
- **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **filterAvailable** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;available&#x60; using one or more operators. | [optional]
+ **filterPrivate** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;private&#x60; using one or more operators. | [optional]
+ **filterZone** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;zone&#x60; using one or more operators. | [optional]
+ **pageSize** | **int**| Determines the number of items to show. | [optional]
+ **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
  **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;id&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type

@@ -16,18 +16,10 @@ use Upsun\Api\UsersApi;
 use Upsun\Model\Address;
 use Upsun\Model\APIToken;
 use Upsun\Model\ConfirmPhoneNumberRequest;
-use Upsun\Model\ConfirmTotpEnrollment200Response;
 use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\Connection;
 use Upsun\Model\CreateApiTokenRequest;
-use Upsun\Model\Error;
 use Upsun\Model\GetAddress200Response;
-use Upsun\Model\GetCurrentUserVerificationStatus200Response;
-use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
-use Upsun\Model\GetTotpEnrollment200Response;
-use Upsun\Model\ListProfiles200Response;
-use Upsun\Model\ListProjectUserAccess200Response;
-use Upsun\Model\ListUserExtendedAccess200Response;
 use Upsun\Model\Profile;
 use Upsun\Model\ResetEmailAddressRequest;
 use Upsun\Model\StringFilter;
@@ -36,7 +28,6 @@ use Upsun\Model\UpdateProjectUserAccessRequest;
 use Upsun\Model\UpdateUserRequest;
 use Upsun\Model\User;
 use Upsun\Model\UserProjectAccess;
-use Upsun\Model\VerifyPhoneNumber200Response;
 use Upsun\Model\VerifyPhoneNumberRequest;
 use Upsun\UpsunClient;
 
@@ -69,7 +60,7 @@ class UserTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function me(): Error|User
+    public function me(): User
     {
         return $this->api->getCurrentUser();
     }
@@ -80,7 +71,7 @@ class UserTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getCurrentUserVerificationStatus(): GetCurrentUserVerificationStatus200Response
+    public function getCurrentUserVerificationStatus(): array
     {
         return $this->api->getCurrentUserVerificationStatus();
     }
@@ -91,7 +82,7 @@ class UserTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
+    public function getCurrentUserVerificationStatusFull(): array
     {
         return $this->api->getCurrentUserVerificationStatusFull();
     }
@@ -102,7 +93,7 @@ class UserTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $id): Error|User
+    public function get(string $id): User
     {
         return $this->api->getUser($id);
     }
@@ -113,7 +104,7 @@ class UserTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      */
-    public function getByEmailAddress(string $email): User|Error
+    public function getByEmailAddress(string $email): User
     {
         return $this->api->getUserByEmailAddress($email);
     }
@@ -124,7 +115,7 @@ class UserTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      */
-    public function getByUsername(string $username): User|Error
+    public function getByUsername(string $username): User
     {
         return $this->api->getUserByUsername($username);
     }
@@ -137,8 +128,11 @@ class UserTask extends TaskBase
      */
     public function resetEmailAddress(
         string $userId,
-        ?ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?string $emailAddress = null
     ): void {
+        $resetEmailAddressRequest = $emailAddress ? new ResetEmailAddressRequest(
+            emailAddress: $emailAddress
+        ) : null;
         $this->api->resetEmailAddress($userId, $resetEmailAddressRequest);
     }
 
@@ -159,7 +153,7 @@ class UserTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $userId, ?array $update_user_data = []): User|Error
+    public function update(string $userId, ?array $update_user_data = []): User
     {
         $update_user_request = new UpdateUserRequest($update_user_data);
         return $this->api->updateUser($userId, $update_user_request);
@@ -170,7 +164,7 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectUserAccess(string $projectId, string $userId): Error|UserProjectAccess
+    public function getProjectUserAccess(string $projectId, string $userId): UserProjectAccess
     {
         return $this->accessApi->getProjectUserAccess($projectId, $userId);
     }
@@ -180,7 +174,7 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getUserProjectAccess(string $userId, string $projectId): Error|UserProjectAccess
+    public function getUserProjectAccess(string $userId, string $projectId): UserProjectAccess
     {
         return $this->accessApi->getUserProjectAccess($userId, $projectId);
     }
@@ -216,7 +210,7 @@ class UserTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response|Error {
+    ): array {
         return $this->accessApi->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -232,7 +226,7 @@ class UserTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response|Error {
+    ): array {
         return $this->accessApi->listUserProjectAccess(
             $userId,
             $filterOrganizationId,
@@ -271,9 +265,11 @@ class UserTask extends TaskBase
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        ?array $updateProjectUserAccessRequest = null
+        ?array $permissions = null
     ): void {
-        $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
+        $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest(
+            permissions: $permissions
+        );
         $this->accessApi->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
 
@@ -285,9 +281,11 @@ class UserTask extends TaskBase
     public function updateUserProjectAccess(
         string $userId,
         string $projectId,
-        ?array $updateProjectUserAccessRequest = null
+        ?array $permissions = null
     ): void {
-        $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest($updateProjectUserAccessRequest);
+        $updateProjectUserAccessRequest = new UpdateProjectUserAccessRequest(
+            permissions: $permissions
+        );
         $this->accessApi->updateUserProjectAccess($projectId, $userId, $updateProjectUserAccessRequest);
     }
 
@@ -298,7 +296,7 @@ class UserTask extends TaskBase
      */
     public function createProfilePicture(string $uuid)
     {
-        throw new \BadMethodCallException("Not implemented yet");
+        throw new \BadMethodCallException("Not implemented yet, use function updateProfile instead");
     }
 
     /**
@@ -340,7 +338,7 @@ class UserTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function listProfiles(): ListProfiles200Response
+    public function listProfiles(): array
     {
         return $this->profilesApi->listProfiles();
     }
@@ -350,9 +348,23 @@ class UserTask extends TaskBase
      *
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array|null{
+     *     country?: string,
+     *     nameLine?: string,
+     *     premise?: string,
+     *     subPremise?: string,
+     *     thoroughfare?: string,
+     *     administrativeArea?: string,
+     *     subAdministrativeArea?: string,
+     *     locality?: string,
+     *     dependentLocality?: string,
+     *     postalCode?: string,
+     * } $data
      */
-    public function updateAddress(string $userId, ?Address $address = null): GetAddress200Response
+    public function updateAddress(string $userId, ?array $data = null): GetAddress200Response
     {
+        $address = $data ? new Address(...$data) : null;
         return $this->profilesApi->updateAddress($userId, $address);
     }
 
@@ -361,10 +373,26 @@ class UserTask extends TaskBase
      *
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array|null{
+     *     displayName?: string,
+     *     username?: string,
+     *     currentPassword?: string,
+     *     password?: string,
+     *     companyType?: string,
+     *     companyName?: string,
+     *     vatNumber?: string,
+     *     companyRole?: string,
+     *     marketing?: bool,
+     *     uiColorscheme?: string,
+     *     defaultCatalog?: string,
+     *     projectOptionsUrl?: string,
+     *     picture?: string,
+     * } $data
      */
-    public function updateProfile(string $userId, ?array $updateProfileData = []): Profile
+    public function updateProfile(string $userId, ?array $data = []): Profile
     {
-        $update_profile_request = new UpdateProfileRequest($updateProfileData);
+        $update_profile_request = new UpdateProfileRequest(...$data);
         return $this->profilesApi->updateProfile($userId, $update_profile_request);
     }
 
@@ -373,9 +401,9 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function createApiToken(string $userId, ?array $createApiTokenRequest = null): Error|APIToken
+    public function createApiToken(string $userId, string $name): APIToken
     {
-        $createApiTokenRequest = new CreateApiTokenRequest($createApiTokenRequest);
+        $createApiTokenRequest = new CreateApiTokenRequest(name: $name);
         return $this->tokensApi->createApiToken($userId, $createApiTokenRequest);
     }
 
@@ -394,7 +422,7 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getApiToken(string $userId, string $token_id): Error|APIToken
+    public function getApiToken(string $userId, string $token_id): APIToken
     {
         return $this->tokensApi->getApiToken($userId, $token_id);
     }
@@ -424,7 +452,7 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getLoginConnection(string $provider, string $userId): Error|Connection
+    public function getLoginConnection(string $provider, string $userId): Connection
     {
         return $this->connectionsApi->getLoginConnection($provider, $userId);
     }
@@ -434,7 +462,7 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function listLoginConnections(string $userId): array|Error
+    public function listLoginConnections(string $userId): array
     {
         return $this->connectionsApi->listLoginConnections($userId);
     }
@@ -449,7 +477,7 @@ class UserTask extends TaskBase
         ?array $filterResourceType = null,
         ?array $filterOrganizationId = null,
         ?array $filterPermissions = null
-    ): ListUserExtendedAccess200Response|Error {
+    ): array {
         return $this->grantsApi->listUserExtendedAccess(
             $userId,
             new StringFilter($filterResourceType),
@@ -462,25 +490,26 @@ class UserTask extends TaskBase
      * Confirms TOTP enrollment
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     secret: string,
+     *     passCode: string
+     * } $data
      */
     public function confirmTotpEnrollment(
         string $userId,
-        ?array $confirmTotpEnrollmentRequest = null
-    ): ConfirmTotpEnrollment200Response|Error {
-        $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest($confirmTotpEnrollmentRequest);
+        array $data
+    ): array {
+        $confirmTotpEnrollmentRequest = new ConfirmTotpEnrollmentRequest(...$data);
         return $this->mfaApi->confirmTotpEnrollment($userId, $confirmTotpEnrollmentRequest);
     }
 
     /**
-     * Operation getTotpEnrollment
-     *
      * Get information about TOTP enrollment
      *
-     * @param string $userId The ID of the user. (required)
-     * @return GetTotpEnrollment200Response|Error
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getTotpEnrollment(string $userId): GetTotpEnrollment200Response|Error
+    public function getTotpEnrollment(string $userId): array
     {
         return $this->mfaApi->getTotpEnrollment($userId);
     }
@@ -490,7 +519,7 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function recreateRecoveryCodes(string $userId): ConfirmTotpEnrollment200Response|Error
+    public function recreateRecoveryCodes(string $userId): array
     {
         return $this->mfaApi->recreateRecoveryCodes($userId);
     }
@@ -510,9 +539,9 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function confirmPhoneNumber(string $sid, string $userId, ?array $confirmPhoneNumberRequest = null): void
+    public function confirmPhoneNumber(string $sid, string $userId, string $code): void
     {
-        $confirmPhoneNumberRequest = new ConfirmPhoneNumberRequest($confirmPhoneNumberRequest);
+        $confirmPhoneNumberRequest = new ConfirmPhoneNumberRequest(code: $code);
         $this->phoneNumberApi->confirmPhoneNumber($sid, $userId, $confirmPhoneNumberRequest);
     }
 
@@ -520,12 +549,17 @@ class UserTask extends TaskBase
      * Verifies phone number
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     channel: string,
+     *     phoneNumber: string,
+     * } $data
      */
     public function verifyPhoneNumber(
         string $userId,
-        ?array $verifyPhoneNumberRequest = null
-    ): VerifyPhoneNumber200Response|Error {
-        $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest($verifyPhoneNumberRequest);
+        array $data
+    ): array {
+        $verifyPhoneNumberRequest = new VerifyPhoneNumberRequest(...$data);
         return $this->phoneNumberApi->verifyPhoneNumber($userId, $verifyPhoneNumberRequest);
     }
 }

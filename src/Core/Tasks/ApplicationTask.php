@@ -43,7 +43,7 @@ class ApplicationTask extends TaskBase
      *
      * @throws ApiException|Exception
      */
-    public function get(string $projectId, string $environmentId, string $app_id): WebApplicationsValue|null
+    public function get(string $projectId, string $environmentId, string $app_id): ?WebApplicationsValue
     {
         $environment = $this->client->environment->get($projectId, $environmentId);
         if ($environment->getDeploymentState() && $environment->getDeploymentState()->getLastDeploymentSuccessful()) {

@@ -105,19 +105,6 @@ final class RuntimeOperationsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Execute a runtime operation
      *
      * @throws ApiException on non-2xx response

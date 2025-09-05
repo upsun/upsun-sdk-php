@@ -33,12 +33,12 @@ final class NewRelicIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $type = null,
-        private readonly ?array $extra = [],
-        private readonly ?string $url = null,
-        private readonly ?bool $tlsVerify = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $type,
+        private readonly array $extra,
+        private readonly string $url,
+        private readonly bool $tlsVerify,
     ) {
     }
 
@@ -59,27 +59,27 @@ final class NewRelicIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
-    public function getExtra(): ?array
+    public function getExtra(): array
     {
         return $this->extra;
     }
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }
-    public function getTlsVerify(): ?bool
+    public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
     }

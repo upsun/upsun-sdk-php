@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **primary** | **bool** |  |
 **id** | **string** |  |
-**production_url** | **string** |  |
+**productionUrl** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **tls** | [**\Upsun\Model\TLSSettingsForTheRoute**](TLSSettingsForTheRoute.md) |  |

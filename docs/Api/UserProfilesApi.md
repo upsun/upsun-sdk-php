@@ -123,7 +123,7 @@ No authorization required
 ## `getAddress()`
 
 ```php
-getAddress($user_id): \Upsun\Model\GetAddress200Response
+getAddress($userId): \Upsun\Model\GetAddress200Response
 ```
 
 Get a user address
@@ -141,10 +141,10 @@ $apiInstance = new Upsun\Api\UserProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = 'user_id_example'; // string | The UUID of the user
+$userId = 'userId_example'; // string | The UUID of the user
 
 try {
-    $result = $apiInstance->getAddress($user_id);
+    $result = $apiInstance->getAddress($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserProfilesApi->getAddress: ', $e->getMessage(), PHP_EOL;
@@ -155,7 +155,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The UUID of the user |
+ **userId** | **string**| The UUID of the user |
 
 ### Return type
 
@@ -177,7 +177,7 @@ No authorization required
 ## `getProfile()`
 
 ```php
-getProfile($user_id): \Upsun\Model\Profile
+getProfile($userId): \Upsun\Model\Profile
 ```
 
 Get a single user profile
@@ -195,10 +195,10 @@ $apiInstance = new Upsun\Api\UserProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = 'user_id_example'; // string | The UUID of the user
+$userId = 'userId_example'; // string | The UUID of the user
 
 try {
-    $result = $apiInstance->getProfile($user_id);
+    $result = $apiInstance->getProfile($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserProfilesApi->getProfile: ', $e->getMessage(), PHP_EOL;
@@ -209,7 +209,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The UUID of the user |
+ **userId** | **string**| The UUID of the user |
 
 ### Return type
 
@@ -282,7 +282,7 @@ No authorization required
 ## `updateAddress()`
 
 ```php
-updateAddress($user_id, $address): \Upsun\Model\GetAddress200Response
+updateAddress($userId, $address): \Upsun\Model\GetAddress200Response
 ```
 
 Update a user address
@@ -302,11 +302,11 @@ $apiInstance = new Upsun\Api\UserProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = 'user_id_example'; // string | The UUID of the user
+$userId = 'userId_example'; // string | The UUID of the user
 $address = new \Upsun\Model\Address(); // \Upsun\Model\Address
 
 try {
-    $result = $apiInstance->updateAddress($user_id, $address);
+    $result = $apiInstance->updateAddress($userId, $address);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserProfilesApi->updateAddress: ', $e->getMessage(), PHP_EOL;
@@ -317,7 +317,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The UUID of the user |
+ **userId** | **string**| The UUID of the user |
  **address** | [**\Upsun\Model\Address**](../Model/Address.md)|  | [optional]
 
 ### Return type
@@ -340,7 +340,7 @@ No authorization required
 ## `updateProfile()`
 
 ```php
-updateProfile($user_id, $update_profile_request): \Upsun\Model\Profile
+updateProfile($userId, $updateProfileRequest): \Upsun\Model\Profile
 ```
 
 Update a user profile
@@ -360,11 +360,11 @@ $apiInstance = new Upsun\Api\UserProfilesApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$user_id = 'user_id_example'; // string | The UUID of the user
-$update_profile_request = new \Upsun\Model\UpdateProfileRequest(); // \Upsun\Model\UpdateProfileRequest
+$userId = 'userId_example'; // string | The UUID of the user
+$updateProfileRequest = new \Upsun\Model\UpdateProfileRequest(); // \Upsun\Model\UpdateProfileRequest
 
 try {
-    $result = $apiInstance->updateProfile($user_id, $update_profile_request);
+    $result = $apiInstance->updateProfile($userId, $updateProfileRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserProfilesApi->updateProfile: ', $e->getMessage(), PHP_EOL;
@@ -375,8 +375,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The UUID of the user |
- **update_profile_request** | [**\Upsun\Model\UpdateProfileRequest**](../Model/UpdateProfileRequest.md)|  | [optional]
+ **userId** | **string**| The UUID of the user |
+ **updateProfileRequest** | [**\Upsun\Model\UpdateProfileRequest**](../Model/UpdateProfileRequest.md)|  | [optional]
 
 ### Return type
 

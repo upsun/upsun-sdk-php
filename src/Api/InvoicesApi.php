@@ -105,19 +105,6 @@ final class InvoicesApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get invoice
      *
      * @throws ApiException on non-2xx response
@@ -338,10 +325,10 @@ final class InvoicesApi extends AbstractApi
      */
     public function listOrgInvoices(
         string $organizationId,
-        string $filterStatus = null,
-        string $filterType = null,
-        string $filterOrderId = null,
-        int $page = null
+        ?string $filterStatus = null,
+        ?string $filterType = null,
+        ?string $filterOrderId = null,
+        ?int $page = null
     ): array {
         list($response) = $this->listOrgInvoicesWithHttpInfo(
             $organizationId,

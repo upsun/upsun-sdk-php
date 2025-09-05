@@ -10,7 +10,7 @@ Method | HTTP request | Description
 ## `getOrgAddons()`
 
 ```php
-getOrgAddons($organization_id): \Upsun\Model\OrganizationAddonsObject
+getOrgAddons($organizationId): \Upsun\Model\OrganizationAddonsObject
 ```
 
 Get add-ons
@@ -30,10 +30,10 @@ $apiInstance = new Upsun\Api\AddOnsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->getOrgAddons($organization_id);
+    $result = $apiInstance->getOrgAddons($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AddOnsApi->getOrgAddons: ', $e->getMessage(), PHP_EOL;
@@ -44,7 +44,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 

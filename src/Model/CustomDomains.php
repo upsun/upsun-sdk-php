@@ -29,8 +29,8 @@ final class CustomDomains implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $enabled = null,
-        private readonly ?int $environmentsWithDomainsLimit = null,
+        private readonly bool $enabled,
+        private readonly int $environmentsWithDomainsLimit,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class CustomDomains implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getEnabled(): ?bool
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    public function getEnvironmentsWithDomainsLimit(): ?int
+    public function getEnvironmentsWithDomainsLimit(): int
     {
         return $this->environmentsWithDomainsLimit;
     }

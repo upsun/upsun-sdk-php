@@ -28,7 +28,7 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $permissions = [],
+        private readonly array $permissions,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getPermissions(): ?array
+    public function getPermissions(): array
     {
         return $this->permissions;
     }

@@ -31,10 +31,10 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $synchronizeCode = null,
-        private readonly ?bool $rebase = null,
-        private readonly ?bool $synchronizeData = null,
-        private readonly ?bool $synchronizeResources = null,
+        private readonly bool $synchronizeCode,
+        private readonly bool $rebase,
+        private readonly bool $synchronizeData,
+        private readonly bool $synchronizeResources,
     ) {
     }
 
@@ -53,19 +53,19 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSynchronizeCode(): ?bool
+    public function getSynchronizeCode(): bool
     {
         return $this->synchronizeCode;
     }
-    public function getRebase(): ?bool
+    public function getRebase(): bool
     {
         return $this->rebase;
     }
-    public function getSynchronizeData(): ?bool
+    public function getSynchronizeData(): bool
     {
         return $this->synchronizeData;
     }
-    public function getSynchronizeResources(): ?bool
+    public function getSynchronizeResources(): bool
     {
         return $this->synchronizeResources;
     }

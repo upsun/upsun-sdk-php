@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  | [optional]
-**updated_at** | **\DateTime** |  | [optional]
+**createdAt** | **\DateTime** |  | [optional]
+**updatedAt** | **\DateTime** |  | [optional]
 **fingerprint** | **string** |  | [optional]
-**cluster_name** | **string** |  |
-**project_info** | [**\Upsun\Model\ProjectInfo**](ProjectInfo.md) |  |
-**environment_info** | [**\Upsun\Model\EnvironmentInfo**](EnvironmentInfo.md) |  |
-**deployment_target** | **string** |  |
+**clusterName** | **string** |  |
+**projectInfo** | [**\Upsun\Model\ProjectInfo**](ProjectInfo.md) |  |
+**environmentInfo** | [**\Upsun\Model\EnvironmentInfo**](EnvironmentInfo.md) |  |
+**deploymentTarget** | **string** |  |
 **vpn** | [**\Upsun\Model\VPNConfiguration**](VPNConfiguration.md) |  |
-**http_access** | [**\Upsun\Model\HTTPAccessPermissions**](HTTPAccessPermissions.md) |  |
-**enable_smtp** | **bool** |  |
-**restrict_robots** | **bool** |  |
+**httpAccess** | [**\Upsun\Model\HTTPAccessPermissions**](HTTPAccessPermissions.md) |  |
+**enableSmtp** | **bool** |  |
+**restrictRobots** | **bool** |  |
 **variables** | [**\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]**](TheVariablesApplyingToThisEnvironmentInner.md) |  |
 **access** | [**\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]**](AccessControlDefinitionForThisEnviromentInner.md) |  |
 **subscription** | [**\Upsun\Model\Subscription1**](Subscription1.md) |  |
@@ -22,6 +22,6 @@ Name | Type | Description | Notes
 **routes** | [**array<string,\Upsun\Model\RoutesValue>**](RoutesValue.md) |  |
 **webapps** | [**array<string,\Upsun\Model\WebApplicationsValue>**](WebApplicationsValue.md) |  |
 **workers** | [**array<string,\Upsun\Model\WorkersValue>**](WorkersValue.md) |  |
-**container_profiles** | **array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>** |  |
+**containerProfiles** | **array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

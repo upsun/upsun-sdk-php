@@ -38,17 +38,17 @@ final class Certificate implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $certificate = null,
-        private readonly ?array $chain = [],
-        private readonly ?bool $isProvisioned = null,
-        private readonly ?bool $isInvalid = null,
-        private readonly ?bool $isRoot = null,
-        private readonly ?array $domains = [],
-        private readonly ?array $authType = [],
-        private readonly ?array $issuer = [],
-        private readonly ?\DateTime $expiresAt = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly string $certificate,
+        private readonly array $chain,
+        private readonly bool $isProvisioned,
+        private readonly bool $isInvalid,
+        private readonly bool $isRoot,
+        private readonly array $domains,
+        private readonly array $authType,
+        private readonly array $issuer,
+        private readonly \DateTime $expiresAt,
     ) {
     }
 
@@ -74,47 +74,47 @@ final class Certificate implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    public function getCertificate(): ?string
+    public function getCertificate(): string
     {
         return $this->certificate;
     }
-    public function getChain(): ?array
+    public function getChain(): array
     {
         return $this->chain;
     }
-    public function getIsProvisioned(): ?bool
+    public function getIsProvisioned(): bool
     {
         return $this->isProvisioned;
     }
-    public function getIsInvalid(): ?bool
+    public function getIsInvalid(): bool
     {
         return $this->isInvalid;
     }
-    public function getIsRoot(): ?bool
+    public function getIsRoot(): bool
     {
         return $this->isRoot;
     }
-    public function getDomains(): ?array
+    public function getDomains(): array
     {
         return $this->domains;
     }
-    public function getAuthType(): ?array
+    public function getAuthType(): array
     {
         return $this->authType;
     }
-    public function getIssuer(): ?array
+    public function getIssuer(): array
     {
         return $this->issuer;
     }
-    public function getExpiresAt(): ?\DateTime
+    public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;
     }

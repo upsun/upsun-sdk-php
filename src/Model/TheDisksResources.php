@@ -30,9 +30,9 @@ final class TheDisksResources implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $temporary = null,
-        private readonly ?int $instance = null,
-        private readonly ?int $storage = null,
+        private readonly int $temporary,
+        private readonly int $instance,
+        private readonly int $storage,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class TheDisksResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getTemporary(): ?int
+    public function getTemporary(): int
     {
         return $this->temporary;
     }
-    public function getInstance(): ?int
+    public function getInstance(): int
     {
         return $this->instance;
     }
-    public function getStorage(): ?int
+    public function getStorage(): int
     {
         return $this->storage;
     }

@@ -28,7 +28,7 @@ final class ImagesValueValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $available = null,
+        private readonly bool $available,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class ImagesValueValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getAvailable(): ?bool
+    public function getAvailable(): bool
     {
         return $this->available;
     }

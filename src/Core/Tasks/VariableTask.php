@@ -36,10 +36,20 @@ class VariableTask extends TaskBase
      * Adds a project variable
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name: string,
+     *     value: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     * } $data
      */
-    public function createProjectVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
+    public function createProjectVariable(string $projectId, array $data): AcceptedResponse
     {
-        $projectVariableCreateInput = new ProjectVariableCreateInput($projectVariableCreateInput);
+        $projectVariableCreateInput = new ProjectVariableCreateInput(...$data);
         return $this->projectVariablesApi->createProjectsVariables($projectId, $projectVariableCreateInput);
     }
 
@@ -77,13 +87,23 @@ class VariableTask extends TaskBase
      * Updates a project variable
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     value?: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     * } $data
      */
     public function updateProjectVariable(
         string $projectId,
         string $projectVariableId,
-        array $projectVariablePatch
+        array $data
     ): AcceptedResponse {
-        $projectVariablePatch = new ProjectVariablePatch($projectVariablePatch);
+        $projectVariablePatch = new ProjectVariablePatch(...$data);
         return $this->projectVariablesApi->updateProjectsVariables(
             $projectId,
             $projectVariableId,
@@ -95,13 +115,25 @@ class VariableTask extends TaskBase
      * Adds an environment variable
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name: string,
+     *     value: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     *     isEnabled?: bool,
+     *     isInheritable?: bool,
+     * } $data
      */
     public function createEnvironmentVariable(
         string $projectId,
         string $environmentId,
-        array $environmentVariableCreateInput
+        array $data
     ): AcceptedResponse {
-        $environmentVariableCreateInput = new EnvironmentVariableCreateInput($environmentVariableCreateInput);
+        $environmentVariableCreateInput = new EnvironmentVariableCreateInput(...$data);
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -157,14 +189,26 @@ class VariableTask extends TaskBase
      * Updates an environment variable
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     value?: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     *     isEnabled?: bool,
+     *     isInheritable?: bool,
+     * } $data
      */
     public function updateEnvironmentVariable(
         string $projectId,
         string $environmentId,
         string $variableId,
-        array $environmentVariablePatch
+        array $data
     ): AcceptedResponse {
-        $environmentVariablePatch = new EnvironmentVariablePatch($environmentVariablePatch);
+        $environmentVariablePatch = new EnvironmentVariablePatch(...$data);
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,

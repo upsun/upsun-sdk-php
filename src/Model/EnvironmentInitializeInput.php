@@ -32,11 +32,11 @@ final class EnvironmentInitializeInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $profile = null,
-        private readonly ?string $repository = null,
-        private readonly ?string $config = null,
-        private readonly ?array $files = [],
-        private readonly ?\Upsun\Model\Resources3 $resources = null,
+        private readonly string $profile,
+        private readonly string $repository,
+        private readonly string $config,
+        private readonly array $files,
+        private readonly \Upsun\Model\Resources3 $resources,
     ) {
     }
 
@@ -56,23 +56,23 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getProfile(): ?string
+    public function getProfile(): string
     {
         return $this->profile;
     }
-    public function getRepository(): ?string
+    public function getRepository(): string
     {
         return $this->repository;
     }
-    public function getConfig(): ?string
+    public function getConfig(): string
     {
         return $this->config;
     }
-    public function getFiles(): ?array
+    public function getFiles(): array
     {
         return $this->files;
     }
-    public function getResources(): ?\Upsun\Model\Resources3
+    public function getResources(): \Upsun\Model\Resources3
     {
         return $this->resources;
     }

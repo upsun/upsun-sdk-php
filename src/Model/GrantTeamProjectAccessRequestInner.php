@@ -28,7 +28,7 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $projectId = null,
+        private readonly string $projectId,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getProjectId(): ?string
+    public function getProjectId(): string
     {
         return $this->projectId;
     }

@@ -89,10 +89,18 @@ class OrganizationTask extends TaskBase
      *
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     label: string,
+     *     type?: string,
+     *     ownerId?: string,
+     *     name?: string,
+     *     country?: string,
+     * } $data
      */
-    public function create(array $createOrgData): Organization|Error
+    public function create(array $data): Organization
     {
-        $create_org_request = new CreateOrgRequest($createOrgData);
+        $create_org_request = new CreateOrgRequest(...$data);
         return $this->api->createOrg($create_org_request);
     }
 

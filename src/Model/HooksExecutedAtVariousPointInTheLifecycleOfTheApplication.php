@@ -30,9 +30,9 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     ];
 
     public function __construct(
-        private readonly ?string $build = null,
-        private readonly ?string $deploy = null,
-        private readonly ?string $postDeploy = null,
+        private readonly string $build,
+        private readonly string $deploy,
+        private readonly string $postDeploy,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getBuild(): ?string
+    public function getBuild(): string
     {
         return $this->build;
     }
-    public function getDeploy(): ?string
+    public function getDeploy(): string
     {
         return $this->deploy;
     }
-    public function getPostDeploy(): ?string
+    public function getPostDeploy(): string
     {
         return $this->postDeploy;
     }

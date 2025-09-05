@@ -30,9 +30,9 @@ final class SystemInformation implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $version = null,
-        private readonly ?string $image = null,
-        private readonly ?\DateTime $startedAt = null,
+        private readonly string $version,
+        private readonly string $image,
+        private readonly \DateTime $startedAt,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class SystemInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getVersion(): ?string
+    public function getVersion(): string
     {
         return $this->version;
     }
-    public function getImage(): ?string
+    public function getImage(): string
     {
         return $this->image;
     }
-    public function getStartedAt(): ?\DateTime
+    public function getStartedAt(): \DateTime
     {
         return $this->startedAt;
     }

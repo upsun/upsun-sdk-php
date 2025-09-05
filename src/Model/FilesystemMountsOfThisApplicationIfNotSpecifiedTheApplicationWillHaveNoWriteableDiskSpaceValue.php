@@ -30,8 +30,8 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     ];
 
     public function __construct(
-        private readonly ?string $source = null,
-        private readonly ?string $sourcePath = null,
+        private readonly string $source,
+        private readonly string $sourcePath,
         private readonly ?string $service = null,
     ) {
     }
@@ -50,11 +50,11 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSource(): ?string
+    public function getSource(): string
     {
         return $this->source;
     }
-    public function getSourcePath(): ?string
+    public function getSourcePath(): string
     {
         return $this->sourcePath;
     }

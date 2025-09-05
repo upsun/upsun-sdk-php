@@ -105,19 +105,6 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get the current user
      *
      * @throws ApiException on non-2xx response
@@ -1399,7 +1386,7 @@ final class UsersApi extends AbstractApi
      */
     public function resetEmailAddress(
         string $userId,
-        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): \Upsun\Model\User {
         list($response) = $this->resetEmailAddressWithHttpInfo(
             $userId,
@@ -1774,7 +1761,7 @@ final class UsersApi extends AbstractApi
      */
     public function updateUser(
         string $userId,
-        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
+        ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): \Upsun\Model\User {
         list($response) = $this->updateUserWithHttpInfo(
             $userId,

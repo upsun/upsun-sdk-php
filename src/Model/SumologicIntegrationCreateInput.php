@@ -32,9 +32,9 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?array $extra = [],
-        private readonly ?string $url = null,
+        private readonly string $url,
         private readonly ?string $category = null,
         private readonly ?bool $tlsVerify = null,
     ) {
@@ -56,7 +56,7 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -64,7 +64,7 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
     {
         return $this->extra;
     }
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**strict_transport_security** | [**\Upsun\Model\StrictTransportSecurityOptions**](StrictTransportSecurityOptions.md) |  |
-**min_version** | **string** |  |
-**client_authentication** | **string** |  |
-**client_certificate_authorities** | **string[]** |  |
+**strictTransportSecurity** | [**\Upsun\Model\StrictTransportSecurityOptions**](StrictTransportSecurityOptions.md) |  |
+**minVersion** | **string** |  |
+**clientAuthentication** | **string** |  |
+**clientCertificateAuthorities** | **string[]** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

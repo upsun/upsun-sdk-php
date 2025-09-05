@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `createSshKey()`
 
 ```php
-createSshKey($create_ssh_key_request): \Upsun\Model\SSHKey
+createSshKey($createSshKeyRequest): \Upsun\Model\SSHKey
 ```
 
 Add a new public SSH key to a user
@@ -30,10 +30,10 @@ $apiInstance = new Upsun\Api\SSHKeysApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$create_ssh_key_request = new \Upsun\Model\CreateSshKeyRequest(); // \Upsun\Model\CreateSshKeyRequest
+$createSshKeyRequest = new \Upsun\Model\CreateSshKeyRequest(); // \Upsun\Model\CreateSshKeyRequest
 
 try {
-    $result = $apiInstance->createSshKey($create_ssh_key_request);
+    $result = $apiInstance->createSshKey($createSshKeyRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHKeysApi->createSshKey: ', $e->getMessage(), PHP_EOL;
@@ -44,7 +44,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_ssh_key_request** | [**\Upsun\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional]
+ **createSshKeyRequest** | [**\Upsun\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional]
 
 ### Return type
 
@@ -66,7 +66,7 @@ No authorization required
 ## `deleteSshKey()`
 
 ```php
-deleteSshKey($key_id)
+deleteSshKey($keyId)
 ```
 
 Delete an SSH key
@@ -84,10 +84,10 @@ $apiInstance = new Upsun\Api\SSHKeysApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$key_id = 56; // int | The ID of the ssh key.
+$keyId = 56; // int | The ID of the ssh key.
 
 try {
-    $apiInstance->deleteSshKey($key_id);
+    $apiInstance->deleteSshKey($keyId);
 } catch (Exception $e) {
     echo 'Exception when calling SSHKeysApi->deleteSshKey: ', $e->getMessage(), PHP_EOL;
 }
@@ -97,7 +97,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key_id** | **int**| The ID of the ssh key. |
+ **keyId** | **int**| The ID of the ssh key. |
 
 ### Return type
 
@@ -119,7 +119,7 @@ No authorization required
 ## `getSshKey()`
 
 ```php
-getSshKey($key_id): \Upsun\Model\SSHKey
+getSshKey($keyId): \Upsun\Model\SSHKey
 ```
 
 Get an SSH key
@@ -137,10 +137,10 @@ $apiInstance = new Upsun\Api\SSHKeysApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$key_id = 56; // int | The ID of the ssh key.
+$keyId = 56; // int | The ID of the ssh key.
 
 try {
-    $result = $apiInstance->getSshKey($key_id);
+    $result = $apiInstance->getSshKey($keyId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHKeysApi->getSshKey: ', $e->getMessage(), PHP_EOL;
@@ -151,7 +151,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key_id** | **int**| The ID of the ssh key. |
+ **keyId** | **int**| The ID of the ssh key. |
 
 ### Return type
 

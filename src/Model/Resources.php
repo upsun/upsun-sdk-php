@@ -33,12 +33,12 @@ final class Resources implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $baseMemory = null,
-        private readonly ?int $memoryRatio = null,
-        private readonly ?string $profileSize = null,
-        private readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
-        private readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default = null,
-        private readonly ?\Upsun\Model\TheDisksResources $disk = null,
+        private readonly int $baseMemory,
+        private readonly int $memoryRatio,
+        private readonly string $profileSize,
+        private readonly \Upsun\Model\TheMinimumResourcesForThisService $minimum,
+        private readonly \Upsun\Model\TheDefaultResourcesForThisService $default,
+        private readonly \Upsun\Model\TheDisksResources $disk,
     ) {
     }
 
@@ -59,27 +59,27 @@ final class Resources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getBaseMemory(): ?int
+    public function getBaseMemory(): int
     {
         return $this->baseMemory;
     }
-    public function getMemoryRatio(): ?int
+    public function getMemoryRatio(): int
     {
         return $this->memoryRatio;
     }
-    public function getProfileSize(): ?string
+    public function getProfileSize(): string
     {
         return $this->profileSize;
     }
-    public function getMinimum(): ?\Upsun\Model\TheMinimumResourcesForThisService
+    public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
     {
         return $this->minimum;
     }
-    public function getDefault(): ?\Upsun\Model\TheDefaultResourcesForThisService
+    public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
     {
         return $this->default;
     }
-    public function getDisk(): ?\Upsun\Model\TheDisksResources
+    public function getDisk(): \Upsun\Model\TheDisksResources
     {
         return $this->disk;
     }

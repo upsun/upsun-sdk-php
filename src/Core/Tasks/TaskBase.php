@@ -19,7 +19,7 @@ abstract class TaskBase
     ) {
     }
 
-    function normalizeFilter(array|string|int|\DateTime|null $value): array
+    protected function normalizeFilter(array|string|int|\DateTime|null $value): array
     {
         if ($value === null) {
             return [];

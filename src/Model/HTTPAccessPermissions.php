@@ -30,9 +30,9 @@ final class HTTPAccessPermissions implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $isEnabled = null,
-        private readonly ?array $addresses = [],
-        private readonly ?array $basicAuth = [],
+        private readonly bool $isEnabled,
+        private readonly array $addresses,
+        private readonly array $basicAuth,
     ) {
     }
 
@@ -50,15 +50,15 @@ final class HTTPAccessPermissions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getIsEnabled(): ?bool
+    public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
-    public function getAddresses(): ?array
+    public function getAddresses(): array
     {
         return $this->addresses;
     }
-    public function getBasicAuth(): ?array
+    public function getBasicAuth(): array
     {
         return $this->basicAuth;
     }

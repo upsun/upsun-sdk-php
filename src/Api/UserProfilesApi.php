@@ -105,19 +105,6 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create a user profile picture
      *
      * @throws ApiException on non-2xx response
@@ -1051,7 +1038,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateAddress(
         string $userId,
-        \Upsun\Model\Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): \Upsun\Model\GetAddress200Response {
         list($response) = $this->updateAddressWithHttpInfo(
             $userId,
@@ -1256,7 +1243,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateProfile(
         string $userId,
-        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
+        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): \Upsun\Model\Profile {
         list($response) = $this->updateProfileWithHttpInfo(
             $userId,

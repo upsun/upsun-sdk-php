@@ -105,19 +105,6 @@ final class GrantsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * List extended access of a user
      *
      * @throws ApiException on non-2xx response
@@ -125,9 +112,9 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccess(
         string $userId,
-        \Upsun\Model\StringFilter $filterResourceType = null,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterPermissions = null
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
     ): array {
         list($response) = $this->listUserExtendedAccessWithHttpInfo(
             $userId,

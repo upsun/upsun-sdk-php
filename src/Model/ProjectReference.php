@@ -37,16 +37,16 @@ final class ProjectReference implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $subscriptionId = null,
-        private readonly ?string $region = null,
-        private readonly ?string $title = null,
-        private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
-        private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
-        private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly string $id,
+        private readonly string $organizationId,
+        private readonly string $subscriptionId,
+        private readonly string $region,
+        private readonly string $title,
+        private readonly \Upsun\Model\OrganizationProjectType $type,
+        private readonly \Upsun\Model\OrganizationProjectPlan $plan,
+        private readonly \Upsun\Model\OrganizationProjectStatus $status,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
     ) {
     }
 
@@ -71,43 +71,43 @@ final class ProjectReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }
-    public function getOrganizationId(): ?string
+    public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
-    public function getSubscriptionId(): ?string
+    public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
     }
-    public function getRegion(): ?string
+    public function getRegion(): string
     {
         return $this->region;
     }
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
-    public function getType(): ?\Upsun\Model\OrganizationProjectType
+    public function getType(): \Upsun\Model\OrganizationProjectType
     {
         return $this->type;
     }
-    public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
+    public function getPlan(): \Upsun\Model\OrganizationProjectPlan
     {
         return $this->plan;
     }
-    public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
+    public function getStatus(): \Upsun\Model\OrganizationProjectStatus
     {
         return $this->status;
     }
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }

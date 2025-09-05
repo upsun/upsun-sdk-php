@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `getEnvironmentType()`
 
 ```php
-getEnvironmentType($project_id, $environment_type_id): \Upsun\Model\EnvironmentType
+getEnvironmentType($projectId, $environmentTypeId): \Upsun\Model\EnvironmentType
 ```
 
 Get environment type links
@@ -31,11 +31,11 @@ $apiInstance = new Upsun\Api\EnvironmentTypeApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_type_id = 'environment_type_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentTypeId = 'environmentTypeId_example'; // string
 
 try {
-    $result = $apiInstance->getEnvironmentType($project_id, $environment_type_id);
+    $result = $apiInstance->getEnvironmentType($projectId, $environmentTypeId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentTypeApi->getEnvironmentType: ', $e->getMessage(), PHP_EOL;
@@ -46,8 +46,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_type_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentTypeId** | **string**|  |
 
 ### Return type
 
@@ -69,7 +69,7 @@ No authorization required
 ## `listProjectsEnvironmentTypes()`
 
 ```php
-listProjectsEnvironmentTypes($project_id): \Upsun\Model\EnvironmentType[]
+listProjectsEnvironmentTypes($projectId): \Upsun\Model\EnvironmentType[]
 ```
 
 Get environment types
@@ -89,10 +89,10 @@ $apiInstance = new Upsun\Api\EnvironmentTypeApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentTypes($project_id);
+    $result = $apiInstance->listProjectsEnvironmentTypes($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentTypeApi->listProjectsEnvironmentTypes: ', $e->getMessage(), PHP_EOL;
@@ -103,7 +103,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 

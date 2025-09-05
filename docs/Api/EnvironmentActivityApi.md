@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `actionProjectsEnvironmentsActivitiesCancel()`
 
 ```php
-actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id): \Upsun\Model\AcceptedResponse
+actionProjectsEnvironmentsActivitiesCancel($projectId, $environmentId, $activityId): \Upsun\Model\AcceptedResponse
 ```
 
 Cancel an environment activity
@@ -32,12 +32,12 @@ $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id);
+    $result = $apiInstance->actionProjectsEnvironmentsActivitiesCancel($projectId, $environmentId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentActivityApi->actionProjectsEnvironmentsActivitiesCancel: ', $e->getMessage(), PHP_EOL;
@@ -48,9 +48,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -72,7 +72,7 @@ No authorization required
 ## `getProjectsEnvironmentsActivities()`
 
 ```php
-getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id): \Upsun\Model\Activity
+getProjectsEnvironmentsActivities($projectId, $environmentId, $activityId): \Upsun\Model\Activity
 ```
 
 Get an environment activity log entry
@@ -92,12 +92,12 @@ $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id);
+    $result = $apiInstance->getProjectsEnvironmentsActivities($projectId, $environmentId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentActivityApi->getProjectsEnvironmentsActivities: ', $e->getMessage(), PHP_EOL;
@@ -108,9 +108,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -132,7 +132,7 @@ No authorization required
 ## `listProjectsEnvironmentsActivities()`
 
 ```php
-listProjectsEnvironmentsActivities($project_id, $environment_id): \Upsun\Model\Activity[]
+listProjectsEnvironmentsActivities($projectId, $environmentId): \Upsun\Model\Activity[]
 ```
 
 Get environment activity log
@@ -152,11 +152,11 @@ $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsActivities($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsActivities($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentActivityApi->listProjectsEnvironmentsActivities: ', $e->getMessage(), PHP_EOL;
@@ -167,8 +167,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 

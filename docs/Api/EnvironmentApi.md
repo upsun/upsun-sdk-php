@@ -27,7 +27,7 @@ Method | HTTP request | Description
 ## `activateEnvironment()`
 
 ```php
-activateEnvironment($project_id, $environment_id, $environment_activate_input): \Upsun\Model\AcceptedResponse
+activateEnvironment($projectId, $environmentId, $environmentActivateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Activate an environment
@@ -47,12 +47,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_activate_input = new \Upsun\Model\EnvironmentActivateInput(); // \Upsun\Model\EnvironmentActivateInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentActivateInput = new \Upsun\Model\EnvironmentActivateInput(); // \Upsun\Model\EnvironmentActivateInput | 
 
 try {
-    $result = $apiInstance->activateEnvironment($project_id, $environment_id, $environment_activate_input);
+    $result = $apiInstance->activateEnvironment($projectId, $environmentId, $environmentActivateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->activateEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -63,9 +63,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_activate_input** | [**\Upsun\Model\EnvironmentActivateInput**](../Model/EnvironmentActivateInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentActivateInput** | [**\Upsun\Model\EnvironmentActivateInput**](../Model/EnvironmentActivateInput.md)|  |
 
 ### Return type
 
@@ -87,7 +87,7 @@ No authorization required
 ## `branchEnvironment()`
 
 ```php
-branchEnvironment($project_id, $environment_id, $environment_branch_input): \Upsun\Model\AcceptedResponse
+branchEnvironment($projectId, $environmentId, $environmentBranchInput): \Upsun\Model\AcceptedResponse
 ```
 
 Branch an environment
@@ -107,12 +107,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_branch_input = new \Upsun\Model\EnvironmentBranchInput(); // \Upsun\Model\EnvironmentBranchInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentBranchInput = new \Upsun\Model\EnvironmentBranchInput(); // \Upsun\Model\EnvironmentBranchInput | 
 
 try {
-    $result = $apiInstance->branchEnvironment($project_id, $environment_id, $environment_branch_input);
+    $result = $apiInstance->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->branchEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -123,9 +123,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_branch_input** | [**\Upsun\Model\EnvironmentBranchInput**](../Model/EnvironmentBranchInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentBranchInput** | [**\Upsun\Model\EnvironmentBranchInput**](../Model/EnvironmentBranchInput.md)|  |
 
 ### Return type
 
@@ -147,7 +147,7 @@ No authorization required
 ## `createProjectsEnvironmentsVersions()`
 
 ```php
-createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input): \Upsun\Model\AcceptedResponse
+createProjectsEnvironmentsVersions($projectId, $environmentId, $versionCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Create versions associated with the environment
@@ -167,12 +167,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$version_create_input = new \Upsun\Model\VersionCreateInput(); // \Upsun\Model\VersionCreateInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$versionCreateInput = new \Upsun\Model\VersionCreateInput(); // \Upsun\Model\VersionCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsEnvironmentsVersions($project_id, $environment_id, $version_create_input);
+    $result = $apiInstance->createProjectsEnvironmentsVersions($projectId, $environmentId, $versionCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->createProjectsEnvironmentsVersions: ', $e->getMessage(), PHP_EOL;
@@ -183,9 +183,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **version_create_input** | [**\Upsun\Model\VersionCreateInput**](../Model/VersionCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **versionCreateInput** | [**\Upsun\Model\VersionCreateInput**](../Model/VersionCreateInput.md)|  |
 
 ### Return type
 
@@ -207,7 +207,7 @@ No authorization required
 ## `deactivateEnvironment()`
 
 ```php
-deactivateEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
+deactivateEnvironment($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Deactivate an environment
@@ -227,11 +227,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->deactivateEnvironment($project_id, $environment_id);
+    $result = $apiInstance->deactivateEnvironment($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->deactivateEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -242,8 +242,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -265,7 +265,7 @@ No authorization required
 ## `deleteEnvironment()`
 
 ```php
-deleteEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
+deleteEnvironment($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete an environment
@@ -285,11 +285,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->deleteEnvironment($project_id, $environment_id);
+    $result = $apiInstance->deleteEnvironment($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->deleteEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -300,8 +300,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -323,7 +323,7 @@ No authorization required
 ## `deleteProjectsEnvironmentsVersions()`
 
 ```php
-deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id): \Upsun\Model\AcceptedResponse
+deleteProjectsEnvironmentsVersions($projectId, $environmentId, $versionId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete the version
@@ -343,12 +343,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$version_id = 'version_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$versionId = 'versionId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
+    $result = $apiInstance->deleteProjectsEnvironmentsVersions($projectId, $environmentId, $versionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->deleteProjectsEnvironmentsVersions: ', $e->getMessage(), PHP_EOL;
@@ -359,9 +359,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **version_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **versionId** | **string**|  |
 
 ### Return type
 
@@ -383,7 +383,7 @@ No authorization required
 ## `getEnvironment()`
 
 ```php
-getEnvironment($project_id, $environment_id): \Upsun\Model\Environment
+getEnvironment($projectId, $environmentId): \Upsun\Model\Environment
 ```
 
 Get an environment
@@ -403,11 +403,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->getEnvironment($project_id, $environment_id);
+    $result = $apiInstance->getEnvironment($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->getEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -418,8 +418,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -441,7 +441,7 @@ No authorization required
 ## `getProjectsEnvironmentsVersions()`
 
 ```php
-getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id): \Upsun\Model\Version
+getProjectsEnvironmentsVersions($projectId, $environmentId, $versionId): \Upsun\Model\Version
 ```
 
 List the version
@@ -461,12 +461,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$version_id = 'version_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$versionId = 'versionId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsVersions($project_id, $environment_id, $version_id);
+    $result = $apiInstance->getProjectsEnvironmentsVersions($projectId, $environmentId, $versionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->getProjectsEnvironmentsVersions: ', $e->getMessage(), PHP_EOL;
@@ -477,9 +477,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **version_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **versionId** | **string**|  |
 
 ### Return type
 
@@ -501,7 +501,7 @@ No authorization required
 ## `initializeEnvironment()`
 
 ```php
-initializeEnvironment($project_id, $environment_id, $environment_initialize_input): \Upsun\Model\AcceptedResponse
+initializeEnvironment($projectId, $environmentId, $environmentInitializeInput): \Upsun\Model\AcceptedResponse
 ```
 
 Initialize a new environment
@@ -521,12 +521,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_initialize_input = new \Upsun\Model\EnvironmentInitializeInput(); // \Upsun\Model\EnvironmentInitializeInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentInitializeInput = new \Upsun\Model\EnvironmentInitializeInput(); // \Upsun\Model\EnvironmentInitializeInput | 
 
 try {
-    $result = $apiInstance->initializeEnvironment($project_id, $environment_id, $environment_initialize_input);
+    $result = $apiInstance->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->initializeEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -537,9 +537,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_initialize_input** | [**\Upsun\Model\EnvironmentInitializeInput**](../Model/EnvironmentInitializeInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentInitializeInput** | [**\Upsun\Model\EnvironmentInitializeInput**](../Model/EnvironmentInitializeInput.md)|  |
 
 ### Return type
 
@@ -561,7 +561,7 @@ No authorization required
 ## `listProjectsEnvironments()`
 
 ```php
-listProjectsEnvironments($project_id): \Upsun\Model\Environment[]
+listProjectsEnvironments($projectId): \Upsun\Model\Environment[]
 ```
 
 Get list of project environments
@@ -581,10 +581,10 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironments($project_id);
+    $result = $apiInstance->listProjectsEnvironments($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->listProjectsEnvironments: ', $e->getMessage(), PHP_EOL;
@@ -595,7 +595,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -617,7 +617,7 @@ No authorization required
 ## `listProjectsEnvironmentsVersions()`
 
 ```php
-listProjectsEnvironmentsVersions($project_id, $environment_id): \Upsun\Model\Version[]
+listProjectsEnvironmentsVersions($projectId, $environmentId): \Upsun\Model\Version[]
 ```
 
 List versions associated with the environment
@@ -637,11 +637,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsVersions($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsVersions($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->listProjectsEnvironmentsVersions: ', $e->getMessage(), PHP_EOL;
@@ -652,8 +652,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -675,7 +675,7 @@ No authorization required
 ## `mergeEnvironment()`
 
 ```php
-mergeEnvironment($project_id, $environment_id, $environment_merge_input): \Upsun\Model\AcceptedResponse
+mergeEnvironment($projectId, $environmentId, $environmentMergeInput): \Upsun\Model\AcceptedResponse
 ```
 
 Merge an environment
@@ -695,12 +695,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_merge_input = new \Upsun\Model\EnvironmentMergeInput(); // \Upsun\Model\EnvironmentMergeInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentMergeInput = new \Upsun\Model\EnvironmentMergeInput(); // \Upsun\Model\EnvironmentMergeInput | 
 
 try {
-    $result = $apiInstance->mergeEnvironment($project_id, $environment_id, $environment_merge_input);
+    $result = $apiInstance->mergeEnvironment($projectId, $environmentId, $environmentMergeInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->mergeEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -711,9 +711,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_merge_input** | [**\Upsun\Model\EnvironmentMergeInput**](../Model/EnvironmentMergeInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentMergeInput** | [**\Upsun\Model\EnvironmentMergeInput**](../Model/EnvironmentMergeInput.md)|  |
 
 ### Return type
 
@@ -735,7 +735,7 @@ No authorization required
 ## `pauseEnvironment()`
 
 ```php
-pauseEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
+pauseEnvironment($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Pause an environment
@@ -755,11 +755,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->pauseEnvironment($project_id, $environment_id);
+    $result = $apiInstance->pauseEnvironment($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->pauseEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -770,8 +770,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -793,7 +793,7 @@ No authorization required
 ## `redeployEnvironment()`
 
 ```php
-redeployEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
+redeployEnvironment($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Redeploy an environment
@@ -813,11 +813,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->redeployEnvironment($project_id, $environment_id);
+    $result = $apiInstance->redeployEnvironment($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->redeployEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -828,8 +828,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -851,7 +851,7 @@ No authorization required
 ## `resumeEnvironment()`
 
 ```php
-resumeEnvironment($project_id, $environment_id): \Upsun\Model\AcceptedResponse
+resumeEnvironment($projectId, $environmentId): \Upsun\Model\AcceptedResponse
 ```
 
 Resume a paused environment
@@ -871,11 +871,11 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->resumeEnvironment($project_id, $environment_id);
+    $result = $apiInstance->resumeEnvironment($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->resumeEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -886,8 +886,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -909,7 +909,7 @@ No authorization required
 ## `synchronizeEnvironment()`
 
 ```php
-synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input): \Upsun\Model\AcceptedResponse
+synchronizeEnvironment($projectId, $environmentId, $environmentSynchronizeInput): \Upsun\Model\AcceptedResponse
 ```
 
 Synchronize a child environment with its parent
@@ -929,12 +929,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_synchronize_input = new \Upsun\Model\EnvironmentSynchronizeInput(); // \Upsun\Model\EnvironmentSynchronizeInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentSynchronizeInput = new \Upsun\Model\EnvironmentSynchronizeInput(); // \Upsun\Model\EnvironmentSynchronizeInput | 
 
 try {
-    $result = $apiInstance->synchronizeEnvironment($project_id, $environment_id, $environment_synchronize_input);
+    $result = $apiInstance->synchronizeEnvironment($projectId, $environmentId, $environmentSynchronizeInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->synchronizeEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -945,9 +945,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_synchronize_input** | [**\Upsun\Model\EnvironmentSynchronizeInput**](../Model/EnvironmentSynchronizeInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentSynchronizeInput** | [**\Upsun\Model\EnvironmentSynchronizeInput**](../Model/EnvironmentSynchronizeInput.md)|  |
 
 ### Return type
 
@@ -969,7 +969,7 @@ No authorization required
 ## `updateEnvironment()`
 
 ```php
-updateEnvironment($project_id, $environment_id, $environment_patch): \Upsun\Model\AcceptedResponse
+updateEnvironment($projectId, $environmentId, $environmentPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update an environment
@@ -989,12 +989,12 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_patch = new \Upsun\Model\EnvironmentPatch(); // \Upsun\Model\EnvironmentPatch | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentPatch = new \Upsun\Model\EnvironmentPatch(); // \Upsun\Model\EnvironmentPatch | 
 
 try {
-    $result = $apiInstance->updateEnvironment($project_id, $environment_id, $environment_patch);
+    $result = $apiInstance->updateEnvironment($projectId, $environmentId, $environmentPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->updateEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -1005,9 +1005,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_patch** | [**\Upsun\Model\EnvironmentPatch**](../Model/EnvironmentPatch.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentPatch** | [**\Upsun\Model\EnvironmentPatch**](../Model/EnvironmentPatch.md)|  |
 
 ### Return type
 
@@ -1029,7 +1029,7 @@ No authorization required
 ## `updateProjectsEnvironmentsVersions()`
 
 ```php
-updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch): \Upsun\Model\AcceptedResponse
+updateProjectsEnvironmentsVersions($projectId, $environmentId, $versionId, $versionPatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update the version
@@ -1049,13 +1049,13 @@ $apiInstance = new Upsun\Api\EnvironmentApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$version_id = 'version_id_example'; // string
-$version_patch = new \Upsun\Model\VersionPatch(); // \Upsun\Model\VersionPatch | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$versionId = 'versionId_example'; // string
+$versionPatch = new \Upsun\Model\VersionPatch(); // \Upsun\Model\VersionPatch | 
 
 try {
-    $result = $apiInstance->updateProjectsEnvironmentsVersions($project_id, $environment_id, $version_id, $version_patch);
+    $result = $apiInstance->updateProjectsEnvironmentsVersions($projectId, $environmentId, $versionId, $versionPatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentApi->updateProjectsEnvironmentsVersions: ', $e->getMessage(), PHP_EOL;
@@ -1066,10 +1066,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **version_id** | **string**|  |
- **version_patch** | [**\Upsun\Model\VersionPatch**](../Model/VersionPatch.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **versionId** | **string**|  |
+ **versionPatch** | [**\Upsun\Model\VersionPatch**](../Model/VersionPatch.md)|  |
 
 ### Return type
 

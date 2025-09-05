@@ -34,11 +34,11 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?array $extra = [],
-        private readonly ?string $url = null,
-        private readonly ?string $index = null,
-        private readonly ?string $token = null,
+        private readonly string $url,
+        private readonly string $index,
+        private readonly string $token,
         private readonly ?string $sourcetype = null,
         private readonly ?bool $tlsVerify = null,
     ) {
@@ -62,7 +62,7 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -70,15 +70,15 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     {
         return $this->extra;
     }
-    public function getUrl(): ?string
+    public function getUrl(): string
     {
         return $this->url;
     }
-    public function getIndex(): ?string
+    public function getIndex(): string
     {
         return $this->index;
     }
-    public function getToken(): ?string
+    public function getToken(): string
     {
         return $this->token;
     }

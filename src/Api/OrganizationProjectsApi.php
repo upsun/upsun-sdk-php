@@ -105,19 +105,6 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Get project
      *
      * @throws ApiException on non-2xx response
@@ -338,15 +325,15 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     public function listOrgProjects(
         string $organizationId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterTitle = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        \Upsun\Model\DateTimeFilter $filterCreatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listOrgProjectsWithHttpInfo(
             $organizationId,

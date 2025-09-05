@@ -14459,6 +14459,7 @@
         "properties": {
           "self": {
             "type": "object",
+            "title": "Link Self",
             "description": "Link to the current set of items.",
             "properties": {
               "href": {
@@ -14469,6 +14470,7 @@
           },
           "previous": {
             "type": "object",
+            "title": "Link Previous",
             "description": "Link to the previous set of items.",
             "properties": {
               "href": {
@@ -14479,6 +14481,7 @@
           },
           "next": {
             "type": "object",
+            "title": "Link Next",
             "description": "Link to the next set of items.",
             "properties": {
               "href": {

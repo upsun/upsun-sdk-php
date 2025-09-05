@@ -105,19 +105,6 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Add a project domain
      *
      * @throws ApiException on non-2xx response

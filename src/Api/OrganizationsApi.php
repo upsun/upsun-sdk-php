@@ -105,19 +105,6 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * Get the host index
-     */
-    public function getHostIndex(): int
-    {
-        return $this->hostIndex;
-    }
-
-    public function getConfig(): Configuration
-    {
-        return $this->config;
-    }
-
-    /**
      * Create organization
      *
      * @throws ApiException on non-2xx response
@@ -682,18 +669,18 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgs(
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterOwnerId = null,
-        \Upsun\Model\StringFilter $filterName = null,
-        \Upsun\Model\StringFilter $filterLabel = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\ArrayFilter $filterCapabilities = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterOwnerId = null,
+        ?\Upsun\Model\StringFilter $filterName = null,
+        ?\Upsun\Model\StringFilter $filterLabel = null,
+        ?\Upsun\Model\StringFilter $filterVendor = null,
+        ?\Upsun\Model\ArrayFilter $filterCapabilities = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listOrgsWithHttpInfo(
             $filterId,
@@ -1103,14 +1090,14 @@ final class OrganizationsApi extends AbstractApi
      */
     public function listUserOrgs(
         string $userId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterVendor = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         list($response) = $this->listUserOrgsWithHttpInfo(
             $userId,
@@ -1466,7 +1453,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function updateOrg(
         string $organizationId,
-        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
+        ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): \Upsun\Model\Organization {
         list($response) = $this->updateOrgWithHttpInfo(
             $organizationId,

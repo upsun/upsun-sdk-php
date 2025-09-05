@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **enabled** | **bool** |  |
-**default_ttl** | **int** |  |
+**defaultTtl** | **int** |  |
 **cookies** | **string[]** |  |
 **headers** | **string[]** |  |
 

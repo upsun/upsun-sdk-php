@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `cancelOrgInvite()`
 
 ```php
-cancelOrgInvite($organization_id, $invitation_id)
+cancelOrgInvite($organizationId, $invitationId)
 ```
 
 Cancel a pending invitation to an organization
@@ -32,11 +32,11 @@ $apiInstance = new Upsun\Api\OrganizationInvitationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$invitation_id = 'invitation_id_example'; // string | The ID of the invitation.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$invitationId = 'invitationId_example'; // string | The ID of the invitation.
 
 try {
-    $apiInstance->cancelOrgInvite($organization_id, $invitation_id);
+    $apiInstance->cancelOrgInvite($organizationId, $invitationId);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationInvitationsApi->cancelOrgInvite: ', $e->getMessage(), PHP_EOL;
 }
@@ -46,8 +46,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **invitation_id** | **string**| The ID of the invitation. |
+ **organizationId** | **string**| The ID of the organization. |
+ **invitationId** | **string**| The ID of the invitation. |
 
 ### Return type
 
@@ -69,7 +69,7 @@ No authorization required
 ## `createOrgInvite()`
 
 ```php
-createOrgInvite($organization_id, $create_org_invite_request): \Upsun\Model\OrganizationInvitation
+createOrgInvite($organizationId, $createOrgInviteRequest): \Upsun\Model\OrganizationInvitation
 ```
 
 Invite user to an organization by email
@@ -89,11 +89,11 @@ $apiInstance = new Upsun\Api\OrganizationInvitationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$create_org_invite_request = new \Upsun\Model\CreateOrgInviteRequest(); // \Upsun\Model\CreateOrgInviteRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$createOrgInviteRequest = new \Upsun\Model\CreateOrgInviteRequest(); // \Upsun\Model\CreateOrgInviteRequest
 
 try {
-    $result = $apiInstance->createOrgInvite($organization_id, $create_org_invite_request);
+    $result = $apiInstance->createOrgInvite($organizationId, $createOrgInviteRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationInvitationsApi->createOrgInvite: ', $e->getMessage(), PHP_EOL;
@@ -104,8 +104,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **create_org_invite_request** | [**\Upsun\Model\CreateOrgInviteRequest**](../Model/CreateOrgInviteRequest.md)|  | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **createOrgInviteRequest** | [**\Upsun\Model\CreateOrgInviteRequest**](../Model/CreateOrgInviteRequest.md)|  | [optional]
 
 ### Return type
 
@@ -127,7 +127,7 @@ No authorization required
 ## `listOrgInvites()`
 
 ```php
-listOrgInvites($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort): \Upsun\Model\OrganizationInvitation[]
+listOrgInvites($organizationId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\OrganizationInvitation[]
 ```
 
 List invitations to an organization
@@ -147,15 +147,15 @@ $apiInstance = new Upsun\Api\OrganizationInvitationsApi(
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
     new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$filter_state = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\".
-$page_size = 56; // int | Determines the number of items to show.
-$page_before = 'page_before_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-$page_after = 'page_after_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$filterState = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\".
+$pageSize = 56; // int | Determines the number of items to show.
+$pageBefore = 'pageBefore_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
 $sort = 'sort_example'; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.
 
 try {
-    $result = $apiInstance->listOrgInvites($organization_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+    $result = $apiInstance->listOrgInvites($organizationId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationInvitationsApi->listOrgInvites: ', $e->getMessage(), PHP_EOL;
@@ -166,11 +166,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **filter_state** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. | [optional]
- **page_size** | **int**| Determines the number of items to show. | [optional]
- **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **filterState** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. | [optional]
+ **pageSize** | **int**| Determines the number of items to show. | [optional]
+ **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
  **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional]
 
 ### Return type

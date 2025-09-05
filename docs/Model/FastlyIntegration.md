@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **type** | **string** |  |
 **events** | **string[]** |  |
 **environments** | **string[]** |  |
-**excluded_environments** | **string[]** |  |
+**excludedEnvironments** | **string[]** |  |
 **states** | **string[]** |  |
 **result** | **string** |  |
-**service_id** | **string** |  |
+**serviceId** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

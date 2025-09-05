@@ -30,7 +30,7 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
 
     public function __construct(
         private readonly ?string $preStart = null,
-        private readonly ?string $start = null,
+        private readonly string $start,
     ) {
     }
 
@@ -51,7 +51,7 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     {
         return $this->preStart;
     }
-    public function getStart(): ?string
+    public function getStart(): string
     {
         return $this->start;
     }

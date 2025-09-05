@@ -38,13 +38,13 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
+        private readonly string $type,
         private readonly ?bool $fetchBranches = null,
         private readonly ?bool $pruneBranches = null,
         private readonly ?string $environmentInitResources = null,
-        private readonly ?string $token = null,
+        private readonly string $token,
         private readonly ?string $baseUrl = null,
-        private readonly ?string $repository = null,
+        private readonly string $repository,
         private readonly ?bool $buildPullRequests = null,
         private readonly ?bool $buildDraftPullRequests = null,
         private readonly ?bool $buildPullRequestsPostMerge = null,
@@ -74,7 +74,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
@@ -90,7 +90,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
-    public function getToken(): ?string
+    public function getToken(): string
     {
         return $this->token;
     }
@@ -98,7 +98,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->baseUrl;
     }
-    public function getRepository(): ?string
+    public function getRepository(): string
     {
         return $this->repository;
     }
