@@ -328,7 +328,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgAddressWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): \Upsun\Model\Address {
         $request = $this->updateOrgAddressRequest(
             $organizationId,
@@ -358,7 +358,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgAddressRequest(
         string $organizationId,
-        \Upsun\Model\Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -467,7 +467,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgProfileWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
     ): \Upsun\Model\Profile {
         $request = $this->updateOrgProfileRequest(
             $organizationId,
@@ -497,7 +497,7 @@ final class ProfilesApi extends AbstractApi
      */
     public function updateOrgProfileRequest(
         string $organizationId,
-        \Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
+        ?\Upsun\Model\UpdateOrgProfileRequest $updateOrgProfileRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

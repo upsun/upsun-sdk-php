@@ -14,13 +14,27 @@ final class {{classname}} implements JsonSerializable
     public function __construct(
     {{#vars}}
         {{#isContainer}}
-        private readonly {{^required}}?{{/required}}array ${{name}}{{^required}} = []{{/required}},
+        private {{^required}}?{{/required}}array ${{name}}{{^required}} = []{{/required}},
         {{/isContainer}}
         {{^isContainer}}
-        private readonly {{^required}}?{{/required}}{{{dataType}}} ${{name}}{{^required}} = {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}},
+        private {{^required}}?{{/required}}{{{dataType}}} ${{name}}{{^required}} = {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}},
         {{/isContainer}}
     {{/vars}}
     ) {
+    {{#vars}}
+    {{#isContainer}}
+    {{#items.isModel}}
+        if ($this->{{name}}) {
+            $this->{{name}} = array_map(function ($item) {
+                if ($item instanceof {{items.dataType}}) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, {{items.dataType}}::class);
+            }, $this->{{name}});
+        }
+    {{/items.isModel}}
+    {{/isContainer}}
+    {{/vars}}
     }
 
     public function jsonSerialize(): array
@@ -38,6 +52,7 @@ final class {{classname}} implements JsonSerializable
     }
 
     {{#vars}}
+    //public function {{{getter}}}(): {{#isContainer}}{{^required}}?{{/required}}{{{itemType}}}[]{{/isContainer}}{{^isContainer}}{{^required}}?{{/required}}{{{datatype}}}{{/isContainer}}
     public function {{{getter}}}(): {{#isContainer}}{{^required}}?{{/required}}array{{/isContainer}}{{^isContainer}}{{^required}}?{{/required}}{{{datatype}}}{{/isContainer}}
     {
         return $this->{{{name}}};

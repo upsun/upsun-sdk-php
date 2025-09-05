@@ -29,8 +29,8 @@ final class OrganizationInvitationOwner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $displayName = null,
+        private ?string $id = null,
+        private ?string $displayName = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class OrganizationInvitationOwner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getDisplayName(): ?string
     public function getDisplayName(): ?string
     {
         return $this->displayName;

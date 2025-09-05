@@ -29,8 +29,8 @@ final class CertificatePatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $chain = [],
-        private readonly ?bool $isInvalid = null,
+        private ?array $chain = [],
+        private ?bool $isInvalid = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class CertificatePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getChain(): ?[]
     public function getChain(): ?array
     {
         return $this->chain;
     }
+    //public function getIsInvalid(): ?bool
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;

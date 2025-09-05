@@ -29,9 +29,17 @@ final class ListRegions200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $regions = [],
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private ?array $regions = [],
+        private ?\Upsun\Model\ListLinks $links = null,
     ) {
+        if ($this->regions) {
+            $this->regions = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Region) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Region::class);
+            }, $this->regions);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class ListRegions200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getRegions(): ?[]
     public function getRegions(): ?array
     {
         return $this->regions;
     }
+    //public function getLinks(): ?\Upsun\Model\ListLinks
     public function getLinks(): ?\Upsun\Model\ListLinks
     {
         return $this->links;

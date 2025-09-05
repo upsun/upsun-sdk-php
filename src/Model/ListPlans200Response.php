@@ -30,10 +30,18 @@ final class ListPlans200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $count = null,
-        private readonly ?array $plans = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private ?int $count = null,
+        private ?array $plans = [],
+        private ?\Upsun\Model\HalLinks $links = null,
     ) {
+        if ($this->plans) {
+            $this->plans = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Plan) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Plan::class);
+            }, $this->plans);
+        }
     }
 
     public function jsonSerialize(): array
@@ -50,14 +58,17 @@ final class ListPlans200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCount(): ?int
     public function getCount(): ?int
     {
         return $this->count;
     }
+    //public function getPlans(): ?[]
     public function getPlans(): ?array
     {
         return $this->plans;
     }
+    //public function getLinks(): ?\Upsun\Model\HalLinks
     public function getLinks(): ?\Upsun\Model\HalLinks
     {
         return $this->links;

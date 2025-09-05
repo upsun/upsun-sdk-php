@@ -30,9 +30,9 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $name,
-        private readonly ?array $attributes = [],
-        private readonly ?bool $isDefault = null,
+        private string $name,
+        private ?array $attributes = [],
+        private ?bool $isDefault = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getAttributes(): ?[]
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+    //public function getIsDefault(): ?bool
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;

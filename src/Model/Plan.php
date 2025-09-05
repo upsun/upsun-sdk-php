@@ -29,8 +29,8 @@ final class Plan implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $name = null,
-        private readonly ?string $label = null,
+        private ?string $name = null,
+        private ?string $label = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class Plan implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;

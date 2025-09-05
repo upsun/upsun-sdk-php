@@ -33,12 +33,12 @@ final class TicketJiraInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $id = null,
-        private readonly ?int $ticketId = null,
-        private readonly ?int $issueId = null,
-        private readonly ?string $issueKey = null,
-        private readonly ?float $createdAt = null,
-        private readonly ?float $updatedAt = null,
+        private ?int $id = null,
+        private ?int $ticketId = null,
+        private ?int $issueId = null,
+        private ?string $issueKey = null,
+        private ?float $createdAt = null,
+        private ?float $updatedAt = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class TicketJiraInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?int
     public function getId(): ?int
     {
         return $this->id;
     }
+    //public function getTicketId(): ?int
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
+    //public function getIssueId(): ?int
     public function getIssueId(): ?int
     {
         return $this->issueId;
     }
+    //public function getIssueKey(): ?string
     public function getIssueKey(): ?string
     {
         return $this->issueKey;
     }
+    //public function getCreatedAt(): ?float
     public function getCreatedAt(): ?float
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?float
     public function getUpdatedAt(): ?float
     {
         return $this->updatedAt;

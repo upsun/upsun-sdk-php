@@ -38,17 +38,17 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?bool $fetchBranches = null,
-        private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
-        private readonly string $token,
-        private readonly ?string $baseUrl = null,
-        private readonly string $repository,
-        private readonly ?bool $buildPullRequests = null,
-        private readonly ?bool $buildDraftPullRequests = null,
-        private readonly ?bool $buildPullRequestsPostMerge = null,
-        private readonly ?bool $pullRequestsCloneParentData = null,
+        private string $type,
+        private ?bool $fetchBranches = null,
+        private ?bool $pruneBranches = null,
+        private ?string $environmentInitResources = null,
+        private string $token,
+        private ?string $baseUrl = null,
+        private string $repository,
+        private ?bool $buildPullRequests = null,
+        private ?bool $buildDraftPullRequests = null,
+        private ?bool $buildPullRequestsPostMerge = null,
+        private ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 
@@ -74,46 +74,57 @@ final class GithubIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getFetchBranches(): ?bool
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
+    //public function getPruneBranches(): ?bool
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
+    //public function getEnvironmentInitResources(): ?string
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
+    //public function getToken(): string
     public function getToken(): string
     {
         return $this->token;
     }
+    //public function getBaseUrl(): ?string
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
+    //public function getRepository(): string
     public function getRepository(): string
     {
         return $this->repository;
     }
+    //public function getBuildPullRequests(): ?bool
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
+    //public function getBuildDraftPullRequests(): ?bool
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
+    //public function getBuildPullRequestsPostMerge(): ?bool
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
     }
+    //public function getPullRequestsCloneParentData(): ?bool
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;

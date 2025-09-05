@@ -42,21 +42,21 @@ final class Backup implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $id,
-        private readonly array $attributes,
-        private readonly string $status,
-        private readonly \DateTime $expiresAt,
-        private readonly int $index,
-        private readonly string $commitId,
-        private readonly string $environment,
-        private readonly bool $safe,
-        private readonly int $sizeOfVolumes,
-        private readonly int $sizeUsed,
-        private readonly string $deployment,
-        private readonly bool $restorable,
-        private readonly bool $automated,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $id,
+        private array $attributes,
+        private string $status,
+        private \DateTime $expiresAt,
+        private int $index,
+        private string $commitId,
+        private string $environment,
+        private bool $safe,
+        private int $sizeOfVolumes,
+        private int $sizeUsed,
+        private string $deployment,
+        private bool $restorable,
+        private bool $automated,
     ) {
     }
 
@@ -86,62 +86,77 @@ final class Backup implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getId(): string
     public function getId(): string
     {
         return $this->id;
     }
+    //public function getAttributes(): []
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+    //public function getStatus(): string
     public function getStatus(): string
     {
         return $this->status;
     }
+    //public function getExpiresAt(): \DateTime
     public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;
     }
+    //public function getIndex(): int
     public function getIndex(): int
     {
         return $this->index;
     }
+    //public function getCommitId(): string
     public function getCommitId(): string
     {
         return $this->commitId;
     }
+    //public function getEnvironment(): string
     public function getEnvironment(): string
     {
         return $this->environment;
     }
+    //public function getSafe(): bool
     public function getSafe(): bool
     {
         return $this->safe;
     }
+    //public function getSizeOfVolumes(): int
     public function getSizeOfVolumes(): int
     {
         return $this->sizeOfVolumes;
     }
+    //public function getSizeUsed(): int
     public function getSizeUsed(): int
     {
         return $this->sizeUsed;
     }
+    //public function getDeployment(): string
     public function getDeployment(): string
     {
         return $this->deployment;
     }
+    //public function getRestorable(): bool
     public function getRestorable(): bool
     {
         return $this->restorable;
     }
+    //public function getAutomated(): bool
     public function getAutomated(): bool
     {
         return $this->automated;

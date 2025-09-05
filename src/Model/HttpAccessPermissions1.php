@@ -30,10 +30,18 @@ final class HttpAccessPermissions1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $isEnabled = null,
-        private readonly ?array $addresses = [],
-        private readonly ?array $basicAuth = [],
+        private ?bool $isEnabled = null,
+        private ?array $addresses = [],
+        private ?array $basicAuth = [],
     ) {
+        if ($this->addresses) {
+            $this->addresses = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\AddressGrantsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\AddressGrantsInner::class);
+            }, $this->addresses);
+        }
     }
 
     public function jsonSerialize(): array
@@ -50,14 +58,17 @@ final class HttpAccessPermissions1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getIsEnabled(): ?bool
     public function getIsEnabled(): ?bool
     {
         return $this->isEnabled;
     }
+    //public function getAddresses(): ?[]
     public function getAddresses(): ?array
     {
         return $this->addresses;
     }
+    //public function getBasicAuth(): ?[]
     public function getBasicAuth(): ?array
     {
         return $this->basicAuth;

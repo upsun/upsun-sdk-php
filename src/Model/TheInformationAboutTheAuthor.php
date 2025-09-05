@@ -30,9 +30,9 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $date,
-        private readonly string $name,
-        private readonly string $email,
+        private \DateTime $date,
+        private string $name,
+        private string $email,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getDate(): \DateTime
     public function getDate(): \DateTime
     {
         return $this->date;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getEmail(): string
     public function getEmail(): string
     {
         return $this->email;

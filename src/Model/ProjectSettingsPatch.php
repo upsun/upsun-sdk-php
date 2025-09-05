@@ -30,10 +30,18 @@ final class ProjectSettingsPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?object $initialize = null,
-        private readonly ?array $dataRetention = [],
-        private readonly ?\Upsun\Model\BuildResources2 $buildResources = null,
+        private ?object $initialize = null,
+        private ?array $dataRetention = [],
+        private ?\Upsun\Model\BuildResources2 $buildResources = null,
     ) {
+        if ($this->dataRetention) {
+            $this->dataRetention = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\DataRetentionConfigurationValue1) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\DataRetentionConfigurationValue1::class);
+            }, $this->dataRetention);
+        }
     }
 
     public function jsonSerialize(): array
@@ -50,14 +58,17 @@ final class ProjectSettingsPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getInitialize(): ?object
     public function getInitialize(): ?object
     {
         return $this->initialize;
     }
+    //public function getDataRetention(): ?[]
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
     }
+    //public function getBuildResources(): ?\Upsun\Model\BuildResources2
     public function getBuildResources(): ?\Upsun\Model\BuildResources2
     {
         return $this->buildResources;

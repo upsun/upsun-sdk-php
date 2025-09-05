@@ -32,12 +32,20 @@ final class ResourcesOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly array $services,
-        private readonly \DateTime $startsAt,
-        private readonly \DateTime $endsAt,
-        private readonly bool $redeployedStart,
-        private readonly bool $redeployedEnd,
+        private array $services,
+        private \DateTime $startsAt,
+        private \DateTime $endsAt,
+        private bool $redeployedStart,
+        private bool $redeployedEnd,
     ) {
+        if ($this->services) {
+            $this->services = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\PerServiceResourcesOverridesValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\PerServiceResourcesOverridesValue::class);
+            }, $this->services);
+        }
     }
 
     public function jsonSerialize(): array
@@ -56,22 +64,27 @@ final class ResourcesOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getServices(): []
     public function getServices(): array
     {
         return $this->services;
     }
+    //public function getStartsAt(): \DateTime
     public function getStartsAt(): \DateTime
     {
         return $this->startsAt;
     }
+    //public function getEndsAt(): \DateTime
     public function getEndsAt(): \DateTime
     {
         return $this->endsAt;
     }
+    //public function getRedeployedStart(): bool
     public function getRedeployedStart(): bool
     {
         return $this->redeployedStart;
     }
+    //public function getRedeployedEnd(): bool
     public function getRedeployedEnd(): bool
     {
         return $this->redeployedEnd;

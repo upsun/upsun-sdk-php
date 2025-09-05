@@ -38,17 +38,17 @@ final class ProjectCapabilities implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\CustomDomains $customDomains = null,
-        private readonly ?\Upsun\Model\SourceOperations $sourceOperations = null,
-        private readonly ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
-        private readonly ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
-        private readonly \Upsun\Model\Metrics $metrics,
-        private readonly \Upsun\Model\LogsForwarding $logsForwarding,
-        private readonly array $images,
-        private readonly int $instanceLimit,
-        private readonly \Upsun\Model\BuildResources $buildResources,
-        private readonly \Upsun\Model\DataRetention $dataRetention,
-        private readonly ?\Upsun\Model\Integrations $integrations = null,
+        private ?\Upsun\Model\CustomDomains $customDomains = null,
+        private ?\Upsun\Model\SourceOperations $sourceOperations = null,
+        private ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
+        private ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
+        private \Upsun\Model\Metrics $metrics,
+        private \Upsun\Model\LogsForwarding $logsForwarding,
+        private array $images,
+        private int $instanceLimit,
+        private \Upsun\Model\BuildResources $buildResources,
+        private \Upsun\Model\DataRetention $dataRetention,
+        private ?\Upsun\Model\Integrations $integrations = null,
     ) {
     }
 
@@ -74,46 +74,57 @@ final class ProjectCapabilities implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCustomDomains(): ?\Upsun\Model\CustomDomains
     public function getCustomDomains(): ?\Upsun\Model\CustomDomains
     {
         return $this->customDomains;
     }
+    //public function getSourceOperations(): ?\Upsun\Model\SourceOperations
     public function getSourceOperations(): ?\Upsun\Model\SourceOperations
     {
         return $this->sourceOperations;
     }
+    //public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
     public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
     {
         return $this->runtimeOperations;
     }
+    //public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
     public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
     {
         return $this->outboundFirewall;
     }
+    //public function getMetrics(): \Upsun\Model\Metrics
     public function getMetrics(): \Upsun\Model\Metrics
     {
         return $this->metrics;
     }
+    //public function getLogsForwarding(): \Upsun\Model\LogsForwarding
     public function getLogsForwarding(): \Upsun\Model\LogsForwarding
     {
         return $this->logsForwarding;
     }
+    //public function getImages(): []
     public function getImages(): array
     {
         return $this->images;
     }
+    //public function getInstanceLimit(): int
     public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
     }
+    //public function getBuildResources(): \Upsun\Model\BuildResources
     public function getBuildResources(): \Upsun\Model\BuildResources
     {
         return $this->buildResources;
     }
+    //public function getDataRetention(): \Upsun\Model\DataRetention
     public function getDataRetention(): \Upsun\Model\DataRetention
     {
         return $this->dataRetention;
     }
+    //public function getIntegrations(): ?\Upsun\Model\Integrations
     public function getIntegrations(): ?\Upsun\Model\Integrations
     {
         return $this->integrations;

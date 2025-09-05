@@ -28,7 +28,7 @@ final class UpdateOrgMemberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $permissions = [],
+        private ?array $permissions = [],
     ) {
     }
 
@@ -44,6 +44,7 @@ final class UpdateOrgMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPermissions(): ?[]
     public function getPermissions(): ?array
     {
         return $this->permissions;

@@ -74,54 +74,62 @@ final class Integration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $type,
-        private readonly bool $fetchBranches,
-        private readonly bool $pruneBranches,
-        private readonly string $environmentInitResources,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
-        private readonly string $repository,
-        private readonly bool $buildPullRequests,
-        private readonly bool $pullRequestsCloneParentData,
-        private readonly bool $resyncPullRequests,
-        private readonly string $url,
-        private readonly string $username,
-        private readonly string $project,
-        private readonly array $environmentsCredentials,
-        private readonly bool $continuousProfiling,
-        private readonly array $events,
-        private readonly array $environments,
-        private readonly array $excludedEnvironments,
-        private readonly array $states,
-        private readonly string $result,
-        private readonly string $serviceId,
-        private readonly string $baseUrl,
-        private readonly bool $buildDraftPullRequests,
-        private readonly bool $buildPullRequestsPostMerge,
-        private readonly string $tokenType,
-        private readonly bool $buildMergeRequests,
-        private readonly bool $buildWipMergeRequests,
-        private readonly bool $mergeRequestsCloneParentData,
-        private readonly string $fromAddress,
-        private readonly array $recipients,
-        private readonly string $routingKey,
-        private readonly string $channel,
-        private readonly array $extra,
-        private readonly array $headers,
-        private readonly bool $tlsVerify,
-        private readonly string $script,
-        private readonly string $index,
-        private readonly string $sourcetype,
-        private readonly string $category,
-        private readonly string $host,
-        private readonly int $port,
-        private readonly string $protocol,
-        private readonly int $facility,
-        private readonly string $messageFormat,
-        private readonly string $sharedKey,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $type,
+        private bool $fetchBranches,
+        private bool $pruneBranches,
+        private string $environmentInitResources,
+        private ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
+        private ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
+        private string $repository,
+        private bool $buildPullRequests,
+        private bool $pullRequestsCloneParentData,
+        private bool $resyncPullRequests,
+        private string $url,
+        private string $username,
+        private string $project,
+        private array $environmentsCredentials,
+        private bool $continuousProfiling,
+        private array $events,
+        private array $environments,
+        private array $excludedEnvironments,
+        private array $states,
+        private string $result,
+        private string $serviceId,
+        private string $baseUrl,
+        private bool $buildDraftPullRequests,
+        private bool $buildPullRequestsPostMerge,
+        private string $tokenType,
+        private bool $buildMergeRequests,
+        private bool $buildWipMergeRequests,
+        private bool $mergeRequestsCloneParentData,
+        private string $fromAddress,
+        private array $recipients,
+        private string $routingKey,
+        private string $channel,
+        private array $extra,
+        private array $headers,
+        private bool $tlsVerify,
+        private string $script,
+        private string $index,
+        private string $sourcetype,
+        private string $category,
+        private string $host,
+        private int $port,
+        private string $protocol,
+        private int $facility,
+        private string $messageFormat,
+        private string $sharedKey,
     ) {
+        if ($this->environmentsCredentials) {
+            $this->environmentsCredentials = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\BlackfireEnvironmentsCredentialsValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\BlackfireEnvironmentsCredentialsValue::class);
+            }, $this->environmentsCredentials);
+        }
     }
 
     public function jsonSerialize(): array
@@ -182,190 +190,237 @@ final class Integration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getFetchBranches(): bool
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
+    //public function getPruneBranches(): bool
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
+    //public function getEnvironmentInitResources(): string
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
+    //public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
     public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
     {
         return $this->appCredentials;
     }
+    //public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
     public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
     {
         return $this->addonCredentials;
     }
+    //public function getRepository(): string
     public function getRepository(): string
     {
         return $this->repository;
     }
+    //public function getBuildPullRequests(): bool
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
+    //public function getPullRequestsCloneParentData(): bool
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
+    //public function getResyncPullRequests(): bool
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
     }
+    //public function getUrl(): string
     public function getUrl(): string
     {
         return $this->url;
     }
+    //public function getUsername(): string
     public function getUsername(): string
     {
         return $this->username;
     }
+    //public function getProject(): string
     public function getProject(): string
     {
         return $this->project;
     }
+    //public function getEnvironmentsCredentials(): []
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
+    //public function getContinuousProfiling(): bool
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
     }
+    //public function getEvents(): []
     public function getEvents(): array
     {
         return $this->events;
     }
+    //public function getEnvironments(): []
     public function getEnvironments(): array
     {
         return $this->environments;
     }
+    //public function getExcludedEnvironments(): []
     public function getExcludedEnvironments(): array
     {
         return $this->excludedEnvironments;
     }
+    //public function getStates(): []
     public function getStates(): array
     {
         return $this->states;
     }
+    //public function getResult(): string
     public function getResult(): string
     {
         return $this->result;
     }
+    //public function getServiceId(): string
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
+    //public function getBaseUrl(): string
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
+    //public function getBuildDraftPullRequests(): bool
     public function getBuildDraftPullRequests(): bool
     {
         return $this->buildDraftPullRequests;
     }
+    //public function getBuildPullRequestsPostMerge(): bool
     public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->buildPullRequestsPostMerge;
     }
+    //public function getTokenType(): string
     public function getTokenType(): string
     {
         return $this->tokenType;
     }
+    //public function getBuildMergeRequests(): bool
     public function getBuildMergeRequests(): bool
     {
         return $this->buildMergeRequests;
     }
+    //public function getBuildWipMergeRequests(): bool
     public function getBuildWipMergeRequests(): bool
     {
         return $this->buildWipMergeRequests;
     }
+    //public function getMergeRequestsCloneParentData(): bool
     public function getMergeRequestsCloneParentData(): bool
     {
         return $this->mergeRequestsCloneParentData;
     }
+    //public function getFromAddress(): string
     public function getFromAddress(): string
     {
         return $this->fromAddress;
     }
+    //public function getRecipients(): []
     public function getRecipients(): array
     {
         return $this->recipients;
     }
+    //public function getRoutingKey(): string
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
+    //public function getChannel(): string
     public function getChannel(): string
     {
         return $this->channel;
     }
+    //public function getExtra(): []
     public function getExtra(): array
     {
         return $this->extra;
     }
+    //public function getHeaders(): []
     public function getHeaders(): array
     {
         return $this->headers;
     }
+    //public function getTlsVerify(): bool
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
     }
+    //public function getScript(): string
     public function getScript(): string
     {
         return $this->script;
     }
+    //public function getIndex(): string
     public function getIndex(): string
     {
         return $this->index;
     }
+    //public function getSourcetype(): string
     public function getSourcetype(): string
     {
         return $this->sourcetype;
     }
+    //public function getCategory(): string
     public function getCategory(): string
     {
         return $this->category;
     }
+    //public function getHost(): string
     public function getHost(): string
     {
         return $this->host;
     }
+    //public function getPort(): int
     public function getPort(): int
     {
         return $this->port;
     }
+    //public function getProtocol(): string
     public function getProtocol(): string
     {
         return $this->protocol;
     }
+    //public function getFacility(): int
     public function getFacility(): int
     {
         return $this->facility;
     }
+    //public function getMessageFormat(): string
     public function getMessageFormat(): string
     {
         return $this->messageFormat;
     }
+    //public function getSharedKey(): string
     public function getSharedKey(): string
     {
         return $this->sharedKey;

@@ -62,42 +62,50 @@ final class Ticket implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $ticketId = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?\DateTime $updated = null,
-        private readonly ?string $type = null,
-        private readonly ?string $subject = null,
-        private readonly ?string $description = null,
-        private readonly ?string $priority = null,
-        private readonly ?string $followupTid = null,
-        private readonly ?string $status = null,
-        private readonly ?string $recipient = null,
-        private readonly ?string $requesterId = null,
-        private readonly ?string $submitterId = null,
-        private readonly ?string $assigneeId = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?array $collaboratorIds = [],
-        private readonly ?bool $hasIncidents = null,
-        private readonly ?\DateTime $due = null,
-        private readonly ?array $tags = [],
-        private readonly ?string $subscriptionId = null,
-        private readonly ?string $ticketGroup = null,
-        private readonly ?string $supportPlan = null,
-        private readonly ?string $affectedUrl = null,
-        private readonly ?string $queue = null,
-        private readonly ?string $issueType = null,
-        private readonly ?\DateTime $resolutionTime = null,
-        private readonly ?\DateTime $responseTime = null,
-        private readonly ?string $projectUrl = null,
-        private readonly ?string $region = null,
-        private readonly ?string $category = null,
-        private readonly ?string $environment = null,
-        private readonly ?string $ticketSharingStatus = null,
-        private readonly ?string $applicationTicketUrl = null,
-        private readonly ?string $infrastructureTicketUrl = null,
-        private readonly ?array $jira = [],
-        private readonly ?string $zdTicketUrl = null,
+        private ?int $ticketId = null,
+        private ?\DateTime $created = null,
+        private ?\DateTime $updated = null,
+        private ?string $type = null,
+        private ?string $subject = null,
+        private ?string $description = null,
+        private ?string $priority = null,
+        private ?string $followupTid = null,
+        private ?string $status = null,
+        private ?string $recipient = null,
+        private ?string $requesterId = null,
+        private ?string $submitterId = null,
+        private ?string $assigneeId = null,
+        private ?string $organizationId = null,
+        private ?array $collaboratorIds = [],
+        private ?bool $hasIncidents = null,
+        private ?\DateTime $due = null,
+        private ?array $tags = [],
+        private ?string $subscriptionId = null,
+        private ?string $ticketGroup = null,
+        private ?string $supportPlan = null,
+        private ?string $affectedUrl = null,
+        private ?string $queue = null,
+        private ?string $issueType = null,
+        private ?\DateTime $resolutionTime = null,
+        private ?\DateTime $responseTime = null,
+        private ?string $projectUrl = null,
+        private ?string $region = null,
+        private ?string $category = null,
+        private ?string $environment = null,
+        private ?string $ticketSharingStatus = null,
+        private ?string $applicationTicketUrl = null,
+        private ?string $infrastructureTicketUrl = null,
+        private ?array $jira = [],
+        private ?string $zdTicketUrl = null,
     ) {
+        if ($this->jira) {
+            $this->jira = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TicketJiraInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TicketJiraInner::class);
+            }, $this->jira);
+        }
     }
 
     public function jsonSerialize(): array
@@ -146,142 +154,177 @@ final class Ticket implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTicketId(): ?int
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
+    //public function getCreated(): ?\DateTime
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
+    //public function getUpdated(): ?\DateTime
     public function getUpdated(): ?\DateTime
     {
         return $this->updated;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getSubject(): ?string
     public function getSubject(): ?string
     {
         return $this->subject;
     }
+    //public function getDescription(): ?string
     public function getDescription(): ?string
     {
         return $this->description;
     }
+    //public function getPriority(): ?string
     public function getPriority(): ?string
     {
         return $this->priority;
     }
+    //public function getFollowupTid(): ?string
     public function getFollowupTid(): ?string
     {
         return $this->followupTid;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getRecipient(): ?string
     public function getRecipient(): ?string
     {
         return $this->recipient;
     }
+    //public function getRequesterId(): ?string
     public function getRequesterId(): ?string
     {
         return $this->requesterId;
     }
+    //public function getSubmitterId(): ?string
     public function getSubmitterId(): ?string
     {
         return $this->submitterId;
     }
+    //public function getAssigneeId(): ?string
     public function getAssigneeId(): ?string
     {
         return $this->assigneeId;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getCollaboratorIds(): ?[]
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
+    //public function getHasIncidents(): ?bool
     public function getHasIncidents(): ?bool
     {
         return $this->hasIncidents;
     }
+    //public function getDue(): ?\DateTime
     public function getDue(): ?\DateTime
     {
         return $this->due;
     }
+    //public function getTags(): ?[]
     public function getTags(): ?array
     {
         return $this->tags;
     }
+    //public function getSubscriptionId(): ?string
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
+    //public function getTicketGroup(): ?string
     public function getTicketGroup(): ?string
     {
         return $this->ticketGroup;
     }
+    //public function getSupportPlan(): ?string
     public function getSupportPlan(): ?string
     {
         return $this->supportPlan;
     }
+    //public function getAffectedUrl(): ?string
     public function getAffectedUrl(): ?string
     {
         return $this->affectedUrl;
     }
+    //public function getQueue(): ?string
     public function getQueue(): ?string
     {
         return $this->queue;
     }
+    //public function getIssueType(): ?string
     public function getIssueType(): ?string
     {
         return $this->issueType;
     }
+    //public function getResolutionTime(): ?\DateTime
     public function getResolutionTime(): ?\DateTime
     {
         return $this->resolutionTime;
     }
+    //public function getResponseTime(): ?\DateTime
     public function getResponseTime(): ?\DateTime
     {
         return $this->responseTime;
     }
+    //public function getProjectUrl(): ?string
     public function getProjectUrl(): ?string
     {
         return $this->projectUrl;
     }
+    //public function getRegion(): ?string
     public function getRegion(): ?string
     {
         return $this->region;
     }
+    //public function getCategory(): ?string
     public function getCategory(): ?string
     {
         return $this->category;
     }
+    //public function getEnvironment(): ?string
     public function getEnvironment(): ?string
     {
         return $this->environment;
     }
+    //public function getTicketSharingStatus(): ?string
     public function getTicketSharingStatus(): ?string
     {
         return $this->ticketSharingStatus;
     }
+    //public function getApplicationTicketUrl(): ?string
     public function getApplicationTicketUrl(): ?string
     {
         return $this->applicationTicketUrl;
     }
+    //public function getInfrastructureTicketUrl(): ?string
     public function getInfrastructureTicketUrl(): ?string
     {
         return $this->infrastructureTicketUrl;
     }
+    //public function getJira(): ?[]
     public function getJira(): ?array
     {
         return $this->jira;
     }
+    //public function getZdTicketUrl(): ?string
     public function getZdTicketUrl(): ?string
     {
         return $this->zdTicketUrl;

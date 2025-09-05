@@ -28,7 +28,7 @@ final class ResetEmailAddressRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $emailAddress,
+        private string $emailAddress,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class ResetEmailAddressRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEmailAddress(): string
     public function getEmailAddress(): string
     {
         return $this->emailAddress;

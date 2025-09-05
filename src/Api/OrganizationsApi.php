@@ -469,18 +469,18 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listOrgsWithHttpInfo(
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterOwnerId = null,
-        \Upsun\Model\StringFilter $filterName = null,
-        \Upsun\Model\StringFilter $filterLabel = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\ArrayFilter $filterCapabilities = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterOwnerId = null,
+        ?\Upsun\Model\StringFilter $filterName = null,
+        ?\Upsun\Model\StringFilter $filterLabel = null,
+        ?\Upsun\Model\StringFilter $filterVendor = null,
+        ?\Upsun\Model\ArrayFilter $filterCapabilities = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListOrgs200Response {
         $request = $this->listOrgsRequest(
             $filterId,
@@ -519,18 +519,18 @@ final class OrganizationsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listOrgsRequest(
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterOwnerId = null,
-        \Upsun\Model\StringFilter $filterName = null,
-        \Upsun\Model\StringFilter $filterLabel = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\ArrayFilter $filterCapabilities = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterOwnerId = null,
+        ?\Upsun\Model\StringFilter $filterName = null,
+        ?\Upsun\Model\StringFilter $filterLabel = null,
+        ?\Upsun\Model\StringFilter $filterVendor = null,
+        ?\Upsun\Model\ArrayFilter $filterCapabilities = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
@@ -774,14 +774,14 @@ final class OrganizationsApi extends AbstractApi
      */
     public function listUserOrgsWithHttpInfo(
         string $userId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterVendor = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListUserOrgs200Response {
         $request = $this->listUserOrgsRequest(
             $userId,
@@ -818,14 +818,14 @@ final class OrganizationsApi extends AbstractApi
      */
     public function listUserOrgsRequest(
         string $userId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterVendor = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (
@@ -1029,7 +1029,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function updateOrgWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
+        ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): \Upsun\Model\Organization {
         $request = $this->updateOrgRequest(
             $organizationId,
@@ -1059,7 +1059,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function updateOrgRequest(
         string $organizationId,
-        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
+        ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

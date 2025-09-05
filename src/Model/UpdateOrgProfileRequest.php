@@ -33,12 +33,12 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $defaultCatalog = null,
-        private readonly ?string $projectOptionsUrl = null,
-        private readonly ?string $securityContact = null,
-        private readonly ?string $companyName = null,
-        private readonly ?string $vatNumber = null,
-        private readonly ?string $billingContact = null,
+        private ?string $defaultCatalog = null,
+        private ?string $projectOptionsUrl = null,
+        private ?string $securityContact = null,
+        private ?string $companyName = null,
+        private ?string $vatNumber = null,
+        private ?string $billingContact = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getDefaultCatalog(): ?string
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
+    //public function getProjectOptionsUrl(): ?string
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
+    //public function getSecurityContact(): ?string
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
+    //public function getCompanyName(): ?string
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
+    //public function getVatNumber(): ?string
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
+    //public function getBillingContact(): ?string
     public function getBillingContact(): ?string
     {
         return $this->billingContact;

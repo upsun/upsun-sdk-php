@@ -31,10 +31,10 @@ final class TheTreeItemsInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $path,
-        private readonly string $mode,
-        private readonly string $type,
-        private readonly string $sha,
+        private string $path,
+        private string $mode,
+        private string $type,
+        private string $sha,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class TheTreeItemsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPath(): string
     public function getPath(): string
     {
         return $this->path;
     }
+    //public function getMode(): string
     public function getMode(): string
     {
         return $this->mode;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getSha(): string
     public function getSha(): string
     {
         return $this->sha;

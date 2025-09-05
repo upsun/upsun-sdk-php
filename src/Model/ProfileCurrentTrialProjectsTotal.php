@@ -31,10 +31,10 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $amount = null,
-        private readonly ?string $currencyCode = null,
-        private readonly ?string $currencySymbol = null,
-        private readonly ?string $formatted = null,
+        private ?int $amount = null,
+        private ?string $currencyCode = null,
+        private ?string $currencySymbol = null,
+        private ?string $formatted = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAmount(): ?int
     public function getAmount(): ?int
     {
         return $this->amount;
     }
+    //public function getCurrencyCode(): ?string
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
+    //public function getCurrencySymbol(): ?string
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
+    //public function getFormatted(): ?string
     public function getFormatted(): ?string
     {
         return $this->formatted;

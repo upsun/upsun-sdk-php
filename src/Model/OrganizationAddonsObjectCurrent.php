@@ -29,8 +29,8 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $userManagement = [],
-        private readonly ?array $supportLevel = [],
+        private ?array $userManagement = [],
+        private ?array $supportLevel = [],
     ) {
     }
 
@@ -47,10 +47,12 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getUserManagement(): ?[]
     public function getUserManagement(): ?array
     {
         return $this->userManagement;
     }
+    //public function getSupportLevel(): ?[]
     public function getSupportLevel(): ?array
     {
         return $this->supportLevel;

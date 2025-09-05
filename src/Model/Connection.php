@@ -34,13 +34,13 @@ final class Connection implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $provider = null,
-        private readonly ?string $providerType = null,
-        private readonly ?bool $isMandatory = null,
-        private readonly ?string $subject = null,
-        private readonly ?string $emailAddress = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private ?string $provider = null,
+        private ?string $providerType = null,
+        private ?bool $isMandatory = null,
+        private ?string $subject = null,
+        private ?string $emailAddress = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class Connection implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getProvider(): ?string
     public function getProvider(): ?string
     {
         return $this->provider;
     }
+    //public function getProviderType(): ?string
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
+    //public function getIsMandatory(): ?bool
     public function getIsMandatory(): ?bool
     {
         return $this->isMandatory;
     }
+    //public function getSubject(): ?string
     public function getSubject(): ?string
     {
         return $this->subject;
     }
+    //public function getEmailAddress(): ?string
     public function getEmailAddress(): ?string
     {
         return $this->emailAddress;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

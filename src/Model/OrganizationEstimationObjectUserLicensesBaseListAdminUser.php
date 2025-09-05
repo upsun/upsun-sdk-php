@@ -29,8 +29,8 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     ];
 
     public function __construct(
-        private readonly ?int $count = null,
-        private readonly ?string $total = null,
+        private ?int $count = null,
+        private ?string $total = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCount(): ?int
     public function getCount(): ?int
     {
         return $this->count;
     }
+    //public function getTotal(): ?string
     public function getTotal(): ?string
     {
         return $this->total;

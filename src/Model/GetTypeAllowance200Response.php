@@ -28,7 +28,7 @@ final class GetTypeAllowance200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
+        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class GetTypeAllowance200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCurrencies(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies
     public function getCurrencies(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies
     {
         return $this->currencies;

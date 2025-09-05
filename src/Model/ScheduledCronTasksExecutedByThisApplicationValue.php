@@ -32,11 +32,11 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     ];
 
     public function __construct(
-        private readonly string $spec,
-        private readonly \Upsun\Model\TheCommandsDefinition $commands,
-        private readonly ?int $shutdownTimeout = null,
-        private readonly int $timeout,
-        private readonly ?string $cmd = null,
+        private string $spec,
+        private \Upsun\Model\TheCommandsDefinition $commands,
+        private ?int $shutdownTimeout = null,
+        private int $timeout,
+        private ?string $cmd = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSpec(): string
     public function getSpec(): string
     {
         return $this->spec;
     }
+    //public function getCommands(): \Upsun\Model\TheCommandsDefinition
     public function getCommands(): \Upsun\Model\TheCommandsDefinition
     {
         return $this->commands;
     }
+    //public function getShutdownTimeout(): ?int
     public function getShutdownTimeout(): ?int
     {
         return $this->shutdownTimeout;
     }
+    //public function getTimeout(): int
     public function getTimeout(): int
     {
         return $this->timeout;
     }
+    //public function getCmd(): ?string
     public function getCmd(): ?string
     {
         return $this->cmd;

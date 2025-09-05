@@ -30,9 +30,9 @@ final class OrganizationAddonsObject implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+        private ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
+        private ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
+        private ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class OrganizationAddonsObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAvailable(): ?\Upsun\Model\OrganizationAddonsObjectAvailable
     public function getAvailable(): ?\Upsun\Model\OrganizationAddonsObjectAvailable
     {
         return $this->available;
     }
+    //public function getCurrent(): ?\Upsun\Model\OrganizationAddonsObjectCurrent
     public function getCurrent(): ?\Upsun\Model\OrganizationAddonsObjectCurrent
     {
         return $this->current;
     }
+    //public function getUpgradesAvailable(): ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable
     public function getUpgradesAvailable(): ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;

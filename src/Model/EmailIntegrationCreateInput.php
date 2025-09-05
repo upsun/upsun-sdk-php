@@ -30,9 +30,9 @@ final class EmailIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?string $fromAddress = null,
-        private readonly array $recipients,
+        private string $type,
+        private ?string $fromAddress = null,
+        private array $recipients,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class EmailIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getFromAddress(): ?string
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
+    //public function getRecipients(): []
     public function getRecipients(): array
     {
         return $this->recipients;

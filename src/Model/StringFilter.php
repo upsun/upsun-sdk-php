@@ -35,14 +35,14 @@ final class StringFilter implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $eq = null,
-        private readonly ?string $ne = null,
-        private readonly ?string $in = null,
-        private readonly ?string $nin = null,
-        private readonly ?string $between = null,
-        private readonly ?string $contains = null,
-        private readonly ?string $starts = null,
-        private readonly ?string $ends = null,
+        private ?string $eq = null,
+        private ?string $ne = null,
+        private ?string $in = null,
+        private ?string $nin = null,
+        private ?string $between = null,
+        private ?string $contains = null,
+        private ?string $starts = null,
+        private ?string $ends = null,
     ) {
     }
 
@@ -65,34 +65,42 @@ final class StringFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEq(): ?string
     public function getEq(): ?string
     {
         return $this->eq;
     }
+    //public function getNe(): ?string
     public function getNe(): ?string
     {
         return $this->ne;
     }
+    //public function getIn(): ?string
     public function getIn(): ?string
     {
         return $this->in;
     }
+    //public function getNin(): ?string
     public function getNin(): ?string
     {
         return $this->nin;
     }
+    //public function getBetween(): ?string
     public function getBetween(): ?string
     {
         return $this->between;
     }
+    //public function getContains(): ?string
     public function getContains(): ?string
     {
         return $this->contains;
     }
+    //public function getStarts(): ?string
     public function getStarts(): ?string
     {
         return $this->starts;
     }
+    //public function getEnds(): ?string
     public function getEnds(): ?string
     {
         return $this->ends;

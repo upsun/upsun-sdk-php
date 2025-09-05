@@ -29,9 +29,17 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     ];
 
     public function __construct(
-        private readonly string $root,
-        private readonly array $operations,
+        private string $root,
+        private array $operations,
     ) {
+        if ($this->operations) {
+            $this->operations = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue::class);
+            }, $this->operations);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getRoot(): string
     public function getRoot(): string
     {
         return $this->root;
     }
+    //public function getOperations(): []
     public function getOperations(): array
     {
         return $this->operations;

@@ -34,14 +34,22 @@ final class Vouchers implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $uuid = null,
-        private readonly ?string $vouchersTotal = null,
-        private readonly ?string $vouchersApplied = null,
-        private readonly ?string $vouchersRemainingBalance = null,
-        private readonly ?string $currency = null,
-        private readonly ?array $vouchers = [],
-        private readonly ?\Upsun\Model\VouchersLinks $links = null,
+        private ?string $uuid = null,
+        private ?string $vouchersTotal = null,
+        private ?string $vouchersApplied = null,
+        private ?string $vouchersRemainingBalance = null,
+        private ?string $currency = null,
+        private ?array $vouchers = [],
+        private ?\Upsun\Model\VouchersLinks $links = null,
     ) {
+        if ($this->vouchers) {
+            $this->vouchers = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\VouchersVouchersInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\VouchersVouchersInner::class);
+            }, $this->vouchers);
+        }
     }
 
     public function jsonSerialize(): array
@@ -62,30 +70,37 @@ final class Vouchers implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getUuid(): ?string
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
+    //public function getVouchersTotal(): ?string
     public function getVouchersTotal(): ?string
     {
         return $this->vouchersTotal;
     }
+    //public function getVouchersApplied(): ?string
     public function getVouchersApplied(): ?string
     {
         return $this->vouchersApplied;
     }
+    //public function getVouchersRemainingBalance(): ?string
     public function getVouchersRemainingBalance(): ?string
     {
         return $this->vouchersRemainingBalance;
     }
+    //public function getCurrency(): ?string
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
+    //public function getVouchers(): ?[]
     public function getVouchers(): ?array
     {
         return $this->vouchers;
     }
+    //public function getLinks(): ?\Upsun\Model\VouchersLinks
     public function getLinks(): ?\Upsun\Model\VouchersLinks
     {
         return $this->links;

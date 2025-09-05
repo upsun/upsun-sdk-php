@@ -30,10 +30,18 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $count = null,
-        private readonly ?array $transactions = [],
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
+        private ?int $count = null,
+        private ?array $transactions = [],
+        private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
+        if ($this->transactions) {
+            $this->transactions = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\PrepaymentTransactionObject) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\PrepaymentTransactionObject::class);
+            }, $this->transactions);
+        }
     }
 
     public function jsonSerialize(): array
@@ -50,14 +58,17 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCount(): ?int
     public function getCount(): ?int
     {
         return $this->count;
     }
+    //public function getTransactions(): ?[]
     public function getTransactions(): ?array
     {
         return $this->transactions;
     }
+    //public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
     public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
     {
         return $this->links;

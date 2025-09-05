@@ -28,7 +28,7 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $sid = null,
+        private ?string $sid = null,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSid(): ?string
     public function getSid(): ?string
     {
         return $this->sid;

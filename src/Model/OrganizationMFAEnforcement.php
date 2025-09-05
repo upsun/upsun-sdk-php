@@ -28,7 +28,7 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $enforceMfa = null,
+        private ?bool $enforceMfa = null,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class OrganizationMFAEnforcement implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEnforceMfa(): ?bool
     public function getEnforceMfa(): ?bool
     {
         return $this->enforceMfa;

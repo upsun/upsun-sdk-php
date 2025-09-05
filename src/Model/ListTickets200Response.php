@@ -30,10 +30,18 @@ final class ListTickets200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $count = null,
-        private readonly ?array $tickets = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private ?int $count = null,
+        private ?array $tickets = [],
+        private ?\Upsun\Model\HalLinks $links = null,
     ) {
+        if ($this->tickets) {
+            $this->tickets = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Ticket) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Ticket::class);
+            }, $this->tickets);
+        }
     }
 
     public function jsonSerialize(): array
@@ -50,14 +58,17 @@ final class ListTickets200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCount(): ?int
     public function getCount(): ?int
     {
         return $this->count;
     }
+    //public function getTickets(): ?[]
     public function getTickets(): ?array
     {
         return $this->tickets;
     }
+    //public function getLinks(): ?\Upsun\Model\HalLinks
     public function getLinks(): ?\Upsun\Model\HalLinks
     {
         return $this->links;

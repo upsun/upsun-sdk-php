@@ -34,13 +34,13 @@ final class OrganizationEstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $total = null,
-        private readonly ?string $subTotal = null,
-        private readonly ?string $vouchers = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
-        private readonly ?string $userManagement = null,
-        private readonly ?string $supportLevel = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+        private ?string $total = null,
+        private ?string $subTotal = null,
+        private ?string $vouchers = null,
+        private ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
+        private ?string $userManagement = null,
+        private ?string $supportLevel = null,
+        private ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class OrganizationEstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTotal(): ?string
     public function getTotal(): ?string
     {
         return $this->total;
     }
+    //public function getSubTotal(): ?string
     public function getSubTotal(): ?string
     {
         return $this->subTotal;
     }
+    //public function getVouchers(): ?string
     public function getVouchers(): ?string
     {
         return $this->vouchers;
     }
+    //public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
     public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
     }
+    //public function getUserManagement(): ?string
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
+    //public function getSupportLevel(): ?string
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;
     }
+    //public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
     public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;

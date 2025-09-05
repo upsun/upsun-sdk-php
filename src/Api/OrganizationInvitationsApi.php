@@ -219,7 +219,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function createOrgInviteWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
+        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): \Upsun\Model\OrganizationInvitation {
         $request = $this->createOrgInviteRequest(
             $organizationId,
@@ -249,7 +249,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function createOrgInviteRequest(
         string $organizationId,
-        \Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
+        ?\Upsun\Model\CreateOrgInviteRequest $createOrgInviteRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -368,11 +368,11 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function listOrgInvitesWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterState = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         $request = $this->listOrgInvitesRequest(
             $organizationId,
@@ -406,11 +406,11 @@ final class OrganizationInvitationsApi extends AbstractApi
      */
     public function listOrgInvitesRequest(
         string $organizationId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterState = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

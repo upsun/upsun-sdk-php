@@ -29,8 +29,8 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $code = null,
-        private readonly ?string $message = null,
+        private ?int $code = null,
+        private ?string $message = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCode(): ?int
     public function getCode(): ?int
     {
         return $this->code;
     }
+    //public function getMessage(): ?string
     public function getMessage(): ?string
     {
         return $this->message;

@@ -31,10 +31,10 @@ final class LineItemComponent implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?float $amount = null,
-        private readonly ?string $amountFormatted = null,
-        private readonly ?string $displayTitle = null,
-        private readonly ?string $currency = null,
+        private ?float $amount = null,
+        private ?string $amountFormatted = null,
+        private ?string $displayTitle = null,
+        private ?string $currency = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class LineItemComponent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAmount(): ?float
     public function getAmount(): ?float
     {
         return $this->amount;
     }
+    //public function getAmountFormatted(): ?string
     public function getAmountFormatted(): ?string
     {
         return $this->amountFormatted;
     }
+    //public function getDisplayTitle(): ?string
     public function getDisplayTitle(): ?string
     {
         return $this->displayTitle;
     }
+    //public function getCurrency(): ?string
     public function getCurrency(): ?string
     {
         return $this->currency;

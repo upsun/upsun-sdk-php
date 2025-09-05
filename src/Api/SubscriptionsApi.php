@@ -508,7 +508,7 @@ final class SubscriptionsApi extends AbstractApi
         int $environments,
         int $storage,
         int $userLicenses,
-        string $format = null
+        ?string $format = null
     ): \Upsun\Model\EstimationObject {
         $request = $this->estimateNewOrgSubscriptionRequest(
             $organizationId,
@@ -546,7 +546,7 @@ final class SubscriptionsApi extends AbstractApi
         int $environments,
         int $storage,
         int $userLicenses,
-        string $format = null
+        ?string $format = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -756,10 +756,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organizationId,
         string $subscriptionId,
         string $plan,
-        int $environments = null,
-        int $storage = null,
-        int $userLicenses = null,
-        string $format = null
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null,
+        ?string $format = null
     ): \Upsun\Model\EstimationObject {
         $request = $this->estimateOrgSubscriptionRequest(
             $organizationId,
@@ -796,10 +796,10 @@ final class SubscriptionsApi extends AbstractApi
         string $organizationId,
         string $subscriptionId,
         string $plan,
-        int $environments = null,
-        int $storage = null,
-        int $userLicenses = null,
-        string $format = null
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null,
+        ?string $format = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -1141,8 +1141,8 @@ final class SubscriptionsApi extends AbstractApi
     public function getOrgSubscriptionCurrentUsageWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
-        string $usageGroups = null,
-        bool $includeNotCharged = null
+        ?string $usageGroups = null,
+        ?bool $includeNotCharged = null
     ): \Upsun\Model\SubscriptionCurrentUsageObject {
         $request = $this->getOrgSubscriptionCurrentUsageRequest(
             $organizationId,
@@ -1175,8 +1175,8 @@ final class SubscriptionsApi extends AbstractApi
     public function getOrgSubscriptionCurrentUsageRequest(
         string $organizationId,
         string $subscriptionId,
-        string $usageGroups = null,
-        bool $includeNotCharged = null
+        ?string $usageGroups = null,
+        ?bool $includeNotCharged = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -1337,16 +1337,16 @@ final class SubscriptionsApi extends AbstractApi
      */
     public function listOrgSubscriptionsWithHttpInfo(
         string $organizationId,
-        string $filterStatus = null,
-        string $filterId = null,
-        \Upsun\Model\StringFilter $filterProjectId = null,
-        \Upsun\Model\StringFilter $filterProjectTitle = null,
-        \Upsun\Model\StringFilter $filterRegion = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $filterStatus = null,
+        ?string $filterId = null,
+        ?\Upsun\Model\StringFilter $filterProjectId = null,
+        ?\Upsun\Model\StringFilter $filterProjectTitle = null,
+        ?\Upsun\Model\StringFilter $filterRegion = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListOrgSubscriptions200Response {
         $request = $this->listOrgSubscriptionsRequest(
             $organizationId,
@@ -1385,16 +1385,16 @@ final class SubscriptionsApi extends AbstractApi
      */
     public function listOrgSubscriptionsRequest(
         string $organizationId,
-        string $filterStatus = null,
-        string $filterId = null,
-        \Upsun\Model\StringFilter $filterProjectId = null,
-        \Upsun\Model\StringFilter $filterProjectTitle = null,
-        \Upsun\Model\StringFilter $filterRegion = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $filterStatus = null,
+        ?string $filterId = null,
+        ?\Upsun\Model\StringFilter $filterProjectId = null,
+        ?\Upsun\Model\StringFilter $filterProjectTitle = null,
+        ?\Upsun\Model\StringFilter $filterRegion = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -1774,7 +1774,7 @@ final class SubscriptionsApi extends AbstractApi
     public function updateOrgSubscriptionWithHttpInfo(
         string $organizationId,
         string $subscriptionId,
-        \Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
+        ?\Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
     ): \Upsun\Model\Subscription {
         $request = $this->updateOrgSubscriptionRequest(
             $organizationId,
@@ -1806,7 +1806,7 @@ final class SubscriptionsApi extends AbstractApi
     public function updateOrgSubscriptionRequest(
         string $organizationId,
         string $subscriptionId,
-        \Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
+        ?\Upsun\Model\UpdateOrgSubscriptionRequest $updateOrgSubscriptionRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

@@ -37,16 +37,16 @@ final class UpstreamRoutePatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $primary = null,
-        private readonly ?string $id = null,
-        private readonly ?string $productionUrl = null,
-        private readonly ?array $attributes = [],
-        private readonly string $type,
-        private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
-        private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
-        private readonly string $upstream,
-        private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+        private ?bool $primary = null,
+        private ?string $id = null,
+        private ?string $productionUrl = null,
+        private ?array $attributes = [],
+        private string $type,
+        private ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+        private ?\Upsun\Model\CacheConfiguration1 $cache = null,
+        private ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        private string $upstream,
+        private ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
     ) {
     }
 
@@ -71,42 +71,52 @@ final class UpstreamRoutePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPrimary(): ?bool
     public function getPrimary(): ?bool
     {
         return $this->primary;
     }
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getProductionUrl(): ?string
     public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
     }
+    //public function getAttributes(): ?[]
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
     public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
     {
         return $this->tls;
     }
+    //public function getCache(): ?\Upsun\Model\CacheConfiguration1
     public function getCache(): ?\Upsun\Model\CacheConfiguration1
     {
         return $this->cache;
     }
+    //public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
     public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
     {
         return $this->ssi;
     }
+    //public function getUpstream(): string
     public function getUpstream(): string
     {
         return $this->upstream;
     }
+    //public function getRedirects(): ?\Upsun\Model\TheConfigurationOfTheRedirects1
     public function getRedirects(): ?\Upsun\Model\TheConfigurationOfTheRedirects1
     {
         return $this->redirects;

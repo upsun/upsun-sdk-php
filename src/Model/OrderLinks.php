@@ -28,7 +28,7 @@ final class OrderLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
+        private ?\Upsun\Model\OrderLinksInvoices $invoices = null,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class OrderLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getInvoices(): ?\Upsun\Model\OrderLinksInvoices
     public function getInvoices(): ?\Upsun\Model\OrderLinksInvoices
     {
         return $this->invoices;

@@ -37,16 +37,16 @@ final class BitbucketIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?bool $fetchBranches = null,
-        private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
-        private readonly string $repository,
-        private readonly ?bool $buildPullRequests = null,
-        private readonly ?bool $pullRequestsCloneParentData = null,
-        private readonly ?bool $resyncPullRequests = null,
+        private string $type,
+        private ?bool $fetchBranches = null,
+        private ?bool $pruneBranches = null,
+        private ?string $environmentInitResources = null,
+        private ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
+        private ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
+        private string $repository,
+        private ?bool $buildPullRequests = null,
+        private ?bool $pullRequestsCloneParentData = null,
+        private ?bool $resyncPullRequests = null,
     ) {
     }
 
@@ -71,42 +71,52 @@ final class BitbucketIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getFetchBranches(): ?bool
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
+    //public function getPruneBranches(): ?bool
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
+    //public function getEnvironmentInitResources(): ?string
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
+    //public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
     public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
     {
         return $this->appCredentials;
     }
+    //public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
     public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
     {
         return $this->addonCredentials;
     }
+    //public function getRepository(): string
     public function getRepository(): string
     {
         return $this->repository;
     }
+    //public function getBuildPullRequests(): ?bool
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
+    //public function getPullRequestsCloneParentData(): ?bool
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
+    //public function getResyncPullRequests(): ?bool
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;

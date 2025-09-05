@@ -46,25 +46,25 @@ final class Activity implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $type,
-        private readonly object $parameters,
-        private readonly string $project,
-        private readonly ?string $integration = null,
-        private readonly ?array $environments = [],
-        private readonly string $state,
-        private readonly string $result,
-        private readonly \DateTime $startedAt,
-        private readonly \DateTime $completedAt,
-        private readonly int $completionPercent,
-        private readonly \DateTime $cancelledAt,
-        private readonly array $timings,
-        private readonly string $log,
-        private readonly object $payload,
-        private readonly string $description,
-        private readonly string $text,
-        private readonly \DateTime $expiresAt,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $type,
+        private object $parameters,
+        private string $project,
+        private ?string $integration = null,
+        private ?array $environments = [],
+        private string $state,
+        private string $result,
+        private \DateTime $startedAt,
+        private \DateTime $completedAt,
+        private int $completionPercent,
+        private \DateTime $cancelledAt,
+        private array $timings,
+        private string $log,
+        private object $payload,
+        private string $description,
+        private string $text,
+        private \DateTime $expiresAt,
     ) {
     }
 
@@ -98,78 +98,97 @@ final class Activity implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getParameters(): object
     public function getParameters(): object
     {
         return $this->parameters;
     }
+    //public function getProject(): string
     public function getProject(): string
     {
         return $this->project;
     }
+    //public function getIntegration(): ?string
     public function getIntegration(): ?string
     {
         return $this->integration;
     }
+    //public function getEnvironments(): ?[]
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
+    //public function getState(): string
     public function getState(): string
     {
         return $this->state;
     }
+    //public function getResult(): string
     public function getResult(): string
     {
         return $this->result;
     }
+    //public function getStartedAt(): \DateTime
     public function getStartedAt(): \DateTime
     {
         return $this->startedAt;
     }
+    //public function getCompletedAt(): \DateTime
     public function getCompletedAt(): \DateTime
     {
         return $this->completedAt;
     }
+    //public function getCompletionPercent(): int
     public function getCompletionPercent(): int
     {
         return $this->completionPercent;
     }
+    //public function getCancelledAt(): \DateTime
     public function getCancelledAt(): \DateTime
     {
         return $this->cancelledAt;
     }
+    //public function getTimings(): []
     public function getTimings(): array
     {
         return $this->timings;
     }
+    //public function getLog(): string
     public function getLog(): string
     {
         return $this->log;
     }
+    //public function getPayload(): object
     public function getPayload(): object
     {
         return $this->payload;
     }
+    //public function getDescription(): string
     public function getDescription(): string
     {
         return $this->description;
     }
+    //public function getText(): string
     public function getText(): string
     {
         return $this->text;
     }
+    //public function getExpiresAt(): \DateTime
     public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;

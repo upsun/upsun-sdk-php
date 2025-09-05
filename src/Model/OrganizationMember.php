@@ -36,15 +36,15 @@ final class OrganizationMember implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $userId = null,
-        private readonly ?array $permissions = [],
-        private readonly ?string $level = null,
-        private readonly ?bool $owner = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationMemberLinks $links = null,
+        private ?string $id = null,
+        private ?string $organizationId = null,
+        private ?string $userId = null,
+        private ?array $permissions = [],
+        private ?string $level = null,
+        private ?bool $owner = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?\Upsun\Model\OrganizationMemberLinks $links = null,
     ) {
     }
 
@@ -68,38 +68,47 @@ final class OrganizationMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getUserId(): ?string
     public function getUserId(): ?string
     {
         return $this->userId;
     }
+    //public function getPermissions(): ?[]
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
+    //public function getLevel(): ?string
     public function getLevel(): ?string
     {
         return $this->level;
     }
+    //public function getOwner(): ?bool
     public function getOwner(): ?bool
     {
         return $this->owner;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getLinks(): ?\Upsun\Model\OrganizationMemberLinks
     public function getLinks(): ?\Upsun\Model\OrganizationMemberLinks
     {
         return $this->links;

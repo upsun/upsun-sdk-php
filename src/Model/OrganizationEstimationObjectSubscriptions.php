@@ -29,9 +29,17 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     ];
 
     public function __construct(
-        private readonly ?string $total = null,
-        private readonly ?array $list = [],
+        private ?string $total = null,
+        private ?array $list = [],
     ) {
+        if ($this->list) {
+            $this->list = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner::class);
+            }, $this->list);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTotal(): ?string
     public function getTotal(): ?string
     {
         return $this->total;
     }
+    //public function getList(): ?[]
     public function getList(): ?array
     {
         return $this->list;

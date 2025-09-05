@@ -34,13 +34,13 @@ final class TeamProjectAccess implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $teamId = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $projectId = null,
-        private readonly ?string $projectTitle = null,
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+        private ?string $teamId = null,
+        private ?string $organizationId = null,
+        private ?string $projectId = null,
+        private ?string $projectTitle = null,
+        private ?\DateTime $grantedAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?\Upsun\Model\TeamProjectAccessLinks $links = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class TeamProjectAccess implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTeamId(): ?string
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getProjectId(): ?string
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
+    //public function getProjectTitle(): ?string
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
+    //public function getGrantedAt(): ?\DateTime
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
     public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
     {
         return $this->links;

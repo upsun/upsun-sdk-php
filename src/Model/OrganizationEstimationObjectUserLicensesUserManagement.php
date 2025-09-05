@@ -30,9 +30,9 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     ];
 
     public function __construct(
-        private readonly ?int $count = null,
-        private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
+        private ?int $count = null,
+        private ?string $total = null,
+        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCount(): ?int
     public function getCount(): ?int
     {
         return $this->count;
     }
+    //public function getTotal(): ?string
     public function getTotal(): ?string
     {
         return $this->total;
     }
+    //public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList
     public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList
     {
         return $this->list;

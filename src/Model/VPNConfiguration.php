@@ -41,20 +41,20 @@ final class VPNConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly int $version,
-        private readonly string $aggressive,
-        private readonly string $modeconfig,
-        private readonly string $authentication,
-        private readonly string $gatewayIp,
-        private readonly string $identity,
-        private readonly string $secondIdentity,
-        private readonly string $remoteIdentity,
-        private readonly array $remoteSubnets,
-        private readonly string $ike,
-        private readonly string $esp,
-        private readonly string $ikelifetime,
-        private readonly string $lifetime,
-        private readonly string $margintime,
+        private int $version,
+        private string $aggressive,
+        private string $modeconfig,
+        private string $authentication,
+        private string $gatewayIp,
+        private string $identity,
+        private string $secondIdentity,
+        private string $remoteIdentity,
+        private array $remoteSubnets,
+        private string $ike,
+        private string $esp,
+        private string $ikelifetime,
+        private string $lifetime,
+        private string $margintime,
     ) {
     }
 
@@ -83,58 +83,72 @@ final class VPNConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getVersion(): int
     public function getVersion(): int
     {
         return $this->version;
     }
+    //public function getAggressive(): string
     public function getAggressive(): string
     {
         return $this->aggressive;
     }
+    //public function getModeconfig(): string
     public function getModeconfig(): string
     {
         return $this->modeconfig;
     }
+    //public function getAuthentication(): string
     public function getAuthentication(): string
     {
         return $this->authentication;
     }
+    //public function getGatewayIp(): string
     public function getGatewayIp(): string
     {
         return $this->gatewayIp;
     }
+    //public function getIdentity(): string
     public function getIdentity(): string
     {
         return $this->identity;
     }
+    //public function getSecondIdentity(): string
     public function getSecondIdentity(): string
     {
         return $this->secondIdentity;
     }
+    //public function getRemoteIdentity(): string
     public function getRemoteIdentity(): string
     {
         return $this->remoteIdentity;
     }
+    //public function getRemoteSubnets(): []
     public function getRemoteSubnets(): array
     {
         return $this->remoteSubnets;
     }
+    //public function getIke(): string
     public function getIke(): string
     {
         return $this->ike;
     }
+    //public function getEsp(): string
     public function getEsp(): string
     {
         return $this->esp;
     }
+    //public function getIkelifetime(): string
     public function getIkelifetime(): string
     {
         return $this->ikelifetime;
     }
+    //public function getLifetime(): string
     public function getLifetime(): string
     {
         return $this->lifetime;
     }
+    //public function getMargintime(): string
     public function getMargintime(): string
     {
         return $this->margintime;

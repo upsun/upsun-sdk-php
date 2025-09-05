@@ -29,8 +29,8 @@ final class SubscriptionAddonsObjectCurrent implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $continuousProfiling = [],
-        private readonly ?array $projectSupportLevel = [],
+        private ?array $continuousProfiling = [],
+        private ?array $projectSupportLevel = [],
     ) {
     }
 
@@ -47,10 +47,12 @@ final class SubscriptionAddonsObjectCurrent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getContinuousProfiling(): ?[]
     public function getContinuousProfiling(): ?array
     {
         return $this->continuousProfiling;
     }
+    //public function getProjectSupportLevel(): ?[]
     public function getProjectSupportLevel(): ?array
     {
         return $this->projectSupportLevel;

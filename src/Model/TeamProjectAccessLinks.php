@@ -30,9 +30,9 @@ final class TeamProjectAccessLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
+        private ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
+        private ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
+        private ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class TeamProjectAccessLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSelf(): ?\Upsun\Model\TeamProjectAccessLinksSelf
     public function getSelf(): ?\Upsun\Model\TeamProjectAccessLinksSelf
     {
         return $this->self;
     }
+    //public function getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
     public function getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
     {
         return $this->update;
     }
+    //public function getDelete(): ?\Upsun\Model\TeamProjectAccessLinksDelete
     public function getDelete(): ?\Upsun\Model\TeamProjectAccessLinksDelete
     {
         return $this->delete;

@@ -29,8 +29,8 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     ];
 
     public function __construct(
-        private readonly string $socketFamily,
-        private readonly string $protocol,
+        private string $socketFamily,
+        private string $protocol,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSocketFamily(): string
     public function getSocketFamily(): string
     {
         return $this->socketFamily;
     }
+    //public function getProtocol(): string
     public function getProtocol(): string
     {
         return $this->protocol;

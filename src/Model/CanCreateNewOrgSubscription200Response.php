@@ -30,9 +30,9 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $canCreate = null,
-        private readonly ?string $message = null,
-        private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
+        private ?bool $canCreate = null,
+        private ?string $message = null,
+        private ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCanCreate(): ?bool
     public function getCanCreate(): ?bool
     {
         return $this->canCreate;
     }
+    //public function getMessage(): ?string
     public function getMessage(): ?string
     {
         return $this->message;
     }
+    //public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
     public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
     {
         return $this->requiredAction;

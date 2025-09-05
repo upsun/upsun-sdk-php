@@ -30,9 +30,9 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $enabled = null,
-        private readonly ?bool $includeSubdomains = null,
-        private readonly ?bool $preload = null,
+        private ?bool $enabled = null,
+        private ?bool $includeSubdomains = null,
+        private ?bool $preload = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEnabled(): ?bool
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
+    //public function getIncludeSubdomains(): ?bool
     public function getIncludeSubdomains(): ?bool
     {
         return $this->includeSubdomains;
     }
+    //public function getPreload(): ?bool
     public function getPreload(): ?bool
     {
         return $this->preload;

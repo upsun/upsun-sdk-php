@@ -39,18 +39,18 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $projectTitle = null,
-        private readonly ?string $plan = null,
-        private readonly ?string $timezone = null,
-        private readonly ?int $environments = null,
-        private readonly ?int $storage = null,
-        private readonly ?string $bigDev = null,
-        private readonly ?string $bigDevService = null,
-        private readonly ?string $backups = null,
-        private readonly ?string $observabilitySuite = null,
-        private readonly ?string $blackfire = null,
-        private readonly ?string $continuousProfiling = null,
-        private readonly ?string $projectSupportLevel = null,
+        private ?string $projectTitle = null,
+        private ?string $plan = null,
+        private ?string $timezone = null,
+        private ?int $environments = null,
+        private ?int $storage = null,
+        private ?string $bigDev = null,
+        private ?string $bigDevService = null,
+        private ?string $backups = null,
+        private ?string $observabilitySuite = null,
+        private ?string $blackfire = null,
+        private ?string $continuousProfiling = null,
+        private ?string $projectSupportLevel = null,
     ) {
     }
 
@@ -77,50 +77,62 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getProjectTitle(): ?string
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
+    //public function getPlan(): ?string
     public function getPlan(): ?string
     {
         return $this->plan;
     }
+    //public function getTimezone(): ?string
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
+    //public function getEnvironments(): ?int
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
+    //public function getStorage(): ?int
     public function getStorage(): ?int
     {
         return $this->storage;
     }
+    //public function getBigDev(): ?string
     public function getBigDev(): ?string
     {
         return $this->bigDev;
     }
+    //public function getBigDevService(): ?string
     public function getBigDevService(): ?string
     {
         return $this->bigDevService;
     }
+    //public function getBackups(): ?string
     public function getBackups(): ?string
     {
         return $this->backups;
     }
+    //public function getObservabilitySuite(): ?string
     public function getObservabilitySuite(): ?string
     {
         return $this->observabilitySuite;
     }
+    //public function getBlackfire(): ?string
     public function getBlackfire(): ?string
     {
         return $this->blackfire;
     }
+    //public function getContinuousProfiling(): ?string
     public function getContinuousProfiling(): ?string
     {
         return $this->continuousProfiling;
     }
+    //public function getProjectSupportLevel(): ?string
     public function getProjectSupportLevel(): ?string
     {
         return $this->projectSupportLevel;

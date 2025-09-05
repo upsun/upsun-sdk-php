@@ -93,19 +93,19 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketsWithHttpInfo(
-        int $filterTicketId = null,
-        \DateTime $filterCreated = null,
-        \DateTime $filterUpdated = null,
-        string $filterType = null,
-        string $filterPriority = null,
-        string $filterStatus = null,
-        string $filterRequesterId = null,
-        string $filterSubmitterId = null,
-        string $filterAssigneeId = null,
-        bool $filterHasIncidents = null,
-        \DateTime $filterDue = null,
-        string $search = null,
-        int $page = null
+        ?int $filterTicketId = null,
+        ?\DateTime $filterCreated = null,
+        ?\DateTime $filterUpdated = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
+        ?\DateTime $filterDue = null,
+        ?string $search = null,
+        ?int $page = null
     ): \Upsun\Model\ListTickets200Response {
         $request = $this->listTicketsRequest(
             $filterTicketId,
@@ -145,19 +145,19 @@ final class DefaultApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listTicketsRequest(
-        int $filterTicketId = null,
-        \DateTime $filterCreated = null,
-        \DateTime $filterUpdated = null,
-        string $filterType = null,
-        string $filterPriority = null,
-        string $filterStatus = null,
-        string $filterRequesterId = null,
-        string $filterSubmitterId = null,
-        string $filterAssigneeId = null,
-        bool $filterHasIncidents = null,
-        \DateTime $filterDue = null,
-        string $search = null,
-        int $page = null
+        ?int $filterTicketId = null,
+        ?\DateTime $filterCreated = null,
+        ?\DateTime $filterUpdated = null,
+        ?string $filterType = null,
+        ?string $filterPriority = null,
+        ?string $filterStatus = null,
+        ?string $filterRequesterId = null,
+        ?string $filterSubmitterId = null,
+        ?string $filterAssigneeId = null,
+        ?bool $filterHasIncidents = null,
+        ?\DateTime $filterDue = null,
+        ?string $search = null,
+        ?int $page = null
     ): RequestInterface {
 
         $resourcePath = '/tickets';

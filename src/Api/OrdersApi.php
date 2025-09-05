@@ -353,7 +353,7 @@ final class OrdersApi extends AbstractApi
     public function getOrgOrderWithHttpInfo(
         string $organizationId,
         string $orderId,
-        string $mode = null
+        ?string $mode = null
     ): \Upsun\Model\Order {
         $request = $this->getOrgOrderRequest(
             $organizationId,
@@ -385,7 +385,7 @@ final class OrdersApi extends AbstractApi
     public function getOrgOrderRequest(
         string $organizationId,
         string $orderId,
-        string $mode = null
+        ?string $mode = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -523,10 +523,10 @@ final class OrdersApi extends AbstractApi
      */
     public function listOrgOrdersWithHttpInfo(
         string $organizationId,
-        string $filterStatus = null,
-        int $filterTotal = null,
-        int $page = null,
-        string $mode = null
+        ?string $filterStatus = null,
+        ?int $filterTotal = null,
+        ?int $page = null,
+        ?string $mode = null
     ): \Upsun\Model\ListOrgOrders200Response {
         $request = $this->listOrgOrdersRequest(
             $organizationId,
@@ -559,10 +559,10 @@ final class OrdersApi extends AbstractApi
      */
     public function listOrgOrdersRequest(
         string $organizationId,
-        string $filterStatus = null,
-        int $filterTotal = null,
-        int $page = null,
-        string $mode = null
+        ?string $filterStatus = null,
+        ?int $filterTotal = null,
+        ?int $page = null,
+        ?string $mode = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

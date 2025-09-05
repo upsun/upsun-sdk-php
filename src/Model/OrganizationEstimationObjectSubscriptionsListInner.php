@@ -31,10 +31,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     ];
 
     public function __construct(
-        private readonly ?string $licenseId = null,
-        private readonly ?string $projectTitle = null,
-        private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+        private ?string $licenseId = null,
+        private ?string $projectTitle = null,
+        private ?string $total = null,
+        private ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getLicenseId(): ?string
     public function getLicenseId(): ?string
     {
         return $this->licenseId;
     }
+    //public function getProjectTitle(): ?string
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
+    //public function getTotal(): ?string
     public function getTotal(): ?string
     {
         return $this->total;
     }
+    //public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
     public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
     {
         return $this->usage;

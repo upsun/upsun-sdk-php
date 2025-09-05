@@ -32,11 +32,11 @@ final class CreateOrgRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?string $ownerId = null,
-        private readonly ?string $name = null,
-        private readonly string $label,
-        private readonly ?string $country = null,
+        private ?string $type = null,
+        private ?string $ownerId = null,
+        private ?string $name = null,
+        private string $label,
+        private ?string $country = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class CreateOrgRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getOwnerId(): ?string
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getLabel(): string
     public function getLabel(): string
     {
         return $this->label;
     }
+    //public function getCountry(): ?string
     public function getCountry(): ?string
     {
         return $this->country;

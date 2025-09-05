@@ -39,18 +39,18 @@ final class Subscription1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $licenseUri,
-        private readonly ?string $plan = null,
-        private readonly ?int $environments = null,
-        private readonly int $storage,
-        private readonly int $includedUsers,
-        private readonly string $subscriptionManagementUri,
-        private readonly bool $restricted,
-        private readonly bool $suspended,
-        private readonly int $userLicenses,
-        private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
-        private readonly ?string $resourceValidationUrl = null,
-        private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
+        private string $licenseUri,
+        private ?string $plan = null,
+        private ?int $environments = null,
+        private int $storage,
+        private int $includedUsers,
+        private string $subscriptionManagementUri,
+        private bool $restricted,
+        private bool $suspended,
+        private int $userLicenses,
+        private ?\Upsun\Model\ResourcesLimits $resources = null,
+        private ?string $resourceValidationUrl = null,
+        private ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
     ) {
     }
 
@@ -77,50 +77,62 @@ final class Subscription1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getLicenseUri(): string
     public function getLicenseUri(): string
     {
         return $this->licenseUri;
     }
+    //public function getPlan(): ?string
     public function getPlan(): ?string
     {
         return $this->plan;
     }
+    //public function getEnvironments(): ?int
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
+    //public function getStorage(): int
     public function getStorage(): int
     {
         return $this->storage;
     }
+    //public function getIncludedUsers(): int
     public function getIncludedUsers(): int
     {
         return $this->includedUsers;
     }
+    //public function getSubscriptionManagementUri(): string
     public function getSubscriptionManagementUri(): string
     {
         return $this->subscriptionManagementUri;
     }
+    //public function getRestricted(): bool
     public function getRestricted(): bool
     {
         return $this->restricted;
     }
+    //public function getSuspended(): bool
     public function getSuspended(): bool
     {
         return $this->suspended;
     }
+    //public function getUserLicenses(): int
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
     }
+    //public function getResources(): ?\Upsun\Model\ResourcesLimits
     public function getResources(): ?\Upsun\Model\ResourcesLimits
     {
         return $this->resources;
     }
+    //public function getResourceValidationUrl(): ?string
     public function getResourceValidationUrl(): ?string
     {
         return $this->resourceValidationUrl;
     }
+    //public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
     public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
     {
         return $this->imageTypes;

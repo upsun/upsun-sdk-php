@@ -32,11 +32,11 @@ final class HttpLogIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?array $extra = [],
-        private readonly string $url,
-        private readonly ?array $headers = [],
-        private readonly ?bool $tlsVerify = null,
+        private string $type,
+        private ?array $extra = [],
+        private string $url,
+        private ?array $headers = [],
+        private ?bool $tlsVerify = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class HttpLogIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getExtra(): ?[]
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+    //public function getUrl(): string
     public function getUrl(): string
     {
         return $this->url;
     }
+    //public function getHeaders(): ?[]
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
+    //public function getTlsVerify(): ?bool
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;

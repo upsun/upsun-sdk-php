@@ -38,17 +38,17 @@ final class Discount implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $id = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $type = null,
-        private readonly ?string $typeLabel = null,
-        private readonly ?string $status = null,
-        private readonly ?\Upsun\Model\DiscountCommitment $commitment = null,
-        private readonly ?int $totalMonths = null,
-        private readonly ?\Upsun\Model\DiscountDiscount $discount = null,
-        private readonly ?object $config = null,
-        private readonly ?\DateTime $startAt = null,
-        private readonly ?\DateTime $endAt = null,
+        private ?int $id = null,
+        private ?string $organizationId = null,
+        private ?string $type = null,
+        private ?string $typeLabel = null,
+        private ?string $status = null,
+        private ?\Upsun\Model\DiscountCommitment $commitment = null,
+        private ?int $totalMonths = null,
+        private ?\Upsun\Model\DiscountDiscount $discount = null,
+        private ?object $config = null,
+        private ?\DateTime $startAt = null,
+        private ?\DateTime $endAt = null,
     ) {
     }
 
@@ -74,46 +74,57 @@ final class Discount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?int
     public function getId(): ?int
     {
         return $this->id;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getTypeLabel(): ?string
     public function getTypeLabel(): ?string
     {
         return $this->typeLabel;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getCommitment(): ?\Upsun\Model\DiscountCommitment
     public function getCommitment(): ?\Upsun\Model\DiscountCommitment
     {
         return $this->commitment;
     }
+    //public function getTotalMonths(): ?int
     public function getTotalMonths(): ?int
     {
         return $this->totalMonths;
     }
+    //public function getDiscount(): ?\Upsun\Model\DiscountDiscount
     public function getDiscount(): ?\Upsun\Model\DiscountDiscount
     {
         return $this->discount;
     }
+    //public function getConfig(): ?object
     public function getConfig(): ?object
     {
         return $this->config;
     }
+    //public function getStartAt(): ?\DateTime
     public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
+    //public function getEndAt(): ?\DateTime
     public function getEndAt(): ?\DateTime
     {
         return $this->endAt;

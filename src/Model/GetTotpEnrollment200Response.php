@@ -31,10 +31,10 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $issuer = null,
-        private readonly ?string $accountName = null,
-        private readonly ?string $secret = null,
-        private readonly ?string $qrCode = null,
+        private ?string $issuer = null,
+        private ?string $accountName = null,
+        private ?string $secret = null,
+        private ?string $qrCode = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class GetTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getIssuer(): ?string
     public function getIssuer(): ?string
     {
         return $this->issuer;
     }
+    //public function getAccountName(): ?string
     public function getAccountName(): ?string
     {
         return $this->accountName;
     }
+    //public function getSecret(): ?string
     public function getSecret(): ?string
     {
         return $this->secret;
     }
+    //public function getQrCode(): ?string
     public function getQrCode(): ?string
     {
         return $this->qrCode;

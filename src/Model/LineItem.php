@@ -36,16 +36,24 @@ final class LineItem implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?float $licenseId = null,
-        private readonly ?string $projectId = null,
-        private readonly ?string $product = null,
-        private readonly ?string $sku = null,
-        private readonly ?float $total = null,
-        private readonly ?string $totalFormatted = null,
-        private readonly ?array $components = [],
-        private readonly ?bool $excludeFromInvoice = null,
+        private ?string $type = null,
+        private ?float $licenseId = null,
+        private ?string $projectId = null,
+        private ?string $product = null,
+        private ?string $sku = null,
+        private ?float $total = null,
+        private ?string $totalFormatted = null,
+        private ?array $components = [],
+        private ?bool $excludeFromInvoice = null,
     ) {
+        if ($this->components) {
+            $this->components = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\LineItemComponent) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\LineItemComponent::class);
+            }, $this->components);
+        }
     }
 
     public function jsonSerialize(): array
@@ -68,38 +76,47 @@ final class LineItem implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getLicenseId(): ?float
     public function getLicenseId(): ?float
     {
         return $this->licenseId;
     }
+    //public function getProjectId(): ?string
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
+    //public function getProduct(): ?string
     public function getProduct(): ?string
     {
         return $this->product;
     }
+    //public function getSku(): ?string
     public function getSku(): ?string
     {
         return $this->sku;
     }
+    //public function getTotal(): ?float
     public function getTotal(): ?float
     {
         return $this->total;
     }
+    //public function getTotalFormatted(): ?string
     public function getTotalFormatted(): ?string
     {
         return $this->totalFormatted;
     }
+    //public function getComponents(): ?[]
     public function getComponents(): ?array
     {
         return $this->components;
     }
+    //public function getExcludeFromInvoice(): ?bool
     public function getExcludeFromInvoice(): ?bool
     {
         return $this->excludeFromInvoice;

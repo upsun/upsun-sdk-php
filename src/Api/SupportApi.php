@@ -69,7 +69,7 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createTicketWithHttpInfo(
-        \Upsun\Model\CreateTicketRequest $createTicketRequest = null
+        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
     ): \Upsun\Model\Ticket {
         $request = $this->createTicketRequest(
             $createTicketRequest
@@ -97,7 +97,7 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createTicketRequest(
-        \Upsun\Model\CreateTicketRequest $createTicketRequest = null
+        ?\Upsun\Model\CreateTicketRequest $createTicketRequest = null
     ): RequestInterface {
 
         $resourcePath = '/tickets';
@@ -187,8 +187,8 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketCategoriesWithHttpInfo(
-        string $subscriptionId = null,
-        string $organizationId = null
+        ?string $subscriptionId = null,
+        ?string $organizationId = null
     ): array {
         $request = $this->listTicketCategoriesRequest(
             $subscriptionId,
@@ -217,8 +217,8 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listTicketCategoriesRequest(
-        string $subscriptionId = null,
-        string $organizationId = null
+        ?string $subscriptionId = null,
+        ?string $organizationId = null
     ): RequestInterface {
 
         $resourcePath = '/tickets/category';
@@ -324,8 +324,8 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTicketPrioritiesWithHttpInfo(
-        string $subscriptionId = null,
-        string $category = null
+        ?string $subscriptionId = null,
+        ?string $category = null
     ): array {
         $request = $this->listTicketPrioritiesRequest(
             $subscriptionId,
@@ -354,8 +354,8 @@ final class SupportApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listTicketPrioritiesRequest(
-        string $subscriptionId = null,
-        string $category = null
+        ?string $subscriptionId = null,
+        ?string $category = null
     ): RequestInterface {
 
         $resourcePath = '/tickets/priority';
@@ -462,7 +462,7 @@ final class SupportApi extends AbstractApi
      */
     public function updateTicketWithHttpInfo(
         string $ticketId,
-        \Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
+        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
     ): \Upsun\Model\Ticket {
         $request = $this->updateTicketRequest(
             $ticketId,
@@ -492,7 +492,7 @@ final class SupportApi extends AbstractApi
      */
     public function updateTicketRequest(
         string $ticketId,
-        \Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
+        ?\Upsun\Model\UpdateTicketRequest $updateTicketRequest = null
     ): RequestInterface {
         // verify the required parameter 'ticketId' is set
         if (

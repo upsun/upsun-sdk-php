@@ -37,16 +37,16 @@ final class SyslogIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?array $extra = [],
-        private readonly ?string $host = null,
-        private readonly ?int $port = null,
-        private readonly ?string $protocol = null,
-        private readonly ?int $facility = null,
-        private readonly ?string $messageFormat = null,
-        private readonly ?string $authToken = null,
-        private readonly ?string $authMode = null,
-        private readonly ?bool $tlsVerify = null,
+        private string $type,
+        private ?array $extra = [],
+        private ?string $host = null,
+        private ?int $port = null,
+        private ?string $protocol = null,
+        private ?int $facility = null,
+        private ?string $messageFormat = null,
+        private ?string $authToken = null,
+        private ?string $authMode = null,
+        private ?bool $tlsVerify = null,
     ) {
     }
 
@@ -71,42 +71,52 @@ final class SyslogIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getExtra(): ?[]
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+    //public function getHost(): ?string
     public function getHost(): ?string
     {
         return $this->host;
     }
+    //public function getPort(): ?int
     public function getPort(): ?int
     {
         return $this->port;
     }
+    //public function getProtocol(): ?string
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
+    //public function getFacility(): ?int
     public function getFacility(): ?int
     {
         return $this->facility;
     }
+    //public function getMessageFormat(): ?string
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
+    //public function getAuthToken(): ?string
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
+    //public function getAuthMode(): ?string
     public function getAuthMode(): ?string
     {
         return $this->authMode;
     }
+    //public function getTlsVerify(): ?bool
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;

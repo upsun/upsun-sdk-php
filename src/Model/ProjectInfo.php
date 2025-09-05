@@ -33,12 +33,12 @@ final class ProjectInfo implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $title,
-        private readonly string $name,
-        private readonly string $namespace,
-        private readonly string $organization,
-        private readonly object $capabilities,
-        private readonly object $settings,
+        private string $title,
+        private string $name,
+        private string $namespace,
+        private string $organization,
+        private object $capabilities,
+        private object $settings,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class ProjectInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTitle(): string
     public function getTitle(): string
     {
         return $this->title;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getNamespace(): string
     public function getNamespace(): string
     {
         return $this->namespace;
     }
+    //public function getOrganization(): string
     public function getOrganization(): string
     {
         return $this->organization;
     }
+    //public function getCapabilities(): object
     public function getCapabilities(): object
     {
         return $this->capabilities;
     }
+    //public function getSettings(): object
     public function getSettings(): object
     {
         return $this->settings;

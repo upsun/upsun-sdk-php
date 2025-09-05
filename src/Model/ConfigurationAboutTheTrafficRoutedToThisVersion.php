@@ -28,7 +28,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
     ];
 
     public function __construct(
-        private readonly int $percentage,
+        private int $percentage,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPercentage(): int
     public function getPercentage(): int
     {
         return $this->percentage;

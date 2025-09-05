@@ -31,10 +31,10 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $formatted = null,
-        private readonly ?string $month = null,
-        private readonly ?string $year = null,
-        private readonly ?string $nextMonth = null,
+        private ?string $formatted = null,
+        private ?string $month = null,
+        private ?string $year = null,
+        private ?string $nextMonth = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class OrderBillingPeriodLabel implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getFormatted(): ?string
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
+    //public function getMonth(): ?string
     public function getMonth(): ?string
     {
         return $this->month;
     }
+    //public function getYear(): ?string
     public function getYear(): ?string
     {
         return $this->year;
     }
+    //public function getNextMonth(): ?string
     public function getNextMonth(): ?string
     {
         return $this->nextMonth;

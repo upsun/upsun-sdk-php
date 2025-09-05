@@ -37,17 +37,25 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     ];
 
     public function __construct(
-        private readonly array $locations,
-        private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-        private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
-        private readonly ?string $documentRoot = null,
-        private readonly ?string $passthru = null,
-        private readonly ?array $indexFiles = [],
-        private readonly ?array $whitelist = [],
-        private readonly ?array $blacklist = [],
-        private readonly ?string $expires = null,
-        private readonly bool $moveToRoot,
+        private array $locations,
+        private ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
+        private ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
+        private ?string $documentRoot = null,
+        private ?string $passthru = null,
+        private ?array $indexFiles = [],
+        private ?array $whitelist = [],
+        private ?array $blacklist = [],
+        private ?string $expires = null,
+        private bool $moveToRoot,
     ) {
+        if ($this->locations) {
+            $this->locations = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class);
+            }, $this->locations);
+        }
     }
 
     public function jsonSerialize(): array
@@ -71,42 +79,52 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getLocations(): []
     public function getLocations(): array
     {
         return $this->locations;
     }
+    //public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
     public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
     {
         return $this->commands;
     }
+    //public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
     public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
     {
         return $this->upstream;
     }
+    //public function getDocumentRoot(): ?string
     public function getDocumentRoot(): ?string
     {
         return $this->documentRoot;
     }
+    //public function getPassthru(): ?string
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
+    //public function getIndexFiles(): ?[]
     public function getIndexFiles(): ?array
     {
         return $this->indexFiles;
     }
+    //public function getWhitelist(): ?[]
     public function getWhitelist(): ?array
     {
         return $this->whitelist;
     }
+    //public function getBlacklist(): ?[]
     public function getBlacklist(): ?array
     {
         return $this->blacklist;
     }
+    //public function getExpires(): ?string
     public function getExpires(): ?string
     {
         return $this->expires;
     }
+    //public function getMoveToRoot(): bool
     public function getMoveToRoot(): bool
     {
         return $this->moveToRoot;

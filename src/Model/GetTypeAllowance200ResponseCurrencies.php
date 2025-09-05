@@ -32,11 +32,11 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
+        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
+        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
+        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
+        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
+        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEUR(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR
     public function getEUR(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR
     {
         return $this->eUR;
     }
+    //public function getUSD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD
     public function getUSD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD
     {
         return $this->uSD;
     }
+    //public function getGBP(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP
     public function getGBP(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP
     {
         return $this->gBP;
     }
+    //public function getAUD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD
     public function getAUD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD
     {
         return $this->aUD;
     }
+    //public function getCAD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD
     public function getCAD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD
     {
         return $this->cAD;

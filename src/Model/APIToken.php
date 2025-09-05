@@ -34,13 +34,13 @@ final class APIToken implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $name = null,
-        private readonly ?bool $mfaOnCreation = null,
-        private readonly ?string $token = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\DateTime $lastUsedAt = null,
+        private ?string $id = null,
+        private ?string $name = null,
+        private ?bool $mfaOnCreation = null,
+        private ?string $token = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?\DateTime $lastUsedAt = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class APIToken implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getMfaOnCreation(): ?bool
     public function getMfaOnCreation(): ?bool
     {
         return $this->mfaOnCreation;
     }
+    //public function getToken(): ?string
     public function getToken(): ?string
     {
         return $this->token;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getLastUsedAt(): ?\DateTime
     public function getLastUsedAt(): ?\DateTime
     {
         return $this->lastUsedAt;

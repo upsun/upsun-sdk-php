@@ -28,7 +28,7 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly array $supportedRuntimes,
+        private array $supportedRuntimes,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSupportedRuntimes(): []
     public function getSupportedRuntimes(): array
     {
         return $this->supportedRuntimes;

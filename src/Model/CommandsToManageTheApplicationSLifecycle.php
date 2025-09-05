@@ -29,8 +29,8 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $preStart = null,
-        private readonly ?string $start = null,
+        private ?string $preStart = null,
+        private ?string $start = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPreStart(): ?string
     public function getPreStart(): ?string
     {
         return $this->preStart;
     }
+    //public function getStart(): ?string
     public function getStart(): ?string
     {
         return $this->start;

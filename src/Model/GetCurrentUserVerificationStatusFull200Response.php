@@ -29,8 +29,8 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     ];
 
     public function __construct(
-        private readonly ?bool $state = null,
-        private readonly ?string $type = null,
+        private ?bool $state = null,
+        private ?string $type = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getState(): ?bool
     public function getState(): ?bool
     {
         return $this->state;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;

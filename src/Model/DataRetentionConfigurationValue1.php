@@ -29,8 +29,8 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $maxBackups = null,
-        private readonly \Upsun\Model\DefaultConfig1 $defaultConfig,
+        private ?int $maxBackups = null,
+        private \Upsun\Model\DefaultConfig1 $defaultConfig,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getMaxBackups(): ?int
     public function getMaxBackups(): ?int
     {
         return $this->maxBackups;
     }
+    //public function getDefaultConfig(): \Upsun\Model\DefaultConfig1
     public function getDefaultConfig(): \Upsun\Model\DefaultConfig1
     {
         return $this->defaultConfig;

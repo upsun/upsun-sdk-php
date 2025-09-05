@@ -33,12 +33,12 @@ final class SSHKey implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $keyId = null,
-        private readonly ?int $uid = null,
-        private readonly ?string $fingerprint = null,
-        private readonly ?string $title = null,
-        private readonly ?string $value = null,
-        private readonly ?string $changed = null,
+        private ?int $keyId = null,
+        private ?int $uid = null,
+        private ?string $fingerprint = null,
+        private ?string $title = null,
+        private ?string $value = null,
+        private ?string $changed = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class SSHKey implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getKeyId(): ?int
     public function getKeyId(): ?int
     {
         return $this->keyId;
     }
+    //public function getUid(): ?int
     public function getUid(): ?int
     {
         return $this->uid;
     }
+    //public function getFingerprint(): ?string
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;
     }
+    //public function getValue(): ?string
     public function getValue(): ?string
     {
         return $this->value;
     }
+    //public function getChanged(): ?string
     public function getChanged(): ?string
     {
         return $this->changed;

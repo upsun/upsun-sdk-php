@@ -35,15 +35,23 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly string $deployHost,
-        private readonly array $docroots,
-        private readonly object $siteUrls,
-        private readonly array $sshHosts,
-        private readonly bool $maintenanceMode,
-        private readonly ?object $enterpriseEnvironmentsMapping = null,
+        private string $type,
+        private string $name,
+        private string $deployHost,
+        private array $docroots,
+        private object $siteUrls,
+        private array $sshHosts,
+        private bool $maintenanceMode,
+        private ?object $enterpriseEnvironmentsMapping = null,
     ) {
+        if ($this->docroots) {
+            $this->docroots = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue::class);
+            }, $this->docroots);
+        }
     }
 
     public function jsonSerialize(): array
@@ -65,34 +73,42 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getDeployHost(): string
     public function getDeployHost(): string
     {
         return $this->deployHost;
     }
+    //public function getDocroots(): []
     public function getDocroots(): array
     {
         return $this->docroots;
     }
+    //public function getSiteUrls(): object
     public function getSiteUrls(): object
     {
         return $this->siteUrls;
     }
+    //public function getSshHosts(): []
     public function getSshHosts(): array
     {
         return $this->sshHosts;
     }
+    //public function getMaintenanceMode(): bool
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
+    //public function getEnterpriseEnvironmentsMapping(): ?object
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;

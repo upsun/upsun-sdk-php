@@ -47,26 +47,26 @@ final class CurrentUserProjectsInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $name = null,
-        private readonly ?string $title = null,
-        private readonly ?string $cluster = null,
-        private readonly ?string $clusterLabel = null,
-        private readonly ?string $region = null,
-        private readonly ?string $regionLabel = null,
-        private readonly ?string $uri = null,
-        private readonly ?string $endpoint = null,
-        private readonly ?int $licenseId = null,
-        private readonly ?string $owner = null,
-        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
-        private readonly ?string $plan = null,
-        private readonly ?int $subscriptionId = null,
-        private readonly ?string $status = null,
-        private readonly ?string $vendor = null,
-        private readonly ?string $vendorLabel = null,
-        private readonly ?string $vendorWebsite = null,
-        private readonly ?string $vendorResources = null,
-        private readonly ?\DateTime $createdAt = null,
+        private ?string $id = null,
+        private ?string $name = null,
+        private ?string $title = null,
+        private ?string $cluster = null,
+        private ?string $clusterLabel = null,
+        private ?string $region = null,
+        private ?string $regionLabel = null,
+        private ?string $uri = null,
+        private ?string $endpoint = null,
+        private ?int $licenseId = null,
+        private ?string $owner = null,
+        private ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private ?string $plan = null,
+        private ?int $subscriptionId = null,
+        private ?string $status = null,
+        private ?string $vendor = null,
+        private ?string $vendorLabel = null,
+        private ?string $vendorWebsite = null,
+        private ?string $vendorResources = null,
+        private ?\DateTime $createdAt = null,
     ) {
     }
 
@@ -101,82 +101,102 @@ final class CurrentUserProjectsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;
     }
+    //public function getCluster(): ?string
     public function getCluster(): ?string
     {
         return $this->cluster;
     }
+    //public function getClusterLabel(): ?string
     public function getClusterLabel(): ?string
     {
         return $this->clusterLabel;
     }
+    //public function getRegion(): ?string
     public function getRegion(): ?string
     {
         return $this->region;
     }
+    //public function getRegionLabel(): ?string
     public function getRegionLabel(): ?string
     {
         return $this->regionLabel;
     }
+    //public function getUri(): ?string
     public function getUri(): ?string
     {
         return $this->uri;
     }
+    //public function getEndpoint(): ?string
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
+    //public function getLicenseId(): ?int
     public function getLicenseId(): ?int
     {
         return $this->licenseId;
     }
+    //public function getOwner(): ?string
     public function getOwner(): ?string
     {
         return $this->owner;
     }
+    //public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
     public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
     {
         return $this->ownerInfo;
     }
+    //public function getPlan(): ?string
     public function getPlan(): ?string
     {
         return $this->plan;
     }
+    //public function getSubscriptionId(): ?int
     public function getSubscriptionId(): ?int
     {
         return $this->subscriptionId;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getVendor(): ?string
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
+    //public function getVendorLabel(): ?string
     public function getVendorLabel(): ?string
     {
         return $this->vendorLabel;
     }
+    //public function getVendorWebsite(): ?string
     public function getVendorWebsite(): ?string
     {
         return $this->vendorWebsite;
     }
+    //public function getVendorResources(): ?string
     public function getVendorResources(): ?string
     {
         return $this->vendorResources;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;

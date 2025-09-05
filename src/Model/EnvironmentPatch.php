@@ -36,15 +36,15 @@ final class EnvironmentPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $name = null,
-        private readonly ?string $title = null,
-        private readonly ?array $attributes = [],
-        private readonly ?string $type = null,
-        private readonly ?string $parent = null,
-        private readonly ?bool $cloneParentOnCreate = null,
-        private readonly ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
-        private readonly ?bool $enableSmtp = null,
-        private readonly ?bool $restrictRobots = null,
+        private ?string $name = null,
+        private ?string $title = null,
+        private ?array $attributes = [],
+        private ?string $type = null,
+        private ?string $parent = null,
+        private ?bool $cloneParentOnCreate = null,
+        private ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
+        private ?bool $enableSmtp = null,
+        private ?bool $restrictRobots = null,
     ) {
     }
 
@@ -68,38 +68,47 @@ final class EnvironmentPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;
     }
+    //public function getAttributes(): ?[]
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getParent(): ?string
     public function getParent(): ?string
     {
         return $this->parent;
     }
+    //public function getCloneParentOnCreate(): ?bool
     public function getCloneParentOnCreate(): ?bool
     {
         return $this->cloneParentOnCreate;
     }
+    //public function getHttpAccess(): ?\Upsun\Model\HttpAccessPermissions1
     public function getHttpAccess(): ?\Upsun\Model\HttpAccessPermissions1
     {
         return $this->httpAccess;
     }
+    //public function getEnableSmtp(): ?bool
     public function getEnableSmtp(): ?bool
     {
         return $this->enableSmtp;
     }
+    //public function getRestrictRobots(): ?bool
     public function getRestrictRobots(): ?bool
     {
         return $this->restrictRobots;

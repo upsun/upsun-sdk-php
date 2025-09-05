@@ -30,10 +30,18 @@ final class ListProfiles200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $count = null,
-        private readonly ?array $profiles = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private ?int $count = null,
+        private ?array $profiles = [],
+        private ?\Upsun\Model\HalLinks $links = null,
     ) {
+        if ($this->profiles) {
+            $this->profiles = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Profile) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Profile::class);
+            }, $this->profiles);
+        }
     }
 
     public function jsonSerialize(): array
@@ -50,14 +58,17 @@ final class ListProfiles200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCount(): ?int
     public function getCount(): ?int
     {
         return $this->count;
     }
+    //public function getProfiles(): ?[]
     public function getProfiles(): ?array
     {
         return $this->profiles;
     }
+    //public function getLinks(): ?\Upsun\Model\HalLinks
     public function getLinks(): ?\Upsun\Model\HalLinks
     {
         return $this->links;

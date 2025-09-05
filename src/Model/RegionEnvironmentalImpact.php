@@ -30,9 +30,9 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $zone = null,
-        private readonly ?string $carbonIntensity = null,
-        private readonly ?bool $green = null,
+        private ?string $zone = null,
+        private ?string $carbonIntensity = null,
+        private ?bool $green = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class RegionEnvironmentalImpact implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getZone(): ?string
     public function getZone(): ?string
     {
         return $this->zone;
     }
+    //public function getCarbonIntensity(): ?string
     public function getCarbonIntensity(): ?string
     {
         return $this->carbonIntensity;
     }
+    //public function getGreen(): ?bool
     public function getGreen(): ?bool
     {
         return $this->green;

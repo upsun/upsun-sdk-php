@@ -30,9 +30,9 @@ final class SubscriptionAddonsObject implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
-        private readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
-        private readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+        private ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
+        private ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
+        private ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class SubscriptionAddonsObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectAvailable
     public function getAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectAvailable
     {
         return $this->available;
     }
+    //public function getCurrent(): ?\Upsun\Model\SubscriptionAddonsObjectCurrent
     public function getCurrent(): ?\Upsun\Model\SubscriptionAddonsObjectCurrent
     {
         return $this->current;
     }
+    //public function getUpgradesAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable
     public function getUpgradesAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;

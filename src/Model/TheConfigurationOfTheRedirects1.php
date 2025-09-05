@@ -29,9 +29,17 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $expires = null,
-        private readonly array $paths,
+        private ?string $expires = null,
+        private array $paths,
     ) {
+        if ($this->paths) {
+            $this->paths = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\ThePathsToRedirectValue1) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ThePathsToRedirectValue1::class);
+            }, $this->paths);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getExpires(): ?string
     public function getExpires(): ?string
     {
         return $this->expires;
     }
+    //public function getPaths(): []
     public function getPaths(): array
     {
         return $this->paths;

@@ -29,8 +29,8 @@ final class UpdateTeamRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $label = null,
-        private readonly ?array $projectPermissions = [],
+        private ?string $label = null,
+        private ?array $projectPermissions = [],
     ) {
     }
 
@@ -47,10 +47,12 @@ final class UpdateTeamRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;
     }
+    //public function getProjectPermissions(): ?[]
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;

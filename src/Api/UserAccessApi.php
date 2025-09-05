@@ -670,10 +670,10 @@ final class UserAccessApi extends AbstractApi
      */
     public function listProjectUserAccessWithHttpInfo(
         string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListProjectUserAccess200Response {
         $request = $this->listProjectUserAccessRequest(
             $projectId,
@@ -706,10 +706,10 @@ final class UserAccessApi extends AbstractApi
      */
     public function listProjectUserAccessRequest(
         string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (
@@ -877,11 +877,11 @@ final class UserAccessApi extends AbstractApi
      */
     public function listUserProjectAccessWithHttpInfo(
         string $userId,
-        string $filterOrganizationId = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $filterOrganizationId = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListProjectUserAccess200Response {
         $request = $this->listUserProjectAccessRequest(
             $userId,
@@ -915,11 +915,11 @@ final class UserAccessApi extends AbstractApi
      */
     public function listUserProjectAccessRequest(
         string $userId,
-        string $filterOrganizationId = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $filterOrganizationId = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (
@@ -1387,7 +1387,7 @@ final class UserAccessApi extends AbstractApi
     public function updateProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): void {
         $request = $this->updateProjectUserAccessRequest(
             $projectId,
@@ -1415,7 +1415,7 @@ final class UserAccessApi extends AbstractApi
     public function updateProjectUserAccessRequest(
         string $projectId,
         string $userId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (
@@ -1545,7 +1545,7 @@ final class UserAccessApi extends AbstractApi
     public function updateUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): void {
         $request = $this->updateUserProjectAccessRequest(
             $userId,
@@ -1573,7 +1573,7 @@ final class UserAccessApi extends AbstractApi
     public function updateUserProjectAccessRequest(
         string $userId,
         string $projectId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
+        ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (

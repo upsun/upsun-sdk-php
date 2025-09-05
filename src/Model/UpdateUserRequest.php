@@ -34,13 +34,13 @@ final class UpdateUserRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $username = null,
-        private readonly ?string $firstName = null,
-        private readonly ?string $lastName = null,
-        private readonly ?string $picture = null,
-        private readonly ?string $company = null,
-        private readonly ?string $website = null,
-        private readonly ?string $country = null,
+        private ?string $username = null,
+        private ?string $firstName = null,
+        private ?string $lastName = null,
+        private ?string $picture = null,
+        private ?string $company = null,
+        private ?string $website = null,
+        private ?string $country = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class UpdateUserRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getUsername(): ?string
     public function getUsername(): ?string
     {
         return $this->username;
     }
+    //public function getFirstName(): ?string
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
+    //public function getLastName(): ?string
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
+    //public function getPicture(): ?string
     public function getPicture(): ?string
     {
         return $this->picture;
     }
+    //public function getCompany(): ?string
     public function getCompany(): ?string
     {
         return $this->company;
     }
+    //public function getWebsite(): ?string
     public function getWebsite(): ?string
     {
         return $this->website;
     }
+    //public function getCountry(): ?string
     public function getCountry(): ?string
     {
         return $this->country;

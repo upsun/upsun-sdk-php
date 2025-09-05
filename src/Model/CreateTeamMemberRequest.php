@@ -28,7 +28,7 @@ final class CreateTeamMemberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $userId,
+        private string $userId,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class CreateTeamMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getUserId(): string
     public function getUserId(): string
     {
         return $this->userId;

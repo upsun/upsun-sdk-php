@@ -28,7 +28,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     ];
 
     public function __construct(
-        private readonly string $command,
+        private string $command,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCommand(): string
     public function getCommand(): string
     {
         return $this->command;

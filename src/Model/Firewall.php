@@ -28,8 +28,16 @@ final class Firewall implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly array $outbound,
+        private array $outbound,
     ) {
+        if ($this->outbound) {
+            $this->outbound = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\OutboundFirewallRestrictionsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OutboundFirewallRestrictionsInner::class);
+            }, $this->outbound);
+        }
     }
 
     public function jsonSerialize(): array
@@ -44,6 +52,7 @@ final class Firewall implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getOutbound(): []
     public function getOutbound(): array
     {
         return $this->outbound;

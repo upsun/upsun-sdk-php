@@ -46,26 +46,74 @@ final class Deployment implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $fingerprint = null,
-        private readonly string $clusterName,
-        private readonly \Upsun\Model\ProjectInfo $projectInfo,
-        private readonly \Upsun\Model\EnvironmentInfo $environmentInfo,
-        private readonly string $deploymentTarget,
-        private readonly \Upsun\Model\VPNConfiguration $vpn,
-        private readonly \Upsun\Model\HTTPAccessPermissions $httpAccess,
-        private readonly bool $enableSmtp,
-        private readonly bool $restrictRobots,
-        private readonly array $variables,
-        private readonly array $access,
-        private readonly \Upsun\Model\Subscription1 $subscription,
-        private readonly array $services,
-        private readonly array $routes,
-        private readonly array $webapps,
-        private readonly array $workers,
-        private readonly array $containerProfiles,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?string $fingerprint = null,
+        private string $clusterName,
+        private \Upsun\Model\ProjectInfo $projectInfo,
+        private \Upsun\Model\EnvironmentInfo $environmentInfo,
+        private string $deploymentTarget,
+        private \Upsun\Model\VPNConfiguration $vpn,
+        private \Upsun\Model\HTTPAccessPermissions $httpAccess,
+        private bool $enableSmtp,
+        private bool $restrictRobots,
+        private array $variables,
+        private array $access,
+        private \Upsun\Model\Subscription1 $subscription,
+        private array $services,
+        private array $routes,
+        private array $webapps,
+        private array $workers,
+        private array $containerProfiles,
     ) {
+        if ($this->variables) {
+            $this->variables = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner::class);
+            }, $this->variables);
+        }
+        if ($this->access) {
+            $this->access = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\AccessControlDefinitionForThisEnviromentInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\AccessControlDefinitionForThisEnviromentInner::class);
+            }, $this->access);
+        }
+        if ($this->services) {
+            $this->services = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\ServicesValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ServicesValue::class);
+            }, $this->services);
+        }
+        if ($this->routes) {
+            $this->routes = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\RoutesValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\RoutesValue::class);
+            }, $this->routes);
+        }
+        if ($this->webapps) {
+            $this->webapps = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\WebApplicationsValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\WebApplicationsValue::class);
+            }, $this->webapps);
+        }
+        if ($this->workers) {
+            $this->workers = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\WorkersValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\WorkersValue::class);
+            }, $this->workers);
+        }
     }
 
     public function jsonSerialize(): array
@@ -98,78 +146,97 @@ final class Deployment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getFingerprint(): ?string
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
+    //public function getClusterName(): string
     public function getClusterName(): string
     {
         return $this->clusterName;
     }
+    //public function getProjectInfo(): \Upsun\Model\ProjectInfo
     public function getProjectInfo(): \Upsun\Model\ProjectInfo
     {
         return $this->projectInfo;
     }
+    //public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
     public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
     {
         return $this->environmentInfo;
     }
+    //public function getDeploymentTarget(): string
     public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
+    //public function getVpn(): \Upsun\Model\VPNConfiguration
     public function getVpn(): \Upsun\Model\VPNConfiguration
     {
         return $this->vpn;
     }
+    //public function getHttpAccess(): \Upsun\Model\HTTPAccessPermissions
     public function getHttpAccess(): \Upsun\Model\HTTPAccessPermissions
     {
         return $this->httpAccess;
     }
+    //public function getEnableSmtp(): bool
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
+    //public function getRestrictRobots(): bool
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
+    //public function getVariables(): []
     public function getVariables(): array
     {
         return $this->variables;
     }
+    //public function getAccess(): []
     public function getAccess(): array
     {
         return $this->access;
     }
+    //public function getSubscription(): \Upsun\Model\Subscription1
     public function getSubscription(): \Upsun\Model\Subscription1
     {
         return $this->subscription;
     }
+    //public function getServices(): []
     public function getServices(): array
     {
         return $this->services;
     }
+    //public function getRoutes(): []
     public function getRoutes(): array
     {
         return $this->routes;
     }
+    //public function getWebapps(): []
     public function getWebapps(): array
     {
         return $this->webapps;
     }
+    //public function getWorkers(): []
     public function getWorkers(): array
     {
         return $this->workers;
     }
+    //public function getContainerProfiles(): []
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;

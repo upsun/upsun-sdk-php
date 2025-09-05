@@ -31,10 +31,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
+        private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
+        private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
+        private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
+        private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSelf(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf
     public function getSelf(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf
     {
         return $this->self;
     }
+    //public function getPrevious(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious
     public function getPrevious(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious
     {
         return $this->previous;
     }
+    //public function getNext(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext
     public function getNext(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext
     {
         return $this->next;
     }
+    //public function getPrepayment(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment
     public function getPrepayment(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment
     {
         return $this->prepayment;

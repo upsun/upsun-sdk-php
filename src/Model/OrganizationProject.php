@@ -40,19 +40,19 @@ final class OrganizationProject implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $subscriptionId = null,
-        private readonly ?string $region = null,
-        private readonly ?string $title = null,
-        private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
-        private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
-        private readonly ?string $accessMigrationStatus = null,
-        private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
-        private readonly ?string $vendor = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinks $links = null,
+        private ?string $id = null,
+        private ?string $organizationId = null,
+        private ?string $subscriptionId = null,
+        private ?string $region = null,
+        private ?string $title = null,
+        private ?\Upsun\Model\OrganizationProjectType $type = null,
+        private ?\Upsun\Model\OrganizationProjectPlan $plan = null,
+        private ?string $accessMigrationStatus = null,
+        private ?\Upsun\Model\OrganizationProjectStatus $status = null,
+        private ?string $vendor = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?\Upsun\Model\OrganizationProjectLinks $links = null,
     ) {
     }
 
@@ -80,54 +80,67 @@ final class OrganizationProject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getSubscriptionId(): ?string
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
+    //public function getRegion(): ?string
     public function getRegion(): ?string
     {
         return $this->region;
     }
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;
     }
+    //public function getType(): ?\Upsun\Model\OrganizationProjectType
     public function getType(): ?\Upsun\Model\OrganizationProjectType
     {
         return $this->type;
     }
+    //public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
     public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
     {
         return $this->plan;
     }
+    //public function getAccessMigrationStatus(): ?string
     public function getAccessMigrationStatus(): ?string
     {
         return $this->accessMigrationStatus;
     }
+    //public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
     public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
     {
         return $this->status;
     }
+    //public function getVendor(): ?string
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getLinks(): ?\Upsun\Model\OrganizationProjectLinks
     public function getLinks(): ?\Upsun\Model\OrganizationProjectLinks
     {
         return $this->links;

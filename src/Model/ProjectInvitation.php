@@ -37,17 +37,25 @@ final class ProjectInvitation implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $state = null,
-        private readonly ?string $projectId = null,
-        private readonly ?string $role = null,
-        private readonly ?string $email = null,
-        private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\DateTime $finishedAt = null,
-        private readonly ?array $environments = [],
+        private ?string $id = null,
+        private ?string $state = null,
+        private ?string $projectId = null,
+        private ?string $role = null,
+        private ?string $email = null,
+        private ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?\DateTime $finishedAt = null,
+        private ?array $environments = [],
     ) {
+        if ($this->environments) {
+            $this->environments = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\ProjectInvitationEnvironmentsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ProjectInvitationEnvironmentsInner::class);
+            }, $this->environments);
+        }
     }
 
     public function jsonSerialize(): array
@@ -71,42 +79,52 @@ final class ProjectInvitation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getState(): ?string
     public function getState(): ?string
     {
         return $this->state;
     }
+    //public function getProjectId(): ?string
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
+    //public function getRole(): ?string
     public function getRole(): ?string
     {
         return $this->role;
     }
+    //public function getEmail(): ?string
     public function getEmail(): ?string
     {
         return $this->email;
     }
+    //public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
     public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
     {
         return $this->owner;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getFinishedAt(): ?\DateTime
     public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }
+    //public function getEnvironments(): ?[]
     public function getEnvironments(): ?array
     {
         return $this->environments;

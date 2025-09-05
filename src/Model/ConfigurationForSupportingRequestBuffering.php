@@ -29,8 +29,8 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     ];
 
     public function __construct(
-        private readonly bool $enabled,
-        private readonly string $maxRequestSize,
+        private bool $enabled,
+        private string $maxRequestSize,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEnabled(): bool
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
+    //public function getMaxRequestSize(): string
     public function getMaxRequestSize(): string
     {
         return $this->maxRequestSize;

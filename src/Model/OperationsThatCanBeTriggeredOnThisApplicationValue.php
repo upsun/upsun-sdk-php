@@ -30,9 +30,9 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     ];
 
     public function __construct(
-        private readonly \Upsun\Model\TheCommandsDefinition $commands,
-        private readonly int $timeout,
-        private readonly string $role,
+        private \Upsun\Model\TheCommandsDefinition $commands,
+        private int $timeout,
+        private string $role,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCommands(): \Upsun\Model\TheCommandsDefinition
     public function getCommands(): \Upsun\Model\TheCommandsDefinition
     {
         return $this->commands;
     }
+    //public function getTimeout(): int
     public function getTimeout(): int
     {
         return $this->timeout;
     }
+    //public function getRole(): string
     public function getRole(): string
     {
         return $this->role;

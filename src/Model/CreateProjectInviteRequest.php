@@ -32,12 +32,28 @@ final class CreateProjectInviteRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $role = null,
-        private readonly string $email,
-        private readonly ?array $permissions = [],
-        private readonly ?array $environments = [],
-        private readonly ?bool $force = null,
+        private ?string $role = null,
+        private string $email,
+        private ?array $permissions = [],
+        private ?array $environments = [],
+        private ?bool $force = null,
     ) {
+        if ($this->permissions) {
+            $this->permissions = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\CreateProjectInviteRequestPermissionsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CreateProjectInviteRequestPermissionsInner::class);
+            }, $this->permissions);
+        }
+        if ($this->environments) {
+            $this->environments = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner::class);
+            }, $this->environments);
+        }
     }
 
     public function jsonSerialize(): array
@@ -56,22 +72,27 @@ final class CreateProjectInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getRole(): ?string
     public function getRole(): ?string
     {
         return $this->role;
     }
+    //public function getEmail(): string
     public function getEmail(): string
     {
         return $this->email;
     }
+    //public function getPermissions(): ?[]
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
+    //public function getEnvironments(): ?[]
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
+    //public function getForce(): ?bool
     public function getForce(): ?bool
     {
         return $this->force;

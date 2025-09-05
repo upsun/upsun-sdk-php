@@ -32,11 +32,11 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $formatted = null,
-        private readonly ?string $amount = null,
-        private readonly ?string $currency = null,
-        private readonly ?string $currencySymbol = null,
-        private readonly ?bool $unlimited = null,
+        private ?string $formatted = null,
+        private ?string $amount = null,
+        private ?string $currency = null,
+        private ?string $currencySymbol = null,
+        private ?bool $unlimited = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getFormatted(): ?string
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
+    //public function getAmount(): ?string
     public function getAmount(): ?string
     {
         return $this->amount;
     }
+    //public function getCurrency(): ?string
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
+    //public function getCurrencySymbol(): ?string
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
+    //public function getUnlimited(): ?bool
     public function getUnlimited(): ?bool
     {
         return $this->unlimited;

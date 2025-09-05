@@ -34,13 +34,13 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $orderId = null,
-        private readonly ?string $status = null,
-        private readonly ?string $billingPeriodStart = null,
-        private readonly ?string $billingPeriodEnd = null,
-        private readonly ?string $orderTotal = null,
-        private readonly ?string $orderDiscount = null,
-        private readonly ?string $currency = null,
+        private ?string $orderId = null,
+        private ?string $status = null,
+        private ?string $billingPeriodStart = null,
+        private ?string $billingPeriodEnd = null,
+        private ?string $orderTotal = null,
+        private ?string $orderDiscount = null,
+        private ?string $currency = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getOrderId(): ?string
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getBillingPeriodStart(): ?string
     public function getBillingPeriodStart(): ?string
     {
         return $this->billingPeriodStart;
     }
+    //public function getBillingPeriodEnd(): ?string
     public function getBillingPeriodEnd(): ?string
     {
         return $this->billingPeriodEnd;
     }
+    //public function getOrderTotal(): ?string
     public function getOrderTotal(): ?string
     {
         return $this->orderTotal;
     }
+    //public function getOrderDiscount(): ?string
     public function getOrderDiscount(): ?string
     {
         return $this->orderDiscount;
     }
+    //public function getCurrency(): ?string
     public function getCurrency(): ?string
     {
         return $this->currency;

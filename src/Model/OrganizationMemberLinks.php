@@ -30,9 +30,9 @@ final class OrganizationMemberLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
-        private readonly ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
-        private readonly ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
+        private ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
+        private ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
+        private ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class OrganizationMemberLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSelf(): ?\Upsun\Model\OrganizationMemberLinksSelf
     public function getSelf(): ?\Upsun\Model\OrganizationMemberLinksSelf
     {
         return $this->self;
     }
+    //public function getUpdate(): ?\Upsun\Model\OrganizationMemberLinksUpdate
     public function getUpdate(): ?\Upsun\Model\OrganizationMemberLinksUpdate
     {
         return $this->update;
     }
+    //public function getDelete(): ?\Upsun\Model\OrganizationMemberLinksDelete
     public function getDelete(): ?\Upsun\Model\OrganizationMemberLinksDelete
     {
         return $this->delete;

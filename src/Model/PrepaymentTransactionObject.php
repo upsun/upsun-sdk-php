@@ -34,13 +34,13 @@ final class PrepaymentTransactionObject implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $orderId = null,
-        private readonly ?string $message = null,
-        private readonly ?string $status = null,
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
-        private readonly ?string $created = null,
-        private readonly ?string $updated = null,
-        private readonly ?string $expireDate = null,
+        private ?string $orderId = null,
+        private ?string $message = null,
+        private ?string $status = null,
+        private ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+        private ?string $created = null,
+        private ?string $updated = null,
+        private ?string $expireDate = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class PrepaymentTransactionObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getOrderId(): ?string
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
+    //public function getMessage(): ?string
     public function getMessage(): ?string
     {
         return $this->message;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
     public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
     {
         return $this->amount;
     }
+    //public function getCreated(): ?string
     public function getCreated(): ?string
     {
         return $this->created;
     }
+    //public function getUpdated(): ?string
     public function getUpdated(): ?string
     {
         return $this->updated;
     }
+    //public function getExpireDate(): ?string
     public function getExpireDate(): ?string
     {
         return $this->expireDate;

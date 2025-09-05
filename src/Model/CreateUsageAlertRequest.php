@@ -29,8 +29,8 @@ final class CreateUsageAlertRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+        private ?string $id = null,
+        private ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class CreateUsageAlertRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getConfig(): ?\Upsun\Model\CreateUsageAlertRequestConfig
     public function getConfig(): ?\Upsun\Model\CreateUsageAlertRequestConfig
     {
         return $this->config;

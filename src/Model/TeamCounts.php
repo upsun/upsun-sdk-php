@@ -29,8 +29,8 @@ final class TeamCounts implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $memberCount = null,
-        private readonly ?int $projectCount = null,
+        private ?int $memberCount = null,
+        private ?int $projectCount = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class TeamCounts implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getMemberCount(): ?int
     public function getMemberCount(): ?int
     {
         return $this->memberCount;
     }
+    //public function getProjectCount(): ?int
     public function getProjectCount(): ?int
     {
         return $this->projectCount;

@@ -32,12 +32,20 @@ final class EnvironmentInitializeInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $profile,
-        private readonly string $repository,
-        private readonly string $config,
-        private readonly array $files,
-        private readonly \Upsun\Model\Resources3 $resources,
+        private string $profile,
+        private string $repository,
+        private string $config,
+        private array $files,
+        private \Upsun\Model\Resources3 $resources,
     ) {
+        if ($this->files) {
+            $this->files = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner::class);
+            }, $this->files);
+        }
     }
 
     public function jsonSerialize(): array
@@ -56,22 +64,27 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getProfile(): string
     public function getProfile(): string
     {
         return $this->profile;
     }
+    //public function getRepository(): string
     public function getRepository(): string
     {
         return $this->repository;
     }
+    //public function getConfig(): string
     public function getConfig(): string
     {
         return $this->config;
     }
+    //public function getFiles(): []
     public function getFiles(): array
     {
         return $this->files;
     }
+    //public function getResources(): \Upsun\Model\Resources3
     public function getResources(): \Upsun\Model\Resources3
     {
         return $this->resources;

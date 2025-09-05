@@ -32,11 +32,11 @@ final class SpecificOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $expires = null,
-        private readonly ?string $passthru = null,
-        private readonly ?bool $scripts = null,
-        private readonly ?bool $allow = null,
-        private readonly ?array $headers = [],
+        private ?string $expires = null,
+        private ?string $passthru = null,
+        private ?bool $scripts = null,
+        private ?bool $allow = null,
+        private ?array $headers = [],
     ) {
     }
 
@@ -56,22 +56,27 @@ final class SpecificOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getExpires(): ?string
     public function getExpires(): ?string
     {
         return $this->expires;
     }
+    //public function getPassthru(): ?string
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
+    //public function getScripts(): ?bool
     public function getScripts(): ?bool
     {
         return $this->scripts;
     }
+    //public function getAllow(): ?bool
     public function getAllow(): ?bool
     {
         return $this->allow;
     }
+    //public function getHeaders(): ?[]
     public function getHeaders(): ?array
     {
         return $this->headers;

@@ -38,17 +38,17 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?bool $fetchBranches = null,
-        private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
-        private readonly string $url,
-        private readonly string $username,
-        private readonly string $token,
-        private readonly string $project,
-        private readonly string $repository,
-        private readonly ?bool $buildPullRequests = null,
-        private readonly ?bool $pullRequestsCloneParentData = null,
+        private string $type,
+        private ?bool $fetchBranches = null,
+        private ?bool $pruneBranches = null,
+        private ?string $environmentInitResources = null,
+        private string $url,
+        private string $username,
+        private string $token,
+        private string $project,
+        private string $repository,
+        private ?bool $buildPullRequests = null,
+        private ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 
@@ -74,46 +74,57 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getFetchBranches(): ?bool
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
+    //public function getPruneBranches(): ?bool
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
+    //public function getEnvironmentInitResources(): ?string
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
+    //public function getUrl(): string
     public function getUrl(): string
     {
         return $this->url;
     }
+    //public function getUsername(): string
     public function getUsername(): string
     {
         return $this->username;
     }
+    //public function getToken(): string
     public function getToken(): string
     {
         return $this->token;
     }
+    //public function getProject(): string
     public function getProject(): string
     {
         return $this->project;
     }
+    //public function getRepository(): string
     public function getRepository(): string
     {
         return $this->repository;
     }
+    //public function getBuildPullRequests(): ?bool
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
+    //public function getPullRequestsCloneParentData(): ?bool
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;

@@ -31,11 +31,19 @@ final class VouchersVouchersInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $code = null,
-        private readonly ?string $amount = null,
-        private readonly ?string $currency = null,
-        private readonly ?array $orders = [],
+        private ?string $code = null,
+        private ?string $amount = null,
+        private ?string $currency = null,
+        private ?array $orders = [],
     ) {
+        if ($this->orders) {
+            $this->orders = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\VouchersVouchersInnerOrdersInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\VouchersVouchersInnerOrdersInner::class);
+            }, $this->orders);
+        }
     }
 
     public function jsonSerialize(): array
@@ -53,18 +61,22 @@ final class VouchersVouchersInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCode(): ?string
     public function getCode(): ?string
     {
         return $this->code;
     }
+    //public function getAmount(): ?string
     public function getAmount(): ?string
     {
         return $this->amount;
     }
+    //public function getCurrency(): ?string
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
+    //public function getOrders(): ?[]
     public function getOrders(): ?array
     {
         return $this->orders;

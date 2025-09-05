@@ -72,7 +72,7 @@ final class APITokensApi extends AbstractApi
      */
     public function createApiTokenWithHttpInfo(
         string $userId,
-        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
+        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): \Upsun\Model\APIToken {
         $request = $this->createApiTokenRequest(
             $userId,
@@ -102,7 +102,7 @@ final class APITokensApi extends AbstractApi
      */
     public function createApiTokenRequest(
         string $userId,
-        \Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
+        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (

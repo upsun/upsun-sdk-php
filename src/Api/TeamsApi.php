@@ -901,9 +901,9 @@ final class TeamsApi extends AbstractApi
      */
     public function listTeamMembersWithHttpInfo(
         string $teamId,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListTeamMembers200Response {
         $request = $this->listTeamMembersRequest(
             $teamId,
@@ -935,9 +935,9 @@ final class TeamsApi extends AbstractApi
      */
     public function listTeamMembersRequest(
         string $teamId,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
         if (
@@ -1082,13 +1082,13 @@ final class TeamsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listTeamsWithHttpInfo(
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListTeams200Response {
         $request = $this->listTeamsRequest(
             $filterOrganizationId,
@@ -1122,13 +1122,13 @@ final class TeamsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listTeamsRequest(
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(
@@ -1313,12 +1313,12 @@ final class TeamsApi extends AbstractApi
      */
     public function listUserTeamsWithHttpInfo(
         string $userId,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListTeams200Response {
         $request = $this->listUserTeamsRequest(
             $userId,
@@ -1353,12 +1353,12 @@ final class TeamsApi extends AbstractApi
      */
     public function listUserTeamsRequest(
         string $userId,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (
@@ -1540,7 +1540,7 @@ final class TeamsApi extends AbstractApi
      */
     public function updateTeamWithHttpInfo(
         string $teamId,
-        \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
+        ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
     ): \Upsun\Model\Team {
         $request = $this->updateTeamRequest(
             $teamId,
@@ -1570,7 +1570,7 @@ final class TeamsApi extends AbstractApi
      */
     public function updateTeamRequest(
         string $teamId,
-        \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
+        ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
         if (

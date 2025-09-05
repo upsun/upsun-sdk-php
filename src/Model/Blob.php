@@ -31,10 +31,10 @@ final class Blob implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $sha,
-        private readonly int $size,
-        private readonly string $encoding,
-        private readonly string $content,
+        private string $sha,
+        private int $size,
+        private string $encoding,
+        private string $content,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class Blob implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSha(): string
     public function getSha(): string
     {
         return $this->sha;
     }
+    //public function getSize(): int
     public function getSize(): int
     {
         return $this->size;
     }
+    //public function getEncoding(): string
     public function getEncoding(): string
     {
         return $this->encoding;
     }
+    //public function getContent(): string
     public function getContent(): string
     {
         return $this->content;

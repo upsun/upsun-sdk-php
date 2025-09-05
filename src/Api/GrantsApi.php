@@ -76,9 +76,9 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccessWithHttpInfo(
         string $userId,
-        \Upsun\Model\StringFilter $filterResourceType = null,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterPermissions = null
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
     ): \Upsun\Model\ListUserExtendedAccess200Response {
         $request = $this->listUserExtendedAccessRequest(
             $userId,
@@ -110,9 +110,9 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccessRequest(
         string $userId,
-        \Upsun\Model\StringFilter $filterResourceType = null,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterPermissions = null
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (

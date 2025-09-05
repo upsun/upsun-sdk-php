@@ -34,13 +34,13 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ];
 
     public function __construct(
-        private readonly ?string $userId = null,
-        private readonly ?string $resourceId = null,
-        private readonly ?string $resourceType = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?array $permissions = [],
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private ?string $userId = null,
+        private ?string $resourceId = null,
+        private ?string $resourceType = null,
+        private ?string $organizationId = null,
+        private ?array $permissions = [],
+        private ?\DateTime $grantedAt = null,
+        private ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getUserId(): ?string
     public function getUserId(): ?string
     {
         return $this->userId;
     }
+    //public function getResourceId(): ?string
     public function getResourceId(): ?string
     {
         return $this->resourceId;
     }
+    //public function getResourceType(): ?string
     public function getResourceType(): ?string
     {
         return $this->resourceType;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getPermissions(): ?[]
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
+    //public function getGrantedAt(): ?\DateTime
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

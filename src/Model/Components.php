@@ -28,7 +28,7 @@ final class Components implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?object $voucherVatBaseprice = null,
+        private ?object $voucherVatBaseprice = null,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class Components implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getVoucherVatBaseprice(): ?object
     public function getVoucherVatBaseprice(): ?object
     {
         return $this->voucherVatBaseprice;

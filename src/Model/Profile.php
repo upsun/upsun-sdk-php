@@ -50,29 +50,29 @@ final class Profile implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $displayName = null,
-        private readonly ?string $email = null,
-        private readonly ?string $username = null,
-        private readonly ?string $type = null,
-        private readonly ?string $picture = null,
-        private readonly ?string $companyType = null,
-        private readonly ?string $companyName = null,
-        private readonly ?string $currency = null,
-        private readonly ?string $vatNumber = null,
-        private readonly ?string $companyRole = null,
-        private readonly ?string $websiteUrl = null,
-        private readonly ?bool $newUi = null,
-        private readonly ?string $uiColorscheme = null,
-        private readonly ?string $defaultCatalog = null,
-        private readonly ?string $projectOptionsUrl = null,
-        private readonly ?bool $marketing = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?string $billingContact = null,
-        private readonly ?string $securityContact = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrial $currentTrial = null,
-        private readonly ?bool $invoiced = null,
+        private ?string $id = null,
+        private ?string $displayName = null,
+        private ?string $email = null,
+        private ?string $username = null,
+        private ?string $type = null,
+        private ?string $picture = null,
+        private ?string $companyType = null,
+        private ?string $companyName = null,
+        private ?string $currency = null,
+        private ?string $vatNumber = null,
+        private ?string $companyRole = null,
+        private ?string $websiteUrl = null,
+        private ?bool $newUi = null,
+        private ?string $uiColorscheme = null,
+        private ?string $defaultCatalog = null,
+        private ?string $projectOptionsUrl = null,
+        private ?bool $marketing = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?string $billingContact = null,
+        private ?string $securityContact = null,
+        private ?\Upsun\Model\ProfileCurrentTrial $currentTrial = null,
+        private ?bool $invoiced = null,
     ) {
     }
 
@@ -110,94 +110,117 @@ final class Profile implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getDisplayName(): ?string
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
+    //public function getEmail(): ?string
     public function getEmail(): ?string
     {
         return $this->email;
     }
+    //public function getUsername(): ?string
     public function getUsername(): ?string
     {
         return $this->username;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getPicture(): ?string
     public function getPicture(): ?string
     {
         return $this->picture;
     }
+    //public function getCompanyType(): ?string
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
+    //public function getCompanyName(): ?string
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
+    //public function getCurrency(): ?string
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
+    //public function getVatNumber(): ?string
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
+    //public function getCompanyRole(): ?string
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
+    //public function getWebsiteUrl(): ?string
     public function getWebsiteUrl(): ?string
     {
         return $this->websiteUrl;
     }
+    //public function getNewUi(): ?bool
     public function getNewUi(): ?bool
     {
         return $this->newUi;
     }
+    //public function getUiColorscheme(): ?string
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
+    //public function getDefaultCatalog(): ?string
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
+    //public function getProjectOptionsUrl(): ?string
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
+    //public function getMarketing(): ?bool
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getBillingContact(): ?string
     public function getBillingContact(): ?string
     {
         return $this->billingContact;
     }
+    //public function getSecurityContact(): ?string
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
+    //public function getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
     public function getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
     {
         return $this->currentTrial;
     }
+    //public function getInvoiced(): ?bool
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;

@@ -37,16 +37,16 @@ final class ServicesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly string $size,
-        private readonly int $disk,
-        private readonly object $access,
-        private readonly object $configuration,
-        private readonly array $relationships,
-        private readonly \Upsun\Model\Firewall $firewall,
-        private readonly \Upsun\Model\Resources $resources,
-        private readonly string $containerProfile,
-        private readonly object $endpoints,
+        private string $type,
+        private string $size,
+        private int $disk,
+        private object $access,
+        private object $configuration,
+        private array $relationships,
+        private \Upsun\Model\Firewall $firewall,
+        private \Upsun\Model\Resources $resources,
+        private string $containerProfile,
+        private object $endpoints,
     ) {
     }
 
@@ -71,42 +71,52 @@ final class ServicesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getSize(): string
     public function getSize(): string
     {
         return $this->size;
     }
+    //public function getDisk(): int
     public function getDisk(): int
     {
         return $this->disk;
     }
+    //public function getAccess(): object
     public function getAccess(): object
     {
         return $this->access;
     }
+    //public function getConfiguration(): object
     public function getConfiguration(): object
     {
         return $this->configuration;
     }
+    //public function getRelationships(): []
     public function getRelationships(): array
     {
         return $this->relationships;
     }
+    //public function getFirewall(): \Upsun\Model\Firewall
     public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->firewall;
     }
+    //public function getResources(): \Upsun\Model\Resources
     public function getResources(): \Upsun\Model\Resources
     {
         return $this->resources;
     }
+    //public function getContainerProfile(): string
     public function getContainerProfile(): string
     {
         return $this->containerProfile;
     }
+    //public function getEndpoints(): object
     public function getEndpoints(): object
     {
         return $this->endpoints;

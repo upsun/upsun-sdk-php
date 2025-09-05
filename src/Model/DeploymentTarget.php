@@ -46,26 +46,42 @@ final class DeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly string $deployHost,
-        private readonly int $deployPort,
-        private readonly string $sshHost,
-        private readonly array $hosts,
-        private readonly bool $autoMounts,
-        private readonly array $excludedMounts,
-        private readonly object $enforcedMounts,
-        private readonly bool $autoCrons,
-        private readonly bool $autoNginx,
-        private readonly bool $maintenanceMode,
-        private readonly int $guardrailsPhase,
-        private readonly array $docroots,
-        private readonly object $siteUrls,
-        private readonly array $sshHosts,
-        private readonly ?object $enterpriseEnvironmentsMapping = null,
-        private readonly bool $useDedicatedGrid,
-        private readonly string $storageType,
+        private string $type,
+        private string $name,
+        private string $deployHost,
+        private int $deployPort,
+        private string $sshHost,
+        private array $hosts,
+        private bool $autoMounts,
+        private array $excludedMounts,
+        private object $enforcedMounts,
+        private bool $autoCrons,
+        private bool $autoNginx,
+        private bool $maintenanceMode,
+        private int $guardrailsPhase,
+        private array $docroots,
+        private object $siteUrls,
+        private array $sshHosts,
+        private ?object $enterpriseEnvironmentsMapping = null,
+        private bool $useDedicatedGrid,
+        private string $storageType,
     ) {
+        if ($this->hosts) {
+            $this->hosts = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner::class);
+            }, $this->hosts);
+        }
+        if ($this->docroots) {
+            $this->docroots = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue::class);
+            }, $this->docroots);
+        }
     }
 
     public function jsonSerialize(): array
@@ -98,78 +114,97 @@ final class DeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getDeployHost(): string
     public function getDeployHost(): string
     {
         return $this->deployHost;
     }
+    //public function getDeployPort(): int
     public function getDeployPort(): int
     {
         return $this->deployPort;
     }
+    //public function getSshHost(): string
     public function getSshHost(): string
     {
         return $this->sshHost;
     }
+    //public function getHosts(): []
     public function getHosts(): array
     {
         return $this->hosts;
     }
+    //public function getAutoMounts(): bool
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
     }
+    //public function getExcludedMounts(): []
     public function getExcludedMounts(): array
     {
         return $this->excludedMounts;
     }
+    //public function getEnforcedMounts(): object
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
+    //public function getAutoCrons(): bool
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
+    //public function getAutoNginx(): bool
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
+    //public function getMaintenanceMode(): bool
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
+    //public function getGuardrailsPhase(): int
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
     }
+    //public function getDocroots(): []
     public function getDocroots(): array
     {
         return $this->docroots;
     }
+    //public function getSiteUrls(): object
     public function getSiteUrls(): object
     {
         return $this->siteUrls;
     }
+    //public function getSshHosts(): []
     public function getSshHosts(): array
     {
         return $this->sshHosts;
     }
+    //public function getEnterpriseEnvironmentsMapping(): ?object
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
+    //public function getUseDedicatedGrid(): bool
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
+    //public function getStorageType(): string
     public function getStorageType(): string
     {
         return $this->storageType;

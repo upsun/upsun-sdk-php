@@ -29,8 +29,8 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $addonKey,
-        private readonly string $clientKey,
+        private string $addonKey,
+        private string $clientKey,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAddonKey(): string
     public function getAddonKey(): string
     {
         return $this->addonKey;
     }
+    //public function getClientKey(): string
     public function getClientKey(): string
     {
         return $this->clientKey;

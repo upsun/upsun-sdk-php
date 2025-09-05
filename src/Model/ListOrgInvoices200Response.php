@@ -28,8 +28,16 @@ final class ListOrgInvoices200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $items = [],
+        private ?array $items = [],
     ) {
+        if ($this->items) {
+            $this->items = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Invoice) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Invoice::class);
+            }, $this->items);
+        }
     }
 
     public function jsonSerialize(): array
@@ -44,6 +52,7 @@ final class ListOrgInvoices200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getItems(): ?[]
     public function getItems(): ?array
     {
         return $this->items;

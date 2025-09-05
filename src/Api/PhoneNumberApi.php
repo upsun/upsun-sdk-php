@@ -75,7 +75,7 @@ final class PhoneNumberApi extends AbstractApi
     public function confirmPhoneNumberWithHttpInfo(
         string $sid,
         string $userId,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): void {
         $request = $this->confirmPhoneNumberRequest(
             $sid,
@@ -103,7 +103,7 @@ final class PhoneNumberApi extends AbstractApi
     public function confirmPhoneNumberRequest(
         string $sid,
         string $userId,
-        \Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
+        ?\Upsun\Model\ConfirmPhoneNumberRequest $confirmPhoneNumberRequest = null
     ): RequestInterface {
         // verify the required parameter 'sid' is set
         if (
@@ -230,7 +230,7 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function verifyPhoneNumberWithHttpInfo(
         string $userId,
-        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): \Upsun\Model\VerifyPhoneNumber200Response {
         $request = $this->verifyPhoneNumberRequest(
             $userId,
@@ -260,7 +260,7 @@ final class PhoneNumberApi extends AbstractApi
      */
     public function verifyPhoneNumberRequest(
         string $userId,
-        \Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
+        ?\Upsun\Model\VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (

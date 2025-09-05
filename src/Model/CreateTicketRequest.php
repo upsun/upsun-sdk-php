@@ -38,18 +38,26 @@ final class CreateTicketRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $subject,
-        private readonly string $description,
-        private readonly ?string $requesterId = null,
-        private readonly ?string $priority = null,
-        private readonly ?string $subscriptionId = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $affectedUrl = null,
-        private readonly ?string $followupTid = null,
-        private readonly ?string $category = null,
-        private readonly ?array $attachments = [],
-        private readonly ?array $collaboratorIds = [],
+        private string $subject,
+        private string $description,
+        private ?string $requesterId = null,
+        private ?string $priority = null,
+        private ?string $subscriptionId = null,
+        private ?string $organizationId = null,
+        private ?string $affectedUrl = null,
+        private ?string $followupTid = null,
+        private ?string $category = null,
+        private ?array $attachments = [],
+        private ?array $collaboratorIds = [],
     ) {
+        if ($this->attachments) {
+            $this->attachments = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\CreateTicketRequestAttachmentsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CreateTicketRequestAttachmentsInner::class);
+            }, $this->attachments);
+        }
     }
 
     public function jsonSerialize(): array
@@ -74,46 +82,57 @@ final class CreateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSubject(): string
     public function getSubject(): string
     {
         return $this->subject;
     }
+    //public function getDescription(): string
     public function getDescription(): string
     {
         return $this->description;
     }
+    //public function getRequesterId(): ?string
     public function getRequesterId(): ?string
     {
         return $this->requesterId;
     }
+    //public function getPriority(): ?string
     public function getPriority(): ?string
     {
         return $this->priority;
     }
+    //public function getSubscriptionId(): ?string
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getAffectedUrl(): ?string
     public function getAffectedUrl(): ?string
     {
         return $this->affectedUrl;
     }
+    //public function getFollowupTid(): ?string
     public function getFollowupTid(): ?string
     {
         return $this->followupTid;
     }
+    //public function getCategory(): ?string
     public function getCategory(): ?string
     {
         return $this->category;
     }
+    //public function getAttachments(): ?[]
     public function getAttachments(): ?array
     {
         return $this->attachments;
     }
+    //public function getCollaboratorIds(): ?[]
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;

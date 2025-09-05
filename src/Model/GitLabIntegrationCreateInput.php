@@ -37,16 +37,16 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?bool $fetchBranches = null,
-        private readonly ?bool $pruneBranches = null,
-        private readonly ?string $environmentInitResources = null,
-        private readonly string $token,
-        private readonly ?string $baseUrl = null,
-        private readonly string $project,
-        private readonly ?bool $buildMergeRequests = null,
-        private readonly ?bool $buildWipMergeRequests = null,
-        private readonly ?bool $mergeRequestsCloneParentData = null,
+        private string $type,
+        private ?bool $fetchBranches = null,
+        private ?bool $pruneBranches = null,
+        private ?string $environmentInitResources = null,
+        private string $token,
+        private ?string $baseUrl = null,
+        private string $project,
+        private ?bool $buildMergeRequests = null,
+        private ?bool $buildWipMergeRequests = null,
+        private ?bool $mergeRequestsCloneParentData = null,
     ) {
     }
 
@@ -71,42 +71,52 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getFetchBranches(): ?bool
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
+    //public function getPruneBranches(): ?bool
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
+    //public function getEnvironmentInitResources(): ?string
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
+    //public function getToken(): string
     public function getToken(): string
     {
         return $this->token;
     }
+    //public function getBaseUrl(): ?string
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
+    //public function getProject(): string
     public function getProject(): string
     {
         return $this->project;
     }
+    //public function getBuildMergeRequests(): ?bool
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
+    //public function getBuildWipMergeRequests(): ?bool
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
+    //public function getMergeRequestsCloneParentData(): ?bool
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;

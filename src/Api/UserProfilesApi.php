@@ -690,7 +690,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateAddressWithHttpInfo(
         string $userId,
-        \Upsun\Model\Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): \Upsun\Model\GetAddress200Response {
         $request = $this->updateAddressRequest(
             $userId,
@@ -720,7 +720,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateAddressRequest(
         string $userId,
-        \Upsun\Model\Address $address = null
+        ?\Upsun\Model\Address $address = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (
@@ -829,7 +829,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateProfileWithHttpInfo(
         string $userId,
-        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
+        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): \Upsun\Model\Profile {
         $request = $this->updateProfileRequest(
             $userId,
@@ -859,7 +859,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function updateProfileRequest(
         string $userId,
-        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
+        ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (

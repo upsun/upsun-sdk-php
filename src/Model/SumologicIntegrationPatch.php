@@ -32,11 +32,11 @@ final class SumologicIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?array $extra = [],
-        private readonly string $url,
-        private readonly ?string $category = null,
-        private readonly ?bool $tlsVerify = null,
+        private string $type,
+        private ?array $extra = [],
+        private string $url,
+        private ?string $category = null,
+        private ?bool $tlsVerify = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class SumologicIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getExtra(): ?[]
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+    //public function getUrl(): string
     public function getUrl(): string
     {
         return $this->url;
     }
+    //public function getCategory(): ?string
     public function getCategory(): ?string
     {
         return $this->category;
     }
+    //public function getTlsVerify(): ?bool
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;

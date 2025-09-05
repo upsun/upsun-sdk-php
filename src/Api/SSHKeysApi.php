@@ -69,7 +69,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function createSshKeyWithHttpInfo(
-        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): \Upsun\Model\SSHKey {
         $request = $this->createSshKeyRequest(
             $createSshKeyRequest
@@ -97,7 +97,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function createSshKeyRequest(
-        \Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): RequestInterface {
 
         $resourcePath = '/ssh_keys';

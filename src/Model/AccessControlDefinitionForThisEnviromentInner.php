@@ -29,8 +29,8 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     ];
 
     public function __construct(
-        private readonly string $entityId,
-        private readonly string $role,
+        private string $entityId,
+        private string $role,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEntityId(): string
     public function getEntityId(): string
     {
         return $this->entityId;
     }
+    //public function getRole(): string
     public function getRole(): string
     {
         return $this->role;

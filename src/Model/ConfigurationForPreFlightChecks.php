@@ -29,8 +29,8 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly bool $enabled,
-        private readonly array $ignoredRules,
+        private bool $enabled,
+        private array $ignoredRules,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEnabled(): bool
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
+    //public function getIgnoredRules(): []
     public function getIgnoredRules(): array
     {
         return $this->ignoredRules;

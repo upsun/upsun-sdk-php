@@ -29,8 +29,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     ];
 
     public function __construct(
-        private readonly ?string $returnUrl = null,
-        private readonly ?string $url = null,
+        private ?string $returnUrl = null,
+        private ?string $url = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getReturnUrl(): ?string
     public function getReturnUrl(): ?string
     {
         return $this->returnUrl;
     }
+    //public function getUrl(): ?string
     public function getUrl(): ?string
     {
         return $this->url;

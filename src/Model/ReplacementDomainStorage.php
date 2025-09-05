@@ -35,14 +35,14 @@ final class ReplacementDomainStorage implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $type,
-        private readonly ?string $project = null,
-        private readonly string $name,
-        private readonly ?string $registeredName = null,
-        private readonly array $attributes,
-        private readonly ?string $replacementFor = null,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $type,
+        private ?string $project = null,
+        private string $name,
+        private ?string $registeredName = null,
+        private array $attributes,
+        private ?string $replacementFor = null,
     ) {
     }
 
@@ -65,34 +65,42 @@ final class ReplacementDomainStorage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getProject(): ?string
     public function getProject(): ?string
     {
         return $this->project;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getRegisteredName(): ?string
     public function getRegisteredName(): ?string
     {
         return $this->registeredName;
     }
+    //public function getAttributes(): []
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+    //public function getReplacementFor(): ?string
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;

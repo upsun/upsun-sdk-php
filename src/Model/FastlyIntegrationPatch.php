@@ -35,14 +35,14 @@ final class FastlyIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly ?array $events = [],
-        private readonly ?array $environments = [],
-        private readonly ?array $excludedEnvironments = [],
-        private readonly ?array $states = [],
-        private readonly ?string $result = null,
-        private readonly string $token,
-        private readonly string $serviceId,
+        private string $type,
+        private ?array $events = [],
+        private ?array $environments = [],
+        private ?array $excludedEnvironments = [],
+        private ?array $states = [],
+        private ?string $result = null,
+        private string $token,
+        private string $serviceId,
     ) {
     }
 
@@ -65,34 +65,42 @@ final class FastlyIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getEvents(): ?[]
     public function getEvents(): ?array
     {
         return $this->events;
     }
+    //public function getEnvironments(): ?[]
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
+    //public function getExcludedEnvironments(): ?[]
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
+    //public function getStates(): ?[]
     public function getStates(): ?array
     {
         return $this->states;
     }
+    //public function getResult(): ?string
     public function getResult(): ?string
     {
         return $this->result;
     }
+    //public function getToken(): string
     public function getToken(): string
     {
         return $this->token;
     }
+    //public function getServiceId(): string
     public function getServiceId(): string
     {
         return $this->serviceId;

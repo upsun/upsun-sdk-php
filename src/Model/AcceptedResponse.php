@@ -29,8 +29,8 @@ final class AcceptedResponse implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $status,
-        private readonly int $code,
+        private string $status,
+        private int $code,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class AcceptedResponse implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getStatus(): string
     public function getStatus(): string
     {
         return $this->status;
     }
+    //public function getCode(): int
     public function getCode(): int
     {
         return $this->code;

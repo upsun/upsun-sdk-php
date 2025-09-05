@@ -30,9 +30,9 @@ final class UpdateTicketRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $status = null,
-        private readonly ?array $collaboratorIds = [],
-        private readonly ?bool $collaboratorsReplace = null,
+        private ?string $status = null,
+        private ?array $collaboratorIds = [],
+        private ?bool $collaboratorsReplace = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class UpdateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getCollaboratorIds(): ?[]
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
+    //public function getCollaboratorsReplace(): ?bool
     public function getCollaboratorsReplace(): ?bool
     {
         return $this->collaboratorsReplace;

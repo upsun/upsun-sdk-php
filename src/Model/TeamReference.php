@@ -34,13 +34,13 @@ final class TeamReference implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?string $label = null,
-        private readonly ?array $projectPermissions = [],
-        private readonly ?\Upsun\Model\TeamCounts $counts = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private ?string $id = null,
+        private ?string $organizationId = null,
+        private ?string $label = null,
+        private ?array $projectPermissions = [],
+        private ?\Upsun\Model\TeamCounts $counts = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class TeamReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;
     }
+    //public function getProjectPermissions(): ?[]
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;
     }
+    //public function getCounts(): ?\Upsun\Model\TeamCounts
     public function getCounts(): ?\Upsun\Model\TeamCounts
     {
         return $this->counts;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

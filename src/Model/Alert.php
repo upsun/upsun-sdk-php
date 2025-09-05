@@ -33,12 +33,12 @@ final class Alert implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?bool $active = null,
-        private readonly ?int $alertsSent = null,
-        private readonly ?\DateTime $lastAlertAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?object $config = null,
+        private ?string $id = null,
+        private ?bool $active = null,
+        private ?int $alertsSent = null,
+        private ?\DateTime $lastAlertAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?object $config = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class Alert implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getActive(): ?bool
     public function getActive(): ?bool
     {
         return $this->active;
     }
+    //public function getAlertsSent(): ?int
     public function getAlertsSent(): ?int
     {
         return $this->alertsSent;
     }
+    //public function getLastAlertAt(): ?\DateTime
     public function getLastAlertAt(): ?\DateTime
     {
         return $this->lastAlertAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getConfig(): ?object
     public function getConfig(): ?object
     {
         return $this->config;

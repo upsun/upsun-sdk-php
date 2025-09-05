@@ -29,9 +29,17 @@ final class ListOrgDiscounts200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $items = [],
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private ?array $items = [],
+        private ?\Upsun\Model\ListLinks $links = null,
     ) {
+        if ($this->items) {
+            $this->items = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Discount) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Discount::class);
+            }, $this->items);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class ListOrgDiscounts200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getItems(): ?[]
     public function getItems(): ?array
     {
         return $this->items;
     }
+    //public function getLinks(): ?\Upsun\Model\ListLinks
     public function getLinks(): ?\Upsun\Model\ListLinks
     {
         return $this->links;

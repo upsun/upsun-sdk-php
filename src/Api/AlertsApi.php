@@ -72,7 +72,7 @@ final class AlertsApi extends AbstractApi
      */
     public function createUsageAlertWithHttpInfo(
         string $subscriptionId,
-        \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
+        ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
     ): \Upsun\Model\Alert {
         $request = $this->createUsageAlertRequest(
             $subscriptionId,
@@ -102,7 +102,7 @@ final class AlertsApi extends AbstractApi
      */
     public function createUsageAlertRequest(
         string $subscriptionId,
-        \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
+        ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
     ): RequestInterface {
         // verify the required parameter 'subscriptionId' is set
         if (
@@ -489,7 +489,7 @@ final class AlertsApi extends AbstractApi
     public function updateUsageAlertWithHttpInfo(
         string $subscriptionId,
         string $usageId,
-        \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
+        ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
     ): \Upsun\Model\Alert {
         $request = $this->updateUsageAlertRequest(
             $subscriptionId,
@@ -521,7 +521,7 @@ final class AlertsApi extends AbstractApi
     public function updateUsageAlertRequest(
         string $subscriptionId,
         string $usageId,
-        \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
+        ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
     ): RequestInterface {
         // verify the required parameter 'subscriptionId' is set
         if (

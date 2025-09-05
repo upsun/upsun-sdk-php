@@ -33,12 +33,12 @@ final class OrganizationSSOConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $providerType = null,
-        private readonly ?string $domain = null,
-        private readonly ?string $organizationId = null,
-        private readonly ?bool $enforced = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private ?string $providerType = null,
+        private ?string $domain = null,
+        private ?string $organizationId = null,
+        private ?bool $enforced = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class OrganizationSSOConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getProviderType(): ?string
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
+    //public function getDomain(): ?string
     public function getDomain(): ?string
     {
         return $this->domain;
     }
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getEnforced(): ?bool
     public function getEnforced(): ?bool
     {
         return $this->enforced;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

@@ -36,16 +36,24 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     ];
 
     public function __construct(
-        private readonly string $root,
-        private readonly string $expires,
-        private readonly string $passthru,
-        private readonly bool $scripts,
-        private readonly ?array $index = [],
-        private readonly bool $allow,
-        private readonly array $headers,
-        private readonly array $rules,
-        private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
+        private string $root,
+        private string $expires,
+        private string $passthru,
+        private bool $scripts,
+        private ?array $index = [],
+        private bool $allow,
+        private array $headers,
+        private array $rules,
+        private ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
+        if ($this->rules) {
+            $this->rules = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\SpecificOverridesValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\SpecificOverridesValue::class);
+            }, $this->rules);
+        }
     }
 
     public function jsonSerialize(): array
@@ -68,38 +76,47 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getRoot(): string
     public function getRoot(): string
     {
         return $this->root;
     }
+    //public function getExpires(): string
     public function getExpires(): string
     {
         return $this->expires;
     }
+    //public function getPassthru(): string
     public function getPassthru(): string
     {
         return $this->passthru;
     }
+    //public function getScripts(): bool
     public function getScripts(): bool
     {
         return $this->scripts;
     }
+    //public function getIndex(): ?[]
     public function getIndex(): ?array
     {
         return $this->index;
     }
+    //public function getAllow(): bool
     public function getAllow(): bool
     {
         return $this->allow;
     }
+    //public function getHeaders(): []
     public function getHeaders(): array
     {
         return $this->headers;
     }
+    //public function getRules(): []
     public function getRules(): array
     {
         return $this->rules;
     }
+    //public function getRequestBuffering(): ?\Upsun\Model\ConfigurationForSupportingRequestBuffering
     public function getRequestBuffering(): ?\Upsun\Model\ConfigurationForSupportingRequestBuffering
     {
         return $this->requestBuffering;

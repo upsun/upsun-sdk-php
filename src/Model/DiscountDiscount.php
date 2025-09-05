@@ -30,9 +30,9 @@ final class DiscountDiscount implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
-        private readonly ?\Upsun\Model\CurrencyAmountNullable $commitmentPeriod = null,
-        private readonly ?\Upsun\Model\CurrencyAmountNullable $contractTotal = null,
+        private ?\Upsun\Model\CurrencyAmount $monthly = null,
+        private ?\Upsun\Model\CurrencyAmountNullable $commitmentPeriod = null,
+        private ?\Upsun\Model\CurrencyAmountNullable $contractTotal = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class DiscountDiscount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getMonthly(): ?\Upsun\Model\CurrencyAmount
     public function getMonthly(): ?\Upsun\Model\CurrencyAmount
     {
         return $this->monthly;
     }
+    //public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmountNullable
     public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmountNullable
     {
         return $this->commitmentPeriod;
     }
+    //public function getContractTotal(): ?\Upsun\Model\CurrencyAmountNullable
     public function getContractTotal(): ?\Upsun\Model\CurrencyAmountNullable
     {
         return $this->contractTotal;

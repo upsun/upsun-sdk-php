@@ -29,9 +29,17 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $flavor,
-        private readonly array $caches,
+        private string $flavor,
+        private array $caches,
     ) {
+        if ($this->caches) {
+            $this->caches = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue::class);
+            }, $this->caches);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getFlavor(): string
     public function getFlavor(): string
     {
         return $this->flavor;
     }
+    //public function getCaches(): []
     public function getCaches(): array
     {
         return $this->caches;

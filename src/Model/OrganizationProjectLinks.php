@@ -32,11 +32,11 @@ final class OrganizationProjectLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
+        private ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
+        private ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
+        private ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
+        private ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
+        private ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class OrganizationProjectLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSelf(): ?\Upsun\Model\OrganizationProjectLinksSelf
     public function getSelf(): ?\Upsun\Model\OrganizationProjectLinksSelf
     {
         return $this->self;
     }
+    //public function getUpdate(): ?\Upsun\Model\OrganizationProjectLinksUpdate
     public function getUpdate(): ?\Upsun\Model\OrganizationProjectLinksUpdate
     {
         return $this->update;
     }
+    //public function getDelete(): ?\Upsun\Model\OrganizationProjectLinksDelete
     public function getDelete(): ?\Upsun\Model\OrganizationProjectLinksDelete
     {
         return $this->delete;
     }
+    //public function getSubscription(): ?\Upsun\Model\OrganizationProjectLinksSubscription
     public function getSubscription(): ?\Upsun\Model\OrganizationProjectLinksSubscription
     {
         return $this->subscription;
     }
+    //public function getApi(): ?\Upsun\Model\OrganizationProjectLinksApi
     public function getApi(): ?\Upsun\Model\OrganizationProjectLinksApi
     {
         return $this->api;

@@ -29,8 +29,8 @@ final class GitLabIntegrationConfigurations implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $enabled = null,
-        private readonly ?string $role = null,
+        private ?bool $enabled = null,
+        private ?string $role = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class GitLabIntegrationConfigurations implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEnabled(): ?bool
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
+    //public function getRole(): ?string
     public function getRole(): ?string
     {
         return $this->role;

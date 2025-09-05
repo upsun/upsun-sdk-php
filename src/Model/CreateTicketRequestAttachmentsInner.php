@@ -29,8 +29,8 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $filename = null,
-        private readonly ?string $data = null,
+        private ?string $filename = null,
+        private ?string $data = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getFilename(): ?string
     public function getFilename(): ?string
     {
         return $this->filename;
     }
+    //public function getData(): ?string
     public function getData(): ?string
     {
         return $this->data;

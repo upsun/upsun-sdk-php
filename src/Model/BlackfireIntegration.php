@@ -32,12 +32,20 @@ final class BlackfireIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $type,
-        private readonly array $environmentsCredentials,
-        private readonly bool $continuousProfiling,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $type,
+        private array $environmentsCredentials,
+        private bool $continuousProfiling,
     ) {
+        if ($this->environmentsCredentials) {
+            $this->environmentsCredentials = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\BlackfireEnvironmentsCredentialsValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\BlackfireEnvironmentsCredentialsValue::class);
+            }, $this->environmentsCredentials);
+        }
     }
 
     public function jsonSerialize(): array
@@ -56,22 +64,27 @@ final class BlackfireIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getEnvironmentsCredentials(): []
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
+    //public function getContinuousProfiling(): bool
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;

@@ -31,10 +31,10 @@ final class TeamMember implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $teamId = null,
-        private readonly ?string $userId = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private ?string $teamId = null,
+        private ?string $userId = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class TeamMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTeamId(): ?string
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
+    //public function getUserId(): ?string
     public function getUserId(): ?string
     {
         return $this->userId;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

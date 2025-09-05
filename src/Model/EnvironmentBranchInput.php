@@ -32,11 +32,11 @@ final class EnvironmentBranchInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $title,
-        private readonly string $name,
-        private readonly bool $cloneParent,
-        private readonly string $type,
-        private readonly \Upsun\Model\Resources2 $resources,
+        private string $title,
+        private string $name,
+        private bool $cloneParent,
+        private string $type,
+        private \Upsun\Model\Resources2 $resources,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class EnvironmentBranchInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTitle(): string
     public function getTitle(): string
     {
         return $this->title;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getCloneParent(): bool
     public function getCloneParent(): bool
     {
         return $this->cloneParent;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getResources(): \Upsun\Model\Resources2
     public function getResources(): \Upsun\Model\Resources2
     {
         return $this->resources;

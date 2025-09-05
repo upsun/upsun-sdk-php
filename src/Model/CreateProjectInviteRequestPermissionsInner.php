@@ -29,8 +29,8 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     ];
 
     public function __construct(
-        private readonly ?string $type = null,
-        private readonly ?string $role = null,
+        private ?string $type = null,
+        private ?string $role = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getRole(): ?string
     public function getRole(): ?string
     {
         return $this->role;

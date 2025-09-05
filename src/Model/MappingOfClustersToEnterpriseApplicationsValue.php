@@ -29,8 +29,8 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     ];
 
     public function __construct(
-        private readonly string $activeDocroot,
-        private readonly array $docrootVersions,
+        private string $activeDocroot,
+        private array $docrootVersions,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getActiveDocroot(): string
     public function getActiveDocroot(): string
     {
         return $this->activeDocroot;
     }
+    //public function getDocrootVersions(): []
     public function getDocrootVersions(): array
     {
         return $this->docrootVersions;

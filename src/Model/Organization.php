@@ -40,19 +40,19 @@ final class Organization implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $type = null,
-        private readonly ?string $ownerId = null,
-        private readonly ?string $namespace = null,
-        private readonly ?string $name = null,
-        private readonly ?string $label = null,
-        private readonly ?string $country = null,
-        private readonly ?array $capabilities = [],
-        private readonly ?string $vendor = null,
-        private readonly ?string $status = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationLinks $links = null,
+        private ?string $id = null,
+        private ?string $type = null,
+        private ?string $ownerId = null,
+        private ?string $namespace = null,
+        private ?string $name = null,
+        private ?string $label = null,
+        private ?string $country = null,
+        private ?array $capabilities = [],
+        private ?string $vendor = null,
+        private ?string $status = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
+        private ?\Upsun\Model\OrganizationLinks $links = null,
     ) {
     }
 
@@ -80,54 +80,67 @@ final class Organization implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getOwnerId(): ?string
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
+    //public function getNamespace(): ?string
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;
     }
+    //public function getCountry(): ?string
     public function getCountry(): ?string
     {
         return $this->country;
     }
+    //public function getCapabilities(): ?[]
     public function getCapabilities(): ?array
     {
         return $this->capabilities;
     }
+    //public function getVendor(): ?string
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
+    //public function getLinks(): ?\Upsun\Model\OrganizationLinks
     public function getLinks(): ?\Upsun\Model\OrganizationLinks
     {
         return $this->links;

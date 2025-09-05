@@ -209,13 +209,13 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     public function listRegionsWithHttpInfo(
-        \Upsun\Model\StringFilter $filterAvailable = null,
-        \Upsun\Model\StringFilter $filterPrivate = null,
-        \Upsun\Model\StringFilter $filterZone = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterAvailable = null,
+        ?\Upsun\Model\StringFilter $filterPrivate = null,
+        ?\Upsun\Model\StringFilter $filterZone = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListRegions200Response {
         $request = $this->listRegionsRequest(
             $filterAvailable,
@@ -249,13 +249,13 @@ final class RegionsApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     public function listRegionsRequest(
-        \Upsun\Model\StringFilter $filterAvailable = null,
-        \Upsun\Model\StringFilter $filterPrivate = null,
-        \Upsun\Model\StringFilter $filterZone = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterAvailable = null,
+        ?\Upsun\Model\StringFilter $filterPrivate = null,
+        ?\Upsun\Model\StringFilter $filterZone = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         if ($pageSize !== null && $pageSize > 100) {
             throw new \InvalidArgumentException(

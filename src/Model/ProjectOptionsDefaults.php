@@ -31,10 +31,10 @@ final class ProjectOptionsDefaults implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?object $settings = null,
-        private readonly ?object $variables = null,
-        private readonly ?object $access = null,
-        private readonly ?object $capabilities = null,
+        private ?object $settings = null,
+        private ?object $variables = null,
+        private ?object $access = null,
+        private ?object $capabilities = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class ProjectOptionsDefaults implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSettings(): ?object
     public function getSettings(): ?object
     {
         return $this->settings;
     }
+    //public function getVariables(): ?object
     public function getVariables(): ?object
     {
         return $this->variables;
     }
+    //public function getAccess(): ?object
     public function getAccess(): ?object
     {
         return $this->access;
     }
+    //public function getCapabilities(): ?object
     public function getCapabilities(): ?object
     {
         return $this->capabilities;

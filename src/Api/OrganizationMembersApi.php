@@ -527,11 +527,11 @@ final class OrganizationMembersApi extends AbstractApi
      */
     public function listOrgMembersWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\ArrayFilter $filterPermissions = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListOrgMembers200Response {
         $request = $this->listOrgMembersRequest(
             $organizationId,
@@ -565,11 +565,11 @@ final class OrganizationMembersApi extends AbstractApi
      */
     public function listOrgMembersRequest(
         string $organizationId,
-        \Upsun\Model\ArrayFilter $filterPermissions = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -743,7 +743,7 @@ final class OrganizationMembersApi extends AbstractApi
     public function updateOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId,
-        \Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
+        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
     ): \Upsun\Model\OrganizationMember {
         $request = $this->updateOrgMemberRequest(
             $organizationId,
@@ -775,7 +775,7 @@ final class OrganizationMembersApi extends AbstractApi
     public function updateOrgMemberRequest(
         string $organizationId,
         string $userId,
-        \Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
+        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

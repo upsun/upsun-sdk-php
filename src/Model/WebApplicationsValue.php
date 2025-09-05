@@ -57,37 +57,69 @@ final class WebApplicationsValue implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \Upsun\Model\Resources $resources,
-        private readonly string $size,
-        private readonly int $disk,
-        private readonly array $access,
-        private readonly array $relationships,
-        private readonly array $additionalHosts,
-        private readonly array $mounts,
-        private readonly string $timezone,
-        private readonly array $variables,
-        private readonly \Upsun\Model\Firewall $firewall,
-        private readonly string $containerProfile,
-        private readonly array $operations,
-        private readonly string $name,
-        private readonly string $type,
-        private readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
-        private readonly string $treeId,
-        private readonly string $appDir,
-        private readonly object $endpoints,
-        private readonly object $runtime,
-        private readonly \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web,
-        private readonly \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks,
-        private readonly array $crons,
-        private readonly \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source,
-        private readonly \Upsun\Model\TheBuildConfigurationOfTheApplication $build,
-        private readonly array $dependencies,
-        private readonly array $stack,
-        private readonly bool $isAcrossSubmodule,
-        private readonly int $instanceCount,
-        private readonly string $configId,
-        private readonly string $slugId,
+        private \Upsun\Model\Resources $resources,
+        private string $size,
+        private int $disk,
+        private array $access,
+        private array $relationships,
+        private array $additionalHosts,
+        private array $mounts,
+        private string $timezone,
+        private array $variables,
+        private \Upsun\Model\Firewall $firewall,
+        private string $containerProfile,
+        private array $operations,
+        private string $name,
+        private string $type,
+        private \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
+        private string $treeId,
+        private string $appDir,
+        private object $endpoints,
+        private object $runtime,
+        private \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP $web,
+        private \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication $hooks,
+        private array $crons,
+        private \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication $source,
+        private \Upsun\Model\TheBuildConfigurationOfTheApplication $build,
+        private array $dependencies,
+        private array $stack,
+        private bool $isAcrossSubmodule,
+        private int $instanceCount,
+        private string $configId,
+        private string $slugId,
     ) {
+        if ($this->relationships) {
+            $this->relationships = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue::class);
+            }, $this->relationships);
+        }
+        if ($this->mounts) {
+            $this->mounts = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class);
+            }, $this->mounts);
+        }
+        if ($this->operations) {
+            $this->operations = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue::class);
+            }, $this->operations);
+        }
+        if ($this->crons) {
+            $this->crons = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue::class);
+            }, $this->crons);
+        }
     }
 
     public function jsonSerialize(): array
@@ -131,122 +163,152 @@ final class WebApplicationsValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getResources(): \Upsun\Model\Resources
     public function getResources(): \Upsun\Model\Resources
     {
         return $this->resources;
     }
+    //public function getSize(): string
     public function getSize(): string
     {
         return $this->size;
     }
+    //public function getDisk(): int
     public function getDisk(): int
     {
         return $this->disk;
     }
+    //public function getAccess(): []
     public function getAccess(): array
     {
         return $this->access;
     }
+    //public function getRelationships(): []
     public function getRelationships(): array
     {
         return $this->relationships;
     }
+    //public function getAdditionalHosts(): []
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
+    //public function getMounts(): []
     public function getMounts(): array
     {
         return $this->mounts;
     }
+    //public function getTimezone(): string
     public function getTimezone(): string
     {
         return $this->timezone;
     }
+    //public function getVariables(): []
     public function getVariables(): array
     {
         return $this->variables;
     }
+    //public function getFirewall(): \Upsun\Model\Firewall
     public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->firewall;
     }
+    //public function getContainerProfile(): string
     public function getContainerProfile(): string
     {
         return $this->containerProfile;
     }
+    //public function getOperations(): []
     public function getOperations(): array
     {
         return $this->operations;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     {
         return $this->preflight;
     }
+    //public function getTreeId(): string
     public function getTreeId(): string
     {
         return $this->treeId;
     }
+    //public function getAppDir(): string
     public function getAppDir(): string
     {
         return $this->appDir;
     }
+    //public function getEndpoints(): object
     public function getEndpoints(): object
     {
         return $this->endpoints;
     }
+    //public function getRuntime(): object
     public function getRuntime(): object
     {
         return $this->runtime;
     }
+    //public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
     public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
     {
         return $this->web;
     }
+    //public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
     public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
     {
         return $this->hooks;
     }
+    //public function getCrons(): []
     public function getCrons(): array
     {
         return $this->crons;
     }
+    //public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
     public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
     {
         return $this->source;
     }
+    //public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
     public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
     {
         return $this->build;
     }
+    //public function getDependencies(): []
     public function getDependencies(): array
     {
         return $this->dependencies;
     }
+    //public function getStack(): []
     public function getStack(): array
     {
         return $this->stack;
     }
+    //public function getIsAcrossSubmodule(): bool
     public function getIsAcrossSubmodule(): bool
     {
         return $this->isAcrossSubmodule;
     }
+    //public function getInstanceCount(): int
     public function getInstanceCount(): int
     {
         return $this->instanceCount;
     }
+    //public function getConfigId(): string
     public function getConfigId(): string
     {
         return $this->configId;
     }
+    //public function getSlugId(): string
     public function getSlugId(): string
     {
         return $this->slugId;

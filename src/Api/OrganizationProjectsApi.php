@@ -239,15 +239,15 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     public function listOrgProjectsWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterTitle = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        \Upsun\Model\DateTimeFilter $filterCreatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListOrgProjects200Response {
         $request = $this->listOrgProjectsRequest(
             $organizationId,
@@ -285,15 +285,15 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     public function listOrgProjectsRequest(
         string $organizationId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterTitle = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        \Upsun\Model\DateTimeFilter $filterCreatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

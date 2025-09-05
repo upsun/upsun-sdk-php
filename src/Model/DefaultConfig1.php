@@ -29,9 +29,17 @@ final class DefaultConfig1 implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $manualCount = null,
-        private readonly ?array $schedule = [],
+        private ?int $manualCount = null,
+        private ?array $schedule = [],
     ) {
+        if ($this->schedule) {
+            $this->schedule = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheBackupScheduleSpecificationInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheBackupScheduleSpecificationInner::class);
+            }, $this->schedule);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class DefaultConfig1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getManualCount(): ?int
     public function getManualCount(): ?int
     {
         return $this->manualCount;
     }
+    //public function getSchedule(): ?[]
     public function getSchedule(): ?array
     {
         return $this->schedule;

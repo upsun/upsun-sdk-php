@@ -28,7 +28,7 @@ final class LogsForwarding implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly int $maxExtraPayloadSize,
+        private int $maxExtraPayloadSize,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class LogsForwarding implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getMaxExtraPayloadSize(): int
     public function getMaxExtraPayloadSize(): int
     {
         return $this->maxExtraPayloadSize;

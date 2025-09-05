@@ -31,10 +31,10 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\DateTime $created = null,
-        private readonly ?string $description = null,
-        private readonly ?string $spendRemaining = null,
-        private readonly ?\DateTime $expiration = null,
+        private ?\DateTime $created = null,
+        private ?string $description = null,
+        private ?string $spendRemaining = null,
+        private ?\DateTime $expiration = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreated(): ?\DateTime
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
+    //public function getDescription(): ?string
     public function getDescription(): ?string
     {
         return $this->description;
     }
+    //public function getSpendRemaining(): ?string
     public function getSpendRemaining(): ?string
     {
         return $this->spendRemaining;
     }
+    //public function getExpiration(): ?\DateTime
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;

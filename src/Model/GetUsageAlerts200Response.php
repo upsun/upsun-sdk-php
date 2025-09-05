@@ -29,9 +29,25 @@ final class GetUsageAlerts200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $available = [],
-        private readonly ?array $current = [],
+        private ?array $available = [],
+        private ?array $current = [],
     ) {
+        if ($this->available) {
+            $this->available = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Alert) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Alert::class);
+            }, $this->available);
+        }
+        if ($this->current) {
+            $this->current = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\Alert) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Alert::class);
+            }, $this->current);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +63,12 @@ final class GetUsageAlerts200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAvailable(): ?[]
     public function getAvailable(): ?array
     {
         return $this->available;
     }
+    //public function getCurrent(): ?[]
     public function getCurrent(): ?array
     {
         return $this->current;

@@ -34,13 +34,13 @@ final class ProjectVariableCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $name,
-        private readonly ?array $attributes = [],
-        private readonly string $value,
-        private readonly ?bool $isJson = null,
-        private readonly ?bool $isSensitive = null,
-        private readonly ?bool $visibleBuild = null,
-        private readonly ?bool $visibleRuntime = null,
+        private string $name,
+        private ?array $attributes = [],
+        private string $value,
+        private ?bool $isJson = null,
+        private ?bool $isSensitive = null,
+        private ?bool $visibleBuild = null,
+        private ?bool $visibleRuntime = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class ProjectVariableCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getAttributes(): ?[]
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+    //public function getValue(): string
     public function getValue(): string
     {
         return $this->value;
     }
+    //public function getIsJson(): ?bool
     public function getIsJson(): ?bool
     {
         return $this->isJson;
     }
+    //public function getIsSensitive(): ?bool
     public function getIsSensitive(): ?bool
     {
         return $this->isSensitive;
     }
+    //public function getVisibleBuild(): ?bool
     public function getVisibleBuild(): ?bool
     {
         return $this->visibleBuild;
     }
+    //public function getVisibleRuntime(): ?bool
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;

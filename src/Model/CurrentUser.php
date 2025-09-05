@@ -42,22 +42,46 @@ final class CurrentUser implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $uuid = null,
-        private readonly ?string $username = null,
-        private readonly ?string $displayName = null,
-        private readonly ?int $status = null,
-        private readonly ?string $mail = null,
-        private readonly ?array $sshKeys = [],
-        private readonly ?bool $hasKey = null,
-        private readonly ?array $projects = [],
-        private readonly ?int $sequence = null,
-        private readonly ?array $roles = [],
-        private readonly ?string $picture = null,
-        private readonly ?object $tickets = null,
-        private readonly ?bool $trial = null,
-        private readonly ?array $currentTrial = [],
+        private ?string $id = null,
+        private ?string $uuid = null,
+        private ?string $username = null,
+        private ?string $displayName = null,
+        private ?int $status = null,
+        private ?string $mail = null,
+        private ?array $sshKeys = [],
+        private ?bool $hasKey = null,
+        private ?array $projects = [],
+        private ?int $sequence = null,
+        private ?array $roles = [],
+        private ?string $picture = null,
+        private ?object $tickets = null,
+        private ?bool $trial = null,
+        private ?array $currentTrial = [],
     ) {
+        if ($this->sshKeys) {
+            $this->sshKeys = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\SSHKey) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\SSHKey::class);
+            }, $this->sshKeys);
+        }
+        if ($this->projects) {
+            $this->projects = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\CurrentUserProjectsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CurrentUserProjectsInner::class);
+            }, $this->projects);
+        }
+        if ($this->currentTrial) {
+            $this->currentTrial = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\CurrentUserCurrentTrialInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CurrentUserCurrentTrialInner::class);
+            }, $this->currentTrial);
+        }
     }
 
     public function jsonSerialize(): array
@@ -86,62 +110,77 @@ final class CurrentUser implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getUuid(): ?string
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
+    //public function getUsername(): ?string
     public function getUsername(): ?string
     {
         return $this->username;
     }
+    //public function getDisplayName(): ?string
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
+    //public function getStatus(): ?int
     public function getStatus(): ?int
     {
         return $this->status;
     }
+    //public function getMail(): ?string
     public function getMail(): ?string
     {
         return $this->mail;
     }
+    //public function getSshKeys(): ?[]
     public function getSshKeys(): ?array
     {
         return $this->sshKeys;
     }
+    //public function getHasKey(): ?bool
     public function getHasKey(): ?bool
     {
         return $this->hasKey;
     }
+    //public function getProjects(): ?[]
     public function getProjects(): ?array
     {
         return $this->projects;
     }
+    //public function getSequence(): ?int
     public function getSequence(): ?int
     {
         return $this->sequence;
     }
+    //public function getRoles(): ?[]
     public function getRoles(): ?array
     {
         return $this->roles;
     }
+    //public function getPicture(): ?string
     public function getPicture(): ?string
     {
         return $this->picture;
     }
+    //public function getTickets(): ?object
     public function getTickets(): ?object
     {
         return $this->tickets;
     }
+    //public function getTrial(): ?bool
     public function getTrial(): ?bool
     {
         return $this->trial;
     }
+    //public function getCurrentTrial(): ?[]
     public function getCurrentTrial(): ?array
     {
         return $this->currentTrial;

@@ -59,39 +59,47 @@ final class Environment implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $name,
-        private readonly string $machineName,
-        private readonly string $title,
-        private readonly array $attributes,
-        private readonly string $type,
-        private readonly string $parent,
-        private readonly string $defaultDomain,
-        private readonly bool $hasDomains,
-        private readonly bool $cloneParentOnCreate,
-        private readonly string $deploymentTarget,
-        private readonly bool $isPr,
-        private readonly bool $hasRemote,
-        private readonly string $status,
-        private readonly \Upsun\Model\HttpAccessPermissions $httpAccess,
-        private readonly bool $enableSmtp,
-        private readonly bool $restrictRobots,
-        private readonly string $edgeHostname,
-        private readonly \Upsun\Model\TheEnvironmentDeploymentState $deploymentState,
-        private readonly array $resourcesOverrides,
-        private readonly int $maxInstanceCount,
-        private readonly \DateTime $lastActiveAt,
-        private readonly \DateTime $lastBackupAt,
-        private readonly string $project,
-        private readonly bool $isMain,
-        private readonly bool $isDirty,
-        private readonly bool $hasCode,
-        private readonly string $headCommit,
-        private readonly \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
-        private readonly bool $hasDeployment,
-        private readonly bool $supportsRestrictRobots,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $name,
+        private string $machineName,
+        private string $title,
+        private array $attributes,
+        private string $type,
+        private string $parent,
+        private string $defaultDomain,
+        private bool $hasDomains,
+        private bool $cloneParentOnCreate,
+        private string $deploymentTarget,
+        private bool $isPr,
+        private bool $hasRemote,
+        private string $status,
+        private \Upsun\Model\HttpAccessPermissions $httpAccess,
+        private bool $enableSmtp,
+        private bool $restrictRobots,
+        private string $edgeHostname,
+        private \Upsun\Model\TheEnvironmentDeploymentState $deploymentState,
+        private array $resourcesOverrides,
+        private int $maxInstanceCount,
+        private \DateTime $lastActiveAt,
+        private \DateTime $lastBackupAt,
+        private string $project,
+        private bool $isMain,
+        private bool $isDirty,
+        private bool $hasCode,
+        private string $headCommit,
+        private \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
+        private bool $hasDeployment,
+        private bool $supportsRestrictRobots,
     ) {
+        if ($this->resourcesOverrides) {
+            $this->resourcesOverrides = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\ResourcesOverridesValue) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ResourcesOverridesValue::class);
+            }, $this->resourcesOverrides);
+        }
     }
 
     public function jsonSerialize(): array
@@ -137,130 +145,162 @@ final class Environment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getMachineName(): string
     public function getMachineName(): string
     {
         return $this->machineName;
     }
+    //public function getTitle(): string
     public function getTitle(): string
     {
         return $this->title;
     }
+    //public function getAttributes(): []
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getParent(): string
     public function getParent(): string
     {
         return $this->parent;
     }
+    //public function getDefaultDomain(): string
     public function getDefaultDomain(): string
     {
         return $this->defaultDomain;
     }
+    //public function getHasDomains(): bool
     public function getHasDomains(): bool
     {
         return $this->hasDomains;
     }
+    //public function getCloneParentOnCreate(): bool
     public function getCloneParentOnCreate(): bool
     {
         return $this->cloneParentOnCreate;
     }
+    //public function getDeploymentTarget(): string
     public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
+    //public function getIsPr(): bool
     public function getIsPr(): bool
     {
         return $this->isPr;
     }
+    //public function getHasRemote(): bool
     public function getHasRemote(): bool
     {
         return $this->hasRemote;
     }
+    //public function getStatus(): string
     public function getStatus(): string
     {
         return $this->status;
     }
+    //public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
     public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
     {
         return $this->httpAccess;
     }
+    //public function getEnableSmtp(): bool
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
+    //public function getRestrictRobots(): bool
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
+    //public function getEdgeHostname(): string
     public function getEdgeHostname(): string
     {
         return $this->edgeHostname;
     }
+    //public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
     public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
     {
         return $this->deploymentState;
     }
+    //public function getResourcesOverrides(): []
     public function getResourcesOverrides(): array
     {
         return $this->resourcesOverrides;
     }
+    //public function getMaxInstanceCount(): int
     public function getMaxInstanceCount(): int
     {
         return $this->maxInstanceCount;
     }
+    //public function getLastActiveAt(): \DateTime
     public function getLastActiveAt(): \DateTime
     {
         return $this->lastActiveAt;
     }
+    //public function getLastBackupAt(): \DateTime
     public function getLastBackupAt(): \DateTime
     {
         return $this->lastBackupAt;
     }
+    //public function getProject(): string
     public function getProject(): string
     {
         return $this->project;
     }
+    //public function getIsMain(): bool
     public function getIsMain(): bool
     {
         return $this->isMain;
     }
+    //public function getIsDirty(): bool
     public function getIsDirty(): bool
     {
         return $this->isDirty;
     }
+    //public function getHasCode(): bool
     public function getHasCode(): bool
     {
         return $this->hasCode;
     }
+    //public function getHeadCommit(): string
     public function getHeadCommit(): string
     {
         return $this->headCommit;
     }
+    //public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
     public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
     {
         return $this->mergeInfo;
     }
+    //public function getHasDeployment(): bool
     public function getHasDeployment(): bool
     {
         return $this->hasDeployment;
     }
+    //public function getSupportsRestrictRobots(): bool
     public function getSupportsRestrictRobots(): bool
     {
         return $this->supportsRestrictRobots;

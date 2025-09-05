@@ -28,7 +28,7 @@ final class TheOAuth2ConsumerInformationOptional implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $key,
+        private string $key,
     ) {
     }
 
@@ -44,6 +44,7 @@ final class TheOAuth2ConsumerInformationOptional implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getKey(): string
     public function getKey(): string
     {
         return $this->key;

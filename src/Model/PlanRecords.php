@@ -36,15 +36,15 @@ final class PlanRecords implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $owner = null,
-        private readonly ?string $subscriptionId = null,
-        private readonly ?string $sku = null,
-        private readonly ?string $plan = null,
-        private readonly ?array $options = [],
-        private readonly ?\DateTime $start = null,
-        private readonly ?\DateTime $end = null,
-        private readonly ?string $status = null,
+        private ?string $id = null,
+        private ?string $owner = null,
+        private ?string $subscriptionId = null,
+        private ?string $sku = null,
+        private ?string $plan = null,
+        private ?array $options = [],
+        private ?\DateTime $start = null,
+        private ?\DateTime $end = null,
+        private ?string $status = null,
     ) {
     }
 
@@ -68,38 +68,47 @@ final class PlanRecords implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getOwner(): ?string
     public function getOwner(): ?string
     {
         return $this->owner;
     }
+    //public function getSubscriptionId(): ?string
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
+    //public function getSku(): ?string
     public function getSku(): ?string
     {
         return $this->sku;
     }
+    //public function getPlan(): ?string
     public function getPlan(): ?string
     {
         return $this->plan;
     }
+    //public function getOptions(): ?[]
     public function getOptions(): ?array
     {
         return $this->options;
     }
+    //public function getStart(): ?\DateTime
     public function getStart(): ?\DateTime
     {
         return $this->start;
     }
+    //public function getEnd(): ?\DateTime
     public function getEnd(): ?\DateTime
     {
         return $this->end;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;

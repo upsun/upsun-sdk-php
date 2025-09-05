@@ -35,15 +35,23 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly ?object $enforcedMounts = null,
-        private readonly ?object $siteUrls = null,
-        private readonly ?array $sshHosts = [],
-        private readonly ?object $enterpriseEnvironmentsMapping = null,
-        private readonly ?array $hosts = [],
-        private readonly ?bool $useDedicatedGrid = null,
+        private string $type,
+        private string $name,
+        private ?object $enforcedMounts = null,
+        private ?object $siteUrls = null,
+        private ?array $sshHosts = [],
+        private ?object $enterpriseEnvironmentsMapping = null,
+        private ?array $hosts = [],
+        private ?bool $useDedicatedGrid = null,
     ) {
+        if ($this->hosts) {
+            $this->hosts = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner1) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner1::class);
+            }, $this->hosts);
+        }
     }
 
     public function jsonSerialize(): array
@@ -65,34 +73,42 @@ final class DeploymentTargetCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getEnforcedMounts(): ?object
     public function getEnforcedMounts(): ?object
     {
         return $this->enforcedMounts;
     }
+    //public function getSiteUrls(): ?object
     public function getSiteUrls(): ?object
     {
         return $this->siteUrls;
     }
+    //public function getSshHosts(): ?[]
     public function getSshHosts(): ?array
     {
         return $this->sshHosts;
     }
+    //public function getEnterpriseEnvironmentsMapping(): ?object
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
+    //public function getHosts(): ?[]
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
+    //public function getUseDedicatedGrid(): ?bool
     public function getUseDedicatedGrid(): ?bool
     {
         return $this->useDedicatedGrid;

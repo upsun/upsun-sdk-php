@@ -31,10 +31,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ];
 
     public function __construct(
-        private readonly ?float $cpu = null,
-        private readonly ?float $memory = null,
-        private readonly ?float $storage = null,
-        private readonly ?int $environments = null,
+        private ?float $cpu = null,
+        private ?float $memory = null,
+        private ?float $storage = null,
+        private ?int $environments = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCpu(): ?float
     public function getCpu(): ?float
     {
         return $this->cpu;
     }
+    //public function getMemory(): ?float
     public function getMemory(): ?float
     {
         return $this->memory;
     }
+    //public function getStorage(): ?float
     public function getStorage(): ?float
     {
         return $this->storage;
     }
+    //public function getEnvironments(): ?int
     public function getEnvironments(): ?int
     {
         return $this->environments;

@@ -19,15 +19,12 @@ use Upsun\Model\ModelInterface;
  */
 class ObjectSerializer
 {
-    /** @var string */
-    private static $dateTimeFormat = \DateTime::ATOM;
+    private static string $dateTimeFormat = \DateTime::ATOM;
 
     /**
      * Change the date format
-     *
-     * @param string $format   the new date format to use
      */
-    public static function setDateTimeFormat($format)
+    public static function setDateTimeFormat(string $format): void
     {
         self::$dateTimeFormat = $format;
     }
@@ -41,7 +38,7 @@ class ObjectSerializer
      *
      * @return scalar|object|array|null serialized form of $data
      */
-    public static function sanitizeForSerialization($data, $type = null, $format = null)
+    public static function sanitizeForSerialization(mixed $data, ?string $type = null, ?string $format = null)
     {
         if (is_scalar($data) || null === $data) {
             return $data;
@@ -72,16 +69,19 @@ class ObjectSerializer
                             $allowedEnumTypes = $callable();
                             if (!in_array($value, $allowedEnumTypes, true)) {
                                 $imploded = implode("', '", $allowedEnumTypes);
-                                throw new \InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
+                                throw new \InvalidArgumentException(
+                                    "Invalid value for enum '$openAPIType', must be one of: '$imploded'"
+                                );
                             }
                         }
                     }
                     if (($data::isNullable($property) && $data->isNullableSetToNull($property)) || $value !== null) {
-                        $values[$data::attributeMap()[$property]] = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
+                        $values[$data::attributeMap()[$property]]
+                            = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
                     }
                 }
             } else {
-                foreach($data as $property => $value) {
+                foreach ($data as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
@@ -375,6 +375,15 @@ class ObjectSerializer
             throw new \InvalidArgumentException("Class {$class} does not exist");
         }
     
+        if (substr($class, -2) === '[]') {
+var_dump('dans premier if');
+            $subClass = substr($class, 0, -2);
+            if (!is_array($data)) {
+                throw new \InvalidArgumentException("Data must be an array to deserialize into {$class}");
+            }
+            return array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), $data);
+        }
+    
         $reflectionClass = new \ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
     
@@ -388,9 +397,7 @@ class ObjectSerializer
             $paramType = $param->getType();
             $allowsNull = $paramType?->allowsNull() ?? true;
     
-            // Convert snake_case to JSON keys
             $jsonKey = str_replace('_', '-', $paramName);
-    
             $value = null;
             if (is_object($data)) {
                 $value = $data->{$jsonKey} ?? $data->{$paramName} ?? null;
@@ -401,30 +408,24 @@ class ObjectSerializer
             if ($paramType) {
                 $typeName = $paramType->getName();
     
-                // Handle built-in types
+                // 💡 Tableau de modèles détecté par convention [Model[]] dans le doc ou $paramName
+                if (substr($typeName, -2) === '[]') {
+                    $subClass = substr($typeName, 0, -2);
+                    $args[] = $value !== null
+                        ? array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), (array)$value)
+                        : [];
+                    continue;
+                }
+    
                 if ($paramType->isBuiltin()) {
                     switch ($typeName) {
-                        case 'string':
-                            $args[] = $value !== null ? (string)$value : null;
-                            break;
-                        case 'int':
-                            $args[] = $value !== null ? (int)$value : null;
-                            break;
-                        case 'float':
-                            $args[] = $value !== null ? (float)$value : null;
-                            break;
-                        case 'bool':
-                            $args[] = $value !== null ? (bool)$value : null;
-                            break;
-                        case 'array':
-                            $args[] = $value !== null ? (array)$value : [];
-                            break;
-                        case 'object':
-                            $args[] = $value !== null ? (object)$value : null;
-                            break;
-                        default:
-                            $args[] = $value;
-                            break;
+                        case 'string': $args[] = $value !== null ? (string)$value : null; break;
+                        case 'int':    $args[] = $value !== null ? (int)$value : null; break;
+                        case 'float':  $args[] = $value !== null ? (float)$value : null; break;
+                        case 'bool':   $args[] = $value !== null ? (bool)$value : null; break;
+                        case 'array':  $args[] = $value ?? []; break;
+                        case 'object': $args[] = $value !== null ? (object)$value : null; var_dump('object detected'.$typeName.' '.$value);break;
+                        default: $args[] = $value; break;
                     }
                 } elseif ($typeName === 'DateTime') {
                     $args[] = $value !== null ? new \DateTime($value) : null;
@@ -437,7 +438,6 @@ class ObjectSerializer
                 $args[] = $value;
             }
     
-            // If value is null but constructor requires non-null, throw
             if ($args[count($args)-1] === null && !$allowsNull) {
                 throw new \InvalidArgumentException("Required value '{$paramName}' missing for class {$class}");
             }
@@ -446,12 +446,26 @@ class ObjectSerializer
         return new $class(...$args);
     }
 
+
     public static function deserialize($data, string $class, $httpHeaders = null, $discriminator = null)
-    {
+    {    
         if ($data === null) {
             return null;
         }
 
+        // Handle ActivityCollection (or any Collection schema with only "items")
+        if (class_exists($class) && is_subclass_of($class, ModelInterface::class)) {
+            $types = $class::openAPITypes();
+            if (isset($types['items']) && str_ends_with($types['items'], '[]')) {
+                $subClass = substr($types['items'], 0, -2);
+                $values = [];
+                foreach ($data as $item) {
+                    $values[] = self::deserialize($item, $subClass, $httpHeaders, $discriminator);
+                }
+                return $values;
+            }
+        }
+        
         // Handle array of models
         if (substr($class, -2) === '[]') {
             $subClass = substr($class, 0, -2); // remove []

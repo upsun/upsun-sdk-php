@@ -34,13 +34,13 @@ final class OrganizationReference implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $ownerId = null,
-        private readonly ?string $name = null,
-        private readonly ?string $label = null,
-        private readonly ?string $vendor = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private ?string $id = null,
+        private ?string $ownerId = null,
+        private ?string $name = null,
+        private ?string $label = null,
+        private ?string $vendor = null,
+        private ?\DateTime $createdAt = null,
+        private ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class OrganizationReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getOwnerId(): ?string
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
+    //public function getName(): ?string
     public function getName(): ?string
     {
         return $this->name;
     }
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;
     }
+    //public function getVendor(): ?string
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
+    //public function getCreatedAt(): ?\DateTime
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): ?\DateTime
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

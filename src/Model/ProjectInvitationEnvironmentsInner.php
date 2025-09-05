@@ -31,10 +31,10 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $type = null,
-        private readonly ?string $role = null,
-        private readonly ?string $title = null,
+        private ?string $id = null,
+        private ?string $type = null,
+        private ?string $role = null,
+        private ?string $title = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getRole(): ?string
     public function getRole(): ?string
     {
         return $this->role;
     }
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;

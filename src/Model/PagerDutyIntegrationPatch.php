@@ -29,8 +29,8 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly string $routingKey,
+        private string $type,
+        private string $routingKey,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getRoutingKey(): string
     public function getRoutingKey(): string
     {
         return $this->routingKey;

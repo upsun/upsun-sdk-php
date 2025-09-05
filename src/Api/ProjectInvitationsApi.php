@@ -219,7 +219,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function createProjectInviteWithHttpInfo(
         string $projectId,
-        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): \Upsun\Model\ProjectInvitation {
         $request = $this->createProjectInviteRequest(
             $projectId,
@@ -249,7 +249,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function createProjectInviteRequest(
         string $projectId,
-        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (
@@ -368,11 +368,11 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function listProjectInvitesWithHttpInfo(
         string $projectId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterState = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): array {
         $request = $this->listProjectInvitesRequest(
             $projectId,
@@ -406,11 +406,11 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function listProjectInvitesRequest(
         string $projectId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?\Upsun\Model\StringFilter $filterState = null,
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (

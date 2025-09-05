@@ -584,7 +584,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function updateOrgBillingAlertConfigWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
     ): \Upsun\Model\OrganizationAlertConfig {
         $request = $this->updateOrgBillingAlertConfigRequest(
             $organizationId,
@@ -614,7 +614,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function updateOrgBillingAlertConfigRequest(
         string $organizationId,
-        \Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
+        ?\Upsun\Model\UpdateOrgBillingAlertConfigRequest $updateOrgBillingAlertConfigRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

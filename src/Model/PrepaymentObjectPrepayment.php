@@ -32,11 +32,11 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $organizationId = null,
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
-        private readonly ?string $lastUpdatedAt = null,
-        private readonly ?bool $sufficient = null,
-        private readonly ?string $fallback = null,
+        private ?string $organizationId = null,
+        private ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
+        private ?string $lastUpdatedAt = null,
+        private ?bool $sufficient = null,
+        private ?string $fallback = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getOrganizationId(): ?string
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
+    //public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
     public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
     {
         return $this->balance;
     }
+    //public function getLastUpdatedAt(): ?string
     public function getLastUpdatedAt(): ?string
     {
         return $this->lastUpdatedAt;
     }
+    //public function getSufficient(): ?bool
     public function getSufficient(): ?bool
     {
         return $this->sufficient;
     }
+    //public function getFallback(): ?string
     public function getFallback(): ?string
     {
         return $this->fallback;

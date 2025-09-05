@@ -670,10 +670,10 @@ final class TeamAccessApi extends AbstractApi
      */
     public function listProjectTeamAccessWithHttpInfo(
         string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListTeamProjectAccess200Response {
         $request = $this->listProjectTeamAccessRequest(
             $projectId,
@@ -706,10 +706,10 @@ final class TeamAccessApi extends AbstractApi
      */
     public function listProjectTeamAccessRequest(
         string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (
@@ -875,10 +875,10 @@ final class TeamAccessApi extends AbstractApi
      */
     public function listTeamProjectAccessWithHttpInfo(
         string $teamId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): \Upsun\Model\ListTeamProjectAccess200Response {
         $request = $this->listTeamProjectAccessRequest(
             $teamId,
@@ -911,10 +911,10 @@ final class TeamAccessApi extends AbstractApi
      */
     public function listTeamProjectAccessRequest(
         string $teamId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
+        ?int $pageSize = null,
+        ?string $pageBefore = null,
+        ?string $pageAfter = null,
+        ?string $sort = null
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
         if (

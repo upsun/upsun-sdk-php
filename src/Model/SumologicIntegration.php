@@ -34,13 +34,13 @@ final class SumologicIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $type,
-        private readonly array $extra,
-        private readonly string $url,
-        private readonly string $category,
-        private readonly bool $tlsVerify,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $type,
+        private array $extra,
+        private string $url,
+        private string $category,
+        private bool $tlsVerify,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class SumologicIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getExtra(): []
     public function getExtra(): array
     {
         return $this->extra;
     }
+    //public function getUrl(): string
     public function getUrl(): string
     {
         return $this->url;
     }
+    //public function getCategory(): string
     public function getCategory(): string
     {
         return $this->category;
     }
+    //public function getTlsVerify(): bool
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;

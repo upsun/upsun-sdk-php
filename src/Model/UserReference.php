@@ -35,14 +35,14 @@ final class UserReference implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $username = null,
-        private readonly ?string $email = null,
-        private readonly ?string $firstName = null,
-        private readonly ?string $lastName = null,
-        private readonly ?string $picture = null,
-        private readonly ?bool $mfaEnabled = null,
-        private readonly ?bool $ssoEnabled = null,
+        private ?string $id = null,
+        private ?string $username = null,
+        private ?string $email = null,
+        private ?string $firstName = null,
+        private ?string $lastName = null,
+        private ?string $picture = null,
+        private ?bool $mfaEnabled = null,
+        private ?bool $ssoEnabled = null,
     ) {
     }
 
@@ -65,34 +65,42 @@ final class UserReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getUsername(): ?string
     public function getUsername(): ?string
     {
         return $this->username;
     }
+    //public function getEmail(): ?string
     public function getEmail(): ?string
     {
         return $this->email;
     }
+    //public function getFirstName(): ?string
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
+    //public function getLastName(): ?string
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
+    //public function getPicture(): ?string
     public function getPicture(): ?string
     {
         return $this->picture;
     }
+    //public function getMfaEnabled(): ?bool
     public function getMfaEnabled(): ?bool
     {
         return $this->mfaEnabled;
     }
+    //public function getSsoEnabled(): ?bool
     public function getSsoEnabled(): ?bool
     {
         return $this->ssoEnabled;

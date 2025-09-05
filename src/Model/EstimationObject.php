@@ -33,12 +33,12 @@ final class EstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $plan = null,
-        private readonly ?string $userLicenses = null,
-        private readonly ?string $environments = null,
-        private readonly ?string $storage = null,
-        private readonly ?string $total = null,
-        private readonly ?object $options = null,
+        private ?string $plan = null,
+        private ?string $userLicenses = null,
+        private ?string $environments = null,
+        private ?string $storage = null,
+        private ?string $total = null,
+        private ?object $options = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class EstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPlan(): ?string
     public function getPlan(): ?string
     {
         return $this->plan;
     }
+    //public function getUserLicenses(): ?string
     public function getUserLicenses(): ?string
     {
         return $this->userLicenses;
     }
+    //public function getEnvironments(): ?string
     public function getEnvironments(): ?string
     {
         return $this->environments;
     }
+    //public function getStorage(): ?string
     public function getStorage(): ?string
     {
         return $this->storage;
     }
+    //public function getTotal(): ?string
     public function getTotal(): ?string
     {
         return $this->total;
     }
+    //public function getOptions(): ?object
     public function getOptions(): ?object
     {
         return $this->options;

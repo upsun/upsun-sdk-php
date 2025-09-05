@@ -29,8 +29,8 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $only = [],
-        private readonly ?array $exclude = [],
+        private ?array $only = [],
+        private ?array $exclude = [],
     ) {
     }
 
@@ -47,10 +47,12 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getOnly(): ?[]
     public function getOnly(): ?array
     {
         return $this->only;
     }
+    //public function getExclude(): ?[]
     public function getExclude(): ?array
     {
         return $this->exclude;

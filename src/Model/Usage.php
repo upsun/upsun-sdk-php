@@ -32,11 +32,11 @@ final class Usage implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $subscriptionId = null,
-        private readonly ?string $usageGroup = null,
-        private readonly ?float $quantity = null,
-        private readonly ?\DateTime $start = null,
+        private ?string $id = null,
+        private ?string $subscriptionId = null,
+        private ?string $usageGroup = null,
+        private ?float $quantity = null,
+        private ?\DateTime $start = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class Usage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getSubscriptionId(): ?string
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
+    //public function getUsageGroup(): ?string
     public function getUsageGroup(): ?string
     {
         return $this->usageGroup;
     }
+    //public function getQuantity(): ?float
     public function getQuantity(): ?float
     {
         return $this->quantity;
     }
+    //public function getStart(): ?\DateTime
     public function getStart(): ?\DateTime
     {
         return $this->start;

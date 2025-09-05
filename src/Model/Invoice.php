@@ -43,22 +43,22 @@ final class Invoice implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $invoiceNumber = null,
-        private readonly ?string $type = null,
-        private readonly ?string $orderId = null,
-        private readonly ?string $relatedInvoiceId = null,
-        private readonly ?string $status = null,
-        private readonly ?string $owner = null,
-        private readonly ?\DateTime $invoiceDate = null,
-        private readonly ?\DateTime $invoiceDue = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?\DateTime $changed = null,
-        private readonly ?string $company = null,
-        private readonly ?float $total = null,
-        private readonly ?\Upsun\Model\Address $address = null,
-        private readonly ?string $notes = null,
-        private readonly ?\Upsun\Model\InvoicePDF $invoicePdf = null,
+        private ?string $id = null,
+        private ?string $invoiceNumber = null,
+        private ?string $type = null,
+        private ?string $orderId = null,
+        private ?string $relatedInvoiceId = null,
+        private ?string $status = null,
+        private ?string $owner = null,
+        private ?\DateTime $invoiceDate = null,
+        private ?\DateTime $invoiceDue = null,
+        private ?\DateTime $created = null,
+        private ?\DateTime $changed = null,
+        private ?string $company = null,
+        private ?float $total = null,
+        private ?\Upsun\Model\Address $address = null,
+        private ?string $notes = null,
+        private ?\Upsun\Model\InvoicePDF $invoicePdf = null,
     ) {
     }
 
@@ -89,66 +89,82 @@ final class Invoice implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getInvoiceNumber(): ?string
     public function getInvoiceNumber(): ?string
     {
         return $this->invoiceNumber;
     }
+    //public function getType(): ?string
     public function getType(): ?string
     {
         return $this->type;
     }
+    //public function getOrderId(): ?string
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
+    //public function getRelatedInvoiceId(): ?string
     public function getRelatedInvoiceId(): ?string
     {
         return $this->relatedInvoiceId;
     }
+    //public function getStatus(): ?string
     public function getStatus(): ?string
     {
         return $this->status;
     }
+    //public function getOwner(): ?string
     public function getOwner(): ?string
     {
         return $this->owner;
     }
+    //public function getInvoiceDate(): ?\DateTime
     public function getInvoiceDate(): ?\DateTime
     {
         return $this->invoiceDate;
     }
+    //public function getInvoiceDue(): ?\DateTime
     public function getInvoiceDue(): ?\DateTime
     {
         return $this->invoiceDue;
     }
+    //public function getCreated(): ?\DateTime
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
+    //public function getChanged(): ?\DateTime
     public function getChanged(): ?\DateTime
     {
         return $this->changed;
     }
+    //public function getCompany(): ?string
     public function getCompany(): ?string
     {
         return $this->company;
     }
+    //public function getTotal(): ?float
     public function getTotal(): ?float
     {
         return $this->total;
     }
+    //public function getAddress(): ?\Upsun\Model\Address
     public function getAddress(): ?\Upsun\Model\Address
     {
         return $this->address;
     }
+    //public function getNotes(): ?string
     public function getNotes(): ?string
     {
         return $this->notes;
     }
+    //public function getInvoicePdf(): ?\Upsun\Model\InvoicePDF
     public function getInvoicePdf(): ?\Upsun\Model\InvoicePDF
     {
         return $this->invoicePdf;

@@ -896,7 +896,7 @@ final class UsersApi extends AbstractApi
      */
     public function resetEmailAddressWithHttpInfo(
         string $userId,
-        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): void {
         $request = $this->resetEmailAddressRequest(
             $userId,
@@ -922,7 +922,7 @@ final class UsersApi extends AbstractApi
      */
     public function resetEmailAddressRequest(
         string $userId,
-        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
+        ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (
@@ -1155,7 +1155,7 @@ final class UsersApi extends AbstractApi
      */
     public function updateUserWithHttpInfo(
         string $userId,
-        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
+        ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): \Upsun\Model\User {
         $request = $this->updateUserRequest(
             $userId,
@@ -1185,7 +1185,7 @@ final class UsersApi extends AbstractApi
      */
     public function updateUserRequest(
         string $userId,
-        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
+        ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (

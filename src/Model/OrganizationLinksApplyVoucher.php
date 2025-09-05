@@ -29,8 +29,8 @@ final class OrganizationLinksApplyVoucher implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $href = null,
-        private readonly ?string $method = null,
+        private ?string $href = null,
+        private ?string $method = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class OrganizationLinksApplyVoucher implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getHref(): ?string
     public function getHref(): ?string
     {
         return $this->href;
     }
+    //public function getMethod(): ?string
     public function getMethod(): ?string
     {
         return $this->method;

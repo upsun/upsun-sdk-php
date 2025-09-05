@@ -40,19 +40,19 @@ final class UpdateProfileRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $displayName = null,
-        private readonly ?string $username = null,
-        private readonly ?string $currentPassword = null,
-        private readonly ?string $password = null,
-        private readonly ?string $companyType = null,
-        private readonly ?string $companyName = null,
-        private readonly ?string $vatNumber = null,
-        private readonly ?string $companyRole = null,
-        private readonly ?bool $marketing = null,
-        private readonly ?string $uiColorscheme = null,
-        private readonly ?string $defaultCatalog = null,
-        private readonly ?string $projectOptionsUrl = null,
-        private readonly ?string $picture = null,
+        private ?string $displayName = null,
+        private ?string $username = null,
+        private ?string $currentPassword = null,
+        private ?string $password = null,
+        private ?string $companyType = null,
+        private ?string $companyName = null,
+        private ?string $vatNumber = null,
+        private ?string $companyRole = null,
+        private ?bool $marketing = null,
+        private ?string $uiColorscheme = null,
+        private ?string $defaultCatalog = null,
+        private ?string $projectOptionsUrl = null,
+        private ?string $picture = null,
     ) {
     }
 
@@ -80,54 +80,67 @@ final class UpdateProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getDisplayName(): ?string
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
+    //public function getUsername(): ?string
     public function getUsername(): ?string
     {
         return $this->username;
     }
+    //public function getCurrentPassword(): ?string
     public function getCurrentPassword(): ?string
     {
         return $this->currentPassword;
     }
+    //public function getPassword(): ?string
     public function getPassword(): ?string
     {
         return $this->password;
     }
+    //public function getCompanyType(): ?string
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
+    //public function getCompanyName(): ?string
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
+    //public function getVatNumber(): ?string
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
+    //public function getCompanyRole(): ?string
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
+    //public function getMarketing(): ?bool
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
+    //public function getUiColorscheme(): ?string
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
+    //public function getDefaultCatalog(): ?string
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
+    //public function getProjectOptionsUrl(): ?string
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
+    //public function getPicture(): ?string
     public function getPicture(): ?string
     {
         return $this->picture;

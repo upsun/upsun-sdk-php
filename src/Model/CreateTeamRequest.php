@@ -30,9 +30,9 @@ final class CreateTeamRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $organizationId,
-        private readonly string $label,
-        private readonly ?array $projectPermissions = [],
+        private string $organizationId,
+        private string $label,
+        private ?array $projectPermissions = [],
     ) {
     }
 
@@ -50,14 +50,17 @@ final class CreateTeamRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getOrganizationId(): string
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
+    //public function getLabel(): string
     public function getLabel(): string
     {
         return $this->label;
     }
+    //public function getProjectPermissions(): ?[]
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;

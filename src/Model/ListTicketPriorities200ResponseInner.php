@@ -31,10 +31,10 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $label = null,
-        private readonly ?string $shortDescription = null,
-        private readonly ?string $description = null,
+        private ?string $id = null,
+        private ?string $label = null,
+        private ?string $shortDescription = null,
+        private ?string $description = null,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;
     }
+    //public function getShortDescription(): ?string
     public function getShortDescription(): ?string
     {
         return $this->shortDescription;
     }
+    //public function getDescription(): ?string
     public function getDescription(): ?string
     {
         return $this->description;

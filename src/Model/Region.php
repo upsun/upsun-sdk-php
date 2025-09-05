@@ -39,18 +39,18 @@ final class Region implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?string $label = null,
-        private readonly ?string $zone = null,
-        private readonly ?string $selectionLabel = null,
-        private readonly ?string $projectLabel = null,
-        private readonly ?string $timezone = null,
-        private readonly ?bool $available = null,
-        private readonly ?bool $private = null,
-        private readonly ?string $endpoint = null,
-        private readonly ?\Upsun\Model\RegionProvider $provider = null,
-        private readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
-        private readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
+        private ?string $id = null,
+        private ?string $label = null,
+        private ?string $zone = null,
+        private ?string $selectionLabel = null,
+        private ?string $projectLabel = null,
+        private ?string $timezone = null,
+        private ?bool $available = null,
+        private ?bool $private = null,
+        private ?string $endpoint = null,
+        private ?\Upsun\Model\RegionProvider $provider = null,
+        private ?\Upsun\Model\RegionDatacenter $datacenter = null,
+        private ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
     ) {
     }
 
@@ -77,50 +77,62 @@ final class Region implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getLabel(): ?string
     public function getLabel(): ?string
     {
         return $this->label;
     }
+    //public function getZone(): ?string
     public function getZone(): ?string
     {
         return $this->zone;
     }
+    //public function getSelectionLabel(): ?string
     public function getSelectionLabel(): ?string
     {
         return $this->selectionLabel;
     }
+    //public function getProjectLabel(): ?string
     public function getProjectLabel(): ?string
     {
         return $this->projectLabel;
     }
+    //public function getTimezone(): ?string
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
+    //public function getAvailable(): ?bool
     public function getAvailable(): ?bool
     {
         return $this->available;
     }
+    //public function getPrivate(): ?bool
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
+    //public function getEndpoint(): ?string
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
+    //public function getProvider(): ?\Upsun\Model\RegionProvider
     public function getProvider(): ?\Upsun\Model\RegionProvider
     {
         return $this->provider;
     }
+    //public function getDatacenter(): ?\Upsun\Model\RegionDatacenter
     public function getDatacenter(): ?\Upsun\Model\RegionDatacenter
     {
         return $this->datacenter;
     }
+    //public function getEnvironmentalImpact(): ?\Upsun\Model\RegionEnvironmentalImpact
     public function getEnvironmentalImpact(): ?\Upsun\Model\RegionEnvironmentalImpact
     {
         return $this->environmentalImpact;

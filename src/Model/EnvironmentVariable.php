@@ -41,20 +41,20 @@ final class EnvironmentVariable implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly string $name,
-        private readonly array $attributes,
-        private readonly ?string $value = null,
-        private readonly bool $isJson,
-        private readonly bool $isSensitive,
-        private readonly bool $visibleBuild,
-        private readonly bool $visibleRuntime,
-        private readonly string $project,
-        private readonly string $environment,
-        private readonly bool $inherited,
-        private readonly bool $isEnabled,
-        private readonly bool $isInheritable,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
+        private string $name,
+        private array $attributes,
+        private ?string $value = null,
+        private bool $isJson,
+        private bool $isSensitive,
+        private bool $visibleBuild,
+        private bool $visibleRuntime,
+        private string $project,
+        private string $environment,
+        private bool $inherited,
+        private bool $isEnabled,
+        private bool $isInheritable,
     ) {
     }
 
@@ -83,58 +83,72 @@ final class EnvironmentVariable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getAttributes(): []
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+    //public function getValue(): ?string
     public function getValue(): ?string
     {
         return $this->value;
     }
+    //public function getIsJson(): bool
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
+    //public function getIsSensitive(): bool
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
+    //public function getVisibleBuild(): bool
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
+    //public function getVisibleRuntime(): bool
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }
+    //public function getProject(): string
     public function getProject(): string
     {
         return $this->project;
     }
+    //public function getEnvironment(): string
     public function getEnvironment(): string
     {
         return $this->environment;
     }
+    //public function getInherited(): bool
     public function getInherited(): bool
     {
         return $this->inherited;
     }
+    //public function getIsEnabled(): bool
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
+    //public function getIsInheritable(): bool
     public function getIsInheritable(): bool
     {
         return $this->isInheritable;

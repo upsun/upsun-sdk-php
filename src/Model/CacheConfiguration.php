@@ -31,10 +31,10 @@ final class CacheConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly bool $enabled,
-        private readonly int $defaultTtl,
-        private readonly array $cookies,
-        private readonly array $headers,
+        private bool $enabled,
+        private int $defaultTtl,
+        private array $cookies,
+        private array $headers,
     ) {
     }
 
@@ -53,18 +53,22 @@ final class CacheConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getEnabled(): bool
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
+    //public function getDefaultTtl(): int
     public function getDefaultTtl(): int
     {
         return $this->defaultTtl;
     }
+    //public function getCookies(): []
     public function getCookies(): array
     {
         return $this->cookies;
     }
+    //public function getHeaders(): []
     public function getHeaders(): array
     {
         return $this->headers;

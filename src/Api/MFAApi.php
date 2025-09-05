@@ -72,7 +72,7 @@ final class MFAApi extends AbstractApi
      */
     public function confirmTotpEnrollmentWithHttpInfo(
         string $userId,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
+        ?\Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): \Upsun\Model\ConfirmTotpEnrollment200Response {
         $request = $this->confirmTotpEnrollmentRequest(
             $userId,
@@ -102,7 +102,7 @@ final class MFAApi extends AbstractApi
      */
     public function confirmTotpEnrollmentRequest(
         string $userId,
-        \Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
+        ?\Upsun\Model\ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
         if (
@@ -843,7 +843,7 @@ final class MFAApi extends AbstractApi
      */
     public function sendOrgMfaRemindersWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
+        ?\Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): array {
         $request = $this->sendOrgMfaRemindersRequest(
             $organizationId,
@@ -873,7 +873,7 @@ final class MFAApi extends AbstractApi
      */
     public function sendOrgMfaRemindersRequest(
         string $organizationId,
-        \Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
+        ?\Upsun\Model\SendOrgMfaRemindersRequest $sendOrgMfaRemindersRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

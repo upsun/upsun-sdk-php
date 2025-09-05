@@ -37,16 +37,16 @@ final class Address implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $country = null,
-        private readonly ?string $nameLine = null,
-        private readonly ?string $premise = null,
-        private readonly ?string $subPremise = null,
-        private readonly ?string $thoroughfare = null,
-        private readonly ?string $administrativeArea = null,
-        private readonly ?string $subAdministrativeArea = null,
-        private readonly ?string $locality = null,
-        private readonly ?string $dependentLocality = null,
-        private readonly ?string $postalCode = null,
+        private ?string $country = null,
+        private ?string $nameLine = null,
+        private ?string $premise = null,
+        private ?string $subPremise = null,
+        private ?string $thoroughfare = null,
+        private ?string $administrativeArea = null,
+        private ?string $subAdministrativeArea = null,
+        private ?string $locality = null,
+        private ?string $dependentLocality = null,
+        private ?string $postalCode = null,
     ) {
     }
 
@@ -71,42 +71,52 @@ final class Address implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getCountry(): ?string
     public function getCountry(): ?string
     {
         return $this->country;
     }
+    //public function getNameLine(): ?string
     public function getNameLine(): ?string
     {
         return $this->nameLine;
     }
+    //public function getPremise(): ?string
     public function getPremise(): ?string
     {
         return $this->premise;
     }
+    //public function getSubPremise(): ?string
     public function getSubPremise(): ?string
     {
         return $this->subPremise;
     }
+    //public function getThoroughfare(): ?string
     public function getThoroughfare(): ?string
     {
         return $this->thoroughfare;
     }
+    //public function getAdministrativeArea(): ?string
     public function getAdministrativeArea(): ?string
     {
         return $this->administrativeArea;
     }
+    //public function getSubAdministrativeArea(): ?string
     public function getSubAdministrativeArea(): ?string
     {
         return $this->subAdministrativeArea;
     }
+    //public function getLocality(): ?string
     public function getLocality(): ?string
     {
         return $this->locality;
     }
+    //public function getDependentLocality(): ?string
     public function getDependentLocality(): ?string
     {
         return $this->dependentLocality;
     }
+    //public function getPostalCode(): ?string
     public function getPostalCode(): ?string
     {
         return $this->postalCode;

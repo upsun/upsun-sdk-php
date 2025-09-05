@@ -30,9 +30,9 @@ final class AddressMetadataMetadata implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $requiredFields = [],
-        private readonly ?object $fieldLabels = null,
-        private readonly ?bool $showVat = null,
+        private ?array $requiredFields = [],
+        private ?object $fieldLabels = null,
+        private ?bool $showVat = null,
     ) {
     }
 
@@ -50,14 +50,17 @@ final class AddressMetadataMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getRequiredFields(): ?[]
     public function getRequiredFields(): ?array
     {
         return $this->requiredFields;
     }
+    //public function getFieldLabels(): ?object
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
+    //public function getShowVat(): ?bool
     public function getShowVat(): ?bool
     {
         return $this->showVat;

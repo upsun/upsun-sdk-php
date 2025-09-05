@@ -86,14 +86,14 @@ final class RecordsApi extends AbstractApi
      */
     public function listOrgPlanRecordsWithHttpInfo(
         string $organizationId,
-        string $filterSubscriptionId = null,
-        string $filterPlan = null,
-        string $filterStatus = null,
-        \DateTime $filterStart = null,
-        \DateTime $filterEnd = null,
-        \DateTime $filterStartedAt = null,
-        \DateTime $filterEndedAt = null,
-        int $page = null
+        ?string $filterSubscriptionId = null,
+        ?string $filterPlan = null,
+        ?string $filterStatus = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterEnd = null,
+        ?\DateTime $filterStartedAt = null,
+        ?\DateTime $filterEndedAt = null,
+        ?int $page = null
     ): \Upsun\Model\ListOrgPlanRecords200Response {
         $request = $this->listOrgPlanRecordsRequest(
             $organizationId,
@@ -130,14 +130,14 @@ final class RecordsApi extends AbstractApi
      */
     public function listOrgPlanRecordsRequest(
         string $organizationId,
-        string $filterSubscriptionId = null,
-        string $filterPlan = null,
-        string $filterStatus = null,
-        \DateTime $filterStart = null,
-        \DateTime $filterEnd = null,
-        \DateTime $filterStartedAt = null,
-        \DateTime $filterEndedAt = null,
-        int $page = null
+        ?string $filterSubscriptionId = null,
+        ?string $filterPlan = null,
+        ?string $filterStatus = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterEnd = null,
+        ?\DateTime $filterStartedAt = null,
+        ?\DateTime $filterEndedAt = null,
+        ?int $page = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (
@@ -336,11 +336,11 @@ final class RecordsApi extends AbstractApi
      */
     public function listOrgUsageRecordsWithHttpInfo(
         string $organizationId,
-        string $filterSubscriptionId = null,
-        string $filterUsageGroup = null,
-        \DateTime $filterStart = null,
-        \DateTime $filterStartedAt = null,
-        int $page = null
+        ?string $filterSubscriptionId = null,
+        ?string $filterUsageGroup = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterStartedAt = null,
+        ?int $page = null
     ): \Upsun\Model\ListOrgUsageRecords200Response {
         $request = $this->listOrgUsageRecordsRequest(
             $organizationId,
@@ -374,11 +374,11 @@ final class RecordsApi extends AbstractApi
      */
     public function listOrgUsageRecordsRequest(
         string $organizationId,
-        string $filterSubscriptionId = null,
-        string $filterUsageGroup = null,
-        \DateTime $filterStart = null,
-        \DateTime $filterStartedAt = null,
-        int $page = null
+        ?string $filterSubscriptionId = null,
+        ?string $filterUsageGroup = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterStartedAt = null,
+        ?int $page = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

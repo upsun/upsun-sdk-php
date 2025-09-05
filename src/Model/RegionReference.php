@@ -43,22 +43,22 @@ final class RegionReference implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $id,
-        private readonly string $label,
-        private readonly string $zone,
-        private readonly string $selectionLabel,
-        private readonly string $projectLabel,
-        private readonly string $timezone,
-        private readonly bool $available,
-        private readonly ?bool $private = null,
-        private readonly string $endpoint,
-        private readonly ?string $code = null,
-        private readonly object $provider,
-        private readonly object $datacenter,
-        private readonly ?object $envimpact = null,
-        private readonly object $compliance,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private string $id,
+        private string $label,
+        private string $zone,
+        private string $selectionLabel,
+        private string $projectLabel,
+        private string $timezone,
+        private bool $available,
+        private ?bool $private = null,
+        private string $endpoint,
+        private ?string $code = null,
+        private object $provider,
+        private object $datacenter,
+        private ?object $envimpact = null,
+        private object $compliance,
+        private \DateTime $createdAt,
+        private \DateTime $updatedAt,
     ) {
     }
 
@@ -89,66 +89,82 @@ final class RegionReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): string
     public function getId(): string
     {
         return $this->id;
     }
+    //public function getLabel(): string
     public function getLabel(): string
     {
         return $this->label;
     }
+    //public function getZone(): string
     public function getZone(): string
     {
         return $this->zone;
     }
+    //public function getSelectionLabel(): string
     public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
+    //public function getProjectLabel(): string
     public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
+    //public function getTimezone(): string
     public function getTimezone(): string
     {
         return $this->timezone;
     }
+    //public function getAvailable(): bool
     public function getAvailable(): bool
     {
         return $this->available;
     }
+    //public function getPrivate(): ?bool
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
+    //public function getEndpoint(): string
     public function getEndpoint(): string
     {
         return $this->endpoint;
     }
+    //public function getCode(): ?string
     public function getCode(): ?string
     {
         return $this->code;
     }
+    //public function getProvider(): object
     public function getProvider(): object
     {
         return $this->provider;
     }
+    //public function getDatacenter(): object
     public function getDatacenter(): object
     {
         return $this->datacenter;
     }
+    //public function getEnvimpact(): ?object
     public function getEnvimpact(): ?object
     {
         return $this->envimpact;
     }
+    //public function getCompliance(): object
     public function getCompliance(): object
     {
         return $this->compliance;
     }
+    //public function getCreatedAt(): \DateTime
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
+    //public function getUpdatedAt(): \DateTime
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;

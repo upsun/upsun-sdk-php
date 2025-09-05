@@ -29,8 +29,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
+        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
+        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getStandardManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
     public function getStandardManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
     {
         return $this->standardManagementUser;
     }
+    //public function getAdvancedManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
     public function getAdvancedManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
     {
         return $this->advancedManagementUser;

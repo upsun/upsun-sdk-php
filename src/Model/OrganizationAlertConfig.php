@@ -33,12 +33,12 @@ final class OrganizationAlertConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $id = null,
-        private readonly ?bool $active = null,
-        private readonly ?float $alertsSent = null,
-        private readonly ?string $lastAlertAt = null,
-        private readonly ?string $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
+        private ?string $id = null,
+        private ?bool $active = null,
+        private ?float $alertsSent = null,
+        private ?string $lastAlertAt = null,
+        private ?string $updatedAt = null,
+        private ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
     ) {
     }
 
@@ -59,26 +59,32 @@ final class OrganizationAlertConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getId(): ?string
     public function getId(): ?string
     {
         return $this->id;
     }
+    //public function getActive(): ?bool
     public function getActive(): ?bool
     {
         return $this->active;
     }
+    //public function getAlertsSent(): ?float
     public function getAlertsSent(): ?float
     {
         return $this->alertsSent;
     }
+    //public function getLastAlertAt(): ?string
     public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
+    //public function getUpdatedAt(): ?string
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
+    //public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
     public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
     {
         return $this->config;

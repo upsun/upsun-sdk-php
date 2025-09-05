@@ -32,11 +32,11 @@ final class ProjectOptions implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
-        private readonly ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
-        private readonly ?array $regions = [],
-        private readonly ?array $plans = [],
-        private readonly ?object $billing = null,
+        private ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
+        private ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
+        private ?array $regions = [],
+        private ?array $plans = [],
+        private ?object $billing = null,
     ) {
     }
 
@@ -56,22 +56,27 @@ final class ProjectOptions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getDefaults(): ?\Upsun\Model\ProjectOptionsDefaults
     public function getDefaults(): ?\Upsun\Model\ProjectOptionsDefaults
     {
         return $this->defaults;
     }
+    //public function getEnforced(): ?\Upsun\Model\ProjectOptionsEnforced
     public function getEnforced(): ?\Upsun\Model\ProjectOptionsEnforced
     {
         return $this->enforced;
     }
+    //public function getRegions(): ?[]
     public function getRegions(): ?array
     {
         return $this->regions;
     }
+    //public function getPlans(): ?[]
     public function getPlans(): ?array
     {
         return $this->plans;
     }
+    //public function getBilling(): ?object
     public function getBilling(): ?object
     {
         return $this->billing;

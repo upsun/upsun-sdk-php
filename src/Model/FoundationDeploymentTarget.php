@@ -32,12 +32,20 @@ final class FoundationDeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $type,
-        private readonly string $name,
-        private readonly array $hosts,
-        private readonly bool $useDedicatedGrid,
-        private readonly string $storageType,
+        private string $type,
+        private string $name,
+        private array $hosts,
+        private bool $useDedicatedGrid,
+        private string $storageType,
     ) {
+        if ($this->hosts) {
+            $this->hosts = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner::class);
+            }, $this->hosts);
+        }
     }
 
     public function jsonSerialize(): array
@@ -56,22 +64,27 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getType(): string
     public function getType(): string
     {
         return $this->type;
     }
+    //public function getName(): string
     public function getName(): string
     {
         return $this->name;
     }
+    //public function getHosts(): []
     public function getHosts(): array
     {
         return $this->hosts;
     }
+    //public function getUseDedicatedGrid(): bool
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
+    //public function getStorageType(): string
     public function getStorageType(): string
     {
         return $this->storageType;

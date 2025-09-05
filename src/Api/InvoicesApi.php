@@ -229,10 +229,10 @@ final class InvoicesApi extends AbstractApi
      */
     public function listOrgInvoicesWithHttpInfo(
         string $organizationId,
-        string $filterStatus = null,
-        string $filterType = null,
-        string $filterOrderId = null,
-        int $page = null
+        ?string $filterStatus = null,
+        ?string $filterType = null,
+        ?string $filterOrderId = null,
+        ?int $page = null
     ): \Upsun\Model\ListOrgInvoices200Response {
         $request = $this->listOrgInvoicesRequest(
             $organizationId,
@@ -265,10 +265,10 @@ final class InvoicesApi extends AbstractApi
      */
     public function listOrgInvoicesRequest(
         string $organizationId,
-        string $filterStatus = null,
-        string $filterType = null,
-        string $filterOrderId = null,
-        int $page = null
+        ?string $filterStatus = null,
+        ?string $filterType = null,
+        ?string $filterOrderId = null,
+        ?int $page = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
         if (

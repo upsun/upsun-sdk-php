@@ -36,15 +36,15 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $title = null,
-        private readonly ?bool $type = null,
-        private readonly ?float $currentUsage = null,
-        private readonly ?string $currentUsageFormatted = null,
-        private readonly ?bool $notCharged = null,
-        private readonly ?float $freeQuantity = null,
-        private readonly ?string $freeQuantityFormatted = null,
-        private readonly ?float $dailyAverage = null,
-        private readonly ?string $dailyAverageFormatted = null,
+        private ?string $title = null,
+        private ?bool $type = null,
+        private ?float $currentUsage = null,
+        private ?string $currentUsageFormatted = null,
+        private ?bool $notCharged = null,
+        private ?float $freeQuantity = null,
+        private ?string $freeQuantityFormatted = null,
+        private ?float $dailyAverage = null,
+        private ?string $dailyAverageFormatted = null,
     ) {
     }
 
@@ -68,38 +68,47 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;
     }
+    //public function getType(): ?bool
     public function getType(): ?bool
     {
         return $this->type;
     }
+    //public function getCurrentUsage(): ?float
     public function getCurrentUsage(): ?float
     {
         return $this->currentUsage;
     }
+    //public function getCurrentUsageFormatted(): ?string
     public function getCurrentUsageFormatted(): ?string
     {
         return $this->currentUsageFormatted;
     }
+    //public function getNotCharged(): ?bool
     public function getNotCharged(): ?bool
     {
         return $this->notCharged;
     }
+    //public function getFreeQuantity(): ?float
     public function getFreeQuantity(): ?float
     {
         return $this->freeQuantity;
     }
+    //public function getFreeQuantityFormatted(): ?string
     public function getFreeQuantityFormatted(): ?string
     {
         return $this->freeQuantityFormatted;
     }
+    //public function getDailyAverage(): ?float
     public function getDailyAverage(): ?float
     {
         return $this->dailyAverage;
     }
+    //public function getDailyAverageFormatted(): ?string
     public function getDailyAverageFormatted(): ?string
     {
         return $this->dailyAverageFormatted;

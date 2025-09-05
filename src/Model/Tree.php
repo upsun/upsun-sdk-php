@@ -29,9 +29,17 @@ final class Tree implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly string $sha,
-        private readonly array $tree,
+        private string $sha,
+        private array $tree,
     ) {
+        if ($this->tree) {
+            $this->tree = array_map(function ($item) {
+                if ($item instanceof \Upsun\Model\TheTreeItemsInner) {
+                    return $item;
+                }
+                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheTreeItemsInner::class);
+            }, $this->tree);
+        }
     }
 
     public function jsonSerialize(): array
@@ -47,10 +55,12 @@ final class Tree implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getSha(): string
     public function getSha(): string
     {
         return $this->sha;
     }
+    //public function getTree(): []
     public function getTree(): array
     {
         return $this->tree;

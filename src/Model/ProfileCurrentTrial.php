@@ -38,17 +38,17 @@ final class ProfileCurrentTrial implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?bool $active = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?string $description = null,
-        private readonly ?\DateTime $expiration = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
-        private readonly ?string $pendingVerification = null,
-        private readonly ?string $model = null,
-        private readonly ?int $daysRemaining = null,
+        private ?bool $active = null,
+        private ?\DateTime $created = null,
+        private ?string $description = null,
+        private ?\DateTime $expiration = null,
+        private ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+        private ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+        private ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
+        private ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        private ?string $pendingVerification = null,
+        private ?string $model = null,
+        private ?int $daysRemaining = null,
     ) {
     }
 
@@ -74,46 +74,57 @@ final class ProfileCurrentTrial implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getActive(): ?bool
     public function getActive(): ?bool
     {
         return $this->active;
     }
+    //public function getCreated(): ?\DateTime
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
+    //public function getDescription(): ?string
     public function getDescription(): ?string
     {
         return $this->description;
     }
+    //public function getExpiration(): ?\DateTime
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;
     }
+    //public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
     public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
     {
         return $this->current;
     }
+    //public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
     public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
     {
         return $this->spend;
     }
+    //public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
     public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
     {
         return $this->spendRemaining;
     }
+    //public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
     public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
     {
         return $this->projects;
     }
+    //public function getPendingVerification(): ?string
     public function getPendingVerification(): ?string
     {
         return $this->pendingVerification;
     }
+    //public function getModel(): ?string
     public function getModel(): ?string
     {
         return $this->model;
     }
+    //public function getDaysRemaining(): ?int
     public function getDaysRemaining(): ?int
     {
         return $this->daysRemaining;

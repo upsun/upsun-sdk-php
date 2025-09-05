@@ -34,13 +34,13 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?string $plan = null,
-        private readonly string $projectRegion,
-        private readonly ?string $projectTitle = null,
-        private readonly ?string $optionsUrl = null,
-        private readonly ?string $defaultBranch = null,
-        private readonly ?int $environments = null,
-        private readonly ?int $storage = null,
+        private ?string $plan = null,
+        private string $projectRegion,
+        private ?string $projectTitle = null,
+        private ?string $optionsUrl = null,
+        private ?string $defaultBranch = null,
+        private ?int $environments = null,
+        private ?int $storage = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getPlan(): ?string
     public function getPlan(): ?string
     {
         return $this->plan;
     }
+    //public function getProjectRegion(): string
     public function getProjectRegion(): string
     {
         return $this->projectRegion;
     }
+    //public function getProjectTitle(): ?string
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
+    //public function getOptionsUrl(): ?string
     public function getOptionsUrl(): ?string
     {
         return $this->optionsUrl;
     }
+    //public function getDefaultBranch(): ?string
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
+    //public function getEnvironments(): ?int
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
+    //public function getStorage(): ?int
     public function getStorage(): ?int
     {
         return $this->storage;

@@ -29,8 +29,8 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?int $threshold = null,
-        private readonly ?string $mode = null,
+        private ?int $threshold = null,
+        private ?string $mode = null,
     ) {
     }
 
@@ -47,10 +47,12 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getThreshold(): ?int
     public function getThreshold(): ?int
     {
         return $this->threshold;
     }
+    //public function getMode(): ?string
     public function getMode(): ?string
     {
         return $this->mode;

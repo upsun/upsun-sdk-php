@@ -34,13 +34,13 @@ final class ProjectPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private readonly ?array $attributes = [],
-        private readonly ?string $title = null,
-        private readonly ?string $description = null,
-        private readonly ?string $defaultBranch = null,
-        private readonly ?string $timezone = null,
-        private readonly ?string $region = null,
-        private readonly ?string $defaultDomain = null,
+        private ?array $attributes = [],
+        private ?string $title = null,
+        private ?string $description = null,
+        private ?string $defaultBranch = null,
+        private ?string $timezone = null,
+        private ?string $region = null,
+        private ?string $defaultDomain = null,
     ) {
     }
 
@@ -62,30 +62,37 @@ final class ProjectPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    //public function getAttributes(): ?[]
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+    //public function getTitle(): ?string
     public function getTitle(): ?string
     {
         return $this->title;
     }
+    //public function getDescription(): ?string
     public function getDescription(): ?string
     {
         return $this->description;
     }
+    //public function getDefaultBranch(): ?string
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
+    //public function getTimezone(): ?string
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
+    //public function getRegion(): ?string
     public function getRegion(): ?string
     {
         return $this->region;
     }
+    //public function getDefaultDomain(): ?string
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
