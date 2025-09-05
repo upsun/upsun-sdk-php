@@ -6,7 +6,6 @@ use Exception;
 use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\RegionsApi;
-use Upsun\Model\Error;
 use Upsun\Model\ListRegions200Response;
 use Upsun\Model\Region;
 use Upsun\Model\StringFilter;
@@ -34,7 +33,7 @@ class RegionTask extends TaskBase
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $regionId): Region|Error
+    public function get(string $regionId): Region
     {
         return $this->api->getRegion($regionId);
     }

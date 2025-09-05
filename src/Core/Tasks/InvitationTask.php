@@ -9,7 +9,6 @@ use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Model\CreateOrgInviteRequest;
 use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\Error;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\StringFilter;
