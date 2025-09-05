@@ -50,6 +50,32 @@ final class ServicesValue implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'size' => 'string',
+            'disk' => 'int',
+            'access' => 'object',
+            'configuration' => 'object',
+            'relationships' => 'array&lt;string,string&gt;',
+            'firewall' => '\Upsun\Model\Firewall',
+            'resources' => '\Upsun\Model\Resources',
+            'container_profile' => 'string',
+            'endpoints' => 'object',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

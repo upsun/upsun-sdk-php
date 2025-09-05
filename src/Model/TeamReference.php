@@ -44,6 +44,29 @@ final class TeamReference implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'organization_id' => 'string',
+            'label' => 'string',
+            'project_permissions' => 'string[]',
+            'counts' => '\Upsun\Model\TeamCounts',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

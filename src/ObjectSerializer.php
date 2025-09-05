@@ -376,7 +376,6 @@ class ObjectSerializer
         }
     
         if (substr($class, -2) === '[]') {
-var_dump('dans premier if');
             $subClass = substr($class, 0, -2);
             if (!is_array($data)) {
                 throw new \InvalidArgumentException("Data must be an array to deserialize into {$class}");
@@ -397,7 +396,11 @@ var_dump('dans premier if');
             $paramType = $param->getType();
             $allowsNull = $paramType?->allowsNull() ?? true;
     
-            $jsonKey = str_replace('_', '-', $paramName);
+            $jsonKey = $paramName; // fallback
+            if (method_exists($class, 'attributeMap')) {
+                $attributeMap = $class::attributeMap();
+                $jsonKey = $attributeMap[$paramName] ?? $paramName;
+            }
             $value = null;
             if (is_object($data)) {
                 $value = $data->{$jsonKey} ?? $data->{$paramName} ?? null;
@@ -407,8 +410,28 @@ var_dump('dans premier if');
     
             if ($paramType) {
                 $typeName = $paramType->getName();
-    
-                // 💡 Tableau de modèles détecté par convention [Model[]] dans le doc ou $paramName
+
+                if ($paramType && $paramType->getName() === 'array' && $value !== null && is_array($value)) {
+                    if (method_exists($class, 'openAPITypes')) {
+                        $types = $class::openAPITypes();
+        
+                        if (isset($types[$paramName]) && str_ends_with($types[$paramName], '[]')) {
+                            $itemClass = substr($types[$paramName], 0, -2); // Enlever []
+        
+                            if (class_exists($itemClass)) {
+                                $args[] = array_map(function($item) use ($itemClass) {
+                                    return self::deserializeSimplifiedModel($item, $itemClass);
+                                }, $value);
+                                continue;
+                            }
+                        }
+                    }
+                    
+                    // Fallback si pas de métadonnées
+                    $args[] = $value ?? [];
+                }
+
+                
                 if (substr($typeName, -2) === '[]') {
                     $subClass = substr($typeName, 0, -2);
                     $args[] = $value !== null
@@ -423,8 +446,8 @@ var_dump('dans premier if');
                         case 'int':    $args[] = $value !== null ? (int)$value : null; break;
                         case 'float':  $args[] = $value !== null ? (float)$value : null; break;
                         case 'bool':   $args[] = $value !== null ? (bool)$value : null; break;
-                        case 'array':  $args[] = $value ?? []; break;
-                        case 'object': $args[] = $value !== null ? (object)$value : null; var_dump('object detected'.$typeName.' '.$value);break;
+                        case 'array':  break;
+                        case 'object': $args[] = $value !== null ? (object)$value : null; break;
                         default: $args[] = $value; break;
                     }
                 } elseif ($typeName === 'DateTime') {
@@ -586,5 +609,16 @@ var_dump('dans premier if');
         }
 
         return $qs ? (string) substr($qs, 0, -1) : '';
+    }
+    
+    private static function guessItemClass(string $parentClass, string $paramName): ?string 
+    {
+        if (preg_match('/List(\w+)200Response$/', $parentClass, $matches)) {
+            $modelName = $matches[1];
+            $singular = rtrim($modelName, 's');
+            return "\\Upsun\\Model\\{$singular}";
+        }
+        
+        return null;
     }
 }

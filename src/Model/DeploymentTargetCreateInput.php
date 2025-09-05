@@ -44,14 +44,30 @@ final class DeploymentTargetCreateInput implements JsonSerializable
         private ?array $hosts = [],
         private ?bool $useDedicatedGrid = null,
     ) {
-        if ($this->hosts) {
-            $this->hosts = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner1) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner1::class);
-            }, $this->hosts);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'name' => 'string',
+            'enforced_mounts' => 'object',
+            'site_urls' => 'object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => 'object',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
+            'use_dedicated_grid' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

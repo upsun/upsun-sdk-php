@@ -78,6 +78,46 @@ final class Subscription implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'status' => 'string',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'owner' => 'string',
+            'owner_info' => '\Upsun\Model\OwnerInfo',
+            'vendor' => 'string',
+            'plan' => 'string',
+            'environments' => 'int',
+            'storage' => 'int',
+            'user_licenses' => 'int',
+            'project_id' => 'string',
+            'project_endpoint' => 'string',
+            'project_title' => 'string',
+            'project_region' => 'string',
+            'project_region_label' => 'string',
+            'project_ui' => 'string',
+            'project_options' => '\Upsun\Model\ProjectOptions',
+            'agency_site' => 'bool',
+            'invoiced' => 'bool',
+            'hipaa' => 'bool',
+            'is_trial_plan' => 'bool',
+            'services' => 'object[]',
+            'green' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

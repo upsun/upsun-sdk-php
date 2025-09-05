@@ -68,6 +68,41 @@ final class Activity implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'parameters' => 'object',
+            'project' => 'string',
+            'integration' => 'string',
+            'environments' => 'string[]',
+            'state' => 'string',
+            'result' => 'string',
+            'started_at' => '\DateTime',
+            'completed_at' => '\DateTime',
+            'completion_percent' => 'int',
+            'cancelled_at' => '\DateTime',
+            'timings' => 'array&lt;string,float&gt;',
+            'log' => 'string',
+            'payload' => 'object',
+            'description' => 'string',
+            'text' => 'string',
+            'expires_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

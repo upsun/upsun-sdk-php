@@ -52,6 +52,33 @@ final class Discount implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'int',
+            'organization_id' => 'string',
+            'type' => 'string',
+            'type_label' => 'string',
+            'status' => 'string',
+            'commitment' => '\Upsun\Model\DiscountCommitment',
+            'total_months' => 'int',
+            'discount' => '\Upsun\Model\DiscountDiscount',
+            'config' => 'object',
+            'start_at' => '\DateTime',
+            'end_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

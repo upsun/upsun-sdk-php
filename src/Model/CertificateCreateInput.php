@@ -38,6 +38,26 @@ final class CertificateCreateInput implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'certificate' => 'string',
+            'key' => 'string',
+            'chain' => 'string[]',
+            'is_invalid' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

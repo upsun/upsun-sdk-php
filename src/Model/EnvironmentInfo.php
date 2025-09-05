@@ -48,6 +48,31 @@ final class EnvironmentInfo implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'name' => 'string',
+            'status' => 'string',
+            'is_main' => 'bool',
+            'is_production' => 'bool',
+            'constraints' => 'object',
+            'reference' => 'string',
+            'machine_name' => 'string',
+            'environment_type' => 'string',
+            'links' => 'object',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

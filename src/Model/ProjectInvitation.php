@@ -48,14 +48,32 @@ final class ProjectInvitation implements JsonSerializable
         private ?\DateTime $finishedAt = null,
         private ?array $environments = [],
     ) {
-        if ($this->environments) {
-            $this->environments = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\ProjectInvitationEnvironmentsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ProjectInvitationEnvironmentsInner::class);
-            }, $this->environments);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'state' => 'string',
+            'project_id' => 'string',
+            'role' => 'string',
+            'email' => 'string',
+            'owner' => '\Upsun\Model\OrganizationInvitationOwner',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'finished_at' => '\DateTime',
+            'environments' => '\Upsun\Model\ProjectInvitationEnvironmentsInner[]',
+        ];
     }
 
     public function jsonSerialize(): array

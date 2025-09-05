@@ -38,6 +38,26 @@ final class TeamMember implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'team_id' => 'string',
+            'user_id' => 'string',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

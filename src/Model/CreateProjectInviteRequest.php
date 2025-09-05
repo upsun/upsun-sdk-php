@@ -38,22 +38,27 @@ final class CreateProjectInviteRequest implements JsonSerializable
         private ?array $environments = [],
         private ?bool $force = null,
     ) {
-        if ($this->permissions) {
-            $this->permissions = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\CreateProjectInviteRequestPermissionsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CreateProjectInviteRequestPermissionsInner::class);
-            }, $this->permissions);
-        }
-        if ($this->environments) {
-            $this->environments = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner::class);
-            }, $this->environments);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'role' => 'string',
+            'email' => 'string',
+            'permissions' => '\Upsun\Model\CreateProjectInviteRequestPermissionsInner[]',
+            'environments' => '\Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]',
+            'force' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

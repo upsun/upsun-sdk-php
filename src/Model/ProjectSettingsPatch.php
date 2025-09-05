@@ -34,14 +34,25 @@ final class ProjectSettingsPatch implements JsonSerializable
         private ?array $dataRetention = [],
         private ?\Upsun\Model\BuildResources2 $buildResources = null,
     ) {
-        if ($this->dataRetention) {
-            $this->dataRetention = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\DataRetentionConfigurationValue1) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\DataRetentionConfigurationValue1::class);
-            }, $this->dataRetention);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'initialize' => 'object',
+            'data_retention' => 'array&lt;string,\Upsun\Model\DataRetentionConfigurationValue1&gt;',
+            'build_resources' => '\Upsun\Model\BuildResources2',
+        ];
     }
 
     public function jsonSerialize(): array

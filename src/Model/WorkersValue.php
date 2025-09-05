@@ -76,30 +76,46 @@ final class WorkersValue implements JsonSerializable
         private int $instanceCount,
         private string $slugId,
     ) {
-        if ($this->relationships) {
-            $this->relationships = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue::class);
-            }, $this->relationships);
-        }
-        if ($this->mounts) {
-            $this->mounts = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class);
-            }, $this->mounts);
-        }
-        if ($this->operations) {
-            $this->operations = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue::class);
-            }, $this->operations);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'resources' => '\Upsun\Model\Resources',
+            'size' => 'string',
+            'disk' => 'int',
+            'access' => 'array&lt;string,string&gt;',
+            'relationships' => 'array&lt;string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue&gt;',
+            'additional_hosts' => 'array&lt;string,string&gt;',
+            'mounts' => 'array&lt;string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue&gt;',
+            'timezone' => 'string',
+            'variables' => 'array&lt;string,array&lt;string,mixed&gt;&gt;',
+            'firewall' => '\Upsun\Model\Firewall',
+            'container_profile' => 'string',
+            'operations' => 'array&lt;string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue&gt;',
+            'name' => 'string',
+            'type' => 'string',
+            'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
+            'tree_id' => 'string',
+            'app_dir' => 'string',
+            'endpoints' => 'object',
+            'runtime' => 'object',
+            'worker' => '\Upsun\Model\ConfigurationOfAWorkerContainerInstance',
+            'app' => 'string',
+            'stack' => 'object[]',
+            'instance_count' => 'int',
+            'slug_id' => 'string',
+        ];
     }
 
     public function jsonSerialize(): array

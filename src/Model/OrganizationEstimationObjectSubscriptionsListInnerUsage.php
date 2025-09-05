@@ -38,6 +38,26 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'cpu' => 'float',
+            'memory' => 'float',
+            'storage' => 'float',
+            'environments' => 'int',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

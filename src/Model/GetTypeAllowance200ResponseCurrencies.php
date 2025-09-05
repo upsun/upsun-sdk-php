@@ -40,6 +40,27 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'EUR' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR',
+            'USD' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD',
+            'GBP' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP',
+            'AUD' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD',
+            'CAD' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

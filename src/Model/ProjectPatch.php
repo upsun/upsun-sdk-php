@@ -44,6 +44,29 @@ final class ProjectPatch implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'attributes' => 'array&lt;string,string&gt;',
+            'title' => 'string',
+            'description' => 'string',
+            'default_branch' => 'string',
+            'timezone' => 'string',
+            'region' => 'string',
+            'default_domain' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

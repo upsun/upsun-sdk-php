@@ -42,6 +42,28 @@ final class TicketJiraInner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'int',
+            'ticket_id' => 'int',
+            'issue_id' => 'int',
+            'issue_key' => 'string',
+            'created_at' => 'float',
+            'updated_at' => 'float',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

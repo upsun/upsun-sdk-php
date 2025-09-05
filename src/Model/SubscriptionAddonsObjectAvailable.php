@@ -34,6 +34,24 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'continuous_profiling' => 'array&lt;string,float&gt;',
+            'project_support_level' => 'array&lt;string,float&gt;',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

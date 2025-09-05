@@ -52,6 +52,33 @@ final class ProjectCapabilities implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'custom_domains' => '\Upsun\Model\CustomDomains',
+            'source_operations' => '\Upsun\Model\SourceOperations',
+            'runtime_operations' => '\Upsun\Model\RuntimeOperations',
+            'outbound_firewall' => '\Upsun\Model\OutboundFirewall',
+            'metrics' => '\Upsun\Model\Metrics',
+            'logs_forwarding' => '\Upsun\Model\LogsForwarding',
+            'images' => 'array&lt;string,array&lt;string,\Upsun\Model\ImagesValueValue&gt;&gt;',
+            'instance_limit' => 'int',
+            'build_resources' => '\Upsun\Model\BuildResources',
+            'data_retention' => '\Upsun\Model\DataRetention',
+            'integrations' => '\Upsun\Model\Integrations',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

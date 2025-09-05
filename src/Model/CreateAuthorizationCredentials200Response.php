@@ -34,6 +34,24 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'redirect_to_url' => '\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl',
+            'type' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

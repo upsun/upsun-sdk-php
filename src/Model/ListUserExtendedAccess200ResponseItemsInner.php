@@ -44,6 +44,29 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'user_id' => 'string',
+            'resource_id' => 'string',
+            'resource_type' => 'string',
+            'organization_id' => 'string',
+            'permissions' => 'string[]',
+            'granted_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

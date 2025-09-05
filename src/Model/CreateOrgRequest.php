@@ -40,6 +40,27 @@ final class CreateOrgRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'owner_id' => 'string',
+            'name' => 'string',
+            'label' => 'string',
+            'country' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

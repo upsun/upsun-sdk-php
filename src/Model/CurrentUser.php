@@ -58,30 +58,37 @@ final class CurrentUser implements JsonSerializable
         private ?bool $trial = null,
         private ?array $currentTrial = [],
     ) {
-        if ($this->sshKeys) {
-            $this->sshKeys = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\SSHKey) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\SSHKey::class);
-            }, $this->sshKeys);
-        }
-        if ($this->projects) {
-            $this->projects = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\CurrentUserProjectsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CurrentUserProjectsInner::class);
-            }, $this->projects);
-        }
-        if ($this->currentTrial) {
-            $this->currentTrial = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\CurrentUserCurrentTrialInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CurrentUserCurrentTrialInner::class);
-            }, $this->currentTrial);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'uuid' => 'string',
+            'username' => 'string',
+            'display_name' => 'string',
+            'status' => 'int',
+            'mail' => 'string',
+            'ssh_keys' => '\Upsun\Model\SSHKey[]',
+            'has_key' => 'bool',
+            'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
+            'sequence' => 'int',
+            'roles' => 'string[]',
+            'picture' => 'string',
+            'tickets' => 'object',
+            'trial' => 'bool',
+            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
+        ];
     }
 
     public function jsonSerialize(): array

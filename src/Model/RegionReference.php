@@ -62,6 +62,38 @@ final class RegionReference implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'label' => 'string',
+            'zone' => 'string',
+            'selection_label' => 'string',
+            'project_label' => 'string',
+            'timezone' => 'string',
+            'available' => 'bool',
+            'private' => 'bool',
+            'endpoint' => 'string',
+            'code' => 'string',
+            'provider' => 'object',
+            'datacenter' => 'object',
+            'envimpact' => 'object',
+            'compliance' => 'object',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

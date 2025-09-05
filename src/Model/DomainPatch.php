@@ -34,6 +34,24 @@ final class DomainPatch implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'attributes' => 'array&lt;string,string&gt;',
+            'is_default' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

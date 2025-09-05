@@ -58,6 +58,36 @@ final class VPNConfiguration implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'version' => 'int',
+            'aggressive' => 'string',
+            'modeconfig' => 'string',
+            'authentication' => 'string',
+            'gateway_ip' => 'string',
+            'identity' => 'string',
+            'second_identity' => 'string',
+            'remote_identity' => 'string',
+            'remote_subnets' => 'string[]',
+            'ike' => 'string',
+            'esp' => 'string',
+            'ikelifetime' => 'string',
+            'lifetime' => 'string',
+            'margintime' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

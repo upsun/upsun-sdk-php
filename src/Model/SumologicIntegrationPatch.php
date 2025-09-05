@@ -40,6 +40,27 @@ final class SumologicIntegrationPatch implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'extra' => 'array&lt;string,string&gt;',
+            'url' => 'string',
+            'category' => 'string',
+            'tls_verify' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

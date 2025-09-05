@@ -64,6 +64,39 @@ final class Config implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'newrelic' => '\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations',
+            'sumologic' => '\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations',
+            'splunk' => '\Upsun\Model\SplunkLogForwardingIntegrationConfigurations',
+            'httplog' => '\Upsun\Model\HTTPLogForwardingIntegrationConfigurations',
+            'syslog' => '\Upsun\Model\SyslogLogForwardingIntegrationConfigurations',
+            'webhook' => '\Upsun\Model\WebhookIntegrationConfigurations',
+            'script' => '\Upsun\Model\ScriptIntegrationConfigurations',
+            'github' => '\Upsun\Model\GitHubIntegrationConfigurations',
+            'gitlab' => '\Upsun\Model\GitLabIntegrationConfigurations',
+            'bitbucket' => '\Upsun\Model\BitbucketIntegrationConfigurations',
+            'bitbucket_server' => '\Upsun\Model\BitbucketServerIntegrationConfigurations',
+            'health.email' => '\Upsun\Model\HealthEmailNotificationIntegrationConfigurations',
+            'health.webhook' => '\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations',
+            'health.pagerduty' => '\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations',
+            'health.slack' => '\Upsun\Model\HealthSlackNotificationIntegrationConfigurations',
+            'cdn.fastly' => '\Upsun\Model\FastlyCDNIntegrationConfigurations',
+            'blackfire' => '\Upsun\Model\BlackfireIntegrationConfigurations',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

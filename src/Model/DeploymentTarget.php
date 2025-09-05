@@ -66,22 +66,41 @@ final class DeploymentTarget implements JsonSerializable
         private bool $useDedicatedGrid,
         private string $storageType,
     ) {
-        if ($this->hosts) {
-            $this->hosts = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner::class);
-            }, $this->hosts);
-        }
-        if ($this->docroots) {
-            $this->docroots = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue::class);
-            }, $this->docroots);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'name' => 'string',
+            'deploy_host' => 'string',
+            'deploy_port' => 'int',
+            'ssh_host' => 'string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'auto_mounts' => 'bool',
+            'excluded_mounts' => 'string[]',
+            'enforced_mounts' => 'object',
+            'auto_crons' => 'bool',
+            'auto_nginx' => 'bool',
+            'maintenance_mode' => 'bool',
+            'guardrails_phase' => 'int',
+            'docroots' => 'array&lt;string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue&gt;',
+            'site_urls' => 'object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => 'object',
+            'use_dedicated_grid' => 'bool',
+            'storage_type' => 'string',
+        ];
     }
 
     public function jsonSerialize(): array

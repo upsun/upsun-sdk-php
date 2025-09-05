@@ -38,14 +38,27 @@ final class ResourcesOverridesValue implements JsonSerializable
         private bool $redeployedStart,
         private bool $redeployedEnd,
     ) {
-        if ($this->services) {
-            $this->services = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\PerServiceResourcesOverridesValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\PerServiceResourcesOverridesValue::class);
-            }, $this->services);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'services' => 'array&lt;string,\Upsun\Model\PerServiceResourcesOverridesValue&gt;',
+            'starts_at' => '\DateTime',
+            'ends_at' => '\DateTime',
+            'redeployed_start' => 'bool',
+            'redeployed_end' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

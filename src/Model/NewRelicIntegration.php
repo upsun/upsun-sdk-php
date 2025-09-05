@@ -42,6 +42,28 @@ final class NewRelicIntegration implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'extra' => 'array&lt;string,string&gt;',
+            'url' => 'string',
+            'tls_verify' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

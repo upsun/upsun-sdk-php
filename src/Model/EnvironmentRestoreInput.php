@@ -40,6 +40,27 @@ final class EnvironmentRestoreInput implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'environment_name' => 'string',
+            'branch_from' => 'string',
+            'restore_code' => 'bool',
+            'restore_resources' => 'bool',
+            'resources' => '\Upsun\Model\Resources5',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

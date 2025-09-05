@@ -50,14 +50,33 @@ final class Certificate implements JsonSerializable
         private array $issuer,
         private \DateTime $expiresAt,
     ) {
-        if ($this->issuer) {
-            $this->issuer = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheIssuerOfTheCertificateInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheIssuerOfTheCertificateInner::class);
-            }, $this->issuer);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'certificate' => 'string',
+            'chain' => 'string[]',
+            'is_provisioned' => 'bool',
+            'is_invalid' => 'bool',
+            'is_root' => 'bool',
+            'domains' => 'string[]',
+            'auth_type' => 'string[]',
+            'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
+            'expires_at' => '\DateTime',
+        ];
     }
 
     public function jsonSerialize(): array

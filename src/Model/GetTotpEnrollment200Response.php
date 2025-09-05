@@ -38,6 +38,26 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'issuer' => 'string',
+            'account_name' => 'string',
+            'secret' => 'string',
+            'qr_code' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

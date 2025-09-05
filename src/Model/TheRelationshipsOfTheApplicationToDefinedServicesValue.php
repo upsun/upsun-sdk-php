@@ -34,6 +34,24 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'service' => 'string',
+            'endpoint' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

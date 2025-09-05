@@ -34,6 +34,24 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'channel' => 'string',
+            'phone_number' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

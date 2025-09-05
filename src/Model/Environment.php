@@ -92,14 +92,54 @@ final class Environment implements JsonSerializable
         private bool $hasDeployment,
         private bool $supportsRestrictRobots,
     ) {
-        if ($this->resourcesOverrides) {
-            $this->resourcesOverrides = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\ResourcesOverridesValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ResourcesOverridesValue::class);
-            }, $this->resourcesOverrides);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'name' => 'string',
+            'machine_name' => 'string',
+            'title' => 'string',
+            'attributes' => 'array&lt;string,string&gt;',
+            'type' => 'string',
+            'parent' => 'string',
+            'default_domain' => 'string',
+            'has_domains' => 'bool',
+            'clone_parent_on_create' => 'bool',
+            'deployment_target' => 'string',
+            'is_pr' => 'bool',
+            'has_remote' => 'bool',
+            'status' => 'string',
+            'http_access' => '\Upsun\Model\HttpAccessPermissions',
+            'enable_smtp' => 'bool',
+            'restrict_robots' => 'bool',
+            'edge_hostname' => 'string',
+            'deployment_state' => '\Upsun\Model\TheEnvironmentDeploymentState',
+            'resources_overrides' => 'array&lt;string,\Upsun\Model\ResourcesOverridesValue&gt;',
+            'max_instance_count' => 'int',
+            'last_active_at' => '\DateTime',
+            'last_backup_at' => '\DateTime',
+            'project' => 'string',
+            'is_main' => 'bool',
+            'is_dirty' => 'bool',
+            'has_code' => 'bool',
+            'head_commit' => 'string',
+            'merge_info' => '\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments',
+            'has_deployment' => 'bool',
+            'supports_restrict_robots' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

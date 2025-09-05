@@ -36,6 +36,25 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'count' => 'int',
+            'total' => 'string',
+            'list' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -42,6 +42,28 @@ final class ThePathsToRedirectValue implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'regexp' => 'bool',
+            'to' => 'string',
+            'prefix' => 'bool',
+            'append_suffix' => 'bool',
+            'code' => 'int',
+            'expires' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

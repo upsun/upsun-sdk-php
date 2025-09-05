@@ -44,6 +44,29 @@ final class APIToken implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'name' => 'string',
+            'mfa_on_creation' => 'bool',
+            'token' => 'string',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'last_used_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -44,14 +44,30 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         private bool $maintenanceMode,
         private ?object $enterpriseEnvironmentsMapping = null,
     ) {
-        if ($this->docroots) {
-            $this->docroots = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue::class);
-            }, $this->docroots);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'name' => 'string',
+            'deploy_host' => 'string',
+            'docroots' => 'array&lt;string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue&gt;',
+            'site_urls' => 'object',
+            'ssh_hosts' => 'string[]',
+            'maintenance_mode' => 'bool',
+            'enterprise_environments_mapping' => 'object',
+        ];
     }
 
     public function jsonSerialize(): array

@@ -36,6 +36,25 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'last_deployment_successful' => 'bool',
+            'last_deployment_at' => '\DateTime',
+            'crons' => '\Upsun\Model\TheCronsDeploymentState',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

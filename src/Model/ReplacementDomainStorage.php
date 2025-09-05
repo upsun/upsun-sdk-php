@@ -46,6 +46,30 @@ final class ReplacementDomainStorage implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'project' => 'string',
+            'name' => 'string',
+            'registered_name' => 'string',
+            'attributes' => 'array&lt;string,string&gt;',
+            'replacement_for' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

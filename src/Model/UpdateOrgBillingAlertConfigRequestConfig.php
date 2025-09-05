@@ -34,6 +34,24 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'threshold' => 'int',
+            'mode' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

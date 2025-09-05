@@ -48,6 +48,31 @@ final class PlanRecords implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'owner' => 'string',
+            'subscription_id' => 'string',
+            'sku' => 'string',
+            'plan' => 'string',
+            'options' => 'string[]',
+            'start' => '\DateTime',
+            'end' => '\DateTime',
+            'status' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

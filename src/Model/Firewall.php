@@ -30,14 +30,23 @@ final class Firewall implements JsonSerializable
     public function __construct(
         private array $outbound,
     ) {
-        if ($this->outbound) {
-            $this->outbound = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\OutboundFirewallRestrictionsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OutboundFirewallRestrictionsInner::class);
-            }, $this->outbound);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'outbound' => '\Upsun\Model\OutboundFirewallRestrictionsInner[]',
+        ];
     }
 
     public function jsonSerialize(): array

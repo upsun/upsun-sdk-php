@@ -38,6 +38,26 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'amount' => 'int',
+            'currency_code' => 'string',
+            'currency_symbol' => 'string',
+            'formatted' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

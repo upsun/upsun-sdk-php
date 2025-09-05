@@ -34,6 +34,24 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'pre_start' => 'string',
+            'start' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

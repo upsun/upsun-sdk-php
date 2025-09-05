@@ -46,14 +46,31 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         private array $rules,
         private ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
-        if ($this->rules) {
-            $this->rules = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\SpecificOverridesValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\SpecificOverridesValue::class);
-            }, $this->rules);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'root' => 'string',
+            'expires' => 'string',
+            'passthru' => 'string',
+            'scripts' => 'bool',
+            'index' => 'string[]',
+            'allow' => 'bool',
+            'headers' => 'array&lt;string,string&gt;',
+            'rules' => 'array&lt;string,\Upsun\Model\SpecificOverridesValue&gt;',
+            'request_buffering' => '\Upsun\Model\ConfigurationForSupportingRequestBuffering',
+        ];
     }
 
     public function jsonSerialize(): array

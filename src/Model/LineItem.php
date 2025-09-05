@@ -46,14 +46,31 @@ final class LineItem implements JsonSerializable
         private ?array $components = [],
         private ?bool $excludeFromInvoice = null,
     ) {
-        if ($this->components) {
-            $this->components = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\LineItemComponent) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\LineItemComponent::class);
-            }, $this->components);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'license_id' => 'float',
+            'project_id' => 'string',
+            'product' => 'string',
+            'sku' => 'string',
+            'total' => 'float',
+            'total_formatted' => 'string',
+            'components' => 'array&lt;string,\Upsun\Model\LineItemComponent&gt;',
+            'exclude_from_invoice' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

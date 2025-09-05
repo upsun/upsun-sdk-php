@@ -34,6 +34,24 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'admin_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser',
+            'viewer_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

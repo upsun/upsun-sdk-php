@@ -44,6 +44,29 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'order_id' => 'string',
+            'status' => 'string',
+            'billing_period_start' => 'string',
+            'billing_period_end' => 'string',
+            'order_total' => 'string',
+            'order_discount' => 'string',
+            'currency' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

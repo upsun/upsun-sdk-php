@@ -36,6 +36,25 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'path' => 'string',
+            'mode' => 'int',
+            'contents' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

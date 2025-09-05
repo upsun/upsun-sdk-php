@@ -36,6 +36,25 @@ final class HalLinks implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'self' => '\Upsun\Model\HalLinksSelf',
+            'previous' => '\Upsun\Model\HalLinksPrevious',
+            'next' => '\Upsun\Model\HalLinksNext',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

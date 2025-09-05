@@ -38,14 +38,27 @@ final class BlackfireIntegration implements JsonSerializable
         private array $environmentsCredentials,
         private bool $continuousProfiling,
     ) {
-        if ($this->environmentsCredentials) {
-            $this->environmentsCredentials = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\BlackfireEnvironmentsCredentialsValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\BlackfireEnvironmentsCredentialsValue::class);
-            }, $this->environmentsCredentials);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'environments_credentials' => 'array&lt;string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue&gt;',
+            'continuous_profiling' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

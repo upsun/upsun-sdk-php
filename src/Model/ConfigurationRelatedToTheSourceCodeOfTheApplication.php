@@ -32,14 +32,24 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
         private string $root,
         private array $operations,
     ) {
-        if ($this->operations) {
-            $this->operations = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue::class);
-            }, $this->operations);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'root' => 'string',
+            'operations' => 'array&lt;string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue&gt;',
+        ];
     }
 
     public function jsonSerialize(): array

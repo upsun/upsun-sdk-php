@@ -32,14 +32,24 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
         private ?string $expires = null,
         private array $paths,
     ) {
-        if ($this->paths) {
-            $this->paths = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\ThePathsToRedirectValue1) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ThePathsToRedirectValue1::class);
-            }, $this->paths);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'expires' => 'string',
+            'paths' => 'array&lt;string,\Upsun\Model\ThePathsToRedirectValue1&gt;',
+        ];
     }
 
     public function jsonSerialize(): array

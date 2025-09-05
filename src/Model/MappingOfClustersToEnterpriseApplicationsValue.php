@@ -34,6 +34,24 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'active_docroot' => 'string',
+            'docroot_versions' => 'string[]',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -30,14 +30,23 @@ final class ListOrgInvoices200Response implements JsonSerializable
     public function __construct(
         private ?array $items = [],
     ) {
-        if ($this->items) {
-            $this->items = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\Invoice) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Invoice::class);
-            }, $this->items);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'items' => '\Upsun\Model\Invoice[]',
+        ];
     }
 
     public function jsonSerialize(): array

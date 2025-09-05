@@ -46,6 +46,30 @@ final class StringFilter implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'eq' => 'string',
+            'ne' => 'string',
+            'in' => 'string',
+            'nin' => 'string',
+            'between' => 'string',
+            'contains' => 'string',
+            'starts' => 'string',
+            'ends' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

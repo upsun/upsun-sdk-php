@@ -36,6 +36,25 @@ final class DiscountCommitment implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'months' => 'int',
+            'amount' => '\Upsun\Model\DiscountCommitmentAmount',
+            'net' => '\Upsun\Model\DiscountCommitmentNet',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

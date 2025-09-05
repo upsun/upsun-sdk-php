@@ -32,6 +32,23 @@ final class EnvironmentActivateInput implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'resources' => '\Upsun\Model\Resources1',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

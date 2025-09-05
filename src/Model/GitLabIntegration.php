@@ -52,6 +52,33 @@ final class GitLabIntegration implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'base_url' => 'string',
+            'project' => 'string',
+            'build_merge_requests' => 'bool',
+            'build_wip_merge_requests' => 'bool',
+            'merge_requests_clone_parent_data' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

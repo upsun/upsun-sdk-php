@@ -34,6 +34,24 @@ final class OrganizationInvitationOwner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'display_name' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -42,6 +42,28 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'name' => 'string',
+            'value' => 'string',
+            'is_sensitive' => 'bool',
+            'is_json' => 'bool',
+            'visible_build' => 'bool',
+            'visible_runtime' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

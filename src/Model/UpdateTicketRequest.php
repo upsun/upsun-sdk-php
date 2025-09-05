@@ -36,6 +36,25 @@ final class UpdateTicketRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'status' => 'string',
+            'collaborator_ids' => 'string[]',
+            'collaborators_replace' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

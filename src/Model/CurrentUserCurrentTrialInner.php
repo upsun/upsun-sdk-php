@@ -38,6 +38,26 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created' => '\DateTime',
+            'description' => 'string',
+            'spend_remaining' => 'string',
+            'expiration' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

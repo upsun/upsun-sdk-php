@@ -32,14 +32,24 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
         private string $flavor,
         private array $caches,
     ) {
-        if ($this->caches) {
-            $this->caches = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue::class);
-            }, $this->caches);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'flavor' => 'string',
+            'caches' => 'array&lt;string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue&gt;',
+        ];
     }
 
     public function jsonSerialize(): array

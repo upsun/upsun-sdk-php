@@ -34,6 +34,24 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'socket_family' => 'string',
+            'protocol' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

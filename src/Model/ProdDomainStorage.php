@@ -46,6 +46,30 @@ final class ProdDomainStorage implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'project' => 'string',
+            'name' => 'string',
+            'registered_name' => 'string',
+            'attributes' => 'array&lt;string,string&gt;',
+            'is_default' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

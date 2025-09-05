@@ -40,6 +40,27 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'organization_id' => 'string',
+            'balance' => '\Upsun\Model\PrepaymentObjectPrepaymentBalance',
+            'last_updated_at' => 'string',
+            'sufficient' => 'bool',
+            'fallback' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

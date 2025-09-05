@@ -44,6 +44,29 @@ final class OrganizationEstimationObject implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'total' => 'string',
+            'sub_total' => 'string',
+            'vouchers' => 'string',
+            'user_licenses' => '\Upsun\Model\OrganizationEstimationObjectUserLicenses',
+            'user_management' => 'string',
+            'support_level' => 'string',
+            'subscriptions' => '\Upsun\Model\OrganizationEstimationObjectSubscriptions',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -46,6 +46,30 @@ final class UserReference implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'username' => 'string',
+            'email' => 'string',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'picture' => 'string',
+            'mfa_enabled' => 'bool',
+            'sso_enabled' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -32,14 +32,24 @@ final class DefaultConfig1 implements JsonSerializable
         private ?int $manualCount = null,
         private ?array $schedule = [],
     ) {
-        if ($this->schedule) {
-            $this->schedule = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheBackupScheduleSpecificationInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheBackupScheduleSpecificationInner::class);
-            }, $this->schedule);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'manual_count' => 'int',
+            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
+        ];
     }
 
     public function jsonSerialize(): array

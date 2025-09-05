@@ -70,6 +70,42 @@ final class CurrentUserProjectsInner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'name' => 'string',
+            'title' => 'string',
+            'cluster' => 'string',
+            'cluster_label' => 'string',
+            'region' => 'string',
+            'region_label' => 'string',
+            'uri' => 'string',
+            'endpoint' => 'string',
+            'license_id' => 'int',
+            'owner' => 'string',
+            'owner_info' => '\Upsun\Model\OwnerInfo',
+            'plan' => 'string',
+            'subscription_id' => 'int',
+            'status' => 'string',
+            'vendor' => 'string',
+            'vendor_label' => 'string',
+            'vendor_website' => 'string',
+            'vendor_resources' => 'string',
+            'created_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

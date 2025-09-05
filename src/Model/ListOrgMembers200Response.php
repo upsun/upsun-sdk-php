@@ -34,14 +34,25 @@ final class ListOrgMembers200Response implements JsonSerializable
         private ?array $items = [],
         private ?\Upsun\Model\ListLinks $links = null,
     ) {
-        if ($this->items) {
-            $this->items = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\OrganizationMember) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OrganizationMember::class);
-            }, $this->items);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'count' => 'int',
+            'items' => '\Upsun\Model\OrganizationMember[]',
+            '_links' => '\Upsun\Model\ListLinks',
+        ];
     }
 
     public function jsonSerialize(): array

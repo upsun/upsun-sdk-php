@@ -34,6 +34,24 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'user_management' => 'array&lt;string,float&gt;',
+            'support_level' => 'array&lt;string,float&gt;',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -38,6 +38,26 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'legacy_development' => 'bool',
+            'max_cpu' => 'float',
+            'max_memory' => 'int',
+            'max_environments' => 'int',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

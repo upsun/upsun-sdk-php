@@ -42,6 +42,28 @@ final class Resources implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'base_memory' => 'int',
+            'memory_ratio' => 'int',
+            'profile_size' => 'string',
+            'minimum' => '\Upsun\Model\TheMinimumResourcesForThisService',
+            'default' => '\Upsun\Model\TheDefaultResourcesForThisService',
+            'disk' => '\Upsun\Model\TheDisksResources',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

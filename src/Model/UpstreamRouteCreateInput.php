@@ -50,6 +50,32 @@ final class UpstreamRouteCreateInput implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'primary' => 'bool',
+            'id' => 'string',
+            'production_url' => 'string',
+            'attributes' => 'array&lt;string,string&gt;',
+            'type' => 'string',
+            'tls' => '\Upsun\Model\TLSSettingsForTheRoute1',
+            'cache' => '\Upsun\Model\CacheConfiguration1',
+            'ssi' => '\Upsun\Model\ServerSideIncludeConfiguration',
+            'upstream' => 'string',
+            'redirects' => '\Upsun\Model\TheConfigurationOfTheRedirects1',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -50,14 +50,33 @@ final class CreateTicketRequest implements JsonSerializable
         private ?array $attachments = [],
         private ?array $collaboratorIds = [],
     ) {
-        if ($this->attachments) {
-            $this->attachments = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\CreateTicketRequestAttachmentsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\CreateTicketRequestAttachmentsInner::class);
-            }, $this->attachments);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'subject' => 'string',
+            'description' => 'string',
+            'requester_id' => 'string',
+            'priority' => 'string',
+            'subscription_id' => 'string',
+            'organization_id' => 'string',
+            'affected_url' => 'string',
+            'followup_tid' => 'string',
+            'category' => 'string',
+            'attachments' => '\Upsun\Model\CreateTicketRequestAttachmentsInner[]',
+            'collaborator_ids' => 'string[]',
+        ];
     }
 
     public function jsonSerialize(): array

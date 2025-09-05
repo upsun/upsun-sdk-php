@@ -54,14 +54,35 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         private bool $maintenanceMode,
         private int $guardrailsPhase,
     ) {
-        if ($this->hosts) {
-            $this->hosts = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner::class);
-            }, $this->hosts);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'name' => 'string',
+            'deploy_host' => 'string',
+            'deploy_port' => 'int',
+            'ssh_host' => 'string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'auto_mounts' => 'bool',
+            'excluded_mounts' => 'string[]',
+            'enforced_mounts' => 'object',
+            'auto_crons' => 'bool',
+            'auto_nginx' => 'bool',
+            'maintenance_mode' => 'bool',
+            'guardrails_phase' => 'int',
+        ];
     }
 
     public function jsonSerialize(): array

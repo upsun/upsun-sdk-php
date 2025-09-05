@@ -56,6 +56,35 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'cpu_app' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'storage_app_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'memory_app' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'cpu_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'memory_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'backup_storage' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'build_cpu' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'build_memory' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'egress_bandwidth' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'ingress_requests' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'logs_fwd_content_size' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'fastly_bandwidth' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'fastly_requests' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

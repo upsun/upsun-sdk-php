@@ -38,6 +38,26 @@ final class CacheConfiguration1 implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'enabled' => 'bool',
+            'default_ttl' => 'int',
+            'cookies' => 'string[]',
+            'headers' => 'string[]',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

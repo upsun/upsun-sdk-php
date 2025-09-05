@@ -36,6 +36,25 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'can_create' => 'bool',
+            'message' => 'string',
+            'required_action' => '\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

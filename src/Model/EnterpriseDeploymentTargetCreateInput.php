@@ -40,6 +40,27 @@ final class EnterpriseDeploymentTargetCreateInput implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'name' => 'string',
+            'site_urls' => 'object',
+            'ssh_hosts' => 'string[]',
+            'enterprise_environments_mapping' => 'object',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

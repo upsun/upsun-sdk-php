@@ -52,6 +52,33 @@ final class ProfileCurrentTrial implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'active' => 'bool',
+            'created' => '\DateTime',
+            'description' => 'string',
+            'expiration' => '\DateTime',
+            'current' => '\Upsun\Model\ProfileCurrentTrialCurrent',
+            'spend' => '\Upsun\Model\ProfileCurrentTrialSpend',
+            'spend_remaining' => '\Upsun\Model\ProfileCurrentTrialSpendRemaining',
+            'projects' => '\Upsun\Model\ProfileCurrentTrialProjects',
+            'pending_verification' => 'string',
+            'model' => 'string',
+            'days_remaining' => 'int',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

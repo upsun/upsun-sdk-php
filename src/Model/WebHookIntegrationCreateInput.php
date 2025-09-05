@@ -46,6 +46,30 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'shared_key' => 'string',
+            'url' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

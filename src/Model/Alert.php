@@ -42,6 +42,28 @@ final class Alert implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'active' => 'bool',
+            'alerts_sent' => 'int',
+            'last_alert_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'config' => 'object',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

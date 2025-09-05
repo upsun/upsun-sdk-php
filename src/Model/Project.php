@@ -60,6 +60,37 @@ final class Project implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'attributes' => 'array&lt;string,string&gt;',
+            'title' => 'string',
+            'description' => 'string',
+            'owner' => 'string',
+            'namespace' => 'string',
+            'organization' => 'string',
+            'default_branch' => 'string',
+            'status' => '\Upsun\Model\Status',
+            'timezone' => 'string',
+            'region' => 'string',
+            'repository' => '\Upsun\Model\RepositoryInformation',
+            'default_domain' => 'string',
+            'subscription' => '\Upsun\Model\SubscriptionInformation',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

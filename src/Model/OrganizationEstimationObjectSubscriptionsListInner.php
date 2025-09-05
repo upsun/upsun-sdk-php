@@ -38,6 +38,26 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'license_id' => 'string',
+            'project_title' => 'string',
+            'total' => 'string',
+            'usage' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

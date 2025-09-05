@@ -42,14 +42,29 @@ final class Vouchers implements JsonSerializable
         private ?array $vouchers = [],
         private ?\Upsun\Model\VouchersLinks $links = null,
     ) {
-        if ($this->vouchers) {
-            $this->vouchers = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\VouchersVouchersInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\VouchersVouchersInner::class);
-            }, $this->vouchers);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'uuid' => 'string',
+            'vouchers_total' => 'string',
+            'vouchers_applied' => 'string',
+            'vouchers_remaining_balance' => 'string',
+            'currency' => 'string',
+            'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
+            '_links' => '\Upsun\Model\VouchersLinks',
+        ];
     }
 
     public function jsonSerialize(): array

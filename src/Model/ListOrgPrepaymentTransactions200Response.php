@@ -34,14 +34,25 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         private ?array $transactions = [],
         private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
-        if ($this->transactions) {
-            $this->transactions = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\PrepaymentTransactionObject) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\PrepaymentTransactionObject::class);
-            }, $this->transactions);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'count' => 'int',
+            'transactions' => '\Upsun\Model\PrepaymentTransactionObject[]',
+            '_links' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks',
+        ];
     }
 
     public function jsonSerialize(): array

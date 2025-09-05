@@ -38,14 +38,27 @@ final class FoundationDeploymentTarget implements JsonSerializable
         private bool $useDedicatedGrid,
         private string $storageType,
     ) {
-        if ($this->hosts) {
-            $this->hosts = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheHostsOfTheDeploymentTargetInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheHostsOfTheDeploymentTargetInner::class);
-            }, $this->hosts);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'name' => 'string',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'use_dedicated_grid' => 'bool',
+            'storage_type' => 'string',
+        ];
     }
 
     public function jsonSerialize(): array

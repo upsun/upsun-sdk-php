@@ -48,6 +48,31 @@ final class EnvironmentPatch implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'name' => 'string',
+            'title' => 'string',
+            'attributes' => 'array&lt;string,string&gt;',
+            'type' => 'string',
+            'parent' => 'string',
+            'clone_parent_on_create' => 'bool',
+            'http_access' => '\Upsun\Model\HttpAccessPermissions1',
+            'enable_smtp' => 'bool',
+            'restrict_robots' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

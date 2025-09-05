@@ -62,6 +62,38 @@ final class Invoice implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'invoice_number' => 'string',
+            'type' => 'string',
+            'order_id' => 'string',
+            'related_invoice_id' => 'string',
+            'status' => 'string',
+            'owner' => 'string',
+            'invoice_date' => '\DateTime',
+            'invoice_due' => '\DateTime',
+            'created' => '\DateTime',
+            'changed' => '\DateTime',
+            'company' => 'string',
+            'total' => 'float',
+            'address' => '\Upsun\Model\Address',
+            'notes' => 'string',
+            'invoice_pdf' => '\Upsun\Model\InvoicePDF',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

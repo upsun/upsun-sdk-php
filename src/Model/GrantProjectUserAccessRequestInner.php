@@ -36,6 +36,25 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'user_id' => 'string',
+            'permissions' => 'string[]',
+            'auto_add_member' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

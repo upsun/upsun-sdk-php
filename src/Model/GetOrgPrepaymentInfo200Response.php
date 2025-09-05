@@ -34,6 +34,24 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'prepayment' => '\Upsun\Model\PrepaymentObject',
+            '_links' => '\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

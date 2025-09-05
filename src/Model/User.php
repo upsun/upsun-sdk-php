@@ -62,6 +62,38 @@ final class User implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'deactivated' => 'bool',
+            'namespace' => 'string',
+            'username' => 'string',
+            'email' => 'string',
+            'email_verified' => 'bool',
+            'first_name' => 'string',
+            'last_name' => 'string',
+            'picture' => 'string',
+            'company' => 'string',
+            'website' => 'string',
+            'country' => 'string',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'consented_at' => '\DateTime',
+            'consent_method' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

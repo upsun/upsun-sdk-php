@@ -38,6 +38,26 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'type' => 'string',
+            'role' => 'string',
+            'title' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

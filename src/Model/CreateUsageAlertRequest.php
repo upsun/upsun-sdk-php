@@ -34,6 +34,24 @@ final class CreateUsageAlertRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'config' => '\Upsun\Model\CreateUsageAlertRequestConfig',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -34,14 +34,25 @@ final class ListTickets200Response implements JsonSerializable
         private ?array $tickets = [],
         private ?\Upsun\Model\HalLinks $links = null,
     ) {
-        if ($this->tickets) {
-            $this->tickets = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\Ticket) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Ticket::class);
-            }, $this->tickets);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'count' => 'int',
+            'tickets' => '\Upsun\Model\Ticket[]',
+            '_links' => '\Upsun\Model\HalLinks',
+        ];
     }
 
     public function jsonSerialize(): array

@@ -36,6 +36,25 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'commands' => '\Upsun\Model\TheCommandsDefinition',
+            'timeout' => 'int',
+            'role' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

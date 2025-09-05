@@ -38,6 +38,26 @@ final class LineItemComponent implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'amount' => 'float',
+            'amount_formatted' => 'string',
+            'display_title' => 'string',
+            'currency' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

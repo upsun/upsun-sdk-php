@@ -32,22 +32,24 @@ final class GetUsageAlerts200Response implements JsonSerializable
         private ?array $available = [],
         private ?array $current = [],
     ) {
-        if ($this->available) {
-            $this->available = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\Alert) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Alert::class);
-            }, $this->available);
-        }
-        if ($this->current) {
-            $this->current = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\Alert) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\Alert::class);
-            }, $this->current);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'available' => '\Upsun\Model\Alert[]',
+            'current' => '\Upsun\Model\Alert[]',
+        ];
     }
 
     public function jsonSerialize(): array

@@ -54,6 +54,34 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'project_title' => 'string',
+            'plan' => 'string',
+            'timezone' => 'string',
+            'environments' => 'int',
+            'storage' => 'int',
+            'big_dev' => 'string',
+            'big_dev_service' => 'string',
+            'backups' => 'string',
+            'observability_suite' => 'string',
+            'blackfire' => 'string',
+            'continuous_profiling' => 'string',
+            'project_support_level' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -32,14 +32,24 @@ final class Tree implements JsonSerializable
         private string $sha,
         private array $tree,
     ) {
-        if ($this->tree) {
-            $this->tree = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheTreeItemsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheTreeItemsInner::class);
-            }, $this->tree);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'sha' => 'string',
+            'tree' => '\Upsun\Model\TheTreeItemsInner[]',
+        ];
     }
 
     public function jsonSerialize(): array

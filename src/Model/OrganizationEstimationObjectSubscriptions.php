@@ -32,14 +32,24 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
         private ?string $total = null,
         private ?array $list = [],
     ) {
-        if ($this->list) {
-            $this->list = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner::class);
-            }, $this->list);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'total' => 'string',
+            'list' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]',
+        ];
     }
 
     public function jsonSerialize(): array

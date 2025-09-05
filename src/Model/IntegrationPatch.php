@@ -122,6 +122,68 @@ final class IntegrationPatch implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+            'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional1',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'resync_pull_requests' => 'bool',
+            'url' => 'string',
+            'username' => 'string',
+            'token' => 'string',
+            'project' => 'string',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'service_id' => 'string',
+            'base_url' => 'string',
+            'build_draft_pull_requests' => 'bool',
+            'build_pull_requests_post_merge' => 'bool',
+            'build_merge_requests' => 'bool',
+            'build_wip_merge_requests' => 'bool',
+            'merge_requests_clone_parent_data' => 'bool',
+            'from_address' => 'string',
+            'recipients' => 'string[]',
+            'routing_key' => 'string',
+            'channel' => 'string',
+            'shared_key' => 'string',
+            'extra' => 'array&lt;string,string&gt;',
+            'headers' => 'array&lt;string,string&gt;',
+            'tls_verify' => 'bool',
+            'license_key' => 'string',
+            'script' => 'string',
+            'index' => 'string',
+            'sourcetype' => 'string',
+            'category' => 'string',
+            'host' => 'string',
+            'port' => 'int',
+            'protocol' => 'string',
+            'facility' => 'int',
+            'message_format' => 'string',
+            'auth_token' => 'string',
+            'auth_mode' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

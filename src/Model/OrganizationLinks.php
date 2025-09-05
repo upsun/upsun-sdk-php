@@ -60,6 +60,37 @@ final class OrganizationLinks implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'self' => '\Upsun\Model\OrganizationLinksSelf',
+            'update' => '\Upsun\Model\OrganizationLinksUpdate',
+            'delete' => '\Upsun\Model\OrganizationLinksDelete',
+            'members' => '\Upsun\Model\OrganizationLinksMembers',
+            'create-member' => '\Upsun\Model\OrganizationLinksCreateMember',
+            'address' => '\Upsun\Model\OrganizationLinksAddress',
+            'profile' => '\Upsun\Model\OrganizationLinksProfile',
+            'payment-source' => '\Upsun\Model\OrganizationLinksPaymentSource',
+            'orders' => '\Upsun\Model\OrganizationLinksOrders',
+            'vouchers' => '\Upsun\Model\OrganizationLinksVouchers',
+            'apply-voucher' => '\Upsun\Model\OrganizationLinksApplyVoucher',
+            'subscriptions' => '\Upsun\Model\OrganizationLinksSubscriptions',
+            'create-subscription' => '\Upsun\Model\OrganizationLinksCreateSubscription',
+            'estimate-subscription' => '\Upsun\Model\OrganizationLinksEstimateSubscription',
+            'mfa-enforcement' => '\Upsun\Model\OrganizationLinksMfaEnforcement',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

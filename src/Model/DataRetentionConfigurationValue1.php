@@ -34,6 +34,24 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'max_backups' => 'int',
+            'default_config' => '\Upsun\Model\DefaultConfig1',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

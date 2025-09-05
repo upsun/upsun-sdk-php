@@ -68,14 +68,42 @@ final class Order implements JsonSerializable
         private ?array $lineItems = [],
         private ?\Upsun\Model\OrderLinks $links = null,
     ) {
-        if ($this->lineItems) {
-            $this->lineItems = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\LineItem) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\LineItem::class);
-            }, $this->lineItems);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'status' => 'string',
+            'owner' => 'string',
+            'address' => '\Upsun\Model\Address',
+            'company' => 'string',
+            'vat_number' => 'string',
+            'billing_period_start' => '\DateTime',
+            'billing_period_end' => '\DateTime',
+            'billing_period_label' => '\Upsun\Model\OrderBillingPeriodLabel',
+            'billing_period_duration' => 'int',
+            'paid_on' => '\DateTime',
+            'total' => 'int',
+            'total_formatted' => 'int',
+            'components' => '\Upsun\Model\Components',
+            'currency' => 'string',
+            'invoice_url' => 'string',
+            'last_refreshed' => '\DateTime',
+            'invoiced' => 'bool',
+            'line_items' => '\Upsun\Model\LineItem[]',
+            '_links' => '\Upsun\Model\OrderLinks',
+        ];
     }
 
     public function jsonSerialize(): array

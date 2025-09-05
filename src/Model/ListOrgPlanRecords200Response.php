@@ -32,14 +32,24 @@ final class ListOrgPlanRecords200Response implements JsonSerializable
         private ?array $items = [],
         private ?\Upsun\Model\ListLinks $links = null,
     ) {
-        if ($this->items) {
-            $this->items = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\PlanRecords) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\PlanRecords::class);
-            }, $this->items);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'items' => '\Upsun\Model\PlanRecords[]',
+            '_links' => '\Upsun\Model\ListLinks',
+        ];
     }
 
     public function jsonSerialize(): array

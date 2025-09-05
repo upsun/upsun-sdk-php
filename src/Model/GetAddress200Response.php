@@ -52,6 +52,33 @@ final class GetAddress200Response implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'country' => 'string',
+            'name_line' => 'string',
+            'premise' => 'string',
+            'sub_premise' => 'string',
+            'thoroughfare' => 'string',
+            'administrative_area' => 'string',
+            'sub_administrative_area' => 'string',
+            'locality' => 'string',
+            'dependent_locality' => 'string',
+            'postal_code' => 'string',
+            'metadata' => '\Upsun\Model\AddressMetadataMetadata',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -44,6 +44,29 @@ final class Connection implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'provider' => 'string',
+            'provider_type' => 'string',
+            'is_mandatory' => 'bool',
+            'subject' => 'string',
+            'email_address' => 'string',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

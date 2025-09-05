@@ -40,6 +40,27 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'spec' => 'string',
+            'commands' => '\Upsun\Model\TheCommandsDefinition',
+            'shutdown_timeout' => 'int',
+            'timeout' => 'int',
+            'cmd' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

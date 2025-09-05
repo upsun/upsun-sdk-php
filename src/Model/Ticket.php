@@ -98,14 +98,57 @@ final class Ticket implements JsonSerializable
         private ?array $jira = [],
         private ?string $zdTicketUrl = null,
     ) {
-        if ($this->jira) {
-            $this->jira = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TicketJiraInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TicketJiraInner::class);
-            }, $this->jira);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'ticket_id' => 'int',
+            'created' => '\DateTime',
+            'updated' => '\DateTime',
+            'type' => 'string',
+            'subject' => 'string',
+            'description' => 'string',
+            'priority' => 'string',
+            'followup_tid' => 'string',
+            'status' => 'string',
+            'recipient' => 'string',
+            'requester_id' => 'string',
+            'submitter_id' => 'string',
+            'assignee_id' => 'string',
+            'organization_id' => 'string',
+            'collaborator_ids' => 'string[]',
+            'has_incidents' => 'bool',
+            'due' => '\DateTime',
+            'tags' => 'string[]',
+            'subscription_id' => 'string',
+            'ticket_group' => 'string',
+            'support_plan' => 'string',
+            'affected_url' => 'string',
+            'queue' => 'string',
+            'issue_type' => 'string',
+            'resolution_time' => '\DateTime',
+            'response_time' => '\DateTime',
+            'project_url' => 'string',
+            'region' => 'string',
+            'category' => 'string',
+            'environment' => 'string',
+            'ticket_sharing_status' => 'string',
+            'application_ticket_url' => 'string',
+            'infrastructure_ticket_url' => 'string',
+            'jira' => '\Upsun\Model\TicketJiraInner[]',
+            'zd_ticket_url' => 'string',
+        ];
     }
 
     public function jsonSerialize(): array

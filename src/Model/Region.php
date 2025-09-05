@@ -54,6 +54,34 @@ final class Region implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'label' => 'string',
+            'zone' => 'string',
+            'selection_label' => 'string',
+            'project_label' => 'string',
+            'timezone' => 'string',
+            'available' => 'bool',
+            'private' => 'bool',
+            'endpoint' => 'string',
+            'provider' => '\Upsun\Model\RegionProvider',
+            'datacenter' => '\Upsun\Model\RegionDatacenter',
+            'environmental_impact' => '\Upsun\Model\RegionEnvironmentalImpact',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

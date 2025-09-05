@@ -122,14 +122,69 @@ final class Integration implements JsonSerializable
         private string $messageFormat,
         private string $sharedKey,
     ) {
-        if ($this->environmentsCredentials) {
-            $this->environmentsCredentials = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\BlackfireEnvironmentsCredentialsValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\BlackfireEnvironmentsCredentialsValue::class);
-            }, $this->environmentsCredentials);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+            'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'resync_pull_requests' => 'bool',
+            'url' => 'string',
+            'username' => 'string',
+            'project' => 'string',
+            'environments_credentials' => 'array&lt;string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue&gt;',
+            'continuous_profiling' => 'bool',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
+            'result' => 'string',
+            'service_id' => 'string',
+            'base_url' => 'string',
+            'build_draft_pull_requests' => 'bool',
+            'build_pull_requests_post_merge' => 'bool',
+            'token_type' => 'string',
+            'build_merge_requests' => 'bool',
+            'build_wip_merge_requests' => 'bool',
+            'merge_requests_clone_parent_data' => 'bool',
+            'from_address' => 'string',
+            'recipients' => 'string[]',
+            'routing_key' => 'string',
+            'channel' => 'string',
+            'extra' => 'array&lt;string,string&gt;',
+            'headers' => 'array&lt;string,string&gt;',
+            'tls_verify' => 'bool',
+            'script' => 'string',
+            'index' => 'string',
+            'sourcetype' => 'string',
+            'category' => 'string',
+            'host' => 'string',
+            'port' => 'int',
+            'protocol' => 'string',
+            'facility' => 'int',
+            'message_format' => 'string',
+            'shared_key' => 'string',
+        ];
     }
 
     public function jsonSerialize(): array

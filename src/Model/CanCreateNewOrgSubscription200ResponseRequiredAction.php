@@ -34,6 +34,24 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'action' => 'string',
+            'type' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

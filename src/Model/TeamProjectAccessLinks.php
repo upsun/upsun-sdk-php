@@ -36,6 +36,25 @@ final class TeamProjectAccessLinks implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'self' => '\Upsun\Model\TeamProjectAccessLinksSelf',
+            'update' => '\Upsun\Model\TeamProjectAccessLinksUpdate',
+            'delete' => '\Upsun\Model\TeamProjectAccessLinksDelete',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

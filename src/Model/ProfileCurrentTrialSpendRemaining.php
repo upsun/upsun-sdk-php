@@ -40,6 +40,27 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'formatted' => 'string',
+            'amount' => 'string',
+            'currency' => 'string',
+            'currency_symbol' => 'string',
+            'unlimited' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

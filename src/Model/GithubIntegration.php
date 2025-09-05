@@ -56,6 +56,35 @@ final class GithubIntegration implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'base_url' => 'string',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'build_draft_pull_requests' => 'bool',
+            'build_pull_requests_post_merge' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'token_type' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

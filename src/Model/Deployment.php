@@ -66,54 +66,41 @@ final class Deployment implements JsonSerializable
         private array $workers,
         private array $containerProfiles,
     ) {
-        if ($this->variables) {
-            $this->variables = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner::class);
-            }, $this->variables);
-        }
-        if ($this->access) {
-            $this->access = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\AccessControlDefinitionForThisEnviromentInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\AccessControlDefinitionForThisEnviromentInner::class);
-            }, $this->access);
-        }
-        if ($this->services) {
-            $this->services = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\ServicesValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\ServicesValue::class);
-            }, $this->services);
-        }
-        if ($this->routes) {
-            $this->routes = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\RoutesValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\RoutesValue::class);
-            }, $this->routes);
-        }
-        if ($this->webapps) {
-            $this->webapps = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\WebApplicationsValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\WebApplicationsValue::class);
-            }, $this->webapps);
-        }
-        if ($this->workers) {
-            $this->workers = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\WorkersValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\WorkersValue::class);
-            }, $this->workers);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'fingerprint' => 'string',
+            'cluster_name' => 'string',
+            'project_info' => '\Upsun\Model\ProjectInfo',
+            'environment_info' => '\Upsun\Model\EnvironmentInfo',
+            'deployment_target' => 'string',
+            'vpn' => '\Upsun\Model\VPNConfiguration',
+            'http_access' => '\Upsun\Model\HTTPAccessPermissions',
+            'enable_smtp' => 'bool',
+            'restrict_robots' => 'bool',
+            'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
+            'access' => '\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]',
+            'subscription' => '\Upsun\Model\Subscription1',
+            'services' => 'array&lt;string,\Upsun\Model\ServicesValue&gt;',
+            'routes' => 'array&lt;string,\Upsun\Model\RoutesValue&gt;',
+            'webapps' => 'array&lt;string,\Upsun\Model\WebApplicationsValue&gt;',
+            'workers' => 'array&lt;string,\Upsun\Model\WorkersValue&gt;',
+            'container_profiles' => 'array&lt;string,array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;&gt;',
+        ];
     }
 
     public function jsonSerialize(): array

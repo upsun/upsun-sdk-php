@@ -42,6 +42,28 @@ final class ProjectInfo implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'title' => 'string',
+            'name' => 'string',
+            'namespace' => 'string',
+            'organization' => 'string',
+            'capabilities' => 'object',
+            'settings' => 'object',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

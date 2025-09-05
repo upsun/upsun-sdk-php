@@ -38,6 +38,26 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'self' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
+            'previous' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious',
+            'next' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext',
+            'prepayment' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

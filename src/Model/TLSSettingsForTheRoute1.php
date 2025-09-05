@@ -38,6 +38,26 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'strict_transport_security' => '\Upsun\Model\StrictTransportSecurityOptions1',
+            'min_version' => 'string',
+            'client_authentication' => 'string',
+            'client_certificate_authorities' => 'string[]',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

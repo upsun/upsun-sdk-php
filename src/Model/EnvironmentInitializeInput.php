@@ -38,14 +38,27 @@ final class EnvironmentInitializeInput implements JsonSerializable
         private array $files,
         private \Upsun\Model\Resources3 $resources,
     ) {
-        if ($this->files) {
-            $this->files = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner::class);
-            }, $this->files);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'profile' => 'string',
+            'repository' => 'string',
+            'config' => 'string',
+            'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
+            'resources' => '\Upsun\Model\Resources3',
+        ];
     }
 
     public function jsonSerialize(): array

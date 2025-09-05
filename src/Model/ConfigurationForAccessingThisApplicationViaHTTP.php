@@ -48,14 +48,32 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         private ?string $expires = null,
         private bool $moveToRoot,
     ) {
-        if ($this->locations) {
-            $this->locations = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class);
-            }, $this->locations);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'locations' => 'array&lt;string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue&gt;',
+            'commands' => '\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
+            'upstream' => '\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
+            'document_root' => 'string',
+            'passthru' => 'string',
+            'index_files' => 'string[]',
+            'whitelist' => 'string[]',
+            'blacklist' => 'string[]',
+            'expires' => 'string',
+            'move_to_root' => 'bool',
+        ];
     }
 
     public function jsonSerialize(): array

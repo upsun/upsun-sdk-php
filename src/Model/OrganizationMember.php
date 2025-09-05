@@ -48,6 +48,31 @@ final class OrganizationMember implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'id' => 'string',
+            'organization_id' => 'string',
+            'user_id' => 'string',
+            'permissions' => 'string[]',
+            'level' => 'string',
+            'owner' => 'bool',
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            '_links' => '\Upsun\Model\OrganizationMemberLinks',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

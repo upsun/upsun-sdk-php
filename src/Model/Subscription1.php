@@ -54,6 +54,34 @@ final class Subscription1 implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'license_uri' => 'string',
+            'plan' => 'string',
+            'environments' => 'int',
+            'storage' => 'int',
+            'included_users' => 'int',
+            'subscription_management_uri' => 'string',
+            'restricted' => 'bool',
+            'suspended' => 'bool',
+            'user_licenses' => 'int',
+            'resources' => '\Upsun\Model\ResourcesLimits',
+            'resource_validation_url' => 'string',
+            'image_types' => '\Upsun\Model\RestrictedAndDeniedImageTypes',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

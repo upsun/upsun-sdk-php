@@ -54,6 +54,34 @@ final class BitbucketIntegration implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'fetch_branches' => 'bool',
+            'prune_branches' => 'bool',
+            'environment_init_resources' => 'string',
+            'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+            'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional',
+            'repository' => 'string',
+            'build_pull_requests' => 'bool',
+            'pull_requests_clone_parent_data' => 'bool',
+            'resync_pull_requests' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

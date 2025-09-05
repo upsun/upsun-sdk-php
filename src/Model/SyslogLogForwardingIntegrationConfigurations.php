@@ -34,6 +34,24 @@ final class SyslogLogForwardingIntegrationConfigurations implements JsonSerializ
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'enabled' => 'bool',
+            'role' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

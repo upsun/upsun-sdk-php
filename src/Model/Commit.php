@@ -42,6 +42,28 @@ final class Commit implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'sha' => 'string',
+            'author' => '\Upsun\Model\TheInformationAboutTheAuthor',
+            'committer' => '\Upsun\Model\TheInformationAboutTheCommitter',
+            'message' => 'string',
+            'tree' => 'string',
+            'parents' => 'string[]',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -42,6 +42,28 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'default_catalog' => 'string',
+            'project_options_url' => 'string',
+            'security_contact' => 'string',
+            'company_name' => 'string',
+            'vat_number' => 'string',
+            'billing_contact' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

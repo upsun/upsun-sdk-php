@@ -56,6 +56,35 @@ final class UpdateProfileRequest implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'display_name' => 'string',
+            'username' => 'string',
+            'current_password' => 'string',
+            'password' => 'string',
+            'company_type' => 'string',
+            'company_name' => 'string',
+            'vat_number' => 'string',
+            'company_role' => 'string',
+            'marketing' => 'bool',
+            'ui_colorscheme' => 'string',
+            'default_catalog' => 'string',
+            'project_options_url' => 'string',
+            'picture' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

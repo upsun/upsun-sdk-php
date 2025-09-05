@@ -48,6 +48,31 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'title' => 'string',
+            'type' => 'bool',
+            'current_usage' => 'float',
+            'current_usage_formatted' => 'string',
+            'not_charged' => 'bool',
+            'free_quantity' => 'float',
+            'free_quantity_formatted' => 'string',
+            'daily_average' => 'float',
+            'daily_average_formatted' => 'string',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

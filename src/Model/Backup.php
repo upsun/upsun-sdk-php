@@ -60,6 +60,37 @@ final class Backup implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'id' => 'string',
+            'attributes' => 'array&lt;string,string&gt;',
+            'status' => 'string',
+            'expires_at' => '\DateTime',
+            'index' => 'int',
+            'commit_id' => 'string',
+            'environment' => 'string',
+            'safe' => 'bool',
+            'size_of_volumes' => 'int',
+            'size_used' => 'int',
+            'deployment' => 'string',
+            'restorable' => 'bool',
+            'automated' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

@@ -40,6 +40,27 @@ final class ProjectOptions implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'defaults' => '\Upsun\Model\ProjectOptionsDefaults',
+            'enforced' => '\Upsun\Model\ProjectOptionsEnforced',
+            'regions' => 'string[]',
+            'plans' => 'string[]',
+            'billing' => 'object',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [

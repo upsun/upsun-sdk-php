@@ -34,14 +34,25 @@ final class HttpAccessPermissions implements JsonSerializable
         private array $addresses,
         private array $basicAuth,
     ) {
-        if ($this->addresses) {
-            $this->addresses = array_map(function ($item) {
-                if ($item instanceof \Upsun\Model\AddressGrantsInner) {
-                    return $item;
-                }
-                return \Upsun\ObjectSerializer::deserialize($item, \Upsun\Model\AddressGrantsInner::class);
-            }, $this->addresses);
-        }
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'is_enabled' => 'bool',
+            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
+            'basic_auth' => 'array&lt;string,string&gt;',
+        ];
     }
 
     public function jsonSerialize(): array

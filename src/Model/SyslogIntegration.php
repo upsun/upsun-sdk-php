@@ -50,6 +50,32 @@ final class SyslogIntegration implements JsonSerializable
     ) {
     }
 
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization
+     *
+     * @return array
+     */
+    public static function openAPITypes()
+    {
+        return [
+            'created_at' => '\DateTime',
+            'updated_at' => '\DateTime',
+            'type' => 'string',
+            'extra' => 'array&lt;string,string&gt;',
+            'host' => 'string',
+            'port' => 'int',
+            'protocol' => 'string',
+            'facility' => 'int',
+            'message_format' => 'string',
+            'tls_verify' => 'bool',
+        ];
+    }
+
     public function jsonSerialize(): array
     {
         return [
