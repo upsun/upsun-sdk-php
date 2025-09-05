@@ -131,7 +131,7 @@ use {{invokerPackage}}\Core\OAuthProvider;
                 $request->getHeaders()
             );
 {{#returnType}}
-            return $this->handleResponseWithDataType(
+            {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->handleResponseWithDataType(
                 '{{{returnType}}}',
                 $request,
                 $response

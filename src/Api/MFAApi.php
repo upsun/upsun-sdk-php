@@ -724,7 +724,7 @@ final class MFAApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-            return $this->handleResponseWithDataType(
+            $this->handleResponseWithDataType(
                 '\Upsun\Model\ConfirmTotpEnrollment200Response',
                 $request,
                 $response
