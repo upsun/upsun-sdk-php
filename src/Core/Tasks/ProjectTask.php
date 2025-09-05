@@ -77,7 +77,7 @@ class ProjectTask extends TaskBase
      */
     public function delete(string $organizationId, string $projectId): void
     {
-        $project = $this->get($projectId);
+        $project = $this->get($organizationId, $projectId);
 
         $this->subscriptionsApi->deleteOrgSubscription($organizationId, $project->getSubscriptionId());
     }
@@ -88,11 +88,9 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException|Exception
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $projectId): OrganizationProject
+    public function get(string $organizationId, string $projectId): OrganizationProject
     {
-        $project = $this->api->getProjects($projectId);
-        $orgId = $project->getOrganization();
-        return $this->organizationProjectsApi->getOrgProject($orgId, $projectId);
+        return $this->organizationProjectsApi->getOrgProject($organizationId, $projectId);
     }
 
     /**

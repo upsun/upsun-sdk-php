@@ -21495,7 +21495,6 @@
           "timezone",
           "region",
           "repository",
-          "default_domain",
           "subscription"
         ],
         "additionalProperties": false
