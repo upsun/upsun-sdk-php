@@ -186,19 +186,12 @@ use function sprintf;
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
-{{#vendorExtensions.x-return-types}}
-            return $this->handleResponseWithDataType(
-                '{{{.}}}',
-                $request,
-                $response
-            );{{/vendorExtensions.x-return-types}}
-{{^vendorExtensions.x-return-types}}
+            
             return $this->handleResponseWithDataType(
                 '{{{returnType}}}',
                 $request,
                 $response
-            );{{/vendorExtensions.x-return-types}}
+            );
         } catch (ApiException $e) {
             throw $e;
         }
