@@ -50,7 +50,7 @@ final class Project implements JsonSerializable
         private string $timezone,
         private string $region,
         private \Upsun\Model\RepositoryInformation $repository,
-        private string $defaultDomain,
+        private ?string $defaultDomain = null,
         private \Upsun\Model\SubscriptionInformation $subscription,
     ) {
     }
@@ -204,9 +204,9 @@ final class Project implements JsonSerializable
         return $this->repository;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDefaultDomain(): string
+    public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }

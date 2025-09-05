@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-class OrganizationProjectPlan
+final class OrganizationProjectPlan implements JsonSerializable
 {
     /**
      * Possible values of this enum
@@ -77,11 +77,39 @@ class OrganizationProjectPlan
 
     public const PIMCORE_LARGE = 'pimcore/large';
 
+
+    private string $value;
+
+    /**
+     * Constructor
+     *
+     * @param string $value one of the allowable enum values
+     * @throws \InvalidArgumentException if value is not allowed
+     */
+    public function __construct(string $value)
+    {
+        if (!in_array($value, self::getAllowableEnumValues(), true)) {
+            throw new \InvalidArgumentException("Invalid value '{$value}' for enum OrganizationProjectPlan");
+        }
+        $this->value = $value;
+    }
+
+    /**
+     * Get the enum value
+     *
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     /**
      * Gets allowable values of the enum
+     *
      * @return string[]
      */
-    public static function getAllowableEnumValues()
+    public static function getAllowableEnumValues(): array
     {
         return [
             self::DEVELOPMENT,
@@ -114,6 +142,16 @@ class OrganizationProjectPlan
             self::PIMCORE_MEDIUM,
             self::PIMCORE_LARGE
         ];
+    }
+
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }
 

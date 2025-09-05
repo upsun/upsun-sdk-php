@@ -31,6 +31,8 @@ additionalProperties:
   propertyNamingConvention: "camelCase"
   enumPropertyNaming: "camelCase"
   modelPropertyNaming: "camelCase"
+  generateEnums: true
+  enumClassPrefix: true
 files:
   abstract_api.mustache:
     templateType: SupportingFiles

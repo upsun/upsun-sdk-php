@@ -453,7 +453,12 @@ class ObjectSerializer
                 } elseif ($typeName === 'DateTime') {
                     $args[] = $value !== null ? new \DateTime($value) : null;
                 } elseif (class_exists($typeName)) {
-                    $args[] = $value !== null ? self::deserializeSimplifiedModel($value, $typeName) : null;
+                    if (is_string($value) && in_array('getAllowableEnumValues', get_class_methods($typeName))) {
+                        // Generated Enum
+                        $args[] = new $typeName($value);
+                    } else {
+                        $args[] = $value !== null ? self::deserializeSimplifiedModel($value, $typeName) : null;
+                    }
                 } else {
                     $args[] = $value;
                 }

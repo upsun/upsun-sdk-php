@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-class OrganizationProjectType
+final class OrganizationProjectType implements JsonSerializable
 {
     /**
      * Possible values of this enum
@@ -23,16 +23,54 @@ class OrganizationProjectType
 
     public const DEDICATED = 'dedicated';
 
+
+    private string $value;
+
+    /**
+     * Constructor
+     *
+     * @param string $value one of the allowable enum values
+     * @throws \InvalidArgumentException if value is not allowed
+     */
+    public function __construct(string $value)
+    {
+        if (!in_array($value, self::getAllowableEnumValues(), true)) {
+            throw new \InvalidArgumentException("Invalid value '{$value}' for enum OrganizationProjectType");
+        }
+        $this->value = $value;
+    }
+
+    /**
+     * Get the enum value
+     *
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     /**
      * Gets allowable values of the enum
+     *
      * @return string[]
      */
-    public static function getAllowableEnumValues()
+    public static function getAllowableEnumValues(): array
     {
         return [
             self::GRID,
             self::DEDICATED
         ];
+    }
+
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
     }
 }
 
