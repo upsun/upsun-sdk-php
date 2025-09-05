@@ -19086,7 +19086,6 @@
           "attributes",
           "type",
           "parent",
-          "default_domain",
           "has_domains",
           "clone_parent_on_create",
           "deployment_target",

@@ -70,7 +70,7 @@ final class Environment implements JsonSerializable
         private array $attributes,
         private string $type,
         private string $parent,
-        private string $defaultDomain,
+        private ?string $defaultDomain = null,
         private bool $hasDomains,
         private bool $cloneParentOnCreate,
         private string $deploymentTarget,
@@ -245,9 +245,9 @@ final class Environment implements JsonSerializable
         return $this->parent;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDefaultDomain(): string
+    public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }

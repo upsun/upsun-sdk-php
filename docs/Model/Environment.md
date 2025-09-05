@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **parent** | **string** |  |
-**defaultDomain** | **string** |  |
+**defaultDomain** | **string** |  | [optional]
 **hasDomains** | **bool** |  |
 **cloneParentOnCreate** | **bool** |  |
 **deploymentTarget** | **string** |  |
