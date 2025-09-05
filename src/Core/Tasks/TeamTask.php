@@ -9,6 +9,7 @@ use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
@@ -111,7 +112,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeamMembers200Response {
         return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
     }
 
@@ -128,7 +129,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeams200Response {
         return $this->teamsApi->listTeams(
             new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
             new StringFilter(...$this->normalizeFilter($filterId)),
@@ -153,7 +154,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeams200Response {
         return $this->teamsApi->listUserTeams(
             $userId,
             new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
@@ -227,7 +228,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): ListTeamProjectAccess200Response {
         return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -242,7 +243,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): ListTeamProjectAccess200Response {
         return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 

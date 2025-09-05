@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level UsersApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class UsersApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -113,10 +58,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUser(
         
     ): \Upsun\Model\User {
-        list($response) = $this->getCurrentUserWithHttpInfo(
+        return $this->getCurrentUserWithHttpInfo(
             
         );
-        return $response;
     }
 
     /**
@@ -126,7 +70,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserWithHttpInfo(
         
-    ): array {
+    ): \Upsun\Model\User {
         $request = $this->getCurrentUserRequest(
             
         );
@@ -137,79 +81,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get the current user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserAsync(
-        
-    ): Promise {
-        return $this->getCurrentUserAsyncWithHttpInfo(
-            
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get the current user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserAsyncWithHttpInfo(
-        
-    ): Promise {
-        $returnType = '\Upsun\Model\User';
-        $request = $this->getCurrentUserRequest(
-            
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -289,10 +168,9 @@ final class UsersApi extends AbstractApi
     public function getCurrentUserDeprecated(
         
     ): \Upsun\Model\CurrentUser {
-        list($response) = $this->getCurrentUserDeprecatedWithHttpInfo(
+        return $this->getCurrentUserDeprecatedWithHttpInfo(
             
         );
-        return $response;
     }
 
     /**
@@ -302,7 +180,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserDeprecatedWithHttpInfo(
         
-    ): array {
+    ): \Upsun\Model\CurrentUser {
         $request = $this->getCurrentUserDeprecatedRequest(
             
         );
@@ -313,79 +191,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\CurrentUser',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get current logged-in user info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserDeprecatedAsync(
-        
-    ): Promise {
-        return $this->getCurrentUserDeprecatedAsyncWithHttpInfo(
-            
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get current logged-in user info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserDeprecatedAsyncWithHttpInfo(
-        
-    ): Promise {
-        $returnType = '\Upsun\Model\CurrentUser';
-        $request = $this->getCurrentUserDeprecatedRequest(
-            
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -464,11 +277,10 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserVerificationStatus(
         
-    ): array {
-        list($response) = $this->getCurrentUserVerificationStatusWithHttpInfo(
+    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response {
+        return $this->getCurrentUserVerificationStatusWithHttpInfo(
             
         );
-        return $response;
     }
 
     /**
@@ -478,7 +290,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserVerificationStatusWithHttpInfo(
         
-    ): array {
+    ): \Upsun\Model\GetCurrentUserVerificationStatus200Response {
         $request = $this->getCurrentUserVerificationStatusRequest(
             
         );
@@ -489,79 +301,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetCurrentUserVerificationStatus200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Check if phone verification is required
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserVerificationStatusAsync(
-        
-    ): Promise {
-        return $this->getCurrentUserVerificationStatusAsyncWithHttpInfo(
-            
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Check if phone verification is required
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserVerificationStatusAsyncWithHttpInfo(
-        
-    ): Promise {
-        $returnType = '\Upsun\Model\GetCurrentUserVerificationStatus200Response';
-        $request = $this->getCurrentUserVerificationStatusRequest(
-            
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -640,11 +387,10 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserVerificationStatusFull(
         
-    ): array {
-        list($response) = $this->getCurrentUserVerificationStatusFullWithHttpInfo(
+    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response {
+        return $this->getCurrentUserVerificationStatusFullWithHttpInfo(
             
         );
-        return $response;
     }
 
     /**
@@ -654,7 +400,7 @@ final class UsersApi extends AbstractApi
      */
     public function getCurrentUserVerificationStatusFullWithHttpInfo(
         
-    ): array {
+    ): \Upsun\Model\GetCurrentUserVerificationStatusFull200Response {
         $request = $this->getCurrentUserVerificationStatusFullRequest(
             
         );
@@ -665,79 +411,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetCurrentUserVerificationStatusFull200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Check if verification is required
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserVerificationStatusFullAsync(
-        
-    ): Promise {
-        return $this->getCurrentUserVerificationStatusFullAsyncWithHttpInfo(
-            
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Check if verification is required
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getCurrentUserVerificationStatusFullAsyncWithHttpInfo(
-        
-    ): Promise {
-        $returnType = '\Upsun\Model\GetCurrentUserVerificationStatusFull200Response';
-        $request = $this->getCurrentUserVerificationStatusFullRequest(
-            
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -817,10 +498,9 @@ final class UsersApi extends AbstractApi
     public function getUser(
         string $userId
     ): \Upsun\Model\User {
-        list($response) = $this->getUserWithHttpInfo(
+        return $this->getUserWithHttpInfo(
             $userId
         );
-        return $response;
     }
 
     /**
@@ -830,7 +510,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserWithHttpInfo(
         string $userId
-    ): array {
+    ): \Upsun\Model\User {
         $request = $this->getUserRequest(
             $userId
         );
@@ -841,79 +521,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserAsync(
-        string $userId
-    ): Promise {
-        return $this->getUserAsyncWithHttpInfo(
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserAsyncWithHttpInfo(
-        string $userId
-    ): Promise {
-        $returnType = '\Upsun\Model\User';
-        $request = $this->getUserRequest(
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -925,7 +540,11 @@ final class UsersApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling getUser'
             );
@@ -1007,10 +626,9 @@ final class UsersApi extends AbstractApi
     public function getUserByEmailAddress(
         string $email
     ): \Upsun\Model\User {
-        list($response) = $this->getUserByEmailAddressWithHttpInfo(
+        return $this->getUserByEmailAddressWithHttpInfo(
             $email
         );
-        return $response;
     }
 
     /**
@@ -1020,7 +638,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserByEmailAddressWithHttpInfo(
         string $email
-    ): array {
+    ): \Upsun\Model\User {
         $request = $this->getUserByEmailAddressRequest(
             $email
         );
@@ -1031,79 +649,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a user by email
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserByEmailAddressAsync(
-        string $email
-    ): Promise {
-        return $this->getUserByEmailAddressAsyncWithHttpInfo(
-            $email
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a user by email
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserByEmailAddressAsyncWithHttpInfo(
-        string $email
-    ): Promise {
-        $returnType = '\Upsun\Model\User';
-        $request = $this->getUserByEmailAddressRequest(
-            $email
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1115,7 +668,11 @@ final class UsersApi extends AbstractApi
         string $email
     ): RequestInterface {
         // verify the required parameter 'email' is set
-        if ($email === null || (is_array($email) && count($email) === 0)) {
+        if (
+            $email === null
+            || (is_array($email)
+            && count($email) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $email when calling getUserByEmailAddress'
             );
@@ -1197,10 +754,9 @@ final class UsersApi extends AbstractApi
     public function getUserByUsername(
         string $username
     ): \Upsun\Model\User {
-        list($response) = $this->getUserByUsernameWithHttpInfo(
+        return $this->getUserByUsernameWithHttpInfo(
             $username
         );
-        return $response;
     }
 
     /**
@@ -1210,7 +766,7 @@ final class UsersApi extends AbstractApi
      */
     public function getUserByUsernameWithHttpInfo(
         string $username
-    ): array {
+    ): \Upsun\Model\User {
         $request = $this->getUserByUsernameRequest(
             $username
         );
@@ -1221,79 +777,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a user by username
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserByUsernameAsync(
-        string $username
-    ): Promise {
-        return $this->getUserByUsernameAsyncWithHttpInfo(
-            $username
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a user by username
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserByUsernameAsyncWithHttpInfo(
-        string $username
-    ): Promise {
-        $returnType = '\Upsun\Model\User';
-        $request = $this->getUserByUsernameRequest(
-            $username
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1305,7 +796,11 @@ final class UsersApi extends AbstractApi
         string $username
     ): RequestInterface {
         // verify the required parameter 'username' is set
-        if ($username === null || (is_array($username) && count($username) === 0)) {
+        if (
+            $username === null
+            || (is_array($username)
+            && count($username) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $username when calling getUserByUsername'
             );
@@ -1387,12 +882,11 @@ final class UsersApi extends AbstractApi
     public function resetEmailAddress(
         string $userId,
         ?\Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
-    ): \Upsun\Model\User {
-        list($response) = $this->resetEmailAddressWithHttpInfo(
+    ): void {
+        $this->resetEmailAddressWithHttpInfo(
             $userId,
             $resetEmailAddressRequest
         );
-        return $response;
     }
 
     /**
@@ -1403,7 +897,7 @@ final class UsersApi extends AbstractApi
     public function resetEmailAddressWithHttpInfo(
         string $userId,
         \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
-    ): array {
+    ): void {
         $request = $this->resetEmailAddressRequest(
             $userId,
             $resetEmailAddressRequest
@@ -1416,72 +910,9 @@ final class UsersApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Reset email address
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function resetEmailAddressAsync(
-        string $userId,
-        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
-    ): Promise {
-        return $this->resetEmailAddressAsyncWithHttpInfo(
-            $userId,
-            $resetEmailAddressRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Reset email address
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function resetEmailAddressAsyncWithHttpInfo(
-        string $userId,
-        \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
-    ): Promise {
-        $returnType = '';
-        $request = $this->resetEmailAddressRequest(
-            $userId,
-            $resetEmailAddressRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1494,7 +925,11 @@ final class UsersApi extends AbstractApi
         \Upsun\Model\ResetEmailAddressRequest $resetEmailAddressRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling resetEmailAddress'
             );
@@ -1581,11 +1016,10 @@ final class UsersApi extends AbstractApi
      */
     public function resetPassword(
         string $userId
-    ): \Upsun\Model\User {
-        list($response) = $this->resetPasswordWithHttpInfo(
+    ): void {
+        $this->resetPasswordWithHttpInfo(
             $userId
         );
-        return $response;
     }
 
     /**
@@ -1595,7 +1029,7 @@ final class UsersApi extends AbstractApi
      */
     public function resetPasswordWithHttpInfo(
         string $userId
-    ): array {
+    ): void {
         $request = $this->resetPasswordRequest(
             $userId
         );
@@ -1607,68 +1041,9 @@ final class UsersApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Reset user password
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function resetPasswordAsync(
-        string $userId
-    ): Promise {
-        return $this->resetPasswordAsyncWithHttpInfo(
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Reset user password
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function resetPasswordAsyncWithHttpInfo(
-        string $userId
-    ): Promise {
-        $returnType = '';
-        $request = $this->resetPasswordRequest(
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1680,7 +1055,11 @@ final class UsersApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling resetPassword'
             );
@@ -1763,11 +1142,10 @@ final class UsersApi extends AbstractApi
         string $userId,
         ?\Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): \Upsun\Model\User {
-        list($response) = $this->updateUserWithHttpInfo(
+        return $this->updateUserWithHttpInfo(
             $userId,
             $updateUserRequest
         );
-        return $response;
     }
 
     /**
@@ -1778,7 +1156,7 @@ final class UsersApi extends AbstractApi
     public function updateUserWithHttpInfo(
         string $userId,
         \Upsun\Model\UpdateUserRequest $updateUserRequest = null
-    ): array {
+    ): \Upsun\Model\User {
         $request = $this->updateUserRequest(
             $userId,
             $updateUserRequest
@@ -1790,83 +1168,14 @@ final class UsersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\User',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateUserAsync(
-        string $userId,
-        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
-    ): Promise {
-        return $this->updateUserAsyncWithHttpInfo(
-            $userId,
-            $updateUserRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateUserAsyncWithHttpInfo(
-        string $userId,
-        \Upsun\Model\UpdateUserRequest $updateUserRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\User';
-        $request = $this->updateUserRequest(
-            $userId,
-            $updateUserRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1879,7 +1188,11 @@ final class UsersApi extends AbstractApi
         \Upsun\Model\UpdateUserRequest $updateUserRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling updateUser'
             );
@@ -1958,103 +1271,4 @@ final class UsersApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

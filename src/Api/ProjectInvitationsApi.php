@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level ProjectInvitationsApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class ProjectInvitationsApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -109,18 +54,15 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     *
-     * @return array
      */
     public function cancelProjectInvite(
         string $projectId,
         string $invitationId
-    ): array {
-        list($response) = $this->cancelProjectInviteWithHttpInfo(
+    ): void {
+        $this->cancelProjectInviteWithHttpInfo(
             $projectId,
             $invitationId
         );
-        return $response;
     }
 
     /**
@@ -131,7 +73,7 @@ final class ProjectInvitationsApi extends AbstractApi
     public function cancelProjectInviteWithHttpInfo(
         string $projectId,
         string $invitationId
-    ): array {
+    ): void {
         $request = $this->cancelProjectInviteRequest(
             $projectId,
             $invitationId
@@ -144,72 +86,9 @@ final class ProjectInvitationsApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Cancel a pending invitation to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function cancelProjectInviteAsync(
-        string $projectId,
-        string $invitationId
-    ): Promise {
-        return $this->cancelProjectInviteAsyncWithHttpInfo(
-            $projectId,
-            $invitationId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Cancel a pending invitation to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function cancelProjectInviteAsyncWithHttpInfo(
-        string $projectId,
-        string $invitationId
-    ): Promise {
-        $returnType = '';
-        $request = $this->cancelProjectInviteRequest(
-            $projectId,
-            $invitationId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -222,13 +101,21 @@ final class ProjectInvitationsApi extends AbstractApi
         string $invitationId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling cancelProjectInvite'
             );
         }
         // verify the required parameter 'invitationId' is set
-        if ($invitationId === null || (is_array($invitationId) && count($invitationId) === 0)) {
+        if (
+            $invitationId === null
+            || (is_array($invitationId)
+            && count($invitationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $invitationId when calling cancelProjectInvite'
             );
@@ -319,11 +206,10 @@ final class ProjectInvitationsApi extends AbstractApi
         string $projectId,
         ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): \Upsun\Model\ProjectInvitation {
-        list($response) = $this->createProjectInviteWithHttpInfo(
+        return $this->createProjectInviteWithHttpInfo(
             $projectId,
             $createProjectInviteRequest
         );
-        return $response;
     }
 
     /**
@@ -334,7 +220,7 @@ final class ProjectInvitationsApi extends AbstractApi
     public function createProjectInviteWithHttpInfo(
         string $projectId,
         \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): array {
+    ): \Upsun\Model\ProjectInvitation {
         $request = $this->createProjectInviteRequest(
             $projectId,
             $createProjectInviteRequest
@@ -346,83 +232,14 @@ final class ProjectInvitationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ProjectInvitation',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Invite user to a project by email
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectInviteAsync(
-        string $projectId,
-        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): Promise {
-        return $this->createProjectInviteAsyncWithHttpInfo(
-            $projectId,
-            $createProjectInviteRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Invite user to a project by email
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectInviteAsyncWithHttpInfo(
-        string $projectId,
-        \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ProjectInvitation';
-        $request = $this->createProjectInviteRequest(
-            $projectId,
-            $createProjectInviteRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -435,7 +252,11 @@ final class ProjectInvitationsApi extends AbstractApi
         \Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling createProjectInvite'
             );
@@ -520,7 +341,7 @@ final class ProjectInvitationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return array
+     * @return \Upsun\Model\ProjectInvitation[]
      */
     public function listProjectInvites(
         string $projectId,
@@ -530,7 +351,7 @@ final class ProjectInvitationsApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): array {
-        list($response) = $this->listProjectInvitesWithHttpInfo(
+        return $this->listProjectInvitesWithHttpInfo(
             $projectId,
             $filterState,
             $pageSize,
@@ -538,7 +359,6 @@ final class ProjectInvitationsApi extends AbstractApi
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -569,99 +389,14 @@ final class ProjectInvitationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ProjectInvitation[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List invitations to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectInvitesAsync(
-        string $projectId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listProjectInvitesAsyncWithHttpInfo(
-            $projectId,
-            $filterState,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List invitations to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectInvitesAsyncWithHttpInfo(
-        string $projectId,
-        \Upsun\Model\StringFilter $filterState = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ProjectInvitation[]';
-        $request = $this->listProjectInvitesRequest(
-            $projectId,
-            $filterState,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -678,7 +413,11 @@ final class ProjectInvitationsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectInvites'
             );
@@ -819,103 +558,4 @@ final class ProjectInvitationsApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

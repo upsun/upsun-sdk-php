@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level AlertsApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class AlertsApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -114,11 +59,10 @@ final class AlertsApi extends AbstractApi
         string $subscriptionId,
         ?\Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
     ): \Upsun\Model\Alert {
-        list($response) = $this->createUsageAlertWithHttpInfo(
+        return $this->createUsageAlertWithHttpInfo(
             $subscriptionId,
             $createUsageAlertRequest
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class AlertsApi extends AbstractApi
     public function createUsageAlertWithHttpInfo(
         string $subscriptionId,
         \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
-    ): array {
+    ): \Upsun\Model\Alert {
         $request = $this->createUsageAlertRequest(
             $subscriptionId,
             $createUsageAlertRequest
@@ -141,83 +85,14 @@ final class AlertsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Alert',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createUsageAlertAsync(
-        string $subscriptionId,
-        \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
-    ): Promise {
-        return $this->createUsageAlertAsyncWithHttpInfo(
-            $subscriptionId,
-            $createUsageAlertRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createUsageAlertAsyncWithHttpInfo(
-        string $subscriptionId,
-        \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\Alert';
-        $request = $this->createUsageAlertRequest(
-            $subscriptionId,
-            $createUsageAlertRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,7 +105,11 @@ final class AlertsApi extends AbstractApi
         \Upsun\Model\CreateUsageAlertRequest $createUsageAlertRequest = null
     ): RequestInterface {
         // verify the required parameter 'subscriptionId' is set
-        if ($subscriptionId === null || (is_array($subscriptionId) && count($subscriptionId) === 0)) {
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $subscriptionId when calling createUsageAlert'
             );
@@ -318,12 +197,11 @@ final class AlertsApi extends AbstractApi
     public function deleteUsageAlert(
         string $subscriptionId,
         string $usageId
-    ): \Upsun\Model\Alert {
-        list($response) = $this->deleteUsageAlertWithHttpInfo(
+    ): void {
+        $this->deleteUsageAlertWithHttpInfo(
             $subscriptionId,
             $usageId
         );
-        return $response;
     }
 
     /**
@@ -334,7 +212,7 @@ final class AlertsApi extends AbstractApi
     public function deleteUsageAlertWithHttpInfo(
         string $subscriptionId,
         string $usageId
-    ): array {
+    ): void {
         $request = $this->deleteUsageAlertRequest(
             $subscriptionId,
             $usageId
@@ -347,72 +225,9 @@ final class AlertsApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteUsageAlertAsync(
-        string $subscriptionId,
-        string $usageId
-    ): Promise {
-        return $this->deleteUsageAlertAsyncWithHttpInfo(
-            $subscriptionId,
-            $usageId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteUsageAlertAsyncWithHttpInfo(
-        string $subscriptionId,
-        string $usageId
-    ): Promise {
-        $returnType = '';
-        $request = $this->deleteUsageAlertRequest(
-            $subscriptionId,
-            $usageId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -425,13 +240,21 @@ final class AlertsApi extends AbstractApi
         string $usageId
     ): RequestInterface {
         // verify the required parameter 'subscriptionId' is set
-        if ($subscriptionId === null || (is_array($subscriptionId) && count($subscriptionId) === 0)) {
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $subscriptionId when calling deleteUsageAlert'
             );
         }
         // verify the required parameter 'usageId' is set
-        if ($usageId === null || (is_array($usageId) && count($usageId) === 0)) {
+        if (
+            $usageId === null
+            || (is_array($usageId)
+            && count($usageId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $usageId when calling deleteUsageAlert'
             );
@@ -520,11 +343,10 @@ final class AlertsApi extends AbstractApi
      */
     public function getUsageAlerts(
         string $subscriptionId
-    ): array {
-        list($response) = $this->getUsageAlertsWithHttpInfo(
+    ): \Upsun\Model\GetUsageAlerts200Response {
+        return $this->getUsageAlertsWithHttpInfo(
             $subscriptionId
         );
-        return $response;
     }
 
     /**
@@ -534,7 +356,7 @@ final class AlertsApi extends AbstractApi
      */
     public function getUsageAlertsWithHttpInfo(
         string $subscriptionId
-    ): array {
+    ): \Upsun\Model\GetUsageAlerts200Response {
         $request = $this->getUsageAlertsRequest(
             $subscriptionId
         );
@@ -545,79 +367,14 @@ final class AlertsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetUsageAlerts200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get usage alerts for a subscription
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUsageAlertsAsync(
-        string $subscriptionId
-    ): Promise {
-        return $this->getUsageAlertsAsyncWithHttpInfo(
-            $subscriptionId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get usage alerts for a subscription
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUsageAlertsAsyncWithHttpInfo(
-        string $subscriptionId
-    ): Promise {
-        $returnType = '\Upsun\Model\GetUsageAlerts200Response';
-        $request = $this->getUsageAlertsRequest(
-            $subscriptionId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -629,7 +386,11 @@ final class AlertsApi extends AbstractApi
         string $subscriptionId
     ): RequestInterface {
         // verify the required parameter 'subscriptionId' is set
-        if ($subscriptionId === null || (is_array($subscriptionId) && count($subscriptionId) === 0)) {
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $subscriptionId when calling getUsageAlerts'
             );
@@ -713,12 +474,11 @@ final class AlertsApi extends AbstractApi
         string $usageId,
         ?\Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
     ): \Upsun\Model\Alert {
-        list($response) = $this->updateUsageAlertWithHttpInfo(
+        return $this->updateUsageAlertWithHttpInfo(
             $subscriptionId,
             $usageId,
             $updateUsageAlertRequest
         );
-        return $response;
     }
 
     /**
@@ -730,7 +490,7 @@ final class AlertsApi extends AbstractApi
         string $subscriptionId,
         string $usageId,
         \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
-    ): array {
+    ): \Upsun\Model\Alert {
         $request = $this->updateUsageAlertRequest(
             $subscriptionId,
             $usageId,
@@ -743,87 +503,14 @@ final class AlertsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Alert',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateUsageAlertAsync(
-        string $subscriptionId,
-        string $usageId,
-        \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
-    ): Promise {
-        return $this->updateUsageAlertAsyncWithHttpInfo(
-            $subscriptionId,
-            $usageId,
-            $updateUsageAlertRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a usage alert.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateUsageAlertAsyncWithHttpInfo(
-        string $subscriptionId,
-        string $usageId,
-        \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\Alert';
-        $request = $this->updateUsageAlertRequest(
-            $subscriptionId,
-            $usageId,
-            $updateUsageAlertRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -837,13 +524,21 @@ final class AlertsApi extends AbstractApi
         \Upsun\Model\UpdateUsageAlertRequest $updateUsageAlertRequest = null
     ): RequestInterface {
         // verify the required parameter 'subscriptionId' is set
-        if ($subscriptionId === null || (is_array($subscriptionId) && count($subscriptionId) === 0)) {
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $subscriptionId when calling updateUsageAlert'
             );
         }
         // verify the required parameter 'usageId' is set
-        if ($usageId === null || (is_array($usageId) && count($usageId) === 0)) {
+        if (
+            $usageId === null
+            || (is_array($usageId)
+            && count($usageId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $usageId when calling updateUsageAlert'
             );
@@ -930,103 +625,4 @@ final class AlertsApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

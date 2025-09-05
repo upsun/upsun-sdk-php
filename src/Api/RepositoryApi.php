@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level RepositoryApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class RepositoryApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -114,11 +59,10 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryBlobId
     ): \Upsun\Model\Blob {
-        list($response) = $this->getProjectsGitBlobsWithHttpInfo(
+        return $this->getProjectsGitBlobsWithHttpInfo(
             $projectId,
             $repositoryBlobId
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitBlobsWithHttpInfo(
         string $projectId,
         string $repositoryBlobId
-    ): array {
+    ): \Upsun\Model\Blob {
         $request = $this->getProjectsGitBlobsRequest(
             $projectId,
             $repositoryBlobId
@@ -141,83 +85,14 @@ final class RepositoryApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Blob',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a blob object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitBlobsAsync(
-        string $projectId,
-        string $repositoryBlobId
-    ): Promise {
-        return $this->getProjectsGitBlobsAsyncWithHttpInfo(
-            $projectId,
-            $repositoryBlobId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a blob object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitBlobsAsyncWithHttpInfo(
-        string $projectId,
-        string $repositoryBlobId
-    ): Promise {
-        $returnType = '\Upsun\Model\Blob';
-        $request = $this->getProjectsGitBlobsRequest(
-            $projectId,
-            $repositoryBlobId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,13 +105,21 @@ final class RepositoryApi extends AbstractApi
         string $repositoryBlobId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsGitBlobs'
             );
         }
         // verify the required parameter 'repositoryBlobId' is set
-        if ($repositoryBlobId === null || (is_array($repositoryBlobId) && count($repositoryBlobId) === 0)) {
+        if (
+            $repositoryBlobId === null
+            || (is_array($repositoryBlobId)
+            && count($repositoryBlobId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryBlobId when calling getProjectsGitBlobs'
             );
@@ -327,11 +210,10 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryCommitId
     ): \Upsun\Model\Commit {
-        list($response) = $this->getProjectsGitCommitsWithHttpInfo(
+        return $this->getProjectsGitCommitsWithHttpInfo(
             $projectId,
             $repositoryCommitId
         );
-        return $response;
     }
 
     /**
@@ -342,7 +224,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitCommitsWithHttpInfo(
         string $projectId,
         string $repositoryCommitId
-    ): array {
+    ): \Upsun\Model\Commit {
         $request = $this->getProjectsGitCommitsRequest(
             $projectId,
             $repositoryCommitId
@@ -354,83 +236,14 @@ final class RepositoryApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Commit',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a commit object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitCommitsAsync(
-        string $projectId,
-        string $repositoryCommitId
-    ): Promise {
-        return $this->getProjectsGitCommitsAsyncWithHttpInfo(
-            $projectId,
-            $repositoryCommitId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a commit object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitCommitsAsyncWithHttpInfo(
-        string $projectId,
-        string $repositoryCommitId
-    ): Promise {
-        $returnType = '\Upsun\Model\Commit';
-        $request = $this->getProjectsGitCommitsRequest(
-            $projectId,
-            $repositoryCommitId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -443,13 +256,21 @@ final class RepositoryApi extends AbstractApi
         string $repositoryCommitId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsGitCommits'
             );
         }
         // verify the required parameter 'repositoryCommitId' is set
-        if ($repositoryCommitId === null || (is_array($repositoryCommitId) && count($repositoryCommitId) === 0)) {
+        if (
+            $repositoryCommitId === null
+            || (is_array($repositoryCommitId)
+            && count($repositoryCommitId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryCommitId when calling getProjectsGitCommits'
             );
@@ -540,11 +361,10 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryRefId
     ): \Upsun\Model\Ref {
-        list($response) = $this->getProjectsGitRefsWithHttpInfo(
+        return $this->getProjectsGitRefsWithHttpInfo(
             $projectId,
             $repositoryRefId
         );
-        return $response;
     }
 
     /**
@@ -555,7 +375,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitRefsWithHttpInfo(
         string $projectId,
         string $repositoryRefId
-    ): array {
+    ): \Upsun\Model\Ref {
         $request = $this->getProjectsGitRefsRequest(
             $projectId,
             $repositoryRefId
@@ -567,83 +387,14 @@ final class RepositoryApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Ref',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a ref object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitRefsAsync(
-        string $projectId,
-        string $repositoryRefId
-    ): Promise {
-        return $this->getProjectsGitRefsAsyncWithHttpInfo(
-            $projectId,
-            $repositoryRefId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a ref object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitRefsAsyncWithHttpInfo(
-        string $projectId,
-        string $repositoryRefId
-    ): Promise {
-        $returnType = '\Upsun\Model\Ref';
-        $request = $this->getProjectsGitRefsRequest(
-            $projectId,
-            $repositoryRefId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -656,13 +407,21 @@ final class RepositoryApi extends AbstractApi
         string $repositoryRefId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsGitRefs'
             );
         }
         // verify the required parameter 'repositoryRefId' is set
-        if ($repositoryRefId === null || (is_array($repositoryRefId) && count($repositoryRefId) === 0)) {
+        if (
+            $repositoryRefId === null
+            || (is_array($repositoryRefId)
+            && count($repositoryRefId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryRefId when calling getProjectsGitRefs'
             );
@@ -753,11 +512,10 @@ final class RepositoryApi extends AbstractApi
         string $projectId,
         string $repositoryTreeId
     ): \Upsun\Model\Tree {
-        list($response) = $this->getProjectsGitTreesWithHttpInfo(
+        return $this->getProjectsGitTreesWithHttpInfo(
             $projectId,
             $repositoryTreeId
         );
-        return $response;
     }
 
     /**
@@ -768,7 +526,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitTreesWithHttpInfo(
         string $projectId,
         string $repositoryTreeId
-    ): array {
+    ): \Upsun\Model\Tree {
         $request = $this->getProjectsGitTreesRequest(
             $projectId,
             $repositoryTreeId
@@ -780,83 +538,14 @@ final class RepositoryApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Tree',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a tree object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitTreesAsync(
-        string $projectId,
-        string $repositoryTreeId
-    ): Promise {
-        return $this->getProjectsGitTreesAsyncWithHttpInfo(
-            $projectId,
-            $repositoryTreeId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a tree object
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsGitTreesAsyncWithHttpInfo(
-        string $projectId,
-        string $repositoryTreeId
-    ): Promise {
-        $returnType = '\Upsun\Model\Tree';
-        $request = $this->getProjectsGitTreesRequest(
-            $projectId,
-            $repositoryTreeId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -869,13 +558,21 @@ final class RepositoryApi extends AbstractApi
         string $repositoryTreeId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsGitTrees'
             );
         }
         // verify the required parameter 'repositoryTreeId' is set
-        if ($repositoryTreeId === null || (is_array($repositoryTreeId) && count($repositoryTreeId) === 0)) {
+        if (
+            $repositoryTreeId === null
+            || (is_array($repositoryTreeId)
+            && count($repositoryTreeId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryTreeId when calling getProjectsGitTrees'
             );
@@ -961,14 +658,15 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Ref[]
      */
     public function listProjectsGitRefs(
         string $projectId
     ): array {
-        list($response) = $this->listProjectsGitRefsWithHttpInfo(
+        return $this->listProjectsGitRefsWithHttpInfo(
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -989,79 +687,14 @@ final class RepositoryApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Ref[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get list of repository refs
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsGitRefsAsync(
-        string $projectId
-    ): Promise {
-        return $this->listProjectsGitRefsAsyncWithHttpInfo(
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get list of repository refs
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsGitRefsAsyncWithHttpInfo(
-        string $projectId
-    ): Promise {
-        $returnType = '\Upsun\Model\Ref[]';
-        $request = $this->listProjectsGitRefsRequest(
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1073,7 +706,11 @@ final class RepositoryApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectsGitRefs'
             );
@@ -1146,103 +783,4 @@ final class RepositoryApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

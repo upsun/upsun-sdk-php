@@ -16,6 +16,7 @@ foreach ($spec['paths'] as $path => &$methods) {
     preg_match_all('/\{([^\}]+)\}/', $path, $matches);
     $pathParams = $matches[1] ?? [];
 
+    //var_dump($path);
     foreach ($methods as $httpMethod => &$operation) {
         if (!is_array($operation) || $httpMethod == "parameters") {
             continue;
@@ -34,6 +35,7 @@ foreach ($spec['paths'] as $path => &$methods) {
 
         // --- Auto x-return-types ---
         $returnTypes = [];
+        $phpDoc = [];
         $operation['x-return-types-displayReturn'] = false;
         if (isset($operation['responses']) && is_array($operation['responses'])) {
             foreach ($operation['responses'] as $statusCode => $resp) {
@@ -54,14 +56,40 @@ foreach ($spec['paths'] as $path => &$methods) {
                     || in_array('application/pdf', $contentTypes)
                 ) {
                     $schema = ['type' => 'string', 'format' => 'binary'];
+                } else {
+                    continue;
                 }
 
                 if ($schema && is_array($schema)) {
                     $has2xxWithSchema = true;
-                    $refs = collectMainRefs($schema);
-                    foreach ($refs as $ref) {
-                        $returnTypes[] = $ref;
+
+                    if (
+                        isset($schema['type'])
+                        && $schema['type'] === 'object' && isset($schema['properties']['items'])
+                    ) {
+                        $itemsSchema = $schema['properties']['items'];
+                        $refs = collectMainRefs($itemsSchema, $spec);
+                        
+//                        if($path == "/organizations") {
+//                            var_dump($itemsSchema, $refs);die();
+//                        }
+                        //$returnTypes = array_merge($returnTypes, []);
+                        $phpDoc = $refs['phpdoc'] ?? null;
+                    } else {
+                        // Sinon traitement normal
+                        $refs = collectMainRefs($schema, $spec);
+                        //var_dump($refs);
+                        $returnTypes = array_merge($returnTypes, $refs['refs'] ?? []);
+                        $phpDoc = $refs['phpdoc'] ?? null;
                     }
+                    
+                    
+                    //if(isset($refs['phpDoc'])){
+                    //    var_dump($refs);die();
+                    //}
+//                    foreach ($refs as $ref) {
+//                        $returnTypes[] = $ref;
+//                    }
                 } else {
                     // Si pas de schema, déterminer type via content-type
                     $contentTypes = array_keys($resp['content'] ?? []);
@@ -110,6 +138,8 @@ foreach ($spec['paths'] as $path => &$methods) {
                 break;
             }
         }
+
+        $operation['x-phpdoc'] = $phpDoc;
         $operation['x-returnable'] = $hasReturn;
         $operation['x-hasMultipleResponses'] = count($operation['responses']) > 1;
     }
@@ -123,32 +153,51 @@ file_put_contents(
 
 echo "OpenAPI spec preprocessed and cleaned in $outputFile\n";
 
-// Helper function: collect only main $ref (not those in properties/_links/etc.)
-function collectMainRefs(array $schema, array &$refs = [])
+// Helper function: collect only main $ref (not those in _links/etc.)
+function collectMainRefs(array $schema, array $spec)
 {
+    //var_dump('schema', $schema);
     $refs = [];
     if (isset($schema['$ref'])) {
-        // Only add model refs with namespace
-        $parts = explode('/', $schema['$ref']);
-        $refs[] = '\\Upsun\\Model\\' . end($parts);
-    } elseif (isset($schema['type'])) {
+        $resolved = resolveRef($spec, $schema['$ref']);
+        if (
+            $resolved && isset($resolved['type'])
+            && $resolved['type'] === 'array' && isset($resolved['items']['$ref'])
+        ) {
+            $parts = explode('/', $resolved['items']['$ref']);
+            $refs['refs'][] = '\\Upsun\\Model\\' . end($parts) . '[]';
+        } else {
+            $parts = explode('/', $schema['$ref']);
+            $refs['refs'][] = '\\Upsun\\Model\\' . end($parts);
+        }
+        return $refs;
+    }
+
+    if (isset($schema['type'])) {
         switch ($schema['type']) {
             case 'array':
+            case 'object':
                 if (isset($schema['items']['$ref'])) {
                     $parts = explode('/', $schema['items']['$ref']);
-                    $refs[] = '\\Upsun\\Model\\' . end($parts) . '[]';
-                } else {
-                    $refs[] = 'array';
+                    $refs['refs'][] = '\\Upsun\\Model\\' . end($parts) . '[]';
+                    $refs['phpdoc']['items'] = '\\Upsun\\Model\\' . end($parts) . '[]';
+                } elseif (isset($schema['additionalProperties']['$ref'])) {
+                    $parts = explode('/', $schema['additionalProperties']['$ref']);
+                    $refs['refs'][] = '\\Upsun\\Model\\' . end($parts);
+                    $refs['phpdoc']['items'] = '\\Upsun\\Model\\' . end($parts);
+                } elseif (isset($schema['properties'])) {
+                    //$refs['refs'] = []; //'array';
+                    foreach ($schema['properties'] as $propertyName => $propertyValue) {
+                        $refs['phpdoc']['array'][] = [$propertyName => $propertyValue['type'] ?? null];
+                    }
                 }
                 return $refs;
-            case 'object':
-                $refs[] = 'array'; // inline object treated as array
-                return $refs; // stop recursion into properties
+
             case 'boolean':
             case 'string':
             case 'integer':
             case 'number':
-                $refs[] = $schema['type'];
+                $refs['refs'][] = $schema['type'];
                 return $refs;
         }
     }
@@ -157,6 +206,23 @@ function collectMainRefs(array $schema, array &$refs = [])
 }
 
 
+
+function resolveRef(array $spec, string $ref)
+{
+    // Ex : $ref = "#/components/schemas/ActivityCollection"
+    $parts = explode('/', $ref);
+    $current = $spec;
+    foreach ($parts as $part) {
+        if ($part === '#' || $part === '') {
+            continue;
+        }
+        if (!isset($current[$part])) {
+            return null;
+        }
+        $current = $current[$part];
+    }
+    return $current;
+}
 
 // Helper function: convert empty arrays to stdClass to preserve object types
 function forceEmptyObjects($data)

@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level TeamsApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class TeamsApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -113,10 +58,9 @@ final class TeamsApi extends AbstractApi
     public function createTeam(
         \Upsun\Model\CreateTeamRequest $createTeamRequest
     ): \Upsun\Model\Team {
-        list($response) = $this->createTeamWithHttpInfo(
+        return $this->createTeamWithHttpInfo(
             $createTeamRequest
         );
-        return $response;
     }
 
     /**
@@ -126,7 +70,7 @@ final class TeamsApi extends AbstractApi
      */
     public function createTeamWithHttpInfo(
         \Upsun\Model\CreateTeamRequest $createTeamRequest
-    ): array {
+    ): \Upsun\Model\Team {
         $request = $this->createTeamRequest(
             $createTeamRequest
         );
@@ -137,79 +81,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Team',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createTeamAsync(
-        \Upsun\Model\CreateTeamRequest $createTeamRequest
-    ): Promise {
-        return $this->createTeamAsyncWithHttpInfo(
-            $createTeamRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createTeamAsyncWithHttpInfo(
-        \Upsun\Model\CreateTeamRequest $createTeamRequest
-    ): Promise {
-        $returnType = '\Upsun\Model\Team';
-        $request = $this->createTeamRequest(
-            $createTeamRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -221,7 +100,11 @@ final class TeamsApi extends AbstractApi
         \Upsun\Model\CreateTeamRequest $createTeamRequest
     ): RequestInterface {
         // verify the required parameter 'createTeamRequest' is set
-        if ($createTeamRequest === null || (is_array($createTeamRequest) && count($createTeamRequest) === 0)) {
+        if (
+            $createTeamRequest === null
+            || (is_array($createTeamRequest)
+            && count($createTeamRequest) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $createTeamRequest when calling createTeam'
             );
@@ -302,11 +185,10 @@ final class TeamsApi extends AbstractApi
         string $teamId,
         \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
     ): \Upsun\Model\TeamMember {
-        list($response) = $this->createTeamMemberWithHttpInfo(
+        return $this->createTeamMemberWithHttpInfo(
             $teamId,
             $createTeamMemberRequest
         );
-        return $response;
     }
 
     /**
@@ -317,7 +199,7 @@ final class TeamsApi extends AbstractApi
     public function createTeamMemberWithHttpInfo(
         string $teamId,
         \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
-    ): array {
+    ): \Upsun\Model\TeamMember {
         $request = $this->createTeamMemberRequest(
             $teamId,
             $createTeamMemberRequest
@@ -329,83 +211,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\TeamMember',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create team member
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createTeamMemberAsync(
-        string $teamId,
-        \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
-    ): Promise {
-        return $this->createTeamMemberAsyncWithHttpInfo(
-            $teamId,
-            $createTeamMemberRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create team member
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createTeamMemberAsyncWithHttpInfo(
-        string $teamId,
-        \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
-    ): Promise {
-        $returnType = '\Upsun\Model\TeamMember';
-        $request = $this->createTeamMemberRequest(
-            $teamId,
-            $createTeamMemberRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -418,13 +231,21 @@ final class TeamsApi extends AbstractApi
         \Upsun\Model\CreateTeamMemberRequest $createTeamMemberRequest
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling createTeamMember'
             );
         }
         // verify the required parameter 'createTeamMemberRequest' is set
-        if ($createTeamMemberRequest === null || (is_array($createTeamMemberRequest) && count($createTeamMemberRequest) === 0)) {
+        if (
+            $createTeamMemberRequest === null
+            || (is_array($createTeamMemberRequest)
+            && count($createTeamMemberRequest) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $createTeamMemberRequest when calling createTeamMember'
             );
@@ -511,11 +332,10 @@ final class TeamsApi extends AbstractApi
      */
     public function deleteTeam(
         string $teamId
-    ): \Upsun\Model\Team {
-        list($response) = $this->deleteTeamWithHttpInfo(
+    ): void {
+        $this->deleteTeamWithHttpInfo(
             $teamId
         );
-        return $response;
     }
 
     /**
@@ -525,7 +345,7 @@ final class TeamsApi extends AbstractApi
      */
     public function deleteTeamWithHttpInfo(
         string $teamId
-    ): array {
+    ): void {
         $request = $this->deleteTeamRequest(
             $teamId
         );
@@ -537,68 +357,9 @@ final class TeamsApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteTeamAsync(
-        string $teamId
-    ): Promise {
-        return $this->deleteTeamAsyncWithHttpInfo(
-            $teamId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteTeamAsyncWithHttpInfo(
-        string $teamId
-    ): Promise {
-        $returnType = '';
-        $request = $this->deleteTeamRequest(
-            $teamId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -610,7 +371,11 @@ final class TeamsApi extends AbstractApi
         string $teamId
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling deleteTeam'
             );
@@ -692,12 +457,11 @@ final class TeamsApi extends AbstractApi
     public function deleteTeamMember(
         string $teamId,
         string $userId
-    ): \Upsun\Model\TeamMember {
-        list($response) = $this->deleteTeamMemberWithHttpInfo(
+    ): void {
+        $this->deleteTeamMemberWithHttpInfo(
             $teamId,
             $userId
         );
-        return $response;
     }
 
     /**
@@ -708,7 +472,7 @@ final class TeamsApi extends AbstractApi
     public function deleteTeamMemberWithHttpInfo(
         string $teamId,
         string $userId
-    ): array {
+    ): void {
         $request = $this->deleteTeamMemberRequest(
             $teamId,
             $userId
@@ -721,72 +485,9 @@ final class TeamsApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete team member
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteTeamMemberAsync(
-        string $teamId,
-        string $userId
-    ): Promise {
-        return $this->deleteTeamMemberAsyncWithHttpInfo(
-            $teamId,
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete team member
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteTeamMemberAsyncWithHttpInfo(
-        string $teamId,
-        string $userId
-    ): Promise {
-        $returnType = '';
-        $request = $this->deleteTeamMemberRequest(
-            $teamId,
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -799,13 +500,21 @@ final class TeamsApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling deleteTeamMember'
             );
         }
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling deleteTeamMember'
             );
@@ -895,10 +604,9 @@ final class TeamsApi extends AbstractApi
     public function getTeam(
         string $teamId
     ): \Upsun\Model\Team {
-        list($response) = $this->getTeamWithHttpInfo(
+        return $this->getTeamWithHttpInfo(
             $teamId
         );
-        return $response;
     }
 
     /**
@@ -908,7 +616,7 @@ final class TeamsApi extends AbstractApi
      */
     public function getTeamWithHttpInfo(
         string $teamId
-    ): array {
+    ): \Upsun\Model\Team {
         $request = $this->getTeamRequest(
             $teamId
         );
@@ -919,79 +627,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Team',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getTeamAsync(
-        string $teamId
-    ): Promise {
-        return $this->getTeamAsyncWithHttpInfo(
-            $teamId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getTeamAsyncWithHttpInfo(
-        string $teamId
-    ): Promise {
-        $returnType = '\Upsun\Model\Team';
-        $request = $this->getTeamRequest(
-            $teamId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1003,7 +646,11 @@ final class TeamsApi extends AbstractApi
         string $teamId
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling getTeam'
             );
@@ -1086,11 +733,10 @@ final class TeamsApi extends AbstractApi
         string $teamId,
         string $userId
     ): \Upsun\Model\TeamMember {
-        list($response) = $this->getTeamMemberWithHttpInfo(
+        return $this->getTeamMemberWithHttpInfo(
             $teamId,
             $userId
         );
-        return $response;
     }
 
     /**
@@ -1101,7 +747,7 @@ final class TeamsApi extends AbstractApi
     public function getTeamMemberWithHttpInfo(
         string $teamId,
         string $userId
-    ): array {
+    ): \Upsun\Model\TeamMember {
         $request = $this->getTeamMemberRequest(
             $teamId,
             $userId
@@ -1113,83 +759,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\TeamMember',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get team member
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getTeamMemberAsync(
-        string $teamId,
-        string $userId
-    ): Promise {
-        return $this->getTeamMemberAsyncWithHttpInfo(
-            $teamId,
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get team member
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getTeamMemberAsyncWithHttpInfo(
-        string $teamId,
-        string $userId
-    ): Promise {
-        $returnType = '\Upsun\Model\TeamMember';
-        $request = $this->getTeamMemberRequest(
-            $teamId,
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1202,13 +779,21 @@ final class TeamsApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling getTeamMember'
             );
         }
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling getTeamMember'
             );
@@ -1300,14 +885,13 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listTeamMembersWithHttpInfo(
+    ): \Upsun\Model\ListTeamMembers200Response {
+        return $this->listTeamMembersWithHttpInfo(
             $teamId,
             $pageBefore,
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -1320,7 +904,7 @@ final class TeamsApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeamMembers200Response {
         $request = $this->listTeamMembersRequest(
             $teamId,
             $pageBefore,
@@ -1334,91 +918,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTeamMembers200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List team members
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listTeamMembersAsync(
-        string $teamId,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listTeamMembersAsyncWithHttpInfo(
-            $teamId,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List team members
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listTeamMembersAsyncWithHttpInfo(
-        string $teamId,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListTeamMembers200Response';
-        $request = $this->listTeamMembersRequest(
-            $teamId,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1433,7 +940,11 @@ final class TeamsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling listTeamMembers'
             );
@@ -1553,8 +1064,8 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listTeamsWithHttpInfo(
+    ): \Upsun\Model\ListTeams200Response {
+        return $this->listTeamsWithHttpInfo(
             $filterOrganizationId,
             $filterId,
             $filterUpdatedAt,
@@ -1563,7 +1074,6 @@ final class TeamsApi extends AbstractApi
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -1579,7 +1089,7 @@ final class TeamsApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeams200Response {
         $request = $this->listTeamsRequest(
             $filterOrganizationId,
             $filterId,
@@ -1596,103 +1106,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTeams200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List teams
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listTeamsAsync(
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listTeamsAsyncWithHttpInfo(
-            $filterOrganizationId,
-            $filterId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List teams
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listTeamsAsyncWithHttpInfo(
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListTeams200Response';
-        $request = $this->listTeamsRequest(
-            $filterOrganizationId,
-            $filterId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1873,8 +1294,8 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listUserTeamsWithHttpInfo(
+    ): \Upsun\Model\ListTeams200Response {
+        return $this->listUserTeamsWithHttpInfo(
             $userId,
             $filterOrganizationId,
             $filterUpdatedAt,
@@ -1883,7 +1304,6 @@ final class TeamsApi extends AbstractApi
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -1899,7 +1319,7 @@ final class TeamsApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeams200Response {
         $request = $this->listUserTeamsRequest(
             $userId,
             $filterOrganizationId,
@@ -1916,103 +1336,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTeams200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * User teams
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listUserTeamsAsync(
-        string $userId,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listUserTeamsAsyncWithHttpInfo(
-            $userId,
-            $filterOrganizationId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * User teams
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listUserTeamsAsyncWithHttpInfo(
-        string $userId,
-        \Upsun\Model\StringFilter $filterOrganizationId = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListTeams200Response';
-        $request = $this->listUserTeamsRequest(
-            $userId,
-            $filterOrganizationId,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -2030,7 +1361,11 @@ final class TeamsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling listUserTeams'
             );
@@ -2192,11 +1527,10 @@ final class TeamsApi extends AbstractApi
         string $teamId,
         ?\Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
     ): \Upsun\Model\Team {
-        list($response) = $this->updateTeamWithHttpInfo(
+        return $this->updateTeamWithHttpInfo(
             $teamId,
             $updateTeamRequest
         );
-        return $response;
     }
 
     /**
@@ -2207,7 +1541,7 @@ final class TeamsApi extends AbstractApi
     public function updateTeamWithHttpInfo(
         string $teamId,
         \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
-    ): array {
+    ): \Upsun\Model\Team {
         $request = $this->updateTeamRequest(
             $teamId,
             $updateTeamRequest
@@ -2219,83 +1553,14 @@ final class TeamsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Team',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateTeamAsync(
-        string $teamId,
-        \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
-    ): Promise {
-        return $this->updateTeamAsyncWithHttpInfo(
-            $teamId,
-            $updateTeamRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateTeamAsyncWithHttpInfo(
-        string $teamId,
-        \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\Team';
-        $request = $this->updateTeamRequest(
-            $teamId,
-            $updateTeamRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -2308,7 +1573,11 @@ final class TeamsApi extends AbstractApi
         \Upsun\Model\UpdateTeamRequest $updateTeamRequest = null
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling updateTeam'
             );
@@ -2387,103 +1656,4 @@ final class TeamsApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

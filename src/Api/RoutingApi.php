@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level RoutingApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class RoutingApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -115,12 +60,11 @@ final class RoutingApi extends AbstractApi
         string $environmentId,
         \Upsun\Model\RouteCreateInput $routeCreateInput
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsEnvironmentsRoutesWithHttpInfo(
+        return $this->createProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId,
             $routeCreateInput
         );
-        return $response;
     }
 
     /**
@@ -132,7 +76,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         \Upsun\Model\RouteCreateInput $routeCreateInput
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId,
@@ -145,87 +89,14 @@ final class RoutingApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create a new route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsEnvironmentsRoutesAsync(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\RouteCreateInput $routeCreateInput
-    ): Promise {
-        return $this->createProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeCreateInput
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create a new route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\RouteCreateInput $routeCreateInput
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeCreateInput
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -239,19 +110,31 @@ final class RoutingApi extends AbstractApi
         \Upsun\Model\RouteCreateInput $routeCreateInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling createProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling createProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'routeCreateInput' is set
-        if ($routeCreateInput === null || (is_array($routeCreateInput) && count($routeCreateInput) === 0)) {
+        if (
+            $routeCreateInput === null
+            || (is_array($routeCreateInput)
+            && count($routeCreateInput) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $routeCreateInput when calling createProjectsEnvironmentsRoutes'
             );
@@ -349,12 +232,11 @@ final class RoutingApi extends AbstractApi
         string $environmentId,
         string $routeId
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
+        return $this->deleteProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId,
             $routeId
         );
-        return $response;
     }
 
     /**
@@ -366,7 +248,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $routeId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId,
@@ -379,87 +261,14 @@ final class RoutingApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete a route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsRoutesAsync(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): Promise {
-        return $this->deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete a route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -473,19 +282,31 @@ final class RoutingApi extends AbstractApi
         string $routeId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'routeId' is set
-        if ($routeId === null || (is_array($routeId) && count($routeId) === 0)) {
+        if (
+            $routeId === null
+            || (is_array($routeId)
+            && count($routeId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $routeId when calling deleteProjectsEnvironmentsRoutes'
             );
@@ -585,12 +406,11 @@ final class RoutingApi extends AbstractApi
         string $environmentId,
         string $routeId
     ): \Upsun\Model\Route {
-        list($response) = $this->getProjectsEnvironmentsRoutesWithHttpInfo(
+        return $this->getProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId,
             $routeId
         );
-        return $response;
     }
 
     /**
@@ -602,7 +422,7 @@ final class RoutingApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $routeId
-    ): array {
+    ): \Upsun\Model\Route {
         $request = $this->getProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId,
@@ -615,87 +435,14 @@ final class RoutingApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Route',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a route&#39;s info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsEnvironmentsRoutesAsync(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): Promise {
-        return $this->getProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a route&#39;s info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $routeId
-    ): Promise {
-        $returnType = '\Upsun\Model\Route';
-        $request = $this->getProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -709,19 +456,31 @@ final class RoutingApi extends AbstractApi
         string $routeId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling getProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'routeId' is set
-        if ($routeId === null || (is_array($routeId) && count($routeId) === 0)) {
+        if (
+            $routeId === null
+            || (is_array($routeId)
+            && count($routeId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $routeId when calling getProjectsEnvironmentsRoutes'
             );
@@ -815,16 +574,17 @@ final class RoutingApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Route[]
      */
     public function listProjectsEnvironmentsRoutes(
         string $projectId,
         string $environmentId
     ): array {
-        list($response) = $this->listProjectsEnvironmentsRoutesWithHttpInfo(
+        return $this->listProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId
         );
-        return $response;
     }
 
     /**
@@ -847,83 +607,14 @@ final class RoutingApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Route[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get list of routes
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsEnvironmentsRoutesAsync(
-        string $projectId,
-        string $environmentId
-    ): Promise {
-        return $this->listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $projectId,
-            $environmentId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get list of routes
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId
-    ): Promise {
-        $returnType = '\Upsun\Model\Route[]';
-        $request = $this->listProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -936,13 +627,21 @@ final class RoutingApi extends AbstractApi
         string $environmentId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling listProjectsEnvironmentsRoutes'
             );
@@ -1035,13 +734,12 @@ final class RoutingApi extends AbstractApi
         string $routeId,
         \Upsun\Model\RoutePatch $routePatch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
+        return $this->updateProjectsEnvironmentsRoutesWithHttpInfo(
             $projectId,
             $environmentId,
             $routeId,
             $routePatch
         );
-        return $response;
     }
 
     /**
@@ -1054,7 +752,7 @@ final class RoutingApi extends AbstractApi
         string $environmentId,
         string $routeId,
         \Upsun\Model\RoutePatch $routePatch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsRoutesRequest(
             $projectId,
             $environmentId,
@@ -1068,91 +766,14 @@ final class RoutingApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsEnvironmentsRoutesAsync(
-        string $projectId,
-        string $environmentId,
-        string $routeId,
-        \Upsun\Model\RoutePatch $routePatch
-    ): Promise {
-        return $this->updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $routeId,
-            $routePatch
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a route
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsEnvironmentsRoutesAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $routeId,
-        \Upsun\Model\RoutePatch $routePatch
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsEnvironmentsRoutesRequest(
-            $projectId,
-            $environmentId,
-            $routeId,
-            $routePatch
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1167,25 +788,41 @@ final class RoutingApi extends AbstractApi
         \Upsun\Model\RoutePatch $routePatch
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling updateProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'routeId' is set
-        if ($routeId === null || (is_array($routeId) && count($routeId) === 0)) {
+        if (
+            $routeId === null
+            || (is_array($routeId)
+            && count($routeId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $routeId when calling updateProjectsEnvironmentsRoutes'
             );
         }
         // verify the required parameter 'routePatch' is set
-        if ($routePatch === null || (is_array($routePatch) && count($routePatch) === 0)) {
+        if (
+            $routePatch === null
+            || (is_array($routePatch)
+            && count($routePatch) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $routePatch when calling updateProjectsEnvironmentsRoutes'
             );
@@ -1280,103 +917,4 @@ final class RoutingApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level OrdersApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class OrdersApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -113,12 +58,11 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentials(
         string $organizationId,
         string $orderId
-    ): array {
-        list($response) = $this->createAuthorizationCredentialsWithHttpInfo(
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
+        return $this->createAuthorizationCredentialsWithHttpInfo(
             $organizationId,
             $orderId
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
         string $orderId
-    ): array {
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         $request = $this->createAuthorizationCredentialsRequest(
             $organizationId,
             $orderId
@@ -141,83 +85,14 @@ final class OrdersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\CreateAuthorizationCredentials200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create confirmation credentials for for 3D-Secure
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createAuthorizationCredentialsAsync(
-        string $organizationId,
-        string $orderId
-    ): Promise {
-        return $this->createAuthorizationCredentialsAsyncWithHttpInfo(
-            $organizationId,
-            $orderId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create confirmation credentials for for 3D-Secure
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createAuthorizationCredentialsAsyncWithHttpInfo(
-        string $organizationId,
-        string $orderId
-    ): Promise {
-        $returnType = '\Upsun\Model\CreateAuthorizationCredentials200Response';
-        $request = $this->createAuthorizationCredentialsRequest(
-            $organizationId,
-            $orderId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,13 +105,21 @@ final class OrdersApi extends AbstractApi
         string $orderId
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling createAuthorizationCredentials'
             );
         }
         // verify the required parameter 'orderId' is set
-        if ($orderId === null || (is_array($orderId) && count($orderId) === 0)) {
+        if (
+            $orderId === null
+            || (is_array($orderId)
+            && count($orderId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $orderId when calling createAuthorizationCredentials'
             );
@@ -326,10 +209,9 @@ final class OrdersApi extends AbstractApi
     public function downloadInvoice(
         string $token
     ): string {
-        list($response) = $this->downloadInvoiceWithHttpInfo(
+        return $this->downloadInvoiceWithHttpInfo(
             $token
         );
-        return $response;
     }
 
     /**
@@ -339,7 +221,7 @@ final class OrdersApi extends AbstractApi
      */
     public function downloadInvoiceWithHttpInfo(
         string $token
-    ): array {
+    ): string {
         $request = $this->downloadInvoiceRequest(
             $token
         );
@@ -351,68 +233,9 @@ final class OrdersApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Download an invoice.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function downloadInvoiceAsync(
-        string $token
-    ): Promise {
-        return $this->downloadInvoiceAsyncWithHttpInfo(
-            $token
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Download an invoice.
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function downloadInvoiceAsyncWithHttpInfo(
-        string $token
-    ): Promise {
-        $returnType = '';
-        $request = $this->downloadInvoiceRequest(
-            $token
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -424,7 +247,11 @@ final class OrdersApi extends AbstractApi
         string $token
     ): RequestInterface {
         // verify the required parameter 'token' is set
-        if ($token === null || (is_array($token) && count($token) === 0)) {
+        if (
+            $token === null
+            || (is_array($token)
+            && count($token) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $token when calling downloadInvoice'
             );
@@ -511,12 +338,11 @@ final class OrdersApi extends AbstractApi
         string $orderId,
         ?string $mode = null
     ): \Upsun\Model\Order {
-        list($response) = $this->getOrgOrderWithHttpInfo(
+        return $this->getOrgOrderWithHttpInfo(
             $organizationId,
             $orderId,
             $mode
         );
-        return $response;
     }
 
     /**
@@ -528,7 +354,7 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId,
         string $mode = null
-    ): array {
+    ): \Upsun\Model\Order {
         $request = $this->getOrgOrderRequest(
             $organizationId,
             $orderId,
@@ -541,87 +367,14 @@ final class OrdersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Order',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get order
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getOrgOrderAsync(
-        string $organizationId,
-        string $orderId,
-        string $mode = null
-    ): Promise {
-        return $this->getOrgOrderAsyncWithHttpInfo(
-            $organizationId,
-            $orderId,
-            $mode
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get order
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getOrgOrderAsyncWithHttpInfo(
-        string $organizationId,
-        string $orderId,
-        string $mode = null
-    ): Promise {
-        $returnType = '\Upsun\Model\Order';
-        $request = $this->getOrgOrderRequest(
-            $organizationId,
-            $orderId,
-            $mode
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -635,13 +388,21 @@ final class OrdersApi extends AbstractApi
         string $mode = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling getOrgOrder'
             );
         }
         // verify the required parameter 'orderId' is set
-        if ($orderId === null || (is_array($orderId) && count($orderId) === 0)) {
+        if (
+            $orderId === null
+            || (is_array($orderId)
+            && count($orderId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $orderId when calling getOrgOrder'
             );
@@ -745,15 +506,14 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): array {
-        list($response) = $this->listOrgOrdersWithHttpInfo(
+    ): \Upsun\Model\ListOrgOrders200Response {
+        return $this->listOrgOrdersWithHttpInfo(
             $organizationId,
             $filterStatus,
             $filterTotal,
             $page,
             $mode
         );
-        return $response;
     }
 
     /**
@@ -767,7 +527,7 @@ final class OrdersApi extends AbstractApi
         int $filterTotal = null,
         int $page = null,
         string $mode = null
-    ): array {
+    ): \Upsun\Model\ListOrgOrders200Response {
         $request = $this->listOrgOrdersRequest(
             $organizationId,
             $filterStatus,
@@ -782,95 +542,14 @@ final class OrdersApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgOrders200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List orders
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listOrgOrdersAsync(
-        string $organizationId,
-        string $filterStatus = null,
-        int $filterTotal = null,
-        int $page = null,
-        string $mode = null
-    ): Promise {
-        return $this->listOrgOrdersAsyncWithHttpInfo(
-            $organizationId,
-            $filterStatus,
-            $filterTotal,
-            $page,
-            $mode
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List orders
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listOrgOrdersAsyncWithHttpInfo(
-        string $organizationId,
-        string $filterStatus = null,
-        int $filterTotal = null,
-        int $page = null,
-        string $mode = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListOrgOrders200Response';
-        $request = $this->listOrgOrdersRequest(
-            $organizationId,
-            $filterStatus,
-            $filterTotal,
-            $page,
-            $mode
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -886,7 +565,11 @@ final class OrdersApi extends AbstractApi
         string $mode = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling listOrgOrders'
             );
@@ -1003,103 +686,4 @@ final class OrdersApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

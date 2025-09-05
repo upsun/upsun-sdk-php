@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level DeploymentTargetApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class DeploymentTargetApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -114,11 +59,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId,
         \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsDeploymentsWithHttpInfo(
+        return $this->createProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetCreateInput
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function createProjectsDeploymentsWithHttpInfo(
         string $projectId,
         \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetCreateInput
@@ -141,83 +85,14 @@ final class DeploymentTargetApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create a project deployment target
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsDeploymentsAsync(
-        string $projectId,
-        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): Promise {
-        return $this->createProjectsDeploymentsAsyncWithHttpInfo(
-            $projectId,
-            $deploymentTargetCreateInput
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create a project deployment target
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsDeploymentsAsyncWithHttpInfo(
-        string $projectId,
-        \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsDeploymentsRequest(
-            $projectId,
-            $deploymentTargetCreateInput
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,13 +105,21 @@ final class DeploymentTargetApi extends AbstractApi
         \Upsun\Model\DeploymentTargetCreateInput $deploymentTargetCreateInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling createProjectsDeployments'
             );
         }
         // verify the required parameter 'deploymentTargetCreateInput' is set
-        if ($deploymentTargetCreateInput === null || (is_array($deploymentTargetCreateInput) && count($deploymentTargetCreateInput) === 0)) {
+        if (
+            $deploymentTargetCreateInput === null
+            || (is_array($deploymentTargetCreateInput)
+            && count($deploymentTargetCreateInput) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetCreateInput when calling createProjectsDeployments'
             );
@@ -325,11 +208,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId,
         string $deploymentTargetConfigurationId
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsDeploymentsWithHttpInfo(
+        return $this->deleteProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
         );
-        return $response;
     }
 
     /**
@@ -340,7 +222,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function deleteProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -352,83 +234,14 @@ final class DeploymentTargetApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete a single project deployment target
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsDeploymentsAsync(
-        string $projectId,
-        string $deploymentTargetConfigurationId
-    ): Promise {
-        return $this->deleteProjectsDeploymentsAsyncWithHttpInfo(
-            $projectId,
-            $deploymentTargetConfigurationId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete a single project deployment target
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsDeploymentsAsyncWithHttpInfo(
-        string $projectId,
-        string $deploymentTargetConfigurationId
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsDeploymentsRequest(
-            $projectId,
-            $deploymentTargetConfigurationId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -441,13 +254,21 @@ final class DeploymentTargetApi extends AbstractApi
         string $deploymentTargetConfigurationId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling deleteProjectsDeployments'
             );
         }
         // verify the required parameter 'deploymentTargetConfigurationId' is set
-        if ($deploymentTargetConfigurationId === null || (is_array($deploymentTargetConfigurationId) && count($deploymentTargetConfigurationId) === 0)) {
+        if (
+            $deploymentTargetConfigurationId === null
+            || (is_array($deploymentTargetConfigurationId)
+            && count($deploymentTargetConfigurationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetConfigurationId when calling deleteProjectsDeployments'
             );
@@ -538,11 +359,10 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId,
         string $deploymentTargetConfigurationId
     ): \Upsun\Model\DeploymentTarget {
-        list($response) = $this->getProjectsDeploymentsWithHttpInfo(
+        return $this->getProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId
         );
-        return $response;
     }
 
     /**
@@ -553,7 +373,7 @@ final class DeploymentTargetApi extends AbstractApi
     public function getProjectsDeploymentsWithHttpInfo(
         string $projectId,
         string $deploymentTargetConfigurationId
-    ): array {
+    ): \Upsun\Model\DeploymentTarget {
         $request = $this->getProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId
@@ -565,83 +385,14 @@ final class DeploymentTargetApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\DeploymentTarget',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a single project deployment target
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsDeploymentsAsync(
-        string $projectId,
-        string $deploymentTargetConfigurationId
-    ): Promise {
-        return $this->getProjectsDeploymentsAsyncWithHttpInfo(
-            $projectId,
-            $deploymentTargetConfigurationId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a single project deployment target
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsDeploymentsAsyncWithHttpInfo(
-        string $projectId,
-        string $deploymentTargetConfigurationId
-    ): Promise {
-        $returnType = '\Upsun\Model\DeploymentTarget';
-        $request = $this->getProjectsDeploymentsRequest(
-            $projectId,
-            $deploymentTargetConfigurationId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -654,13 +405,21 @@ final class DeploymentTargetApi extends AbstractApi
         string $deploymentTargetConfigurationId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsDeployments'
             );
         }
         // verify the required parameter 'deploymentTargetConfigurationId' is set
-        if ($deploymentTargetConfigurationId === null || (is_array($deploymentTargetConfigurationId) && count($deploymentTargetConfigurationId) === 0)) {
+        if (
+            $deploymentTargetConfigurationId === null
+            || (is_array($deploymentTargetConfigurationId)
+            && count($deploymentTargetConfigurationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetConfigurationId when calling getProjectsDeployments'
             );
@@ -746,14 +505,15 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\DeploymentTarget[]
      */
     public function listProjectsDeployments(
         string $projectId
     ): array {
-        list($response) = $this->listProjectsDeploymentsWithHttpInfo(
+        return $this->listProjectsDeploymentsWithHttpInfo(
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -774,79 +534,14 @@ final class DeploymentTargetApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\DeploymentTarget[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get project deployment target info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsDeploymentsAsync(
-        string $projectId
-    ): Promise {
-        return $this->listProjectsDeploymentsAsyncWithHttpInfo(
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get project deployment target info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsDeploymentsAsyncWithHttpInfo(
-        string $projectId
-    ): Promise {
-        $returnType = '\Upsun\Model\DeploymentTarget[]';
-        $request = $this->listProjectsDeploymentsRequest(
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -858,7 +553,11 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectsDeployments'
             );
@@ -942,12 +641,11 @@ final class DeploymentTargetApi extends AbstractApi
         string $deploymentTargetConfigurationId,
         \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsDeploymentsWithHttpInfo(
+        return $this->updateProjectsDeploymentsWithHttpInfo(
             $projectId,
             $deploymentTargetConfigurationId,
             $deploymentTargetPatch
         );
-        return $response;
     }
 
     /**
@@ -959,7 +657,7 @@ final class DeploymentTargetApi extends AbstractApi
         string $projectId,
         string $deploymentTargetConfigurationId,
         \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsDeploymentsRequest(
             $projectId,
             $deploymentTargetConfigurationId,
@@ -972,87 +670,14 @@ final class DeploymentTargetApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a project deployment
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsDeploymentsAsync(
-        string $projectId,
-        string $deploymentTargetConfigurationId,
-        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
-    ): Promise {
-        return $this->updateProjectsDeploymentsAsyncWithHttpInfo(
-            $projectId,
-            $deploymentTargetConfigurationId,
-            $deploymentTargetPatch
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a project deployment
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsDeploymentsAsyncWithHttpInfo(
-        string $projectId,
-        string $deploymentTargetConfigurationId,
-        \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsDeploymentsRequest(
-            $projectId,
-            $deploymentTargetConfigurationId,
-            $deploymentTargetPatch
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1066,19 +691,31 @@ final class DeploymentTargetApi extends AbstractApi
         \Upsun\Model\DeploymentTargetPatch $deploymentTargetPatch
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling updateProjectsDeployments'
             );
         }
         // verify the required parameter 'deploymentTargetConfigurationId' is set
-        if ($deploymentTargetConfigurationId === null || (is_array($deploymentTargetConfigurationId) && count($deploymentTargetConfigurationId) === 0)) {
+        if (
+            $deploymentTargetConfigurationId === null
+            || (is_array($deploymentTargetConfigurationId)
+            && count($deploymentTargetConfigurationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetConfigurationId when calling updateProjectsDeployments'
             );
         }
         // verify the required parameter 'deploymentTargetPatch' is set
-        if ($deploymentTargetPatch === null || (is_array($deploymentTargetPatch) && count($deploymentTargetPatch) === 0)) {
+        if (
+            $deploymentTargetPatch === null
+            || (is_array($deploymentTargetPatch)
+            && count($deploymentTargetPatch) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentTargetPatch when calling updateProjectsDeployments'
             );
@@ -1165,103 +802,4 @@ final class DeploymentTargetApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

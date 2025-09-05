@@ -20,6 +20,7 @@ use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\EnvironmentInitializeInput;
 use Upsun\Model\EnvironmentMergeInput;
 use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSynchronizeInput;
 use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
@@ -29,6 +30,7 @@ use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Route;
+use Upsun\Model\SourceOperations;
 use Upsun\Model\Version;
 use Upsun\Model\VersionCreateInput;
 use Upsun\Model\VersionPatch;
@@ -80,23 +82,6 @@ class EnvironmentTask extends TaskBase
      *     type?: string,
      *     init?: string,
      * } $data
-     *
-     * @example With all options:
-     * ```php
-     * $result = $upsunClient->environment->branch(
-     *     'project1234',
-     *     'main',
-     *     [
-     *         'title' => 'title',
-     *         'name' => 'name',
-     *         'cloneParent' => true,
-     *         'type' => 'development|staging',
-     *         'init' => true
-     *     ]
-     * );
-     * ```
-     *
-     * @see EnvironmentBranchInput For detailed parameter descriptions
      */
     public function branch(
         string $projectId,
@@ -216,6 +201,8 @@ class EnvironmentTask extends TaskBase
      * Gets list of project environments
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Environment[]
      */
     public function list(string $projectId): array
     {
@@ -226,6 +213,8 @@ class EnvironmentTask extends TaskBase
      * Lists versions associated with the environment
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Version[]
      */
     public function listVersions(string $projectId, string $environmentId): array
     {
@@ -385,6 +374,8 @@ class EnvironmentTask extends TaskBase
      * Gets environment activity log
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Activity[]
      */
     public function listActivities(string $projectId, string $environmentId): array
     {
@@ -428,6 +419,8 @@ class EnvironmentTask extends TaskBase
      * Gets an environment's snapshot list
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Backup[]
      */
     public function listBackups(string $projectId, string $environmentId): array
     {
@@ -470,6 +463,8 @@ class EnvironmentTask extends TaskBase
      * Gets environment types
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return EnvironmentType[]
      */
     public function listTypes(string $projectId): array
     {
@@ -517,6 +512,8 @@ class EnvironmentTask extends TaskBase
      * Gets list of environment variables
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return EnvironmentVariable[]
      */
     public function listVariables(string $projectId, string $environmentId): array
     {
@@ -576,6 +573,8 @@ class EnvironmentTask extends TaskBase
      * Gets list of routes
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Route[]
      */
     public function listRoutes(string $projectId, string $environmentId): array
     {
@@ -640,6 +639,8 @@ class EnvironmentTask extends TaskBase
      * Gets a list of environment domains
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Domain[]
      */
     public function listDomains(string $projectId, string $environmentId): array
     {
@@ -674,6 +675,8 @@ class EnvironmentTask extends TaskBase
      * Gets an environment's deployment information
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Deployment[]
      */
     public function listDeployments(string $projectId, string $environmentId): array
     {
@@ -684,6 +687,8 @@ class EnvironmentTask extends TaskBase
      * Lists source operations
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return EnvironmentSourceOperation[]
      */
     public function listSourceOperations(string $projectId, string $environmentId): array
     {

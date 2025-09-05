@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level UserProfilesApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class UserProfilesApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -112,11 +57,10 @@ final class UserProfilesApi extends AbstractApi
      */
     public function createProfilePicture(
         string $uuid
-    ): array {
-        list($response) = $this->createProfilePictureWithHttpInfo(
+    ): \Upsun\Model\CreateProfilePicture200Response {
+        return $this->createProfilePictureWithHttpInfo(
             $uuid
         );
-        return $response;
     }
 
     /**
@@ -126,7 +70,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function createProfilePictureWithHttpInfo(
         string $uuid
-    ): array {
+    ): \Upsun\Model\CreateProfilePicture200Response {
         $request = $this->createProfilePictureRequest(
             $uuid
         );
@@ -137,79 +81,14 @@ final class UserProfilesApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\CreateProfilePicture200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create a user profile picture
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProfilePictureAsync(
-        string $uuid
-    ): Promise {
-        return $this->createProfilePictureAsyncWithHttpInfo(
-            $uuid
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create a user profile picture
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProfilePictureAsyncWithHttpInfo(
-        string $uuid
-    ): Promise {
-        $returnType = '\Upsun\Model\CreateProfilePicture200Response';
-        $request = $this->createProfilePictureRequest(
-            $uuid
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -221,7 +100,11 @@ final class UserProfilesApi extends AbstractApi
         string $uuid
     ): RequestInterface {
         // verify the required parameter 'uuid' is set
-        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+        if (
+            $uuid === null
+            || (is_array($uuid)
+            && count($uuid) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $uuid when calling createProfilePicture'
             );
@@ -302,11 +185,10 @@ final class UserProfilesApi extends AbstractApi
      */
     public function deleteProfilePicture(
         string $uuid
-    ): array {
-        list($response) = $this->deleteProfilePictureWithHttpInfo(
+    ): void {
+        $this->deleteProfilePictureWithHttpInfo(
             $uuid
         );
-        return $response;
     }
 
     /**
@@ -316,7 +198,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function deleteProfilePictureWithHttpInfo(
         string $uuid
-    ): array {
+    ): void {
         $request = $this->deleteProfilePictureRequest(
             $uuid
         );
@@ -328,68 +210,9 @@ final class UserProfilesApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete a user profile picture
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProfilePictureAsync(
-        string $uuid
-    ): Promise {
-        return $this->deleteProfilePictureAsyncWithHttpInfo(
-            $uuid
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete a user profile picture
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProfilePictureAsyncWithHttpInfo(
-        string $uuid
-    ): Promise {
-        $returnType = '';
-        $request = $this->deleteProfilePictureRequest(
-            $uuid
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -401,7 +224,11 @@ final class UserProfilesApi extends AbstractApi
         string $uuid
     ): RequestInterface {
         // verify the required parameter 'uuid' is set
-        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+        if (
+            $uuid === null
+            || (is_array($uuid)
+            && count($uuid) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $uuid when calling deleteProfilePicture'
             );
@@ -483,10 +310,9 @@ final class UserProfilesApi extends AbstractApi
     public function getAddress(
         string $userId
     ): \Upsun\Model\GetAddress200Response {
-        list($response) = $this->getAddressWithHttpInfo(
+        return $this->getAddressWithHttpInfo(
             $userId
         );
-        return $response;
     }
 
     /**
@@ -496,7 +322,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getAddressWithHttpInfo(
         string $userId
-    ): array {
+    ): \Upsun\Model\GetAddress200Response {
         $request = $this->getAddressRequest(
             $userId
         );
@@ -507,79 +333,14 @@ final class UserProfilesApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetAddress200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a user address
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getAddressAsync(
-        string $userId
-    ): Promise {
-        return $this->getAddressAsyncWithHttpInfo(
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a user address
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getAddressAsyncWithHttpInfo(
-        string $userId
-    ): Promise {
-        $returnType = '\Upsun\Model\GetAddress200Response';
-        $request = $this->getAddressRequest(
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -591,7 +352,11 @@ final class UserProfilesApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling getAddress'
             );
@@ -673,10 +438,9 @@ final class UserProfilesApi extends AbstractApi
     public function getProfile(
         string $userId
     ): \Upsun\Model\Profile {
-        list($response) = $this->getProfileWithHttpInfo(
+        return $this->getProfileWithHttpInfo(
             $userId
         );
-        return $response;
     }
 
     /**
@@ -686,7 +450,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function getProfileWithHttpInfo(
         string $userId
-    ): array {
+    ): \Upsun\Model\Profile {
         $request = $this->getProfileRequest(
             $userId
         );
@@ -697,79 +461,14 @@ final class UserProfilesApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Profile',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a single user profile
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProfileAsync(
-        string $userId
-    ): Promise {
-        return $this->getProfileAsyncWithHttpInfo(
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a single user profile
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProfileAsyncWithHttpInfo(
-        string $userId
-    ): Promise {
-        $returnType = '\Upsun\Model\Profile';
-        $request = $this->getProfileRequest(
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -781,7 +480,11 @@ final class UserProfilesApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling getProfile'
             );
@@ -862,11 +565,10 @@ final class UserProfilesApi extends AbstractApi
      */
     public function listProfiles(
         
-    ): array {
-        list($response) = $this->listProfilesWithHttpInfo(
+    ): \Upsun\Model\ListProfiles200Response {
+        return $this->listProfilesWithHttpInfo(
             
         );
-        return $response;
     }
 
     /**
@@ -876,7 +578,7 @@ final class UserProfilesApi extends AbstractApi
      */
     public function listProfilesWithHttpInfo(
         
-    ): array {
+    ): \Upsun\Model\ListProfiles200Response {
         $request = $this->listProfilesRequest(
             
         );
@@ -887,79 +589,14 @@ final class UserProfilesApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListProfiles200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List user profiles
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProfilesAsync(
-        
-    ): Promise {
-        return $this->listProfilesAsyncWithHttpInfo(
-            
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List user profiles
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProfilesAsyncWithHttpInfo(
-        
-    ): Promise {
-        $returnType = '\Upsun\Model\ListProfiles200Response';
-        $request = $this->listProfilesRequest(
-            
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1040,11 +677,10 @@ final class UserProfilesApi extends AbstractApi
         string $userId,
         ?\Upsun\Model\Address $address = null
     ): \Upsun\Model\GetAddress200Response {
-        list($response) = $this->updateAddressWithHttpInfo(
+        return $this->updateAddressWithHttpInfo(
             $userId,
             $address
         );
-        return $response;
     }
 
     /**
@@ -1055,7 +691,7 @@ final class UserProfilesApi extends AbstractApi
     public function updateAddressWithHttpInfo(
         string $userId,
         \Upsun\Model\Address $address = null
-    ): array {
+    ): \Upsun\Model\GetAddress200Response {
         $request = $this->updateAddressRequest(
             $userId,
             $address
@@ -1067,83 +703,14 @@ final class UserProfilesApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetAddress200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a user address
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateAddressAsync(
-        string $userId,
-        \Upsun\Model\Address $address = null
-    ): Promise {
-        return $this->updateAddressAsyncWithHttpInfo(
-            $userId,
-            $address
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a user address
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateAddressAsyncWithHttpInfo(
-        string $userId,
-        \Upsun\Model\Address $address = null
-    ): Promise {
-        $returnType = '\Upsun\Model\GetAddress200Response';
-        $request = $this->updateAddressRequest(
-            $userId,
-            $address
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1156,7 +723,11 @@ final class UserProfilesApi extends AbstractApi
         \Upsun\Model\Address $address = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling updateAddress'
             );
@@ -1245,11 +816,10 @@ final class UserProfilesApi extends AbstractApi
         string $userId,
         ?\Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): \Upsun\Model\Profile {
-        list($response) = $this->updateProfileWithHttpInfo(
+        return $this->updateProfileWithHttpInfo(
             $userId,
             $updateProfileRequest
         );
-        return $response;
     }
 
     /**
@@ -1260,7 +830,7 @@ final class UserProfilesApi extends AbstractApi
     public function updateProfileWithHttpInfo(
         string $userId,
         \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): array {
+    ): \Upsun\Model\Profile {
         $request = $this->updateProfileRequest(
             $userId,
             $updateProfileRequest
@@ -1272,83 +842,14 @@ final class UserProfilesApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Profile',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a user profile
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProfileAsync(
-        string $userId,
-        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): Promise {
-        return $this->updateProfileAsyncWithHttpInfo(
-            $userId,
-            $updateProfileRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a user profile
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProfileAsyncWithHttpInfo(
-        string $userId,
-        \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\Profile';
-        $request = $this->updateProfileRequest(
-            $userId,
-            $updateProfileRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1361,7 +862,11 @@ final class UserProfilesApi extends AbstractApi
         \Upsun\Model\UpdateProfileRequest $updateProfileRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling updateProfile'
             );
@@ -1440,103 +945,4 @@ final class UserProfilesApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

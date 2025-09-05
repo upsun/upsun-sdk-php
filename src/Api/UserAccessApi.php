@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level UserAccessApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class UserAccessApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -114,11 +59,10 @@ final class UserAccessApi extends AbstractApi
         string $projectId,
         string $userId
     ): \Upsun\Model\UserProjectAccess {
-        list($response) = $this->getProjectUserAccessWithHttpInfo(
+        return $this->getProjectUserAccessWithHttpInfo(
             $projectId,
             $userId
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class UserAccessApi extends AbstractApi
     public function getProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId
-    ): array {
+    ): \Upsun\Model\UserProjectAccess {
         $request = $this->getProjectUserAccessRequest(
             $projectId,
             $userId
@@ -141,83 +85,14 @@ final class UserAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\UserProjectAccess',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectUserAccessAsync(
-        string $projectId,
-        string $userId
-    ): Promise {
-        return $this->getProjectUserAccessAsyncWithHttpInfo(
-            $projectId,
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectUserAccessAsyncWithHttpInfo(
-        string $projectId,
-        string $userId
-    ): Promise {
-        $returnType = '\Upsun\Model\UserProjectAccess';
-        $request = $this->getProjectUserAccessRequest(
-            $projectId,
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,13 +105,21 @@ final class UserAccessApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectUserAccess'
             );
         }
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling getProjectUserAccess'
             );
@@ -327,11 +210,10 @@ final class UserAccessApi extends AbstractApi
         string $userId,
         string $projectId
     ): \Upsun\Model\UserProjectAccess {
-        list($response) = $this->getUserProjectAccessWithHttpInfo(
+        return $this->getUserProjectAccessWithHttpInfo(
             $userId,
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -342,7 +224,7 @@ final class UserAccessApi extends AbstractApi
     public function getUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId
-    ): array {
+    ): \Upsun\Model\UserProjectAccess {
         $request = $this->getUserProjectAccessRequest(
             $userId,
             $projectId
@@ -354,83 +236,14 @@ final class UserAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\UserProjectAccess',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserProjectAccessAsync(
-        string $userId,
-        string $projectId
-    ): Promise {
-        return $this->getUserProjectAccessAsyncWithHttpInfo(
-            $userId,
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getUserProjectAccessAsyncWithHttpInfo(
-        string $userId,
-        string $projectId
-    ): Promise {
-        $returnType = '\Upsun\Model\UserProjectAccess';
-        $request = $this->getUserProjectAccessRequest(
-            $userId,
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -443,13 +256,21 @@ final class UserAccessApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling getUserProjectAccess'
             );
         }
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getUserProjectAccess'
             );
@@ -539,12 +360,11 @@ final class UserAccessApi extends AbstractApi
     public function grantProjectUserAccess(
         string $projectId,
         array $grantProjectUserAccessRequestInner
-    ): array {
-        list($response) = $this->grantProjectUserAccessWithHttpInfo(
+    ): void {
+        $this->grantProjectUserAccessWithHttpInfo(
             $projectId,
             $grantProjectUserAccessRequestInner
         );
-        return $response;
     }
 
     /**
@@ -555,7 +375,7 @@ final class UserAccessApi extends AbstractApi
     public function grantProjectUserAccessWithHttpInfo(
         string $projectId,
         array $grantProjectUserAccessRequestInner
-    ): array {
+    ): void {
         $request = $this->grantProjectUserAccessRequest(
             $projectId,
             $grantProjectUserAccessRequestInner
@@ -568,72 +388,9 @@ final class UserAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Grant user access to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantProjectUserAccessAsync(
-        string $projectId,
-        array $grantProjectUserAccessRequestInner
-    ): Promise {
-        return $this->grantProjectUserAccessAsyncWithHttpInfo(
-            $projectId,
-            $grantProjectUserAccessRequestInner
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Grant user access to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantProjectUserAccessAsyncWithHttpInfo(
-        string $projectId,
-        array $grantProjectUserAccessRequestInner
-    ): Promise {
-        $returnType = '';
-        $request = $this->grantProjectUserAccessRequest(
-            $projectId,
-            $grantProjectUserAccessRequestInner
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -646,13 +403,21 @@ final class UserAccessApi extends AbstractApi
         array $grantProjectUserAccessRequestInner
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling grantProjectUserAccess'
             );
         }
         // verify the required parameter 'grantProjectUserAccessRequestInner' is set
-        if ($grantProjectUserAccessRequestInner === null || (is_array($grantProjectUserAccessRequestInner) && count($grantProjectUserAccessRequestInner) === 0)) {
+        if (
+            $grantProjectUserAccessRequestInner === null
+            || (is_array($grantProjectUserAccessRequestInner)
+            && count($grantProjectUserAccessRequestInner) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $grantProjectUserAccessRequestInner when calling grantProjectUserAccess'
             );
@@ -740,12 +505,11 @@ final class UserAccessApi extends AbstractApi
     public function grantUserProjectAccess(
         string $userId,
         array $grantUserProjectAccessRequestInner
-    ): array {
-        list($response) = $this->grantUserProjectAccessWithHttpInfo(
+    ): void {
+        $this->grantUserProjectAccessWithHttpInfo(
             $userId,
             $grantUserProjectAccessRequestInner
         );
-        return $response;
     }
 
     /**
@@ -756,7 +520,7 @@ final class UserAccessApi extends AbstractApi
     public function grantUserProjectAccessWithHttpInfo(
         string $userId,
         array $grantUserProjectAccessRequestInner
-    ): array {
+    ): void {
         $request = $this->grantUserProjectAccessRequest(
             $userId,
             $grantUserProjectAccessRequestInner
@@ -769,72 +533,9 @@ final class UserAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Grant project access to a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantUserProjectAccessAsync(
-        string $userId,
-        array $grantUserProjectAccessRequestInner
-    ): Promise {
-        return $this->grantUserProjectAccessAsyncWithHttpInfo(
-            $userId,
-            $grantUserProjectAccessRequestInner
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Grant project access to a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantUserProjectAccessAsyncWithHttpInfo(
-        string $userId,
-        array $grantUserProjectAccessRequestInner
-    ): Promise {
-        $returnType = '';
-        $request = $this->grantUserProjectAccessRequest(
-            $userId,
-            $grantUserProjectAccessRequestInner
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -847,13 +548,21 @@ final class UserAccessApi extends AbstractApi
         array $grantUserProjectAccessRequestInner
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling grantUserProjectAccess'
             );
         }
         // verify the required parameter 'grantUserProjectAccessRequestInner' is set
-        if ($grantUserProjectAccessRequestInner === null || (is_array($grantUserProjectAccessRequestInner) && count($grantUserProjectAccessRequestInner) === 0)) {
+        if (
+            $grantUserProjectAccessRequestInner === null
+            || (is_array($grantUserProjectAccessRequestInner)
+            && count($grantUserProjectAccessRequestInner) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $grantUserProjectAccessRequestInner when calling grantUserProjectAccess'
             );
@@ -944,15 +653,14 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listProjectUserAccessWithHttpInfo(
+    ): \Upsun\Model\ListProjectUserAccess200Response {
+        return $this->listProjectUserAccessWithHttpInfo(
             $projectId,
             $pageSize,
             $pageBefore,
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -966,7 +674,7 @@ final class UserAccessApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListProjectUserAccess200Response {
         $request = $this->listProjectUserAccessRequest(
             $projectId,
             $pageSize,
@@ -981,95 +689,14 @@ final class UserAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListProjectUserAccess200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectUserAccessAsync(
-        string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listProjectUserAccessAsyncWithHttpInfo(
-            $projectId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectUserAccessAsyncWithHttpInfo(
-        string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
-        $request = $this->listProjectUserAccessRequest(
-            $projectId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1085,7 +712,11 @@ final class UserAccessApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectUserAccess'
             );
@@ -1228,8 +859,8 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listUserProjectAccessWithHttpInfo(
+    ): \Upsun\Model\ListProjectUserAccess200Response {
+        return $this->listUserProjectAccessWithHttpInfo(
             $userId,
             $filterOrganizationId,
             $pageSize,
@@ -1237,7 +868,6 @@ final class UserAccessApi extends AbstractApi
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -1252,7 +882,7 @@ final class UserAccessApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListProjectUserAccess200Response {
         $request = $this->listUserProjectAccessRequest(
             $userId,
             $filterOrganizationId,
@@ -1268,99 +898,14 @@ final class UserAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListProjectUserAccess200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listUserProjectAccessAsync(
-        string $userId,
-        string $filterOrganizationId = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listUserProjectAccessAsyncWithHttpInfo(
-            $userId,
-            $filterOrganizationId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listUserProjectAccessAsyncWithHttpInfo(
-        string $userId,
-        string $filterOrganizationId = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListProjectUserAccess200Response';
-        $request = $this->listUserProjectAccessRequest(
-            $userId,
-            $filterOrganizationId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1377,7 +922,11 @@ final class UserAccessApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling listUserProjectAccess'
             );
@@ -1527,12 +1076,11 @@ final class UserAccessApi extends AbstractApi
     public function removeProjectUserAccess(
         string $projectId,
         string $userId
-    ): \Upsun\Model\UserProjectAccess {
-        list($response) = $this->removeProjectUserAccessWithHttpInfo(
+    ): void {
+        $this->removeProjectUserAccessWithHttpInfo(
             $projectId,
             $userId
         );
-        return $response;
     }
 
     /**
@@ -1543,7 +1091,7 @@ final class UserAccessApi extends AbstractApi
     public function removeProjectUserAccessWithHttpInfo(
         string $projectId,
         string $userId
-    ): array {
+    ): void {
         $request = $this->removeProjectUserAccessRequest(
             $projectId,
             $userId
@@ -1556,72 +1104,9 @@ final class UserAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Remove user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeProjectUserAccessAsync(
-        string $projectId,
-        string $userId
-    ): Promise {
-        return $this->removeProjectUserAccessAsyncWithHttpInfo(
-            $projectId,
-            $userId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Remove user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeProjectUserAccessAsyncWithHttpInfo(
-        string $projectId,
-        string $userId
-    ): Promise {
-        $returnType = '';
-        $request = $this->removeProjectUserAccessRequest(
-            $projectId,
-            $userId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1634,13 +1119,21 @@ final class UserAccessApi extends AbstractApi
         string $userId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling removeProjectUserAccess'
             );
         }
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling removeProjectUserAccess'
             );
@@ -1730,12 +1223,11 @@ final class UserAccessApi extends AbstractApi
     public function removeUserProjectAccess(
         string $userId,
         string $projectId
-    ): \Upsun\Model\UserProjectAccess {
-        list($response) = $this->removeUserProjectAccessWithHttpInfo(
+    ): void {
+        $this->removeUserProjectAccessWithHttpInfo(
             $userId,
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -1746,7 +1238,7 @@ final class UserAccessApi extends AbstractApi
     public function removeUserProjectAccessWithHttpInfo(
         string $userId,
         string $projectId
-    ): array {
+    ): void {
         $request = $this->removeUserProjectAccessRequest(
             $userId,
             $projectId
@@ -1759,72 +1251,9 @@ final class UserAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Remove project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeUserProjectAccessAsync(
-        string $userId,
-        string $projectId
-    ): Promise {
-        return $this->removeUserProjectAccessAsyncWithHttpInfo(
-            $userId,
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Remove project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeUserProjectAccessAsyncWithHttpInfo(
-        string $userId,
-        string $projectId
-    ): Promise {
-        $returnType = '';
-        $request = $this->removeUserProjectAccessRequest(
-            $userId,
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1837,13 +1266,21 @@ final class UserAccessApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling removeUserProjectAccess'
             );
         }
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling removeUserProjectAccess'
             );
@@ -1934,13 +1371,12 @@ final class UserAccessApi extends AbstractApi
         string $projectId,
         string $userId,
         ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): \Upsun\Model\UserProjectAccess {
-        list($response) = $this->updateProjectUserAccessWithHttpInfo(
+    ): void {
+        $this->updateProjectUserAccessWithHttpInfo(
             $projectId,
             $userId,
             $updateProjectUserAccessRequest
         );
-        return $response;
     }
 
     /**
@@ -1952,7 +1388,7 @@ final class UserAccessApi extends AbstractApi
         string $projectId,
         string $userId,
         \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): array {
+    ): void {
         $request = $this->updateProjectUserAccessRequest(
             $projectId,
             $userId,
@@ -1966,76 +1402,9 @@ final class UserAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectUserAccessAsync(
-        string $projectId,
-        string $userId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): Promise {
-        return $this->updateProjectUserAccessAsyncWithHttpInfo(
-            $projectId,
-            $userId,
-            $updateProjectUserAccessRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update user access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectUserAccessAsyncWithHttpInfo(
-        string $projectId,
-        string $userId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): Promise {
-        $returnType = '';
-        $request = $this->updateProjectUserAccessRequest(
-            $projectId,
-            $userId,
-            $updateProjectUserAccessRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -2049,13 +1418,21 @@ final class UserAccessApi extends AbstractApi
         \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling updateProjectUserAccess'
             );
         }
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling updateProjectUserAccess'
             );
@@ -2152,13 +1529,12 @@ final class UserAccessApi extends AbstractApi
         string $userId,
         string $projectId,
         ?\Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): \Upsun\Model\UserProjectAccess {
-        list($response) = $this->updateUserProjectAccessWithHttpInfo(
+    ): void {
+        $this->updateUserProjectAccessWithHttpInfo(
             $userId,
             $projectId,
             $updateProjectUserAccessRequest
         );
-        return $response;
     }
 
     /**
@@ -2170,7 +1546,7 @@ final class UserAccessApi extends AbstractApi
         string $userId,
         string $projectId,
         \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): array {
+    ): void {
         $request = $this->updateUserProjectAccessRequest(
             $userId,
             $projectId,
@@ -2184,76 +1560,9 @@ final class UserAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateUserProjectAccessAsync(
-        string $userId,
-        string $projectId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): Promise {
-        return $this->updateUserProjectAccessAsyncWithHttpInfo(
-            $userId,
-            $projectId,
-            $updateProjectUserAccessRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update project access for a user
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateUserProjectAccessAsyncWithHttpInfo(
-        string $userId,
-        string $projectId,
-        \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
-    ): Promise {
-        $returnType = '';
-        $request = $this->updateUserProjectAccessRequest(
-            $userId,
-            $projectId,
-            $updateProjectUserAccessRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -2267,13 +1576,21 @@ final class UserAccessApi extends AbstractApi
         \Upsun\Model\UpdateProjectUserAccessRequest $updateProjectUserAccessRequest = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling updateUserProjectAccess'
             );
         }
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling updateUserProjectAccess'
             );
@@ -2360,103 +1677,4 @@ final class UserAccessApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

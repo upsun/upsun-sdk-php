@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level DomainManagementApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class DomainManagementApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -114,11 +59,10 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         \Upsun\Model\DomainCreateInput $domainCreateInput
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsDomainsWithHttpInfo(
+        return $this->createProjectsDomainsWithHttpInfo(
             $projectId,
             $domainCreateInput
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class DomainManagementApi extends AbstractApi
     public function createProjectsDomainsWithHttpInfo(
         string $projectId,
         \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsDomainsRequest(
             $projectId,
             $domainCreateInput
@@ -141,83 +85,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Add a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsDomainsAsync(
-        string $projectId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): Promise {
-        return $this->createProjectsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $domainCreateInput
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Add a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsDomainsRequest(
-            $projectId,
-            $domainCreateInput
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,13 +105,21 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainCreateInput $domainCreateInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling createProjectsDomains'
             );
         }
         // verify the required parameter 'domainCreateInput' is set
-        if ($domainCreateInput === null || (is_array($domainCreateInput) && count($domainCreateInput) === 0)) {
+        if (
+            $domainCreateInput === null
+            || (is_array($domainCreateInput)
+            && count($domainCreateInput) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainCreateInput when calling createProjectsDomains'
             );
@@ -326,12 +209,11 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId,
         \Upsun\Model\DomainCreateInput $domainCreateInput
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->createProjectsEnvironmentsDomainsWithHttpInfo(
+        return $this->createProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
             $domainCreateInput
         );
-        return $response;
     }
 
     /**
@@ -343,7 +225,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->createProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -356,87 +238,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Add an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsEnvironmentsDomainsAsync(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): Promise {
-        return $this->createProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $domainCreateInput
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Add an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\DomainCreateInput $domainCreateInput
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->createProjectsEnvironmentsDomainsRequest(
-            $projectId,
-            $environmentId,
-            $domainCreateInput
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -450,19 +259,31 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainCreateInput $domainCreateInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling createProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling createProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'domainCreateInput' is set
-        if ($domainCreateInput === null || (is_array($domainCreateInput) && count($domainCreateInput) === 0)) {
+        if (
+            $domainCreateInput === null
+            || (is_array($domainCreateInput)
+            && count($domainCreateInput) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainCreateInput when calling createProjectsEnvironmentsDomains'
             );
@@ -559,11 +380,10 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $domainId
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsDomainsWithHttpInfo(
+        return $this->deleteProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
         );
-        return $response;
     }
 
     /**
@@ -574,7 +394,7 @@ final class DomainManagementApi extends AbstractApi
     public function deleteProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -586,83 +406,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsDomainsAsync(
-        string $projectId,
-        string $domainId
-    ): Promise {
-        return $this->deleteProjectsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $domainId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $domainId
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsDomainsRequest(
-            $projectId,
-            $domainId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -675,13 +426,21 @@ final class DomainManagementApi extends AbstractApi
         string $domainId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling deleteProjectsDomains'
             );
         }
         // verify the required parameter 'domainId' is set
-        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
+        if (
+            $domainId === null
+            || (is_array($domainId)
+            && count($domainId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainId when calling deleteProjectsDomains'
             );
@@ -773,12 +532,11 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId,
         string $domainId
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
+        return $this->deleteProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
             $domainId
         );
-        return $response;
     }
 
     /**
@@ -790,7 +548,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -803,87 +561,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsDomainsAsync(
-        string $projectId,
-        string $environmentId,
-        string $domainId
-    ): Promise {
-        return $this->deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $domainId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $domainId
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsEnvironmentsDomainsRequest(
-            $projectId,
-            $environmentId,
-            $domainId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -897,19 +582,31 @@ final class DomainManagementApi extends AbstractApi
         string $domainId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'domainId' is set
-        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
+        if (
+            $domainId === null
+            || (is_array($domainId)
+            && count($domainId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainId when calling deleteProjectsEnvironmentsDomains'
             );
@@ -1008,11 +705,10 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $domainId
     ): \Upsun\Model\Domain {
-        list($response) = $this->getProjectsDomainsWithHttpInfo(
+        return $this->getProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId
         );
-        return $response;
     }
 
     /**
@@ -1023,7 +719,7 @@ final class DomainManagementApi extends AbstractApi
     public function getProjectsDomainsWithHttpInfo(
         string $projectId,
         string $domainId
-    ): array {
+    ): \Upsun\Model\Domain {
         $request = $this->getProjectsDomainsRequest(
             $projectId,
             $domainId
@@ -1035,83 +731,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Domain',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsDomainsAsync(
-        string $projectId,
-        string $domainId
-    ): Promise {
-        return $this->getProjectsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $domainId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $domainId
-    ): Promise {
-        $returnType = '\Upsun\Model\Domain';
-        $request = $this->getProjectsDomainsRequest(
-            $projectId,
-            $domainId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1124,13 +751,21 @@ final class DomainManagementApi extends AbstractApi
         string $domainId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsDomains'
             );
         }
         // verify the required parameter 'domainId' is set
-        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
+        if (
+            $domainId === null
+            || (is_array($domainId)
+            && count($domainId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainId when calling getProjectsDomains'
             );
@@ -1222,12 +857,11 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId,
         string $domainId
     ): \Upsun\Model\Domain {
-        list($response) = $this->getProjectsEnvironmentsDomainsWithHttpInfo(
+        return $this->getProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
             $domainId
         );
-        return $response;
     }
 
     /**
@@ -1239,7 +873,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $domainId
-    ): array {
+    ): \Upsun\Model\Domain {
         $request = $this->getProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -1252,87 +886,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Domain',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsEnvironmentsDomainsAsync(
-        string $projectId,
-        string $environmentId,
-        string $domainId
-    ): Promise {
-        return $this->getProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $domainId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $domainId
-    ): Promise {
-        $returnType = '\Upsun\Model\Domain';
-        $request = $this->getProjectsEnvironmentsDomainsRequest(
-            $projectId,
-            $environmentId,
-            $domainId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1346,19 +907,31 @@ final class DomainManagementApi extends AbstractApi
         string $domainId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling getProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'domainId' is set
-        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
+        if (
+            $domainId === null
+            || (is_array($domainId)
+            && count($domainId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainId when calling getProjectsEnvironmentsDomains'
             );
@@ -1452,14 +1025,15 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Domain[]
      */
     public function listProjectsDomains(
         string $projectId
     ): array {
-        list($response) = $this->listProjectsDomainsWithHttpInfo(
+        return $this->listProjectsDomainsWithHttpInfo(
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -1480,79 +1054,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Domain[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get list of project domains
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsDomainsAsync(
-        string $projectId
-    ): Promise {
-        return $this->listProjectsDomainsAsyncWithHttpInfo(
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get list of project domains
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsDomainsAsyncWithHttpInfo(
-        string $projectId
-    ): Promise {
-        $returnType = '\Upsun\Model\Domain[]';
-        $request = $this->listProjectsDomainsRequest(
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1564,7 +1073,11 @@ final class DomainManagementApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectsDomains'
             );
@@ -1642,16 +1155,17 @@ final class DomainManagementApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Domain[]
      */
     public function listProjectsEnvironmentsDomains(
         string $projectId,
         string $environmentId
     ): array {
-        list($response) = $this->listProjectsEnvironmentsDomainsWithHttpInfo(
+        return $this->listProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId
         );
-        return $response;
     }
 
     /**
@@ -1674,83 +1188,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Domain[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get a list of environment domains
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsEnvironmentsDomainsAsync(
-        string $projectId,
-        string $environmentId
-    ): Promise {
-        return $this->listProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get a list of environment domains
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId
-    ): Promise {
-        $returnType = '\Upsun\Model\Domain[]';
-        $request = $this->listProjectsEnvironmentsDomainsRequest(
-            $projectId,
-            $environmentId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1763,13 +1208,21 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling listProjectsEnvironmentsDomains'
             );
@@ -1861,12 +1314,11 @@ final class DomainManagementApi extends AbstractApi
         string $domainId,
         \Upsun\Model\DomainPatch $domainPatch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsDomainsWithHttpInfo(
+        return $this->updateProjectsDomainsWithHttpInfo(
             $projectId,
             $domainId,
             $domainPatch
         );
-        return $response;
     }
 
     /**
@@ -1878,7 +1330,7 @@ final class DomainManagementApi extends AbstractApi
         string $projectId,
         string $domainId,
         \Upsun\Model\DomainPatch $domainPatch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsDomainsRequest(
             $projectId,
             $domainId,
@@ -1891,87 +1343,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsDomainsAsync(
-        string $projectId,
-        string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): Promise {
-        return $this->updateProjectsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $domainId,
-            $domainPatch
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update a project domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsDomainsRequest(
-            $projectId,
-            $domainId,
-            $domainPatch
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1985,19 +1364,31 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainPatch $domainPatch
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling updateProjectsDomains'
             );
         }
         // verify the required parameter 'domainId' is set
-        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
+        if (
+            $domainId === null
+            || (is_array($domainId)
+            && count($domainId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainId when calling updateProjectsDomains'
             );
         }
         // verify the required parameter 'domainPatch' is set
-        if ($domainPatch === null || (is_array($domainPatch) && count($domainPatch) === 0)) {
+        if (
+            $domainPatch === null
+            || (is_array($domainPatch)
+            && count($domainPatch) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainPatch when calling updateProjectsDomains'
             );
@@ -2096,13 +1487,12 @@ final class DomainManagementApi extends AbstractApi
         string $domainId,
         \Upsun\Model\DomainPatch $domainPatch
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
+        return $this->updateProjectsEnvironmentsDomainsWithHttpInfo(
             $projectId,
             $environmentId,
             $domainId,
             $domainPatch
         );
-        return $response;
     }
 
     /**
@@ -2115,7 +1505,7 @@ final class DomainManagementApi extends AbstractApi
         string $environmentId,
         string $domainId,
         \Upsun\Model\DomainPatch $domainPatch
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->updateProjectsEnvironmentsDomainsRequest(
             $projectId,
             $environmentId,
@@ -2129,91 +1519,14 @@ final class DomainManagementApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsEnvironmentsDomainsAsync(
-        string $projectId,
-        string $environmentId,
-        string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): Promise {
-        return $this->updateProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $domainId,
-            $domainPatch
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update an environment domain
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateProjectsEnvironmentsDomainsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $domainId,
-        \Upsun\Model\DomainPatch $domainPatch
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->updateProjectsEnvironmentsDomainsRequest(
-            $projectId,
-            $environmentId,
-            $domainId,
-            $domainPatch
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -2228,25 +1541,41 @@ final class DomainManagementApi extends AbstractApi
         \Upsun\Model\DomainPatch $domainPatch
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling updateProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'domainId' is set
-        if ($domainId === null || (is_array($domainId) && count($domainId) === 0)) {
+        if (
+            $domainId === null
+            || (is_array($domainId)
+            && count($domainId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainId when calling updateProjectsEnvironmentsDomains'
             );
         }
         // verify the required parameter 'domainPatch' is set
-        if ($domainPatch === null || (is_array($domainPatch) && count($domainPatch) === 0)) {
+        if (
+            $domainPatch === null
+            || (is_array($domainPatch)
+            && count($domainPatch) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $domainPatch when calling updateProjectsEnvironmentsDomains'
             );
@@ -2341,103 +1670,4 @@ final class DomainManagementApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

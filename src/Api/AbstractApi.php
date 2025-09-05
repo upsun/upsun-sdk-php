@@ -3,14 +3,25 @@
 namespace Upsun\Api;
 
 use Exception;
+use Http\Client\Common\Plugin\ErrorPlugin;
+use Http\Client\Common\Plugin\RedirectPlugin;
+use Http\Client\Common\PluginClientFactory;
+use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Upsun\Core\OAuthProvider;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriFactoryInterface;
 use Http\Client\Exception\HttpException;
 use Upsun\ApiException;
+use Upsun\ObjectSerializer;
+use Psr\Http\Message\UriInterface;
+use Psr\Http\Message\StreamInterface;
+
+use function sprintf;
 
 /**
  * AbstractApi
@@ -25,12 +36,29 @@ use Upsun\ApiException;
  */
 abstract class AbstractApi
 {
+    private readonly StreamFactoryInterface $streamFactory;
+    private readonly UriFactoryInterface $uriFactory;
+
     public function __construct(
         private readonly OAuthProvider $oauthProvider,
-        private readonly ClientInterface $httpClient,
+        private ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
-        private readonly string $baseUri
+        private readonly string $baseUri,
+        ?StreamFactoryInterface $streamFactory = null,
     ) {
+        $plugins = $plugins ?? [
+            new RedirectPlugin(['strict' => true]),
+            new ErrorPlugin(),
+        ];
+
+        $this->httpClient = (new PluginClientFactory())->createClient(
+            $httpClient,
+            $plugins
+        );
+
+        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
+
+        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
     }
 
     /**
@@ -87,7 +115,7 @@ abstract class AbstractApi
                     $response->getStatusCode(),
                     $uri
                 ),
-                $request,
+                $request ?? null,
                 $response,
                 $e
             );
@@ -101,7 +129,7 @@ abstract class AbstractApi
         } catch (\Exception $e) {
             throw new ApiException(
                 "[{$e->getCode()}] {$e->getMessage()}",
-                $request,
+                $request ?? null,
                 null,
                 $e
             );
@@ -114,5 +142,97 @@ abstract class AbstractApi
     public function refreshToken(): void
     {
         $this->oauthProvider->ensureValidToken();
+    }
+
+    /**
+     * Create request
+     */
+    protected function createRequest(
+        string $method,
+        string|UriInterface $uri,
+        array $headers = [],
+        string|StreamInterface|null $body = null
+    ): RequestInterface {
+        $request = $this->requestFactory->createRequest($method, $uri);
+
+        foreach ($headers as $key => $value) {
+            $request = $request->withHeader($key, $value);
+        }
+
+        if (null !== $body) {
+            if (is_string($body)) {
+                if (!$this->streamFactory) {
+                    throw new \RuntimeException(
+                        'A stream factory is required to create a request with a string body.'
+                    );
+                }
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
+        }
+
+        return $request;
+    }
+
+    protected function createUri(
+        string $operationHost,
+        string $resourcePath,
+        array $queryParams
+    ): UriInterface {
+        $parsedUrl = parse_url($operationHost);
+
+        $host = $parsedUrl['host'] ?? null;
+        $scheme = $parsedUrl['scheme'] ?? null;
+        $basePath = $parsedUrl['path'] ?? null;
+        $port = $parsedUrl['port'] ?? null;
+        $user = $parsedUrl['user'] ?? null;
+        $password = $parsedUrl['pass'] ?? null;
+
+        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
+            ->withHost($host)
+            ->withScheme($scheme)
+            ->withPort($port)
+            ->withQuery(ObjectSerializer::buildQuery($queryParams));
+
+        if ($user) {
+            $uri = $uri->withUserInfo($user, $password);
+        }
+
+        return $uri;
+    }
+
+    /**
+     * @template T
+     * @param class-string<T>|string $dataType Fully-qualified class name, or scalar type like "string", "array"
+     * @return T
+     *
+     * @throws ApiException
+     */
+    protected function handleResponseWithDataType(
+        string $dataType,
+        RequestInterface $request,
+        ResponseInterface $response
+    ) {
+        if ($dataType === '\SplFileObject') {
+            $content = $response->getBody(); //stream goes to serializer
+        } else {
+            $content = (string) $response->getBody();
+            if ($dataType !== 'string') {
+                try {
+                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                } catch (\JsonException $exception) {
+                    throw new ApiException(
+                        sprintf(
+                            'Error JSON decoding server response (%s)',
+                            $request->getUri()
+                        ),
+                        $request,
+                        $response
+                    );
+                }
+            }
+        }
+
+        return ObjectSerializer::deserialize($content, $dataType, []);
     }
 }

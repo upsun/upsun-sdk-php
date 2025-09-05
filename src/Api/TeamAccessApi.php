@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level TeamAccessApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class TeamAccessApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -114,11 +59,10 @@ final class TeamAccessApi extends AbstractApi
         string $projectId,
         string $teamId
     ): \Upsun\Model\TeamProjectAccess {
-        list($response) = $this->getProjectTeamAccessWithHttpInfo(
+        return $this->getProjectTeamAccessWithHttpInfo(
             $projectId,
             $teamId
         );
-        return $response;
     }
 
     /**
@@ -129,7 +73,7 @@ final class TeamAccessApi extends AbstractApi
     public function getProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
-    ): array {
+    ): \Upsun\Model\TeamProjectAccess {
         $request = $this->getProjectTeamAccessRequest(
             $projectId,
             $teamId
@@ -141,83 +85,14 @@ final class TeamAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\TeamProjectAccess',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get team access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectTeamAccessAsync(
-        string $projectId,
-        string $teamId
-    ): Promise {
-        return $this->getProjectTeamAccessAsyncWithHttpInfo(
-            $projectId,
-            $teamId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get team access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectTeamAccessAsyncWithHttpInfo(
-        string $projectId,
-        string $teamId
-    ): Promise {
-        $returnType = '\Upsun\Model\TeamProjectAccess';
-        $request = $this->getProjectTeamAccessRequest(
-            $projectId,
-            $teamId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -230,13 +105,21 @@ final class TeamAccessApi extends AbstractApi
         string $teamId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectTeamAccess'
             );
         }
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling getProjectTeamAccess'
             );
@@ -327,11 +210,10 @@ final class TeamAccessApi extends AbstractApi
         string $teamId,
         string $projectId
     ): \Upsun\Model\TeamProjectAccess {
-        list($response) = $this->getTeamProjectAccessWithHttpInfo(
+        return $this->getTeamProjectAccessWithHttpInfo(
             $teamId,
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -342,7 +224,7 @@ final class TeamAccessApi extends AbstractApi
     public function getTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
-    ): array {
+    ): \Upsun\Model\TeamProjectAccess {
         $request = $this->getTeamProjectAccessRequest(
             $teamId,
             $projectId
@@ -354,83 +236,14 @@ final class TeamAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\TeamProjectAccess',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get project access for a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getTeamProjectAccessAsync(
-        string $teamId,
-        string $projectId
-    ): Promise {
-        return $this->getTeamProjectAccessAsyncWithHttpInfo(
-            $teamId,
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get project access for a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getTeamProjectAccessAsyncWithHttpInfo(
-        string $teamId,
-        string $projectId
-    ): Promise {
-        $returnType = '\Upsun\Model\TeamProjectAccess';
-        $request = $this->getTeamProjectAccessRequest(
-            $teamId,
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -443,13 +256,21 @@ final class TeamAccessApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling getTeamProjectAccess'
             );
         }
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getTeamProjectAccess'
             );
@@ -539,12 +360,11 @@ final class TeamAccessApi extends AbstractApi
     public function grantProjectTeamAccess(
         string $projectId,
         array $grantProjectTeamAccessRequestInner
-    ): array {
-        list($response) = $this->grantProjectTeamAccessWithHttpInfo(
+    ): void {
+        $this->grantProjectTeamAccessWithHttpInfo(
             $projectId,
             $grantProjectTeamAccessRequestInner
         );
-        return $response;
     }
 
     /**
@@ -555,7 +375,7 @@ final class TeamAccessApi extends AbstractApi
     public function grantProjectTeamAccessWithHttpInfo(
         string $projectId,
         array $grantProjectTeamAccessRequestInner
-    ): array {
+    ): void {
         $request = $this->grantProjectTeamAccessRequest(
             $projectId,
             $grantProjectTeamAccessRequestInner
@@ -568,72 +388,9 @@ final class TeamAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Grant team access to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantProjectTeamAccessAsync(
-        string $projectId,
-        array $grantProjectTeamAccessRequestInner
-    ): Promise {
-        return $this->grantProjectTeamAccessAsyncWithHttpInfo(
-            $projectId,
-            $grantProjectTeamAccessRequestInner
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Grant team access to a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantProjectTeamAccessAsyncWithHttpInfo(
-        string $projectId,
-        array $grantProjectTeamAccessRequestInner
-    ): Promise {
-        $returnType = '';
-        $request = $this->grantProjectTeamAccessRequest(
-            $projectId,
-            $grantProjectTeamAccessRequestInner
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -646,13 +403,21 @@ final class TeamAccessApi extends AbstractApi
         array $grantProjectTeamAccessRequestInner
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling grantProjectTeamAccess'
             );
         }
         // verify the required parameter 'grantProjectTeamAccessRequestInner' is set
-        if ($grantProjectTeamAccessRequestInner === null || (is_array($grantProjectTeamAccessRequestInner) && count($grantProjectTeamAccessRequestInner) === 0)) {
+        if (
+            $grantProjectTeamAccessRequestInner === null
+            || (is_array($grantProjectTeamAccessRequestInner)
+            && count($grantProjectTeamAccessRequestInner) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $grantProjectTeamAccessRequestInner when calling grantProjectTeamAccess'
             );
@@ -740,12 +505,11 @@ final class TeamAccessApi extends AbstractApi
     public function grantTeamProjectAccess(
         string $teamId,
         array $grantTeamProjectAccessRequestInner
-    ): array {
-        list($response) = $this->grantTeamProjectAccessWithHttpInfo(
+    ): void {
+        $this->grantTeamProjectAccessWithHttpInfo(
             $teamId,
             $grantTeamProjectAccessRequestInner
         );
-        return $response;
     }
 
     /**
@@ -756,7 +520,7 @@ final class TeamAccessApi extends AbstractApi
     public function grantTeamProjectAccessWithHttpInfo(
         string $teamId,
         array $grantTeamProjectAccessRequestInner
-    ): array {
+    ): void {
         $request = $this->grantTeamProjectAccessRequest(
             $teamId,
             $grantTeamProjectAccessRequestInner
@@ -769,72 +533,9 @@ final class TeamAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Grant project access to a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantTeamProjectAccessAsync(
-        string $teamId,
-        array $grantTeamProjectAccessRequestInner
-    ): Promise {
-        return $this->grantTeamProjectAccessAsyncWithHttpInfo(
-            $teamId,
-            $grantTeamProjectAccessRequestInner
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Grant project access to a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function grantTeamProjectAccessAsyncWithHttpInfo(
-        string $teamId,
-        array $grantTeamProjectAccessRequestInner
-    ): Promise {
-        $returnType = '';
-        $request = $this->grantTeamProjectAccessRequest(
-            $teamId,
-            $grantTeamProjectAccessRequestInner
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -847,13 +548,21 @@ final class TeamAccessApi extends AbstractApi
         array $grantTeamProjectAccessRequestInner
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling grantTeamProjectAccess'
             );
         }
         // verify the required parameter 'grantTeamProjectAccessRequestInner' is set
-        if ($grantTeamProjectAccessRequestInner === null || (is_array($grantTeamProjectAccessRequestInner) && count($grantTeamProjectAccessRequestInner) === 0)) {
+        if (
+            $grantTeamProjectAccessRequestInner === null
+            || (is_array($grantTeamProjectAccessRequestInner)
+            && count($grantTeamProjectAccessRequestInner) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $grantTeamProjectAccessRequestInner when calling grantTeamProjectAccess'
             );
@@ -944,15 +653,14 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listProjectTeamAccessWithHttpInfo(
+    ): \Upsun\Model\ListTeamProjectAccess200Response {
+        return $this->listProjectTeamAccessWithHttpInfo(
             $projectId,
             $pageSize,
             $pageBefore,
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -966,7 +674,7 @@ final class TeamAccessApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeamProjectAccess200Response {
         $request = $this->listProjectTeamAccessRequest(
             $projectId,
             $pageSize,
@@ -981,95 +689,14 @@ final class TeamAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTeamProjectAccess200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List team access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectTeamAccessAsync(
-        string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listProjectTeamAccessAsyncWithHttpInfo(
-            $projectId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List team access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectTeamAccessAsyncWithHttpInfo(
-        string $projectId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
-        $request = $this->listProjectTeamAccessRequest(
-            $projectId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1085,7 +712,11 @@ final class TeamAccessApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectTeamAccess'
             );
@@ -1227,15 +858,14 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listTeamProjectAccessWithHttpInfo(
+    ): \Upsun\Model\ListTeamProjectAccess200Response {
+        return $this->listTeamProjectAccessWithHttpInfo(
             $teamId,
             $pageSize,
             $pageBefore,
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -1249,7 +879,7 @@ final class TeamAccessApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListTeamProjectAccess200Response {
         $request = $this->listTeamProjectAccessRequest(
             $teamId,
             $pageSize,
@@ -1264,95 +894,14 @@ final class TeamAccessApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTeamProjectAccess200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List project access for a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listTeamProjectAccessAsync(
-        string $teamId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listTeamProjectAccessAsyncWithHttpInfo(
-            $teamId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List project access for a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listTeamProjectAccessAsyncWithHttpInfo(
-        string $teamId,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListTeamProjectAccess200Response';
-        $request = $this->listTeamProjectAccessRequest(
-            $teamId,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1368,7 +917,11 @@ final class TeamAccessApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling listTeamProjectAccess'
             );
@@ -1507,12 +1060,11 @@ final class TeamAccessApi extends AbstractApi
     public function removeProjectTeamAccess(
         string $projectId,
         string $teamId
-    ): \Upsun\Model\TeamProjectAccess {
-        list($response) = $this->removeProjectTeamAccessWithHttpInfo(
+    ): void {
+        $this->removeProjectTeamAccessWithHttpInfo(
             $projectId,
             $teamId
         );
-        return $response;
     }
 
     /**
@@ -1523,7 +1075,7 @@ final class TeamAccessApi extends AbstractApi
     public function removeProjectTeamAccessWithHttpInfo(
         string $projectId,
         string $teamId
-    ): array {
+    ): void {
         $request = $this->removeProjectTeamAccessRequest(
             $projectId,
             $teamId
@@ -1536,72 +1088,9 @@ final class TeamAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Remove team access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeProjectTeamAccessAsync(
-        string $projectId,
-        string $teamId
-    ): Promise {
-        return $this->removeProjectTeamAccessAsyncWithHttpInfo(
-            $projectId,
-            $teamId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Remove team access for a project
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeProjectTeamAccessAsyncWithHttpInfo(
-        string $projectId,
-        string $teamId
-    ): Promise {
-        $returnType = '';
-        $request = $this->removeProjectTeamAccessRequest(
-            $projectId,
-            $teamId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1614,13 +1103,21 @@ final class TeamAccessApi extends AbstractApi
         string $teamId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling removeProjectTeamAccess'
             );
         }
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling removeProjectTeamAccess'
             );
@@ -1710,12 +1207,11 @@ final class TeamAccessApi extends AbstractApi
     public function removeTeamProjectAccess(
         string $teamId,
         string $projectId
-    ): \Upsun\Model\TeamProjectAccess {
-        list($response) = $this->removeTeamProjectAccessWithHttpInfo(
+    ): void {
+        $this->removeTeamProjectAccessWithHttpInfo(
             $teamId,
             $projectId
         );
-        return $response;
     }
 
     /**
@@ -1726,7 +1222,7 @@ final class TeamAccessApi extends AbstractApi
     public function removeTeamProjectAccessWithHttpInfo(
         string $teamId,
         string $projectId
-    ): array {
+    ): void {
         $request = $this->removeTeamProjectAccessRequest(
             $teamId,
             $projectId
@@ -1739,72 +1235,9 @@ final class TeamAccessApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Remove project access for a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeTeamProjectAccessAsync(
-        string $teamId,
-        string $projectId
-    ): Promise {
-        return $this->removeTeamProjectAccessAsyncWithHttpInfo(
-            $teamId,
-            $projectId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Remove project access for a team
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function removeTeamProjectAccessAsyncWithHttpInfo(
-        string $teamId,
-        string $projectId
-    ): Promise {
-        $returnType = '';
-        $request = $this->removeTeamProjectAccessRequest(
-            $teamId,
-            $projectId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1817,13 +1250,21 @@ final class TeamAccessApi extends AbstractApi
         string $projectId
     ): RequestInterface {
         // verify the required parameter 'teamId' is set
-        if ($teamId === null || (is_array($teamId) && count($teamId) === 0)) {
+        if (
+            $teamId === null
+            || (is_array($teamId)
+            && count($teamId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $teamId when calling removeTeamProjectAccess'
             );
         }
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling removeTeamProjectAccess'
             );
@@ -1904,103 +1345,4 @@ final class TeamAccessApi extends AbstractApi
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

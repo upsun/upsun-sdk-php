@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level EnvironmentBackupsApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class EnvironmentBackupsApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -115,12 +60,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId,
         \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->backupEnvironmentWithHttpInfo(
+        return $this->backupEnvironmentWithHttpInfo(
             $projectId,
             $environmentId,
             $environmentBackupInput
         );
-        return $response;
     }
 
     /**
@@ -132,7 +76,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->backupEnvironmentRequest(
             $projectId,
             $environmentId,
@@ -145,87 +89,14 @@ final class EnvironmentBackupsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create snapshot of environment
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function backupEnvironmentAsync(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
-    ): Promise {
-        return $this->backupEnvironmentAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $environmentBackupInput
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create snapshot of environment
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function backupEnvironmentAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->backupEnvironmentRequest(
-            $projectId,
-            $environmentId,
-            $environmentBackupInput
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -239,19 +110,31 @@ final class EnvironmentBackupsApi extends AbstractApi
         \Upsun\Model\EnvironmentBackupInput $environmentBackupInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling backupEnvironment'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling backupEnvironment'
             );
         }
         // verify the required parameter 'environmentBackupInput' is set
-        if ($environmentBackupInput === null || (is_array($environmentBackupInput) && count($environmentBackupInput) === 0)) {
+        if (
+            $environmentBackupInput === null
+            || (is_array($environmentBackupInput)
+            && count($environmentBackupInput) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentBackupInput when calling backupEnvironment'
             );
@@ -349,12 +232,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId,
         string $backupId
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->deleteProjectsEnvironmentsBackupsWithHttpInfo(
+        return $this->deleteProjectsEnvironmentsBackupsWithHttpInfo(
             $projectId,
             $environmentId,
             $backupId
         );
-        return $response;
     }
 
     /**
@@ -366,7 +248,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->deleteProjectsEnvironmentsBackupsRequest(
             $projectId,
             $environmentId,
@@ -379,87 +261,14 @@ final class EnvironmentBackupsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete an environment snapshot
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsBackupsAsync(
-        string $projectId,
-        string $environmentId,
-        string $backupId
-    ): Promise {
-        return $this->deleteProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $backupId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete an environment snapshot
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $backupId
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->deleteProjectsEnvironmentsBackupsRequest(
-            $projectId,
-            $environmentId,
-            $backupId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -473,19 +282,31 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backupId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling deleteProjectsEnvironmentsBackups'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling deleteProjectsEnvironmentsBackups'
             );
         }
         // verify the required parameter 'backupId' is set
-        if ($backupId === null || (is_array($backupId) && count($backupId) === 0)) {
+        if (
+            $backupId === null
+            || (is_array($backupId)
+            && count($backupId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $backupId when calling deleteProjectsEnvironmentsBackups'
             );
@@ -585,12 +406,11 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId,
         string $backupId
     ): \Upsun\Model\Backup {
-        list($response) = $this->getProjectsEnvironmentsBackupsWithHttpInfo(
+        return $this->getProjectsEnvironmentsBackupsWithHttpInfo(
             $projectId,
             $environmentId,
             $backupId
         );
-        return $response;
     }
 
     /**
@@ -602,7 +422,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $backupId
-    ): array {
+    ): \Upsun\Model\Backup {
         $request = $this->getProjectsEnvironmentsBackupsRequest(
             $projectId,
             $environmentId,
@@ -615,87 +435,14 @@ final class EnvironmentBackupsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Backup',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get an environment snapshot&#39;s info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsEnvironmentsBackupsAsync(
-        string $projectId,
-        string $environmentId,
-        string $backupId
-    ): Promise {
-        return $this->getProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $backupId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get an environment snapshot&#39;s info
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $backupId
-    ): Promise {
-        $returnType = '\Upsun\Model\Backup';
-        $request = $this->getProjectsEnvironmentsBackupsRequest(
-            $projectId,
-            $environmentId,
-            $backupId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -709,19 +456,31 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backupId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling getProjectsEnvironmentsBackups'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling getProjectsEnvironmentsBackups'
             );
         }
         // verify the required parameter 'backupId' is set
-        if ($backupId === null || (is_array($backupId) && count($backupId) === 0)) {
+        if (
+            $backupId === null
+            || (is_array($backupId)
+            && count($backupId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $backupId when calling getProjectsEnvironmentsBackups'
             );
@@ -815,16 +574,17 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Backup[]
      */
     public function listProjectsEnvironmentsBackups(
         string $projectId,
         string $environmentId
     ): array {
-        list($response) = $this->listProjectsEnvironmentsBackupsWithHttpInfo(
+        return $this->listProjectsEnvironmentsBackupsWithHttpInfo(
             $projectId,
             $environmentId
         );
-        return $response;
     }
 
     /**
@@ -847,83 +607,14 @@ final class EnvironmentBackupsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Backup[]',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get an environment&#39;s snapshot list
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsEnvironmentsBackupsAsync(
-        string $projectId,
-        string $environmentId
-    ): Promise {
-        return $this->listProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-            $projectId,
-            $environmentId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get an environment&#39;s snapshot list
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listProjectsEnvironmentsBackupsAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId
-    ): Promise {
-        $returnType = '\Upsun\Model\Backup[]';
-        $request = $this->listProjectsEnvironmentsBackupsRequest(
-            $projectId,
-            $environmentId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -936,13 +627,21 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling listProjectsEnvironmentsBackups'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling listProjectsEnvironmentsBackups'
             );
@@ -1035,13 +734,12 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $backupId,
         \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): \Upsun\Model\AcceptedResponse {
-        list($response) = $this->restoreBackupWithHttpInfo(
+        return $this->restoreBackupWithHttpInfo(
             $projectId,
             $environmentId,
             $backupId,
             $environmentRestoreInput
         );
-        return $response;
     }
 
     /**
@@ -1054,7 +752,7 @@ final class EnvironmentBackupsApi extends AbstractApi
         string $environmentId,
         string $backupId,
         \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
-    ): array {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->restoreBackupRequest(
             $projectId,
             $environmentId,
@@ -1068,91 +766,14 @@ final class EnvironmentBackupsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Restore an environment snapshot
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function restoreBackupAsync(
-        string $projectId,
-        string $environmentId,
-        string $backupId,
-        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
-    ): Promise {
-        return $this->restoreBackupAsyncWithHttpInfo(
-            $projectId,
-            $environmentId,
-            $backupId,
-            $environmentRestoreInput
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Restore an environment snapshot
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function restoreBackupAsyncWithHttpInfo(
-        string $projectId,
-        string $environmentId,
-        string $backupId,
-        \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
-    ): Promise {
-        $returnType = '\Upsun\Model\AcceptedResponse';
-        $request = $this->restoreBackupRequest(
-            $projectId,
-            $environmentId,
-            $backupId,
-            $environmentRestoreInput
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1167,25 +788,41 @@ final class EnvironmentBackupsApi extends AbstractApi
         \Upsun\Model\EnvironmentRestoreInput $environmentRestoreInput
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
-        if ($projectId === null || (is_array($projectId) && count($projectId) === 0)) {
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId when calling restoreBackup'
             );
         }
         // verify the required parameter 'environmentId' is set
-        if ($environmentId === null || (is_array($environmentId) && count($environmentId) === 0)) {
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId when calling restoreBackup'
             );
         }
         // verify the required parameter 'backupId' is set
-        if ($backupId === null || (is_array($backupId) && count($backupId) === 0)) {
+        if (
+            $backupId === null
+            || (is_array($backupId)
+            && count($backupId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $backupId when calling restoreBackup'
             );
         }
         // verify the required parameter 'environmentRestoreInput' is set
-        if ($environmentRestoreInput === null || (is_array($environmentRestoreInput) && count($environmentRestoreInput) === 0)) {
+        if (
+            $environmentRestoreInput === null
+            || (is_array($environmentRestoreInput)
+            && count($environmentRestoreInput) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentRestoreInput when calling restoreBackup'
             );
@@ -1280,103 +917,4 @@ final class EnvironmentBackupsApi extends AbstractApi
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

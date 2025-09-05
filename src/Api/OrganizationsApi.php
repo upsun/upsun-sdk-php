@@ -4,34 +4,16 @@ namespace Upsun\Api;
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use Upsun\ApiException;
 use Upsun\Configuration;
-use Upsun\DebugPlugin;
 use Upsun\HeaderSelector;
 use Upsun\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use Upsun\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level OrganizationsApi (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 final class OrganizationsApi extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, 'https://api.platform.sh', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
     /**
@@ -113,10 +58,9 @@ final class OrganizationsApi extends AbstractApi
     public function createOrg(
         \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): \Upsun\Model\Organization {
-        list($response) = $this->createOrgWithHttpInfo(
+        return $this->createOrgWithHttpInfo(
             $createOrgRequest
         );
-        return $response;
     }
 
     /**
@@ -126,7 +70,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function createOrgWithHttpInfo(
         \Upsun\Model\CreateOrgRequest $createOrgRequest
-    ): array {
+    ): \Upsun\Model\Organization {
         $request = $this->createOrgRequest(
             $createOrgRequest
         );
@@ -137,79 +81,14 @@ final class OrganizationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Organization',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Create organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createOrgAsync(
-        \Upsun\Model\CreateOrgRequest $createOrgRequest
-    ): Promise {
-        return $this->createOrgAsyncWithHttpInfo(
-            $createOrgRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Create organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function createOrgAsyncWithHttpInfo(
-        \Upsun\Model\CreateOrgRequest $createOrgRequest
-    ): Promise {
-        $returnType = '\Upsun\Model\Organization';
-        $request = $this->createOrgRequest(
-            $createOrgRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -221,7 +100,11 @@ final class OrganizationsApi extends AbstractApi
         \Upsun\Model\CreateOrgRequest $createOrgRequest
     ): RequestInterface {
         // verify the required parameter 'createOrgRequest' is set
-        if ($createOrgRequest === null || (is_array($createOrgRequest) && count($createOrgRequest) === 0)) {
+        if (
+            $createOrgRequest === null
+            || (is_array($createOrgRequest)
+            && count($createOrgRequest) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $createOrgRequest when calling createOrg'
             );
@@ -300,11 +183,10 @@ final class OrganizationsApi extends AbstractApi
      */
     public function deleteOrg(
         string $organizationId
-    ): \Upsun\Model\Organization {
-        list($response) = $this->deleteOrgWithHttpInfo(
+    ): void {
+        $this->deleteOrgWithHttpInfo(
             $organizationId
         );
-        return $response;
     }
 
     /**
@@ -314,7 +196,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function deleteOrgWithHttpInfo(
         string $organizationId
-    ): array {
+    ): void {
         $request = $this->deleteOrgRequest(
             $organizationId
         );
@@ -326,68 +208,9 @@ final class OrganizationsApi extends AbstractApi
                 $request->getHeaders()
             );
 
-            return $this->handleResponseWithDataType(
-                '',
-                $request,
-                $response
-            );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Delete organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteOrgAsync(
-        string $organizationId
-    ): Promise {
-        return $this->deleteOrgAsyncWithHttpInfo(
-            $organizationId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Delete organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function deleteOrgAsyncWithHttpInfo(
-        string $organizationId
-    ): Promise {
-        $returnType = '';
-        $request = $this->deleteOrgRequest(
-            $organizationId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -399,7 +222,11 @@ final class OrganizationsApi extends AbstractApi
         string $organizationId
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling deleteOrg'
             );
@@ -481,10 +308,9 @@ final class OrganizationsApi extends AbstractApi
     public function getOrg(
         string $organizationId
     ): \Upsun\Model\Organization {
-        list($response) = $this->getOrgWithHttpInfo(
+        return $this->getOrgWithHttpInfo(
             $organizationId
         );
-        return $response;
     }
 
     /**
@@ -494,7 +320,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function getOrgWithHttpInfo(
         string $organizationId
-    ): array {
+    ): \Upsun\Model\Organization {
         $request = $this->getOrgRequest(
             $organizationId
         );
@@ -505,79 +331,14 @@ final class OrganizationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Organization',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Get organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getOrgAsync(
-        string $organizationId
-    ): Promise {
-        return $this->getOrgAsyncWithHttpInfo(
-            $organizationId
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Get organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function getOrgAsyncWithHttpInfo(
-        string $organizationId
-    ): Promise {
-        $returnType = '\Upsun\Model\Organization';
-        $request = $this->getOrgRequest(
-            $organizationId
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -589,7 +350,11 @@ final class OrganizationsApi extends AbstractApi
         string $organizationId
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling getOrg'
             );
@@ -681,8 +446,8 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listOrgsWithHttpInfo(
+    ): \Upsun\Model\ListOrgs200Response {
+        return $this->listOrgsWithHttpInfo(
             $filterId,
             $filterOwnerId,
             $filterName,
@@ -696,7 +461,6 @@ final class OrganizationsApi extends AbstractApi
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -717,7 +481,7 @@ final class OrganizationsApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListOrgs200Response {
         $request = $this->listOrgsRequest(
             $filterId,
             $filterOwnerId,
@@ -739,123 +503,14 @@ final class OrganizationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgs200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * List organizations
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listOrgsAsync(
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterOwnerId = null,
-        \Upsun\Model\StringFilter $filterName = null,
-        \Upsun\Model\StringFilter $filterLabel = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\ArrayFilter $filterCapabilities = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listOrgsAsyncWithHttpInfo(
-            $filterId,
-            $filterOwnerId,
-            $filterName,
-            $filterLabel,
-            $filterVendor,
-            $filterCapabilities,
-            $filterStatus,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * List organizations
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listOrgsAsyncWithHttpInfo(
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterOwnerId = null,
-        \Upsun\Model\StringFilter $filterName = null,
-        \Upsun\Model\StringFilter $filterLabel = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\ArrayFilter $filterCapabilities = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListOrgs200Response';
-        $request = $this->listOrgsRequest(
-            $filterId,
-            $filterOwnerId,
-            $filterName,
-            $filterLabel,
-            $filterVendor,
-            $filterCapabilities,
-            $filterStatus,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1098,8 +753,8 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
-        list($response) = $this->listUserOrgsWithHttpInfo(
+    ): \Upsun\Model\ListUserOrgs200Response {
+        return $this->listUserOrgsWithHttpInfo(
             $userId,
             $filterId,
             $filterVendor,
@@ -1110,7 +765,6 @@ final class OrganizationsApi extends AbstractApi
             $pageAfter,
             $sort
         );
-        return $response;
     }
 
     /**
@@ -1128,7 +782,7 @@ final class OrganizationsApi extends AbstractApi
         string $pageBefore = null,
         string $pageAfter = null,
         string $sort = null
-    ): array {
+    ): \Upsun\Model\ListUserOrgs200Response {
         $request = $this->listUserOrgsRequest(
             $userId,
             $filterId,
@@ -1147,111 +801,14 @@ final class OrganizationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListUserOrgs200Response',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * User organizations
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listUserOrgsAsync(
-        string $userId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        return $this->listUserOrgsAsyncWithHttpInfo(
-            $userId,
-            $filterId,
-            $filterVendor,
-            $filterStatus,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * User organizations
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function listUserOrgsAsyncWithHttpInfo(
-        string $userId,
-        \Upsun\Model\StringFilter $filterId = null,
-        \Upsun\Model\StringFilter $filterVendor = null,
-        \Upsun\Model\StringFilter $filterStatus = null,
-        \Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
-        int $pageSize = null,
-        string $pageBefore = null,
-        string $pageAfter = null,
-        string $sort = null
-    ): Promise {
-        $returnType = '\Upsun\Model\ListUserOrgs200Response';
-        $request = $this->listUserOrgsRequest(
-            $userId,
-            $filterId,
-            $filterVendor,
-            $filterStatus,
-            $filterUpdatedAt,
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1271,7 +828,11 @@ final class OrganizationsApi extends AbstractApi
         string $sort = null
     ): RequestInterface {
         // verify the required parameter 'userId' is set
-        if ($userId === null || (is_array($userId) && count($userId) === 0)) {
+        if (
+            $userId === null
+            || (is_array($userId)
+            && count($userId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $userId when calling listUserOrgs'
             );
@@ -1455,11 +1016,10 @@ final class OrganizationsApi extends AbstractApi
         string $organizationId,
         ?\Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): \Upsun\Model\Organization {
-        list($response) = $this->updateOrgWithHttpInfo(
+        return $this->updateOrgWithHttpInfo(
             $organizationId,
             $updateOrgRequest
         );
-        return $response;
     }
 
     /**
@@ -1470,7 +1030,7 @@ final class OrganizationsApi extends AbstractApi
     public function updateOrgWithHttpInfo(
         string $organizationId,
         \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
-    ): array {
+    ): \Upsun\Model\Organization {
         $request = $this->updateOrgRequest(
             $organizationId,
             $updateOrgRequest
@@ -1482,83 +1042,14 @@ final class OrganizationsApi extends AbstractApi
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Organization',
                 $request,
                 $response
             );
-
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-     * Update organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateOrgAsync(
-        string $organizationId,
-        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
-    ): Promise {
-        return $this->updateOrgAsyncWithHttpInfo(
-            $organizationId,
-            $updateOrgRequest
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Update organization
-     *
-     * @throws InvalidArgumentException|Exception
-     */
-    public function updateOrgAsyncWithHttpInfo(
-        string $organizationId,
-        \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
-    ): Promise {
-        $returnType = '\Upsun\Model\Organization';
-        $request = $this->updateOrgRequest(
-            $organizationId,
-            $updateOrgRequest
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -1571,7 +1062,11 @@ final class OrganizationsApi extends AbstractApi
         \Upsun\Model\UpdateOrgRequest $updateOrgRequest = null
     ): RequestInterface {
         // verify the required parameter 'organizationId' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling updateOrg'
             );
@@ -1650,103 +1145,4 @@ final class OrganizationsApi extends AbstractApi
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
 
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }

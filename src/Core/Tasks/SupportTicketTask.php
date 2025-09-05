@@ -8,6 +8,7 @@ use Upsun\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
 use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\ListTickets200Response;
 use Upsun\Model\Ticket;
 use Upsun\Model\UpdateTicketRequest;
 use Upsun\UpsunClient;
@@ -48,7 +49,7 @@ class SupportTicketTask extends TaskBase
         ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): array {
+    ): ListTickets200Response {
         return $this->defaultApi->listTickets(
             $filterTicketId,
             $filterCreated,

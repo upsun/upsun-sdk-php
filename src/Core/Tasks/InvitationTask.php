@@ -66,6 +66,8 @@ class InvitationTask extends TaskBase
      * Lists invitations to an organization
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return OrganizationInvitation[]
      */
     public function listOrgInvites(
         string $organizationId,
@@ -121,6 +123,8 @@ class InvitationTask extends TaskBase
      * Lists invitations to a project
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return ProjectInvitation[]
      */
     public function listProjectInvites(
         string $projectId,

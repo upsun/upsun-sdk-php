@@ -6,6 +6,7 @@ use Exception;
 use Upsun\ApiException;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Model\AcceptedResponse;
+use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Model\EnvironmentSourceOperationInput;
 use Upsun\UpsunClient;
 
@@ -29,6 +30,8 @@ class SourceOperationTask extends TaskBase
      * Lists source operations
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return EnvironmentSourceOperation[]
      */
     public function list(string $projectId, string $environmentId): array
     {

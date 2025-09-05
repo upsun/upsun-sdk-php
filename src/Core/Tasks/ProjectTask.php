@@ -17,6 +17,7 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Blob;
 use Upsun\Model\BuildResources2;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\Certificate;
 use Upsun\Model\Commit;
 use Upsun\Model\CreateOrgSubscriptionRequest;
@@ -28,6 +29,7 @@ use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
 use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
@@ -108,7 +110,7 @@ class ProjectTask extends TaskBase
      *     storage?: int
      * } $projectData Update data
      */
-    public function create(string $organizationId, array $projectData): Error|Subscription
+    public function create(string $organizationId, array $projectData): Subscription
     {
         $createProjectData = new CreateOrgSubscriptionRequest(...$this->normalizeFilter($projectData));
         return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
@@ -120,7 +122,7 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException|Exception
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function canCreate(string $organizationId): array
+    public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response
     {
         return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
     }
@@ -309,6 +311,8 @@ class ProjectTask extends TaskBase
      * Gets project activity log
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Activity[]
      */
     public function listActivities(string $projectId): array
     {
@@ -370,6 +374,8 @@ class ProjectTask extends TaskBase
      * Gets project deployment target info
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return DeploymentTarget[]
      */
     public function listDeployments(string $projectId): array
     {
@@ -459,6 +465,8 @@ class ProjectTask extends TaskBase
      * Gets list of repository refs
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Ref[]
      */
     public function listGitRefs(string $projectId): array
     {
@@ -624,6 +632,8 @@ class ProjectTask extends TaskBase
      * Gets list of existing integrations for a project
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Integration[]
      */
     public function listIntegrations(string $projectId): array
     {
@@ -793,6 +803,8 @@ class ProjectTask extends TaskBase
      * Gets list of project domains
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Domain[]
      */
     public function listDomains(string $projectId): array
     {
@@ -850,6 +862,8 @@ class ProjectTask extends TaskBase
      * Gets list of SSL certificates
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Certificate[]
      */
     public function listCertificates(string $projectId): array
     {
@@ -940,7 +954,7 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): ListTeamProjectAccess200Response {
         return $this->client->team->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -955,7 +969,7 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): ListTeamProjectAccess200Response {
         return $this->client->team->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 

@@ -4,34 +4,16 @@ namespace {{apiPackage}};
 
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
-use Http\Client\Common\Plugin\ErrorPlugin;
-use Http\Client\Common\Plugin\RedirectPlugin;
-use Http\Client\Common\PluginClient;
-use Http\Client\Common\PluginClientFactory;
-use Http\Client\Exception\HttpException;
-use Http\Client\HttpAsyncClient;
-use Http\Discovery\HttpAsyncClientDiscovery;
-use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
-use Http\Promise\Promise;
 use {{invokerPackage}}\ApiException;
 use {{invokerPackage}}\Configuration;
-use {{invokerPackage}}\DebugPlugin;
 use {{invokerPackage}}\HeaderSelector;
 use {{invokerPackage}}\ObjectSerializer;
-use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use Psr\Http\Message\UriFactoryInterface;
-use Psr\Http\Message\UriInterface;
 use InvalidArgumentException;
 use {{invokerPackage}}\Core\OAuthProvider;
-
-use function sprintf;
 
 /**
  * Low level {{classname}} (auto-generated)
@@ -44,64 +26,27 @@ use function sprintf;
  */
 {{#operations}}final class {{classname}} extends AbstractApi
 {
-    private readonly PluginClient $httpClient;
-
-    private readonly PluginClient $httpAsyncClient;
-
-    private readonly UriFactoryInterface $uriFactory;
-
-    private readonly Configuration $config;
-
     private readonly HeaderSelector $headerSelector;
-
-    private readonly int $hostIndex;
-
-    private readonly RequestFactoryInterface $requestFactory;
-
-    private readonly StreamFactoryInterface $streamFactory;
+    private Configuration $config;
 
     public function __construct(
         OAuthProvider $oauthProvider,
         ?ClientInterface $httpClient = null,
         ?RequestFactoryInterface $requestFactory = null,
         ?Configuration $config = null,
-        ?HttpAsyncClient $httpAsyncClient = null,
-        ?UriFactoryInterface $uriFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
         ?HeaderSelector $selector = null,
-        ?array $plugins = null,
-        $hostIndex = 0
     ) {
-        parent::__construct($oauthProvider, $httpClient, $requestFactory, '{{basePath}}');
+        parent::__construct($oauthProvider, $httpClient, $requestFactory, '{{basePath}}', $streamFactory);
 
         $this->config = $config ?? (new Configuration())->setHost('{{basePath}}');
-        $this->requestFactory = $requestFactory ?? Psr17FactoryDiscovery::findRequestFactory();
-        $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
-        $plugins = $plugins ?? [
-            new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
-        ];
-
-        if ($this->config->getDebug()) {
-            $plugins[] = new DebugPlugin(fopen($this->config->getDebugFile(), 'ab'));
-        }
-
-        $this->httpClient = (new PluginClientFactory())->createClient(
-            $httpClient ?? Psr18ClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->httpAsyncClient = (new PluginClientFactory())->createClient(
-            $httpAsyncClient ?? HttpAsyncClientDiscovery::find(),
-            $plugins
-        );
-
-        $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
 
         $this->headerSelector = $selector ?? new HeaderSelector();
+    }
 
-        $this->hostIndex = $hostIndex;
+    public function getConfig(): Configuration
+    {
+        return $this->config;
     }
 
 {{#operation}}
@@ -132,18 +77,17 @@ use function sprintf;
      * @throws InvalidArgumentException|Exception
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
-     * @return {{{vendorExtensions.x-return-types-union}}}
+     * @return {{{vendorExtensions.x-return-types.0}}}
 {{/vendorExtensions.x-return-types-displayReturn}}
      */
     public function {{operationId}}(
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#required}}{{{dataType}}}{{/required}}{{^required}}?{{{dataType}}}{{/required}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{{returnType}}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
-        {{#vendorExtensions.x-returnable}}list($response) = {{/vendorExtensions.x-returnable}}$this->{{operationId}}WithHttpInfo(
+    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
+        {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->{{operationId}}WithHttpInfo(
             {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
             {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-        );{{#vendorExtensions.x-returnable}}
-        return $response;{{/vendorExtensions.x-returnable}}
+        );
     }
 
     /**
@@ -174,7 +118,7 @@ use function sprintf;
     public function {{operationId}}WithHttpInfo(
         {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
         {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): array {
+    ){{#returnContainer}}: array{{/returnContainer}}{{^returnContainer}}{{#vendorExtensions.x-return-types-union}}: {{{.}}}{{/vendorExtensions.x-return-types-union}}{{^vendorExtensions.x-return-types-union}}: {{#vendorExtensions.x-returnable}}{{{returnType}}}{{/vendorExtensions.x-returnable}}{{^vendorExtensions.x-returnable}}void{{/vendorExtensions.x-returnable}}{{/vendorExtensions.x-return-types-union}}{{/returnContainer}} {
         $request = $this->{{operationId}}Request(
             {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
             {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
@@ -186,125 +130,15 @@ use function sprintf;
                 (string) $request->getUri(),
                 $request->getHeaders()
             );
-            
+{{#returnType}}
             return $this->handleResponseWithDataType(
                 '{{{returnType}}}',
                 $request,
                 $response
-            );
+            );{{/returnType}}
         } catch (ApiException $e) {
             throw $e;
         }
-    }
-
-    /**
-{{#summary}}
-     * {{.}}
-     *
-{{/summary}}
-{{#description}}
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-     * @throws InvalidArgumentException|Exception
-     */
-    public function {{operationId}}Async(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
-        {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): Promise {
-        return $this->{{operationId}}AsyncWithHttpInfo(
-            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
-            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-        )
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-{{#summary}}
-     * {{.}}
-     *
-{{/summary}}
-{{#description}}
-     * {{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-group-parameters}}
-     * Note: the input parameter is an associative array with the keys listed as the parameter name below
-     *
-{{/vendorExtensions.x-group-parameters}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
-     * @throws InvalidArgumentException|Exception
-     */
-    public function {{operationId}}AsyncWithHttpInfo(
-        {{^vendorExtensions.x-group-parameters}}{{#allParams}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{^-last}},
-        {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-    ): Promise {
-        $returnType = '{{{returnType}}}';
-        $request = $this->{{operationId}}Request(
-            {{^vendorExtensions.x-group-parameters}}{{#allParams}}${{paramName}}{{^-last}},
-            {{/-last}}{{/allParams}}{{/vendorExtensions.x-group-parameters}}{{#vendorExtensions.x-group-parameters}}$associative_array{{/vendorExtensions.x-group-parameters}}
-        );
-
-        return $this->httpAsyncClient->sendAsyncRequest($request)
-            ->then(
-                function ($response) use ($returnType) {
-                    {{#returnType}}
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                    {{/returnType}}
-                    {{^returnType}}
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                    {{/returnType}}
-                },
-                function (HttpException $exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $exception->getRequest(),
-                        $exception->getResponse(),
-                        $exception
-                    );
-                }
-            );
     }
 
     /**
@@ -339,7 +173,11 @@ use function sprintf;
         {{#allParams}}
         {{#required}}
         // verify the required parameter '{{paramName}}' is set
-        if (${{paramName}} === null || (is_array(${{paramName}}) && count(${{paramName}}) === 0)) {
+        if (
+            ${{paramName}} === null
+            || (is_array(${{paramName}})
+            && count(${{paramName}}) === 0)
+        ) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter ${{paramName}} when calling {{operationId}}'
             );
@@ -586,104 +424,5 @@ use function sprintf;
     }
 
     {{/operation}}
-
-    /**
-     * Create request
-     */
-    protected function createRequest(
-        string $method,
-        string|UriInterface $uri,
-        array $headers = [],
-        string|StreamInterface|null $body = null
-    ): RequestInterface {
-        $request = $this->requestFactory->createRequest($method, $uri);
-
-        foreach ($headers as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        if (null !== $body) {
-            if (is_string($body)) {
-                if (!$this->streamFactory) {
-                    throw new \RuntimeException(
-                        'A stream factory is required to create a request with a string body.'
-                    );
-                }
-                $body = $this->streamFactory->createStream($body);
-            }
-            $request = $request->withBody($body);
-        }
-
-        return $request;
-    }
-
-    private function createUri(
-        string $operationHost,
-        string $resourcePath,
-        array $queryParams
-    ): UriInterface {
-        $parsedUrl = parse_url($operationHost);
-
-        $host = $parsedUrl['host'] ?? null;
-        $scheme = $parsedUrl['scheme'] ?? null;
-        $basePath = $parsedUrl['path'] ?? null;
-        $port = $parsedUrl['port'] ?? null;
-        $user = $parsedUrl['user'] ?? null;
-        $password = $parsedUrl['pass'] ?? null;
-
-        $uri = $this->uriFactory->createUri($basePath . $resourcePath)
-            ->withHost($host)
-            ->withScheme($scheme)
-            ->withPort($port)
-            ->withQuery(ObjectSerializer::buildQuery($queryParams));
-
-        if ($user) {
-            $uri = $uri->withUserInfo($user, $password);
-        }
-
-        return $uri;
-    }
-
-    private function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ): array {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return [
-            ObjectSerializer::deserialize($content, $dataType, []),
-            $response->getStatusCode(),
-            $response->getHeaders()
-        ];
-    }
-
-    private function responseWithinRangeCode(
-        string $rangeCode,
-        int $statusCode
-    ): bool {
-        $left = (int) ($rangeCode[0] . '00');
-        $right = (int) ($rangeCode[0] . '99');
-
-        return $statusCode >= $left && $statusCode <= $right;
-    }
 }
 {{/operations}}
