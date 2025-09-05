@@ -407,6 +407,14 @@ class ObjectSerializer
             } elseif (is_array($data)) {
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
+            
+            if ($value === null && $param->isDefaultValueAvailable()) {
+                $value = $param->getDefaultValue();
+            }
+            
+            if ($value === null && $paramType && $paramType->getName() === 'array') {
+                $value = [];
+            }
     
             if ($paramType) {
                 $typeName = $paramType->getName();
