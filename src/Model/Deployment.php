@@ -49,7 +49,7 @@ final class Deployment implements JsonSerializable
         private \Upsun\Model\EnvironmentInfo $environmentInfo,
         private string $deploymentTarget,
         private \Upsun\Model\VPNConfiguration $vpn,
-        private \Upsun\Model\HTTPAccessPermissions $httpAccess,
+        private \Upsun\Model\HttpAccessPermissions $httpAccess,
         private bool $enableSmtp,
         private bool $restrictRobots,
         private array $variables,
@@ -84,7 +84,7 @@ final class Deployment implements JsonSerializable
             'environment_info' => '\Upsun\Model\EnvironmentInfo',
             'deployment_target' => 'string',
             'vpn' => '\Upsun\Model\VPNConfiguration',
-            'http_access' => '\Upsun\Model\HTTPAccessPermissions',
+            'http_access' => '\Upsun\Model\HttpAccessPermissions',
             'enable_smtp' => 'bool',
             'restrict_robots' => 'bool',
             'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
@@ -185,9 +185,9 @@ final class Deployment implements JsonSerializable
         return $this->vpn;
     }
     /**
-     * @return \Upsun\Model\HTTPAccessPermissions
+     * @return \Upsun\Model\HttpAccessPermissions
      */
-    public function getHttpAccess(): \Upsun\Model\HTTPAccessPermissions
+    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
     {
         return $this->httpAccess;
     }

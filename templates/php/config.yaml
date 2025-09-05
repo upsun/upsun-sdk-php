@@ -42,5 +42,3 @@ files:
     templateType: SupportingFiles
     destinationFilename: OAuthProvider.php
     folder: src/Core
-typeMappings:
-  HTTPAccessPermissions: HTTPAccessPermissions

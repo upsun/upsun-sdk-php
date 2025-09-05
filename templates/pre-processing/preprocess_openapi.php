@@ -3,7 +3,10 @@
 $specFile = __DIR__ . '/../../schema/openapispec-platformsh.json';
 $outputFile = __DIR__ . '/../../schema/openapispec-platformsh-xreturn.json';
 
-$spec = json_decode(file_get_contents($specFile), true);
+$content = file_get_contents($specFile);
+$content = str_replace('HTTP access permissions', 'Http access permissions', $content);
+
+$spec = json_decode($content, true);
 
 // FIXME temp removal
 // remove /projects/{projectId}.delete from the action

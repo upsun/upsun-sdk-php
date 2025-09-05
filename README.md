@@ -523,7 +523,6 @@ Class | Method | HTTP request | Description
 - [GrantProjectUserAccessRequestInner](docs/Model/GrantProjectUserAccessRequestInner.md)
 - [GrantTeamProjectAccessRequestInner](docs/Model/GrantTeamProjectAccessRequestInner.md)
 - [GrantUserProjectAccessRequestInner](docs/Model/GrantUserProjectAccessRequestInner.md)
-- [HTTPAccessPermissions](docs/Model/HTTPAccessPermissions.md)
 - [HTTPLogForwardingIntegrationConfigurations](docs/Model/HTTPLogForwardingIntegrationConfigurations.md)
 - [HalLinks](docs/Model/HalLinks.md)
 - [HalLinksNext](docs/Model/HalLinksNext.md)
