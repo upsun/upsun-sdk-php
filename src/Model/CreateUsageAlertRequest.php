@@ -65,12 +65,18 @@ final class CreateUsageAlertRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The usage group to create an alert for.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getConfig(): ?\Upsun\Model\CreateUsageAlertRequestConfig
+    /**
+     * @return \Upsun\Model\CreateUsageAlertRequestConfig|null
+     */
     public function getConfig(): ?\Upsun\Model\CreateUsageAlertRequestConfig
     {
         return $this->config;

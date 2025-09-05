@@ -61,7 +61,11 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPermissions(): []
+    /**
+     * An array of project permissions.
+     *
+     * @return string[]
+     */
     public function getPermissions(): array
     {
         return $this->permissions;

@@ -73,22 +73,38 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAmount(): ?int
+    /**
+     * Trial project cost
+     *
+     * @return int|null
+     */
     public function getAmount(): ?int
     {
         return $this->amount;
     }
-    //public function getCurrencyCode(): ?string
+    /**
+     * Currency code
+     *
+     * @return string|null
+     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
-    //public function getCurrencySymbol(): ?string
+    /**
+     * Currency symbol
+     *
+     * @return string|null
+     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
-    //public function getFormatted(): ?string
+    /**
+     * Trial project cost formatted with currency sign
+     *
+     * @return string|null
+     */
     public function getFormatted(): ?string
     {
         return $this->formatted;

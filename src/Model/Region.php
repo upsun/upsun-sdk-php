@@ -105,62 +105,104 @@ final class Region implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the region.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getLabel(): ?string
+    /**
+     * The human-readable name of the region.
+     *
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
-    //public function getZone(): ?string
+    /**
+     * Geographical zone of the region
+     *
+     * @return string|null
+     */
     public function getZone(): ?string
     {
         return $this->zone;
     }
-    //public function getSelectionLabel(): ?string
+    /**
+     * The label to display when choosing between regions for new projects.
+     *
+     * @return string|null
+     */
     public function getSelectionLabel(): ?string
     {
         return $this->selectionLabel;
     }
-    //public function getProjectLabel(): ?string
+    /**
+     * The label to display on existing projects.
+     *
+     * @return string|null
+     */
     public function getProjectLabel(): ?string
     {
         return $this->projectLabel;
     }
-    //public function getTimezone(): ?string
+    /**
+     * Default timezone of the region
+     *
+     * @return string|null
+     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
-    //public function getAvailable(): ?bool
+    /**
+     * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
+     *
+     * @return bool|null
+     */
     public function getAvailable(): ?bool
     {
         return $this->available;
     }
-    //public function getPrivate(): ?bool
+    /**
+     * Indicator whether or not this platform is for private use only.
+     *
+     * @return bool|null
+     */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
-    //public function getEndpoint(): ?string
+    /**
+     * Link to the region API endpoint.
+     *
+     * @return string|null
+     */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
-    //public function getProvider(): ?\Upsun\Model\RegionProvider
+    /**
+     * @return \Upsun\Model\RegionProvider|null
+     */
     public function getProvider(): ?\Upsun\Model\RegionProvider
     {
         return $this->provider;
     }
-    //public function getDatacenter(): ?\Upsun\Model\RegionDatacenter
+    /**
+     * @return \Upsun\Model\RegionDatacenter|null
+     */
     public function getDatacenter(): ?\Upsun\Model\RegionDatacenter
     {
         return $this->datacenter;
     }
-    //public function getEnvironmentalImpact(): ?\Upsun\Model\RegionEnvironmentalImpact
+    /**
+     * @return \Upsun\Model\RegionEnvironmentalImpact|null
+     */
     public function getEnvironmentalImpact(): ?\Upsun\Model\RegionEnvironmentalImpact
     {
         return $this->environmentalImpact;

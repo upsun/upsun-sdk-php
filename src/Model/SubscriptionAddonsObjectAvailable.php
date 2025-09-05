@@ -65,12 +65,20 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getContinuousProfiling(): ?[]
+    /**
+     * Information about the continuous profiling options available.
+     *
+     * @return array&lt;string,float&gt;|null
+     */
     public function getContinuousProfiling(): ?array
     {
         return $this->continuousProfiling;
     }
-    //public function getProjectSupportLevel(): ?[]
+    /**
+     * Information about the project uptime options available.
+     *
+     * @return array&lt;string,float&gt;|null
+     */
     public function getProjectSupportLevel(): ?array
     {
         return $this->projectSupportLevel;

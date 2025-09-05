@@ -133,97 +133,135 @@ final class Deployment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getFingerprint(): ?string
+    /**
+     * @return string|null
+     */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
-    //public function getClusterName(): string
+    /**
+     * @return string
+     */
     public function getClusterName(): string
     {
         return $this->clusterName;
     }
-    //public function getProjectInfo(): \Upsun\Model\ProjectInfo
+    /**
+     * @return \Upsun\Model\ProjectInfo
+     */
     public function getProjectInfo(): \Upsun\Model\ProjectInfo
     {
         return $this->projectInfo;
     }
-    //public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
+    /**
+     * @return \Upsun\Model\EnvironmentInfo
+     */
     public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
     {
         return $this->environmentInfo;
     }
-    //public function getDeploymentTarget(): string
+    /**
+     * @return string
+     */
     public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
-    //public function getVpn(): \Upsun\Model\VPNConfiguration
+    /**
+     * @return \Upsun\Model\VPNConfiguration
+     */
     public function getVpn(): \Upsun\Model\VPNConfiguration
     {
         return $this->vpn;
     }
-    //public function getHttpAccess(): \Upsun\Model\HTTPAccessPermissions
+    /**
+     * @return \Upsun\Model\HTTPAccessPermissions
+     */
     public function getHttpAccess(): \Upsun\Model\HTTPAccessPermissions
     {
         return $this->httpAccess;
     }
-    //public function getEnableSmtp(): bool
+    /**
+     * @return bool
+     */
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
-    //public function getRestrictRobots(): bool
+    /**
+     * @return bool
+     */
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
-    //public function getVariables(): []
+    /**
+     * @return \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]
+     */
     public function getVariables(): array
     {
         return $this->variables;
     }
-    //public function getAccess(): []
+    /**
+     * @return \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]
+     */
     public function getAccess(): array
     {
         return $this->access;
     }
-    //public function getSubscription(): \Upsun\Model\Subscription1
+    /**
+     * @return \Upsun\Model\Subscription1
+     */
     public function getSubscription(): \Upsun\Model\Subscription1
     {
         return $this->subscription;
     }
-    //public function getServices(): []
+    /**
+     * @return \Upsun\Model\ServicesValue[]
+     */
     public function getServices(): array
     {
         return $this->services;
     }
-    //public function getRoutes(): []
+    /**
+     * @return \Upsun\Model\RoutesValue[]
+     */
     public function getRoutes(): array
     {
         return $this->routes;
     }
-    //public function getWebapps(): []
+    /**
+     * @return \Upsun\Model\WebApplicationsValue[]
+     */
     public function getWebapps(): array
     {
         return $this->webapps;
     }
-    //public function getWorkers(): []
+    /**
+     * @return \Upsun\Model\WorkersValue[]
+     */
     public function getWorkers(): array
     {
         return $this->workers;
     }
-    //public function getContainerProfiles(): []
+    /**
+     * @return array&lt;string,array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;&gt;
+     */
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;

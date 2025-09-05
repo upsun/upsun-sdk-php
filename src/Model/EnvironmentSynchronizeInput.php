@@ -73,22 +73,30 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSynchronizeCode(): bool
+    /**
+     * @return bool
+     */
     public function getSynchronizeCode(): bool
     {
         return $this->synchronizeCode;
     }
-    //public function getRebase(): bool
+    /**
+     * @return bool
+     */
     public function getRebase(): bool
     {
         return $this->rebase;
     }
-    //public function getSynchronizeData(): bool
+    /**
+     * @return bool
+     */
     public function getSynchronizeData(): bool
     {
         return $this->synchronizeData;
     }
-    //public function getSynchronizeResources(): bool
+    /**
+     * @return bool
+     */
     public function getSynchronizeResources(): bool
     {
         return $this->synchronizeResources;

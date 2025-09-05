@@ -109,67 +109,111 @@ final class OrganizationProject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the project.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ID of the organization.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getSubscriptionId(): ?string
+    /**
+     * The ID of the subscription.
+     *
+     * @return string|null
+     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
-    //public function getRegion(): ?string
+    /**
+     * The machine name of the region where the project is located.
+     *
+     * @return string|null
+     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
-    //public function getTitle(): ?string
+    /**
+     * The title of the project.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getType(): ?\Upsun\Model\OrganizationProjectType
+    /**
+     * @return \Upsun\Model\OrganizationProjectType|null
+     */
     public function getType(): ?\Upsun\Model\OrganizationProjectType
     {
         return $this->type;
     }
-    //public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
+    /**
+     * @return \Upsun\Model\OrganizationProjectPlan|null
+     */
     public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
     {
         return $this->plan;
     }
-    //public function getAccessMigrationStatus(): ?string
+    /**
+     * The access migration status of the project.
+     *
+     * @return string|null
+     */
     public function getAccessMigrationStatus(): ?string
     {
         return $this->accessMigrationStatus;
     }
-    //public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
+    /**
+     * @return \Upsun\Model\OrganizationProjectStatus|null
+     */
     public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
     {
         return $this->status;
     }
-    //public function getVendor(): ?string
+    /**
+     * The vendor.
+     *
+     * @return string|null
+     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the project was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the project was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getLinks(): ?\Upsun\Model\OrganizationProjectLinks
+    /**
+     * @return \Upsun\Model\OrganizationProjectLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\OrganizationProjectLinks
     {
         return $this->links;

@@ -61,7 +61,9 @@ final class AddressMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getMetadata(): ?\Upsun\Model\AddressMetadataMetadata
+    /**
+     * @return \Upsun\Model\AddressMetadataMetadata|null
+     */
     public function getMetadata(): ?\Upsun\Model\AddressMetadataMetadata
     {
         return $this->metadata;

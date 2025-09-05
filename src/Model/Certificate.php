@@ -101,57 +101,79 @@ final class Certificate implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getCertificate(): string
+    /**
+     * @return string
+     */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
-    //public function getChain(): []
+    /**
+     * @return string[]
+     */
     public function getChain(): array
     {
         return $this->chain;
     }
-    //public function getIsProvisioned(): bool
+    /**
+     * @return bool
+     */
     public function getIsProvisioned(): bool
     {
         return $this->isProvisioned;
     }
-    //public function getIsInvalid(): bool
+    /**
+     * @return bool
+     */
     public function getIsInvalid(): bool
     {
         return $this->isInvalid;
     }
-    //public function getIsRoot(): bool
+    /**
+     * @return bool
+     */
     public function getIsRoot(): bool
     {
         return $this->isRoot;
     }
-    //public function getDomains(): []
+    /**
+     * @return string[]
+     */
     public function getDomains(): array
     {
         return $this->domains;
     }
-    //public function getAuthType(): []
+    /**
+     * @return string[]
+     */
     public function getAuthType(): array
     {
         return $this->authType;
     }
-    //public function getIssuer(): []
+    /**
+     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]
+     */
     public function getIssuer(): array
     {
         return $this->issuer;
     }
-    //public function getExpiresAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;

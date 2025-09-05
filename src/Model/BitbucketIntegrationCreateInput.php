@@ -97,52 +97,72 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getFetchBranches(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
-    //public function getPruneBranches(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
-    //public function getEnvironmentInitResources(): ?string
+    /**
+     * @return string|null
+     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
-    //public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
+    /**
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
+     */
     public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
     {
         return $this->appCredentials;
     }
-    //public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
+    /**
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
+     */
     public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
     {
         return $this->addonCredentials;
     }
-    //public function getRepository(): string
+    /**
+     * @return string
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
-    //public function getBuildPullRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
-    //public function getPullRequestsCloneParentData(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
-    //public function getResyncPullRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;

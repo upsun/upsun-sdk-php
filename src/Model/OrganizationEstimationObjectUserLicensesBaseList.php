@@ -65,12 +65,16 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAdminUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
+     */
     public function getAdminUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser
     {
         return $this->adminUser;
     }
-    //public function getViewerUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
+     */
     public function getViewerUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser
     {
         return $this->viewerUser;

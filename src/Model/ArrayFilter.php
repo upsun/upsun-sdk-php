@@ -73,22 +73,38 @@ final class ArrayFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEq(): ?string
+    /**
+     * Equal
+     *
+     * @return string|null
+     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
-    //public function getNe(): ?string
+    /**
+     * Not equal
+     *
+     * @return string|null
+     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
-    //public function getIn(): ?string
+    /**
+     * In (comma-separated list)
+     *
+     * @return string|null
+     */
     public function getIn(): ?string
     {
         return $this->in;
     }
-    //public function getNin(): ?string
+    /**
+     * Not in (comma-separated list)
+     *
+     * @return string|null
+     */
     public function getNin(): ?string
     {
         return $this->nin;

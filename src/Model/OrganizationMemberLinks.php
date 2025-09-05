@@ -69,17 +69,23 @@ final class OrganizationMemberLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\OrganizationMemberLinksSelf
+    /**
+     * @return \Upsun\Model\OrganizationMemberLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\OrganizationMemberLinksSelf
     {
         return $this->self;
     }
-    //public function getUpdate(): ?\Upsun\Model\OrganizationMemberLinksUpdate
+    /**
+     * @return \Upsun\Model\OrganizationMemberLinksUpdate|null
+     */
     public function getUpdate(): ?\Upsun\Model\OrganizationMemberLinksUpdate
     {
         return $this->update;
     }
-    //public function getDelete(): ?\Upsun\Model\OrganizationMemberLinksDelete
+    /**
+     * @return \Upsun\Model\OrganizationMemberLinksDelete|null
+     */
     public function getDelete(): ?\Upsun\Model\OrganizationMemberLinksDelete
     {
         return $this->delete;

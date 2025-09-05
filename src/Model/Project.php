@@ -117,77 +117,107 @@ final class Project implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getAttributes(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
-    //public function getTitle(): string
+    /**
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
-    //public function getDescription(): string
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;
     }
-    //public function getOwner(): string
+    /**
+     * @return string
+     */
     public function getOwner(): string
     {
         return $this->owner;
     }
-    //public function getNamespace(): string
+    /**
+     * @return string
+     */
     public function getNamespace(): string
     {
         return $this->namespace;
     }
-    //public function getOrganization(): string
+    /**
+     * @return string
+     */
     public function getOrganization(): string
     {
         return $this->organization;
     }
-    //public function getDefaultBranch(): string
+    /**
+     * @return string
+     */
     public function getDefaultBranch(): string
     {
         return $this->defaultBranch;
     }
-    //public function getStatus(): \Upsun\Model\Status
+    /**
+     * @return \Upsun\Model\Status
+     */
     public function getStatus(): \Upsun\Model\Status
     {
         return $this->status;
     }
-    //public function getTimezone(): string
+    /**
+     * @return string
+     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
-    //public function getRegion(): string
+    /**
+     * @return string
+     */
     public function getRegion(): string
     {
         return $this->region;
     }
-    //public function getRepository(): \Upsun\Model\RepositoryInformation
+    /**
+     * @return \Upsun\Model\RepositoryInformation
+     */
     public function getRepository(): \Upsun\Model\RepositoryInformation
     {
         return $this->repository;
     }
-    //public function getDefaultDomain(): string
+    /**
+     * @return string
+     */
     public function getDefaultDomain(): string
     {
         return $this->defaultDomain;
     }
-    //public function getSubscription(): \Upsun\Model\SubscriptionInformation
+    /**
+     * @return \Upsun\Model\SubscriptionInformation
+     */
     public function getSubscription(): \Upsun\Model\SubscriptionInformation
     {
         return $this->subscription;

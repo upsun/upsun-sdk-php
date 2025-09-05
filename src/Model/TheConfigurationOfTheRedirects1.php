@@ -65,12 +65,16 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getExpires(): ?string
+    /**
+     * @return string|null
+     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
-    //public function getPaths(): []
+    /**
+     * @return \Upsun\Model\ThePathsToRedirectValue1[]
+     */
     public function getPaths(): array
     {
         return $this->paths;

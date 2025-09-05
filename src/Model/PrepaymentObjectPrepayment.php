@@ -77,27 +77,45 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOrganizationId(): ?string
+    /**
+     * Organization ID
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    /**
+     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
+     */
     public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
     {
         return $this->balance;
     }
-    //public function getLastUpdatedAt(): ?string
+    /**
+     * The date the prepayment balance was last updated.
+     *
+     * @return string|null
+     */
     public function getLastUpdatedAt(): ?string
     {
         return $this->lastUpdatedAt;
     }
-    //public function getSufficient(): ?bool
+    /**
+     * Whether the prepayment balance is enough to cover the upcoming order.
+     *
+     * @return bool|null
+     */
     public function getSufficient(): ?bool
     {
         return $this->sufficient;
     }
-    //public function getFallback(): ?string
+    /**
+     * The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order.
+     *
+     * @return string|null
+     */
     public function getFallback(): ?string
     {
         return $this->fallback;

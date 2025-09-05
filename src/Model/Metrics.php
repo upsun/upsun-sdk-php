@@ -61,7 +61,9 @@ final class Metrics implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getMaxRange(): string
+    /**
+     * @return string
+     */
     public function getMaxRange(): string
     {
         return $this->maxRange;

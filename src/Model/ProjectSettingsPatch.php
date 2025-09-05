@@ -69,17 +69,23 @@ final class ProjectSettingsPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getInitialize(): ?object
+    /**
+     * @return object|null
+     */
     public function getInitialize(): ?object
     {
         return $this->initialize;
     }
-    //public function getDataRetention(): ?[]
+    /**
+     * @return \Upsun\Model\DataRetentionConfigurationValue1[]|null
+     */
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
     }
-    //public function getBuildResources(): ?\Upsun\Model\BuildResources2
+    /**
+     * @return \Upsun\Model\BuildResources2|null
+     */
     public function getBuildResources(): ?\Upsun\Model\BuildResources2
     {
         return $this->buildResources;

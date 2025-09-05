@@ -65,12 +65,20 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getThreshold(): ?int
+    /**
+     * The amount after which a billing alert should be triggered.
+     *
+     * @return int|null
+     */
     public function getThreshold(): ?int
     {
         return $this->threshold;
     }
-    //public function getMode(): ?string
+    /**
+     * The mode in which the alert is triggered.
+     *
+     * @return string|null
+     */
     public function getMode(): ?string
     {
         return $this->mode;

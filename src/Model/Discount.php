@@ -101,57 +101,97 @@ final class Discount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?int
+    /**
+     * The ID of the organization discount.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ULID of the organization the discount applies to.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getType(): ?string
+    /**
+     * The machine name of the discount type.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getTypeLabel(): ?string
+    /**
+     * The label of the discount type.
+     *
+     * @return string|null
+     */
     public function getTypeLabel(): ?string
     {
         return $this->typeLabel;
     }
-    //public function getStatus(): ?string
+    /**
+     * The status of the discount.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getCommitment(): ?\Upsun\Model\DiscountCommitment
+    /**
+     * @return \Upsun\Model\DiscountCommitment|null
+     */
     public function getCommitment(): ?\Upsun\Model\DiscountCommitment
     {
         return $this->commitment;
     }
-    //public function getTotalMonths(): ?int
+    /**
+     * The contract length in months (if applicable).
+     *
+     * @return int|null
+     */
     public function getTotalMonths(): ?int
     {
         return $this->totalMonths;
     }
-    //public function getDiscount(): ?\Upsun\Model\DiscountDiscount
+    /**
+     * @return \Upsun\Model\DiscountDiscount|null
+     */
     public function getDiscount(): ?\Upsun\Model\DiscountDiscount
     {
         return $this->discount;
     }
-    //public function getConfig(): ?object
+    /**
+     * The discount type specific configuration.
+     *
+     * @return object|null
+     */
     public function getConfig(): ?object
     {
         return $this->config;
     }
-    //public function getStartAt(): ?\DateTime
+    /**
+     * The start time of the discount period.
+     *
+     * @return \DateTime|null
+     */
     public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
-    //public function getEndAt(): ?\DateTime
+    /**
+     * The end time of the discount period (if applicable).
+     *
+     * @return \DateTime|null
+     */
     public function getEndAt(): ?\DateTime
     {
         return $this->endAt;

@@ -61,7 +61,11 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUserIds(): ?[]
+    /**
+     * The organization members.
+     *
+     * @return string[]|null
+     */
     public function getUserIds(): ?array
     {
         return $this->userIds;

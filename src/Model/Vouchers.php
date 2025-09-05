@@ -85,37 +85,63 @@ final class Vouchers implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUuid(): ?string
+    /**
+     * The uuid of the user.
+     *
+     * @return string|null
+     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
-    //public function getVouchersTotal(): ?string
+    /**
+     * The total voucher credit given to the user.
+     *
+     * @return string|null
+     */
     public function getVouchersTotal(): ?string
     {
         return $this->vouchersTotal;
     }
-    //public function getVouchersApplied(): ?string
+    /**
+     * The part of total voucher credit applied to orders.
+     *
+     * @return string|null
+     */
     public function getVouchersApplied(): ?string
     {
         return $this->vouchersApplied;
     }
-    //public function getVouchersRemainingBalance(): ?string
+    /**
+     * The remaining voucher credit, available for future orders.
+     *
+     * @return string|null
+     */
     public function getVouchersRemainingBalance(): ?string
     {
         return $this->vouchersRemainingBalance;
     }
-    //public function getCurrency(): ?string
+    /**
+     * The currency of the vouchers.
+     *
+     * @return string|null
+     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
-    //public function getVouchers(): ?[]
+    /**
+     * Array of vouchers.
+     *
+     * @return \Upsun\Model\VouchersVouchersInner[]|null
+     */
     public function getVouchers(): ?array
     {
         return $this->vouchers;
     }
-    //public function getLinks(): ?\Upsun\Model\VouchersLinks
+    /**
+     * @return \Upsun\Model\VouchersLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\VouchersLinks
     {
         return $this->links;

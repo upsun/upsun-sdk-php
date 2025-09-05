@@ -65,12 +65,20 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * The number of viewer user licenses.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total price for viewer user licenses.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;

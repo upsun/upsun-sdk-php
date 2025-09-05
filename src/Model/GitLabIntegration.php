@@ -101,57 +101,79 @@ final class GitLabIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getFetchBranches(): bool
+    /**
+     * @return bool
+     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
-    //public function getPruneBranches(): bool
+    /**
+     * @return bool
+     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
-    //public function getEnvironmentInitResources(): string
+    /**
+     * @return string
+     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
-    //public function getBaseUrl(): string
+    /**
+     * @return string
+     */
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
-    //public function getProject(): string
+    /**
+     * @return string
+     */
     public function getProject(): string
     {
         return $this->project;
     }
-    //public function getBuildMergeRequests(): bool
+    /**
+     * @return bool
+     */
     public function getBuildMergeRequests(): bool
     {
         return $this->buildMergeRequests;
     }
-    //public function getBuildWipMergeRequests(): bool
+    /**
+     * @return bool
+     */
     public function getBuildWipMergeRequests(): bool
     {
         return $this->buildWipMergeRequests;
     }
-    //public function getMergeRequestsCloneParentData(): bool
+    /**
+     * @return bool
+     */
     public function getMergeRequestsCloneParentData(): bool
     {
         return $this->mergeRequestsCloneParentData;

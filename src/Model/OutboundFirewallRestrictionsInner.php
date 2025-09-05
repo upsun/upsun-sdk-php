@@ -73,22 +73,30 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getProtocol(): string
+    /**
+     * @return string
+     */
     public function getProtocol(): string
     {
         return $this->protocol;
     }
-    //public function getIps(): []
+    /**
+     * @return string[]
+     */
     public function getIps(): array
     {
         return $this->ips;
     }
-    //public function getDomains(): []
+    /**
+     * @return string[]
+     */
     public function getDomains(): array
     {
         return $this->domains;
     }
-    //public function getPorts(): []
+    /**
+     * @return int[]
+     */
     public function getPorts(): array
     {
         return $this->ports;

@@ -65,12 +65,20 @@ final class TeamCounts implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getMemberCount(): ?int
+    /**
+     * Total count of members of the team.
+     *
+     * @return int|null
+     */
     public function getMemberCount(): ?int
     {
         return $this->memberCount;
     }
-    //public function getProjectCount(): ?int
+    /**
+     * Total count of projects that the team has access to.
+     *
+     * @return int|null
+     */
     public function getProjectCount(): ?int
     {
         return $this->projectCount;

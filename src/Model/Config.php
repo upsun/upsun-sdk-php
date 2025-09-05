@@ -125,87 +125,121 @@ final class Config implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getNewrelic(): ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\NewRelicLogForwardingIntegrationConfigurations|null
+     */
     public function getNewrelic(): ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations
     {
         return $this->newrelic;
     }
-    //public function getSumologic(): ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
+     */
     public function getSumologic(): ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations
     {
         return $this->sumologic;
     }
-    //public function getSplunk(): ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
+     */
     public function getSplunk(): ?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations
     {
         return $this->splunk;
     }
-    //public function getHttplog(): ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
+     */
     public function getHttplog(): ?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations
     {
         return $this->httplog;
     }
-    //public function getSyslog(): ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
+     */
     public function getSyslog(): ?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations
     {
         return $this->syslog;
     }
-    //public function getWebhook(): ?\Upsun\Model\WebhookIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\WebhookIntegrationConfigurations|null
+     */
     public function getWebhook(): ?\Upsun\Model\WebhookIntegrationConfigurations
     {
         return $this->webhook;
     }
-    //public function getScript(): ?\Upsun\Model\ScriptIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\ScriptIntegrationConfigurations|null
+     */
     public function getScript(): ?\Upsun\Model\ScriptIntegrationConfigurations
     {
         return $this->script;
     }
-    //public function getGithub(): ?\Upsun\Model\GitHubIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\GitHubIntegrationConfigurations|null
+     */
     public function getGithub(): ?\Upsun\Model\GitHubIntegrationConfigurations
     {
         return $this->github;
     }
-    //public function getGitlab(): ?\Upsun\Model\GitLabIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\GitLabIntegrationConfigurations|null
+     */
     public function getGitlab(): ?\Upsun\Model\GitLabIntegrationConfigurations
     {
         return $this->gitlab;
     }
-    //public function getBitbucket(): ?\Upsun\Model\BitbucketIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\BitbucketIntegrationConfigurations|null
+     */
     public function getBitbucket(): ?\Upsun\Model\BitbucketIntegrationConfigurations
     {
         return $this->bitbucket;
     }
-    //public function getBitbucketServer(): ?\Upsun\Model\BitbucketServerIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\BitbucketServerIntegrationConfigurations|null
+     */
     public function getBitbucketServer(): ?\Upsun\Model\BitbucketServerIntegrationConfigurations
     {
         return $this->bitbucketServer;
     }
-    //public function getHealthEmail(): ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
+     */
     public function getHealthEmail(): ?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations
     {
         return $this->healthEmail;
     }
-    //public function getHealthWebhook(): ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
+     */
     public function getHealthWebhook(): ?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations
     {
         return $this->healthWebhook;
     }
-    //public function getHealthPagerduty(): ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
+     */
     public function getHealthPagerduty(): ?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations
     {
         return $this->healthPagerduty;
     }
-    //public function getHealthSlack(): ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
+     */
     public function getHealthSlack(): ?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations
     {
         return $this->healthSlack;
     }
-    //public function getCdnFastly(): ?\Upsun\Model\FastlyCDNIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\FastlyCDNIntegrationConfigurations|null
+     */
     public function getCdnFastly(): ?\Upsun\Model\FastlyCDNIntegrationConfigurations
     {
         return $this->cdnFastly;
     }
-    //public function getBlackfire(): ?\Upsun\Model\BlackfireIntegrationConfigurations
+    /**
+     * @return \Upsun\Model\BlackfireIntegrationConfigurations|null
+     */
     public function getBlackfire(): ?\Upsun\Model\BlackfireIntegrationConfigurations
     {
         return $this->blackfire;

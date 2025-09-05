@@ -61,7 +61,9 @@ final class VersionCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRouting(): ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1
+    /**
+     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
+     */
     public function getRouting(): ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1
     {
         return $this->routing;

@@ -77,27 +77,37 @@ final class EnvironmentBranchInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTitle(): string
+    /**
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getCloneParent(): bool
+    /**
+     * @return bool
+     */
     public function getCloneParent(): bool
     {
         return $this->cloneParent;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getResources(): \Upsun\Model\Resources2
+    /**
+     * @return \Upsun\Model\Resources2
+     */
     public function getResources(): \Upsun\Model\Resources2
     {
         return $this->resources;

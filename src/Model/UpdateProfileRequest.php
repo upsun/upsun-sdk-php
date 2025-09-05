@@ -109,67 +109,119 @@ final class UpdateProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getDisplayName(): ?string
+    /**
+     * The user's display name.
+     *
+     * @return string|null
+     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
-    //public function getUsername(): ?string
+    /**
+     * The user's username.
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-    //public function getCurrentPassword(): ?string
+    /**
+     * The user's current password.
+     *
+     * @return string|null
+     */
     public function getCurrentPassword(): ?string
     {
         return $this->currentPassword;
     }
-    //public function getPassword(): ?string
+    /**
+     * The user's new password.
+     *
+     * @return string|null
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
-    //public function getCompanyType(): ?string
+    /**
+     * The company type.
+     *
+     * @return string|null
+     */
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
-    //public function getCompanyName(): ?string
+    /**
+     * The name of the company.
+     *
+     * @return string|null
+     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
-    //public function getVatNumber(): ?string
+    /**
+     * The vat number of the user.
+     *
+     * @return string|null
+     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
-    //public function getCompanyRole(): ?string
+    /**
+     * The role of the user in the company.
+     *
+     * @return string|null
+     */
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
-    //public function getMarketing(): ?bool
+    /**
+     * Flag if the user agreed to receive marketing communication.
+     *
+     * @return bool|null
+     */
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
-    //public function getUiColorscheme(): ?string
+    /**
+     * The user's chosen color scheme for user interfaces. Available values are 'light' and 'dark'.
+     *
+     * @return string|null
+     */
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
-    //public function getDefaultCatalog(): ?string
+    /**
+     * The URL of a catalog file which overrides the default.
+     *
+     * @return string|null
+     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
-    //public function getProjectOptionsUrl(): ?string
+    /**
+     * The URL of an account-wide project options file.
+     *
+     * @return string|null
+     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
-    //public function getPicture(): ?string
+    /**
+     * Url of the user's picture.
+     *
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;

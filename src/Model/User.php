@@ -121,82 +121,146 @@ final class User implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): string
+    /**
+     * The ID of the user.
+     *
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
-    //public function getDeactivated(): bool
+    /**
+     * Whether the user has been deactivated.
+     *
+     * @return bool
+     */
     public function getDeactivated(): bool
     {
         return $this->deactivated;
     }
-    //public function getNamespace(): string
+    /**
+     * The namespace in which the user's username is unique.
+     *
+     * @return string
+     */
     public function getNamespace(): string
     {
         return $this->namespace;
     }
-    //public function getUsername(): string
+    /**
+     * The user's username.
+     *
+     * @return string
+     */
     public function getUsername(): string
     {
         return $this->username;
     }
-    //public function getEmail(): string
+    /**
+     * The user's email address.
+     *
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
-    //public function getEmailVerified(): bool
+    /**
+     * Whether the user's email address has been verified.
+     *
+     * @return bool
+     */
     public function getEmailVerified(): bool
     {
         return $this->emailVerified;
     }
-    //public function getFirstName(): string
+    /**
+     * The user's first name.
+     *
+     * @return string
+     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
-    //public function getLastName(): string
+    /**
+     * The user's last name.
+     *
+     * @return string
+     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
-    //public function getPicture(): string
+    /**
+     * The user's picture.
+     *
+     * @return string
+     */
     public function getPicture(): string
     {
         return $this->picture;
     }
-    //public function getCompany(): string
+    /**
+     * The user's company.
+     *
+     * @return string
+     */
     public function getCompany(): string
     {
         return $this->company;
     }
-    //public function getWebsite(): string
+    /**
+     * The user's website.
+     *
+     * @return string
+     */
     public function getWebsite(): string
     {
         return $this->website;
     }
-    //public function getCountry(): string
+    /**
+     * The user's ISO 3166-1 alpha-2 country code.
+     *
+     * @return string
+     */
     public function getCountry(): string
     {
         return $this->country;
     }
-    //public function getCreatedAt(): \DateTime
+    /**
+     * The date and time when the user was created.
+     *
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * The date and time when the user was last updated.
+     *
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getConsentedAt(): ?\DateTime
+    /**
+     * The date and time when the user consented to the Terms of Service.
+     *
+     * @return \DateTime|null
+     */
     public function getConsentedAt(): ?\DateTime
     {
         return $this->consentedAt;
     }
-    //public function getConsentMethod(): ?string
+    /**
+     * The method by which the user consented to the Terms of Service.
+     *
+     * @return string|null
+     */
     public function getConsentMethod(): ?string
     {
         return $this->consentMethod;

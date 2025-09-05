@@ -97,52 +97,86 @@ final class ProjectReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): string
+    /**
+     * The ID of the project.
+     *
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
-    //public function getOrganizationId(): string
+    /**
+     * The ID of the organization.
+     *
+     * @return string
+     */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
-    //public function getSubscriptionId(): string
+    /**
+     * The ID of the subscription.
+     *
+     * @return string
+     */
     public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
     }
-    //public function getRegion(): string
+    /**
+     * The machine name of the region where the project is located.
+     *
+     * @return string
+     */
     public function getRegion(): string
     {
         return $this->region;
     }
-    //public function getTitle(): string
+    /**
+     * The title of the project.
+     *
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
-    //public function getType(): \Upsun\Model\OrganizationProjectType
+    /**
+     * @return \Upsun\Model\OrganizationProjectType
+     */
     public function getType(): \Upsun\Model\OrganizationProjectType
     {
         return $this->type;
     }
-    //public function getPlan(): \Upsun\Model\OrganizationProjectPlan
+    /**
+     * @return \Upsun\Model\OrganizationProjectPlan
+     */
     public function getPlan(): \Upsun\Model\OrganizationProjectPlan
     {
         return $this->plan;
     }
-    //public function getStatus(): \Upsun\Model\OrganizationProjectStatus
+    /**
+     * @return \Upsun\Model\OrganizationProjectStatus
+     */
     public function getStatus(): \Upsun\Model\OrganizationProjectStatus
     {
         return $this->status;
     }
-    //public function getCreatedAt(): \DateTime
+    /**
+     * The date and time when the project was created.
+     *
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * The date and time when the project was last updated.
+     *
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;

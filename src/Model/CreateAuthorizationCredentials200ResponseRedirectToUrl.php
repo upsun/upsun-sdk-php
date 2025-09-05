@@ -65,12 +65,20 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getReturnUrl(): ?string
+    /**
+     * Return URL after payment completion.
+     *
+     * @return string|null
+     */
     public function getReturnUrl(): ?string
     {
         return $this->returnUrl;
     }
-    //public function getUrl(): ?string
+    /**
+     * URL for payment finalization.
+     *
+     * @return string|null
+     */
     public function getUrl(): ?string
     {
         return $this->url;

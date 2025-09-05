@@ -73,22 +73,30 @@ final class CertificateCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCertificate(): string
+    /**
+     * @return string
+     */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
-    //public function getKey(): string
+    /**
+     * @return string
+     */
     public function getKey(): string
     {
         return $this->key;
     }
-    //public function getChain(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getChain(): ?array
     {
         return $this->chain;
     }
-    //public function getIsInvalid(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;

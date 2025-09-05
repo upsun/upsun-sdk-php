@@ -61,7 +61,9 @@ final class ImagesValueValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAvailable(): bool
+    /**
+     * @return bool
+     */
     public function getAvailable(): bool
     {
         return $this->available;

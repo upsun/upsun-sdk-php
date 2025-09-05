@@ -109,67 +109,93 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getDeployHost(): string
+    /**
+     * @return string
+     */
     public function getDeployHost(): string
     {
         return $this->deployHost;
     }
-    //public function getDeployPort(): int
+    /**
+     * @return int
+     */
     public function getDeployPort(): int
     {
         return $this->deployPort;
     }
-    //public function getSshHost(): string
+    /**
+     * @return string
+     */
     public function getSshHost(): string
     {
         return $this->sshHost;
     }
-    //public function getHosts(): []
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+     */
     public function getHosts(): array
     {
         return $this->hosts;
     }
-    //public function getAutoMounts(): bool
+    /**
+     * @return bool
+     */
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
     }
-    //public function getExcludedMounts(): []
+    /**
+     * @return string[]
+     */
     public function getExcludedMounts(): array
     {
         return $this->excludedMounts;
     }
-    //public function getEnforcedMounts(): object
+    /**
+     * @return object
+     */
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
-    //public function getAutoCrons(): bool
+    /**
+     * @return bool
+     */
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
-    //public function getAutoNginx(): bool
+    /**
+     * @return bool
+     */
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
-    //public function getMaintenanceMode(): bool
+    /**
+     * @return bool
+     */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
-    //public function getGuardrailsPhase(): int
+    /**
+     * @return int
+     */
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;

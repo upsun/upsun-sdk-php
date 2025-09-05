@@ -81,32 +81,54 @@ final class OrganizationAlertConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * Type of alert (e.g. \"billing\")
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getActive(): ?bool
+    /**
+     * Whether the billing alert should be active or not.
+     *
+     * @return bool|null
+     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
-    //public function getAlertsSent(): ?float
+    /**
+     * Number of alerts sent.
+     *
+     * @return float|null
+     */
     public function getAlertsSent(): ?float
     {
         return $this->alertsSent;
     }
-    //public function getLastAlertAt(): ?string
+    /**
+     * The datetime the alert was last sent.
+     *
+     * @return string|null
+     */
     public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
-    //public function getUpdatedAt(): ?string
+    /**
+     * The datetime the alert was last updated.
+     *
+     * @return string|null
+     */
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
-    //public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
+    /**
+     * @return \Upsun\Model\OrganizationAlertConfigConfig|null
+     */
     public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
     {
         return $this->config;

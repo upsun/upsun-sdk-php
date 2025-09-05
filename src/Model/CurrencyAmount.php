@@ -73,22 +73,38 @@ final class CurrencyAmount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getFormatted(): ?string
+    /**
+     * Formatted currency value.
+     *
+     * @return string|null
+     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
-    //public function getAmount(): ?float
+    /**
+     * Plain amount.
+     *
+     * @return float|null
+     */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
-    //public function getCurrencyCode(): ?string
+    /**
+     * Currency code.
+     *
+     * @return string|null
+     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
-    //public function getCurrencySymbol(): ?string
+    /**
+     * Currency symbol.
+     *
+     * @return string|null
+     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;

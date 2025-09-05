@@ -65,12 +65,16 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOnly(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getOnly(): ?array
     {
         return $this->only;
     }
-    //public function getExclude(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getExclude(): ?array
     {
         return $this->exclude;

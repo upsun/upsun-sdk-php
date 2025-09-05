@@ -93,47 +93,81 @@ final class OrganizationMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the user.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ID of the organization.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getUserId(): ?string
+    /**
+     * The ID of the user.
+     *
+     * @return string|null
+     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
-    //public function getPermissions(): ?[]
+    /**
+     * The organization member permissions.
+     *
+     * @return string[]|null
+     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
-    //public function getLevel(): ?string
+    /**
+     * Access level of the member.
+     *
+     * @return string|null
+     */
     public function getLevel(): ?string
     {
         return $this->level;
     }
-    //public function getOwner(): ?bool
+    /**
+     * Whether the member is the organization owner.
+     *
+     * @return bool|null
+     */
     public function getOwner(): ?bool
     {
         return $this->owner;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the member was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the member was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getLinks(): ?\Upsun\Model\OrganizationMemberLinks
+    /**
+     * @return \Upsun\Model\OrganizationMemberLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\OrganizationMemberLinks
     {
         return $this->links;

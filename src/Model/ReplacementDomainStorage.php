@@ -89,42 +89,58 @@ final class ReplacementDomainStorage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getProject(): ?string
+    /**
+     * @return string|null
+     */
     public function getProject(): ?string
     {
         return $this->project;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getRegisteredName(): ?string
+    /**
+     * @return string|null
+     */
     public function getRegisteredName(): ?string
     {
         return $this->registeredName;
     }
-    //public function getAttributes(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
-    //public function getReplacementFor(): ?string
+    /**
+     * @return string|null
+     */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;

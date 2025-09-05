@@ -81,32 +81,44 @@ final class Commit implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSha(): string
+    /**
+     * @return string
+     */
     public function getSha(): string
     {
         return $this->sha;
     }
-    //public function getAuthor(): \Upsun\Model\TheInformationAboutTheAuthor
+    /**
+     * @return \Upsun\Model\TheInformationAboutTheAuthor
+     */
     public function getAuthor(): \Upsun\Model\TheInformationAboutTheAuthor
     {
         return $this->author;
     }
-    //public function getCommitter(): \Upsun\Model\TheInformationAboutTheCommitter
+    /**
+     * @return \Upsun\Model\TheInformationAboutTheCommitter
+     */
     public function getCommitter(): \Upsun\Model\TheInformationAboutTheCommitter
     {
         return $this->committer;
     }
-    //public function getMessage(): string
+    /**
+     * @return string
+     */
     public function getMessage(): string
     {
         return $this->message;
     }
-    //public function getTree(): string
+    /**
+     * @return string
+     */
     public function getTree(): string
     {
         return $this->tree;
     }
-    //public function getParents(): []
+    /**
+     * @return string[]
+     */
     public function getParents(): array
     {
         return $this->parents;

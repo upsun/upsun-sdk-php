@@ -61,7 +61,11 @@ final class CreateTeamMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUserId(): string
+    /**
+     * ID of the user.
+     *
+     * @return string
+     */
     public function getUserId(): string
     {
         return $this->userId;

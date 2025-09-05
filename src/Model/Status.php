@@ -65,12 +65,16 @@ final class Status implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCode(): string
+    /**
+     * @return string
+     */
     public function getCode(): string
     {
         return $this->code;
     }
-    //public function getMessage(): string
+    /**
+     * @return string
+     */
     public function getMessage(): string
     {
         return $this->message;

@@ -101,57 +101,79 @@ final class RoutePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPrimary(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPrimary(): ?bool
     {
         return $this->primary;
     }
-    //public function getId(): ?string
+    /**
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getProductionUrl(): ?string
+    /**
+     * @return string|null
+     */
     public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
     }
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
+    /**
+     * @return \Upsun\Model\TLSSettingsForTheRoute1|null
+     */
     public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
     {
         return $this->tls;
     }
-    //public function getTo(): string
+    /**
+     * @return string
+     */
     public function getTo(): string
     {
         return $this->to;
     }
-    //public function getRedirects(): ?\Upsun\Model\TheConfigurationOfTheRedirects1
+    /**
+     * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
+     */
     public function getRedirects(): ?\Upsun\Model\TheConfigurationOfTheRedirects1
     {
         return $this->redirects;
     }
-    //public function getCache(): ?\Upsun\Model\CacheConfiguration1
+    /**
+     * @return \Upsun\Model\CacheConfiguration1|null
+     */
     public function getCache(): ?\Upsun\Model\CacheConfiguration1
     {
         return $this->cache;
     }
-    //public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
+    /**
+     * @return \Upsun\Model\ServerSideIncludeConfiguration|null
+     */
     public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
     {
         return $this->ssi;
     }
-    //public function getUpstream(): string
+    /**
+     * @return string
+     */
     public function getUpstream(): string
     {
         return $this->upstream;

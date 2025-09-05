@@ -77,27 +77,37 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getExtra(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
-    //public function getHeaders(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
-    //public function getTlsVerify(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;

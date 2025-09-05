@@ -61,7 +61,11 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRecoveryCodes(): ?[]
+    /**
+     * A list of recovery codes for the MFA enrollment.
+     *
+     * @return string[]|null
+     */
     public function getRecoveryCodes(): ?array
     {
         return $this->recoveryCodes;

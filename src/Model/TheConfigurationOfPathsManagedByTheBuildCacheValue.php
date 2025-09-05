@@ -73,22 +73,30 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getDirectory(): string
+    /**
+     * @return string
+     */
     public function getDirectory(): string
     {
         return $this->directory;
     }
-    //public function getWatch(): []
+    /**
+     * @return string[]
+     */
     public function getWatch(): array
     {
         return $this->watch;
     }
-    //public function getAllowStale(): bool
+    /**
+     * @return bool
+     */
     public function getAllowStale(): bool
     {
         return $this->allowStale;
     }
-    //public function getShareBetweenApps(): bool
+    /**
+     * @return bool
+     */
     public function getShareBetweenApps(): bool
     {
         return $this->shareBetweenApps;

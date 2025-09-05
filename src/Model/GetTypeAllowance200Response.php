@@ -61,7 +61,9 @@ final class GetTypeAllowance200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCurrencies(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies
+    /**
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
+     */
     public function getCurrencies(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies
     {
         return $this->currencies;

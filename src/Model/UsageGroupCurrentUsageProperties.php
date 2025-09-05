@@ -93,47 +93,83 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTitle(): ?string
+    /**
+     * The title of the usage group.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getType(): ?bool
+    /**
+     * The usage group type.
+     *
+     * @return bool|null
+     */
     public function getType(): ?bool
     {
         return $this->type;
     }
-    //public function getCurrentUsage(): ?float
+    /**
+     * The value of current usage for the group.
+     *
+     * @return float|null
+     */
     public function getCurrentUsage(): ?float
     {
         return $this->currentUsage;
     }
-    //public function getCurrentUsageFormatted(): ?string
+    /**
+     * The formatted value of current usage for the group.
+     *
+     * @return string|null
+     */
     public function getCurrentUsageFormatted(): ?string
     {
         return $this->currentUsageFormatted;
     }
-    //public function getNotCharged(): ?bool
+    /**
+     * Whether the group is not charged for the subscription.
+     *
+     * @return bool|null
+     */
     public function getNotCharged(): ?bool
     {
         return $this->notCharged;
     }
-    //public function getFreeQuantity(): ?float
+    /**
+     * The amount of free usage for the group.
+     *
+     * @return float|null
+     */
     public function getFreeQuantity(): ?float
     {
         return $this->freeQuantity;
     }
-    //public function getFreeQuantityFormatted(): ?string
+    /**
+     * The formatted amount of free usage for the group.
+     *
+     * @return string|null
+     */
     public function getFreeQuantityFormatted(): ?string
     {
         return $this->freeQuantityFormatted;
     }
-    //public function getDailyAverage(): ?float
+    /**
+     * The daily average usage calculated for the group.
+     *
+     * @return float|null
+     */
     public function getDailyAverage(): ?float
     {
         return $this->dailyAverage;
     }
-    //public function getDailyAverageFormatted(): ?string
+    /**
+     * The formatted daily average usage calculated for the group.
+     *
+     * @return string|null
+     */
     public function getDailyAverageFormatted(): ?string
     {
         return $this->dailyAverageFormatted;

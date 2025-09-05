@@ -69,17 +69,23 @@ final class TheDisksResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTemporary(): int
+    /**
+     * @return int
+     */
     public function getTemporary(): int
     {
         return $this->temporary;
     }
-    //public function getInstance(): int
+    /**
+     * @return int
+     */
     public function getInstance(): int
     {
         return $this->instance;
     }
-    //public function getStorage(): int
+    /**
+     * @return int
+     */
     public function getStorage(): int
     {
         return $this->storage;

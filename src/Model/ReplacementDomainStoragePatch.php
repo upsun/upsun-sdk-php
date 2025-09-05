@@ -61,7 +61,9 @@ final class ReplacementDomainStoragePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;

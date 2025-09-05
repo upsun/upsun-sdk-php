@@ -101,57 +101,79 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getFetchBranches(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
-    //public function getPruneBranches(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
-    //public function getEnvironmentInitResources(): ?string
+    /**
+     * @return string|null
+     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
-    //public function getUsername(): string
+    /**
+     * @return string
+     */
     public function getUsername(): string
     {
         return $this->username;
     }
-    //public function getToken(): string
+    /**
+     * @return string
+     */
     public function getToken(): string
     {
         return $this->token;
     }
-    //public function getProject(): string
+    /**
+     * @return string
+     */
     public function getProject(): string
     {
         return $this->project;
     }
-    //public function getRepository(): string
+    /**
+     * @return string
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
-    //public function getBuildPullRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
-    //public function getPullRequestsCloneParentData(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;

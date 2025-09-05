@@ -73,22 +73,38 @@ final class TeamMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTeamId(): ?string
+    /**
+     * The ID of the team.
+     *
+     * @return string|null
+     */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
-    //public function getUserId(): ?string
+    /**
+     * The ID of the user.
+     *
+     * @return string|null
+     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the team member was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the team member was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

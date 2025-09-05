@@ -73,22 +73,30 @@ final class FoundationDeploymentTargetCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getHosts(): ?[]
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+     */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
-    //public function getUseDedicatedGrid(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getUseDedicatedGrid(): ?bool
     {
         return $this->useDedicatedGrid;

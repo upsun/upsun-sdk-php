@@ -89,42 +89,74 @@ final class StringFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEq(): ?string
+    /**
+     * Equal
+     *
+     * @return string|null
+     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
-    //public function getNe(): ?string
+    /**
+     * Not equal
+     *
+     * @return string|null
+     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
-    //public function getIn(): ?string
+    /**
+     * In (comma-separated list)
+     *
+     * @return string|null
+     */
     public function getIn(): ?string
     {
         return $this->in;
     }
-    //public function getNin(): ?string
+    /**
+     * Not in (comma-separated list)
+     *
+     * @return string|null
+     */
     public function getNin(): ?string
     {
         return $this->nin;
     }
-    //public function getBetween(): ?string
+    /**
+     * Between (comma-separated list)
+     *
+     * @return string|null
+     */
     public function getBetween(): ?string
     {
         return $this->between;
     }
-    //public function getContains(): ?string
+    /**
+     * Contains
+     *
+     * @return string|null
+     */
     public function getContains(): ?string
     {
         return $this->contains;
     }
-    //public function getStarts(): ?string
+    /**
+     * Starts with
+     *
+     * @return string|null
+     */
     public function getStarts(): ?string
     {
         return $this->starts;
     }
-    //public function getEnds(): ?string
+    /**
+     * Ends with
+     *
+     * @return string|null
+     */
     public function getEnds(): ?string
     {
         return $this->ends;

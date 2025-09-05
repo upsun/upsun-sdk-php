@@ -61,7 +61,9 @@ final class ListOrgInvoices200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getItems(): ?[]
+    /**
+     * @return \Upsun\Model\Invoice[]|null
+     */
     public function getItems(): ?array
     {
         return $this->items;

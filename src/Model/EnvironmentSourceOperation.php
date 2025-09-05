@@ -69,17 +69,23 @@ final class EnvironmentSourceOperation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getApp(): string
+    /**
+     * @return string
+     */
     public function getApp(): string
     {
         return $this->app;
     }
-    //public function getOperation(): string
+    /**
+     * @return string
+     */
     public function getOperation(): string
     {
         return $this->operation;
     }
-    //public function getCommand(): string
+    /**
+     * @return string
+     */
     public function getCommand(): string
     {
         return $this->command;

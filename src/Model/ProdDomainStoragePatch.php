@@ -65,12 +65,16 @@ final class ProdDomainStoragePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
-    //public function getIsDefault(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;

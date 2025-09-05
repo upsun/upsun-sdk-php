@@ -65,12 +65,20 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * Machine name of the category as is listed in zendesk.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getLabel(): ?string
+    /**
+     * The human-readable label of the category.
+     *
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;

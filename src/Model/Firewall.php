@@ -61,7 +61,9 @@ final class Firewall implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOutbound(): []
+    /**
+     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]
+     */
     public function getOutbound(): array
     {
         return $this->outbound;

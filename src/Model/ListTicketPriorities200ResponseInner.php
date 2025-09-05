@@ -73,22 +73,38 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * Machine name of the priority.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getLabel(): ?string
+    /**
+     * The human-readable label of the priority.
+     *
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
-    //public function getShortDescription(): ?string
+    /**
+     * The short description of the priority.
+     *
+     * @return string|null
+     */
     public function getShortDescription(): ?string
     {
         return $this->shortDescription;
     }
-    //public function getDescription(): ?string
+    /**
+     * The long description of the priority.
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;

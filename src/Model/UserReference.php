@@ -89,42 +89,74 @@ final class UserReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the user.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getUsername(): ?string
+    /**
+     * The user's username.
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-    //public function getEmail(): ?string
+    /**
+     * The user's email address.
+     *
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
-    //public function getFirstName(): ?string
+    /**
+     * The user's first name.
+     *
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
-    //public function getLastName(): ?string
+    /**
+     * The user's last name.
+     *
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
-    //public function getPicture(): ?string
+    /**
+     * The user's picture.
+     *
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
-    //public function getMfaEnabled(): ?bool
+    /**
+     * Whether the user has enabled MFA. Note: the built-in MFA feature may not be necessary if the user is linked to a mandatory SSO provider that itself supports MFA (see \"sso_enabled\\\").
+     *
+     * @return bool|null
+     */
     public function getMfaEnabled(): ?bool
     {
         return $this->mfaEnabled;
     }
-    //public function getSsoEnabled(): ?bool
+    /**
+     * Whether the user is linked to a mandatory SSO provider.
+     *
+     * @return bool|null
+     */
     public function getSsoEnabled(): ?bool
     {
         return $this->ssoEnabled;

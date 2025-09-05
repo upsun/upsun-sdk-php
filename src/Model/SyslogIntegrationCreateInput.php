@@ -97,52 +97,72 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getExtra(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
-    //public function getHost(): ?string
+    /**
+     * @return string|null
+     */
     public function getHost(): ?string
     {
         return $this->host;
     }
-    //public function getPort(): ?int
+    /**
+     * @return int|null
+     */
     public function getPort(): ?int
     {
         return $this->port;
     }
-    //public function getProtocol(): ?string
+    /**
+     * @return string|null
+     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
-    //public function getFacility(): ?int
+    /**
+     * @return int|null
+     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
-    //public function getMessageFormat(): ?string
+    /**
+     * @return string|null
+     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
-    //public function getAuthToken(): ?string
+    /**
+     * @return string|null
+     */
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
-    //public function getAuthMode(): ?string
+    /**
+     * @return string|null
+     */
     public function getAuthMode(): ?string
     {
         return $this->authMode;
     }
-    //public function getTlsVerify(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;

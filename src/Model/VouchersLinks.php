@@ -61,7 +61,9 @@ final class VouchersLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf
+    /**
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf
     {
         return $this->self;

@@ -93,47 +93,83 @@ final class LineItem implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): ?string
+    /**
+     * The type of line item.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getLicenseId(): ?float
+    /**
+     * The associated subscription identifier.
+     *
+     * @return float|null
+     */
     public function getLicenseId(): ?float
     {
         return $this->licenseId;
     }
-    //public function getProjectId(): ?string
+    /**
+     * The associated project identifier.
+     *
+     * @return string|null
+     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
-    //public function getProduct(): ?string
+    /**
+     * Display name of the line item product.
+     *
+     * @return string|null
+     */
     public function getProduct(): ?string
     {
         return $this->product;
     }
-    //public function getSku(): ?string
+    /**
+     * The line item product SKU.
+     *
+     * @return string|null
+     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
-    //public function getTotal(): ?float
+    /**
+     * Total price as a decimal.
+     *
+     * @return float|null
+     */
     public function getTotal(): ?float
     {
         return $this->total;
     }
-    //public function getTotalFormatted(): ?string
+    /**
+     * Total price, formatted with currency.
+     *
+     * @return string|null
+     */
     public function getTotalFormatted(): ?string
     {
         return $this->totalFormatted;
     }
-    //public function getComponents(): ?[]
+    /**
+     * The price components for the line item, keyed by type.
+     *
+     * @return \Upsun\Model\LineItemComponent[]|null
+     */
     public function getComponents(): ?array
     {
         return $this->components;
     }
-    //public function getExcludeFromInvoice(): ?bool
+    /**
+     * Line item should not be considered billable.
+     *
+     * @return bool|null
+     */
     public function getExcludeFromInvoice(): ?bool
     {
         return $this->excludeFromInvoice;

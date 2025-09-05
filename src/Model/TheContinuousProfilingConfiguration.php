@@ -61,7 +61,9 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSupportedRuntimes(): []
+    /**
+     * @return string[]
+     */
     public function getSupportedRuntimes(): array
     {
         return $this->supportedRuntimes;

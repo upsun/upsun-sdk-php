@@ -117,77 +117,107 @@ final class OrganizationLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\OrganizationLinksSelf
+    /**
+     * @return \Upsun\Model\OrganizationLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\OrganizationLinksSelf
     {
         return $this->self;
     }
-    //public function getUpdate(): ?\Upsun\Model\OrganizationLinksUpdate
+    /**
+     * @return \Upsun\Model\OrganizationLinksUpdate|null
+     */
     public function getUpdate(): ?\Upsun\Model\OrganizationLinksUpdate
     {
         return $this->update;
     }
-    //public function getDelete(): ?\Upsun\Model\OrganizationLinksDelete
+    /**
+     * @return \Upsun\Model\OrganizationLinksDelete|null
+     */
     public function getDelete(): ?\Upsun\Model\OrganizationLinksDelete
     {
         return $this->delete;
     }
-    //public function getMembers(): ?\Upsun\Model\OrganizationLinksMembers
+    /**
+     * @return \Upsun\Model\OrganizationLinksMembers|null
+     */
     public function getMembers(): ?\Upsun\Model\OrganizationLinksMembers
     {
         return $this->members;
     }
-    //public function getCreateMember(): ?\Upsun\Model\OrganizationLinksCreateMember
+    /**
+     * @return \Upsun\Model\OrganizationLinksCreateMember|null
+     */
     public function getCreateMember(): ?\Upsun\Model\OrganizationLinksCreateMember
     {
         return $this->createMember;
     }
-    //public function getAddress(): ?\Upsun\Model\OrganizationLinksAddress
+    /**
+     * @return \Upsun\Model\OrganizationLinksAddress|null
+     */
     public function getAddress(): ?\Upsun\Model\OrganizationLinksAddress
     {
         return $this->address;
     }
-    //public function getProfile(): ?\Upsun\Model\OrganizationLinksProfile
+    /**
+     * @return \Upsun\Model\OrganizationLinksProfile|null
+     */
     public function getProfile(): ?\Upsun\Model\OrganizationLinksProfile
     {
         return $this->profile;
     }
-    //public function getPaymentSource(): ?\Upsun\Model\OrganizationLinksPaymentSource
+    /**
+     * @return \Upsun\Model\OrganizationLinksPaymentSource|null
+     */
     public function getPaymentSource(): ?\Upsun\Model\OrganizationLinksPaymentSource
     {
         return $this->paymentSource;
     }
-    //public function getOrders(): ?\Upsun\Model\OrganizationLinksOrders
+    /**
+     * @return \Upsun\Model\OrganizationLinksOrders|null
+     */
     public function getOrders(): ?\Upsun\Model\OrganizationLinksOrders
     {
         return $this->orders;
     }
-    //public function getVouchers(): ?\Upsun\Model\OrganizationLinksVouchers
+    /**
+     * @return \Upsun\Model\OrganizationLinksVouchers|null
+     */
     public function getVouchers(): ?\Upsun\Model\OrganizationLinksVouchers
     {
         return $this->vouchers;
     }
-    //public function getApplyVoucher(): ?\Upsun\Model\OrganizationLinksApplyVoucher
+    /**
+     * @return \Upsun\Model\OrganizationLinksApplyVoucher|null
+     */
     public function getApplyVoucher(): ?\Upsun\Model\OrganizationLinksApplyVoucher
     {
         return $this->applyVoucher;
     }
-    //public function getSubscriptions(): ?\Upsun\Model\OrganizationLinksSubscriptions
+    /**
+     * @return \Upsun\Model\OrganizationLinksSubscriptions|null
+     */
     public function getSubscriptions(): ?\Upsun\Model\OrganizationLinksSubscriptions
     {
         return $this->subscriptions;
     }
-    //public function getCreateSubscription(): ?\Upsun\Model\OrganizationLinksCreateSubscription
+    /**
+     * @return \Upsun\Model\OrganizationLinksCreateSubscription|null
+     */
     public function getCreateSubscription(): ?\Upsun\Model\OrganizationLinksCreateSubscription
     {
         return $this->createSubscription;
     }
-    //public function getEstimateSubscription(): ?\Upsun\Model\OrganizationLinksEstimateSubscription
+    /**
+     * @return \Upsun\Model\OrganizationLinksEstimateSubscription|null
+     */
     public function getEstimateSubscription(): ?\Upsun\Model\OrganizationLinksEstimateSubscription
     {
         return $this->estimateSubscription;
     }
-    //public function getMfaEnforcement(): ?\Upsun\Model\OrganizationLinksMfaEnforcement
+    /**
+     * @return \Upsun\Model\OrganizationLinksMfaEnforcement|null
+     */
     public function getMfaEnforcement(): ?\Upsun\Model\OrganizationLinksMfaEnforcement
     {
         return $this->mfaEnforcement;

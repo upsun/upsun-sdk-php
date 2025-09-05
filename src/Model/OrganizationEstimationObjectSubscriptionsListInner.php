@@ -73,22 +73,36 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getLicenseId(): ?string
+    /**
+     * The id of the subscription.
+     *
+     * @return string|null
+     */
     public function getLicenseId(): ?string
     {
         return $this->licenseId;
     }
-    //public function getProjectTitle(): ?string
+    /**
+     * The name of the project.
+     *
+     * @return string|null
+     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total price for the subscription.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-    //public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
+     */
     public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
     {
         return $this->usage;

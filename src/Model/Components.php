@@ -61,7 +61,11 @@ final class Components implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getVoucherVatBaseprice(): ?object
+    /**
+     * stub
+     *
+     * @return object|null
+     */
     public function getVoucherVatBaseprice(): ?object
     {
         return $this->voucherVatBaseprice;

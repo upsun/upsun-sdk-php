@@ -69,17 +69,23 @@ final class RegionEnvironmentalImpact implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getZone(): ?string
+    /**
+     * @return string|null
+     */
     public function getZone(): ?string
     {
         return $this->zone;
     }
-    //public function getCarbonIntensity(): ?string
+    /**
+     * @return string|null
+     */
     public function getCarbonIntensity(): ?string
     {
         return $this->carbonIntensity;
     }
-    //public function getGreen(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getGreen(): ?bool
     {
         return $this->green;

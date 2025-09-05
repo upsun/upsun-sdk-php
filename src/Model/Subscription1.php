@@ -105,62 +105,86 @@ final class Subscription1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getLicenseUri(): string
+    /**
+     * @return string
+     */
     public function getLicenseUri(): string
     {
         return $this->licenseUri;
     }
-    //public function getPlan(): ?string
+    /**
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getEnvironments(): ?int
+    /**
+     * @return int|null
+     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
-    //public function getStorage(): int
+    /**
+     * @return int
+     */
     public function getStorage(): int
     {
         return $this->storage;
     }
-    //public function getIncludedUsers(): int
+    /**
+     * @return int
+     */
     public function getIncludedUsers(): int
     {
         return $this->includedUsers;
     }
-    //public function getSubscriptionManagementUri(): string
+    /**
+     * @return string
+     */
     public function getSubscriptionManagementUri(): string
     {
         return $this->subscriptionManagementUri;
     }
-    //public function getRestricted(): bool
+    /**
+     * @return bool
+     */
     public function getRestricted(): bool
     {
         return $this->restricted;
     }
-    //public function getSuspended(): bool
+    /**
+     * @return bool
+     */
     public function getSuspended(): bool
     {
         return $this->suspended;
     }
-    //public function getUserLicenses(): int
+    /**
+     * @return int
+     */
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
     }
-    //public function getResources(): ?\Upsun\Model\ResourcesLimits
+    /**
+     * @return \Upsun\Model\ResourcesLimits|null
+     */
     public function getResources(): ?\Upsun\Model\ResourcesLimits
     {
         return $this->resources;
     }
-    //public function getResourceValidationUrl(): ?string
+    /**
+     * @return string|null
+     */
     public function getResourceValidationUrl(): ?string
     {
         return $this->resourceValidationUrl;
     }
-    //public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
+    /**
+     * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
+     */
     public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
     {
         return $this->imageTypes;

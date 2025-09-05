@@ -65,12 +65,16 @@ final class SplunkLogForwardingIntegrationConfigurations implements JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
-    //public function getRole(): ?string
+    /**
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;

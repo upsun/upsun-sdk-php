@@ -65,12 +65,16 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getServerUuid(): string
+    /**
+     * @return string
+     */
     public function getServerUuid(): string
     {
         return $this->serverUuid;
     }
-    //public function getServerToken(): string
+    /**
+     * @return string
+     */
     public function getServerToken(): string
     {
         return $this->serverToken;

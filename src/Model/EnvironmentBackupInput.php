@@ -61,7 +61,9 @@ final class EnvironmentBackupInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSafe(): bool
+    /**
+     * @return bool
+     */
     public function getSafe(): bool
     {
         return $this->safe;

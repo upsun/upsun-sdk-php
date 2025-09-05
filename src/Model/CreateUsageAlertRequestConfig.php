@@ -61,7 +61,11 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getThreshold(): ?int
+    /**
+     * The amount after which a usage alert should be triggered.
+     *
+     * @return int|null
+     */
     public function getThreshold(): ?int
     {
         return $this->threshold;

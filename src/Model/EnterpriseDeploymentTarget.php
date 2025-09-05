@@ -89,42 +89,58 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getDeployHost(): string
+    /**
+     * @return string
+     */
     public function getDeployHost(): string
     {
         return $this->deployHost;
     }
-    //public function getDocroots(): []
+    /**
+     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]
+     */
     public function getDocroots(): array
     {
         return $this->docroots;
     }
-    //public function getSiteUrls(): object
+    /**
+     * @return object
+     */
     public function getSiteUrls(): object
     {
         return $this->siteUrls;
     }
-    //public function getSshHosts(): []
+    /**
+     * @return string[]
+     */
     public function getSshHosts(): array
     {
         return $this->sshHosts;
     }
-    //public function getMaintenanceMode(): bool
+    /**
+     * @return bool
+     */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
-    //public function getEnterpriseEnvironmentsMapping(): ?object
+    /**
+     * @return object|null
+     */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;

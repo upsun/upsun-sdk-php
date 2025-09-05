@@ -61,7 +61,11 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSid(): ?string
+    /**
+     * Session ID of the verification.
+     *
+     * @return string|null
+     */
     public function getSid(): ?string
     {
         return $this->sid;

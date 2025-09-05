@@ -73,22 +73,38 @@ final class OrderBillingPeriodLabel implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getFormatted(): ?string
+    /**
+     * The renderable label for the billing cycle.
+     *
+     * @return string|null
+     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
-    //public function getMonth(): ?string
+    /**
+     * The month of the billing cycle.
+     *
+     * @return string|null
+     */
     public function getMonth(): ?string
     {
         return $this->month;
     }
-    //public function getYear(): ?string
+    /**
+     * The year of the billing cycle.
+     *
+     * @return string|null
+     */
     public function getYear(): ?string
     {
         return $this->year;
     }
-    //public function getNextMonth(): ?string
+    /**
+     * The name of the next month following this billing cycle.
+     *
+     * @return string|null
+     */
     public function getNextMonth(): ?string
     {
         return $this->nextMonth;

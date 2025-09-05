@@ -65,12 +65,16 @@ final class DataRetentionConfigurationValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getMaxBackups(): int
+    /**
+     * @return int
+     */
     public function getMaxBackups(): int
     {
         return $this->maxBackups;
     }
-    //public function getDefaultConfig(): \Upsun\Model\DefaultConfig
+    /**
+     * @return \Upsun\Model\DefaultConfig
+     */
     public function getDefaultConfig(): \Upsun\Model\DefaultConfig
     {
         return $this->defaultConfig;

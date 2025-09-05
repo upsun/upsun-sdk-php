@@ -69,17 +69,23 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getLastDeploymentSuccessful(): bool
+    /**
+     * @return bool
+     */
     public function getLastDeploymentSuccessful(): bool
     {
         return $this->lastDeploymentSuccessful;
     }
-    //public function getLastDeploymentAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getLastDeploymentAt(): \DateTime
     {
         return $this->lastDeploymentAt;
     }
-    //public function getCrons(): \Upsun\Model\TheCronsDeploymentState
+    /**
+     * @return \Upsun\Model\TheCronsDeploymentState
+     */
     public function getCrons(): \Upsun\Model\TheCronsDeploymentState
     {
         return $this->crons;

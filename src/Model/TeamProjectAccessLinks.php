@@ -69,17 +69,23 @@ final class TeamProjectAccessLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\TeamProjectAccessLinksSelf
+    /**
+     * @return \Upsun\Model\TeamProjectAccessLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\TeamProjectAccessLinksSelf
     {
         return $this->self;
     }
-    //public function getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
+    /**
+     * @return \Upsun\Model\TeamProjectAccessLinksUpdate|null
+     */
     public function getUpdate(): ?\Upsun\Model\TeamProjectAccessLinksUpdate
     {
         return $this->update;
     }
-    //public function getDelete(): ?\Upsun\Model\TeamProjectAccessLinksDelete
+    /**
+     * @return \Upsun\Model\TeamProjectAccessLinksDelete|null
+     */
     public function getDelete(): ?\Upsun\Model\TeamProjectAccessLinksDelete
     {
         return $this->delete;

@@ -77,27 +77,37 @@ final class SpecificOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getExpires(): ?string
+    /**
+     * @return string|null
+     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
-    //public function getPassthru(): ?string
+    /**
+     * @return string|null
+     */
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
-    //public function getScripts(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getScripts(): ?bool
     {
         return $this->scripts;
     }
-    //public function getAllow(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getAllow(): ?bool
     {
         return $this->allow;
     }
-    //public function getHeaders(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getHeaders(): ?array
     {
         return $this->headers;

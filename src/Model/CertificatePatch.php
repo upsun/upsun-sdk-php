@@ -65,12 +65,16 @@ final class CertificatePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getChain(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getChain(): ?array
     {
         return $this->chain;
     }
-    //public function getIsInvalid(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;

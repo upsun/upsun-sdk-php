@@ -65,12 +65,16 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    //public function getMaxRequestSize(): string
+    /**
+     * @return string
+     */
     public function getMaxRequestSize(): string
     {
         return $this->maxRequestSize;

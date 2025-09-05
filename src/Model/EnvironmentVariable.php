@@ -113,72 +113,100 @@ final class EnvironmentVariable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getAttributes(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
-    //public function getValue(): ?string
+    /**
+     * @return string|null
+     */
     public function getValue(): ?string
     {
         return $this->value;
     }
-    //public function getIsJson(): bool
+    /**
+     * @return bool
+     */
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
-    //public function getIsSensitive(): bool
+    /**
+     * @return bool
+     */
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
-    //public function getVisibleBuild(): bool
+    /**
+     * @return bool
+     */
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
-    //public function getVisibleRuntime(): bool
+    /**
+     * @return bool
+     */
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }
-    //public function getProject(): string
+    /**
+     * @return string
+     */
     public function getProject(): string
     {
         return $this->project;
     }
-    //public function getEnvironment(): string
+    /**
+     * @return string
+     */
     public function getEnvironment(): string
     {
         return $this->environment;
     }
-    //public function getInherited(): bool
+    /**
+     * @return bool
+     */
     public function getInherited(): bool
     {
         return $this->inherited;
     }
-    //public function getIsEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
-    //public function getIsInheritable(): bool
+    /**
+     * @return bool
+     */
     public function getIsInheritable(): bool
     {
         return $this->isInheritable;

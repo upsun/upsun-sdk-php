@@ -69,17 +69,23 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getBuild(): string
+    /**
+     * @return string
+     */
     public function getBuild(): string
     {
         return $this->build;
     }
-    //public function getDeploy(): string
+    /**
+     * @return string
+     */
     public function getDeploy(): string
     {
         return $this->deploy;
     }
-    //public function getPostDeploy(): string
+    /**
+     * @return string
+     */
     public function getPostDeploy(): string
     {
         return $this->postDeploy;

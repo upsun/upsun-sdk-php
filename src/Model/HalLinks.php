@@ -69,17 +69,23 @@ final class HalLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\HalLinksSelf
+    /**
+     * @return \Upsun\Model\HalLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\HalLinksSelf
     {
         return $this->self;
     }
-    //public function getPrevious(): ?\Upsun\Model\HalLinksPrevious
+    /**
+     * @return \Upsun\Model\HalLinksPrevious|null
+     */
     public function getPrevious(): ?\Upsun\Model\HalLinksPrevious
     {
         return $this->previous;
     }
-    //public function getNext(): ?\Upsun\Model\HalLinksNext
+    /**
+     * @return \Upsun\Model\HalLinksNext|null
+     */
     public function getNext(): ?\Upsun\Model\HalLinksNext
     {
         return $this->next;

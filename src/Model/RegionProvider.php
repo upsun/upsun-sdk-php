@@ -65,12 +65,16 @@ final class RegionProvider implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): ?string
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getLogo(): ?string
+    /**
+     * @return string|null
+     */
     public function getLogo(): ?string
     {
         return $this->logo;

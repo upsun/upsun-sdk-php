@@ -97,52 +97,92 @@ final class Address implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCountry(): ?string
+    /**
+     * Two-letter country codes are used to represent countries and states
+     *
+     * @return string|null
+     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
-    //public function getNameLine(): ?string
+    /**
+     * The full name of the user
+     *
+     * @return string|null
+     */
     public function getNameLine(): ?string
     {
         return $this->nameLine;
     }
-    //public function getPremise(): ?string
+    /**
+     * Premise (i.e. Apt, Suite, Bldg.)
+     *
+     * @return string|null
+     */
     public function getPremise(): ?string
     {
         return $this->premise;
     }
-    //public function getSubPremise(): ?string
+    /**
+     * Sub Premise (i.e. Suite, Apartment, Floor, Unknown.
+     *
+     * @return string|null
+     */
     public function getSubPremise(): ?string
     {
         return $this->subPremise;
     }
-    //public function getThoroughfare(): ?string
+    /**
+     * The address of the user
+     *
+     * @return string|null
+     */
     public function getThoroughfare(): ?string
     {
         return $this->thoroughfare;
     }
-    //public function getAdministrativeArea(): ?string
+    /**
+     * The administrative area of the user address
+     *
+     * @return string|null
+     */
     public function getAdministrativeArea(): ?string
     {
         return $this->administrativeArea;
     }
-    //public function getSubAdministrativeArea(): ?string
+    /**
+     * The sub-administrative area of the user address
+     *
+     * @return string|null
+     */
     public function getSubAdministrativeArea(): ?string
     {
         return $this->subAdministrativeArea;
     }
-    //public function getLocality(): ?string
+    /**
+     * The locality of the user address
+     *
+     * @return string|null
+     */
     public function getLocality(): ?string
     {
         return $this->locality;
     }
-    //public function getDependentLocality(): ?string
+    /**
+     * The dependant_locality area of the user address
+     *
+     * @return string|null
+     */
     public function getDependentLocality(): ?string
     {
         return $this->dependentLocality;
     }
-    //public function getPostalCode(): ?string
+    /**
+     * The postal code area of the user address
+     *
+     * @return string|null
+     */
     public function getPostalCode(): ?string
     {
         return $this->postalCode;

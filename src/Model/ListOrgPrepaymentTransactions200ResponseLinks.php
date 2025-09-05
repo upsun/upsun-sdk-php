@@ -73,22 +73,30 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf
+    /**
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf
     {
         return $this->self;
     }
-    //public function getPrevious(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious
+    /**
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious|null
+     */
     public function getPrevious(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious
     {
         return $this->previous;
     }
-    //public function getNext(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext
+    /**
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext|null
+     */
     public function getNext(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext
     {
         return $this->next;
     }
-    //public function getPrepayment(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment
+    /**
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment|null
+     */
     public function getPrepayment(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment
     {
         return $this->prepayment;

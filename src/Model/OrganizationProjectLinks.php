@@ -77,27 +77,37 @@ final class OrganizationProjectLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\OrganizationProjectLinksSelf
+    /**
+     * @return \Upsun\Model\OrganizationProjectLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\OrganizationProjectLinksSelf
     {
         return $this->self;
     }
-    //public function getUpdate(): ?\Upsun\Model\OrganizationProjectLinksUpdate
+    /**
+     * @return \Upsun\Model\OrganizationProjectLinksUpdate|null
+     */
     public function getUpdate(): ?\Upsun\Model\OrganizationProjectLinksUpdate
     {
         return $this->update;
     }
-    //public function getDelete(): ?\Upsun\Model\OrganizationProjectLinksDelete
+    /**
+     * @return \Upsun\Model\OrganizationProjectLinksDelete|null
+     */
     public function getDelete(): ?\Upsun\Model\OrganizationProjectLinksDelete
     {
         return $this->delete;
     }
-    //public function getSubscription(): ?\Upsun\Model\OrganizationProjectLinksSubscription
+    /**
+     * @return \Upsun\Model\OrganizationProjectLinksSubscription|null
+     */
     public function getSubscription(): ?\Upsun\Model\OrganizationProjectLinksSubscription
     {
         return $this->subscription;
     }
-    //public function getApi(): ?\Upsun\Model\OrganizationProjectLinksApi
+    /**
+     * @return \Upsun\Model\OrganizationProjectLinksApi|null
+     */
     public function getApi(): ?\Upsun\Model\OrganizationProjectLinksApi
     {
         return $this->api;

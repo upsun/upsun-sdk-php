@@ -65,12 +65,16 @@ final class RepositoryInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
-    //public function getClientSshKey(): string
+    /**
+     * @return string
+     */
     public function getClientSshKey(): string
     {
         return $this->clientSshKey;

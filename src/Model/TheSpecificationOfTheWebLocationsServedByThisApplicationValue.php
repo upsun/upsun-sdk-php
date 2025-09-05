@@ -93,47 +93,65 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRoot(): string
+    /**
+     * @return string
+     */
     public function getRoot(): string
     {
         return $this->root;
     }
-    //public function getExpires(): string
+    /**
+     * @return string
+     */
     public function getExpires(): string
     {
         return $this->expires;
     }
-    //public function getPassthru(): string
+    /**
+     * @return string
+     */
     public function getPassthru(): string
     {
         return $this->passthru;
     }
-    //public function getScripts(): bool
+    /**
+     * @return bool
+     */
     public function getScripts(): bool
     {
         return $this->scripts;
     }
-    //public function getIndex(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getIndex(): ?array
     {
         return $this->index;
     }
-    //public function getAllow(): bool
+    /**
+     * @return bool
+     */
     public function getAllow(): bool
     {
         return $this->allow;
     }
-    //public function getHeaders(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
-    //public function getRules(): []
+    /**
+     * @return \Upsun\Model\SpecificOverridesValue[]
+     */
     public function getRules(): array
     {
         return $this->rules;
     }
-    //public function getRequestBuffering(): ?\Upsun\Model\ConfigurationForSupportingRequestBuffering
+    /**
+     * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
+     */
     public function getRequestBuffering(): ?\Upsun\Model\ConfigurationForSupportingRequestBuffering
     {
         return $this->requestBuffering;

@@ -61,7 +61,9 @@ final class EnvironmentActivateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getResources(): \Upsun\Model\Resources1
+    /**
+     * @return \Upsun\Model\Resources1
+     */
     public function getResources(): \Upsun\Model\Resources1
     {
         return $this->resources;

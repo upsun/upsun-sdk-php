@@ -65,12 +65,16 @@ final class ListOrgUsageRecords200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getItems(): ?[]
+    /**
+     * @return \Upsun\Model\Usage[]|null
+     */
     public function getItems(): ?array
     {
         return $this->items;
     }
-    //public function getLinks(): ?\Upsun\Model\ListLinks
+    /**
+     * @return \Upsun\Model\ListLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\ListLinks
     {
         return $this->links;

@@ -69,17 +69,29 @@ final class CreateTeamRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOrganizationId(): string
+    /**
+     * The ID of the parent organization.
+     *
+     * @return string
+     */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
-    //public function getLabel(): string
+    /**
+     * The human-readable label of the team.
+     *
+     * @return string
+     */
     public function getLabel(): string
     {
         return $this->label;
     }
-    //public function getProjectPermissions(): ?[]
+    /**
+     * Project permissions that are granted to the team.
+     *
+     * @return string[]|null
+     */
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;

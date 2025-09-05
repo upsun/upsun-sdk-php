@@ -93,47 +93,65 @@ final class EnvironmentPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): ?string
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getTitle(): ?string
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
-    //public function getType(): ?string
+    /**
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getParent(): ?string
+    /**
+     * @return string|null
+     */
     public function getParent(): ?string
     {
         return $this->parent;
     }
-    //public function getCloneParentOnCreate(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getCloneParentOnCreate(): ?bool
     {
         return $this->cloneParentOnCreate;
     }
-    //public function getHttpAccess(): ?\Upsun\Model\HttpAccessPermissions1
+    /**
+     * @return \Upsun\Model\HttpAccessPermissions1|null
+     */
     public function getHttpAccess(): ?\Upsun\Model\HttpAccessPermissions1
     {
         return $this->httpAccess;
     }
-    //public function getEnableSmtp(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getEnableSmtp(): ?bool
     {
         return $this->enableSmtp;
     }
-    //public function getRestrictRobots(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getRestrictRobots(): ?bool
     {
         return $this->restrictRobots;

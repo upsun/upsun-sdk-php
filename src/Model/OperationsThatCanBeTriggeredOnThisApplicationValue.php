@@ -69,17 +69,23 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    /**
+     * @return \Upsun\Model\TheCommandsDefinition
+     */
     public function getCommands(): \Upsun\Model\TheCommandsDefinition
     {
         return $this->commands;
     }
-    //public function getTimeout(): int
+    /**
+     * @return int
+     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
-    //public function getRole(): string
+    /**
+     * @return string
+     */
     public function getRole(): string
     {
         return $this->role;

@@ -65,12 +65,16 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getService(): string
+    /**
+     * @return string
+     */
     public function getService(): string
     {
         return $this->service;
     }
-    //public function getEndpoint(): string
+    /**
+     * @return string
+     */
     public function getEndpoint(): string
     {
         return $this->endpoint;

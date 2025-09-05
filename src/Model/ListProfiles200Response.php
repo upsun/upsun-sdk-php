@@ -69,17 +69,27 @@ final class ListProfiles200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * Total number of results.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getProfiles(): ?[]
+    /**
+     * Array of user profiles.
+     *
+     * @return \Upsun\Model\Profile[]|null
+     */
     public function getProfiles(): ?array
     {
         return $this->profiles;
     }
-    //public function getLinks(): ?\Upsun\Model\HalLinks
+    /**
+     * @return \Upsun\Model\HalLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\HalLinks
     {
         return $this->links;

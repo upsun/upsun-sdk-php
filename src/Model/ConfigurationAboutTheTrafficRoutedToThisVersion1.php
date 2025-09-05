@@ -61,7 +61,9 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPercentage(): ?int
+    /**
+     * @return int|null
+     */
     public function getPercentage(): ?int
     {
         return $this->percentage;

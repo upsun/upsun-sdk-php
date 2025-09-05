@@ -65,12 +65,20 @@ final class OrganizationLinksDelete implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getHref(): ?string
+    /**
+     * URL of the link.
+     *
+     * @return string|null
+     */
     public function getHref(): ?string
     {
         return $this->href;
     }
-    //public function getMethod(): ?string
+    /**
+     * The HTTP method to use.
+     *
+     * @return string|null
+     */
     public function getMethod(): ?string
     {
         return $this->method;

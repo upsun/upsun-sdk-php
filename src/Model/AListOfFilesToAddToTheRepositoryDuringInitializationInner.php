@@ -69,17 +69,23 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPath(): string
+    /**
+     * @return string
+     */
     public function getPath(): string
     {
         return $this->path;
     }
-    //public function getMode(): int
+    /**
+     * @return int
+     */
     public function getMode(): int
     {
         return $this->mode;
     }
-    //public function getContents(): string
+    /**
+     * @return string
+     */
     public function getContents(): string
     {
         return $this->contents;

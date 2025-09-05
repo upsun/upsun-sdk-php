@@ -65,12 +65,20 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListStandardMa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * The number of standard_management_user licenses.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total price for standard_management_user licenses.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;

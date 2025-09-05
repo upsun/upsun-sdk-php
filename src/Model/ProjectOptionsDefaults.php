@@ -73,22 +73,38 @@ final class ProjectOptionsDefaults implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSettings(): ?object
+    /**
+     * The project settings.
+     *
+     * @return object|null
+     */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
-    //public function getVariables(): ?object
+    /**
+     * The project variables.
+     *
+     * @return object|null
+     */
     public function getVariables(): ?object
     {
         return $this->variables;
     }
-    //public function getAccess(): ?object
+    /**
+     * The project access list.
+     *
+     * @return object|null
+     */
     public function getAccess(): ?object
     {
         return $this->access;
     }
-    //public function getCapabilities(): ?object
+    /**
+     * The project capabilities.
+     *
+     * @return object|null
+     */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;

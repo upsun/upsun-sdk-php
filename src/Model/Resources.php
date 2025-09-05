@@ -81,32 +81,44 @@ final class Resources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getBaseMemory(): int
+    /**
+     * @return int
+     */
     public function getBaseMemory(): int
     {
         return $this->baseMemory;
     }
-    //public function getMemoryRatio(): int
+    /**
+     * @return int
+     */
     public function getMemoryRatio(): int
     {
         return $this->memoryRatio;
     }
-    //public function getProfileSize(): string
+    /**
+     * @return string
+     */
     public function getProfileSize(): string
     {
         return $this->profileSize;
     }
-    //public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
+    /**
+     * @return \Upsun\Model\TheMinimumResourcesForThisService
+     */
     public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
     {
         return $this->minimum;
     }
-    //public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
+    /**
+     * @return \Upsun\Model\TheDefaultResourcesForThisService
+     */
     public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
     {
         return $this->default;
     }
-    //public function getDisk(): \Upsun\Model\TheDisksResources
+    /**
+     * @return \Upsun\Model\TheDisksResources
+     */
     public function getDisk(): \Upsun\Model\TheDisksResources
     {
         return $this->disk;

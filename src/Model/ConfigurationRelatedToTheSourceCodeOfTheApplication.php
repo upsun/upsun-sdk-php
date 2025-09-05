@@ -65,12 +65,16 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRoot(): string
+    /**
+     * @return string
+     */
     public function getRoot(): string
     {
         return $this->root;
     }
-    //public function getOperations(): []
+    /**
+     * @return \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]
+     */
     public function getOperations(): array
     {
         return $this->operations;

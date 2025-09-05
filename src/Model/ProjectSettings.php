@@ -297,302 +297,422 @@ final class ProjectSettings implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getInitialize(): object
+    /**
+     * @return object
+     */
     public function getInitialize(): object
     {
         return $this->initialize;
     }
-    //public function getProductName(): string
+    /**
+     * @return string
+     */
     public function getProductName(): string
     {
         return $this->productName;
     }
-    //public function getProductCode(): string
+    /**
+     * @return string
+     */
     public function getProductCode(): string
     {
         return $this->productCode;
     }
-    //public function getUiUriTemplate(): string
+    /**
+     * @return string
+     */
     public function getUiUriTemplate(): string
     {
         return $this->uiUriTemplate;
     }
-    //public function getVariablesPrefix(): string
+    /**
+     * @return string
+     */
     public function getVariablesPrefix(): string
     {
         return $this->variablesPrefix;
     }
-    //public function getBotEmail(): string
+    /**
+     * @return string
+     */
     public function getBotEmail(): string
     {
         return $this->botEmail;
     }
-    //public function getApplicationConfigFile(): string
+    /**
+     * @return string
+     */
     public function getApplicationConfigFile(): string
     {
         return $this->applicationConfigFile;
     }
-    //public function getProjectConfigDir(): string
+    /**
+     * @return string
+     */
     public function getProjectConfigDir(): string
     {
         return $this->projectConfigDir;
     }
-    //public function getUseDrupalDefaults(): bool
+    /**
+     * @return bool
+     */
     public function getUseDrupalDefaults(): bool
     {
         return $this->useDrupalDefaults;
     }
-    //public function getUseLegacySubdomains(): bool
+    /**
+     * @return bool
+     */
     public function getUseLegacySubdomains(): bool
     {
         return $this->useLegacySubdomains;
     }
-    //public function getDevelopmentServiceSize(): string
+    /**
+     * @return string
+     */
     public function getDevelopmentServiceSize(): string
     {
         return $this->developmentServiceSize;
     }
-    //public function getDevelopmentApplicationSize(): string
+    /**
+     * @return string
+     */
     public function getDevelopmentApplicationSize(): string
     {
         return $this->developmentApplicationSize;
     }
-    //public function getEnableCertificateProvisioning(): bool
+    /**
+     * @return bool
+     */
     public function getEnableCertificateProvisioning(): bool
     {
         return $this->enableCertificateProvisioning;
     }
-    //public function getCertificateStyle(): string
+    /**
+     * @return string
+     */
     public function getCertificateStyle(): string
     {
         return $this->certificateStyle;
     }
-    //public function getCertificateRenewalActivity(): bool
+    /**
+     * @return bool
+     */
     public function getCertificateRenewalActivity(): bool
     {
         return $this->certificateRenewalActivity;
     }
-    //public function getDevelopmentDomainTemplate(): string
+    /**
+     * @return string
+     */
     public function getDevelopmentDomainTemplate(): string
     {
         return $this->developmentDomainTemplate;
     }
-    //public function getEnableStateApiDeployments(): bool
+    /**
+     * @return bool
+     */
     public function getEnableStateApiDeployments(): bool
     {
         return $this->enableStateApiDeployments;
     }
-    //public function getTemporaryDiskSize(): int
+    /**
+     * @return int
+     */
     public function getTemporaryDiskSize(): int
     {
         return $this->temporaryDiskSize;
     }
-    //public function getLocalDiskSize(): int
+    /**
+     * @return int
+     */
     public function getLocalDiskSize(): int
     {
         return $this->localDiskSize;
     }
-    //public function getCronMinimumInterval(): int
+    /**
+     * @return int
+     */
     public function getCronMinimumInterval(): int
     {
         return $this->cronMinimumInterval;
     }
-    //public function getCronMaximumJitter(): int
+    /**
+     * @return int
+     */
     public function getCronMaximumJitter(): int
     {
         return $this->cronMaximumJitter;
     }
-    //public function getConcurrencyLimits(): []
+    /**
+     * @return array&lt;string,int&gt;
+     */
     public function getConcurrencyLimits(): array
     {
         return $this->concurrencyLimits;
     }
-    //public function getFlexibleBuildCache(): bool
+    /**
+     * @return bool
+     */
     public function getFlexibleBuildCache(): bool
     {
         return $this->flexibleBuildCache;
     }
-    //public function getStrictConfiguration(): bool
+    /**
+     * @return bool
+     */
     public function getStrictConfiguration(): bool
     {
         return $this->strictConfiguration;
     }
-    //public function getHasSleepyCrons(): bool
+    /**
+     * @return bool
+     */
     public function getHasSleepyCrons(): bool
     {
         return $this->hasSleepyCrons;
     }
-    //public function getCronsInGit(): bool
+    /**
+     * @return bool
+     */
     public function getCronsInGit(): bool
     {
         return $this->cronsInGit;
     }
-    //public function getCustomErrorTemplate(): string
+    /**
+     * @return string
+     */
     public function getCustomErrorTemplate(): string
     {
         return $this->customErrorTemplate;
     }
-    //public function getAppErrorPageTemplate(): string
+    /**
+     * @return string
+     */
     public function getAppErrorPageTemplate(): string
     {
         return $this->appErrorPageTemplate;
     }
-    //public function getEnvironmentNameStrategy(): string
+    /**
+     * @return string
+     */
     public function getEnvironmentNameStrategy(): string
     {
         return $this->environmentNameStrategy;
     }
-    //public function getDataRetention(): []
+    /**
+     * @return \Upsun\Model\DataRetentionConfigurationValue[]
+     */
     public function getDataRetention(): array
     {
         return $this->dataRetention;
     }
-    //public function getEnableCodesourceIntegrationPush(): bool
+    /**
+     * @return bool
+     */
     public function getEnableCodesourceIntegrationPush(): bool
     {
         return $this->enableCodesourceIntegrationPush;
     }
-    //public function getEnforceMfa(): bool
+    /**
+     * @return bool
+     */
     public function getEnforceMfa(): bool
     {
         return $this->enforceMfa;
     }
-    //public function getSystemd(): bool
+    /**
+     * @return bool
+     */
     public function getSystemd(): bool
     {
         return $this->systemd;
     }
-    //public function getRouterGen2(): bool
+    /**
+     * @return bool
+     */
     public function getRouterGen2(): bool
     {
         return $this->routerGen2;
     }
-    //public function getBuildResources(): \Upsun\Model\BuildResources1
+    /**
+     * @return \Upsun\Model\BuildResources1
+     */
     public function getBuildResources(): \Upsun\Model\BuildResources1
     {
         return $this->buildResources;
     }
-    //public function getOutboundRestrictionsDefaultPolicy(): string
+    /**
+     * @return string
+     */
     public function getOutboundRestrictionsDefaultPolicy(): string
     {
         return $this->outboundRestrictionsDefaultPolicy;
     }
-    //public function getSelfUpgrade(): bool
+    /**
+     * @return bool
+     */
     public function getSelfUpgrade(): bool
     {
         return $this->selfUpgrade;
     }
-    //public function getAdditionalHosts(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
-    //public function getMaxAllowedRoutes(): int
+    /**
+     * @return int
+     */
     public function getMaxAllowedRoutes(): int
     {
         return $this->maxAllowedRoutes;
     }
-    //public function getMaxAllowedRedirectsPaths(): int
+    /**
+     * @return int
+     */
     public function getMaxAllowedRedirectsPaths(): int
     {
         return $this->maxAllowedRedirectsPaths;
     }
-    //public function getEnableIncrementalBackups(): bool
+    /**
+     * @return bool
+     */
     public function getEnableIncrementalBackups(): bool
     {
         return $this->enableIncrementalBackups;
     }
-    //public function getSizingApiEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getSizingApiEnabled(): bool
     {
         return $this->sizingApiEnabled;
     }
-    //public function getEnableCacheGracePeriod(): bool
+    /**
+     * @return bool
+     */
     public function getEnableCacheGracePeriod(): bool
     {
         return $this->enableCacheGracePeriod;
     }
-    //public function getEnableZeroDowntimeDeployments(): bool
+    /**
+     * @return bool
+     */
     public function getEnableZeroDowntimeDeployments(): bool
     {
         return $this->enableZeroDowntimeDeployments;
     }
-    //public function getEnableAdminAgent(): bool
+    /**
+     * @return bool
+     */
     public function getEnableAdminAgent(): bool
     {
         return $this->enableAdminAgent;
     }
-    //public function getCertifierUrl(): string
+    /**
+     * @return string
+     */
     public function getCertifierUrl(): string
     {
         return $this->certifierUrl;
     }
-    //public function getCentralizedPermissions(): bool
+    /**
+     * @return bool
+     */
     public function getCentralizedPermissions(): bool
     {
         return $this->centralizedPermissions;
     }
-    //public function getGlueServerMaxRequestSize(): int
+    /**
+     * @return int
+     */
     public function getGlueServerMaxRequestSize(): int
     {
         return $this->glueServerMaxRequestSize;
     }
-    //public function getPersistentEndpointsSsh(): bool
+    /**
+     * @return bool
+     */
     public function getPersistentEndpointsSsh(): bool
     {
         return $this->persistentEndpointsSsh;
     }
-    //public function getPersistentEndpointsSslCertificates(): bool
+    /**
+     * @return bool
+     */
     public function getPersistentEndpointsSslCertificates(): bool
     {
         return $this->persistentEndpointsSslCertificates;
     }
-    //public function getEnableDiskHealthMonitoring(): bool
+    /**
+     * @return bool
+     */
     public function getEnableDiskHealthMonitoring(): bool
     {
         return $this->enableDiskHealthMonitoring;
     }
-    //public function getEnablePausedEnvironments(): bool
+    /**
+     * @return bool
+     */
     public function getEnablePausedEnvironments(): bool
     {
         return $this->enablePausedEnvironments;
     }
-    //public function getEnableUnifiedConfiguration(): bool
+    /**
+     * @return bool
+     */
     public function getEnableUnifiedConfiguration(): bool
     {
         return $this->enableUnifiedConfiguration;
     }
-    //public function getEnableRoutesTracing(): bool
+    /**
+     * @return bool
+     */
     public function getEnableRoutesTracing(): bool
     {
         return $this->enableRoutesTracing;
     }
-    //public function getImageDeploymentValidation(): bool
+    /**
+     * @return bool
+     */
     public function getImageDeploymentValidation(): bool
     {
         return $this->imageDeploymentValidation;
     }
-    //public function getSupportGenericImages(): bool
+    /**
+     * @return bool
+     */
     public function getSupportGenericImages(): bool
     {
         return $this->supportGenericImages;
     }
-    //public function getEnableGithubAppTokenExchange(): bool
+    /**
+     * @return bool
+     */
     public function getEnableGithubAppTokenExchange(): bool
     {
         return $this->enableGithubAppTokenExchange;
     }
-    //public function getContinuousProfiling(): \Upsun\Model\TheContinuousProfilingConfiguration
+    /**
+     * @return \Upsun\Model\TheContinuousProfilingConfiguration
+     */
     public function getContinuousProfiling(): \Upsun\Model\TheContinuousProfilingConfiguration
     {
         return $this->continuousProfiling;
     }
-    //public function getDisableAgentErrorReporter(): bool
+    /**
+     * @return bool
+     */
     public function getDisableAgentErrorReporter(): bool
     {
         return $this->disableAgentErrorReporter;
     }
-    //public function getRequiresDomainOwnership(): bool
+    /**
+     * @return bool
+     */
     public function getRequiresDomainOwnership(): bool
     {
         return $this->requiresDomainOwnership;

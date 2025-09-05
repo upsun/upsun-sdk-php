@@ -65,12 +65,20 @@ final class ProjectOptionsEnforced implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSettings(): ?object
+    /**
+     * The project settings.
+     *
+     * @return object|null
+     */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
-    //public function getCapabilities(): ?object
+    /**
+     * The project capabilities.
+     *
+     * @return object|null
+     */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;

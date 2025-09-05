@@ -69,17 +69,23 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getSharedKey(): ?string
+    /**
+     * @return string|null
+     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;

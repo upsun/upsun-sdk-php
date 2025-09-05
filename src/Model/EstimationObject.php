@@ -81,32 +81,56 @@ final class EstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPlan(): ?string
+    /**
+     * The monthly price of the plan.
+     *
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getUserLicenses(): ?string
+    /**
+     * The monthly price of the user licenses.
+     *
+     * @return string|null
+     */
     public function getUserLicenses(): ?string
     {
         return $this->userLicenses;
     }
-    //public function getEnvironments(): ?string
+    /**
+     * The monthly price of the environments.
+     *
+     * @return string|null
+     */
     public function getEnvironments(): ?string
     {
         return $this->environments;
     }
-    //public function getStorage(): ?string
+    /**
+     * The monthly price of the storage.
+     *
+     * @return string|null
+     */
     public function getStorage(): ?string
     {
         return $this->storage;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total monthly price.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-    //public function getOptions(): ?object
+    /**
+     * The unit prices of the options.
+     *
+     * @return object|null
+     */
     public function getOptions(): ?object
     {
         return $this->options;

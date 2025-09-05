@@ -69,17 +69,29 @@ final class CreateSshKeyRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getValue(): string
+    /**
+     * The value of the ssh key.
+     *
+     * @return string
+     */
     public function getValue(): string
     {
         return $this->value;
     }
-    //public function getTitle(): ?string
+    /**
+     * The title of the ssh key.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getUuid(): ?string
+    /**
+     * The uuid of the user.
+     *
+     * @return string|null
+     */
     public function getUuid(): ?string
     {
         return $this->uuid;

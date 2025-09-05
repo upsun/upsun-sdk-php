@@ -65,12 +65,16 @@ final class TheCommandsDefinition implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getStart(): string
+    /**
+     * @return string
+     */
     public function getStart(): string
     {
         return $this->start;
     }
-    //public function getStop(): ?string
+    /**
+     * @return string|null
+     */
     public function getStop(): ?string
     {
         return $this->stop;

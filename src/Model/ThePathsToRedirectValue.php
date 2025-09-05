@@ -81,32 +81,44 @@ final class ThePathsToRedirectValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRegexp(): bool
+    /**
+     * @return bool
+     */
     public function getRegexp(): bool
     {
         return $this->regexp;
     }
-    //public function getTo(): string
+    /**
+     * @return string
+     */
     public function getTo(): string
     {
         return $this->to;
     }
-    //public function getPrefix(): bool
+    /**
+     * @return bool
+     */
     public function getPrefix(): bool
     {
         return $this->prefix;
     }
-    //public function getAppendSuffix(): bool
+    /**
+     * @return bool
+     */
     public function getAppendSuffix(): bool
     {
         return $this->appendSuffix;
     }
-    //public function getCode(): int
+    /**
+     * @return int
+     */
     public function getCode(): int
     {
         return $this->code;
     }
-    //public function getExpires(): string
+    /**
+     * @return string
+     */
     public function getExpires(): string
     {
         return $this->expires;

@@ -69,17 +69,29 @@ final class UpdateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getStatus(): ?string
+    /**
+     * The status of the support ticket.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getCollaboratorIds(): ?[]
+    /**
+     * A list of collaborators uuids for the ticket.
+     *
+     * @return string[]|null
+     */
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
-    //public function getCollaboratorsReplace(): ?bool
+    /**
+     * Whether or not should replace ticket collaborators with the provided values. If false, the collaborators will be appended.
+     *
+     * @return bool|null
+     */
     public function getCollaboratorsReplace(): ?bool
     {
         return $this->collaboratorsReplace;

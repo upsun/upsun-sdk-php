@@ -185,162 +185,226 @@ final class Environment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getMachineName(): string
+    /**
+     * @return string
+     */
     public function getMachineName(): string
     {
         return $this->machineName;
     }
-    //public function getTitle(): string
+    /**
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
-    //public function getAttributes(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getParent(): string
+    /**
+     * @return string
+     */
     public function getParent(): string
     {
         return $this->parent;
     }
-    //public function getDefaultDomain(): string
+    /**
+     * @return string
+     */
     public function getDefaultDomain(): string
     {
         return $this->defaultDomain;
     }
-    //public function getHasDomains(): bool
+    /**
+     * @return bool
+     */
     public function getHasDomains(): bool
     {
         return $this->hasDomains;
     }
-    //public function getCloneParentOnCreate(): bool
+    /**
+     * @return bool
+     */
     public function getCloneParentOnCreate(): bool
     {
         return $this->cloneParentOnCreate;
     }
-    //public function getDeploymentTarget(): string
+    /**
+     * @return string
+     */
     public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
-    //public function getIsPr(): bool
+    /**
+     * @return bool
+     */
     public function getIsPr(): bool
     {
         return $this->isPr;
     }
-    //public function getHasRemote(): bool
+    /**
+     * @return bool
+     */
     public function getHasRemote(): bool
     {
         return $this->hasRemote;
     }
-    //public function getStatus(): string
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
-    //public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
+    /**
+     * @return \Upsun\Model\HttpAccessPermissions
+     */
     public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
     {
         return $this->httpAccess;
     }
-    //public function getEnableSmtp(): bool
+    /**
+     * @return bool
+     */
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
-    //public function getRestrictRobots(): bool
+    /**
+     * @return bool
+     */
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
-    //public function getEdgeHostname(): string
+    /**
+     * @return string
+     */
     public function getEdgeHostname(): string
     {
         return $this->edgeHostname;
     }
-    //public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
+    /**
+     * @return \Upsun\Model\TheEnvironmentDeploymentState
+     */
     public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
     {
         return $this->deploymentState;
     }
-    //public function getResourcesOverrides(): []
+    /**
+     * @return \Upsun\Model\ResourcesOverridesValue[]
+     */
     public function getResourcesOverrides(): array
     {
         return $this->resourcesOverrides;
     }
-    //public function getMaxInstanceCount(): int
+    /**
+     * @return int
+     */
     public function getMaxInstanceCount(): int
     {
         return $this->maxInstanceCount;
     }
-    //public function getLastActiveAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getLastActiveAt(): \DateTime
     {
         return $this->lastActiveAt;
     }
-    //public function getLastBackupAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getLastBackupAt(): \DateTime
     {
         return $this->lastBackupAt;
     }
-    //public function getProject(): string
+    /**
+     * @return string
+     */
     public function getProject(): string
     {
         return $this->project;
     }
-    //public function getIsMain(): bool
+    /**
+     * @return bool
+     */
     public function getIsMain(): bool
     {
         return $this->isMain;
     }
-    //public function getIsDirty(): bool
+    /**
+     * @return bool
+     */
     public function getIsDirty(): bool
     {
         return $this->isDirty;
     }
-    //public function getHasCode(): bool
+    /**
+     * @return bool
+     */
     public function getHasCode(): bool
     {
         return $this->hasCode;
     }
-    //public function getHeadCommit(): string
+    /**
+     * @return string
+     */
     public function getHeadCommit(): string
     {
         return $this->headCommit;
     }
-    //public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
+    /**
+     * @return \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
+     */
     public function getMergeInfo(): \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
     {
         return $this->mergeInfo;
     }
-    //public function getHasDeployment(): bool
+    /**
+     * @return bool
+     */
     public function getHasDeployment(): bool
     {
         return $this->hasDeployment;
     }
-    //public function getSupportsRestrictRobots(): bool
+    /**
+     * @return bool
+     */
     public function getSupportsRestrictRobots(): bool
     {
         return $this->supportsRestrictRobots;

@@ -65,12 +65,16 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getKey(): string
+    /**
+     * @return string
+     */
     public function getKey(): string
     {
         return $this->key;
     }
-    //public function getSecret(): string
+    /**
+     * @return string
+     */
     public function getSecret(): string
     {
         return $this->secret;

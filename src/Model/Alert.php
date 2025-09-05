@@ -81,32 +81,56 @@ final class Alert implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The identification of the alert type.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getActive(): ?bool
+    /**
+     * Whether the alert is currently active.
+     *
+     * @return bool|null
+     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
-    //public function getAlertsSent(): ?int
+    /**
+     * The amount of alerts of this type that have been sent so far.
+     *
+     * @return int|null
+     */
     public function getAlertsSent(): ?int
     {
         return $this->alertsSent;
     }
-    //public function getLastAlertAt(): ?\DateTime
+    /**
+     * The time the last alert has been sent.
+     *
+     * @return \DateTime|null
+     */
     public function getLastAlertAt(): ?\DateTime
     {
         return $this->lastAlertAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The time the alert has last been updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getConfig(): ?object
+    /**
+     * The alert type specific configuration.
+     *
+     * @return object|null
+     */
     public function getConfig(): ?object
     {
         return $this->config;

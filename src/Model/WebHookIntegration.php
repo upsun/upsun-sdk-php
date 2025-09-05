@@ -97,52 +97,72 @@ final class WebHookIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getEvents(): []
+    /**
+     * @return string[]
+     */
     public function getEvents(): array
     {
         return $this->events;
     }
-    //public function getEnvironments(): []
+    /**
+     * @return string[]
+     */
     public function getEnvironments(): array
     {
         return $this->environments;
     }
-    //public function getExcludedEnvironments(): []
+    /**
+     * @return string[]
+     */
     public function getExcludedEnvironments(): array
     {
         return $this->excludedEnvironments;
     }
-    //public function getStates(): []
+    /**
+     * @return string[]
+     */
     public function getStates(): array
     {
         return $this->states;
     }
-    //public function getResult(): string
+    /**
+     * @return string
+     */
     public function getResult(): string
     {
         return $this->result;
     }
-    //public function getSharedKey(): string
+    /**
+     * @return string
+     */
     public function getSharedKey(): string
     {
         return $this->sharedKey;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;

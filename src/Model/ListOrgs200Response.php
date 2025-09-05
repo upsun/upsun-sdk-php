@@ -69,17 +69,25 @@ final class ListOrgs200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * Total number of items across pages.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getItems(): ?[]
+    /**
+     * @return \Upsun\Model\Organization[]|null
+     */
     public function getItems(): ?array
     {
         return $this->items;
     }
-    //public function getLinks(): ?\Upsun\Model\ListLinks
+    /**
+     * @return \Upsun\Model\ListLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\ListLinks
     {
         return $this->links;

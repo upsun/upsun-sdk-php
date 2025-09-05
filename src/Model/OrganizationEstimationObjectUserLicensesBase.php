@@ -69,17 +69,27 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * The number of base user licenses.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total price for base user licenses.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-    //public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null
+     */
     public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList
     {
         return $this->list;

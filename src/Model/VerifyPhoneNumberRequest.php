@@ -65,12 +65,20 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getChannel(): string
+    /**
+     * The channel used to receive the verification code.
+     *
+     * @return string
+     */
     public function getChannel(): string
     {
         return $this->channel;
     }
-    //public function getPhoneNumber(): string
+    /**
+     * The phone number used to receive the verification code.
+     *
+     * @return string
+     */
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;

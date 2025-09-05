@@ -69,17 +69,23 @@ final class RegionDatacenter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): ?string
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getLabel(): ?string
+    /**
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
-    //public function getLocation(): ?string
+    /**
+     * @return string|null
+     */
     public function getLocation(): ?string
     {
         return $this->location;

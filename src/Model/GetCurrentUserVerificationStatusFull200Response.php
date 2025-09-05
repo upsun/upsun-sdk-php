@@ -65,12 +65,20 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getState(): ?bool
+    /**
+     * Does this user need verification for project creation.
+     *
+     * @return bool|null
+     */
     public function getState(): ?bool
     {
         return $this->state;
     }
-    //public function getType(): ?string
+    /**
+     * What type of verification is needed (phone or ticket)
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;

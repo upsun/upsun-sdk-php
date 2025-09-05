@@ -81,32 +81,44 @@ final class ProjectInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTitle(): string
+    /**
+     * @return string
+     */
     public function getTitle(): string
     {
         return $this->title;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getNamespace(): string
+    /**
+     * @return string
+     */
     public function getNamespace(): string
     {
         return $this->namespace;
     }
-    //public function getOrganization(): string
+    /**
+     * @return string
+     */
     public function getOrganization(): string
     {
         return $this->organization;
     }
-    //public function getCapabilities(): object
+    /**
+     * @return object
+     */
     public function getCapabilities(): object
     {
         return $this->capabilities;
     }
-    //public function getSettings(): object
+    /**
+     * @return object
+     */
     public function getSettings(): object
     {
         return $this->settings;

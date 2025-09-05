@@ -65,12 +65,20 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the environment.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getRole(): ?string
+    /**
+     * The role the invitee should be given on the environment.
+     *
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;

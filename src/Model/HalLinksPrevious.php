@@ -65,12 +65,20 @@ final class HalLinksPrevious implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTitle(): ?string
+    /**
+     * Title of the link
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getHref(): ?string
+    /**
+     * URL of the link
+     *
+     * @return string|null
+     */
     public function getHref(): ?string
     {
         return $this->href;

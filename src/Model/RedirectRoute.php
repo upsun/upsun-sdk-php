@@ -89,42 +89,58 @@ final class RedirectRoute implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPrimary(): bool
+    /**
+     * @return bool
+     */
     public function getPrimary(): bool
     {
         return $this->primary;
     }
-    //public function getId(): string
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
-    //public function getProductionUrl(): string
+    /**
+     * @return string
+     */
     public function getProductionUrl(): string
     {
         return $this->productionUrl;
     }
-    //public function getAttributes(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
+    /**
+     * @return \Upsun\Model\TLSSettingsForTheRoute
+     */
     public function getTls(): \Upsun\Model\TLSSettingsForTheRoute
     {
         return $this->tls;
     }
-    //public function getTo(): string
+    /**
+     * @return string
+     */
     public function getTo(): string
     {
         return $this->to;
     }
-    //public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects
+    /**
+     * @return \Upsun\Model\TheConfigurationOfTheRedirects
+     */
     public function getRedirects(): \Upsun\Model\TheConfigurationOfTheRedirects
     {
         return $this->redirects;

@@ -113,72 +113,100 @@ final class VPNConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getVersion(): int
+    /**
+     * @return int
+     */
     public function getVersion(): int
     {
         return $this->version;
     }
-    //public function getAggressive(): string
+    /**
+     * @return string
+     */
     public function getAggressive(): string
     {
         return $this->aggressive;
     }
-    //public function getModeconfig(): string
+    /**
+     * @return string
+     */
     public function getModeconfig(): string
     {
         return $this->modeconfig;
     }
-    //public function getAuthentication(): string
+    /**
+     * @return string
+     */
     public function getAuthentication(): string
     {
         return $this->authentication;
     }
-    //public function getGatewayIp(): string
+    /**
+     * @return string
+     */
     public function getGatewayIp(): string
     {
         return $this->gatewayIp;
     }
-    //public function getIdentity(): string
+    /**
+     * @return string
+     */
     public function getIdentity(): string
     {
         return $this->identity;
     }
-    //public function getSecondIdentity(): string
+    /**
+     * @return string
+     */
     public function getSecondIdentity(): string
     {
         return $this->secondIdentity;
     }
-    //public function getRemoteIdentity(): string
+    /**
+     * @return string
+     */
     public function getRemoteIdentity(): string
     {
         return $this->remoteIdentity;
     }
-    //public function getRemoteSubnets(): []
+    /**
+     * @return string[]
+     */
     public function getRemoteSubnets(): array
     {
         return $this->remoteSubnets;
     }
-    //public function getIke(): string
+    /**
+     * @return string
+     */
     public function getIke(): string
     {
         return $this->ike;
     }
-    //public function getEsp(): string
+    /**
+     * @return string
+     */
     public function getEsp(): string
     {
         return $this->esp;
     }
-    //public function getIkelifetime(): string
+    /**
+     * @return string
+     */
     public function getIkelifetime(): string
     {
         return $this->ikelifetime;
     }
-    //public function getLifetime(): string
+    /**
+     * @return string
+     */
     public function getLifetime(): string
     {
         return $this->lifetime;
     }
-    //public function getMargintime(): string
+    /**
+     * @return string
+     */
     public function getMargintime(): string
     {
         return $this->margintime;

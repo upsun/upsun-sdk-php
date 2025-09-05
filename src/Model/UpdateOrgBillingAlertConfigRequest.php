@@ -65,12 +65,18 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getActive(): ?bool
+    /**
+     * Whether the billing alert should be active or not.
+     *
+     * @return bool|null
+     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
-    //public function getConfig(): ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig
+    /**
+     * @return \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
+     */
     public function getConfig(): ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig
     {
         return $this->config;

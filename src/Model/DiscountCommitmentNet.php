@@ -69,17 +69,23 @@ final class DiscountCommitmentNet implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getMonthly(): ?\Upsun\Model\CurrencyAmount
+    /**
+     * @return \Upsun\Model\CurrencyAmount|null
+     */
     public function getMonthly(): ?\Upsun\Model\CurrencyAmount
     {
         return $this->monthly;
     }
-    //public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmount
+    /**
+     * @return \Upsun\Model\CurrencyAmount|null
+     */
     public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmount
     {
         return $this->commitmentPeriod;
     }
-    //public function getContractTotal(): ?\Upsun\Model\CurrencyAmount
+    /**
+     * @return \Upsun\Model\CurrencyAmount|null
+     */
     public function getContractTotal(): ?\Upsun\Model\CurrencyAmount
     {
         return $this->contractTotal;

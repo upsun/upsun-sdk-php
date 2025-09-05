@@ -73,22 +73,38 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the environment.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getType(): ?string
+    /**
+     * The environment type.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getRole(): ?string
+    /**
+     * The environment role.
+     *
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;
     }
-    //public function getTitle(): ?string
+    /**
+     * The environment title.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;

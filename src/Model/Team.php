@@ -85,37 +85,63 @@ final class Team implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the team.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ID of the parent organization.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getLabel(): ?string
+    /**
+     * The human-readable label of the team.
+     *
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
-    //public function getProjectPermissions(): ?[]
+    /**
+     * Project permissions that are granted to the team.
+     *
+     * @return string[]|null
+     */
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;
     }
-    //public function getCounts(): ?\Upsun\Model\TeamCounts
+    /**
+     * @return \Upsun\Model\TeamCounts|null
+     */
     public function getCounts(): ?\Upsun\Model\TeamCounts
     {
         return $this->counts;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the team was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the team was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

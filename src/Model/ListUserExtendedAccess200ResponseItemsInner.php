@@ -85,37 +85,65 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUserId(): ?string
+    /**
+     * The ID of the user.
+     *
+     * @return string|null
+     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
-    //public function getResourceId(): ?string
+    /**
+     * The ID of the resource.
+     *
+     * @return string|null
+     */
     public function getResourceId(): ?string
     {
         return $this->resourceId;
     }
-    //public function getResourceType(): ?string
+    /**
+     * The type of the resource access to which is granted.
+     *
+     * @return string|null
+     */
     public function getResourceType(): ?string
     {
         return $this->resourceType;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ID of the organization owning the resource.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getPermissions(): ?[]
+    /**
+     * List of project permissions.
+     *
+     * @return string[]|null
+     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
-    //public function getGrantedAt(): ?\DateTime
+    /**
+     * The date and time when the access was granted.
+     *
+     * @return \DateTime|null
+     */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the access was updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

@@ -77,27 +77,47 @@ final class CreateOrgRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): ?string
+    /**
+     * The type of the organization.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getOwnerId(): ?string
+    /**
+     * ID of the owner.
+     *
+     * @return string|null
+     */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
-    //public function getName(): ?string
+    /**
+     * A unique machine name representing the organization.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getLabel(): string
+    /**
+     * The human-readable label of the organization.
+     *
+     * @return string
+     */
     public function getLabel(): string
     {
         return $this->label;
     }
-    //public function getCountry(): ?string
+    /**
+     * The organization country (2-letter country code).
+     *
+     * @return string|null
+     */
     public function getCountry(): ?string
     {
         return $this->country;

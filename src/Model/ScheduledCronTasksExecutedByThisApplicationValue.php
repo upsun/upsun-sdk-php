@@ -77,27 +77,37 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSpec(): string
+    /**
+     * @return string
+     */
     public function getSpec(): string
     {
         return $this->spec;
     }
-    //public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    /**
+     * @return \Upsun\Model\TheCommandsDefinition
+     */
     public function getCommands(): \Upsun\Model\TheCommandsDefinition
     {
         return $this->commands;
     }
-    //public function getShutdownTimeout(): ?int
+    /**
+     * @return int|null
+     */
     public function getShutdownTimeout(): ?int
     {
         return $this->shutdownTimeout;
     }
-    //public function getTimeout(): int
+    /**
+     * @return int
+     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
-    //public function getCmd(): ?string
+    /**
+     * @return string|null
+     */
     public function getCmd(): ?string
     {
         return $this->cmd;

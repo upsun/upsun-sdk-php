@@ -73,22 +73,30 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getLegacyDevelopment(): bool
+    /**
+     * @return bool
+     */
     public function getLegacyDevelopment(): bool
     {
         return $this->legacyDevelopment;
     }
-    //public function getMaxCpu(): float
+    /**
+     * @return float
+     */
     public function getMaxCpu(): float
     {
         return $this->maxCpu;
     }
-    //public function getMaxMemory(): int
+    /**
+     * @return int
+     */
     public function getMaxMemory(): int
     {
         return $this->maxMemory;
     }
-    //public function getMaxEnvironments(): int
+    /**
+     * @return int
+     */
     public function getMaxEnvironments(): int
     {
         return $this->maxEnvironments;

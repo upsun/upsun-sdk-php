@@ -77,27 +77,37 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getProfile(): string
+    /**
+     * @return string
+     */
     public function getProfile(): string
     {
         return $this->profile;
     }
-    //public function getRepository(): string
+    /**
+     * @return string
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
-    //public function getConfig(): string
+    /**
+     * @return string
+     */
     public function getConfig(): string
     {
         return $this->config;
     }
-    //public function getFiles(): []
+    /**
+     * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
+     */
     public function getFiles(): array
     {
         return $this->files;
     }
-    //public function getResources(): \Upsun\Model\Resources3
+    /**
+     * @return \Upsun\Model\Resources3
+     */
     public function getResources(): \Upsun\Model\Resources3
     {
         return $this->resources;

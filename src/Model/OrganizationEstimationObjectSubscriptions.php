@@ -65,12 +65,20 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTotal(): ?string
+    /**
+     * The total price for subscriptions.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-    //public function getList(): ?[]
+    /**
+     * The list of active subscriptions.
+     *
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
+     */
     public function getList(): ?array
     {
         return $this->list;

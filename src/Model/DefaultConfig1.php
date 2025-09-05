@@ -65,12 +65,16 @@ final class DefaultConfig1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getManualCount(): ?int
+    /**
+     * @return int|null
+     */
     public function getManualCount(): ?int
     {
         return $this->manualCount;
     }
-    //public function getSchedule(): ?[]
+    /**
+     * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]|null
+     */
     public function getSchedule(): ?array
     {
         return $this->schedule;

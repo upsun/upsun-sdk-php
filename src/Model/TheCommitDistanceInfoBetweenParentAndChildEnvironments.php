@@ -69,17 +69,23 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCommitsAhead(): int
+    /**
+     * @return int
+     */
     public function getCommitsAhead(): int
     {
         return $this->commitsAhead;
     }
-    //public function getCommitsBehind(): int
+    /**
+     * @return int
+     */
     public function getCommitsBehind(): int
     {
         return $this->commitsBehind;
     }
-    //public function getParentRef(): string
+    /**
+     * @return string
+     */
     public function getParentRef(): string
     {
         return $this->parentRef;

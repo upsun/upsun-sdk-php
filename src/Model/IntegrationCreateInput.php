@@ -241,232 +241,324 @@ final class IntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getFetchBranches(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
-    //public function getPruneBranches(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
-    //public function getEnvironmentInitResources(): ?string
+    /**
+     * @return string|null
+     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
-    //public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
+    /**
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
+     */
     public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
     {
         return $this->appCredentials;
     }
-    //public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
+    /**
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
+     */
     public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
     {
         return $this->addonCredentials;
     }
-    //public function getRepository(): string
+    /**
+     * @return string
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
-    //public function getBuildPullRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
-    //public function getPullRequestsCloneParentData(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
-    //public function getResyncPullRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
-    //public function getUsername(): string
+    /**
+     * @return string
+     */
     public function getUsername(): string
     {
         return $this->username;
     }
-    //public function getToken(): string
+    /**
+     * @return string
+     */
     public function getToken(): string
     {
         return $this->token;
     }
-    //public function getProject(): string
+    /**
+     * @return string
+     */
     public function getProject(): string
     {
         return $this->project;
     }
-    //public function getEvents(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
-    //public function getEnvironments(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
-    //public function getExcludedEnvironments(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
-    //public function getStates(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getStates(): ?array
     {
         return $this->states;
     }
-    //public function getResult(): ?string
+    /**
+     * @return string|null
+     */
     public function getResult(): ?string
     {
         return $this->result;
     }
-    //public function getServiceId(): string
+    /**
+     * @return string
+     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
-    //public function getBaseUrl(): ?string
+    /**
+     * @return string|null
+     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
-    //public function getBuildDraftPullRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
-    //public function getBuildPullRequestsPostMerge(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
     }
-    //public function getBuildMergeRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
-    //public function getBuildWipMergeRequests(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
-    //public function getMergeRequestsCloneParentData(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
-    //public function getFromAddress(): ?string
+    /**
+     * @return string|null
+     */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
-    //public function getRecipients(): []
+    /**
+     * @return string[]
+     */
     public function getRecipients(): array
     {
         return $this->recipients;
     }
-    //public function getRoutingKey(): string
+    /**
+     * @return string
+     */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
-    //public function getChannel(): string
+    /**
+     * @return string
+     */
     public function getChannel(): string
     {
         return $this->channel;
     }
-    //public function getSharedKey(): ?string
+    /**
+     * @return string|null
+     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
-    //public function getExtra(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
-    //public function getHeaders(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
-    //public function getTlsVerify(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
-    //public function getLicenseKey(): string
+    /**
+     * @return string
+     */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
     }
-    //public function getScript(): string
+    /**
+     * @return string
+     */
     public function getScript(): string
     {
         return $this->script;
     }
-    //public function getIndex(): string
+    /**
+     * @return string
+     */
     public function getIndex(): string
     {
         return $this->index;
     }
-    //public function getSourcetype(): ?string
+    /**
+     * @return string|null
+     */
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
-    //public function getCategory(): ?string
+    /**
+     * @return string|null
+     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
-    //public function getHost(): ?string
+    /**
+     * @return string|null
+     */
     public function getHost(): ?string
     {
         return $this->host;
     }
-    //public function getPort(): ?int
+    /**
+     * @return int|null
+     */
     public function getPort(): ?int
     {
         return $this->port;
     }
-    //public function getProtocol(): ?string
+    /**
+     * @return string|null
+     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
-    //public function getFacility(): ?int
+    /**
+     * @return int|null
+     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
-    //public function getMessageFormat(): ?string
+    /**
+     * @return string|null
+     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
-    //public function getAuthToken(): ?string
+    /**
+     * @return string|null
+     */
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
-    //public function getAuthMode(): ?string
+    /**
+     * @return string|null
+     */
     public function getAuthMode(): ?string
     {
         return $this->authMode;

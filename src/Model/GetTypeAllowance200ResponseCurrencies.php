@@ -77,27 +77,37 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEUR(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR
+    /**
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR|null
+     */
     public function getEUR(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR
     {
         return $this->eUR;
     }
-    //public function getUSD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD
+    /**
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
+     */
     public function getUSD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD
     {
         return $this->uSD;
     }
-    //public function getGBP(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP
+    /**
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
+     */
     public function getGBP(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP
     {
         return $this->gBP;
     }
-    //public function getAUD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD
+    /**
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
+     */
     public function getAUD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD
     {
         return $this->aUD;
     }
-    //public function getCAD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD
+    /**
+     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
+     */
     public function getCAD(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD
     {
         return $this->cAD;

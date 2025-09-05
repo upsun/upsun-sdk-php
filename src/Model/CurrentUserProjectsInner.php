@@ -137,102 +137,180 @@ final class CurrentUserProjectsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The unique ID string of the project.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getName(): ?string
+    /**
+     * The name given to the project. Appears as the title in the user interface.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getTitle(): ?string
+    /**
+     * The name given to the project. Appears as the title in the user interface.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getCluster(): ?string
+    /**
+     * The machine name of the region where the project is located. Cannot be changed after project creation.
+     *
+     * @return string|null
+     */
     public function getCluster(): ?string
     {
         return $this->cluster;
     }
-    //public function getClusterLabel(): ?string
+    /**
+     * The human-readable name of the region where the project is located.
+     *
+     * @return string|null
+     */
     public function getClusterLabel(): ?string
     {
         return $this->clusterLabel;
     }
-    //public function getRegion(): ?string
+    /**
+     * The machine name of the region where the project is located. Cannot be changed after project creation.
+     *
+     * @return string|null
+     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
-    //public function getRegionLabel(): ?string
+    /**
+     * The human-readable name of the region where the project is located.
+     *
+     * @return string|null
+     */
     public function getRegionLabel(): ?string
     {
         return $this->regionLabel;
     }
-    //public function getUri(): ?string
+    /**
+     * The URL for the project's user interface.
+     *
+     * @return string|null
+     */
     public function getUri(): ?string
     {
         return $this->uri;
     }
-    //public function getEndpoint(): ?string
+    /**
+     * The project API endpoint for the project.
+     *
+     * @return string|null
+     */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
-    //public function getLicenseId(): ?int
+    /**
+     * The ID of the subscription.
+     *
+     * @return int|null
+     */
     public function getLicenseId(): ?int
     {
         return $this->licenseId;
     }
-    //public function getOwner(): ?string
+    /**
+     * The UUID of the owner.
+     *
+     * @return string|null
+     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
-    //public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    /**
+     * @return \Upsun\Model\OwnerInfo|null
+     */
     public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
     {
         return $this->ownerInfo;
     }
-    //public function getPlan(): ?string
+    /**
+     * The plan type of the subscription.
+     *
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getSubscriptionId(): ?int
+    /**
+     * The ID of the subscription.
+     *
+     * @return int|null
+     */
     public function getSubscriptionId(): ?int
     {
         return $this->subscriptionId;
     }
-    //public function getStatus(): ?string
+    /**
+     * The status of the project.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getVendor(): ?string
+    /**
+     * The machine name of the vendor the subscription belongs to.
+     *
+     * @return string|null
+     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
-    //public function getVendorLabel(): ?string
+    /**
+     * The machine name of the vendor the subscription belongs to.
+     *
+     * @return string|null
+     */
     public function getVendorLabel(): ?string
     {
         return $this->vendorLabel;
     }
-    //public function getVendorWebsite(): ?string
+    /**
+     * The URL of the vendor the subscription belongs to.
+     *
+     * @return string|null
+     */
     public function getVendorWebsite(): ?string
     {
         return $this->vendorWebsite;
     }
-    //public function getVendorResources(): ?string
+    /**
+     * The link to the resources of the vendor the subscription belongs to.
+     *
+     * @return string|null
+     */
     public function getVendorResources(): ?string
     {
         return $this->vendorResources;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The creation date of the subscription.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;

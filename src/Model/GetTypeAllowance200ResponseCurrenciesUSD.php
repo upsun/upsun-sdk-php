@@ -73,22 +73,38 @@ final class GetTypeAllowance200ResponseCurrenciesUSD implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getFormatted(): ?string
+    /**
+     * The discount amount formatted.
+     *
+     * @return string|null
+     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
-    //public function getAmount(): ?float
+    /**
+     * The discount amount.
+     *
+     * @return float|null
+     */
     public function getAmount(): ?float
     {
         return $this->amount;
     }
-    //public function getCurrency(): ?string
+    /**
+     * The currency.
+     *
+     * @return string|null
+     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
-    //public function getCurrencySymbol(): ?string
+    /**
+     * Currency symbol.
+     *
+     * @return string|null
+     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;

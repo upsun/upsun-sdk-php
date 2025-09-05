@@ -109,67 +109,93 @@ final class GithubIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getFetchBranches(): bool
+    /**
+     * @return bool
+     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
-    //public function getPruneBranches(): bool
+    /**
+     * @return bool
+     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
-    //public function getEnvironmentInitResources(): string
+    /**
+     * @return string
+     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
-    //public function getBaseUrl(): string
+    /**
+     * @return string
+     */
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
-    //public function getRepository(): string
+    /**
+     * @return string
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
-    //public function getBuildPullRequests(): bool
+    /**
+     * @return bool
+     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
-    //public function getBuildDraftPullRequests(): bool
+    /**
+     * @return bool
+     */
     public function getBuildDraftPullRequests(): bool
     {
         return $this->buildDraftPullRequests;
     }
-    //public function getBuildPullRequestsPostMerge(): bool
+    /**
+     * @return bool
+     */
     public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->buildPullRequestsPostMerge;
     }
-    //public function getPullRequestsCloneParentData(): bool
+    /**
+     * @return bool
+     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
-    //public function getTokenType(): string
+    /**
+     * @return string
+     */
     public function getTokenType(): string
     {
         return $this->tokenType;

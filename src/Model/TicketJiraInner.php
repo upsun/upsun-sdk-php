@@ -81,32 +81,56 @@ final class TicketJiraInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?int
+    /**
+     * The id of the query.
+     *
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
-    //public function getTicketId(): ?int
+    /**
+     * The id of the ticket.
+     *
+     * @return int|null
+     */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
-    //public function getIssueId(): ?int
+    /**
+     * The issue id number.
+     *
+     * @return int|null
+     */
     public function getIssueId(): ?int
     {
         return $this->issueId;
     }
-    //public function getIssueKey(): ?string
+    /**
+     * The issue key.
+     *
+     * @return string|null
+     */
     public function getIssueKey(): ?string
     {
         return $this->issueKey;
     }
-    //public function getCreatedAt(): ?float
+    /**
+     * The created at timestamp.
+     *
+     * @return float|null
+     */
     public function getCreatedAt(): ?float
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?float
+    /**
+     * The updated at timestamp.
+     *
+     * @return float|null
+     */
     public function getUpdatedAt(): ?float
     {
         return $this->updatedAt;

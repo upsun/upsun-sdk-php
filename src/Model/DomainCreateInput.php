@@ -73,22 +73,30 @@ final class DomainCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
-    //public function getIsDefault(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
-    //public function getReplacementFor(): ?string
+    /**
+     * @return string|null
+     */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;

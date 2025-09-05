@@ -77,27 +77,37 @@ final class ResourcesOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getServices(): []
+    /**
+     * @return \Upsun\Model\PerServiceResourcesOverridesValue[]
+     */
     public function getServices(): array
     {
         return $this->services;
     }
-    //public function getStartsAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getStartsAt(): \DateTime
     {
         return $this->startsAt;
     }
-    //public function getEndsAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getEndsAt(): \DateTime
     {
         return $this->endsAt;
     }
-    //public function getRedeployedStart(): bool
+    /**
+     * @return bool
+     */
     public function getRedeployedStart(): bool
     {
         return $this->redeployedStart;
     }
-    //public function getRedeployedEnd(): bool
+    /**
+     * @return bool
+     */
     public function getRedeployedEnd(): bool
     {
         return $this->redeployedEnd;

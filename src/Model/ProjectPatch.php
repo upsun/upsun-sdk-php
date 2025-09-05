@@ -85,37 +85,51 @@ final class ProjectPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
-    //public function getTitle(): ?string
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getDescription(): ?string
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
-    //public function getDefaultBranch(): ?string
+    /**
+     * @return string|null
+     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
-    //public function getTimezone(): ?string
+    /**
+     * @return string|null
+     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
-    //public function getRegion(): ?string
+    /**
+     * @return string|null
+     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
-    //public function getDefaultDomain(): ?string
+    /**
+     * @return string|null
+     */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;

@@ -77,27 +77,37 @@ final class Error implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getStatus(): ?string
+    /**
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getMessage(): ?string
+    /**
+     * @return string|null
+     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
-    //public function getCode(): ?float
+    /**
+     * @return float|null
+     */
     public function getCode(): ?float
     {
         return $this->code;
     }
-    //public function getDetail(): ?object
+    /**
+     * @return object|null
+     */
     public function getDetail(): ?object
     {
         return $this->detail;
     }
-    //public function getTitle(): ?string
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;

@@ -61,7 +61,9 @@ final class EnvironmentMergeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getResources(): \Upsun\Model\Resources4
+    /**
+     * @return \Upsun\Model\Resources4
+     */
     public function getResources(): \Upsun\Model\Resources4
     {
         return $this->resources;

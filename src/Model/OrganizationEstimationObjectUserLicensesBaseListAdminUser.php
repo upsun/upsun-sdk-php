@@ -65,12 +65,20 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * The number of admin user licenses.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total price for admin user licenses.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;

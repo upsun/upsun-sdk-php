@@ -69,17 +69,23 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOid(): string
+    /**
+     * @return string
+     */
     public function getOid(): string
     {
         return $this->oid;
     }
-    //public function getAlias(): string
+    /**
+     * @return string
+     */
     public function getAlias(): string
     {
         return $this->alias;
     }
-    //public function getValue(): string
+    /**
+     * @return string
+     */
     public function getValue(): string
     {
         return $this->value;

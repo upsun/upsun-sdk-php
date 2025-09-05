@@ -73,22 +73,30 @@ final class CacheConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    //public function getDefaultTtl(): int
+    /**
+     * @return int
+     */
     public function getDefaultTtl(): int
     {
         return $this->defaultTtl;
     }
-    //public function getCookies(): []
+    /**
+     * @return string[]
+     */
     public function getCookies(): array
     {
         return $this->cookies;
     }
-    //public function getHeaders(): []
+    /**
+     * @return string[]
+     */
     public function getHeaders(): array
     {
         return $this->headers;

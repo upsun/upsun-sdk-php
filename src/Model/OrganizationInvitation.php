@@ -93,47 +93,81 @@ final class OrganizationInvitation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the invitation.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getState(): ?string
+    /**
+     * The invitation state.
+     *
+     * @return string|null
+     */
     public function getState(): ?string
     {
         return $this->state;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ID of the organization.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getEmail(): ?string
+    /**
+     * The email address of the invitee.
+     *
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
-    //public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
+    /**
+     * @return \Upsun\Model\OrganizationInvitationOwner|null
+     */
     public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
     {
         return $this->owner;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the invitation was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the invitation was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getFinishedAt(): ?\DateTime
+    /**
+     * The date and time when the invitation was finished.
+     *
+     * @return \DateTime|null
+     */
     public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }
-    //public function getPermissions(): ?[]
+    /**
+     * The permissions the invitee should be given on the organization.
+     *
+     * @return string[]|null
+     */
     public function getPermissions(): ?array
     {
         return $this->permissions;

@@ -77,27 +77,47 @@ final class Usage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The unique ID of the usage record.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getSubscriptionId(): ?string
+    /**
+     * The ID of the subscription.
+     *
+     * @return string|null
+     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
-    //public function getUsageGroup(): ?string
+    /**
+     * The type of usage that this record represents.
+     *
+     * @return string|null
+     */
     public function getUsageGroup(): ?string
     {
         return $this->usageGroup;
     }
-    //public function getQuantity(): ?float
+    /**
+     * The quantity used.
+     *
+     * @return float|null
+     */
     public function getQuantity(): ?float
     {
         return $this->quantity;
     }
-    //public function getStart(): ?\DateTime
+    /**
+     * The start timestamp of this usage record (ISO 8601).
+     *
+     * @return \DateTime|null
+     */
     public function getStart(): ?\DateTime
     {
         return $this->start;

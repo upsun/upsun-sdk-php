@@ -69,17 +69,27 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * Trial project ID
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getName(): ?string
+    /**
+     * Trial project name
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getTotal(): ?\Upsun\Model\ProfileCurrentTrialProjectsTotal
+    /**
+     * @return \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
+     */
     public function getTotal(): ?\Upsun\Model\ProfileCurrentTrialProjectsTotal
     {
         return $this->total;

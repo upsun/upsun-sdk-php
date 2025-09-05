@@ -73,22 +73,38 @@ final class VouchersVouchersInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCode(): ?string
+    /**
+     * The voucher code.
+     *
+     * @return string|null
+     */
     public function getCode(): ?string
     {
         return $this->code;
     }
-    //public function getAmount(): ?string
+    /**
+     * The total voucher credit.
+     *
+     * @return string|null
+     */
     public function getAmount(): ?string
     {
         return $this->amount;
     }
-    //public function getCurrency(): ?string
+    /**
+     * The currency of the voucher.
+     *
+     * @return string|null
+     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
-    //public function getOrders(): ?[]
+    /**
+     * Array of orders to which a voucher applied.
+     *
+     * @return \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
+     */
     public function getOrders(): ?array
     {
         return $this->orders;

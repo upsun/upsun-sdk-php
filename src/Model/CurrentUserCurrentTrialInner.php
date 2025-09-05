@@ -73,22 +73,38 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreated(): ?\DateTime
+    /**
+     * The ISO timestamp of the trial creation date time.
+     *
+     * @return \DateTime|null
+     */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
-    //public function getDescription(): ?string
+    /**
+     * The human readable trial description
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
-    //public function getSpendRemaining(): ?string
+    /**
+     * Total spend amount of the voucher minus existing project costs for the existing billing cycle.
+     *
+     * @return string|null
+     */
     public function getSpendRemaining(): ?string
     {
         return $this->spendRemaining;
     }
-    //public function getExpiration(): ?\DateTime
+    /**
+     * Date the trial expires.
+     *
+     * @return \DateTime|null
+     */
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;

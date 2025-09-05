@@ -65,12 +65,16 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getFlavor(): string
+    /**
+     * @return string
+     */
     public function getFlavor(): string
     {
         return $this->flavor;
     }
-    //public function getCaches(): []
+    /**
+     * @return \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]
+     */
     public function getCaches(): array
     {
         return $this->caches;

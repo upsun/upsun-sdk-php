@@ -73,22 +73,30 @@ final class TheMinimumResourcesForThisService implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCpu(): float
+    /**
+     * @return float
+     */
     public function getCpu(): float
     {
         return $this->cpu;
     }
-    //public function getMemory(): int
+    /**
+     * @return int
+     */
     public function getMemory(): int
     {
         return $this->memory;
     }
-    //public function getDisk(): int
+    /**
+     * @return int
+     */
     public function getDisk(): int
     {
         return $this->disk;
     }
-    //public function getProfileSize(): string
+    /**
+     * @return string
+     */
     public function getProfileSize(): string
     {
         return $this->profileSize;

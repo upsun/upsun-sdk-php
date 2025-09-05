@@ -177,152 +177,212 @@ final class WebApplicationsValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getResources(): \Upsun\Model\Resources
+    /**
+     * @return \Upsun\Model\Resources
+     */
     public function getResources(): \Upsun\Model\Resources
     {
         return $this->resources;
     }
-    //public function getSize(): string
+    /**
+     * @return string
+     */
     public function getSize(): string
     {
         return $this->size;
     }
-    //public function getDisk(): int
+    /**
+     * @return int
+     */
     public function getDisk(): int
     {
         return $this->disk;
     }
-    //public function getAccess(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAccess(): array
     {
         return $this->access;
     }
-    //public function getRelationships(): []
+    /**
+     * @return \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]
+     */
     public function getRelationships(): array
     {
         return $this->relationships;
     }
-    //public function getAdditionalHosts(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
-    //public function getMounts(): []
+    /**
+     * @return \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
+     */
     public function getMounts(): array
     {
         return $this->mounts;
     }
-    //public function getTimezone(): string
+    /**
+     * @return string
+     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
-    //public function getVariables(): []
+    /**
+     * @return array&lt;string,array&lt;string,mixed&gt;&gt;
+     */
     public function getVariables(): array
     {
         return $this->variables;
     }
-    //public function getFirewall(): \Upsun\Model\Firewall
+    /**
+     * @return \Upsun\Model\Firewall
+     */
     public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->firewall;
     }
-    //public function getContainerProfile(): string
+    /**
+     * @return string
+     */
     public function getContainerProfile(): string
     {
         return $this->containerProfile;
     }
-    //public function getOperations(): []
+    /**
+     * @return \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]
+     */
     public function getOperations(): array
     {
         return $this->operations;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
+    /**
+     * @return \Upsun\Model\ConfigurationForPreFlightChecks
+     */
     public function getPreflight(): \Upsun\Model\ConfigurationForPreFlightChecks
     {
         return $this->preflight;
     }
-    //public function getTreeId(): string
+    /**
+     * @return string
+     */
     public function getTreeId(): string
     {
         return $this->treeId;
     }
-    //public function getAppDir(): string
+    /**
+     * @return string
+     */
     public function getAppDir(): string
     {
         return $this->appDir;
     }
-    //public function getEndpoints(): object
+    /**
+     * @return object
+     */
     public function getEndpoints(): object
     {
         return $this->endpoints;
     }
-    //public function getRuntime(): object
+    /**
+     * @return object
+     */
     public function getRuntime(): object
     {
         return $this->runtime;
     }
-    //public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
+    /**
+     * @return \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
+     */
     public function getWeb(): \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
     {
         return $this->web;
     }
-    //public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
+    /**
+     * @return \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
+     */
     public function getHooks(): \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
     {
         return $this->hooks;
     }
-    //public function getCrons(): []
+    /**
+     * @return \Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue[]
+     */
     public function getCrons(): array
     {
         return $this->crons;
     }
-    //public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
+    /**
+     * @return \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
+     */
     public function getSource(): \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
     {
         return $this->source;
     }
-    //public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
+    /**
+     * @return \Upsun\Model\TheBuildConfigurationOfTheApplication
+     */
     public function getBuild(): \Upsun\Model\TheBuildConfigurationOfTheApplication
     {
         return $this->build;
     }
-    //public function getDependencies(): []
+    /**
+     * @return array&lt;string,object&gt;
+     */
     public function getDependencies(): array
     {
         return $this->dependencies;
     }
-    //public function getStack(): []
+    /**
+     * @return object[]
+     */
     public function getStack(): array
     {
         return $this->stack;
     }
-    //public function getIsAcrossSubmodule(): bool
+    /**
+     * @return bool
+     */
     public function getIsAcrossSubmodule(): bool
     {
         return $this->isAcrossSubmodule;
     }
-    //public function getInstanceCount(): int
+    /**
+     * @return int
+     */
     public function getInstanceCount(): int
     {
         return $this->instanceCount;
     }
-    //public function getConfigId(): string
+    /**
+     * @return string
+     */
     public function getConfigId(): string
     {
         return $this->configId;
     }
-    //public function getSlugId(): string
+    /**
+     * @return string
+     */
     public function getSlugId(): string
     {
         return $this->slugId;

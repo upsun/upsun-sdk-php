@@ -69,17 +69,29 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUserId(): string
+    /**
+     * ID of the user.
+     *
+     * @return string
+     */
     public function getUserId(): string
     {
         return $this->userId;
     }
-    //public function getPermissions(): []
+    /**
+     * An array of project permissions.
+     *
+     * @return string[]
+     */
     public function getPermissions(): array
     {
         return $this->permissions;
     }
-    //public function getAutoAddMember(): ?bool
+    /**
+     * If the specified user is not a member of the project's organization, add it automatically.
+     *
+     * @return bool|null
+     */
     public function getAutoAddMember(): ?bool
     {
         return $this->autoAddMember;

@@ -77,27 +77,37 @@ final class EnvironmentRestoreInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnvironmentName(): string
+    /**
+     * @return string
+     */
     public function getEnvironmentName(): string
     {
         return $this->environmentName;
     }
-    //public function getBranchFrom(): string
+    /**
+     * @return string
+     */
     public function getBranchFrom(): string
     {
         return $this->branchFrom;
     }
-    //public function getRestoreCode(): bool
+    /**
+     * @return bool
+     */
     public function getRestoreCode(): bool
     {
         return $this->restoreCode;
     }
-    //public function getRestoreResources(): bool
+    /**
+     * @return bool
+     */
     public function getRestoreResources(): bool
     {
         return $this->restoreResources;
     }
-    //public function getResources(): \Upsun\Model\Resources5
+    /**
+     * @return \Upsun\Model\Resources5
+     */
     public function getResources(): \Upsun\Model\Resources5
     {
         return $this->resources;

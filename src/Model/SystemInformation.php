@@ -69,17 +69,23 @@ final class SystemInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getVersion(): string
+    /**
+     * @return string
+     */
     public function getVersion(): string
     {
         return $this->version;
     }
-    //public function getImage(): string
+    /**
+     * @return string
+     */
     public function getImage(): string
     {
         return $this->image;
     }
-    //public function getStartedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getStartedAt(): \DateTime
     {
         return $this->startedAt;

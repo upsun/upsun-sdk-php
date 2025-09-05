@@ -97,52 +97,72 @@ final class SyslogIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getExtra(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getExtra(): array
     {
         return $this->extra;
     }
-    //public function getHost(): string
+    /**
+     * @return string
+     */
     public function getHost(): string
     {
         return $this->host;
     }
-    //public function getPort(): int
+    /**
+     * @return int
+     */
     public function getPort(): int
     {
         return $this->port;
     }
-    //public function getProtocol(): string
+    /**
+     * @return string
+     */
     public function getProtocol(): string
     {
         return $this->protocol;
     }
-    //public function getFacility(): int
+    /**
+     * @return int
+     */
     public function getFacility(): int
     {
         return $this->facility;
     }
-    //public function getMessageFormat(): string
+    /**
+     * @return string
+     */
     public function getMessageFormat(): string
     {
         return $this->messageFormat;
     }
-    //public function getTlsVerify(): bool
+    /**
+     * @return bool
+     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;

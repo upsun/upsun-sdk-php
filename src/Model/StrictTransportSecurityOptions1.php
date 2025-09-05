@@ -69,17 +69,23 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
-    //public function getIncludeSubdomains(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIncludeSubdomains(): ?bool
     {
         return $this->includeSubdomains;
     }
-    //public function getPreload(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getPreload(): ?bool
     {
         return $this->preload;

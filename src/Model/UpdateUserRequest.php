@@ -85,37 +85,65 @@ final class UpdateUserRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUsername(): ?string
+    /**
+     * The user's username.
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-    //public function getFirstName(): ?string
+    /**
+     * The user's first name.
+     *
+     * @return string|null
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
-    //public function getLastName(): ?string
+    /**
+     * The user's last name.
+     *
+     * @return string|null
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
-    //public function getPicture(): ?string
+    /**
+     * The user's picture.
+     *
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
-    //public function getCompany(): ?string
+    /**
+     * The user's company.
+     *
+     * @return string|null
+     */
     public function getCompany(): ?string
     {
         return $this->company;
     }
-    //public function getWebsite(): ?string
+    /**
+     * The user's website.
+     *
+     * @return string|null
+     */
     public function getWebsite(): ?string
     {
         return $this->website;
     }
-    //public function getCountry(): ?string
+    /**
+     * The user's country (2-letter country code).
+     *
+     * @return string|null
+     */
     public function getCountry(): ?string
     {
         return $this->country;

@@ -73,22 +73,38 @@ final class GetTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getIssuer(): ?string
+    /**
+     * 
+     *
+     * @return string|null
+     */
     public function getIssuer(): ?string
     {
         return $this->issuer;
     }
-    //public function getAccountName(): ?string
+    /**
+     * Account name for the enrollment.
+     *
+     * @return string|null
+     */
     public function getAccountName(): ?string
     {
         return $this->accountName;
     }
-    //public function getSecret(): ?string
+    /**
+     * The secret seed for the enrollment
+     *
+     * @return string|null
+     */
     public function getSecret(): ?string
     {
         return $this->secret;
     }
-    //public function getQrCode(): ?string
+    /**
+     * Data URI of a PNG QR code image for the enrollment.
+     *
+     * @return string|null
+     */
     public function getQrCode(): ?string
     {
         return $this->qrCode;

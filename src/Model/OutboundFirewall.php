@@ -61,7 +61,9 @@ final class OutboundFirewall implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;

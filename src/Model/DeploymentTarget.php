@@ -133,97 +133,135 @@ final class DeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getDeployHost(): string
+    /**
+     * @return string
+     */
     public function getDeployHost(): string
     {
         return $this->deployHost;
     }
-    //public function getDeployPort(): int
+    /**
+     * @return int
+     */
     public function getDeployPort(): int
     {
         return $this->deployPort;
     }
-    //public function getSshHost(): string
+    /**
+     * @return string
+     */
     public function getSshHost(): string
     {
         return $this->sshHost;
     }
-    //public function getHosts(): []
+    /**
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+     */
     public function getHosts(): array
     {
         return $this->hosts;
     }
-    //public function getAutoMounts(): bool
+    /**
+     * @return bool
+     */
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
     }
-    //public function getExcludedMounts(): []
+    /**
+     * @return string[]
+     */
     public function getExcludedMounts(): array
     {
         return $this->excludedMounts;
     }
-    //public function getEnforcedMounts(): object
+    /**
+     * @return object
+     */
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
-    //public function getAutoCrons(): bool
+    /**
+     * @return bool
+     */
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
-    //public function getAutoNginx(): bool
+    /**
+     * @return bool
+     */
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
-    //public function getMaintenanceMode(): bool
+    /**
+     * @return bool
+     */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
-    //public function getGuardrailsPhase(): int
+    /**
+     * @return int
+     */
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
     }
-    //public function getDocroots(): []
+    /**
+     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]
+     */
     public function getDocroots(): array
     {
         return $this->docroots;
     }
-    //public function getSiteUrls(): object
+    /**
+     * @return object
+     */
     public function getSiteUrls(): object
     {
         return $this->siteUrls;
     }
-    //public function getSshHosts(): []
+    /**
+     * @return string[]
+     */
     public function getSshHosts(): array
     {
         return $this->sshHosts;
     }
-    //public function getEnterpriseEnvironmentsMapping(): ?object
+    /**
+     * @return object|null
+     */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
-    //public function getUseDedicatedGrid(): bool
+    /**
+     * @return bool
+     */
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
-    //public function getStorageType(): string
+    /**
+     * @return string
+     */
     public function getStorageType(): string
     {
         return $this->storageType;

@@ -65,12 +65,16 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    //public function getIgnoredRules(): []
+    /**
+     * @return string[]
+     */
     public function getIgnoredRules(): array
     {
         return $this->ignoredRules;

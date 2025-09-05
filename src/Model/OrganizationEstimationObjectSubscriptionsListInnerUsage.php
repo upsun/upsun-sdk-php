@@ -73,22 +73,38 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCpu(): ?float
+    /**
+     * The total cpu for this subsciption.
+     *
+     * @return float|null
+     */
     public function getCpu(): ?float
     {
         return $this->cpu;
     }
-    //public function getMemory(): ?float
+    /**
+     * The total memory for this subsciption.
+     *
+     * @return float|null
+     */
     public function getMemory(): ?float
     {
         return $this->memory;
     }
-    //public function getStorage(): ?float
+    /**
+     * The total storage for this subsciption.
+     *
+     * @return float|null
+     */
     public function getStorage(): ?float
     {
         return $this->storage;
     }
-    //public function getEnvironments(): ?int
+    /**
+     * The total environments for this subsciption.
+     *
+     * @return int|null
+     */
     public function getEnvironments(): ?int
     {
         return $this->environments;

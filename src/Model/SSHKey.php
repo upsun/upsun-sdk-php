@@ -81,32 +81,56 @@ final class SSHKey implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getKeyId(): ?int
+    /**
+     * The ID of the public key.
+     *
+     * @return int|null
+     */
     public function getKeyId(): ?int
     {
         return $this->keyId;
     }
-    //public function getUid(): ?int
+    /**
+     * The internal user ID.
+     *
+     * @return int|null
+     */
     public function getUid(): ?int
     {
         return $this->uid;
     }
-    //public function getFingerprint(): ?string
+    /**
+     * The fingerprint of the public key.
+     *
+     * @return string|null
+     */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
-    //public function getTitle(): ?string
+    /**
+     * The title of the public key.
+     *
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
-    //public function getValue(): ?string
+    /**
+     * The actual value of the public key.
+     *
+     * @return string|null
+     */
     public function getValue(): ?string
     {
         return $this->value;
     }
-    //public function getChanged(): ?string
+    /**
+     * The time of the last key modification (ISO 8601)
+     *
+     * @return string|null
+     */
     public function getChanged(): ?string
     {
         return $this->changed;

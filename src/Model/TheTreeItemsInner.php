@@ -73,22 +73,30 @@ final class TheTreeItemsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPath(): string
+    /**
+     * @return string
+     */
     public function getPath(): string
     {
         return $this->path;
     }
-    //public function getMode(): string
+    /**
+     * @return string
+     */
     public function getMode(): string
     {
         return $this->mode;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getSha(): string
+    /**
+     * @return string
+     */
     public function getSha(): string
     {
         return $this->sha;

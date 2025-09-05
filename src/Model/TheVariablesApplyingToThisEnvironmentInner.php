@@ -81,32 +81,44 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getValue(): ?string
+    /**
+     * @return string|null
+     */
     public function getValue(): ?string
     {
         return $this->value;
     }
-    //public function getIsSensitive(): bool
+    /**
+     * @return bool
+     */
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
-    //public function getIsJson(): bool
+    /**
+     * @return bool
+     */
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
-    //public function getVisibleBuild(): bool
+    /**
+     * @return bool
+     */
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
-    //public function getVisibleRuntime(): bool
+    /**
+     * @return bool
+     */
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;

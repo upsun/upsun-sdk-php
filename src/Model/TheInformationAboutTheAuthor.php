@@ -69,17 +69,23 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getDate(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getDate(): \DateTime
     {
         return $this->date;
     }
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getEmail(): string
+    /**
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;

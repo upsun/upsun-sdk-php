@@ -105,62 +105,86 @@ final class BitbucketIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getFetchBranches(): bool
+    /**
+     * @return bool
+     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
-    //public function getPruneBranches(): bool
+    /**
+     * @return bool
+     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
-    //public function getEnvironmentInitResources(): string
+    /**
+     * @return string
+     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
-    //public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
+    /**
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
+     */
     public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
     {
         return $this->appCredentials;
     }
-    //public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
+    /**
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
+     */
     public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
     {
         return $this->addonCredentials;
     }
-    //public function getRepository(): string
+    /**
+     * @return string
+     */
     public function getRepository(): string
     {
         return $this->repository;
     }
-    //public function getBuildPullRequests(): bool
+    /**
+     * @return bool
+     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
-    //public function getPullRequestsCloneParentData(): bool
+    /**
+     * @return bool
+     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
-    //public function getResyncPullRequests(): bool
+    /**
+     * @return bool
+     */
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;

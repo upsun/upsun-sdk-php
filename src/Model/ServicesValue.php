@@ -97,52 +97,72 @@ final class ServicesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getSize(): string
+    /**
+     * @return string
+     */
     public function getSize(): string
     {
         return $this->size;
     }
-    //public function getDisk(): int
+    /**
+     * @return int
+     */
     public function getDisk(): int
     {
         return $this->disk;
     }
-    //public function getAccess(): object
+    /**
+     * @return object
+     */
     public function getAccess(): object
     {
         return $this->access;
     }
-    //public function getConfiguration(): object
+    /**
+     * @return object
+     */
     public function getConfiguration(): object
     {
         return $this->configuration;
     }
-    //public function getRelationships(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getRelationships(): array
     {
         return $this->relationships;
     }
-    //public function getFirewall(): \Upsun\Model\Firewall
+    /**
+     * @return \Upsun\Model\Firewall
+     */
     public function getFirewall(): \Upsun\Model\Firewall
     {
         return $this->firewall;
     }
-    //public function getResources(): \Upsun\Model\Resources
+    /**
+     * @return \Upsun\Model\Resources
+     */
     public function getResources(): \Upsun\Model\Resources
     {
         return $this->resources;
     }
-    //public function getContainerProfile(): string
+    /**
+     * @return string
+     */
     public function getContainerProfile(): string
     {
         return $this->containerProfile;
     }
-    //public function getEndpoints(): object
+    /**
+     * @return object
+     */
     public function getEndpoints(): object
     {
         return $this->endpoints;

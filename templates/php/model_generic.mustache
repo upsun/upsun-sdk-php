@@ -57,7 +57,23 @@ final class {{classname}} implements JsonSerializable
     }
 
     {{#vars}}
-    //public function {{{getter}}}(): {{#isContainer}}{{^required}}?{{/required}}{{{itemType}}}[]{{/isContainer}}{{^isContainer}}{{^required}}?{{/required}}{{{datatype}}}{{/isContainer}}
+    /**
+    {{#description}}
+     * {{{description}}}
+     *
+    {{/description}}
+    {{#isContainer}}
+    {{#items.isModel}}
+     * @return {{items.dataType}}[]{{^required}}|null{{/required}}
+    {{/items.isModel}}
+    {{^items.isModel}}
+     * @return {{dataType}}{{^required}}|null{{/required}}
+    {{/items.isModel}}
+    {{/isContainer}}
+    {{^isContainer}}
+     * @return {{dataType}}{{^required}}|null{{/required}}
+    {{/isContainer}}
+     */
     public function {{{getter}}}(): {{#isContainer}}{{^required}}?{{/required}}array{{/isContainer}}{{^isContainer}}{{^required}}?{{/required}}{{{datatype}}}{{/isContainer}}
     {
         return $this->{{{name}}};

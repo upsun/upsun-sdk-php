@@ -65,12 +65,16 @@ final class AcceptedResponse implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getStatus(): string
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
-    //public function getCode(): int
+    /**
+     * @return int
+     */
     public function getCode(): int
     {
         return $this->code;

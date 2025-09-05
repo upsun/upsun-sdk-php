@@ -61,7 +61,9 @@ final class LogsForwarding implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getMaxExtraPayloadSize(): int
+    /**
+     * @return int
+     */
     public function getMaxExtraPayloadSize(): int
     {
         return $this->maxExtraPayloadSize;

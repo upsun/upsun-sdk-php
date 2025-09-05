@@ -85,37 +85,65 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPlan(): ?string
+    /**
+     * The project plan.
+     *
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getProjectRegion(): string
+    /**
+     * The machine name of the region where the project is located. Cannot be changed after project creation.
+     *
+     * @return string
+     */
     public function getProjectRegion(): string
     {
         return $this->projectRegion;
     }
-    //public function getProjectTitle(): ?string
+    /**
+     * The name given to the project. Appears as the title in the UI.
+     *
+     * @return string|null
+     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
-    //public function getOptionsUrl(): ?string
+    /**
+     * The URL of the project options file.
+     *
+     * @return string|null
+     */
     public function getOptionsUrl(): ?string
     {
         return $this->optionsUrl;
     }
-    //public function getDefaultBranch(): ?string
+    /**
+     * The default Git branch name for the project.
+     *
+     * @return string|null
+     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
-    //public function getEnvironments(): ?int
+    /**
+     * The maximum number of active environments on the project.
+     *
+     * @return int|null
+     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
-    //public function getStorage(): ?int
+    /**
+     * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
+     *
+     * @return int|null
+     */
     public function getStorage(): ?int
     {
         return $this->storage;

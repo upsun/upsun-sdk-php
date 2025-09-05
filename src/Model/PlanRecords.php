@@ -93,47 +93,81 @@ final class PlanRecords implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The unique ID of the plan record.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getOwner(): ?string
+    /**
+     * The UUID of the owner.
+     *
+     * @return string|null
+     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
-    //public function getSubscriptionId(): ?string
+    /**
+     * The ID of the subscription this record pertains to.
+     *
+     * @return string|null
+     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
-    //public function getSku(): ?string
+    /**
+     * The product SKU of the plan that this record represents.
+     *
+     * @return string|null
+     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
-    //public function getPlan(): ?string
+    /**
+     * The machine name of the plan that this record represents.
+     *
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getOptions(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getOptions(): ?array
     {
         return $this->options;
     }
-    //public function getStart(): ?\DateTime
+    /**
+     * The start timestamp of this plan record (ISO 8601).
+     *
+     * @return \DateTime|null
+     */
     public function getStart(): ?\DateTime
     {
         return $this->start;
     }
-    //public function getEnd(): ?\DateTime
+    /**
+     * The end timestamp of this plan record (ISO 8601).
+     *
+     * @return \DateTime|null
+     */
     public function getEnd(): ?\DateTime
     {
         return $this->end;
     }
-    //public function getStatus(): ?string
+    /**
+     * The status of the subscription during this record: active or suspended.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;

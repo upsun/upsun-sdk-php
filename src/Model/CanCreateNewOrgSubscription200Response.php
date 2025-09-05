@@ -69,17 +69,27 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCanCreate(): ?bool
+    /**
+     * Boolean result of the check.
+     *
+     * @return bool|null
+     */
     public function getCanCreate(): ?bool
     {
         return $this->canCreate;
     }
-    //public function getMessage(): ?string
+    /**
+     * Details in case of negative check result.
+     *
+     * @return string|null
+     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
-    //public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
+    /**
+     * @return \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
+     */
     public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
     {
         return $this->requiredAction;

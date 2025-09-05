@@ -69,17 +69,23 @@ final class ResourcesLimits implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getContainerProfiles(): bool
+    /**
+     * @return bool
+     */
     public function getContainerProfiles(): bool
     {
         return $this->containerProfiles;
     }
-    //public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
+    /**
+     * @return \Upsun\Model\ResourcesForProductionEnvironments
+     */
     public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
     {
         return $this->production;
     }
-    //public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
+    /**
+     * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
+     */
     public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
     {
         return $this->development;

@@ -97,52 +97,72 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getLocations(): []
+    /**
+     * @return \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]
+     */
     public function getLocations(): array
     {
         return $this->locations;
     }
-    //public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
+    /**
+     * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
+     */
     public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
     {
         return $this->commands;
     }
-    //public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
+    /**
+     * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
+     */
     public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
     {
         return $this->upstream;
     }
-    //public function getDocumentRoot(): ?string
+    /**
+     * @return string|null
+     */
     public function getDocumentRoot(): ?string
     {
         return $this->documentRoot;
     }
-    //public function getPassthru(): ?string
+    /**
+     * @return string|null
+     */
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
-    //public function getIndexFiles(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getIndexFiles(): ?array
     {
         return $this->indexFiles;
     }
-    //public function getWhitelist(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getWhitelist(): ?array
     {
         return $this->whitelist;
     }
-    //public function getBlacklist(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getBlacklist(): ?array
     {
         return $this->blacklist;
     }
-    //public function getExpires(): ?string
+    /**
+     * @return string|null
+     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
-    //public function getMoveToRoot(): bool
+    /**
+     * @return bool
+     */
     public function getMoveToRoot(): bool
     {
         return $this->moveToRoot;

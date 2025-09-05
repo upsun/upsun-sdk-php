@@ -93,47 +93,65 @@ final class EnvironmentInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getStatus(): string
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
-    //public function getIsMain(): bool
+    /**
+     * @return bool
+     */
     public function getIsMain(): bool
     {
         return $this->isMain;
     }
-    //public function getIsProduction(): bool
+    /**
+     * @return bool
+     */
     public function getIsProduction(): bool
     {
         return $this->isProduction;
     }
-    //public function getConstraints(): object
+    /**
+     * @return object
+     */
     public function getConstraints(): object
     {
         return $this->constraints;
     }
-    //public function getReference(): string
+    /**
+     * @return string
+     */
     public function getReference(): string
     {
         return $this->reference;
     }
-    //public function getMachineName(): string
+    /**
+     * @return string
+     */
     public function getMachineName(): string
     {
         return $this->machineName;
     }
-    //public function getEnvironmentType(): string
+    /**
+     * @return string
+     */
     public function getEnvironmentType(): string
     {
         return $this->environmentType;
     }
-    //public function getLinks(): object
+    /**
+     * @return object
+     */
     public function getLinks(): object
     {
         return $this->links;

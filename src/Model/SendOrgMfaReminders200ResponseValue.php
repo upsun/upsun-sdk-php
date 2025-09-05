@@ -65,12 +65,20 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCode(): ?int
+    /**
+     * An HTTP-like status code referring to the result of the operation for the specific user.
+     *
+     * @return int|null
+     */
     public function getCode(): ?int
     {
         return $this->code;
     }
-    //public function getMessage(): ?string
+    /**
+     * A human-readable message describing the result of the operation for the specific user
+     *
+     * @return string|null
+     */
     public function getMessage(): ?string
     {
         return $this->message;

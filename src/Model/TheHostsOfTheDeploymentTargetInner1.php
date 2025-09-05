@@ -69,17 +69,23 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): string
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getServices(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getServices(): ?array
     {
         return $this->services;

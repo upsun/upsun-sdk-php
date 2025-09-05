@@ -65,12 +65,16 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getBase(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBase|null
+     */
     public function getBase(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase
     {
         return $this->base;
     }
-    //public function getUserManagement(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
+     */
     public function getUserManagement(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement
     {
         return $this->userManagement;

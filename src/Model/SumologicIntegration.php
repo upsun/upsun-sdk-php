@@ -85,37 +85,51 @@ final class SumologicIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getExtra(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getExtra(): array
     {
         return $this->extra;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;
     }
-    //public function getCategory(): string
+    /**
+     * @return string
+     */
     public function getCategory(): string
     {
         return $this->category;
     }
-    //public function getTlsVerify(): bool
+    /**
+     * @return bool
+     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;

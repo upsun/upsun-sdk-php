@@ -109,67 +109,93 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCpuApp(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getCpuApp(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->cpuApp;
     }
-    //public function getStorageAppServices(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getStorageAppServices(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->storageAppServices;
     }
-    //public function getMemoryApp(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getMemoryApp(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->memoryApp;
     }
-    //public function getCpuServices(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getCpuServices(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->cpuServices;
     }
-    //public function getMemoryServices(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getMemoryServices(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->memoryServices;
     }
-    //public function getBackupStorage(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getBackupStorage(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->backupStorage;
     }
-    //public function getBuildCpu(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getBuildCpu(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->buildCpu;
     }
-    //public function getBuildMemory(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getBuildMemory(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->buildMemory;
     }
-    //public function getEgressBandwidth(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getEgressBandwidth(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->egressBandwidth;
     }
-    //public function getIngressRequests(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getIngressRequests(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->ingressRequests;
     }
-    //public function getLogsFwdContentSize(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getLogsFwdContentSize(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->logsFwdContentSize;
     }
-    //public function getFastlyBandwidth(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getFastlyBandwidth(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->fastlyBandwidth;
     }
-    //public function getFastlyRequests(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
+    /**
+     * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
+     */
     public function getFastlyRequests(): ?\Upsun\Model\UsageGroupCurrentUsageProperties
     {
         return $this->fastlyRequests;

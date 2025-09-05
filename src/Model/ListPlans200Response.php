@@ -69,17 +69,27 @@ final class ListPlans200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * Total number of plans.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getPlans(): ?[]
+    /**
+     * Array of plans.
+     *
+     * @return \Upsun\Model\Plan[]|null
+     */
     public function getPlans(): ?array
     {
         return $this->plans;
     }
-    //public function getLinks(): ?\Upsun\Model\HalLinks
+    /**
+     * @return \Upsun\Model\HalLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\HalLinks
     {
         return $this->links;

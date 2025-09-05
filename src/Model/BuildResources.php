@@ -69,17 +69,23 @@ final class BuildResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    //public function getMaxCpu(): float
+    /**
+     * @return float
+     */
     public function getMaxCpu(): float
     {
         return $this->maxCpu;
     }
-    //public function getMaxMemory(): int
+    /**
+     * @return int
+     */
     public function getMaxMemory(): int
     {
         return $this->maxMemory;

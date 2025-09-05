@@ -109,67 +109,117 @@ final class Organization implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the organization.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getType(): ?string
+    /**
+     * The type of the organization.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getOwnerId(): ?string
+    /**
+     * The ID of the owner.
+     *
+     * @return string|null
+     */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
-    //public function getNamespace(): ?string
+    /**
+     * The namespace in which the organization name is unique.
+     *
+     * @return string|null
+     */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
-    //public function getName(): ?string
+    /**
+     * A unique machine name representing the organization.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getLabel(): ?string
+    /**
+     * The human-readable label of the organization.
+     *
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
-    //public function getCountry(): ?string
+    /**
+     * The organization country (2-letter country code).
+     *
+     * @return string|null
+     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
-    //public function getCapabilities(): ?[]
+    /**
+     * The organization capabilities.
+     *
+     * @return string[]|null
+     */
     public function getCapabilities(): ?array
     {
         return $this->capabilities;
     }
-    //public function getVendor(): ?string
+    /**
+     * The vendor.
+     *
+     * @return string|null
+     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
-    //public function getStatus(): ?string
+    /**
+     * The status of the organization.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the organization was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the organization was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getLinks(): ?\Upsun\Model\OrganizationLinks
+    /**
+     * @return \Upsun\Model\OrganizationLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\OrganizationLinks
     {
         return $this->links;

@@ -117,77 +117,107 @@ final class Backup implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getId(): string
+    /**
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
-    //public function getAttributes(): []
+    /**
+     * @return array&lt;string,string&gt;
+     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
-    //public function getStatus(): string
+    /**
+     * @return string
+     */
     public function getStatus(): string
     {
         return $this->status;
     }
-    //public function getExpiresAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getExpiresAt(): \DateTime
     {
         return $this->expiresAt;
     }
-    //public function getIndex(): int
+    /**
+     * @return int
+     */
     public function getIndex(): int
     {
         return $this->index;
     }
-    //public function getCommitId(): string
+    /**
+     * @return string
+     */
     public function getCommitId(): string
     {
         return $this->commitId;
     }
-    //public function getEnvironment(): string
+    /**
+     * @return string
+     */
     public function getEnvironment(): string
     {
         return $this->environment;
     }
-    //public function getSafe(): bool
+    /**
+     * @return bool
+     */
     public function getSafe(): bool
     {
         return $this->safe;
     }
-    //public function getSizeOfVolumes(): int
+    /**
+     * @return int
+     */
     public function getSizeOfVolumes(): int
     {
         return $this->sizeOfVolumes;
     }
-    //public function getSizeUsed(): int
+    /**
+     * @return int
+     */
     public function getSizeUsed(): int
     {
         return $this->sizeUsed;
     }
-    //public function getDeployment(): string
+    /**
+     * @return string
+     */
     public function getDeployment(): string
     {
         return $this->deployment;
     }
-    //public function getRestorable(): bool
+    /**
+     * @return bool
+     */
     public function getRestorable(): bool
     {
         return $this->restorable;
     }
-    //public function getAutomated(): bool
+    /**
+     * @return bool
+     */
     public function getAutomated(): bool
     {
         return $this->automated;

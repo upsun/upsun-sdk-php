@@ -65,12 +65,16 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEntityId(): string
+    /**
+     * @return string
+     */
     public function getEntityId(): string
     {
         return $this->entityId;
     }
-    //public function getRole(): string
+    /**
+     * @return string
+     */
     public function getRole(): string
     {
         return $this->role;

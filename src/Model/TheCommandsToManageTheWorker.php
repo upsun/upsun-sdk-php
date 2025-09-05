@@ -65,12 +65,16 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPreStart(): ?string
+    /**
+     * @return string|null
+     */
     public function getPreStart(): ?string
     {
         return $this->preStart;
     }
-    //public function getStart(): string
+    /**
+     * @return string
+     */
     public function getStart(): string
     {
         return $this->start;

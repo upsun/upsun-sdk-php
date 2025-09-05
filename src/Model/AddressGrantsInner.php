@@ -65,12 +65,16 @@ final class AddressGrantsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPermission(): string
+    /**
+     * @return string
+     */
     public function getPermission(): string
     {
         return $this->permission;
     }
-    //public function getAddress(): string
+    /**
+     * @return string
+     */
     public function getAddress(): string
     {
         return $this->address;

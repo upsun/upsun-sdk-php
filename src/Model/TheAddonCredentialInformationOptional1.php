@@ -69,17 +69,23 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAddonKey(): string
+    /**
+     * @return string
+     */
     public function getAddonKey(): string
     {
         return $this->addonKey;
     }
-    //public function getClientKey(): string
+    /**
+     * @return string
+     */
     public function getClientKey(): string
     {
         return $this->clientKey;
     }
-    //public function getSharedSecret(): string
+    /**
+     * @return string
+     */
     public function getSharedSecret(): string
     {
         return $this->sharedSecret;

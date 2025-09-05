@@ -149,117 +149,207 @@ final class Profile implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The user's unique ID.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getDisplayName(): ?string
+    /**
+     * The user's display name.
+     *
+     * @return string|null
+     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
-    //public function getEmail(): ?string
+    /**
+     * The user's email address.
+     *
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
-    //public function getUsername(): ?string
+    /**
+     * The user's username.
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-    //public function getType(): ?string
+    /**
+     * The user's type (user/organization).
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getPicture(): ?string
+    /**
+     * The URL of the user's picture.
+     *
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
-    //public function getCompanyType(): ?string
+    /**
+     * The company type.
+     *
+     * @return string|null
+     */
     public function getCompanyType(): ?string
     {
         return $this->companyType;
     }
-    //public function getCompanyName(): ?string
+    /**
+     * The name of the company.
+     *
+     * @return string|null
+     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
-    //public function getCurrency(): ?string
+    /**
+     * A 3-letter ISO 4217 currency code (assigned according to the billing address).
+     *
+     * @return string|null
+     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
-    //public function getVatNumber(): ?string
+    /**
+     * The vat number of the user.
+     *
+     * @return string|null
+     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
-    //public function getCompanyRole(): ?string
+    /**
+     * The role of the user in the company.
+     *
+     * @return string|null
+     */
     public function getCompanyRole(): ?string
     {
         return $this->companyRole;
     }
-    //public function getWebsiteUrl(): ?string
+    /**
+     * The user or company website.
+     *
+     * @return string|null
+     */
     public function getWebsiteUrl(): ?string
     {
         return $this->websiteUrl;
     }
-    //public function getNewUi(): ?bool
+    /**
+     * Whether the new UI features are enabled for this user.
+     *
+     * @return bool|null
+     */
     public function getNewUi(): ?bool
     {
         return $this->newUi;
     }
-    //public function getUiColorscheme(): ?string
+    /**
+     * The user's chosen color scheme for user interfaces.
+     *
+     * @return string|null
+     */
     public function getUiColorscheme(): ?string
     {
         return $this->uiColorscheme;
     }
-    //public function getDefaultCatalog(): ?string
+    /**
+     * The URL of a catalog file which overrides the default.
+     *
+     * @return string|null
+     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
-    //public function getProjectOptionsUrl(): ?string
+    /**
+     * The URL of an account-wide project options file.
+     *
+     * @return string|null
+     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
-    //public function getMarketing(): ?bool
+    /**
+     * Flag if the user agreed to receive marketing communication.
+     *
+     * @return bool|null
+     */
     public function getMarketing(): ?bool
     {
         return $this->marketing;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The timestamp representing when the user account was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The timestamp representing when the user account was last modified.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getBillingContact(): ?string
+    /**
+     * The e-mail address of a contact to whom billing notices will be sent.
+     *
+     * @return string|null
+     */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;
     }
-    //public function getSecurityContact(): ?string
+    /**
+     * The e-mail address of a contact to whom security notices will be sent.
+     *
+     * @return string|null
+     */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
-    //public function getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
+    /**
+     * @return \Upsun\Model\ProfileCurrentTrial|null
+     */
     public function getCurrentTrial(): ?\Upsun\Model\ProfileCurrentTrial
     {
         return $this->currentTrial;
     }
-    //public function getInvoiced(): ?bool
+    /**
+     * The customer is invoiced.
+     *
+     * @return bool|null
+     */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;

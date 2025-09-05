@@ -65,12 +65,16 @@ final class PagerDutyIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getRoutingKey(): string
+    /**
+     * @return string
+     */
     public function getRoutingKey(): string
     {
         return $this->routingKey;

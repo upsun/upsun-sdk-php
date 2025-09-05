@@ -101,57 +101,93 @@ final class ProfileCurrentTrial implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getActive(): ?bool
+    /**
+     * The trial active status.
+     *
+     * @return bool|null
+     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
-    //public function getCreated(): ?\DateTime
+    /**
+     * The trial creation date.
+     *
+     * @return \DateTime|null
+     */
     public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
-    //public function getDescription(): ?string
+    /**
+     * The trial description.
+     *
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
-    //public function getExpiration(): ?\DateTime
+    /**
+     * The trial expiration-date.
+     *
+     * @return \DateTime|null
+     */
     public function getExpiration(): ?\DateTime
     {
         return $this->expiration;
     }
-    //public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
+    /**
+     * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
+     */
     public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
     {
         return $this->current;
     }
-    //public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
+    /**
+     * @return \Upsun\Model\ProfileCurrentTrialSpend|null
+     */
     public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
     {
         return $this->spend;
     }
-    //public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
+    /**
+     * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
+     */
     public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
     {
         return $this->spendRemaining;
     }
-    //public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
+    /**
+     * @return \Upsun\Model\ProfileCurrentTrialProjects|null
+     */
     public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
     {
         return $this->projects;
     }
-    //public function getPendingVerification(): ?string
+    /**
+     * Required verification method (if applicable).
+     *
+     * @return string|null
+     */
     public function getPendingVerification(): ?string
     {
         return $this->pendingVerification;
     }
-    //public function getModel(): ?string
+    /**
+     * The trial trial model.
+     *
+     * @return string|null
+     */
     public function getModel(): ?string
     {
         return $this->model;
     }
-    //public function getDaysRemaining(): ?int
+    /**
+     * The amount of days until the trial expires.
+     *
+     * @return int|null
+     */
     public function getDaysRemaining(): ?int
     {
         return $this->daysRemaining;

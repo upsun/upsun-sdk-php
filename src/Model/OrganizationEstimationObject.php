@@ -85,37 +85,61 @@ final class OrganizationEstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getTotal(): ?string
+    /**
+     * The total estimated price for the organization.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-    //public function getSubTotal(): ?string
+    /**
+     * The sub total for all projects and sellables.
+     *
+     * @return string|null
+     */
     public function getSubTotal(): ?string
     {
         return $this->subTotal;
     }
-    //public function getVouchers(): ?string
+    /**
+     * The total amount of vouchers.
+     *
+     * @return string|null
+     */
     public function getVouchers(): ?string
     {
         return $this->vouchers;
     }
-    //public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
+     */
     public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
     }
-    //public function getUserManagement(): ?string
+    /**
+     * An estimation of the advanced user management sellable cost.
+     *
+     * @return string|null
+     */
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
-    //public function getSupportLevel(): ?string
+    /**
+     * The total monthly price for premium support.
+     *
+     * @return string|null
+     */
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;
     }
-    //public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
+     */
     public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;

@@ -77,27 +77,43 @@ final class ProjectOptions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getDefaults(): ?\Upsun\Model\ProjectOptionsDefaults
+    /**
+     * @return \Upsun\Model\ProjectOptionsDefaults|null
+     */
     public function getDefaults(): ?\Upsun\Model\ProjectOptionsDefaults
     {
         return $this->defaults;
     }
-    //public function getEnforced(): ?\Upsun\Model\ProjectOptionsEnforced
+    /**
+     * @return \Upsun\Model\ProjectOptionsEnforced|null
+     */
     public function getEnforced(): ?\Upsun\Model\ProjectOptionsEnforced
     {
         return $this->enforced;
     }
-    //public function getRegions(): ?[]
+    /**
+     * The available regions.
+     *
+     * @return string[]|null
+     */
     public function getRegions(): ?array
     {
         return $this->regions;
     }
-    //public function getPlans(): ?[]
+    /**
+     * The available plans.
+     *
+     * @return string[]|null
+     */
     public function getPlans(): ?array
     {
         return $this->plans;
     }
-    //public function getBilling(): ?object
+    /**
+     * The billing settings.
+     *
+     * @return object|null
+     */
     public function getBilling(): ?object
     {
         return $this->billing;

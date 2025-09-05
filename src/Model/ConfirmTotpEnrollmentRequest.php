@@ -65,12 +65,20 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSecret(): string
+    /**
+     * The secret seed for the enrollment
+     *
+     * @return string
+     */
     public function getSecret(): string
     {
         return $this->secret;
     }
-    //public function getPasscode(): string
+    /**
+     * TOTP passcode for the enrollment
+     *
+     * @return string
+     */
     public function getPasscode(): string
     {
         return $this->passcode;

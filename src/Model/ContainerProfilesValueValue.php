@@ -65,12 +65,16 @@ final class ContainerProfilesValueValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCpu(): float
+    /**
+     * @return float
+     */
     public function getCpu(): float
     {
         return $this->cpu;
     }
-    //public function getMemory(): int
+    /**
+     * @return int
+     */
     public function getMemory(): int
     {
         return $this->memory;

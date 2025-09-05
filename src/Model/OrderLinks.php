@@ -61,7 +61,9 @@ final class OrderLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getInvoices(): ?\Upsun\Model\OrderLinksInvoices
+    /**
+     * @return \Upsun\Model\OrderLinksInvoices|null
+     */
     public function getInvoices(): ?\Upsun\Model\OrderLinksInvoices
     {
         return $this->invoices;

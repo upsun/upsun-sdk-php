@@ -65,12 +65,18 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getThreshold(): ?\Upsun\Model\OrganizationAlertConfigConfigThreshold
+    /**
+     * @return \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
+     */
     public function getThreshold(): ?\Upsun\Model\OrganizationAlertConfigConfigThreshold
     {
         return $this->threshold;
     }
-    //public function getMode(): ?string
+    /**
+     * The mode of alert.
+     *
+     * @return string|null
+     */
     public function getMode(): ?string
     {
         return $this->mode;

@@ -65,12 +65,16 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getSha(): string
+    /**
+     * @return string
+     */
     public function getSha(): string
     {
         return $this->sha;

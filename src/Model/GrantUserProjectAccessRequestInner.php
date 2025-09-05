@@ -65,12 +65,20 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getProjectId(): string
+    /**
+     * ID of the project.
+     *
+     * @return string
+     */
     public function getProjectId(): string
     {
         return $this->projectId;
     }
-    //public function getPermissions(): []
+    /**
+     * An array of project permissions.
+     *
+     * @return string[]
+     */
     public function getPermissions(): array
     {
         return $this->permissions;

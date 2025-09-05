@@ -61,7 +61,11 @@ final class OrganizationMFAEnforcement implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnforceMfa(): ?bool
+    /**
+     * Whether the MFA enforcement is enabled.
+     *
+     * @return bool|null
+     */
     public function getEnforceMfa(): ?bool
     {
         return $this->enforceMfa;

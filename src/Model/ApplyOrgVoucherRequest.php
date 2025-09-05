@@ -61,7 +61,11 @@ final class ApplyOrgVoucherRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCode(): string
+    /**
+     * The voucher code.
+     *
+     * @return string
+     */
     public function getCode(): string
     {
         return $this->code;

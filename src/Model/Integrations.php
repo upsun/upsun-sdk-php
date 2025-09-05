@@ -69,17 +69,23 @@ final class Integrations implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEnabled(): bool
+    /**
+     * @return bool
+     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
-    //public function getConfig(): ?\Upsun\Model\Config
+    /**
+     * @return \Upsun\Model\Config|null
+     */
     public function getConfig(): ?\Upsun\Model\Config
     {
         return $this->config;
     }
-    //public function getAllowedIntegrations(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getAllowedIntegrations(): ?array
     {
         return $this->allowedIntegrations;

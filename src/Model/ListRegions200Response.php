@@ -65,12 +65,16 @@ final class ListRegions200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRegions(): ?[]
+    /**
+     * @return \Upsun\Model\Region[]|null
+     */
     public function getRegions(): ?array
     {
         return $this->regions;
     }
-    //public function getLinks(): ?\Upsun\Model\ListLinks
+    /**
+     * @return \Upsun\Model\ListLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\ListLinks
     {
         return $this->links;

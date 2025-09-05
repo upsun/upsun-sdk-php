@@ -69,17 +69,23 @@ final class Version implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCommit(): string
+    /**
+     * @return string
+     */
     public function getCommit(): string
     {
         return $this->commit;
     }
-    //public function getLocked(): bool
+    /**
+     * @return bool
+     */
     public function getLocked(): bool
     {
         return $this->locked;
     }
-    //public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
+    /**
+     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
+     */
     public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
     {
         return $this->routing;

@@ -153,122 +153,214 @@ final class Subscription implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The internal ID of the subscription.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getStatus(): ?string
+    /**
+     * The status of the subscription.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the subscription was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the subscription was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getOwner(): ?string
+    /**
+     * The UUID of the owner.
+     *
+     * @return string|null
+     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
-    //public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    /**
+     * @return \Upsun\Model\OwnerInfo|null
+     */
     public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
     {
         return $this->ownerInfo;
     }
-    //public function getVendor(): ?string
+    /**
+     * The machine name of the vendor the subscription belongs to.
+     *
+     * @return string|null
+     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
-    //public function getPlan(): ?string
+    /**
+     * The plan type of the subscription.
+     *
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getEnvironments(): ?int
+    /**
+     * The number of environments which can be provisioned on the project.
+     *
+     * @return int|null
+     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
-    //public function getStorage(): ?int
+    /**
+     * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
+     *
+     * @return int|null
+     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
-    //public function getUserLicenses(): ?int
+    /**
+     * The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.
+     *
+     * @return int|null
+     */
     public function getUserLicenses(): ?int
     {
         return $this->userLicenses;
     }
-    //public function getProjectId(): ?string
+    /**
+     * The unique ID string of the project.
+     *
+     * @return string|null
+     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
-    //public function getProjectEndpoint(): ?string
+    /**
+     * The project API endpoint for the project.
+     *
+     * @return string|null
+     */
     public function getProjectEndpoint(): ?string
     {
         return $this->projectEndpoint;
     }
-    //public function getProjectTitle(): ?string
+    /**
+     * The name given to the project. Appears as the title in the UI.
+     *
+     * @return string|null
+     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
-    //public function getProjectRegion(): ?string
+    /**
+     * The machine name of the region where the project is located. Cannot be changed after project creation.
+     *
+     * @return string|null
+     */
     public function getProjectRegion(): ?string
     {
         return $this->projectRegion;
     }
-    //public function getProjectRegionLabel(): ?string
+    /**
+     * The human-readable name of the region where the project is located.
+     *
+     * @return string|null
+     */
     public function getProjectRegionLabel(): ?string
     {
         return $this->projectRegionLabel;
     }
-    //public function getProjectUi(): ?string
+    /**
+     * The URL for the project's user interface.
+     *
+     * @return string|null
+     */
     public function getProjectUi(): ?string
     {
         return $this->projectUi;
     }
-    //public function getProjectOptions(): ?\Upsun\Model\ProjectOptions
+    /**
+     * @return \Upsun\Model\ProjectOptions|null
+     */
     public function getProjectOptions(): ?\Upsun\Model\ProjectOptions
     {
         return $this->projectOptions;
     }
-    //public function getAgencySite(): ?bool
+    /**
+     * True if the project is an agency site.
+     *
+     * @return bool|null
+     */
     public function getAgencySite(): ?bool
     {
         return $this->agencySite;
     }
-    //public function getInvoiced(): ?bool
+    /**
+     * Whether the subscription is invoiced.
+     *
+     * @return bool|null
+     */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
-    //public function getHipaa(): ?bool
+    /**
+     * Whether the project is marked as HIPAA.
+     *
+     * @return bool|null
+     */
     public function getHipaa(): ?bool
     {
         return $this->hipaa;
     }
-    //public function getIsTrialPlan(): ?bool
+    /**
+     * Whether the project is currently on a trial plan.
+     *
+     * @return bool|null
+     */
     public function getIsTrialPlan(): ?bool
     {
         return $this->isTrialPlan;
     }
-    //public function getServices(): ?[]
+    /**
+     * Details of the attached services.
+     *
+     * @return object[]|null
+     */
     public function getServices(): ?array
     {
         return $this->services;
     }
-    //public function getGreen(): ?bool
+    /**
+     * Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.
+     *
+     * @return bool|null
+     */
     public function getGreen(): ?bool
     {
         return $this->green;

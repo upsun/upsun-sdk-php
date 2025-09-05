@@ -85,37 +85,65 @@ final class DateTimeFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEq(): ?string
+    /**
+     * Equal
+     *
+     * @return string|null
+     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
-    //public function getNe(): ?string
+    /**
+     * Not equal
+     *
+     * @return string|null
+     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
-    //public function getBetween(): ?string
+    /**
+     * Between (comma-separated list)
+     *
+     * @return string|null
+     */
     public function getBetween(): ?string
     {
         return $this->between;
     }
-    //public function getGt(): ?string
+    /**
+     * Greater than
+     *
+     * @return string|null
+     */
     public function getGt(): ?string
     {
         return $this->gt;
     }
-    //public function getGte(): ?string
+    /**
+     * Greater than or equal
+     *
+     * @return string|null
+     */
     public function getGte(): ?string
     {
         return $this->gte;
     }
-    //public function getLt(): ?string
+    /**
+     * Less than
+     *
+     * @return string|null
+     */
     public function getLt(): ?string
     {
         return $this->lt;
     }
-    //public function getLte(): ?string
+    /**
+     * Less than or equal
+     *
+     * @return string|null
+     */
     public function getLte(): ?string
     {
         return $this->lte;

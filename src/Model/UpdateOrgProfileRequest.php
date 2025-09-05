@@ -81,32 +81,56 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getDefaultCatalog(): ?string
+    /**
+     * The URL of a catalog file which overrides the default.
+     *
+     * @return string|null
+     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
-    //public function getProjectOptionsUrl(): ?string
+    /**
+     * The URL of an organization-wide project options file.
+     *
+     * @return string|null
+     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
-    //public function getSecurityContact(): ?string
+    /**
+     * The e-mail address of a contact to whom security notices will be sent.
+     *
+     * @return string|null
+     */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
-    //public function getCompanyName(): ?string
+    /**
+     * The company name.
+     *
+     * @return string|null
+     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
-    //public function getVatNumber(): ?string
+    /**
+     * The VAT number of the company.
+     *
+     * @return string|null
+     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
-    //public function getBillingContact(): ?string
+    /**
+     * The e-mail address of a contact to whom billing notices will be sent.
+     *
+     * @return string|null
+     */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;

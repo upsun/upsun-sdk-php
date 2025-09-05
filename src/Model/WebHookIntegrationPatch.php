@@ -89,42 +89,58 @@ final class WebHookIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getEvents(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
-    //public function getEnvironments(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
-    //public function getExcludedEnvironments(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
-    //public function getStates(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getStates(): ?array
     {
         return $this->states;
     }
-    //public function getResult(): ?string
+    /**
+     * @return string|null
+     */
     public function getResult(): ?string
     {
         return $this->result;
     }
-    //public function getSharedKey(): ?string
+    /**
+     * @return string|null
+     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
-    //public function getUrl(): string
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
         return $this->url;

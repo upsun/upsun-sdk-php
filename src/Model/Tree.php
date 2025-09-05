@@ -65,12 +65,16 @@ final class Tree implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSha(): string
+    /**
+     * @return string
+     */
     public function getSha(): string
     {
         return $this->sha;
     }
-    //public function getTree(): []
+    /**
+     * @return \Upsun\Model\TheTreeItemsInner[]
+     */
     public function getTree(): array
     {
         return $this->tree;

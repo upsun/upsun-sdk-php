@@ -65,12 +65,20 @@ final class GetUsageAlerts200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAvailable(): ?[]
+    /**
+     * The list of available usage alerts.
+     *
+     * @return \Upsun\Model\Alert[]|null
+     */
     public function getAvailable(): ?array
     {
         return $this->available;
     }
-    //public function getCurrent(): ?[]
+    /**
+     * The list of the current usage alerts.
+     *
+     * @return \Upsun\Model\Alert[]|null
+     */
     public function getCurrent(): ?array
     {
         return $this->current;

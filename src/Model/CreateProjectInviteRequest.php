@@ -77,27 +77,47 @@ final class CreateProjectInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRole(): ?string
+    /**
+     * The role the invitee should be given on the project.
+     *
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;
     }
-    //public function getEmail(): string
+    /**
+     * The email address of the invitee.
+     *
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
-    //public function getPermissions(): ?[]
+    /**
+     * Specifying the role on each environment type.
+     *
+     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
+     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
-    //public function getEnvironments(): ?[]
+    /**
+     * (Deprecated, use permissions instead) Specifying the role on each environment.
+     *
+     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
-    //public function getForce(): ?bool
+    /**
+     * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
+     *
+     * @return bool|null
+     */
     public function getForce(): ?bool
     {
         return $this->force;

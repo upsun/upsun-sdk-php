@@ -65,12 +65,18 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRedirectToUrl(): ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl
+    /**
+     * @return \Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl|null
+     */
     public function getRedirectToUrl(): ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl
     {
         return $this->redirectToUrl;
     }
-    //public function getType(): ?string
+    /**
+     * Required payment action type.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;

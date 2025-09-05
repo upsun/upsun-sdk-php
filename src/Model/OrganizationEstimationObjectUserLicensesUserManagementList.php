@@ -65,12 +65,16 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getStandardManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
+     */
     public function getStandardManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
     {
         return $this->standardManagementUser;
     }
-    //public function getAdvancedManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
+     */
     public function getAdvancedManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
     {
         return $this->advancedManagementUser;

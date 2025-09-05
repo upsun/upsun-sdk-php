@@ -65,12 +65,20 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getFilename(): ?string
+    /**
+     * The filename to be used in storage.
+     *
+     * @return string|null
+     */
     public function getFilename(): ?string
     {
         return $this->filename;
     }
-    //public function getData(): ?string
+    /**
+     * the base64 encoded file.
+     *
+     * @return string|null
+     */
     public function getData(): ?string
     {
         return $this->data;

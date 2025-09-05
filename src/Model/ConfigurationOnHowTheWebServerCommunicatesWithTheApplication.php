@@ -65,12 +65,16 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSocketFamily(): string
+    /**
+     * @return string
+     */
     public function getSocketFamily(): string
     {
         return $this->socketFamily;
     }
-    //public function getProtocol(): string
+    /**
+     * @return string
+     */
     public function getProtocol(): string
     {
         return $this->protocol;

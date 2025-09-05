@@ -121,82 +121,146 @@ final class RegionReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): string
+    /**
+     * The machine name of the region where the project is located.
+     *
+     * @return string
+     */
     public function getId(): string
     {
         return $this->id;
     }
-    //public function getLabel(): string
+    /**
+     * The human-readable name of the region.
+     *
+     * @return string
+     */
     public function getLabel(): string
     {
         return $this->label;
     }
-    //public function getZone(): string
+    /**
+     * The geographical zone of the region.
+     *
+     * @return string
+     */
     public function getZone(): string
     {
         return $this->zone;
     }
-    //public function getSelectionLabel(): string
+    /**
+     * The label to display when choosing between regions for new projects.
+     *
+     * @return string
+     */
     public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
-    //public function getProjectLabel(): string
+    /**
+     * The label to display on existing projects.
+     *
+     * @return string
+     */
     public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
-    //public function getTimezone(): string
+    /**
+     * Default timezone of the region.
+     *
+     * @return string
+     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
-    //public function getAvailable(): bool
+    /**
+     * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
+     *
+     * @return bool
+     */
     public function getAvailable(): bool
     {
         return $this->available;
     }
-    //public function getPrivate(): ?bool
+    /**
+     * Indicator whether or not this platform is for private use only.
+     *
+     * @return bool|null
+     */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
-    //public function getEndpoint(): string
+    /**
+     * Link to the region API endpoint.
+     *
+     * @return string
+     */
     public function getEndpoint(): string
     {
         return $this->endpoint;
     }
-    //public function getCode(): ?string
+    /**
+     * The code of the region
+     *
+     * @return string|null
+     */
     public function getCode(): ?string
     {
         return $this->code;
     }
-    //public function getProvider(): object
+    /**
+     * Information about the region provider.
+     *
+     * @return object
+     */
     public function getProvider(): object
     {
         return $this->provider;
     }
-    //public function getDatacenter(): object
+    /**
+     * Information about the region provider data center.
+     *
+     * @return object
+     */
     public function getDatacenter(): object
     {
         return $this->datacenter;
     }
-    //public function getEnvimpact(): ?object
+    /**
+     * Information about the region provider's environmental impact.
+     *
+     * @return object|null
+     */
     public function getEnvimpact(): ?object
     {
         return $this->envimpact;
     }
-    //public function getCompliance(): object
+    /**
+     * Information about the region's compliance.
+     *
+     * @return object
+     */
     public function getCompliance(): object
     {
         return $this->compliance;
     }
-    //public function getCreatedAt(): \DateTime
+    /**
+     * The date and time when the resource was created.
+     *
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * The date and time when the resource was last updated.
+     *
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;

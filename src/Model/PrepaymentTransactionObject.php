@@ -85,37 +85,63 @@ final class PrepaymentTransactionObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOrderId(): ?string
+    /**
+     * Order ID
+     *
+     * @return string|null
+     */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
-    //public function getMessage(): ?string
+    /**
+     * The message associated with transaction.
+     *
+     * @return string|null
+     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
-    //public function getStatus(): ?string
+    /**
+     * Whether the transactions was successful or a failure.
+     *
+     * @return string|null
+     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
-    //public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    /**
+     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
+     */
     public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
     {
         return $this->amount;
     }
-    //public function getCreated(): ?string
+    /**
+     * Time the transaction was created.
+     *
+     * @return string|null
+     */
     public function getCreated(): ?string
     {
         return $this->created;
     }
-    //public function getUpdated(): ?string
+    /**
+     * Time the transaction was last updated.
+     *
+     * @return string|null
+     */
     public function getUpdated(): ?string
     {
         return $this->updated;
     }
-    //public function getExpireDate(): ?string
+    /**
+     * The expiration date of the transaction (deposits only).
+     *
+     * @return string|null
+     */
     public function getExpireDate(): ?string
     {
         return $this->expireDate;

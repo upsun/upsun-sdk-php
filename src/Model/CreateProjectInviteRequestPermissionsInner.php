@@ -65,12 +65,20 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): ?string
+    /**
+     * The environment type.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getRole(): ?string
+    /**
+     * The role the invitee should be given on the environment type.
+     *
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;

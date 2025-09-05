@@ -69,17 +69,29 @@ final class AddressMetadataMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRequiredFields(): ?[]
+    /**
+     * Fields required to express the address.
+     *
+     * @return string[]|null
+     */
     public function getRequiredFields(): ?array
     {
         return $this->requiredFields;
     }
-    //public function getFieldLabels(): ?object
+    /**
+     * Localized labels for address fields.
+     *
+     * @return object|null
+     */
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
-    //public function getShowVat(): ?bool
+    /**
+     * Whether this country supports a VAT number.
+     *
+     * @return bool|null
+     */
     public function getShowVat(): ?bool
     {
         return $this->showVat;

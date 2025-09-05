@@ -65,12 +65,20 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAction(): ?string
+    /**
+     * Machine readable definition of requirement.
+     *
+     * @return string|null
+     */
     public function getAction(): ?string
     {
         return $this->action;
     }
-    //public function getType(): ?string
+    /**
+     * Specification of the type of action.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;

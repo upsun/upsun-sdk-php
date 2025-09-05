@@ -69,17 +69,27 @@ final class ListTickets200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * Total number of results.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTickets(): ?[]
+    /**
+     * Array of support tickets.
+     *
+     * @return \Upsun\Model\Ticket[]|null
+     */
     public function getTickets(): ?array
     {
         return $this->tickets;
     }
-    //public function getLinks(): ?\Upsun\Model\HalLinks
+    /**
+     * @return \Upsun\Model\HalLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\HalLinks
     {
         return $this->links;

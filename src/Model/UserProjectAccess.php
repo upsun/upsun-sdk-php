@@ -89,42 +89,72 @@ final class UserProjectAccess implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUserId(): ?string
+    /**
+     * The ID of the user.
+     *
+     * @return string|null
+     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
-    //public function getOrganizationId(): ?string
+    /**
+     * The ID of the organization.
+     *
+     * @return string|null
+     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
-    //public function getProjectId(): ?string
+    /**
+     * The ID of the project.
+     *
+     * @return string|null
+     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
-    //public function getProjectTitle(): ?string
+    /**
+     * The title of the project.
+     *
+     * @return string|null
+     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
-    //public function getPermissions(): ?[]
+    /**
+     * An array of project permissions.
+     *
+     * @return string[]|null
+     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
-    //public function getGrantedAt(): ?\DateTime
+    /**
+     * The date and time when the access was granted.
+     *
+     * @return \DateTime|null
+     */
     public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the access was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
-    //public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
+    /**
+     * @return \Upsun\Model\TeamProjectAccessLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
     {
         return $this->links;

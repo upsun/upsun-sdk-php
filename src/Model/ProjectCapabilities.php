@@ -101,57 +101,79 @@ final class ProjectCapabilities implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCustomDomains(): ?\Upsun\Model\CustomDomains
+    /**
+     * @return \Upsun\Model\CustomDomains|null
+     */
     public function getCustomDomains(): ?\Upsun\Model\CustomDomains
     {
         return $this->customDomains;
     }
-    //public function getSourceOperations(): ?\Upsun\Model\SourceOperations
+    /**
+     * @return \Upsun\Model\SourceOperations|null
+     */
     public function getSourceOperations(): ?\Upsun\Model\SourceOperations
     {
         return $this->sourceOperations;
     }
-    //public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
+    /**
+     * @return \Upsun\Model\RuntimeOperations|null
+     */
     public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
     {
         return $this->runtimeOperations;
     }
-    //public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
+    /**
+     * @return \Upsun\Model\OutboundFirewall|null
+     */
     public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
     {
         return $this->outboundFirewall;
     }
-    //public function getMetrics(): \Upsun\Model\Metrics
+    /**
+     * @return \Upsun\Model\Metrics
+     */
     public function getMetrics(): \Upsun\Model\Metrics
     {
         return $this->metrics;
     }
-    //public function getLogsForwarding(): \Upsun\Model\LogsForwarding
+    /**
+     * @return \Upsun\Model\LogsForwarding
+     */
     public function getLogsForwarding(): \Upsun\Model\LogsForwarding
     {
         return $this->logsForwarding;
     }
-    //public function getImages(): []
+    /**
+     * @return array&lt;string,array&lt;string,\Upsun\Model\ImagesValueValue&gt;&gt;
+     */
     public function getImages(): array
     {
         return $this->images;
     }
-    //public function getInstanceLimit(): int
+    /**
+     * @return int
+     */
     public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
     }
-    //public function getBuildResources(): \Upsun\Model\BuildResources
+    /**
+     * @return \Upsun\Model\BuildResources
+     */
     public function getBuildResources(): \Upsun\Model\BuildResources
     {
         return $this->buildResources;
     }
-    //public function getDataRetention(): \Upsun\Model\DataRetention
+    /**
+     * @return \Upsun\Model\DataRetention
+     */
     public function getDataRetention(): \Upsun\Model\DataRetention
     {
         return $this->dataRetention;
     }
-    //public function getIntegrations(): ?\Upsun\Model\Integrations
+    /**
+     * @return \Upsun\Model\Integrations|null
+     */
     public function getIntegrations(): ?\Upsun\Model\Integrations
     {
         return $this->integrations;

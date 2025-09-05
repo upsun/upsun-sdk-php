@@ -65,12 +65,16 @@ final class BuildResources2 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCpu(): ?float
+    /**
+     * @return float|null
+     */
     public function getCpu(): ?float
     {
         return $this->cpu;
     }
-    //public function getMemory(): ?int
+    /**
+     * @return int|null
+     */
     public function getMemory(): ?int
     {
         return $this->memory;

@@ -69,17 +69,29 @@ final class OwnerInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getType(): ?string
+    /**
+     * Type of the owner, usually 'user'.
+     *
+     * @return string|null
+     */
     public function getType(): ?string
     {
         return $this->type;
     }
-    //public function getUsername(): ?string
+    /**
+     * The username of the owner.
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-    //public function getDisplayName(): ?string
+    /**
+     * The full name of the owner.
+     *
+     * @return string|null
+     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;

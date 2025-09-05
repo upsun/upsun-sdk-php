@@ -69,17 +69,23 @@ final class SubscriptionAddonsObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectAvailable
+    /**
+     * @return \Upsun\Model\SubscriptionAddonsObjectAvailable|null
+     */
     public function getAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectAvailable
     {
         return $this->available;
     }
-    //public function getCurrent(): ?\Upsun\Model\SubscriptionAddonsObjectCurrent
+    /**
+     * @return \Upsun\Model\SubscriptionAddonsObjectCurrent|null
+     */
     public function getCurrent(): ?\Upsun\Model\SubscriptionAddonsObjectCurrent
     {
         return $this->current;
     }
-    //public function getUpgradesAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable
+    /**
+     * @return \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
+     */
     public function getUpgradesAvailable(): ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;

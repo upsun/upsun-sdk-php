@@ -61,7 +61,11 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCode(): string
+    /**
+     * The verification code received on your phone.
+     *
+     * @return string
+     */
     public function getCode(): string
     {
         return $this->code;

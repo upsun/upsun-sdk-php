@@ -69,17 +69,23 @@ final class HttpAccessPermissions1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getIsEnabled(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsEnabled(): ?bool
     {
         return $this->isEnabled;
     }
-    //public function getAddresses(): ?[]
+    /**
+     * @return \Upsun\Model\AddressGrantsInner[]|null
+     */
     public function getAddresses(): ?array
     {
         return $this->addresses;
     }
-    //public function getBasicAuth(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getBasicAuth(): ?array
     {
         return $this->basicAuth;

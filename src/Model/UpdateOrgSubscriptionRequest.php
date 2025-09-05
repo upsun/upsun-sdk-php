@@ -105,62 +105,110 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getProjectTitle(): ?string
+    /**
+     * The title of the project.
+     *
+     * @return string|null
+     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
-    //public function getPlan(): ?string
+    /**
+     * The project plan.
+     *
+     * @return string|null
+     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
-    //public function getTimezone(): ?string
+    /**
+     * Timezone of the project.
+     *
+     * @return string|null
+     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
-    //public function getEnvironments(): ?int
+    /**
+     * The maximum number of environments which can be provisioned on the project.
+     *
+     * @return int|null
+     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
-    //public function getStorage(): ?int
+    /**
+     * The total storage available to each environment, in MiB.
+     *
+     * @return int|null
+     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
-    //public function getBigDev(): ?string
+    /**
+     * The development environment plan.
+     *
+     * @return string|null
+     */
     public function getBigDev(): ?string
     {
         return $this->bigDev;
     }
-    //public function getBigDevService(): ?string
+    /**
+     * The development service plan.
+     *
+     * @return string|null
+     */
     public function getBigDevService(): ?string
     {
         return $this->bigDevService;
     }
-    //public function getBackups(): ?string
+    /**
+     * The backups plan.
+     *
+     * @return string|null
+     */
     public function getBackups(): ?string
     {
         return $this->backups;
     }
-    //public function getObservabilitySuite(): ?string
+    /**
+     * The observability suite option.
+     *
+     * @return string|null
+     */
     public function getObservabilitySuite(): ?string
     {
         return $this->observabilitySuite;
     }
-    //public function getBlackfire(): ?string
+    /**
+     * The Blackfire integration option.
+     *
+     * @return string|null
+     */
     public function getBlackfire(): ?string
     {
         return $this->blackfire;
     }
-    //public function getContinuousProfiling(): ?string
+    /**
+     * The Blackfire continuous profiling option.
+     *
+     * @return string|null
+     */
     public function getContinuousProfiling(): ?string
     {
         return $this->continuousProfiling;
     }
-    //public function getProjectSupportLevel(): ?string
+    /**
+     * The project uptime option.
+     *
+     * @return string|null
+     */
     public function getProjectSupportLevel(): ?string
     {
         return $this->projectSupportLevel;

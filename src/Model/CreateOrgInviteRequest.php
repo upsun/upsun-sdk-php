@@ -69,17 +69,29 @@ final class CreateOrgInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEmail(): string
+    /**
+     * The email address of the invitee.
+     *
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
-    //public function getPermissions(): []
+    /**
+     * The permissions the invitee should be given on the organization.
+     *
+     * @return string[]
+     */
     public function getPermissions(): array
     {
         return $this->permissions;
     }
-    //public function getForce(): ?bool
+    /**
+     * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
+     *
+     * @return bool|null
+     */
     public function getForce(): ?bool
     {
         return $this->force;

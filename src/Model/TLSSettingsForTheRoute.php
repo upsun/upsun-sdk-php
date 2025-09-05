@@ -73,22 +73,30 @@ final class TLSSettingsForTheRoute implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions
+    /**
+     * @return \Upsun\Model\StrictTransportSecurityOptions
+     */
     public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions
     {
         return $this->strictTransportSecurity;
     }
-    //public function getMinVersion(): string
+    /**
+     * @return string
+     */
     public function getMinVersion(): string
     {
         return $this->minVersion;
     }
-    //public function getClientAuthentication(): string
+    /**
+     * @return string
+     */
     public function getClientAuthentication(): string
     {
         return $this->clientAuthentication;
     }
-    //public function getClientCertificateAuthorities(): []
+    /**
+     * @return string[]
+     */
     public function getClientCertificateAuthorities(): array
     {
         return $this->clientCertificateAuthorities;

@@ -61,7 +61,11 @@ final class CreateApiTokenRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): string
+    /**
+     * The token name.
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;

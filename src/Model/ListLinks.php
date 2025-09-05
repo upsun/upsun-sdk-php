@@ -69,17 +69,23 @@ final class ListLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\LinkSelf
+    /**
+     * @return \Upsun\Model\LinkSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\LinkSelf
     {
         return $this->self;
     }
-    //public function getPrevious(): ?\Upsun\Model\LinkPrevious
+    /**
+     * @return \Upsun\Model\LinkPrevious|null
+     */
     public function getPrevious(): ?\Upsun\Model\LinkPrevious
     {
         return $this->previous;
     }
-    //public function getNext(): ?\Upsun\Model\LinkNext
+    /**
+     * @return \Upsun\Model\LinkNext|null
+     */
     public function getNext(): ?\Upsun\Model\LinkNext
     {
         return $this->next;

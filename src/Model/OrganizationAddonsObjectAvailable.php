@@ -65,12 +65,20 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getUserManagement(): ?[]
+    /**
+     * Information about the levels of user management that are available.
+     *
+     * @return array&lt;string,float&gt;|null
+     */
     public function getUserManagement(): ?array
     {
         return $this->userManagement;
     }
-    //public function getSupportLevel(): ?[]
+    /**
+     * Information about the levels of support available.
+     *
+     * @return array&lt;string,float&gt;|null
+     */
     public function getSupportLevel(): ?array
     {
         return $this->supportLevel;

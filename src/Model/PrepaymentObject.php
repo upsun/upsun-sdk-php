@@ -61,7 +61,9 @@ final class PrepaymentObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getPrepayment(): ?\Upsun\Model\PrepaymentObjectPrepayment
+    /**
+     * @return \Upsun\Model\PrepaymentObjectPrepayment|null
+     */
     public function getPrepayment(): ?\Upsun\Model\PrepaymentObjectPrepayment
     {
         return $this->prepayment;

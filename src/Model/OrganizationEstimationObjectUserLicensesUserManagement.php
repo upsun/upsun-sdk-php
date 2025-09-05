@@ -69,17 +69,27 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * The number of user_management licenses.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTotal(): ?string
+    /**
+     * The total price for user_management licenses.
+     *
+     * @return string|null
+     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
-    //public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList
+    /**
+     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList|null
+     */
     public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList
     {
         return $this->list;

@@ -61,7 +61,9 @@ final class ResetEmailAddressRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getEmailAddress(): string
+    /**
+     * @return string
+     */
     public function getEmailAddress(): string
     {
         return $this->emailAddress;

@@ -69,17 +69,23 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSource(): string
+    /**
+     * @return string
+     */
     public function getSource(): string
     {
         return $this->source;
     }
-    //public function getSourcePath(): string
+    /**
+     * @return string
+     */
     public function getSourcePath(): string
     {
         return $this->sourcePath;
     }
-    //public function getService(): ?string
+    /**
+     * @return string|null
+     */
     public function getService(): ?string
     {
         return $this->service;

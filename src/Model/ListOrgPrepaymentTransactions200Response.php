@@ -69,17 +69,25 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCount(): ?int
+    /**
+     * Total number of items across pages.
+     *
+     * @return int|null
+     */
     public function getCount(): ?int
     {
         return $this->count;
     }
-    //public function getTransactions(): ?[]
+    /**
+     * @return \Upsun\Model\PrepaymentTransactionObject[]|null
+     */
     public function getTransactions(): ?array
     {
         return $this->transactions;
     }
-    //public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
+    /**
+     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
+     */
     public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
     {
         return $this->links;

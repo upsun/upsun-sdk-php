@@ -117,77 +117,131 @@ final class CurrentUser implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The UUID of the owner.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getUuid(): ?string
+    /**
+     * The UUID of the owner.
+     *
+     * @return string|null
+     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
-    //public function getUsername(): ?string
+    /**
+     * The username of the owner.
+     *
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
-    //public function getDisplayName(): ?string
+    /**
+     * The full name of the owner.
+     *
+     * @return string|null
+     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
-    //public function getStatus(): ?int
+    /**
+     * Status of the user. 0 = blocked; 1 = active.
+     *
+     * @return int|null
+     */
     public function getStatus(): ?int
     {
         return $this->status;
     }
-    //public function getMail(): ?string
+    /**
+     * The email address of the owner.
+     *
+     * @return string|null
+     */
     public function getMail(): ?string
     {
         return $this->mail;
     }
-    //public function getSshKeys(): ?[]
+    /**
+     * The list of user's public SSH keys.
+     *
+     * @return \Upsun\Model\SSHKey[]|null
+     */
     public function getSshKeys(): ?array
     {
         return $this->sshKeys;
     }
-    //public function getHasKey(): ?bool
+    /**
+     * The indicator whether the user has a public ssh key on file or not.
+     *
+     * @return bool|null
+     */
     public function getHasKey(): ?bool
     {
         return $this->hasKey;
     }
-    //public function getProjects(): ?[]
+    /**
+     * @return \Upsun\Model\CurrentUserProjectsInner[]|null
+     */
     public function getProjects(): ?array
     {
         return $this->projects;
     }
-    //public function getSequence(): ?int
+    /**
+     * The sequential ID of the user.
+     *
+     * @return int|null
+     */
     public function getSequence(): ?int
     {
         return $this->sequence;
     }
-    //public function getRoles(): ?[]
+    /**
+     * @return string[]|null
+     */
     public function getRoles(): ?array
     {
         return $this->roles;
     }
-    //public function getPicture(): ?string
+    /**
+     * The URL of the user image.
+     *
+     * @return string|null
+     */
     public function getPicture(): ?string
     {
         return $this->picture;
     }
-    //public function getTickets(): ?object
+    /**
+     * Number of support tickets by status.
+     *
+     * @return object|null
+     */
     public function getTickets(): ?object
     {
         return $this->tickets;
     }
-    //public function getTrial(): ?bool
+    /**
+     * The indicator whether the user is in trial or not.
+     *
+     * @return bool|null
+     */
     public function getTrial(): ?bool
     {
         return $this->trial;
     }
-    //public function getCurrentTrial(): ?[]
+    /**
+     * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
+     */
     public function getCurrentTrial(): ?array
     {
         return $this->currentTrial;

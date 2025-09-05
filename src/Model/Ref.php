@@ -69,17 +69,23 @@ final class Ref implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getRef(): string
+    /**
+     * @return string
+     */
     public function getRef(): string
     {
         return $this->ref;
     }
-    //public function getObject(): \Upsun\Model\TheObjectTheReferencePointsTo
+    /**
+     * @return \Upsun\Model\TheObjectTheReferencePointsTo
+     */
     public function getObject(): \Upsun\Model\TheObjectTheReferencePointsTo
     {
         return $this->object;
     }
-    //public function getSha(): string
+    /**
+     * @return string
+     */
     public function getSha(): string
     {
         return $this->sha;

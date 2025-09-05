@@ -61,7 +61,11 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getHref(): ?string
+    /**
+     * URL of the link.
+     *
+     * @return string|null
+     */
     public function getHref(): ?string
     {
         return $this->href;

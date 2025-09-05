@@ -77,27 +77,37 @@ final class BlackfireIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCreatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): \DateTime
+    /**
+     * @return \DateTime
+     */
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
-    //public function getType(): string
+    /**
+     * @return string
+     */
     public function getType(): string
     {
         return $this->type;
     }
-    //public function getEnvironmentsCredentials(): []
+    /**
+     * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]
+     */
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
-    //public function getContinuousProfiling(): bool
+    /**
+     * @return bool
+     */
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;

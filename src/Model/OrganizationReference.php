@@ -85,37 +85,65 @@ final class OrganizationReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getId(): ?string
+    /**
+     * The ID of the organization.
+     *
+     * @return string|null
+     */
     public function getId(): ?string
     {
         return $this->id;
     }
-    //public function getOwnerId(): ?string
+    /**
+     * The ID of the owner.
+     *
+     * @return string|null
+     */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
-    //public function getName(): ?string
+    /**
+     * A unique machine name representing the organization.
+     *
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
-    //public function getLabel(): ?string
+    /**
+     * The human-readable label of the organization.
+     *
+     * @return string|null
+     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
-    //public function getVendor(): ?string
+    /**
+     * The vendor.
+     *
+     * @return string|null
+     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
-    //public function getCreatedAt(): ?\DateTime
+    /**
+     * The date and time when the organization was created.
+     *
+     * @return \DateTime|null
+     */
     public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
-    //public function getUpdatedAt(): ?\DateTime
+    /**
+     * The date and time when the organization was last updated.
+     *
+     * @return \DateTime|null
+     */
     public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;

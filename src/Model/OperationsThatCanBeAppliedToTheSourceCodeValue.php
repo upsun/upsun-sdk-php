@@ -61,7 +61,9 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getCommand(): string
+    /**
+     * @return string
+     */
     public function getCommand(): string
     {
         return $this->command;

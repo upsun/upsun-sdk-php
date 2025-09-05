@@ -85,37 +85,51 @@ final class ProjectVariableCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getName(): string
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
-    //public function getAttributes(): ?[]
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
-    //public function getValue(): string
+    /**
+     * @return string
+     */
     public function getValue(): string
     {
         return $this->value;
     }
-    //public function getIsJson(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsJson(): ?bool
     {
         return $this->isJson;
     }
-    //public function getIsSensitive(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getIsSensitive(): ?bool
     {
         return $this->isSensitive;
     }
-    //public function getVisibleBuild(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getVisibleBuild(): ?bool
     {
         return $this->visibleBuild;
     }
-    //public function getVisibleRuntime(): ?bool
+    /**
+     * @return bool|null
+     */
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;

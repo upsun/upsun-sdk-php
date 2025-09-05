@@ -65,12 +65,16 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getOperation(): string
+    /**
+     * @return string
+     */
     public function getOperation(): string
     {
         return $this->operation;
     }
-    //public function getVariables(): []
+    /**
+     * @return array&lt;string,array&lt;string,mixed&gt;&gt;
+     */
     public function getVariables(): array
     {
         return $this->variables;

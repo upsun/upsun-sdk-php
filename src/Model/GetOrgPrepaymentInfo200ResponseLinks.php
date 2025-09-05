@@ -65,12 +65,16 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    //public function getSelf(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf
+    /**
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf|null
+     */
     public function getSelf(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf
     {
         return $this->self;
     }
-    //public function getTransactions(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions
+    /**
+     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions|null
+     */
     public function getTransactions(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions
     {
         return $this->transactions;
