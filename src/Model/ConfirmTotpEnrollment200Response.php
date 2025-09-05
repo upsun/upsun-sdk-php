@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfirmTotpEnrollment200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'confirm_totp_enrollment_200_response';
 
     private static array $attributeMap = [
         'recoveryCodes' => 'recovery_codes'

@@ -17,11 +17,13 @@ use JsonSerializable;
 
 final class ProjectInvitation implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ProjectInvitation';
+    public const STATE_PENDING = 'pending';
+    public const STATE_PROCESSING = 'processing';
+    public const STATE_ACCEPTED = 'accepted';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_ERROR = 'error';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VIEWER = 'viewer';
 
     private static array $attributeMap = [
         'id' => 'id',

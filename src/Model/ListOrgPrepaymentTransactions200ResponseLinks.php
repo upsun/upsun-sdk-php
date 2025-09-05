@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'list_org_prepayment_transactions_200_response__links';
 
     private static array $attributeMap = [
         'self' => 'self',

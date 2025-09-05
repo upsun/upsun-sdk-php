@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Certificate implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Certificate';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

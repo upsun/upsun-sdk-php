@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_org_billing_alert_config_request_config';
 
     private static array $attributeMap = [
         'threshold' => 'threshold',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CurrentUserCurrentTrialInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'CurrentUser_current_trial_inner';
 
     private static array $attributeMap = [
         'created' => 'created',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CacheConfiguration1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Cache_configuration__1';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

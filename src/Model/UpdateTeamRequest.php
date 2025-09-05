@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateTeamRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_team_request';
 
     private static array $attributeMap = [
         'label' => 'label',

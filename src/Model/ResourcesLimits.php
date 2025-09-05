@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ResourcesLimits implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources_limits';
 
     private static array $attributeMap = [
         'containerProfiles' => 'container_profiles',

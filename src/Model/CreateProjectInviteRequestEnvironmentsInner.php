@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_project_invite_request_environments_inner';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VIEWER = 'viewer';
+    public const ROLE_CONTRIBUTOR = 'contributor';
 
     private static array $attributeMap = [
         'id' => 'id',

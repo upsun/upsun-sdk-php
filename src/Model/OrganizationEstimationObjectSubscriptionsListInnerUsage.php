@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner_usage';
 
     private static array $attributeMap = [
         'cpu' => 'cpu',

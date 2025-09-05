@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TeamProjectAccessLinksSelf implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'TeamProjectAccess__links_self';
 
     private static array $attributeMap = [
         'href' => 'href'

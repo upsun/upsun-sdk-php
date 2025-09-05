@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateApiTokenRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_api_token_request';
 
     private static array $attributeMap = [
         'name' => 'name'

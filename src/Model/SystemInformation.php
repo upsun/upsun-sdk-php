@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SystemInformation implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SystemInformation';
 
     private static array $attributeMap = [
         'version' => 'version',

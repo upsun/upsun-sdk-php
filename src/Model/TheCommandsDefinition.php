@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheCommandsDefinition implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_commands_definition_';
 
     private static array $attributeMap = [
         'start' => 'start',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ReplacementDomainStorage implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ReplacementDomainStorage';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateProfilePicture200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_profile_picture_200_response';
 
     private static array $attributeMap = [
         'url' => 'url'

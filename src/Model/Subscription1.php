@@ -17,11 +17,14 @@ use JsonSerializable;
 
 final class Subscription1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Subscription_1';
+    public const PLAN__2XLARGE = '2xlarge';
+    public const PLAN__4XLARGE = '4xlarge';
+    public const PLAN__8XLARGE = '8xlarge';
+    public const PLAN_DEVELOPMENT = 'development';
+    public const PLAN_LARGE = 'large';
+    public const PLAN_MEDIUM = 'medium';
+    public const PLAN_STANDARD = 'standard';
+    public const PLAN_XLARGE = 'xlarge';
 
     private static array $attributeMap = [
         'licenseUri' => 'license_uri',

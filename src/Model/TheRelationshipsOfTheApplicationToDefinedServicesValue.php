@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_relationships_of_the_application_to_defined_services__value';
 
     private static array $attributeMap = [
         'service' => 'service',

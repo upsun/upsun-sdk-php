@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfirmPhoneNumberRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'confirm_phone_number_request';
 
     private static array $attributeMap = [
         'code' => 'code'

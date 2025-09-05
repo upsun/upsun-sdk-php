@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationLinksPaymentSource implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Organization__links_payment_source';
 
     private static array $attributeMap = [
         'href' => 'href'

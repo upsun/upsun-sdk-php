@@ -17,11 +17,11 @@ use JsonSerializable;
 
 final class SyslogIntegration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SyslogIntegration';
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateOrgProfileRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_org_profile_request';
 
     private static array $attributeMap = [
         'defaultCatalog' => 'default_catalog',

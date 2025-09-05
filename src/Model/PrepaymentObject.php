@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class PrepaymentObject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'PrepaymentObject';
 
     private static array $attributeMap = [
         'prepayment' => 'prepayment'

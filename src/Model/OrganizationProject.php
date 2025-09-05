@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class OrganizationProject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationProject';
+    public const ACCESS_MIGRATION_STATUS_PENDING = 'pending';
+    public const ACCESS_MIGRATION_STATUS_IN_PROGRESS = 'in_progress';
+    public const ACCESS_MIGRATION_STATUS_COMPLETED = 'completed';
 
     private static array $attributeMap = [
         'id' => 'id',

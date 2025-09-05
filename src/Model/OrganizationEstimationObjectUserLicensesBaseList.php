@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationEstimationObject_user_licenses_base_list';
 
     private static array $attributeMap = [
         'adminUser' => 'admin_user',

@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class GithubIntegration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'GithubIntegration';
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+    public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
+    public const TOKEN_TYPE_GITHUB_APP = 'github_app';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

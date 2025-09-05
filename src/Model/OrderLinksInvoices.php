@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrderLinksInvoices implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Order__links_invoices';
 
     private static array $attributeMap = [
         'href' => 'href'

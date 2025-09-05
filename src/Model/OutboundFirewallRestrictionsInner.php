@@ -17,11 +17,7 @@ use JsonSerializable;
 
 final class OutboundFirewallRestrictionsInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Outbound_firewall_restrictions_inner';
+    public const PROTOCOL_TCP = 'tcp';
 
     private static array $attributeMap = [
         'protocol' => 'protocol',

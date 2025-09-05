@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CustomDomains implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Custom_Domains';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

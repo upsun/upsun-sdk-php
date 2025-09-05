@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class Profile implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Profile';
+    public const TYPE_USER = 'user';
+    public const TYPE_ORGANIZATION = 'organization';
 
     private static array $attributeMap = [
         'id' => 'id',

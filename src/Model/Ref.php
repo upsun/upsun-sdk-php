@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Ref implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Ref';
 
     private static array $attributeMap = [
         'ref' => 'ref',

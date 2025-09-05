@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Blackfire_environments_credentials_value';
 
     private static array $attributeMap = [
         'serverUuid' => 'server_uuid',

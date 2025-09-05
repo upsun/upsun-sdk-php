@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Metrics implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Metrics';
 
     private static array $attributeMap = [
         'maxRange' => 'max_range'

@@ -17,11 +17,15 @@ use JsonSerializable;
 
 final class OrganizationInvitation implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationInvitation';
+    public const STATE_PENDING = 'pending';
+    public const STATE_PROCESSING = 'processing';
+    public const STATE_ACCEPTED = 'accepted';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_ERROR = 'error';
+    public const PERMISSIONS_BILLING = 'billing';
+    public const PERMISSIONS_PLANS = 'plans';
+    public const PERMISSIONS_MEMBERS = 'members';
+    public const PERMISSIONS_PROJECT_CREATE = 'project:create';
 
     private static array $attributeMap = [
         'id' => 'id',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class HTTPLogForwardingIntegrationConfigurations implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'HTTP_log_forwarding_integration_configurations';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

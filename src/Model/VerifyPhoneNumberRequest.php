@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class VerifyPhoneNumberRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'verify_phone_number_request';
+    public const CHANNEL_SMS = 'sms';
+    public const CHANNEL_WHATSAPP = 'whatsapp';
+    public const CHANNEL_CALL = 'call';
 
     private static array $attributeMap = [
         'channel' => 'channel',

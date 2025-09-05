@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_org_subscription_request';
 
     private static array $attributeMap = [
         'plan' => 'plan',

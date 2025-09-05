@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ListUserExtendedAccess200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'list_user_extended_access_200_response';
 
     private static array $attributeMap = [
         'items' => 'items',

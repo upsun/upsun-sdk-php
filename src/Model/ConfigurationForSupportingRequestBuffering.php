@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_for_supporting_request_buffering_';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

@@ -17,11 +17,14 @@ use JsonSerializable;
 
 final class OrganizationMember implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationMember';
+    public const PERMISSIONS_ADMIN = 'admin';
+    public const PERMISSIONS_BILLING = 'billing';
+    public const PERMISSIONS_MEMBERS = 'members';
+    public const PERMISSIONS_PLANS = 'plans';
+    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
+    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
+    public const LEVEL_ADMIN = 'admin';
+    public const LEVEL_VIEWER = 'viewer';
 
     private static array $attributeMap = [
         'id' => 'id',

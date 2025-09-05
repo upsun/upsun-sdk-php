@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GrantProjectTeamAccessRequestInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'grant_project_team_access_request_inner';
 
     private static array $attributeMap = [
         'teamId' => 'team_id'

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_specification_of_the_web_locations_served_by_this_application__value';
 
     private static array $attributeMap = [
         'root' => 'root',

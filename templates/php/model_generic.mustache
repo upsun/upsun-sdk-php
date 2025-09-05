@@ -1,10 +1,14 @@
 final class {{classname}} implements JsonSerializable
 {
-    public const DISCRIMINATOR = {{#discriminator}}'{{discriminatorName}}'{{/discriminator}}{{^discriminator}}null{{/discriminator}};
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = '{{name}}';
+    {{#vars}}
+    {{#isEnum}}
+    {{#allowableValues}}
+    {{#enumVars}}
+    public const {{enumName}}_{{{name}}} = {{{value}}};
+    {{/enumVars}}
+    {{/allowableValues}}
+    {{/isEnum}}
+    {{/vars}}
 
     private static array $attributeMap = [
         {{#vars}}'{{name}}' => '{{baseName}}'{{^-last}},

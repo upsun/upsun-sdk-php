@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class LineItem implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'LineItem';
+    public const TYPE_PROJECT_PLAN = 'project_plan';
+    public const TYPE_PROJECT_FEATURE = 'project_feature';
+    public const TYPE_PROJECT_SUBTOTAL = 'project_subtotal';
+    public const TYPE_ORGANIZATION_PLAN = 'organization_plan';
+    public const TYPE_ORGANIZATION_FEATURE = 'organization_feature';
+    public const TYPE_ORGANIZATION_SUBTOTAL = 'organization_subtotal';
 
     private static array $attributeMap = [
         'type' => 'type',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class LogsForwarding implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Logs_Forwarding';
 
     private static array $attributeMap = [
         'maxExtraPayloadSize' => 'max_extra_payload_size'

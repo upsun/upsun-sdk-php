@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationLinksSubscriptions implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Organization__links_subscriptions';
 
     private static array $attributeMap = [
         'href' => 'href'

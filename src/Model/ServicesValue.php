@@ -17,11 +17,13 @@ use JsonSerializable;
 
 final class ServicesValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Services_value';
+    public const SIZE__2_XL = '2XL';
+    public const SIZE__4_XL = '4XL';
+    public const SIZE_AUTO = 'AUTO';
+    public const SIZE_L = 'L';
+    public const SIZE_M = 'M';
+    public const SIZE_S = 'S';
+    public const SIZE_XL = 'XL';
 
     private static array $attributeMap = [
         'type' => 'type',

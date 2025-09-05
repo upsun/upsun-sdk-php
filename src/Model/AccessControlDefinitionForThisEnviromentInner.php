@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Access_control_definition_for_this_enviroment_inner';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_CONTRIBUTOR = 'contributor';
+    public const ROLE_VIEWER = 'viewer';
 
     private static array $attributeMap = [
         'entityId' => 'entity_id',

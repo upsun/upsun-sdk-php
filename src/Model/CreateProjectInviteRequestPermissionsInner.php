@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class CreateProjectInviteRequestPermissionsInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_project_invite_request_permissions_inner';
+    public const TYPE_PRODUCTION = 'production';
+    public const TYPE_STAGING = 'staging';
+    public const TYPE_DEVELOPMENT = 'development';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_VIEWER = 'viewer';
+    public const ROLE_CONTRIBUTOR = 'contributor';
 
     private static array $attributeMap = [
         'type' => 'type',

@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class Backup implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Backup';
+    public const STATUS_CREATED = 'CREATED';
+    public const STATUS_DELETING = 'DELETING';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

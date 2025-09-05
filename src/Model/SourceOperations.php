@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SourceOperations implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Source_Operations';
 
     private static array $attributeMap = [
         'enabled' => 'enabled'

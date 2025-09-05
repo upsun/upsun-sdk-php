@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class InvoicePDF implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'InvoicePDF';
+    public const STATUS_READY = 'ready';
+    public const STATUS_PENDING = 'pending';
 
     private static array $attributeMap = [
         'url' => 'url',

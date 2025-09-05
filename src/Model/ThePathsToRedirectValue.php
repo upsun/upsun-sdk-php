@@ -17,11 +17,10 @@ use JsonSerializable;
 
 final class ThePathsToRedirectValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_paths_to_redirect_value';
+    public const CODE_NUMBER_301 = 301;
+    public const CODE_NUMBER_302 = 302;
+    public const CODE_NUMBER_307 = 307;
+    public const CODE_NUMBER_308 = 308;
 
     private static array $attributeMap = [
         'regexp' => 'regexp',

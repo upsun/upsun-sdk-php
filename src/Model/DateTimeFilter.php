@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class DateTimeFilter implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'DateTimeFilter';
 
     private static array $attributeMap = [
         'eq' => 'eq',

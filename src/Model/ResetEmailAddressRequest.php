@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ResetEmailAddressRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'reset_email_address_request';
 
     private static array $attributeMap = [
         'emailAddress' => 'email_address'

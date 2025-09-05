@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ProfileCurrentTrialSpend implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Profile_current_trial_spend';
 
     private static array $attributeMap = [
         'formatted' => 'formatted',

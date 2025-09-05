@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Error implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Error';
 
     private static array $attributeMap = [
         'status' => 'status',

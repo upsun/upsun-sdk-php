@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class VouchersVouchersInnerOrdersInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Vouchers_vouchers_inner_orders_inner';
 
     private static array $attributeMap = [
         'orderId' => 'order_id',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SSHKey implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SSHKey';
 
     private static array $attributeMap = [
         'keyId' => 'key_id',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class LinkPrevious implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Link_Previous';
 
     private static array $attributeMap = [
         'href' => 'href'

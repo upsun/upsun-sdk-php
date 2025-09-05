@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class UpdateTicketRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_ticket_request';
+    public const STATUS_OPEN = 'open';
+    public const STATUS_SOLVED = 'solved';
 
     private static array $attributeMap = [
         'status' => 'status',

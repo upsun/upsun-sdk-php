@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class BuildResources implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Build_Resources';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

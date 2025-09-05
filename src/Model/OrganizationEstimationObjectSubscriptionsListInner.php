@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationEstimationObject_subscriptions_list_inner';
 
     private static array $attributeMap = [
         'licenseId' => 'license_id',

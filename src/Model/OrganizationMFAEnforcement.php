@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationMFAEnforcement implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationMFAEnforcement';
 
     private static array $attributeMap = [
         'enforceMfa' => 'enforce_mfa'

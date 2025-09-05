@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SubscriptionCurrentUsageObject';
 
     private static array $attributeMap = [
         'cpuApp' => 'cpu_app',

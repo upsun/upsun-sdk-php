@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ReplacementDomainStorageCreateInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ReplacementDomainStorageCreateInput';
 
     private static array $attributeMap = [
         'name' => 'name',

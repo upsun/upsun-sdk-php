@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GetUsageAlerts200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'get_usage_alerts_200_response';
 
     private static array $attributeMap = [
         'available' => 'available',

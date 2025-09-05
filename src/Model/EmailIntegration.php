@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class EmailIntegration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EmailIntegration';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

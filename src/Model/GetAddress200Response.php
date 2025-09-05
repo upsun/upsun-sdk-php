@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GetAddress200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'get_address_200_response';
 
     private static array $attributeMap = [
         'country' => 'country',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class RegionReference implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'RegionReference';
 
     private static array $attributeMap = [
         'id' => 'id',

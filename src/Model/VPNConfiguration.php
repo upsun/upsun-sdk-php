@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class VPNConfiguration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'VPN_configuration';
+    public const VERSION_NUMBER_1 = 1;
+    public const VERSION_NUMBER_2 = 2;
+    public const AGGRESSIVE_NO = 'no';
+    public const AGGRESSIVE_YES = 'yes';
+    public const MODECONFIG_PULL = 'pull';
+    public const MODECONFIG_PUSH = 'push';
 
     private static array $attributeMap = [
         'version' => 'version',

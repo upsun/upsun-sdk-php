@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SplunkIntegrationPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SplunkIntegrationPatch';
 
     private static array $attributeMap = [
         'type' => 'type',

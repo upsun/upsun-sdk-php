@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Version implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Version';
 
     private static array $attributeMap = [
         'commit' => 'commit',

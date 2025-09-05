@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class NewRelicIntegration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'NewRelicIntegration';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

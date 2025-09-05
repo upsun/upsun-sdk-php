@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Project implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Project';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

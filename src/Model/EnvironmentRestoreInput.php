@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class EnvironmentRestoreInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentRestoreInput';
 
     private static array $attributeMap = [
         'environmentName' => 'environment_name',

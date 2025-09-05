@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class UpdateOrgMemberRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_org_member_request';
+    public const PERMISSIONS_ADMIN = 'admin';
+    public const PERMISSIONS_BILLING = 'billing';
+    public const PERMISSIONS_MEMBERS = 'members';
+    public const PERMISSIONS_PLANS = 'plans';
+    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
+    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
 
     private static array $attributeMap = [
         'permissions' => 'permissions'

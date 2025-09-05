@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateAuthorizationCredentials200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_authorization_credentials_200_response';
 
     private static array $attributeMap = [
         'redirectToUrl' => 'redirect_to_url',

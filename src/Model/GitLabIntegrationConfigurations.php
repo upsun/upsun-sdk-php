@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GitLabIntegrationConfigurations implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'GitLab_integration_configurations';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

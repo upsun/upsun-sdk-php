@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class RedirectRoutePatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'RedirectRoutePatch';
+    public const TYPE_PROXY = 'proxy';
+    public const TYPE_REDIRECT = 'redirect';
+    public const TYPE_UPSTREAM = 'upstream';
 
     private static array $attributeMap = [
         'primary' => 'primary',

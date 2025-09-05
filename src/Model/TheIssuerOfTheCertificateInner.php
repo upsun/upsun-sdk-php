@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheIssuerOfTheCertificateInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_issuer_of_the_certificate_inner';
 
     private static array $attributeMap = [
         'oid' => 'oid',

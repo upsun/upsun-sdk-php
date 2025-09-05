@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ListTicketCategories200ResponseInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'list_ticket_categories_200_response_inner';
 
     private static array $attributeMap = [
         'id' => 'id',

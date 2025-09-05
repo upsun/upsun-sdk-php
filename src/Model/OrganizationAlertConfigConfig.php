@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationAlertConfigConfig implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationAlertConfig_config';
 
     private static array $attributeMap = [
         'threshold' => 'threshold',

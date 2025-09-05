@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class PerServiceResourcesOverridesValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Per_service_resources_overrides__value';
 
     private static array $attributeMap = [
         'cpu' => 'cpu',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class EnvironmentVariablePatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentVariablePatch';
 
     private static array $attributeMap = [
         'name' => 'name',

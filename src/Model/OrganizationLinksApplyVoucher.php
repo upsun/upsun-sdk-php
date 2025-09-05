@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationLinksApplyVoucher implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Organization__links_apply_voucher';
 
     private static array $attributeMap = [
         'href' => 'href',

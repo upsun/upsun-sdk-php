@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OutboundFirewall implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Outbound_Firewall';
 
     private static array $attributeMap = [
         'enabled' => 'enabled'

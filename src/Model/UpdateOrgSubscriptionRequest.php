@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_org_subscription_request';
 
     private static array $attributeMap = [
         'projectTitle' => 'project_title',

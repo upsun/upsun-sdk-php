@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class EnterpriseDeploymentTargetPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnterpriseDeploymentTargetPatch';
+    public const TYPE_DEDICATED = 'dedicated';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const TYPE_LOCAL = 'local';
 
     private static array $attributeMap = [
         'type' => 'type',

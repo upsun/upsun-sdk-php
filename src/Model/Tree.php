@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Tree implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Tree';
 
     private static array $attributeMap = [
         'sha' => 'sha',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CertificatePatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'CertificatePatch';
 
     private static array $attributeMap = [
         'chain' => 'chain',

@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class TheCronsDeploymentState implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_crons_deployment_state';
+    public const STATUS_PAUSED = 'paused';
+    public const STATUS_RUNNING = 'running';
+    public const STATUS_SLEEPING = 'sleeping';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheCommandsToManageTheWorker implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_commands_to_manage_the_worker_';
 
     private static array $attributeMap = [
         'preStart' => 'pre_start',

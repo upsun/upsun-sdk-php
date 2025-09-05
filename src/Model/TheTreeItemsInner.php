@@ -17,11 +17,11 @@ use JsonSerializable;
 
 final class TheTreeItemsInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_tree_items_inner';
+    public const MODE__040000 = '040000';
+    public const MODE__100644 = '100644';
+    public const MODE__100755 = '100755';
+    public const MODE__120000 = '120000';
+    public const MODE__160000 = '160000';
 
     private static array $attributeMap = [
         'path' => 'path',

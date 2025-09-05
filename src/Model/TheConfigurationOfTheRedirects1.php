@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_configuration_of_the_redirects__1';
 
     private static array $attributeMap = [
         'expires' => 'expires',

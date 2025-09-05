@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'A_list_of_files_to_add_to_the_repository_during_initialization_inner';
 
     private static array $attributeMap = [
         'path' => 'path',

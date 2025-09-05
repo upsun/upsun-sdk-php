@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class DataRetention implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Data_Retention';
 
     private static array $attributeMap = [
         'enabled' => 'enabled'

@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class EnvironmentBranchInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentBranchInput';
+    public const TYPE_DEVELOPMENT = 'development';
+    public const TYPE_STAGING = 'staging';
 
     private static array $attributeMap = [
         'title' => 'title',

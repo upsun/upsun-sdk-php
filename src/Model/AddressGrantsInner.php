@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class AddressGrantsInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Address_grants_inner';
+    public const PERMISSION_ALLOW = 'allow';
+    public const PERMISSION_DENY = 'deny';
 
     private static array $attributeMap = [
         'permission' => 'permission',

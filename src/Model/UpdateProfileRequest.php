@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateProfileRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_profile_request';
 
     private static array $attributeMap = [
         'displayName' => 'display_name',

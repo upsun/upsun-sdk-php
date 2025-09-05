@@ -17,11 +17,7 @@ use JsonSerializable;
 
 final class OrganizationSSOConfig implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationSSOConfig';
+    public const PROVIDER_TYPE_GOOGLE = 'google';
 
     private static array $attributeMap = [
         'providerType' => 'provider_type',

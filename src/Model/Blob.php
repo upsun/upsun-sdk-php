@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class Blob implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Blob';
+    public const ENCODING_BASE64 = 'base64';
+    public const ENCODING_UTF_8 = 'utf-8';
 
     private static array $attributeMap = [
         'sha' => 'sha',

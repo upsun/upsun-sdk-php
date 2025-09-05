@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrderBillingPeriodLabel implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Order_billing_period_label';
 
     private static array $attributeMap = [
         'formatted' => 'formatted',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_of_a_worker_container_instance_';
 
     private static array $attributeMap = [
         'commands' => 'commands',

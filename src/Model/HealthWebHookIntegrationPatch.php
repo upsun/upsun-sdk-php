@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class HealthWebHookIntegrationPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'HealthWebHookIntegrationPatch';
 
     private static array $attributeMap = [
         'type' => 'type',

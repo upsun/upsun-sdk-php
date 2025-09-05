@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Components implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Components';
 
     private static array $attributeMap = [
         'voucherVatBaseprice' => 'voucher/vat/baseprice'

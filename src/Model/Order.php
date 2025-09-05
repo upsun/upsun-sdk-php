@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class Order implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Order';
+    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_PAST_DUE = 'past_due';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_CANCELED = 'canceled';
+    public const STATUS_PAYMENT_FAILED_SOFT_DECLINE = 'payment_failed_soft_decline';
+    public const STATUS_PAYMENT_FAILED_HARD_DECLINE = 'payment_failed_hard_decline';
 
     private static array $attributeMap = [
         'id' => 'id',

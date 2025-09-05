@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class RegionDatacenter implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Region_datacenter';
 
     private static array $attributeMap = [
         'name' => 'name',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ListOrgs200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'list_orgs_200_response';
 
     private static array $attributeMap = [
         'count' => 'count',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateTeamRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_team_request';
 
     private static array $attributeMap = [
         'organizationId' => 'organization_id',

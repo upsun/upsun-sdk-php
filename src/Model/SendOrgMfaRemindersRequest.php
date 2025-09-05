@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SendOrgMfaRemindersRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'send_org_mfa_reminders_request';
 
     private static array $attributeMap = [
         'userIds' => 'user_ids'

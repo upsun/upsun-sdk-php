@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Config implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Config';
 
     private static array $attributeMap = [
         'newrelic' => 'newrelic',

@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class CreateOrgRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_org_request';
+    public const TYPE_FIXED = 'fixed';
+    public const TYPE_FLEXIBLE = 'flexible';
 
     private static array $attributeMap = [
         'type' => 'type',

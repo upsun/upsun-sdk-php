@@ -17,11 +17,10 @@ use JsonSerializable;
 
 final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_on_how_the_web_server_communicates_with_the_application_';
+    public const SOCKET_FAMILY_TCP = 'tcp';
+    public const SOCKET_FAMILY_UNIX = 'unix';
+    public const PROTOCOL_FASTCGI = 'fastcgi';
+    public const PROTOCOL_HTTP = 'http';
 
     private static array $attributeMap = [
         'socketFamily' => 'socket_family',

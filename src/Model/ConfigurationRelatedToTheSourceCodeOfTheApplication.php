@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_related_to_the_source_code_of_the_application_';
 
     private static array $attributeMap = [
         'root' => 'root',

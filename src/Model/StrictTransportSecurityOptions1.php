@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class StrictTransportSecurityOptions1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Strict_Transport_Security_options__1';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

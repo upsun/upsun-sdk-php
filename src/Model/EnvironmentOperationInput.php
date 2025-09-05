@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class EnvironmentOperationInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentOperationInput';
 
     private static array $attributeMap = [
         'service' => 'service',

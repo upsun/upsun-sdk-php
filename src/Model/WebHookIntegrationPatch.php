@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class WebHookIntegrationPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'WebHookIntegrationPatch';
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
 
     private static array $attributeMap = [
         'type' => 'type',

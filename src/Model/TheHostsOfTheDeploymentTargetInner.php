@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_hosts_of_the_deployment_target__inner';
+    public const TYPE_CORE = 'core';
+    public const TYPE_SATELLITE = 'satellite';
 
     private static array $attributeMap = [
         'id' => 'id',

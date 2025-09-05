@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Hooks_executed_at_various_point_in_the_lifecycle_of_the_application_';
 
     private static array $attributeMap = [
         'build' => 'build',

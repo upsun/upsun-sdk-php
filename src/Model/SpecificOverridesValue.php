@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SpecificOverridesValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Specific_overrides__value';
 
     private static array $attributeMap = [
         'expires' => 'expires',

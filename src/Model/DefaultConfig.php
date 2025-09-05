@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class DefaultConfig implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Default_Config';
 
     private static array $attributeMap = [
         'manualCount' => 'manual_count',

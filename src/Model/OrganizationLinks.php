@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationLinks implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Organization__links';
 
     private static array $attributeMap = [
         'self' => 'self',

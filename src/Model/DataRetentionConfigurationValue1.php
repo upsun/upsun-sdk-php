@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class DataRetentionConfigurationValue1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Data_retention_configuration_value_1';
 
     private static array $attributeMap = [
         'maxBackups' => 'max_backups',

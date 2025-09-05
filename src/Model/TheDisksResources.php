@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheDisksResources implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_disks_resources';
 
     private static array $attributeMap = [
         'temporary' => 'temporary',

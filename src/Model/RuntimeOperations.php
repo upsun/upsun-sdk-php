@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class RuntimeOperations implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Runtime_Operations';
 
     private static array $attributeMap = [
         'enabled' => 'enabled'

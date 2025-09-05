@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class LineItemComponent implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'LineItemComponent';
 
     private static array $attributeMap = [
         'amount' => 'amount',

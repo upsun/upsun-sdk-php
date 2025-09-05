@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationLinksMfaEnforcement implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Organization__links_mfa_enforcement';
 
     private static array $attributeMap = [
         'href' => 'href'

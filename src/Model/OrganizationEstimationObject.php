@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationEstimationObject implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationEstimationObject';
 
     private static array $attributeMap = [
         'total' => 'total',

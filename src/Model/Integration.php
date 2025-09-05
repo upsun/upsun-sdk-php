@@ -17,11 +17,20 @@ use JsonSerializable;
 
 final class Integration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Integration';
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+    public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
+    public const TOKEN_TYPE_GITHUB_APP = 'github_app';
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

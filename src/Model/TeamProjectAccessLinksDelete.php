@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TeamProjectAccessLinksDelete implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'TeamProjectAccess__links_delete';
 
     private static array $attributeMap = [
         'href' => 'href',

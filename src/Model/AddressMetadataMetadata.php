@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class AddressMetadataMetadata implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'AddressMetadata_metadata';
 
     private static array $attributeMap = [
         'requiredFields' => 'required_fields',

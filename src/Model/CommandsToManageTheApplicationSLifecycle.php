@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Commands_to_manage_the_application_s_lifecycle_';
 
     private static array $attributeMap = [
         'preStart' => 'pre_start',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class RegionEnvironmentalImpact implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Region_environmental_impact';
 
     private static array $attributeMap = [
         'zone' => 'zone',

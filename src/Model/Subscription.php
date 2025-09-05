@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class Subscription implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Subscription';
+    public const STATUS_REQUESTED = 'requested';
+    public const STATUS_PROVISIONING_FAILURE = 'provisioning failure';
+    public const STATUS_PROVISIONING = 'provisioning';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_SUSPENDED = 'suspended';
+    public const STATUS_DELETED = 'deleted';
 
     private static array $attributeMap = [
         'id' => 'id',

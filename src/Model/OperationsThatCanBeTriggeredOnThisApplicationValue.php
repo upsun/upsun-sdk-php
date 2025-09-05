@@ -17,11 +17,9 @@ use JsonSerializable;
 
 final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Operations_that_can_be_triggered_on_this_application_value';
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_CONTRIBUTOR = 'contributor';
+    public const ROLE_VIEWER = 'viewer';
 
     private static array $attributeMap = [
         'commands' => 'commands',

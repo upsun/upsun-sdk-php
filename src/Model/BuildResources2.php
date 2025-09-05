@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class BuildResources2 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Build_Resources_2';
 
     private static array $attributeMap = [
         'cpu' => 'cpu',

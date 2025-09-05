@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TicketJiraInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Ticket_jira_inner';
 
     private static array $attributeMap = [
         'id' => 'id',

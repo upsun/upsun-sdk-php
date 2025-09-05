@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheInformationAboutTheCommitter implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_information_about_the_committer';
 
     private static array $attributeMap = [
         'date' => 'date',

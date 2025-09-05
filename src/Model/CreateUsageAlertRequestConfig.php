@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateUsageAlertRequestConfig implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_usage_alert_request_config';
 
     private static array $attributeMap = [
         'threshold' => 'threshold'

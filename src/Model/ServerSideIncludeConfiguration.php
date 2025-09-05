@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ServerSideIncludeConfiguration implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Server_Side_Include_configuration_';
 
     private static array $attributeMap = [
         'enabled' => 'enabled'

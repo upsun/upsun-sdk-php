@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationMemberLinksDelete implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationMember__links_delete';
 
     private static array $attributeMap = [
         'href' => 'href',

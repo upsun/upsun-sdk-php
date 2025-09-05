@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SubscriptionAddonsObject_upgrades_available';
 
     private static array $attributeMap = [
         'continuousProfiling' => 'continuous_profiling',

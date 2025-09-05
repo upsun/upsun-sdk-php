@@ -17,11 +17,7 @@ use JsonSerializable;
 
 final class ProfileCurrentTrial implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Profile_current_trial';
+    public const PENDING_VERIFICATION_CREDIT_CARD = 'credit-card';
 
     private static array $attributeMap = [
         'active' => 'active',

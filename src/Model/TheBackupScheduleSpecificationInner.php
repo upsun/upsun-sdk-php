@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheBackupScheduleSpecificationInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_backup_schedule_specification__inner';
 
     private static array $attributeMap = [
         'interval' => 'interval',

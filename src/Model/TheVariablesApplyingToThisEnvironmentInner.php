@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_variables_applying_to_this_environment_inner';
 
     private static array $attributeMap = [
         'name' => 'name',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class RestrictedAndDeniedImageTypes implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Restricted_and_denied_image_types';
 
     private static array $attributeMap = [
         'only' => 'only',

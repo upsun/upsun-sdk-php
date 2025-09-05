@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Connection implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Connection';
 
     private static array $attributeMap = [
         'provider' => 'provider',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_commit_distance_info_between_parent_and_child_environments';
 
     private static array $attributeMap = [
         'commitsAhead' => 'commits_ahead',

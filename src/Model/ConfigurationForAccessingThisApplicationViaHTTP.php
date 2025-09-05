@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_for_accessing_this_application_via_HTTP_';
 
     private static array $attributeMap = [
         'locations' => 'locations',

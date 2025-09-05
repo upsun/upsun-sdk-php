@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Plan implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Plan';
 
     private static array $attributeMap = [
         'name' => 'name',

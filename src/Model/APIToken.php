@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class APIToken implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'APIToken';
 
     private static array $attributeMap = [
         'id' => 'id',

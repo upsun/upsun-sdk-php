@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class VerifyPhoneNumber200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'verify_phone_number_200_response';
 
     private static array $attributeMap = [
         'sid' => 'sid'

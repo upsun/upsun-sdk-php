@@ -17,11 +17,10 @@ use JsonSerializable;
 
 final class Resources4 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources_4';
+    public const INIT_CHILD = 'child';
+    public const INIT__DEFAULT = 'default';
+    public const INIT_MANUAL = 'manual';
+    public const INIT_MINIMUM = 'minimum';
 
     private static array $attributeMap = [
         'init' => 'init'

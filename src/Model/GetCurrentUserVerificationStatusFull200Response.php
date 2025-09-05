@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'get_current_user_verification_status_full_200_response';
 
     private static array $attributeMap = [
         'state' => 'state',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class HttpLogIntegrationPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'HttpLogIntegrationPatch';
 
     private static array $attributeMap = [
         'type' => 'type',

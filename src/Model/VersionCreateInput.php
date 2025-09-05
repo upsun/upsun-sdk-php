@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class VersionCreateInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'VersionCreateInput';
 
     private static array $attributeMap = [
         'routing' => 'routing'

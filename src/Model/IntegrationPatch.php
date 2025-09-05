@@ -17,11 +17,20 @@ use JsonSerializable;
 
 final class IntegrationPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'IntegrationPatch';
+    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
+    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
+    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
+    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
+    public const RESULT_STAR = '*';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
+    public const PROTOCOL_TCP = 'tcp';
+    public const PROTOCOL_TLS = 'tls';
+    public const PROTOCOL_UDP = 'udp';
+    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
+    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
+    public const AUTH_MODE_PREFIX = 'prefix';
+    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
 
     private static array $attributeMap = [
         'type' => 'type',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class EmailIntegrationPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EmailIntegrationPatch';
 
     private static array $attributeMap = [
         'type' => 'type',

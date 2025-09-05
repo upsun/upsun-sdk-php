@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Resources implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources';
 
     private static array $attributeMap = [
         'baseMemory' => 'base_memory',

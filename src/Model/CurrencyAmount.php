@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CurrencyAmount implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'CurrencyAmount';
 
     private static array $attributeMap = [
         'formatted' => 'formatted',

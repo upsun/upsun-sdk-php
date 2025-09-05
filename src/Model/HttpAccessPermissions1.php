@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class HttpAccessPermissions1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Http_access_permissions_1';
 
     private static array $attributeMap = [
         'isEnabled' => 'is_enabled',

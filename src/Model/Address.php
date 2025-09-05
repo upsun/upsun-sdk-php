@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Address implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Address';
 
     private static array $attributeMap = [
         'country' => 'country',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ProdDomainStorageCreateInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ProdDomainStorageCreateInput';
 
     private static array $attributeMap = [
         'name' => 'name',

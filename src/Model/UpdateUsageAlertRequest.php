@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateUsageAlertRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_usage_alert_request';
 
     private static array $attributeMap = [
         'config' => 'config'

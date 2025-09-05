@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Filesystem_mounts_of_this_application___If_not_specified_the_application_will_have_no_writeable_disk_space__value';
+    public const SOURCE_INSTANCE = 'instance';
+    public const SOURCE_LOCAL = 'local';
+    public const SOURCE_SERVICE = 'service';
+    public const SOURCE_STORAGE = 'storage';
+    public const SOURCE_TEMPORARY = 'temporary';
+    public const SOURCE_TMP = 'tmp';
 
     private static array $attributeMap = [
         'source' => 'source',

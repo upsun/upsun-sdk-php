@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheAddonCredentialInformationOptional1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_addon_credential_information__optional___1';
 
     private static array $attributeMap = [
         'addonKey' => 'addon_key',

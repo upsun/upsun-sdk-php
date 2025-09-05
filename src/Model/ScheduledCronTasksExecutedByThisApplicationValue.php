@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Scheduled_cron_tasks_executed_by_this_application__value';
 
     private static array $attributeMap = [
         'spec' => 'spec',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ProjectSettingsPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ProjectSettingsPatch';
 
     private static array $attributeMap = [
         'initialize' => 'initialize',

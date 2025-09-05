@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ProjectOptionsEnforced implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'ProjectOptions_enforced';
 
     private static array $attributeMap = [
         'settings' => 'settings',

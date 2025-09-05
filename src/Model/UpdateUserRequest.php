@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UpdateUserRequest implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'update_user_request';
 
     private static array $attributeMap = [
         'username' => 'username',

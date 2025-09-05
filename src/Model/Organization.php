@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class Organization implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Organization';
+    public const TYPE_FIXED = 'fixed';
+    public const TYPE_FLEXIBLE = 'flexible';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_RESTRICTED = 'restricted';
+    public const STATUS_SUSPENDED = 'suspended';
+    public const STATUS_DELETED = 'deleted';
 
     private static array $attributeMap = [
         'id' => 'id',

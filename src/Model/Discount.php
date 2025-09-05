@@ -17,11 +17,13 @@ use JsonSerializable;
 
 final class Discount implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Discount';
+    public const TYPE_ALLOWANCE = 'allowance';
+    public const TYPE_STARTUP = 'startup';
+    public const TYPE_ENTERPRISE = 'enterprise';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_EXPIRED = 'expired';
+    public const STATUS_DEACTIVATED = 'deactivated';
 
     private static array $attributeMap = [
         'id' => 'id',

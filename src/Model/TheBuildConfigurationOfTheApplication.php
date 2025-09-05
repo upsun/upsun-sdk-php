@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_build_configuration_of_the_application_';
 
     private static array $attributeMap = [
         'flavor' => 'flavor',

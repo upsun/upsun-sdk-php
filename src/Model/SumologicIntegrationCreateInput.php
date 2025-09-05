@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class SumologicIntegrationCreateInput implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'SumologicIntegrationCreateInput';
 
     private static array $attributeMap = [
         'type' => 'type',

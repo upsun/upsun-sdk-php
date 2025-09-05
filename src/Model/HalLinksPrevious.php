@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class HalLinksPrevious implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'HalLinks_previous';
 
     private static array $attributeMap = [
         'title' => 'title',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class LinkSelf implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Link_Self';
 
     private static array $attributeMap = [
         'href' => 'href'

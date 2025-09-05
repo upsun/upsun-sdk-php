@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class Vouchers implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Vouchers';
 
     private static array $attributeMap = [
         'uuid' => 'uuid',

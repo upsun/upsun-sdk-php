@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'UsageGroupCurrentUsageProperties';
 
     private static array $attributeMap = [
         'title' => 'title',

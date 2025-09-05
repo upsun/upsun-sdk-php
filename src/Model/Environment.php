@@ -17,11 +17,14 @@ use JsonSerializable;
 
 final class Environment implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Environment';
+    public const TYPE_DEVELOPMENT = 'development';
+    public const TYPE_PRODUCTION = 'production';
+    public const TYPE_STAGING = 'staging';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_DELETING = 'deleting';
+    public const STATUS_DIRTY = 'dirty';
+    public const STATUS_INACTIVE = 'inactive';
+    public const STATUS_PAUSED = 'paused';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

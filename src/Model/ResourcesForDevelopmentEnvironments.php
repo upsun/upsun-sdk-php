@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Resources_for_development_environments';
 
     private static array $attributeMap = [
         'legacyDevelopment' => 'legacy_development',

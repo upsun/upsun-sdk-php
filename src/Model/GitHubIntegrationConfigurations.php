@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GitHubIntegrationConfigurations implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'GitHub_integration_configurations';
 
     private static array $attributeMap = [
         'enabled' => 'enabled',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Configuration_about_the_traffic_routed_to_this_version_1';
 
     private static array $attributeMap = [
         'percentage' => 'percentage'

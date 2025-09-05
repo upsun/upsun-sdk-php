@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'can_create_new_org_subscription_200_response';
 
     private static array $attributeMap = [
         'canCreate' => 'can_create',

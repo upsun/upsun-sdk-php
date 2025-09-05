@@ -17,11 +17,13 @@ use JsonSerializable;
 
 final class Activity implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Activity';
+    public const STATE_CANCELLED = 'cancelled';
+    public const STATE_COMPLETE = 'complete';
+    public const STATE_IN_PROGRESS = 'in_progress';
+    public const STATE_PENDING = 'pending';
+    public const STATE_SCHEDULED = 'scheduled';
+    public const RESULT_FAILURE = 'failure';
+    public const RESULT_SUCCESS = 'success';
 
     private static array $attributeMap = [
         'createdAt' => 'created_at',

@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class GetTypeAllowance200ResponseCurrenciesAUD implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'get_type_allowance_200_response_currencies_AUD';
 
     private static array $attributeMap = [
         'formatted' => 'formatted',

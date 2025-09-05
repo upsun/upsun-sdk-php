@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TheDefaultResourcesForThisService implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'The_default_resources_for_this_service';
 
     private static array $attributeMap = [
         'cpu' => 'cpu',

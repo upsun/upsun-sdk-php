@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class EnvironmentSourceOperation implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'EnvironmentSourceOperation';
 
     private static array $attributeMap = [
         'app' => 'app',

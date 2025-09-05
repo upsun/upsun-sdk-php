@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'create_ticket_request_attachments_inner';
 
     private static array $attributeMap = [
         'filename' => 'filename',

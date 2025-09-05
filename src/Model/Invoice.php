@@ -17,11 +17,14 @@ use JsonSerializable;
 
 final class Invoice implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Invoice';
+    public const TYPE_INVOICE = 'invoice';
+    public const TYPE_CREDIT_MEMO = 'credit_memo';
+    public const STATUS_PAID = 'paid';
+    public const STATUS_CHARGED_OFF = 'charged_off';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_REFUNDED = 'refunded';
+    public const STATUS_CANCELED = 'canceled';
+    public const STATUS_REFUND_PENDING = 'refund_pending';
 
     private static array $attributeMap = [
         'id' => 'id',

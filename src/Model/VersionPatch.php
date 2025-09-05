@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class VersionPatch implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'VersionPatch';
 
     private static array $attributeMap = [
         'routing' => 'routing'

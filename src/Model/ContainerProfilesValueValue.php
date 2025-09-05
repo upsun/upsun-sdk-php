@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class ContainerProfilesValueValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Container_profiles_value_value';
 
     private static array $attributeMap = [
         'cpu' => 'cpu',

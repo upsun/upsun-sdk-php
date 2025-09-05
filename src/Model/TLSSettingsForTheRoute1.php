@@ -17,11 +17,12 @@ use JsonSerializable;
 
 final class TLSSettingsForTheRoute1 implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'TLS_settings_for_the_route__1';
+    public const MIN_VERSION_TLSV1_0 = 'TLSv1.0';
+    public const MIN_VERSION_TLSV1_1 = 'TLSv1.1';
+    public const MIN_VERSION_TLSV1_2 = 'TLSv1.2';
+    public const MIN_VERSION_TLSV1_3 = 'TLSv1.3';
+    public const CLIENT_AUTHENTICATION_REQUEST = 'request';
+    public const CLIENT_AUTHENTICATION__REQUIRE = 'require';
 
     private static array $attributeMap = [
         'strictTransportSecurity' => 'strict_transport_security',

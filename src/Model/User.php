@@ -17,11 +17,8 @@ use JsonSerializable;
 
 final class User implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'User';
+    public const CONSENT_METHOD_OPT_IN = 'opt-in';
+    public const CONSENT_METHOD_TEXT_REF = 'text-ref';
 
     private static array $attributeMap = [
         'id' => 'id',

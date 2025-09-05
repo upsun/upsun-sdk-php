@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Mapping_of_clusters_to_Enterprise_applications_value';
 
     private static array $attributeMap = [
         'activeDocroot' => 'active_docroot',

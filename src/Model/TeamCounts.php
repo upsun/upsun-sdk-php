@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class TeamCounts implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Team_counts';
 
     private static array $attributeMap = [
         'memberCount' => 'member_count',

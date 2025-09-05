@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class DiscountDiscount implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'Discount_discount';
 
     private static array $attributeMap = [
         'monthly' => 'monthly',

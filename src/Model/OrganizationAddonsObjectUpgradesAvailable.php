@@ -17,11 +17,6 @@ use JsonSerializable;
 
 final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-    /**
-     * The original name of the model.
-     */
-    private static string $openAPIModelName = 'OrganizationAddonsObject_upgrades_available';
 
     private static array $attributeMap = [
         'userManagement' => 'user_management',
