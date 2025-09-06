@@ -29,10 +29,10 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private ?array $hosts = [],
-        private ?bool $useDedicatedGrid = null,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly ?array $hosts = [],
+       private readonly ?bool $useDedicatedGrid = null,
     ) {
     }
 
@@ -51,8 +51,8 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
-            'use_dedicated_grid' => 'bool',
+            'hosts' => '?array',
+            'use_dedicated_grid' => '?bool',
         ];
     }
 

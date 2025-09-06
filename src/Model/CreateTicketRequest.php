@@ -48,17 +48,17 @@ final class CreateTicketRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $subject,
-        private string $description,
-        private ?string $requesterId = null,
-        private ?string $priority = null,
-        private ?string $subscriptionId = null,
-        private ?string $organizationId = null,
-        private ?string $affectedUrl = null,
-        private ?string $followupTid = null,
-        private ?string $category = null,
-        private ?array $attachments = [],
-        private ?array $collaboratorIds = [],
+        private readonly string $subject,
+        private readonly string $description,
+       private readonly ?string $requesterId = null,
+       private readonly ?string $priority = null,
+       private readonly ?string $subscriptionId = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $affectedUrl = null,
+       private readonly ?string $followupTid = null,
+       private readonly ?string $category = null,
+        private readonly ?array $attachments = [],
+        private readonly ?array $collaboratorIds = [],
     ) {
     }
 
@@ -77,15 +77,15 @@ final class CreateTicketRequest implements JsonSerializable
         return [
             'subject' => 'string',
             'description' => 'string',
-            'requester_id' => 'string',
-            'priority' => 'string',
-            'subscription_id' => 'string',
-            'organization_id' => 'string',
-            'affected_url' => 'string',
-            'followup_tid' => 'string',
-            'category' => 'string',
-            'attachments' => '\Upsun\Model\CreateTicketRequestAttachmentsInner[]',
-            'collaborator_ids' => 'string[]',
+            'requester_id' => '?string',
+            'priority' => '?string',
+            'subscription_id' => '?string',
+            'organization_id' => '?string',
+            'affected_url' => '?string',
+            'followup_tid' => '?string',
+            'category' => '?string',
+            'attachments' => '?array',
+            'collaborator_ids' => '?array',
         ];
     }
 

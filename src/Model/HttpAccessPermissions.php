@@ -25,9 +25,9 @@ final class HttpAccessPermissions implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $isEnabled,
-        private array $addresses,
-        private array $basicAuth,
+        private readonly bool $isEnabled,
+        private readonly array $addresses,
+        private readonly array $basicAuth,
     ) {
     }
 
@@ -45,8 +45,8 @@ final class HttpAccessPermissions implements JsonSerializable
     {
         return [
             'is_enabled' => 'bool',
-            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
-            'basic_auth' => 'array&lt;string,string&gt;',
+            'addresses' => 'array',
+            'basic_auth' => 'array',
         ];
     }
 

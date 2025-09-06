@@ -38,19 +38,19 @@ final class OrganizationProject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $organizationId = null,
-        private ?string $subscriptionId = null,
-        private ?string $region = null,
-        private ?string $title = null,
-        private ?\Upsun\Model\OrganizationProjectType $type = null,
-        private ?\Upsun\Model\OrganizationProjectPlan $plan = null,
-        private ?string $accessMigrationStatus = null,
-        private ?\Upsun\Model\OrganizationProjectStatus $status = null,
-        private ?string $vendor = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\Upsun\Model\OrganizationProjectLinks $links = null,
+       private readonly ?string $id = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $subscriptionId = null,
+       private readonly ?string $region = null,
+       private readonly ?string $title = null,
+       private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
+       private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
+       private readonly ?string $accessMigrationStatus = null,
+       private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
+       private readonly ?string $vendor = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+       private readonly ?\Upsun\Model\OrganizationProjectLinks $links = null,
     ) {
     }
 
@@ -67,19 +67,19 @@ final class OrganizationProject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'organization_id' => 'string',
-            'subscription_id' => 'string',
-            'region' => 'string',
-            'title' => 'string',
-            'type' => '\Upsun\Model\OrganizationProjectType',
-            'plan' => '\Upsun\Model\OrganizationProjectPlan',
-            'access_migration_status' => 'string',
-            'status' => '\Upsun\Model\OrganizationProjectStatus',
-            'vendor' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            '_links' => '\Upsun\Model\OrganizationProjectLinks',
+            'id' => '?string',
+            'organization_id' => '?string',
+            'subscription_id' => '?string',
+            'region' => '?string',
+            'title' => '?string',
+            'type' => '?\Upsun\Model\OrganizationProjectType',
+            'plan' => '?\Upsun\Model\OrganizationProjectPlan',
+            'access_migration_status' => '?string',
+            'status' => '?\Upsun\Model\OrganizationProjectStatus',
+            'vendor' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\OrganizationProjectLinks',
         ];
     }
 

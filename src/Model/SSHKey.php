@@ -28,12 +28,12 @@ final class SSHKey implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $keyId = null,
-        private ?int $uid = null,
-        private ?string $fingerprint = null,
-        private ?string $title = null,
-        private ?string $value = null,
-        private ?string $changed = null,
+       private readonly ?int $keyId = null,
+       private readonly ?int $uid = null,
+       private readonly ?string $fingerprint = null,
+       private readonly ?string $title = null,
+       private readonly ?string $value = null,
+       private readonly ?string $changed = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class SSHKey implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'key_id' => 'int',
-            'uid' => 'int',
-            'fingerprint' => 'string',
-            'title' => 'string',
-            'value' => 'string',
-            'changed' => 'string',
+            'key_id' => '?int',
+            'uid' => '?int',
+            'fingerprint' => '?string',
+            'title' => '?string',
+            'value' => '?string',
+            'changed' => '?string',
         ];
     }
 

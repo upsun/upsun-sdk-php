@@ -29,7 +29,7 @@ final class UpdateOrgMemberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $permissions = [],
+        private readonly ?array $permissions = [],
     ) {
     }
 
@@ -46,7 +46,7 @@ final class UpdateOrgMemberRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'permissions' => 'string[]',
+            'permissions' => '?array',
         ];
     }
 

@@ -28,12 +28,12 @@ final class Alert implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?bool $active = null,
-        private ?int $alertsSent = null,
-        private ?\DateTime $lastAlertAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?object $config = null,
+       private readonly ?string $id = null,
+       private readonly ?bool $active = null,
+       private readonly ?int $alertsSent = null,
+       private readonly ?\DateTime $lastAlertAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+       private readonly ?object $config = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class Alert implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'active' => 'bool',
-            'alerts_sent' => 'int',
-            'last_alert_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'config' => 'object',
+            'id' => '?string',
+            'active' => '?bool',
+            'alerts_sent' => '?int',
+            'last_alert_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'config' => '?object',
         ];
     }
 

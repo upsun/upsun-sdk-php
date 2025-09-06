@@ -23,7 +23,7 @@ final class VouchersLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+       private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class VouchersLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf',
+            'self' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf',
         ];
     }
 

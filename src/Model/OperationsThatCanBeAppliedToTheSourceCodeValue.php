@@ -23,7 +23,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     ];
 
     public function __construct(
-        private string $command,
+        private readonly ?string $command = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     public static function openAPITypes()
     {
         return [
-            'command' => 'string',
+            'command' => '?string',
         ];
     }
 
@@ -57,9 +57,9 @@ final class OperationsThatCanBeAppliedToTheSourceCodeValue implements JsonSerial
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCommand(): string
+    public function getCommand(): ?string
     {
         return $this->command;
     }

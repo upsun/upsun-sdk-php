@@ -27,7 +27,7 @@ final class Resources5 implements JsonSerializable
     ];
 
     public function __construct(
-        private string $init,
+        private readonly ?string $init = null,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class Resources5 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'init' => 'string',
+            'init' => '?string',
         ];
     }
 
@@ -61,9 +61,9 @@ final class Resources5 implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getInit(): string
+    public function getInit(): ?string
     {
         return $this->init;
     }

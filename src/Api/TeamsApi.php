@@ -174,7 +174,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Create team member
      *
@@ -323,7 +322,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete team
      *
@@ -447,7 +445,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete team member
      *
@@ -594,7 +591,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get team
      *
@@ -722,7 +718,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get team member
      *
@@ -873,7 +868,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List team members
      *
@@ -1049,7 +1043,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List teams
      *
@@ -1279,7 +1272,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * User teams
      *
@@ -1516,7 +1508,6 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update team
      *
@@ -1655,5 +1646,4 @@ final class TeamsApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

@@ -25,9 +25,9 @@ final class HttpAccessPermissions1 implements JsonSerializable
     ];
 
     public function __construct(
-        private ?bool $isEnabled = null,
-        private ?array $addresses = [],
-        private ?array $basicAuth = [],
+       private readonly ?bool $isEnabled = null,
+        private readonly ?array $addresses = [],
+        private readonly ?array $basicAuth = [],
     ) {
     }
 
@@ -44,9 +44,9 @@ final class HttpAccessPermissions1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'is_enabled' => 'bool',
-            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
-            'basic_auth' => 'array&lt;string,string&gt;',
+            'is_enabled' => '?bool',
+            'addresses' => '?array',
+            'basic_auth' => '?array',
         ];
     }
 

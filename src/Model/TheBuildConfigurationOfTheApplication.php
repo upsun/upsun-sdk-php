@@ -24,8 +24,8 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     ];
 
     public function __construct(
-        private string $flavor,
-        private array $caches,
+        private readonly array $caches,
+        private readonly ?string $flavor = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'flavor' => 'string',
-            'caches' => 'array&lt;string,\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue&gt;',
+            'flavor' => '?string',
+            'caches' => 'array',
         ];
     }
 
@@ -61,9 +61,9 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFlavor(): string
+    public function getFlavor(): ?string
     {
         return $this->flavor;
     }

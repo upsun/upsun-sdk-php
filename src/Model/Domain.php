@@ -22,24 +22,24 @@ final class Domain implements JsonSerializable
         'createdAt' => 'created_at',
         'updatedAt' => 'updated_at',
         'type' => 'type',
-        'project' => 'project',
         'name' => 'name',
-        'registeredName' => 'registered_name',
         'attributes' => 'attributes',
+        'project' => 'project',
+        'registeredName' => 'registered_name',
         'isDefault' => 'is_default',
         'replacementFor' => 'replacement_for'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private ?string $project = null,
-        private string $name,
-        private ?string $registeredName = null,
-        private array $attributes,
-        private ?bool $isDefault = null,
-        private ?string $replacementFor = null,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly array $attributes,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+       private readonly ?string $project = null,
+       private readonly ?string $registeredName = null,
+       private readonly ?bool $isDefault = null,
+       private readonly ?string $replacementFor = null,
     ) {
     }
 
@@ -56,15 +56,15 @@ final class Domain implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'project' => 'string',
             'name' => 'string',
-            'registered_name' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
-            'is_default' => 'bool',
-            'replacement_for' => 'string',
+            'attributes' => 'array',
+            'project' => '?string',
+            'registered_name' => '?string',
+            'is_default' => '?bool',
+            'replacement_for' => '?string',
         ];
     }
 
@@ -74,10 +74,10 @@ final class Domain implements JsonSerializable
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,
             'type' => $this->type,
-            'project' => $this->project,
             'name' => $this->name,
-            'registeredName' => $this->registeredName,
             'attributes' => $this->attributes,
+            'project' => $this->project,
+            'registeredName' => $this->registeredName,
             'isDefault' => $this->isDefault,
             'replacementFor' => $this->replacementFor,
         ];
@@ -89,16 +89,16 @@ final class Domain implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -110,13 +110,6 @@ final class Domain implements JsonSerializable
         return $this->type;
     }
     /**
-     * @return string|null
-     */
-    public function getProject(): ?string
-    {
-        return $this->project;
-    }
-    /**
      * @return string
      */
     public function getName(): string
@@ -124,18 +117,25 @@ final class Domain implements JsonSerializable
         return $this->name;
     }
     /**
-     * @return string|null
-     */
-    public function getRegisteredName(): ?string
-    {
-        return $this->registeredName;
-    }
-    /**
      * @return array&lt;string,string&gt;
      */
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+    /**
+     * @return string|null
+     */
+    public function getProject(): ?string
+    {
+        return $this->project;
+    }
+    /**
+     * @return string|null
+     */
+    public function getRegisteredName(): ?string
+    {
+        return $this->registeredName;
     }
     /**
      * @return bool|null

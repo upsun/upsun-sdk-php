@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'base' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBase',
-            'user_management' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement',
+            'base' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase',
+            'user_management' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement',
         ];
     }
 

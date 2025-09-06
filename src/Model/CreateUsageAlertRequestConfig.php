@@ -23,7 +23,7 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $threshold = null,
+       private readonly ?int $threshold = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'threshold' => 'int',
+            'threshold' => '?int',
         ];
     }
 

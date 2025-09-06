@@ -27,11 +27,11 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
-        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
-        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
-        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
-        private ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
+       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
+       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
+       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
+       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
+       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'EUR' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR',
-            'USD' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD',
-            'GBP' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP',
-            'AUD' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD',
-            'CAD' => '\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD',
+            'EUR' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR',
+            'USD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD',
+            'GBP' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP',
+            'AUD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD',
+            'CAD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD',
         ];
     }
 

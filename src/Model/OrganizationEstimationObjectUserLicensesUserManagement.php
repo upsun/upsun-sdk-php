@@ -25,9 +25,9 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?string $total = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
+       private readonly ?int $count = null,
+       private readonly ?string $total = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'total' => 'string',
-            'list' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList',
+            'count' => '?int',
+            'total' => '?string',
+            'list' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList',
         ];
     }
 

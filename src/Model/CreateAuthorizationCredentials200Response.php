@@ -24,8 +24,8 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     ];
 
     public function __construct(
-        private ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
-        private ?string $type = null,
+       private readonly ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
+       private readonly ?string $type = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     public static function openAPITypes()
     {
         return [
-            'redirect_to_url' => '\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl',
-            'type' => 'string',
+            'redirect_to_url' => '?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl',
+            'type' => '?string',
         ];
     }
 

@@ -41,19 +41,19 @@ final class GithubIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private bool $fetchBranches,
-        private bool $pruneBranches,
-        private string $environmentInitResources,
-        private string $baseUrl,
-        private string $repository,
-        private bool $buildPullRequests,
-        private bool $buildDraftPullRequests,
-        private bool $buildPullRequestsPostMerge,
-        private bool $pullRequestsCloneParentData,
-        private string $tokenType,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
+        private readonly string $repository,
+        private readonly bool $buildPullRequests,
+        private readonly bool $buildDraftPullRequests,
+        private readonly bool $buildPullRequestsPostMerge,
+        private readonly bool $pullRequestsCloneParentData,
+        private readonly string $tokenType,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $baseUrl = null,
     ) {
     }
 
@@ -70,13 +70,13 @@ final class GithubIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
             'fetch_branches' => 'bool',
             'prune_branches' => 'bool',
             'environment_init_resources' => 'string',
-            'base_url' => 'string',
+            'base_url' => '?string',
             'repository' => 'string',
             'build_pull_requests' => 'bool',
             'build_draft_pull_requests' => 'bool',
@@ -111,16 +111,16 @@ final class GithubIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -153,9 +153,9 @@ final class GithubIntegration implements JsonSerializable
         return $this->environmentInitResources;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBaseUrl(): string
+    public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }

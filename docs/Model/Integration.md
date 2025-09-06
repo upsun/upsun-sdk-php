@@ -10,8 +10,6 @@ Name | Type | Description | Notes
 **fetchBranches** | **bool** |  |
 **pruneBranches** | **bool** |  |
 **environmentInitResources** | **string** |  |
-**appCredentials** | [**\Upsun\Model\TheOAuth2ConsumerInformationOptional**](TheOAuth2ConsumerInformationOptional.md) |  | [optional]
-**addonCredentials** | [**\Upsun\Model\TheAddonCredentialInformationOptional**](TheAddonCredentialInformationOptional.md) |  | [optional]
 **repository** | **string** |  |
 **buildPullRequests** | **bool** |  |
 **pullRequestsCloneParentData** | **bool** |  |
@@ -51,5 +49,7 @@ Name | Type | Description | Notes
 **facility** | **int** |  |
 **messageFormat** | **string** |  |
 **sharedKey** | **string** |  |
+**appCredentials** | [**\Upsun\Model\TheOAuth2ConsumerInformationOptional**](TheOAuth2ConsumerInformationOptional.md) |  | [optional]
+**addonCredentials** | [**\Upsun\Model\TheAddonCredentialInformationOptional**](TheAddonCredentialInformationOptional.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

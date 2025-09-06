@@ -39,16 +39,16 @@ final class ServicesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $size,
-        private int $disk,
-        private object $access,
-        private object $configuration,
-        private array $relationships,
-        private \Upsun\Model\Firewall $firewall,
-        private \Upsun\Model\Resources $resources,
-        private string $containerProfile,
-        private object $endpoints,
+        private readonly string $type,
+        private readonly string $size,
+        private readonly object $access,
+        private readonly object $configuration,
+        private readonly array $relationships,
+        private readonly ?int $disk = null,
+        private readonly ?\Upsun\Model\Firewall $firewall = null,
+        private readonly ?\Upsun\Model\Resources $resources = null,
+        private readonly ?string $containerProfile = null,
+        private readonly ?object $endpoints = null,
     ) {
     }
 
@@ -67,14 +67,14 @@ final class ServicesValue implements JsonSerializable
         return [
             'type' => 'string',
             'size' => 'string',
-            'disk' => 'int',
+            'disk' => '?int',
             'access' => 'object',
             'configuration' => 'object',
-            'relationships' => 'array&lt;string,string&gt;',
-            'firewall' => '\Upsun\Model\Firewall',
-            'resources' => '\Upsun\Model\Resources',
-            'container_profile' => 'string',
-            'endpoints' => 'object',
+            'relationships' => 'array',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'resources' => '?\Upsun\Model\Resources',
+            'container_profile' => '?string',
+            'endpoints' => '?object',
         ];
     }
 
@@ -114,9 +114,9 @@ final class ServicesValue implements JsonSerializable
         return $this->size;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDisk(): int
+    public function getDisk(): ?int
     {
         return $this->disk;
     }
@@ -142,30 +142,30 @@ final class ServicesValue implements JsonSerializable
         return $this->relationships;
     }
     /**
-     * @return \Upsun\Model\Firewall
+     * @return \Upsun\Model\Firewall|null
      */
-    public function getFirewall(): \Upsun\Model\Firewall
+    public function getFirewall(): ?\Upsun\Model\Firewall
     {
         return $this->firewall;
     }
     /**
-     * @return \Upsun\Model\Resources
+     * @return \Upsun\Model\Resources|null
      */
-    public function getResources(): \Upsun\Model\Resources
+    public function getResources(): ?\Upsun\Model\Resources
     {
         return $this->resources;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContainerProfile(): string
+    public function getContainerProfile(): ?string
     {
         return $this->containerProfile;
     }
     /**
-     * @return object
+     * @return object|null
      */
-    public function getEndpoints(): object
+    public function getEndpoints(): ?object
     {
         return $this->endpoints;
     }

@@ -39,16 +39,16 @@ final class ProjectInvitation implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $state = null,
-        private ?string $projectId = null,
-        private ?string $role = null,
-        private ?string $email = null,
-        private ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\DateTime $finishedAt = null,
-        private ?array $environments = [],
+        private readonly ?\DateTime $finishedAt = null,
+       private readonly ?string $id = null,
+       private readonly ?string $state = null,
+       private readonly ?string $projectId = null,
+       private readonly ?string $role = null,
+       private readonly ?string $email = null,
+       private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?array $environments = [],
     ) {
     }
 
@@ -65,16 +65,16 @@ final class ProjectInvitation implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'state' => 'string',
-            'project_id' => 'string',
-            'role' => 'string',
-            'email' => 'string',
-            'owner' => '\Upsun\Model\OrganizationInvitationOwner',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'finished_at' => '\DateTime',
-            'environments' => '\Upsun\Model\ProjectInvitationEnvironmentsInner[]',
+            'id' => '?string',
+            'state' => '?string',
+            'project_id' => '?string',
+            'role' => '?string',
+            'email' => '?string',
+            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'finished_at' => '?\DateTime',
+            'environments' => '?array',
         ];
     }
 

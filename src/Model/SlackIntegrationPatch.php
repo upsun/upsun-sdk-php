@@ -25,9 +25,9 @@ final class SlackIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $token,
-        private string $channel,
+        private readonly string $type,
+        private readonly string $token,
+        private readonly string $channel,
     ) {
     }
 

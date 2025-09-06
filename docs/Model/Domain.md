@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **createdAt** | **\DateTime** |  |
 **updatedAt** | **\DateTime** |  |
 **type** | **string** |  |
-**project** | **string** |  | [optional]
 **name** | **string** |  |
-**registeredName** | **string** |  | [optional]
 **attributes** | **array<string,string>** |  |
+**project** | **string** |  | [optional]
+**registeredName** | **string** |  | [optional]
 **isDefault** | **bool** |  | [optional]
 **replacementFor** | **string** |  | [optional]
 

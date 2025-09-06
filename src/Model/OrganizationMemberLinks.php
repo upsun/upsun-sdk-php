@@ -25,9 +25,9 @@ final class OrganizationMemberLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
-        private ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
-        private ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
+       private readonly ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
+       private readonly ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
+       private readonly ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class OrganizationMemberLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\OrganizationMemberLinksSelf',
-            'update' => '\Upsun\Model\OrganizationMemberLinksUpdate',
-            'delete' => '\Upsun\Model\OrganizationMemberLinksDelete',
+            'self' => '?\Upsun\Model\OrganizationMemberLinksSelf',
+            'update' => '?\Upsun\Model\OrganizationMemberLinksUpdate',
+            'delete' => '?\Upsun\Model\OrganizationMemberLinksDelete',
         ];
     }
 

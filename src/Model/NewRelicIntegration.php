@@ -28,12 +28,12 @@ final class NewRelicIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private array $extra,
-        private string $url,
-        private bool $tlsVerify,
+        private readonly string $type,
+        private readonly array $extra,
+        private readonly string $url,
+        private readonly bool $tlsVerify,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -50,10 +50,10 @@ final class NewRelicIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
+            'extra' => 'array',
             'url' => 'string',
             'tls_verify' => 'bool',
         ];
@@ -77,16 +77,16 @@ final class NewRelicIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

@@ -30,14 +30,14 @@ final class UserReference implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $username = null,
-        private ?string $email = null,
-        private ?string $firstName = null,
-        private ?string $lastName = null,
-        private ?string $picture = null,
-        private ?bool $mfaEnabled = null,
-        private ?bool $ssoEnabled = null,
+       private readonly ?string $id = null,
+       private readonly ?string $username = null,
+       private readonly ?string $email = null,
+       private readonly ?string $firstName = null,
+       private readonly ?string $lastName = null,
+       private readonly ?string $picture = null,
+       private readonly ?bool $mfaEnabled = null,
+       private readonly ?bool $ssoEnabled = null,
     ) {
     }
 
@@ -54,14 +54,14 @@ final class UserReference implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'username' => 'string',
-            'email' => 'string',
-            'first_name' => 'string',
-            'last_name' => 'string',
-            'picture' => 'string',
-            'mfa_enabled' => 'bool',
-            'sso_enabled' => 'bool',
+            'id' => '?string',
+            'username' => '?string',
+            'email' => '?string',
+            'first_name' => '?string',
+            'last_name' => '?string',
+            'picture' => '?string',
+            'mfa_enabled' => '?bool',
+            'sso_enabled' => '?bool',
         ];
     }
 

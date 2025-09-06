@@ -26,10 +26,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     ];
 
     public function __construct(
-        private ?string $licenseId = null,
-        private ?string $projectTitle = null,
-        private ?string $total = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+       private readonly ?string $licenseId = null,
+       private readonly ?string $projectTitle = null,
+       private readonly ?string $total = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     public static function openAPITypes()
     {
         return [
-            'license_id' => 'string',
-            'project_title' => 'string',
-            'total' => 'string',
-            'usage' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage',
+            'license_id' => '?string',
+            'project_title' => '?string',
+            'total' => '?string',
+            'usage' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage',
         ];
     }
 

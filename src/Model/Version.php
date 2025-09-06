@@ -25,9 +25,9 @@ final class Version implements JsonSerializable
     ];
 
     public function __construct(
-        private string $commit,
-        private bool $locked,
-        private \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
+        private readonly bool $locked,
+        private readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
+        private readonly ?string $commit = null,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class Version implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'commit' => 'string',
+            'commit' => '?string',
             'locked' => 'bool',
             'routing' => '\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion',
         ];
@@ -65,9 +65,9 @@ final class Version implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCommit(): string
+    public function getCommit(): ?string
     {
         return $this->commit;
     }

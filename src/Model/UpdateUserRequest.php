@@ -29,13 +29,13 @@ final class UpdateUserRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $username = null,
-        private ?string $firstName = null,
-        private ?string $lastName = null,
-        private ?string $picture = null,
-        private ?string $company = null,
-        private ?string $website = null,
-        private ?string $country = null,
+       private readonly ?string $username = null,
+       private readonly ?string $firstName = null,
+       private readonly ?string $lastName = null,
+       private readonly ?string $picture = null,
+       private readonly ?string $company = null,
+       private readonly ?string $website = null,
+       private readonly ?string $country = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class UpdateUserRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'username' => 'string',
-            'first_name' => 'string',
-            'last_name' => 'string',
-            'picture' => 'string',
-            'company' => 'string',
-            'website' => 'string',
-            'country' => 'string',
+            'username' => '?string',
+            'first_name' => '?string',
+            'last_name' => '?string',
+            'picture' => '?string',
+            'company' => '?string',
+            'website' => '?string',
+            'country' => '?string',
         ];
     }
 

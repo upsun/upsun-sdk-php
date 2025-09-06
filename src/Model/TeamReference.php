@@ -40,13 +40,13 @@ final class TeamReference implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $organizationId = null,
-        private ?string $label = null,
-        private ?array $projectPermissions = [],
-        private ?\Upsun\Model\TeamCounts $counts = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
+       private readonly ?string $id = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $label = null,
+        private readonly ?array $projectPermissions = [],
+       private readonly ?\Upsun\Model\TeamCounts $counts = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -63,13 +63,13 @@ final class TeamReference implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'organization_id' => 'string',
-            'label' => 'string',
-            'project_permissions' => 'string[]',
-            'counts' => '\Upsun\Model\TeamCounts',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'id' => '?string',
+            'organization_id' => '?string',
+            'label' => '?string',
+            'project_permissions' => '?array',
+            'counts' => '?\Upsun\Model\TeamCounts',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
         ];
     }
 

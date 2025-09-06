@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **updatedAt** | **\DateTime** |  |
 **name** | **string** |  |
 **attributes** | **array<string,string>** |  |
-**value** | **string** |  | [optional]
 **isJson** | **bool** |  |
 **isSensitive** | **bool** |  |
 **visibleBuild** | **bool** |  |
@@ -18,5 +17,6 @@ Name | Type | Description | Notes
 **inherited** | **bool** |  |
 **isEnabled** | **bool** |  |
 **isInheritable** | **bool** |  |
+**value** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

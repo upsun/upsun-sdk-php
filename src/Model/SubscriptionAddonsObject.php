@@ -25,9 +25,9 @@ final class SubscriptionAddonsObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
-        private ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
-        private ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+       private readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
+       private readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
+       private readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class SubscriptionAddonsObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'available' => '\Upsun\Model\SubscriptionAddonsObjectAvailable',
-            'current' => '\Upsun\Model\SubscriptionAddonsObjectCurrent',
-            'upgrades_available' => '\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable',
+            'available' => '?\Upsun\Model\SubscriptionAddonsObjectAvailable',
+            'current' => '?\Upsun\Model\SubscriptionAddonsObjectCurrent',
+            'upgrades_available' => '?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable',
         ];
     }
 

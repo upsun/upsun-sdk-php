@@ -23,22 +23,22 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
+        'script' => 'script',
         'events' => 'events',
         'environments' => 'environments',
         'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
-        'result' => 'result',
-        'script' => 'script'
+        'result' => 'result'
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $events = [],
-        private ?array $environments = [],
-        private ?array $excludedEnvironments = [],
-        private ?array $states = [],
-        private ?string $result = null,
-        private string $script,
+        private readonly string $type,
+        private readonly string $script,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+       private readonly ?string $result = null,
     ) {
     }
 
@@ -56,12 +56,12 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
             'script' => 'string',
+            'events' => '?array',
+            'environments' => '?array',
+            'excluded_environments' => '?array',
+            'states' => '?array',
+            'result' => '?string',
         ];
     }
 
@@ -69,12 +69,12 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => $this->type,
+            'script' => $this->script,
             'events' => $this->events,
             'environments' => $this->environments,
             'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
-            'script' => $this->script,
         ];
     }
 
@@ -89,6 +89,13 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getScript(): string
+    {
+        return $this->script;
     }
     /**
      * @return string[]|null
@@ -124,13 +131,6 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     public function getResult(): ?string
     {
         return $this->result;
-    }
-    /**
-     * @return string
-     */
-    public function getScript(): string
-    {
-        return $this->script;
     }
 }
 

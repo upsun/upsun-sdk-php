@@ -26,10 +26,10 @@ final class CertificateCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $certificate,
-        private string $key,
-        private ?array $chain = [],
-        private ?bool $isInvalid = null,
+        private readonly string $certificate,
+        private readonly string $key,
+        private readonly ?array $chain = [],
+       private readonly ?bool $isInvalid = null,
     ) {
     }
 
@@ -48,8 +48,8 @@ final class CertificateCreateInput implements JsonSerializable
         return [
             'certificate' => 'string',
             'key' => 'string',
-            'chain' => 'string[]',
-            'is_invalid' => 'bool',
+            'chain' => '?array',
+            'is_invalid' => '?bool',
         ];
     }
 

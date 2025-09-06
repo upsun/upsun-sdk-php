@@ -21,19 +21,19 @@ final class CreateOrgRequest implements JsonSerializable
     public const TYPE_FLEXIBLE = 'flexible';
 
     private static array $attributeMap = [
+        'label' => 'label',
         'type' => 'type',
         'ownerId' => 'owner_id',
         'name' => 'name',
-        'label' => 'label',
         'country' => 'country'
     ];
 
     public function __construct(
-        private ?string $type = null,
-        private ?string $ownerId = null,
-        private ?string $name = null,
-        private string $label,
-        private ?string $country = null,
+        private readonly string $label,
+       private readonly ?string $type = null,
+       private readonly ?string $ownerId = null,
+       private readonly ?string $name = null,
+       private readonly ?string $country = null,
     ) {
     }
 
@@ -50,21 +50,21 @@ final class CreateOrgRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'type' => 'string',
-            'owner_id' => 'string',
-            'name' => 'string',
             'label' => 'string',
-            'country' => 'string',
+            'type' => '?string',
+            'owner_id' => '?string',
+            'name' => '?string',
+            'country' => '?string',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
+            'label' => $this->label,
             'type' => $this->type,
             'ownerId' => $this->ownerId,
             'name' => $this->name,
-            'label' => $this->label,
             'country' => $this->country,
         ];
     }
@@ -74,6 +74,15 @@ final class CreateOrgRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * The human-readable label of the organization.
+     *
+     * @return string
+     */
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
     /**
      * The type of the organization.
      *
@@ -100,15 +109,6 @@ final class CreateOrgRequest implements JsonSerializable
     public function getName(): ?string
     {
         return $this->name;
-    }
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string
-     */
-    public function getLabel(): string
-    {
-        return $this->label;
     }
     /**
      * The organization country (2-letter country code).

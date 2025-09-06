@@ -23,24 +23,24 @@ final class WebHookIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
+        'url' => 'url',
         'events' => 'events',
         'environments' => 'environments',
         'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
         'result' => 'result',
-        'sharedKey' => 'shared_key',
-        'url' => 'url'
+        'sharedKey' => 'shared_key'
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $events = [],
-        private ?array $environments = [],
-        private ?array $excludedEnvironments = [],
-        private ?array $states = [],
-        private ?string $result = null,
-        private ?string $sharedKey = null,
-        private string $url,
+        private readonly string $type,
+        private readonly string $url,
+        private readonly ?string $sharedKey = null,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+       private readonly ?string $result = null,
     ) {
     }
 
@@ -58,13 +58,13 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
-            'shared_key' => 'string',
             'url' => 'string',
+            'events' => '?array',
+            'environments' => '?array',
+            'excluded_environments' => '?array',
+            'states' => '?array',
+            'result' => '?string',
+            'shared_key' => '?string',
         ];
     }
 
@@ -72,13 +72,13 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
+            'url' => $this->url,
             'events' => $this->events,
             'environments' => $this->environments,
             'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
             'sharedKey' => $this->sharedKey,
-            'url' => $this->url,
         ];
     }
 
@@ -93,6 +93,13 @@ final class WebHookIntegrationPatch implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
     }
     /**
      * @return string[]|null
@@ -135,13 +142,6 @@ final class WebHookIntegrationPatch implements JsonSerializable
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
-    }
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
     }
 }
 

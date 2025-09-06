@@ -38,18 +38,18 @@ final class BitbucketServerIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private bool $fetchBranches,
-        private bool $pruneBranches,
-        private string $environmentInitResources,
-        private string $url,
-        private string $username,
-        private string $project,
-        private string $repository,
-        private bool $buildPullRequests,
-        private bool $pullRequestsCloneParentData,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
+        private readonly string $url,
+        private readonly string $username,
+        private readonly string $project,
+        private readonly string $repository,
+        private readonly bool $buildPullRequests,
+        private readonly bool $pullRequestsCloneParentData,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -66,8 +66,8 @@ final class BitbucketServerIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
             'fetch_branches' => 'bool',
             'prune_branches' => 'bool',
@@ -105,16 +105,16 @@ final class BitbucketServerIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

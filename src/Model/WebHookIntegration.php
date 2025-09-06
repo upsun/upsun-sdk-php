@@ -35,16 +35,16 @@ final class WebHookIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private array $events,
-        private array $environments,
-        private array $excludedEnvironments,
-        private array $states,
-        private string $result,
-        private string $sharedKey,
-        private string $url,
+        private readonly string $type,
+        private readonly array $events,
+        private readonly array $environments,
+        private readonly array $excludedEnvironments,
+        private readonly array $states,
+        private readonly string $result,
+        private readonly string $url,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $sharedKey = null,
     ) {
     }
 
@@ -61,15 +61,15 @@ final class WebHookIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
+            'events' => 'array',
+            'environments' => 'array',
+            'excluded_environments' => 'array',
+            'states' => 'array',
             'result' => 'string',
-            'shared_key' => 'string',
+            'shared_key' => '?string',
             'url' => 'string',
         ];
     }
@@ -96,16 +96,16 @@ final class WebHookIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -152,9 +152,9 @@ final class WebHookIntegration implements JsonSerializable
         return $this->result;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSharedKey(): string
+    public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }

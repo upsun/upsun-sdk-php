@@ -39,21 +39,21 @@ final class Backup implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $id,
-        private array $attributes,
-        private string $status,
-        private \DateTime $expiresAt,
-        private int $index,
-        private string $commitId,
-        private string $environment,
-        private bool $safe,
-        private int $sizeOfVolumes,
-        private int $sizeUsed,
-        private string $deployment,
-        private bool $restorable,
-        private bool $automated,
+        private readonly string $id,
+        private readonly array $attributes,
+        private readonly string $status,
+        private readonly string $commitId,
+        private readonly string $environment,
+        private readonly bool $safe,
+        private readonly bool $restorable,
+        private readonly bool $automated,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $expiresAt = null,
+        private readonly ?int $index = null,
+        private readonly ?int $sizeOfVolumes = null,
+        private readonly ?int $sizeUsed = null,
+        private readonly ?string $deployment = null,
     ) {
     }
 
@@ -70,19 +70,19 @@ final class Backup implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'id' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
+            'attributes' => 'array',
             'status' => 'string',
-            'expires_at' => '\DateTime',
-            'index' => 'int',
+            'expires_at' => '?\DateTime',
+            'index' => '?int',
             'commit_id' => 'string',
             'environment' => 'string',
             'safe' => 'bool',
-            'size_of_volumes' => 'int',
-            'size_used' => 'int',
-            'deployment' => 'string',
+            'size_of_volumes' => '?int',
+            'size_used' => '?int',
+            'deployment' => '?string',
             'restorable' => 'bool',
             'automated' => 'bool',
         ];
@@ -115,16 +115,16 @@ final class Backup implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -150,16 +150,16 @@ final class Backup implements JsonSerializable
         return $this->status;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIndex(): int
+    public function getIndex(): ?int
     {
         return $this->index;
     }
@@ -185,23 +185,23 @@ final class Backup implements JsonSerializable
         return $this->safe;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSizeOfVolumes(): int
+    public function getSizeOfVolumes(): ?int
     {
         return $this->sizeOfVolumes;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSizeUsed(): int
+    public function getSizeUsed(): ?int
     {
         return $this->sizeUsed;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeployment(): string
+    public function getDeployment(): ?string
     {
         return $this->deployment;
     }

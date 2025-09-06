@@ -30,8 +30,8 @@ final class CreateOrgMemberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $userId,
-        private ?array $permissions = [],
+        private readonly string $userId,
+        private readonly ?array $permissions = [],
     ) {
     }
 
@@ -49,7 +49,7 @@ final class CreateOrgMemberRequest implements JsonSerializable
     {
         return [
             'user_id' => 'string',
-            'permissions' => 'string[]',
+            'permissions' => '?array',
         ];
     }
 

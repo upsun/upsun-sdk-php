@@ -20,8 +20,8 @@ final class ProjectVariableCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'name' => 'name',
-        'attributes' => 'attributes',
         'value' => 'value',
+        'attributes' => 'attributes',
         'isJson' => 'is_json',
         'isSensitive' => 'is_sensitive',
         'visibleBuild' => 'visible_build',
@@ -29,13 +29,13 @@ final class ProjectVariableCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $name,
-        private ?array $attributes = [],
-        private string $value,
-        private ?bool $isJson = null,
-        private ?bool $isSensitive = null,
-        private ?bool $visibleBuild = null,
-        private ?bool $visibleRuntime = null,
+        private readonly string $name,
+        private readonly string $value,
+        private readonly ?array $attributes = [],
+       private readonly ?bool $isJson = null,
+       private readonly ?bool $isSensitive = null,
+       private readonly ?bool $visibleBuild = null,
+       private readonly ?bool $visibleRuntime = null,
     ) {
     }
 
@@ -53,12 +53,12 @@ final class ProjectVariableCreateInput implements JsonSerializable
     {
         return [
             'name' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
             'value' => 'string',
-            'is_json' => 'bool',
-            'is_sensitive' => 'bool',
-            'visible_build' => 'bool',
-            'visible_runtime' => 'bool',
+            'attributes' => '?array',
+            'is_json' => '?bool',
+            'is_sensitive' => '?bool',
+            'visible_build' => '?bool',
+            'visible_runtime' => '?bool',
         ];
     }
 
@@ -66,8 +66,8 @@ final class ProjectVariableCreateInput implements JsonSerializable
     {
         return [
             'name' => $this->name,
-            'attributes' => $this->attributes,
             'value' => $this->value,
+            'attributes' => $this->attributes,
             'isJson' => $this->isJson,
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
@@ -88,18 +88,18 @@ final class ProjectVariableCreateInput implements JsonSerializable
         return $this->name;
     }
     /**
-     * @return array&lt;string,string&gt;|null
-     */
-    public function getAttributes(): ?array
-    {
-        return $this->attributes;
-    }
-    /**
      * @return string
      */
     public function getValue(): string
     {
         return $this->value;
+    }
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
+    public function getAttributes(): ?array
+    {
+        return $this->attributes;
     }
     /**
      * @return bool|null

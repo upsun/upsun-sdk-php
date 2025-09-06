@@ -25,9 +25,9 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $zone = null,
-        private ?string $carbonIntensity = null,
-        private ?bool $green = null,
+       private readonly ?string $zone = null,
+       private readonly ?string $carbonIntensity = null,
+       private readonly ?bool $green = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'zone' => 'string',
-            'carbon_intensity' => 'string',
-            'green' => 'bool',
+            'zone' => '?string',
+            'carbon_intensity' => '?string',
+            'green' => '?bool',
         ];
     }
 

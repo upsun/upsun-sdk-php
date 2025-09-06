@@ -35,19 +35,19 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuApp = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $storageAppServices = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryApp = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuServices = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryServices = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $backupStorage = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildCpu = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildMemory = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $egressBandwidth = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $ingressRequests = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $logsFwdContentSize = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyBandwidth = null,
-        private ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyRequests = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuApp = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $storageAppServices = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryApp = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuServices = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryServices = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $backupStorage = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildCpu = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildMemory = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $egressBandwidth = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $ingressRequests = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $logsFwdContentSize = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyBandwidth = null,
+       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyRequests = null,
     ) {
     }
 
@@ -64,19 +64,19 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'cpu_app' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'storage_app_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'memory_app' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'cpu_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'memory_services' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'backup_storage' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'build_cpu' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'build_memory' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'egress_bandwidth' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'ingress_requests' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'logs_fwd_content_size' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'fastly_bandwidth' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'fastly_requests' => '\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'cpu_app' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'storage_app_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'memory_app' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'cpu_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'memory_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'backup_storage' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'build_cpu' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'build_memory' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'egress_bandwidth' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'ingress_requests' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'logs_fwd_content_size' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'fastly_bandwidth' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
+            'fastly_requests' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
         ];
     }
 

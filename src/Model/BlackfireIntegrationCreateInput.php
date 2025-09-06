@@ -23,7 +23,7 @@ final class BlackfireIntegrationCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
+        private readonly string $type,
     ) {
     }
 

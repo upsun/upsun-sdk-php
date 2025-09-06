@@ -187,7 +187,6 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an API token
      *
@@ -334,7 +333,6 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an API token
      *
@@ -485,7 +483,6 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List a user&#39;s API tokens
      *
@@ -615,5 +612,4 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

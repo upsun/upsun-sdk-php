@@ -20,22 +20,22 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'extra' => 'extra',
         'url' => 'url',
         'index' => 'index',
         'token' => 'token',
+        'extra' => 'extra',
         'sourcetype' => 'sourcetype',
         'tlsVerify' => 'tls_verify'
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $extra = [],
-        private string $url,
-        private string $index,
-        private string $token,
-        private ?string $sourcetype = null,
-        private ?bool $tlsVerify = null,
+        private readonly string $type,
+        private readonly string $url,
+        private readonly string $index,
+        private readonly string $token,
+        private readonly ?array $extra = [],
+       private readonly ?string $sourcetype = null,
+       private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -53,12 +53,12 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
             'url' => 'string',
             'index' => 'string',
             'token' => 'string',
-            'sourcetype' => 'string',
-            'tls_verify' => 'bool',
+            'extra' => '?array',
+            'sourcetype' => '?string',
+            'tls_verify' => '?bool',
         ];
     }
 
@@ -66,10 +66,10 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'extra' => $this->extra,
             'url' => $this->url,
             'index' => $this->index,
             'token' => $this->token,
+            'extra' => $this->extra,
             'sourcetype' => $this->sourcetype,
             'tlsVerify' => $this->tlsVerify,
         ];
@@ -86,13 +86,6 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
-    }
-    /**
-     * @return array&lt;string,string&gt;|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
     }
     /**
      * @return string
@@ -114,6 +107,13 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     public function getToken(): string
     {
         return $this->token;
+    }
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
+    public function getExtra(): ?array
+    {
+        return $this->extra;
     }
     /**
      * @return string|null

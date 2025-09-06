@@ -31,13 +31,13 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ];
 
     public function __construct(
-        private ?string $userId = null,
-        private ?string $resourceId = null,
-        private ?string $resourceType = null,
-        private ?string $organizationId = null,
-        private ?array $permissions = [],
-        private ?\DateTime $grantedAt = null,
-        private ?\DateTime $updatedAt = null,
+       private readonly ?string $userId = null,
+       private readonly ?string $resourceId = null,
+       private readonly ?string $resourceType = null,
+       private readonly ?string $organizationId = null,
+        private readonly ?array $permissions = [],
+       private readonly ?\DateTime $grantedAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -54,13 +54,13 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     public static function openAPITypes()
     {
         return [
-            'user_id' => 'string',
-            'resource_id' => 'string',
-            'resource_type' => 'string',
-            'organization_id' => 'string',
-            'permissions' => 'string[]',
-            'granted_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'user_id' => '?string',
+            'resource_id' => '?string',
+            'resource_type' => '?string',
+            'organization_id' => '?string',
+            'permissions' => '?array',
+            'granted_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
         ];
     }
 

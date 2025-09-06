@@ -25,9 +25,9 @@ final class TheDisksResources implements JsonSerializable
     ];
 
     public function __construct(
-        private int $temporary,
-        private int $instance,
-        private int $storage,
+        private readonly ?int $temporary = null,
+        private readonly ?int $instance = null,
+        private readonly ?int $storage = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class TheDisksResources implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'temporary' => 'int',
-            'instance' => 'int',
-            'storage' => 'int',
+            'temporary' => '?int',
+            'instance' => '?int',
+            'storage' => '?int',
         ];
     }
 
@@ -65,23 +65,23 @@ final class TheDisksResources implements JsonSerializable
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTemporary(): int
+    public function getTemporary(): ?int
     {
         return $this->temporary;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getInstance(): int
+    public function getInstance(): ?int
     {
         return $this->instance;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getStorage(): int
+    public function getStorage(): ?int
     {
         return $this->storage;
     }

@@ -206,7 +206,6 @@ final class PhoneNumberApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Verify phone number
      *
@@ -345,5 +344,4 @@ final class PhoneNumberApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
 }

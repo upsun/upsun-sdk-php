@@ -25,9 +25,9 @@ final class UpdateOrgRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $name = null,
-        private ?string $label = null,
-        private ?string $country = null,
+       private readonly ?string $name = null,
+       private readonly ?string $label = null,
+       private readonly ?string $country = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class UpdateOrgRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'name' => 'string',
-            'label' => 'string',
-            'country' => 'string',
+            'name' => '?string',
+            'label' => '?string',
+            'country' => '?string',
         ];
     }
 

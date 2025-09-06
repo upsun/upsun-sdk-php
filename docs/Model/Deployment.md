@@ -4,9 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**createdAt** | **\DateTime** |  | [optional]
-**updatedAt** | **\DateTime** |  | [optional]
-**fingerprint** | **string** |  | [optional]
 **clusterName** | **string** |  |
 **projectInfo** | [**\Upsun\Model\ProjectInfo**](ProjectInfo.md) |  |
 **environmentInfo** | [**\Upsun\Model\EnvironmentInfo**](EnvironmentInfo.md) |  |
@@ -23,5 +20,8 @@ Name | Type | Description | Notes
 **webapps** | [**array<string,\Upsun\Model\WebApplicationsValue>**](WebApplicationsValue.md) |  |
 **workers** | [**array<string,\Upsun\Model\WorkersValue>**](WorkersValue.md) |  |
 **containerProfiles** | **array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>** |  |
+**createdAt** | **\DateTime** |  | [optional]
+**updatedAt** | **\DateTime** |  | [optional]
+**fingerprint** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

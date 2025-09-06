@@ -25,9 +25,9 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?array $transactions = [],
-        private ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
+       private readonly ?int $count = null,
+        private readonly ?array $transactions = [],
+       private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'transactions' => '\Upsun\Model\PrepaymentTransactionObject[]',
-            '_links' => '\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks',
+            'count' => '?int',
+            'transactions' => '?array',
+            '_links' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks',
         ];
     }
 

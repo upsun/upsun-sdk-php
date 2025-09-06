@@ -199,7 +199,6 @@ final class InvoicesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List invoices
      *
@@ -391,5 +390,4 @@ final class InvoicesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

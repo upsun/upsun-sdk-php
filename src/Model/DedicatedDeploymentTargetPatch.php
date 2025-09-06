@@ -28,9 +28,9 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private ?object $enforcedMounts = null,
+        private readonly string $type,
+        private readonly string $name,
+       private readonly ?object $enforcedMounts = null,
     ) {
     }
 
@@ -49,7 +49,7 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'enforced_mounts' => 'object',
+            'enforced_mounts' => '?object',
         ];
     }
 

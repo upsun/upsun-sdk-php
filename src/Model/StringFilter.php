@@ -30,14 +30,14 @@ final class StringFilter implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $eq = null,
-        private ?string $ne = null,
-        private ?string $in = null,
-        private ?string $nin = null,
-        private ?string $between = null,
-        private ?string $contains = null,
-        private ?string $starts = null,
-        private ?string $ends = null,
+       private readonly ?string $eq = null,
+       private readonly ?string $ne = null,
+       private readonly ?string $in = null,
+       private readonly ?string $nin = null,
+       private readonly ?string $between = null,
+       private readonly ?string $contains = null,
+       private readonly ?string $starts = null,
+       private readonly ?string $ends = null,
     ) {
     }
 
@@ -54,14 +54,14 @@ final class StringFilter implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'eq' => 'string',
-            'ne' => 'string',
-            'in' => 'string',
-            'nin' => 'string',
-            'between' => 'string',
-            'contains' => 'string',
-            'starts' => 'string',
-            'ends' => 'string',
+            'eq' => '?string',
+            'ne' => '?string',
+            'in' => '?string',
+            'nin' => '?string',
+            'between' => '?string',
+            'contains' => '?string',
+            'starts' => '?string',
+            'ends' => '?string',
         ];
     }
 

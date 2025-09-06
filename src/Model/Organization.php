@@ -41,19 +41,19 @@ final class Organization implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $type = null,
-        private ?string $ownerId = null,
-        private ?string $namespace = null,
-        private ?string $name = null,
-        private ?string $label = null,
-        private ?string $country = null,
-        private ?array $capabilities = [],
-        private ?string $vendor = null,
-        private ?string $status = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\Upsun\Model\OrganizationLinks $links = null,
+       private readonly ?string $id = null,
+       private readonly ?string $type = null,
+       private readonly ?string $ownerId = null,
+       private readonly ?string $namespace = null,
+       private readonly ?string $name = null,
+       private readonly ?string $label = null,
+       private readonly ?string $country = null,
+        private readonly ?array $capabilities = [],
+       private readonly ?string $vendor = null,
+       private readonly ?string $status = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+       private readonly ?\Upsun\Model\OrganizationLinks $links = null,
     ) {
     }
 
@@ -70,19 +70,19 @@ final class Organization implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'type' => 'string',
-            'owner_id' => 'string',
-            'namespace' => 'string',
-            'name' => 'string',
-            'label' => 'string',
-            'country' => 'string',
-            'capabilities' => 'string[]',
-            'vendor' => 'string',
-            'status' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            '_links' => '\Upsun\Model\OrganizationLinks',
+            'id' => '?string',
+            'type' => '?string',
+            'owner_id' => '?string',
+            'namespace' => '?string',
+            'name' => '?string',
+            'label' => '?string',
+            'country' => '?string',
+            'capabilities' => '?array',
+            'vendor' => '?string',
+            'status' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\OrganizationLinks',
         ];
     }
 

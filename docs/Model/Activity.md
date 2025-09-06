@@ -9,8 +9,6 @@ Name | Type | Description | Notes
 **type** | **string** |  |
 **parameters** | **object** |  |
 **project** | **string** |  |
-**integration** | **string** |  | [optional]
-**environments** | **string[]** |  | [optional]
 **state** | **string** |  |
 **result** | **string** |  |
 **startedAt** | **\DateTime** |  |
@@ -23,5 +21,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **text** | **string** |  |
 **expiresAt** | **\DateTime** |  |
+**integration** | **string** |  | [optional]
+**environments** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

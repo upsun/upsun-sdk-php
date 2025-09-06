@@ -23,7 +23,7 @@ final class AddressMetadata implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
+       private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class AddressMetadata implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'metadata' => '\Upsun\Model\AddressMetadataMetadata',
+            'metadata' => '?\Upsun\Model\AddressMetadataMetadata',
         ];
     }
 

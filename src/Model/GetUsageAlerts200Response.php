@@ -24,8 +24,8 @@ final class GetUsageAlerts200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $available = [],
-        private ?array $current = [],
+        private readonly ?array $available = [],
+        private readonly ?array $current = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class GetUsageAlerts200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'available' => '\Upsun\Model\Alert[]',
-            'current' => '\Upsun\Model\Alert[]',
+            'available' => '?array',
+            'current' => '?array',
         ];
     }
 

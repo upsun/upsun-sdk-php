@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
+**token** | **string** |  |
+**project** | **string** |  |
 **fetchBranches** | **bool** |  | [optional]
 **pruneBranches** | **bool** |  | [optional]
 **environmentInitResources** | **string** |  | [optional]
-**token** | **string** |  |
 **baseUrl** | **string** |  | [optional]
-**project** | **string** |  |
 **buildMergeRequests** | **bool** |  | [optional]
 **buildWipMergeRequests** | **bool** |  | [optional]
 **mergeRequestsCloneParentData** | **bool** |  | [optional]

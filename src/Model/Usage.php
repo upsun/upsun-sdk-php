@@ -27,11 +27,11 @@ final class Usage implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $subscriptionId = null,
-        private ?string $usageGroup = null,
-        private ?float $quantity = null,
-        private ?\DateTime $start = null,
+       private readonly ?string $id = null,
+       private readonly ?string $subscriptionId = null,
+       private readonly ?string $usageGroup = null,
+       private readonly ?float $quantity = null,
+       private readonly ?\DateTime $start = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class Usage implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'subscription_id' => 'string',
-            'usage_group' => 'string',
-            'quantity' => 'float',
-            'start' => '\DateTime',
+            'id' => '?string',
+            'subscription_id' => '?string',
+            'usage_group' => '?string',
+            'quantity' => '?float',
+            'start' => '?\DateTime',
         ];
     }
 

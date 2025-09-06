@@ -28,8 +28,8 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     ];
 
     public function __construct(
-        private string $socketFamily,
-        private string $protocol,
+        private readonly string $socketFamily,
+        private readonly ?string $protocol = null,
     ) {
     }
 
@@ -47,7 +47,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     {
         return [
             'socket_family' => 'string',
-            'protocol' => 'string',
+            'protocol' => '?string',
         ];
     }
 
@@ -72,9 +72,9 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         return $this->socketFamily;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProtocol(): string
+    public function getProtocol(): ?string
     {
         return $this->protocol;
     }

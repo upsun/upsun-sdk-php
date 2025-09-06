@@ -35,8 +35,8 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     ];
 
     public function __construct(
-        private string $projectId,
-        private array $permissions,
+        private readonly string $projectId,
+        private readonly array $permissions,
     ) {
     }
 
@@ -54,7 +54,7 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     {
         return [
             'project_id' => 'string',
-            'permissions' => 'string[]',
+            'permissions' => 'array',
         ];
     }
 

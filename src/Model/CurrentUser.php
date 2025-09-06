@@ -37,21 +37,21 @@ final class CurrentUser implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $uuid = null,
-        private ?string $username = null,
-        private ?string $displayName = null,
-        private ?int $status = null,
-        private ?string $mail = null,
-        private ?array $sshKeys = [],
-        private ?bool $hasKey = null,
-        private ?array $projects = [],
-        private ?int $sequence = null,
-        private ?array $roles = [],
-        private ?string $picture = null,
-        private ?object $tickets = null,
-        private ?bool $trial = null,
-        private ?array $currentTrial = [],
+       private readonly ?string $id = null,
+       private readonly ?string $uuid = null,
+       private readonly ?string $username = null,
+       private readonly ?string $displayName = null,
+       private readonly ?int $status = null,
+       private readonly ?string $mail = null,
+        private readonly ?array $sshKeys = [],
+       private readonly ?bool $hasKey = null,
+        private readonly ?array $projects = [],
+       private readonly ?int $sequence = null,
+        private readonly ?array $roles = [],
+       private readonly ?string $picture = null,
+       private readonly ?object $tickets = null,
+       private readonly ?bool $trial = null,
+        private readonly ?array $currentTrial = [],
     ) {
     }
 
@@ -68,21 +68,21 @@ final class CurrentUser implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'uuid' => 'string',
-            'username' => 'string',
-            'display_name' => 'string',
-            'status' => 'int',
-            'mail' => 'string',
-            'ssh_keys' => '\Upsun\Model\SSHKey[]',
-            'has_key' => 'bool',
-            'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
-            'sequence' => 'int',
-            'roles' => 'string[]',
-            'picture' => 'string',
-            'tickets' => 'object',
-            'trial' => 'bool',
-            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
+            'id' => '?string',
+            'uuid' => '?string',
+            'username' => '?string',
+            'display_name' => '?string',
+            'status' => '?int',
+            'mail' => '?string',
+            'ssh_keys' => '?array',
+            'has_key' => '?bool',
+            'projects' => '?array',
+            'sequence' => '?int',
+            'roles' => '?array',
+            'picture' => '?string',
+            'tickets' => '?object',
+            'trial' => '?bool',
+            'current_trial' => '?array',
         ];
     }
 

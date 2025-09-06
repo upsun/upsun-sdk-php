@@ -24,8 +24,8 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $filename = null,
-        private ?string $data = null,
+       private readonly ?string $filename = null,
+       private readonly ?string $data = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'filename' => 'string',
-            'data' => 'string',
+            'filename' => '?string',
+            'data' => '?string',
         ];
     }
 

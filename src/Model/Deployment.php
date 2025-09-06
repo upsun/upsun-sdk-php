@@ -19,9 +19,6 @@ final class Deployment implements JsonSerializable
 {
 
     private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'fingerprint' => 'fingerprint',
         'clusterName' => 'cluster_name',
         'projectInfo' => 'project_info',
         'environmentInfo' => 'environment_info',
@@ -37,29 +34,32 @@ final class Deployment implements JsonSerializable
         'routes' => 'routes',
         'webapps' => 'webapps',
         'workers' => 'workers',
-        'containerProfiles' => 'container_profiles'
+        'containerProfiles' => 'container_profiles',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'fingerprint' => 'fingerprint'
     ];
 
     public function __construct(
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?string $fingerprint = null,
-        private string $clusterName,
-        private \Upsun\Model\ProjectInfo $projectInfo,
-        private \Upsun\Model\EnvironmentInfo $environmentInfo,
-        private string $deploymentTarget,
-        private \Upsun\Model\VPNConfiguration $vpn,
-        private \Upsun\Model\HttpAccessPermissions $httpAccess,
-        private bool $enableSmtp,
-        private bool $restrictRobots,
-        private array $variables,
-        private array $access,
-        private \Upsun\Model\Subscription1 $subscription,
-        private array $services,
-        private array $routes,
-        private array $webapps,
-        private array $workers,
-        private array $containerProfiles,
+        private readonly string $clusterName,
+        private readonly \Upsun\Model\ProjectInfo $projectInfo,
+        private readonly \Upsun\Model\EnvironmentInfo $environmentInfo,
+        private readonly string $deploymentTarget,
+        private readonly \Upsun\Model\HttpAccessPermissions $httpAccess,
+        private readonly bool $enableSmtp,
+        private readonly bool $restrictRobots,
+        private readonly array $variables,
+        private readonly array $access,
+        private readonly \Upsun\Model\Subscription1 $subscription,
+        private readonly array $services,
+        private readonly array $routes,
+        private readonly array $webapps,
+        private readonly array $workers,
+        private readonly array $containerProfiles,
+        private readonly ?\Upsun\Model\VPNConfiguration $vpn = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+       private readonly ?string $fingerprint = null,
     ) {
     }
 
@@ -76,34 +76,31 @@ final class Deployment implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'fingerprint' => 'string',
             'cluster_name' => 'string',
             'project_info' => '\Upsun\Model\ProjectInfo',
             'environment_info' => '\Upsun\Model\EnvironmentInfo',
             'deployment_target' => 'string',
-            'vpn' => '\Upsun\Model\VPNConfiguration',
+            'vpn' => '?\Upsun\Model\VPNConfiguration',
             'http_access' => '\Upsun\Model\HttpAccessPermissions',
             'enable_smtp' => 'bool',
             'restrict_robots' => 'bool',
-            'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
-            'access' => '\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]',
+            'variables' => 'array',
+            'access' => 'array',
             'subscription' => '\Upsun\Model\Subscription1',
-            'services' => 'array&lt;string,\Upsun\Model\ServicesValue&gt;',
-            'routes' => 'array&lt;string,\Upsun\Model\RoutesValue&gt;',
-            'webapps' => 'array&lt;string,\Upsun\Model\WebApplicationsValue&gt;',
-            'workers' => 'array&lt;string,\Upsun\Model\WorkersValue&gt;',
-            'container_profiles' => 'array&lt;string,array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;&gt;',
+            'services' => 'array',
+            'routes' => 'array',
+            'webapps' => 'array',
+            'workers' => 'array',
+            'container_profiles' => 'array',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'fingerprint' => '?string',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
-            'fingerprint' => $this->fingerprint,
             'clusterName' => $this->clusterName,
             'projectInfo' => $this->projectInfo,
             'environmentInfo' => $this->environmentInfo,
@@ -120,6 +117,9 @@ final class Deployment implements JsonSerializable
             'webapps' => $this->webapps,
             'workers' => $this->workers,
             'containerProfiles' => $this->containerProfiles,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'fingerprint' => $this->fingerprint,
         ];
     }
 
@@ -128,27 +128,6 @@ final class Deployment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
-    {
-        return $this->createdAt;
-    }
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->updatedAt;
-    }
-    /**
-     * @return string|null
-     */
-    public function getFingerprint(): ?string
-    {
-        return $this->fingerprint;
-    }
     /**
      * @return string
      */
@@ -178,9 +157,9 @@ final class Deployment implements JsonSerializable
         return $this->deploymentTarget;
     }
     /**
-     * @return \Upsun\Model\VPNConfiguration
+     * @return \Upsun\Model\VPNConfiguration|null
      */
-    public function getVpn(): \Upsun\Model\VPNConfiguration
+    public function getVpn(): ?\Upsun\Model\VPNConfiguration
     {
         return $this->vpn;
     }
@@ -260,6 +239,27 @@ final class Deployment implements JsonSerializable
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
+    }
+    /**
+     * @return \DateTime|null
+     */
+    public function getCreatedAt(): ?\DateTime
+    {
+        return $this->createdAt;
+    }
+    /**
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    /**
+     * @return string|null
+     */
+    public function getFingerprint(): ?string
+    {
+        return $this->fingerprint;
     }
 }
 

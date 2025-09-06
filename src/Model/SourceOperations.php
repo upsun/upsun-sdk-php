@@ -23,7 +23,7 @@ final class SourceOperations implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $enabled,
+        private readonly bool $enabled,
     ) {
     }
 

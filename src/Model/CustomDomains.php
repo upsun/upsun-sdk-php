@@ -24,8 +24,8 @@ final class CustomDomains implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $enabled,
-        private int $environmentsWithDomainsLimit,
+        private readonly bool $enabled,
+        private readonly int $environmentsWithDomainsLimit,
     ) {
     }
 

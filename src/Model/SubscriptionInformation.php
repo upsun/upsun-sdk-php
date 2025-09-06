@@ -28,32 +28,32 @@ final class SubscriptionInformation implements JsonSerializable
 
     private static array $attributeMap = [
         'licenseUri' => 'license_uri',
-        'plan' => 'plan',
-        'environments' => 'environments',
         'storage' => 'storage',
         'includedUsers' => 'included_users',
         'subscriptionManagementUri' => 'subscription_management_uri',
         'restricted' => 'restricted',
         'suspended' => 'suspended',
         'userLicenses' => 'user_licenses',
+        'plan' => 'plan',
+        'environments' => 'environments',
         'resources' => 'resources',
         'resourceValidationUrl' => 'resource_validation_url',
         'imageTypes' => 'image_types'
     ];
 
     public function __construct(
-        private string $licenseUri,
-        private ?string $plan = null,
-        private ?int $environments = null,
-        private int $storage,
-        private int $includedUsers,
-        private string $subscriptionManagementUri,
-        private bool $restricted,
-        private bool $suspended,
-        private int $userLicenses,
-        private ?\Upsun\Model\ResourcesLimits $resources = null,
-        private ?string $resourceValidationUrl = null,
-        private ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
+        private readonly string $licenseUri,
+        private readonly int $storage,
+        private readonly int $includedUsers,
+        private readonly string $subscriptionManagementUri,
+        private readonly bool $restricted,
+        private readonly bool $suspended,
+        private readonly int $userLicenses,
+       private readonly ?string $plan = null,
+       private readonly ?int $environments = null,
+       private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
+       private readonly ?string $resourceValidationUrl = null,
+       private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
     ) {
     }
 
@@ -71,17 +71,17 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return [
             'license_uri' => 'string',
-            'plan' => 'string',
-            'environments' => 'int',
             'storage' => 'int',
             'included_users' => 'int',
             'subscription_management_uri' => 'string',
             'restricted' => 'bool',
             'suspended' => 'bool',
             'user_licenses' => 'int',
-            'resources' => '\Upsun\Model\ResourcesLimits',
-            'resource_validation_url' => 'string',
-            'image_types' => '\Upsun\Model\RestrictedAndDeniedImageTypes',
+            'plan' => '?string',
+            'environments' => '?int',
+            'resources' => '?\Upsun\Model\ResourcesLimits',
+            'resource_validation_url' => '?string',
+            'image_types' => '?\Upsun\Model\RestrictedAndDeniedImageTypes',
         ];
     }
 
@@ -89,14 +89,14 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return [
             'licenseUri' => $this->licenseUri,
-            'plan' => $this->plan,
-            'environments' => $this->environments,
             'storage' => $this->storage,
             'includedUsers' => $this->includedUsers,
             'subscriptionManagementUri' => $this->subscriptionManagementUri,
             'restricted' => $this->restricted,
             'suspended' => $this->suspended,
             'userLicenses' => $this->userLicenses,
+            'plan' => $this->plan,
+            'environments' => $this->environments,
             'resources' => $this->resources,
             'resourceValidationUrl' => $this->resourceValidationUrl,
             'imageTypes' => $this->imageTypes,
@@ -114,20 +114,6 @@ final class SubscriptionInformation implements JsonSerializable
     public function getLicenseUri(): string
     {
         return $this->licenseUri;
-    }
-    /**
-     * @return string|null
-     */
-    public function getPlan(): ?string
-    {
-        return $this->plan;
-    }
-    /**
-     * @return int|null
-     */
-    public function getEnvironments(): ?int
-    {
-        return $this->environments;
     }
     /**
      * @return int
@@ -170,6 +156,20 @@ final class SubscriptionInformation implements JsonSerializable
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
+    }
+    /**
+     * @return string|null
+     */
+    public function getPlan(): ?string
+    {
+        return $this->plan;
+    }
+    /**
+     * @return int|null
+     */
+    public function getEnvironments(): ?int
+    {
+        return $this->environments;
     }
     /**
      * @return \Upsun\Model\ResourcesLimits|null

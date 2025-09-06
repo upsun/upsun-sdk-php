@@ -28,12 +28,12 @@ final class EstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $plan = null,
-        private ?string $userLicenses = null,
-        private ?string $environments = null,
-        private ?string $storage = null,
-        private ?string $total = null,
-        private ?object $options = null,
+       private readonly ?string $plan = null,
+       private readonly ?string $userLicenses = null,
+       private readonly ?string $environments = null,
+       private readonly ?string $storage = null,
+       private readonly ?string $total = null,
+       private readonly ?object $options = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class EstimationObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'plan' => 'string',
-            'user_licenses' => 'string',
-            'environments' => 'string',
-            'storage' => 'string',
-            'total' => 'string',
-            'options' => 'object',
+            'plan' => '?string',
+            'user_licenses' => '?string',
+            'environments' => '?string',
+            'storage' => '?string',
+            'total' => '?string',
+            'options' => '?object',
         ];
     }
 

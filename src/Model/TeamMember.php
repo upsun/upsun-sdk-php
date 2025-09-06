@@ -26,10 +26,10 @@ final class TeamMember implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $teamId = null,
-        private ?string $userId = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
+       private readonly ?string $teamId = null,
+       private readonly ?string $userId = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class TeamMember implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'team_id' => 'string',
-            'user_id' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'team_id' => '?string',
+            'user_id' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
         ];
     }
 

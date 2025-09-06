@@ -25,9 +25,9 @@ final class CreateTeamRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $organizationId,
-        private string $label,
-        private ?array $projectPermissions = [],
+        private readonly string $organizationId,
+        private readonly string $label,
+        private readonly ?array $projectPermissions = [],
     ) {
     }
 
@@ -46,7 +46,7 @@ final class CreateTeamRequest implements JsonSerializable
         return [
             'organization_id' => 'string',
             'label' => 'string',
-            'project_permissions' => 'string[]',
+            'project_permissions' => '?array',
         ];
     }
 

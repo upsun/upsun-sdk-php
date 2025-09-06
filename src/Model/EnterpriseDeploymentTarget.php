@@ -33,14 +33,14 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private string $deployHost,
-        private array $docroots,
-        private object $siteUrls,
-        private array $sshHosts,
-        private bool $maintenanceMode,
-        private ?object $enterpriseEnvironmentsMapping = null,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly array $docroots,
+        private readonly object $siteUrls,
+        private readonly array $sshHosts,
+        private readonly bool $maintenanceMode,
+        private readonly ?string $deployHost = null,
+       private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
@@ -59,12 +59,12 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'deploy_host' => 'string',
-            'docroots' => 'array&lt;string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue&gt;',
+            'deploy_host' => '?string',
+            'docroots' => 'array',
             'site_urls' => 'object',
-            'ssh_hosts' => 'string[]',
+            'ssh_hosts' => 'array',
             'maintenance_mode' => 'bool',
-            'enterprise_environments_mapping' => 'object',
+            'enterprise_environments_mapping' => '?object',
         ];
     }
 
@@ -102,9 +102,9 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         return $this->name;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeployHost(): string
+    public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }

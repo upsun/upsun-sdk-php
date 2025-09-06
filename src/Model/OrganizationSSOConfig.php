@@ -29,12 +29,12 @@ final class OrganizationSSOConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $providerType = null,
-        private ?string $domain = null,
-        private ?string $organizationId = null,
-        private ?bool $enforced = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
+       private readonly ?string $providerType = null,
+       private readonly ?string $domain = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?bool $enforced = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -51,12 +51,12 @@ final class OrganizationSSOConfig implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'provider_type' => 'string',
-            'domain' => 'string',
-            'organization_id' => 'string',
-            'enforced' => 'bool',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'provider_type' => '?string',
+            'domain' => '?string',
+            'organization_id' => '?string',
+            'enforced' => '?bool',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
         ];
     }
 

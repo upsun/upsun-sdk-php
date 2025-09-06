@@ -176,7 +176,6 @@ final class ProjectSettingsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a project setting
      *
@@ -325,5 +324,4 @@ final class ProjectSettingsApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

@@ -164,7 +164,6 @@ final class SupportApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List support ticket categories
      *
@@ -301,7 +300,6 @@ final class SupportApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List support ticket priorities
      *
@@ -438,7 +436,6 @@ final class SupportApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a ticket
      *
@@ -577,5 +574,4 @@ final class SupportApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

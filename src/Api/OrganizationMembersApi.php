@@ -197,7 +197,6 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete organization member
      *
@@ -344,7 +343,6 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get organization member
      *
@@ -495,7 +493,6 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List organization members
      *
@@ -716,7 +713,6 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update organization member
      *
@@ -878,5 +874,4 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

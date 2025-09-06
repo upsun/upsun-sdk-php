@@ -26,10 +26,10 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $synchronizeCode,
-        private bool $rebase,
-        private bool $synchronizeData,
-        private bool $synchronizeResources,
+        private readonly bool $synchronizeCode,
+        private readonly bool $rebase,
+        private readonly bool $synchronizeData,
+        private readonly bool $synchronizeResources,
     ) {
     }
 

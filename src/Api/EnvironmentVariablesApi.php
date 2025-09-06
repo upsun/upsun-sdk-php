@@ -220,7 +220,6 @@ final class EnvironmentVariablesApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an environment variable
      *
@@ -394,7 +393,6 @@ final class EnvironmentVariablesApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment variable
      *
@@ -568,7 +566,6 @@ final class EnvironmentVariablesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of environment variables
      *
@@ -721,7 +718,6 @@ final class EnvironmentVariablesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update an environment variable
      *
@@ -916,5 +912,4 @@ final class EnvironmentVariablesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

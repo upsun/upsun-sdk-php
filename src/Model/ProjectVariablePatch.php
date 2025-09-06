@@ -29,13 +29,13 @@ final class ProjectVariablePatch implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $name = null,
-        private ?array $attributes = [],
-        private ?string $value = null,
-        private ?bool $isJson = null,
-        private ?bool $isSensitive = null,
-        private ?bool $visibleBuild = null,
-        private ?bool $visibleRuntime = null,
+       private readonly ?string $name = null,
+        private readonly ?array $attributes = [],
+       private readonly ?string $value = null,
+       private readonly ?bool $isJson = null,
+       private readonly ?bool $isSensitive = null,
+       private readonly ?bool $visibleBuild = null,
+       private readonly ?bool $visibleRuntime = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class ProjectVariablePatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'name' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
-            'value' => 'string',
-            'is_json' => 'bool',
-            'is_sensitive' => 'bool',
-            'visible_build' => 'bool',
-            'visible_runtime' => 'bool',
+            'name' => '?string',
+            'attributes' => '?array',
+            'value' => '?string',
+            'is_json' => '?bool',
+            'is_sensitive' => '?bool',
+            'visible_build' => '?bool',
+            'visible_runtime' => '?bool',
         ];
     }
 

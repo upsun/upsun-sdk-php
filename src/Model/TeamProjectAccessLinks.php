@@ -25,9 +25,9 @@ final class TeamProjectAccessLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
-        private ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
-        private ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
+       private readonly ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
+       private readonly ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
+       private readonly ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class TeamProjectAccessLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\TeamProjectAccessLinksSelf',
-            'update' => '\Upsun\Model\TeamProjectAccessLinksUpdate',
-            'delete' => '\Upsun\Model\TeamProjectAccessLinksDelete',
+            'self' => '?\Upsun\Model\TeamProjectAccessLinksSelf',
+            'update' => '?\Upsun\Model\TeamProjectAccessLinksUpdate',
+            'delete' => '?\Upsun\Model\TeamProjectAccessLinksDelete',
         ];
     }
 

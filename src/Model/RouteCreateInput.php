@@ -22,31 +22,31 @@ final class RouteCreateInput implements JsonSerializable
     public const TYPE_UPSTREAM = 'upstream';
 
     private static array $attributeMap = [
+        'type' => 'type',
+        'to' => 'to',
+        'upstream' => 'upstream',
         'primary' => 'primary',
         'id' => 'id',
         'productionUrl' => 'production_url',
         'attributes' => 'attributes',
-        'type' => 'type',
         'tls' => 'tls',
-        'to' => 'to',
         'redirects' => 'redirects',
         'cache' => 'cache',
-        'ssi' => 'ssi',
-        'upstream' => 'upstream'
+        'ssi' => 'ssi'
     ];
 
     public function __construct(
-        private ?bool $primary = null,
-        private ?string $id = null,
-        private ?string $productionUrl = null,
-        private ?array $attributes = [],
-        private string $type,
-        private ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        private string $to,
-        private ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
-        private ?\Upsun\Model\CacheConfiguration1 $cache = null,
-        private ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
-        private string $upstream,
+        private readonly string $type,
+        private readonly string $to,
+        private readonly string $upstream,
+        private readonly ?bool $primary = null,
+        private readonly ?string $id = null,
+        private readonly ?string $productionUrl = null,
+        private readonly ?array $attributes = [],
+       private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+       private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+       private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
+       private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
     ) {
     }
 
@@ -63,34 +63,34 @@ final class RouteCreateInput implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'primary' => 'bool',
-            'id' => 'string',
-            'production_url' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
             'type' => 'string',
-            'tls' => '\Upsun\Model\TLSSettingsForTheRoute1',
             'to' => 'string',
-            'redirects' => '\Upsun\Model\TheConfigurationOfTheRedirects1',
-            'cache' => '\Upsun\Model\CacheConfiguration1',
-            'ssi' => '\Upsun\Model\ServerSideIncludeConfiguration',
             'upstream' => 'string',
+            'primary' => '?bool',
+            'id' => '?string',
+            'production_url' => '?string',
+            'attributes' => '?array',
+            'tls' => '?\Upsun\Model\TLSSettingsForTheRoute1',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects1',
+            'cache' => '?\Upsun\Model\CacheConfiguration1',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
+            'type' => $this->type,
+            'to' => $this->to,
+            'upstream' => $this->upstream,
             'primary' => $this->primary,
             'id' => $this->id,
             'productionUrl' => $this->productionUrl,
             'attributes' => $this->attributes,
-            'type' => $this->type,
             'tls' => $this->tls,
-            'to' => $this->to,
             'redirects' => $this->redirects,
             'cache' => $this->cache,
             'ssi' => $this->ssi,
-            'upstream' => $this->upstream,
         ];
     }
 
@@ -99,6 +99,27 @@ final class RouteCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getTo(): string
+    {
+        return $this->to;
+    }
+    /**
+     * @return string
+     */
+    public function getUpstream(): string
+    {
+        return $this->upstream;
+    }
     /**
      * @return bool|null
      */
@@ -128,25 +149,11 @@ final class RouteCreateInput implements JsonSerializable
         return $this->attributes;
     }
     /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
      * @return \Upsun\Model\TLSSettingsForTheRoute1|null
      */
     public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
     {
         return $this->tls;
-    }
-    /**
-     * @return string
-     */
-    public function getTo(): string
-    {
-        return $this->to;
     }
     /**
      * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
@@ -168,13 +175,6 @@ final class RouteCreateInput implements JsonSerializable
     public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
     {
         return $this->ssi;
-    }
-    /**
-     * @return string
-     */
-    public function getUpstream(): string
-    {
-        return $this->upstream;
     }
 }
 

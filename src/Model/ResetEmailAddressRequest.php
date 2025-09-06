@@ -23,7 +23,7 @@ final class ResetEmailAddressRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $emailAddress,
+        private readonly string $emailAddress,
     ) {
     }
 

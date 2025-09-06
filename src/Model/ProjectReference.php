@@ -32,16 +32,16 @@ final class ProjectReference implements JsonSerializable
     ];
 
     public function __construct(
-        private string $id,
-        private string $organizationId,
-        private string $subscriptionId,
-        private string $region,
-        private string $title,
-        private \Upsun\Model\OrganizationProjectType $type,
-        private \Upsun\Model\OrganizationProjectPlan $plan,
-        private \Upsun\Model\OrganizationProjectStatus $status,
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
+        private readonly string $id,
+        private readonly string $organizationId,
+        private readonly string $subscriptionId,
+        private readonly string $region,
+        private readonly string $title,
+        private readonly \Upsun\Model\OrganizationProjectType $type,
+        private readonly \Upsun\Model\OrganizationProjectPlan $plan,
+        private readonly \Upsun\Model\OrganizationProjectStatus $status,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
     ) {
     }
 

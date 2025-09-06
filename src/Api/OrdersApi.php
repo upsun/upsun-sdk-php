@@ -199,7 +199,6 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Download an invoice.
      *
@@ -326,7 +325,6 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get order
      *
@@ -493,7 +491,6 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List orders
      *
@@ -685,5 +682,4 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

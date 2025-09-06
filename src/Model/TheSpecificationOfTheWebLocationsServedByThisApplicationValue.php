@@ -23,23 +23,23 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         'expires' => 'expires',
         'passthru' => 'passthru',
         'scripts' => 'scripts',
-        'index' => 'index',
         'allow' => 'allow',
         'headers' => 'headers',
         'rules' => 'rules',
+        'index' => 'index',
         'requestBuffering' => 'request_buffering'
     ];
 
     public function __construct(
-        private string $root,
-        private string $expires,
-        private string $passthru,
-        private bool $scripts,
-        private ?array $index = [],
-        private bool $allow,
-        private array $headers,
-        private array $rules,
-        private ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
+        private readonly string $expires,
+        private readonly string $passthru,
+        private readonly bool $scripts,
+        private readonly bool $allow,
+        private readonly array $headers,
+        private readonly array $rules,
+        private readonly ?string $root = null,
+        private readonly ?array $index = [],
+       private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
     }
 
@@ -56,15 +56,15 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     public static function openAPITypes()
     {
         return [
-            'root' => 'string',
+            'root' => '?string',
             'expires' => 'string',
             'passthru' => 'string',
             'scripts' => 'bool',
-            'index' => 'string[]',
             'allow' => 'bool',
-            'headers' => 'array&lt;string,string&gt;',
-            'rules' => 'array&lt;string,\Upsun\Model\SpecificOverridesValue&gt;',
-            'request_buffering' => '\Upsun\Model\ConfigurationForSupportingRequestBuffering',
+            'headers' => 'array',
+            'rules' => 'array',
+            'index' => '?array',
+            'request_buffering' => '?\Upsun\Model\ConfigurationForSupportingRequestBuffering',
         ];
     }
 
@@ -75,10 +75,10 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
             'expires' => $this->expires,
             'passthru' => $this->passthru,
             'scripts' => $this->scripts,
-            'index' => $this->index,
             'allow' => $this->allow,
             'headers' => $this->headers,
             'rules' => $this->rules,
+            'index' => $this->index,
             'requestBuffering' => $this->requestBuffering,
         ];
     }
@@ -89,9 +89,9 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRoot(): string
+    public function getRoot(): ?string
     {
         return $this->root;
     }
@@ -117,13 +117,6 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         return $this->scripts;
     }
     /**
-     * @return string[]|null
-     */
-    public function getIndex(): ?array
-    {
-        return $this->index;
-    }
-    /**
      * @return bool
      */
     public function getAllow(): bool
@@ -143,6 +136,13 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     public function getRules(): array
     {
         return $this->rules;
+    }
+    /**
+     * @return string[]|null
+     */
+    public function getIndex(): ?array
+    {
+        return $this->index;
     }
     /**
      * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null

@@ -24,8 +24,8 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     ];
 
     public function __construct(
-        private string $expires,
-        private array $paths,
+        private readonly string $expires,
+        private readonly array $paths,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     {
         return [
             'expires' => 'string',
-            'paths' => 'array&lt;string,\Upsun\Model\ThePathsToRedirectValue&gt;',
+            'paths' => 'array',
         ];
     }
 

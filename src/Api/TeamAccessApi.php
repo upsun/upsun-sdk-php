@@ -199,7 +199,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get project access for a team
      *
@@ -350,7 +349,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Grant team access to a project
      *
@@ -495,7 +493,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Grant project access to a team
      *
@@ -640,7 +637,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List team access for a project
      *
@@ -845,7 +841,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List project access for a team
      *
@@ -1050,7 +1045,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Remove team access for a project
      *
@@ -1197,7 +1191,6 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Remove project access for a team
      *
@@ -1344,5 +1337,4 @@ final class TeamAccessApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
 }

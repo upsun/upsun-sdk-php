@@ -26,10 +26,10 @@ final class LineItemComponent implements JsonSerializable
     ];
 
     public function __construct(
-        private ?float $amount = null,
-        private ?string $amountFormatted = null,
-        private ?string $displayTitle = null,
-        private ?string $currency = null,
+       private readonly ?float $amount = null,
+       private readonly ?string $amountFormatted = null,
+       private readonly ?string $displayTitle = null,
+       private readonly ?string $currency = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class LineItemComponent implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'amount' => 'float',
-            'amount_formatted' => 'string',
-            'display_title' => 'string',
-            'currency' => 'string',
+            'amount' => '?float',
+            'amount_formatted' => '?string',
+            'display_title' => '?string',
+            'currency' => '?string',
         ];
     }
 

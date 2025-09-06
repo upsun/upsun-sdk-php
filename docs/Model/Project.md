@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **timezone** | **string** |  |
 **region** | **string** |  |
 **repository** | [**\Upsun\Model\RepositoryInformation**](RepositoryInformation.md) |  |
-**defaultDomain** | **string** |  | [optional]
 **subscription** | [**\Upsun\Model\SubscriptionInformation**](SubscriptionInformation.md) |  |
+**defaultDomain** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

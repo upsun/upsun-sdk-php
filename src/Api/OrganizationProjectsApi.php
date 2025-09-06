@@ -199,7 +199,6 @@ final class OrganizationProjectsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List projects
      *
@@ -484,5 +483,4 @@ final class OrganizationProjectsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

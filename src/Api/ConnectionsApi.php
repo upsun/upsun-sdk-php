@@ -195,7 +195,6 @@ final class ConnectionsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a federated login connection
      *
@@ -346,7 +345,6 @@ final class ConnectionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List federated login connections
      *
@@ -476,5 +474,4 @@ final class ConnectionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

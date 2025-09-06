@@ -24,8 +24,8 @@ final class OrganizationMemberLinksDelete implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $href = null,
-        private ?string $method = null,
+       private readonly ?string $href = null,
+       private readonly ?string $method = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationMemberLinksDelete implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'href' => 'string',
-            'method' => 'string',
+            'href' => '?string',
+            'method' => '?string',
         ];
     }
 

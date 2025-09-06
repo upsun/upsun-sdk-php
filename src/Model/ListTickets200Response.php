@@ -25,9 +25,9 @@ final class ListTickets200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?array $tickets = [],
-        private ?\Upsun\Model\HalLinks $links = null,
+       private readonly ?int $count = null,
+        private readonly ?array $tickets = [],
+       private readonly ?\Upsun\Model\HalLinks $links = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ListTickets200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'tickets' => '\Upsun\Model\Ticket[]',
-            '_links' => '\Upsun\Model\HalLinks',
+            'count' => '?int',
+            'tickets' => '?array',
+            '_links' => '?\Upsun\Model\HalLinks',
         ];
     }
 

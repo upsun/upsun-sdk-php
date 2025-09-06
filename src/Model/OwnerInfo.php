@@ -25,9 +25,9 @@ final class OwnerInfo implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $type = null,
-        private ?string $username = null,
-        private ?string $displayName = null,
+       private readonly ?string $type = null,
+       private readonly ?string $username = null,
+       private readonly ?string $displayName = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class OwnerInfo implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'type' => 'string',
-            'username' => 'string',
-            'display_name' => 'string',
+            'type' => '?string',
+            'username' => '?string',
+            'display_name' => '?string',
         ];
     }
 

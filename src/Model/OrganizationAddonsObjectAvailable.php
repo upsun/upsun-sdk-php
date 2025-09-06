@@ -24,8 +24,8 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $userManagement = [],
-        private ?array $supportLevel = [],
+        private readonly ?array $userManagement = [],
+        private readonly ?array $supportLevel = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'user_management' => 'array&lt;string,float&gt;',
-            'support_level' => 'array&lt;string,float&gt;',
+            'user_management' => '?array',
+            'support_level' => '?array',
         ];
     }
 

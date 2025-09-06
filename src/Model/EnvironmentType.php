@@ -23,7 +23,7 @@ final class EnvironmentType implements JsonSerializable
     ];
 
     public function __construct(
-        private array $attributes,
+        private readonly array $attributes,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class EnvironmentType implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'attributes' => 'array&lt;string,string&gt;',
+            'attributes' => 'array',
         ];
     }
 

@@ -27,9 +27,9 @@ final class UpdateTicketRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $status = null,
-        private ?array $collaboratorIds = [],
-        private ?bool $collaboratorsReplace = null,
+       private readonly ?string $status = null,
+        private readonly ?array $collaboratorIds = [],
+       private readonly ?bool $collaboratorsReplace = null,
     ) {
     }
 
@@ -46,9 +46,9 @@ final class UpdateTicketRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'status' => 'string',
-            'collaborator_ids' => 'string[]',
-            'collaborators_replace' => 'bool',
+            'status' => '?string',
+            'collaborator_ids' => '?array',
+            'collaborators_replace' => '?bool',
         ];
     }
 

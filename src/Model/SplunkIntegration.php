@@ -30,14 +30,14 @@ final class SplunkIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private array $extra,
-        private string $url,
-        private string $index,
-        private string $sourcetype,
-        private bool $tlsVerify,
+        private readonly string $type,
+        private readonly array $extra,
+        private readonly string $url,
+        private readonly string $index,
+        private readonly string $sourcetype,
+        private readonly bool $tlsVerify,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -54,10 +54,10 @@ final class SplunkIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
+            'extra' => 'array',
             'url' => 'string',
             'index' => 'string',
             'sourcetype' => 'string',
@@ -85,16 +85,16 @@ final class SplunkIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

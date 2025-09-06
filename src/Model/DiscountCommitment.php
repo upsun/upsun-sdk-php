@@ -25,9 +25,9 @@ final class DiscountCommitment implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $months = null,
-        private ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
-        private ?\Upsun\Model\DiscountCommitmentNet $net = null,
+       private readonly ?int $months = null,
+       private readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
+       private readonly ?\Upsun\Model\DiscountCommitmentNet $net = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class DiscountCommitment implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'months' => 'int',
-            'amount' => '\Upsun\Model\DiscountCommitmentAmount',
-            'net' => '\Upsun\Model\DiscountCommitmentNet',
+            'months' => '?int',
+            'amount' => '?\Upsun\Model\DiscountCommitmentAmount',
+            'net' => '?\Upsun\Model\DiscountCommitmentNet',
         ];
     }
 

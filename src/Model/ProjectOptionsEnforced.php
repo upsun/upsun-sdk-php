@@ -24,8 +24,8 @@ final class ProjectOptionsEnforced implements JsonSerializable
     ];
 
     public function __construct(
-        private ?object $settings = null,
-        private ?object $capabilities = null,
+       private readonly ?object $settings = null,
+       private readonly ?object $capabilities = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class ProjectOptionsEnforced implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'settings' => 'object',
-            'capabilities' => 'object',
+            'settings' => '?object',
+            'capabilities' => '?object',
         ];
     }
 

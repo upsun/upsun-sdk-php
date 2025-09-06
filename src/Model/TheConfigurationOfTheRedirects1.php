@@ -19,13 +19,13 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 {
 
     private static array $attributeMap = [
-        'expires' => 'expires',
-        'paths' => 'paths'
+        'paths' => 'paths',
+        'expires' => 'expires'
     ];
 
     public function __construct(
-        private ?string $expires = null,
-        private array $paths,
+        private readonly array $paths,
+       private readonly ?string $expires = null,
     ) {
     }
 
@@ -42,16 +42,16 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'expires' => 'string',
-            'paths' => 'array&lt;string,\Upsun\Model\ThePathsToRedirectValue1&gt;',
+            'paths' => 'array',
+            'expires' => '?string',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'expires' => $this->expires,
             'paths' => $this->paths,
+            'expires' => $this->expires,
         ];
     }
 
@@ -61,18 +61,18 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     }
 
     /**
-     * @return string|null
-     */
-    public function getExpires(): ?string
-    {
-        return $this->expires;
-    }
-    /**
      * @return \Upsun\Model\ThePathsToRedirectValue1[]
      */
     public function getPaths(): array
     {
         return $this->paths;
+    }
+    /**
+     * @return string|null
+     */
+    public function getExpires(): ?string
+    {
+        return $this->expires;
     }
 }
 

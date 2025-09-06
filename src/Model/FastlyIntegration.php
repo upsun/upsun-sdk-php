@@ -34,15 +34,15 @@ final class FastlyIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private array $events,
-        private array $environments,
-        private array $excludedEnvironments,
-        private array $states,
-        private string $result,
-        private string $serviceId,
+        private readonly string $type,
+        private readonly array $events,
+        private readonly array $environments,
+        private readonly array $excludedEnvironments,
+        private readonly array $states,
+        private readonly string $result,
+        private readonly string $serviceId,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -59,13 +59,13 @@ final class FastlyIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
+            'events' => 'array',
+            'environments' => 'array',
+            'excluded_environments' => 'array',
+            'states' => 'array',
             'result' => 'string',
             'service_id' => 'string',
         ];
@@ -92,16 +92,16 @@ final class FastlyIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

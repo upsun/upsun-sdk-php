@@ -25,9 +25,9 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?bool $canCreate = null,
-        private ?string $message = null,
-        private ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
+        private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
+       private readonly ?bool $canCreate = null,
+       private readonly ?string $message = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'can_create' => 'bool',
-            'message' => 'string',
-            'required_action' => '\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction',
+            'can_create' => '?bool',
+            'message' => '?string',
+            'required_action' => '?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction',
         ];
     }
 

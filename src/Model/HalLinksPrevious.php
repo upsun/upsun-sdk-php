@@ -24,8 +24,8 @@ final class HalLinksPrevious implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $title = null,
-        private ?string $href = null,
+       private readonly ?string $title = null,
+       private readonly ?string $href = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class HalLinksPrevious implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'title' => 'string',
-            'href' => 'string',
+            'title' => '?string',
+            'href' => '?string',
         ];
     }
 

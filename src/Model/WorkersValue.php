@@ -57,30 +57,30 @@ final class WorkersValue implements JsonSerializable
     ];
 
     public function __construct(
-        private \Upsun\Model\Resources $resources,
-        private string $size,
-        private int $disk,
-        private array $access,
-        private array $relationships,
-        private array $additionalHosts,
-        private array $mounts,
-        private string $timezone,
-        private array $variables,
-        private \Upsun\Model\Firewall $firewall,
-        private string $containerProfile,
-        private array $operations,
-        private string $name,
-        private string $type,
-        private \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
-        private string $treeId,
-        private string $appDir,
-        private object $endpoints,
-        private object $runtime,
-        private \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker,
-        private string $app,
-        private array $stack,
-        private int $instanceCount,
-        private string $slugId,
+        private readonly string $size,
+        private readonly array $access,
+        private readonly array $relationships,
+        private readonly array $additionalHosts,
+        private readonly array $mounts,
+        private readonly array $variables,
+        private readonly array $operations,
+        private readonly string $name,
+        private readonly string $type,
+        private readonly \Upsun\Model\ConfigurationForPreFlightChecks $preflight,
+        private readonly string $treeId,
+        private readonly string $appDir,
+        private readonly object $runtime,
+        private readonly \Upsun\Model\ConfigurationOfAWorkerContainerInstance $worker,
+        private readonly string $app,
+        private readonly string $slugId,
+        private readonly ?\Upsun\Model\Resources $resources = null,
+        private readonly ?int $disk = null,
+        private readonly ?string $timezone = null,
+        private readonly ?\Upsun\Model\Firewall $firewall = null,
+        private readonly ?string $containerProfile = null,
+        private readonly ?object $endpoints = null,
+        private readonly ?array $stack = [],
+        private readonly ?int $instanceCount = null,
     ) {
     }
 
@@ -97,29 +97,29 @@ final class WorkersValue implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'resources' => '\Upsun\Model\Resources',
+            'resources' => '?\Upsun\Model\Resources',
             'size' => 'string',
-            'disk' => 'int',
-            'access' => 'array&lt;string,string&gt;',
-            'relationships' => 'array&lt;string,\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue&gt;',
-            'additional_hosts' => 'array&lt;string,string&gt;',
-            'mounts' => 'array&lt;string,\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue&gt;',
-            'timezone' => 'string',
-            'variables' => 'array&lt;string,array&lt;string,mixed&gt;&gt;',
-            'firewall' => '\Upsun\Model\Firewall',
-            'container_profile' => 'string',
-            'operations' => 'array&lt;string,\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue&gt;',
+            'disk' => '?int',
+            'access' => 'array',
+            'relationships' => 'array',
+            'additional_hosts' => 'array',
+            'mounts' => 'array',
+            'timezone' => '?string',
+            'variables' => 'array',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'container_profile' => '?string',
+            'operations' => 'array',
             'name' => 'string',
             'type' => 'string',
             'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
             'tree_id' => 'string',
             'app_dir' => 'string',
-            'endpoints' => 'object',
+            'endpoints' => '?object',
             'runtime' => 'object',
             'worker' => '\Upsun\Model\ConfigurationOfAWorkerContainerInstance',
             'app' => 'string',
-            'stack' => 'object[]',
-            'instance_count' => 'int',
+            'stack' => '?array',
+            'instance_count' => '?int',
             'slug_id' => 'string',
         ];
     }
@@ -160,9 +160,9 @@ final class WorkersValue implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Resources
+     * @return \Upsun\Model\Resources|null
      */
-    public function getResources(): \Upsun\Model\Resources
+    public function getResources(): ?\Upsun\Model\Resources
     {
         return $this->resources;
     }
@@ -174,9 +174,9 @@ final class WorkersValue implements JsonSerializable
         return $this->size;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDisk(): int
+    public function getDisk(): ?int
     {
         return $this->disk;
     }
@@ -209,9 +209,9 @@ final class WorkersValue implements JsonSerializable
         return $this->mounts;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTimezone(): string
+    public function getTimezone(): ?string
     {
         return $this->timezone;
     }
@@ -223,16 +223,16 @@ final class WorkersValue implements JsonSerializable
         return $this->variables;
     }
     /**
-     * @return \Upsun\Model\Firewall
+     * @return \Upsun\Model\Firewall|null
      */
-    public function getFirewall(): \Upsun\Model\Firewall
+    public function getFirewall(): ?\Upsun\Model\Firewall
     {
         return $this->firewall;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getContainerProfile(): string
+    public function getContainerProfile(): ?string
     {
         return $this->containerProfile;
     }
@@ -279,9 +279,9 @@ final class WorkersValue implements JsonSerializable
         return $this->appDir;
     }
     /**
-     * @return object
+     * @return object|null
      */
-    public function getEndpoints(): object
+    public function getEndpoints(): ?object
     {
         return $this->endpoints;
     }
@@ -307,16 +307,16 @@ final class WorkersValue implements JsonSerializable
         return $this->app;
     }
     /**
-     * @return object[]
+     * @return object[]|null
      */
-    public function getStack(): array
+    public function getStack(): ?array
     {
         return $this->stack;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getInstanceCount(): int
+    public function getInstanceCount(): ?int
     {
         return $this->instanceCount;
     }

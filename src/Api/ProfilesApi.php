@@ -176,7 +176,6 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get profile
      *
@@ -304,7 +303,6 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update address
      *
@@ -443,7 +441,6 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Update profile
      *
@@ -582,5 +579,4 @@ final class ProfilesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

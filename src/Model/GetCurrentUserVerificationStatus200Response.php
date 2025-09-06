@@ -23,7 +23,7 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     ];
 
     public function __construct(
-        private ?bool $verifyPhone = null,
+       private readonly ?bool $verifyPhone = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class GetCurrentUserVerificationStatus200Response implements JsonSerializa
     public static function openAPITypes()
     {
         return [
-            'verify_phone' => 'bool',
+            'verify_phone' => '?bool',
         ];
     }
 

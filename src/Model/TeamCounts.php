@@ -24,8 +24,8 @@ final class TeamCounts implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $memberCount = null,
-        private ?int $projectCount = null,
+       private readonly ?int $memberCount = null,
+       private readonly ?int $projectCount = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class TeamCounts implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'member_count' => 'int',
-            'project_count' => 'int',
+            'member_count' => '?int',
+            'project_count' => '?int',
         ];
     }
 

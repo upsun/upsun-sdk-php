@@ -23,7 +23,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
     ];
 
     public function __construct(
-        private ?int $percentage = null,
+       private readonly ?int $percentage = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
     public static function openAPITypes()
     {
         return [
-            'percentage' => 'int',
+            'percentage' => '?int',
         ];
     }
 

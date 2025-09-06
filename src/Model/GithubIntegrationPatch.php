@@ -24,12 +24,12 @@ final class GithubIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
+        'token' => 'token',
+        'repository' => 'repository',
         'fetchBranches' => 'fetch_branches',
         'pruneBranches' => 'prune_branches',
         'environmentInitResources' => 'environment_init_resources',
-        'token' => 'token',
         'baseUrl' => 'base_url',
-        'repository' => 'repository',
         'buildPullRequests' => 'build_pull_requests',
         'buildDraftPullRequests' => 'build_draft_pull_requests',
         'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
@@ -37,17 +37,17 @@ final class GithubIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private ?bool $fetchBranches = null,
-        private ?bool $pruneBranches = null,
-        private ?string $environmentInitResources = null,
-        private string $token,
-        private ?string $baseUrl = null,
-        private string $repository,
-        private ?bool $buildPullRequests = null,
-        private ?bool $buildDraftPullRequests = null,
-        private ?bool $buildPullRequestsPostMerge = null,
-        private ?bool $pullRequestsCloneParentData = null,
+        private readonly string $type,
+        private readonly string $token,
+        private readonly string $repository,
+        private readonly ?string $baseUrl = null,
+       private readonly ?bool $fetchBranches = null,
+       private readonly ?bool $pruneBranches = null,
+       private readonly ?string $environmentInitResources = null,
+       private readonly ?bool $buildPullRequests = null,
+       private readonly ?bool $buildDraftPullRequests = null,
+       private readonly ?bool $buildPullRequestsPostMerge = null,
+       private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 
@@ -65,16 +65,16 @@ final class GithubIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
             'token' => 'string',
-            'base_url' => 'string',
             'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'build_draft_pull_requests' => 'bool',
-            'build_pull_requests_post_merge' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'base_url' => '?string',
+            'build_pull_requests' => '?bool',
+            'build_draft_pull_requests' => '?bool',
+            'build_pull_requests_post_merge' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
         ];
     }
 
@@ -82,12 +82,12 @@ final class GithubIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
+            'token' => $this->token,
+            'repository' => $this->repository,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
-            'token' => $this->token,
             'baseUrl' => $this->baseUrl,
-            'repository' => $this->repository,
             'buildPullRequests' => $this->buildPullRequests,
             'buildDraftPullRequests' => $this->buildDraftPullRequests,
             'buildPullRequestsPostMerge' => $this->buildPullRequestsPostMerge,
@@ -106,6 +106,20 @@ final class GithubIntegrationPatch implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+    /**
+     * @return string
+     */
+    public function getRepository(): string
+    {
+        return $this->repository;
     }
     /**
      * @return bool|null
@@ -129,25 +143,11 @@ final class GithubIntegrationPatch implements JsonSerializable
         return $this->environmentInitResources;
     }
     /**
-     * @return string
-     */
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    /**
      * @return string|null
      */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
-    }
-    /**
-     * @return string
-     */
-    public function getRepository(): string
-    {
-        return $this->repository;
     }
     /**
      * @return bool|null

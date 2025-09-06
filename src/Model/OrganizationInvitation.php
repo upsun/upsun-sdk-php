@@ -40,15 +40,15 @@ final class OrganizationInvitation implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $state = null,
-        private ?string $organizationId = null,
-        private ?string $email = null,
-        private ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\DateTime $finishedAt = null,
-        private ?array $permissions = [],
+        private readonly ?\DateTime $finishedAt = null,
+       private readonly ?string $id = null,
+       private readonly ?string $state = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $email = null,
+       private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?array $permissions = [],
     ) {
     }
 
@@ -65,15 +65,15 @@ final class OrganizationInvitation implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'state' => 'string',
-            'organization_id' => 'string',
-            'email' => 'string',
-            'owner' => '\Upsun\Model\OrganizationInvitationOwner',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'finished_at' => '\DateTime',
-            'permissions' => 'string[]',
+            'id' => '?string',
+            'state' => '?string',
+            'organization_id' => '?string',
+            'email' => '?string',
+            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'finished_at' => '?\DateTime',
+            'permissions' => '?array',
         ];
     }
 

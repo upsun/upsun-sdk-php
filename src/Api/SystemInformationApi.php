@@ -176,7 +176,6 @@ final class SystemInformationApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get information about the Git server.
      *
@@ -304,5 +303,4 @@ final class SystemInformationApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

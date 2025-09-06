@@ -25,9 +25,9 @@ final class HalLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\HalLinksSelf $self = null,
-        private ?\Upsun\Model\HalLinksPrevious $previous = null,
-        private ?\Upsun\Model\HalLinksNext $next = null,
+       private readonly ?\Upsun\Model\HalLinksSelf $self = null,
+       private readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
+       private readonly ?\Upsun\Model\HalLinksNext $next = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class HalLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\HalLinksSelf',
-            'previous' => '\Upsun\Model\HalLinksPrevious',
-            'next' => '\Upsun\Model\HalLinksNext',
+            'self' => '?\Upsun\Model\HalLinksSelf',
+            'previous' => '?\Upsun\Model\HalLinksPrevious',
+            'next' => '?\Upsun\Model\HalLinksNext',
         ];
     }
 

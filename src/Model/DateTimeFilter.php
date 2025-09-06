@@ -29,13 +29,13 @@ final class DateTimeFilter implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $eq = null,
-        private ?string $ne = null,
-        private ?string $between = null,
-        private ?string $gt = null,
-        private ?string $gte = null,
-        private ?string $lt = null,
-        private ?string $lte = null,
+       private readonly ?string $eq = null,
+       private readonly ?string $ne = null,
+       private readonly ?string $between = null,
+       private readonly ?string $gt = null,
+       private readonly ?string $gte = null,
+       private readonly ?string $lt = null,
+       private readonly ?string $lte = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class DateTimeFilter implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'eq' => 'string',
-            'ne' => 'string',
-            'between' => 'string',
-            'gt' => 'string',
-            'gte' => 'string',
-            'lt' => 'string',
-            'lte' => 'string',
+            'eq' => '?string',
+            'ne' => '?string',
+            'between' => '?string',
+            'gt' => '?string',
+            'gte' => '?string',
+            'lt' => '?string',
+            'lte' => '?string',
         ];
     }
 

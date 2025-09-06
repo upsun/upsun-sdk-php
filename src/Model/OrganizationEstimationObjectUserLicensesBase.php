@@ -25,9 +25,9 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?string $total = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
+       private readonly ?int $count = null,
+       private readonly ?string $total = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'total' => 'string',
-            'list' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList',
+            'count' => '?int',
+            'total' => '?string',
+            'list' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList',
         ];
     }
 

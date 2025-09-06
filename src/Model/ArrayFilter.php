@@ -26,10 +26,10 @@ final class ArrayFilter implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $eq = null,
-        private ?string $ne = null,
-        private ?string $in = null,
-        private ?string $nin = null,
+       private readonly ?string $eq = null,
+       private readonly ?string $ne = null,
+       private readonly ?string $in = null,
+       private readonly ?string $nin = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class ArrayFilter implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'eq' => 'string',
-            'ne' => 'string',
-            'in' => 'string',
-            'nin' => 'string',
+            'eq' => '?string',
+            'ne' => '?string',
+            'in' => '?string',
+            'nin' => '?string',
         ];
     }
 

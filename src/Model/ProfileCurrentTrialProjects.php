@@ -25,9 +25,9 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $name = null,
-        private ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
+       private readonly ?string $id = null,
+       private readonly ?string $name = null,
+       private readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'name' => 'string',
-            'total' => '\Upsun\Model\ProfileCurrentTrialProjectsTotal',
+            'id' => '?string',
+            'name' => '?string',
+            'total' => '?\Upsun\Model\ProfileCurrentTrialProjectsTotal',
         ];
     }
 

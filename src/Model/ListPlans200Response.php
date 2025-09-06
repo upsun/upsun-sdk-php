@@ -25,9 +25,9 @@ final class ListPlans200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?array $plans = [],
-        private ?\Upsun\Model\HalLinks $links = null,
+       private readonly ?int $count = null,
+        private readonly ?array $plans = [],
+       private readonly ?\Upsun\Model\HalLinks $links = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ListPlans200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'plans' => '\Upsun\Model\Plan[]',
-            '_links' => '\Upsun\Model\HalLinks',
+            'count' => '?int',
+            'plans' => '?array',
+            '_links' => '?\Upsun\Model\HalLinks',
         ];
     }
 

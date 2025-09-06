@@ -24,8 +24,8 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     ];
 
     public function __construct(
-        private ?bool $state = null,
-        private ?string $type = null,
+       private readonly ?bool $state = null,
+       private readonly ?string $type = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     public static function openAPITypes()
     {
         return [
-            'state' => 'bool',
-            'type' => 'string',
+            'state' => '?bool',
+            'type' => '?string',
         ];
     }
 

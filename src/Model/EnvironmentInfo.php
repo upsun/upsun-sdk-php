@@ -31,15 +31,15 @@ final class EnvironmentInfo implements JsonSerializable
     ];
 
     public function __construct(
-        private string $name,
-        private string $status,
-        private bool $isMain,
-        private bool $isProduction,
-        private object $constraints,
-        private string $reference,
-        private string $machineName,
-        private string $environmentType,
-        private object $links,
+        private readonly string $name,
+        private readonly string $status,
+        private readonly bool $isMain,
+        private readonly bool $isProduction,
+        private readonly object $constraints,
+        private readonly string $reference,
+        private readonly string $machineName,
+        private readonly string $environmentType,
+        private readonly object $links,
     ) {
     }
 

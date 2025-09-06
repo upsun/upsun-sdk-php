@@ -24,8 +24,8 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     ];
 
     public function __construct(
-        private string $serverUuid,
-        private string $serverToken,
+        private readonly string $serverUuid,
+        private readonly string $serverToken,
     ) {
     }
 

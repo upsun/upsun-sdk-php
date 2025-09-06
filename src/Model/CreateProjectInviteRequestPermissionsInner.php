@@ -30,8 +30,8 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     ];
 
     public function __construct(
-        private ?string $type = null,
-        private ?string $role = null,
+       private readonly ?string $type = null,
+       private readonly ?string $role = null,
     ) {
     }
 
@@ -48,8 +48,8 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     public static function openAPITypes()
     {
         return [
-            'type' => 'string',
-            'role' => 'string',
+            'type' => '?string',
+            'role' => '?string',
         ];
     }
 

@@ -39,16 +39,16 @@ final class SyslogIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $extra = [],
-        private ?string $host = null,
-        private ?int $port = null,
-        private ?string $protocol = null,
-        private ?int $facility = null,
-        private ?string $messageFormat = null,
-        private ?string $authToken = null,
-        private ?string $authMode = null,
-        private ?bool $tlsVerify = null,
+        private readonly string $type,
+        private readonly ?array $extra = [],
+       private readonly ?string $host = null,
+       private readonly ?int $port = null,
+       private readonly ?string $protocol = null,
+       private readonly ?int $facility = null,
+       private readonly ?string $messageFormat = null,
+       private readonly ?string $authToken = null,
+       private readonly ?string $authMode = null,
+       private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -66,15 +66,15 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
-            'host' => 'string',
-            'port' => 'int',
-            'protocol' => 'string',
-            'facility' => 'int',
-            'message_format' => 'string',
-            'auth_token' => 'string',
-            'auth_mode' => 'string',
-            'tls_verify' => 'bool',
+            'extra' => '?array',
+            'host' => '?string',
+            'port' => '?int',
+            'protocol' => '?string',
+            'facility' => '?int',
+            'message_format' => '?string',
+            'auth_token' => '?string',
+            'auth_mode' => '?string',
+            'tls_verify' => '?bool',
         ];
     }
 

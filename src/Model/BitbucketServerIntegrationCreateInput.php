@@ -24,30 +24,30 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
         'url' => 'url',
         'username' => 'username',
         'token' => 'token',
         'project' => 'project',
         'repository' => 'repository',
+        'fetchBranches' => 'fetch_branches',
+        'pruneBranches' => 'prune_branches',
+        'environmentInitResources' => 'environment_init_resources',
         'buildPullRequests' => 'build_pull_requests',
         'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
     ];
 
     public function __construct(
-        private string $type,
-        private ?bool $fetchBranches = null,
-        private ?bool $pruneBranches = null,
-        private ?string $environmentInitResources = null,
-        private string $url,
-        private string $username,
-        private string $token,
-        private string $project,
-        private string $repository,
-        private ?bool $buildPullRequests = null,
-        private ?bool $pullRequestsCloneParentData = null,
+        private readonly string $type,
+        private readonly string $url,
+        private readonly string $username,
+        private readonly string $token,
+        private readonly string $project,
+        private readonly string $repository,
+       private readonly ?bool $fetchBranches = null,
+       private readonly ?bool $pruneBranches = null,
+       private readonly ?string $environmentInitResources = null,
+       private readonly ?bool $buildPullRequests = null,
+       private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 
@@ -65,16 +65,16 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
             'url' => 'string',
             'username' => 'string',
             'token' => 'string',
             'project' => 'string',
             'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
         ];
     }
 
@@ -82,14 +82,14 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'fetchBranches' => $this->fetchBranches,
-            'pruneBranches' => $this->pruneBranches,
-            'environmentInitResources' => $this->environmentInitResources,
             'url' => $this->url,
             'username' => $this->username,
             'token' => $this->token,
             'project' => $this->project,
             'repository' => $this->repository,
+            'fetchBranches' => $this->fetchBranches,
+            'pruneBranches' => $this->pruneBranches,
+            'environmentInitResources' => $this->environmentInitResources,
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
         ];
@@ -106,27 +106,6 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
-    }
-    /**
-     * @return bool|null
-     */
-    public function getFetchBranches(): ?bool
-    {
-        return $this->fetchBranches;
-    }
-    /**
-     * @return bool|null
-     */
-    public function getPruneBranches(): ?bool
-    {
-        return $this->pruneBranches;
-    }
-    /**
-     * @return string|null
-     */
-    public function getEnvironmentInitResources(): ?string
-    {
-        return $this->environmentInitResources;
     }
     /**
      * @return string
@@ -162,6 +141,27 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
     public function getRepository(): string
     {
         return $this->repository;
+    }
+    /**
+     * @return bool|null
+     */
+    public function getFetchBranches(): ?bool
+    {
+        return $this->fetchBranches;
+    }
+    /**
+     * @return bool|null
+     */
+    public function getPruneBranches(): ?bool
+    {
+        return $this->pruneBranches;
+    }
+    /**
+     * @return string|null
+     */
+    public function getEnvironmentInitResources(): ?string
+    {
+        return $this->environmentInitResources;
     }
     /**
      * @return bool|null

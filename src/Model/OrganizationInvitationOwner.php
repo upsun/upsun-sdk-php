@@ -24,8 +24,8 @@ final class OrganizationInvitationOwner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $displayName = null,
+       private readonly ?string $id = null,
+       private readonly ?string $displayName = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationInvitationOwner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'display_name' => 'string',
+            'id' => '?string',
+            'display_name' => '?string',
         ];
     }
 

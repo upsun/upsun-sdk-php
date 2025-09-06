@@ -40,17 +40,17 @@ final class Discount implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $id = null,
-        private ?string $organizationId = null,
-        private ?string $type = null,
-        private ?string $typeLabel = null,
-        private ?string $status = null,
-        private ?\Upsun\Model\DiscountCommitment $commitment = null,
-        private ?int $totalMonths = null,
-        private ?\Upsun\Model\DiscountDiscount $discount = null,
-        private ?object $config = null,
-        private ?\DateTime $startAt = null,
-        private ?\DateTime $endAt = null,
+        private readonly ?\Upsun\Model\DiscountCommitment $commitment = null,
+        private readonly ?int $totalMonths = null,
+        private readonly ?\DateTime $endAt = null,
+       private readonly ?int $id = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $type = null,
+       private readonly ?string $typeLabel = null,
+       private readonly ?string $status = null,
+       private readonly ?\Upsun\Model\DiscountDiscount $discount = null,
+       private readonly ?object $config = null,
+       private readonly ?\DateTime $startAt = null,
     ) {
     }
 
@@ -67,17 +67,17 @@ final class Discount implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'int',
-            'organization_id' => 'string',
-            'type' => 'string',
-            'type_label' => 'string',
-            'status' => 'string',
-            'commitment' => '\Upsun\Model\DiscountCommitment',
-            'total_months' => 'int',
-            'discount' => '\Upsun\Model\DiscountDiscount',
-            'config' => 'object',
-            'start_at' => '\DateTime',
-            'end_at' => '\DateTime',
+            'id' => '?int',
+            'organization_id' => '?string',
+            'type' => '?string',
+            'type_label' => '?string',
+            'status' => '?string',
+            'commitment' => '?\Upsun\Model\DiscountCommitment',
+            'total_months' => '?int',
+            'discount' => '?\Upsun\Model\DiscountDiscount',
+            'config' => '?object',
+            'start_at' => '?\DateTime',
+            'end_at' => '?\DateTime',
         ];
     }
 

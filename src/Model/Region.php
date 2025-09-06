@@ -34,18 +34,18 @@ final class Region implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $label = null,
-        private ?string $zone = null,
-        private ?string $selectionLabel = null,
-        private ?string $projectLabel = null,
-        private ?string $timezone = null,
-        private ?bool $available = null,
-        private ?bool $private = null,
-        private ?string $endpoint = null,
-        private ?\Upsun\Model\RegionProvider $provider = null,
-        private ?\Upsun\Model\RegionDatacenter $datacenter = null,
-        private ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
+       private readonly ?string $id = null,
+       private readonly ?string $label = null,
+       private readonly ?string $zone = null,
+       private readonly ?string $selectionLabel = null,
+       private readonly ?string $projectLabel = null,
+       private readonly ?string $timezone = null,
+       private readonly ?bool $available = null,
+       private readonly ?bool $private = null,
+       private readonly ?string $endpoint = null,
+       private readonly ?\Upsun\Model\RegionProvider $provider = null,
+       private readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
+       private readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
     ) {
     }
 
@@ -62,18 +62,18 @@ final class Region implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'label' => 'string',
-            'zone' => 'string',
-            'selection_label' => 'string',
-            'project_label' => 'string',
-            'timezone' => 'string',
-            'available' => 'bool',
-            'private' => 'bool',
-            'endpoint' => 'string',
-            'provider' => '\Upsun\Model\RegionProvider',
-            'datacenter' => '\Upsun\Model\RegionDatacenter',
-            'environmental_impact' => '\Upsun\Model\RegionEnvironmentalImpact',
+            'id' => '?string',
+            'label' => '?string',
+            'zone' => '?string',
+            'selection_label' => '?string',
+            'project_label' => '?string',
+            'timezone' => '?string',
+            'available' => '?bool',
+            'private' => '?bool',
+            'endpoint' => '?string',
+            'provider' => '?\Upsun\Model\RegionProvider',
+            'datacenter' => '?\Upsun\Model\RegionDatacenter',
+            'environmental_impact' => '?\Upsun\Model\RegionEnvironmentalImpact',
         ];
     }
 

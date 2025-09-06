@@ -23,7 +23,7 @@ final class Metrics implements JsonSerializable
     ];
 
     public function __construct(
-        private string $maxRange,
+        private readonly string $maxRange,
     ) {
     }
 

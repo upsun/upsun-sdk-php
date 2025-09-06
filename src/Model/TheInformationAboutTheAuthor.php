@@ -25,9 +25,9 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $date,
-        private string $name,
-        private string $email,
+        private readonly \DateTime $date,
+        private readonly string $name,
+        private readonly string $email,
     ) {
     }
 

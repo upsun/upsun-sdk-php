@@ -20,6 +20,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
 
     private static array $attributeMap = [
         'locations' => 'locations',
+        'moveToRoot' => 'move_to_root',
         'commands' => 'commands',
         'upstream' => 'upstream',
         'documentRoot' => 'document_root',
@@ -27,21 +28,20 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         'indexFiles' => 'index_files',
         'whitelist' => 'whitelist',
         'blacklist' => 'blacklist',
-        'expires' => 'expires',
-        'moveToRoot' => 'move_to_root'
+        'expires' => 'expires'
     ];
 
     public function __construct(
-        private array $locations,
-        private ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-        private ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
-        private ?string $documentRoot = null,
-        private ?string $passthru = null,
-        private ?array $indexFiles = [],
-        private ?array $whitelist = [],
-        private ?array $blacklist = [],
-        private ?string $expires = null,
-        private bool $moveToRoot,
+        private readonly array $locations,
+        private readonly bool $moveToRoot,
+        private readonly ?string $documentRoot = null,
+        private readonly ?string $passthru = null,
+        private readonly ?array $indexFiles = [],
+        private readonly ?array $whitelist = [],
+        private readonly ?array $blacklist = [],
+        private readonly ?string $expires = null,
+       private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
+       private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
     ) {
     }
 
@@ -58,16 +58,16 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public static function openAPITypes()
     {
         return [
-            'locations' => 'array&lt;string,\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue&gt;',
-            'commands' => '\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
-            'upstream' => '\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
-            'document_root' => 'string',
-            'passthru' => 'string',
-            'index_files' => 'string[]',
-            'whitelist' => 'string[]',
-            'blacklist' => 'string[]',
-            'expires' => 'string',
+            'locations' => 'array',
             'move_to_root' => 'bool',
+            'commands' => '?\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
+            'upstream' => '?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
+            'document_root' => '?string',
+            'passthru' => '?string',
+            'index_files' => '?array',
+            'whitelist' => '?array',
+            'blacklist' => '?array',
+            'expires' => '?string',
         ];
     }
 
@@ -75,6 +75,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return [
             'locations' => $this->locations,
+            'moveToRoot' => $this->moveToRoot,
             'commands' => $this->commands,
             'upstream' => $this->upstream,
             'documentRoot' => $this->documentRoot,
@@ -83,7 +84,6 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
             'whitelist' => $this->whitelist,
             'blacklist' => $this->blacklist,
             'expires' => $this->expires,
-            'moveToRoot' => $this->moveToRoot,
         ];
     }
 
@@ -98,6 +98,13 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public function getLocations(): array
     {
         return $this->locations;
+    }
+    /**
+     * @return bool
+     */
+    public function getMoveToRoot(): bool
+    {
+        return $this->moveToRoot;
     }
     /**
      * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
@@ -154,13 +161,6 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public function getExpires(): ?string
     {
         return $this->expires;
-    }
-    /**
-     * @return bool
-     */
-    public function getMoveToRoot(): bool
-    {
-        return $this->moveToRoot;
     }
 }
 

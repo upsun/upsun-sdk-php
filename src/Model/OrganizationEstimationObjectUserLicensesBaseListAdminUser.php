@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?string $total = null,
+       private readonly ?int $count = null,
+       private readonly ?string $total = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'total' => 'string',
+            'count' => '?int',
+            'total' => '?string',
         ];
     }
 

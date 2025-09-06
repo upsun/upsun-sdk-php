@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
-**extra** | **array<string,string>** |  | [optional]
 **url** | **string** |  |
 **index** | **string** |  |
 **token** | **string** |  |
+**extra** | **array<string,string>** |  | [optional]
 **sourcetype** | **string** |  | [optional]
 **tlsVerify** | **bool** |  | [optional]
 

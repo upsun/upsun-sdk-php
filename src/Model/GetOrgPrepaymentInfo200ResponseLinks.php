@@ -24,8 +24,8 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
-        private ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions = null,
+       private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+       private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf',
-            'transactions' => '\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions',
+            'self' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf',
+            'transactions' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions',
         ];
     }
 

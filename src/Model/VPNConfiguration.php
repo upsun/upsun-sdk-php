@@ -42,20 +42,20 @@ final class VPNConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        private int $version,
-        private string $aggressive,
-        private string $modeconfig,
-        private string $authentication,
-        private string $gatewayIp,
-        private string $identity,
-        private string $secondIdentity,
-        private string $remoteIdentity,
-        private array $remoteSubnets,
-        private string $ike,
-        private string $esp,
-        private string $ikelifetime,
-        private string $lifetime,
-        private string $margintime,
+        private readonly int $version,
+        private readonly string $aggressive,
+        private readonly string $modeconfig,
+        private readonly string $authentication,
+        private readonly string $gatewayIp,
+        private readonly array $remoteSubnets,
+        private readonly string $ike,
+        private readonly string $esp,
+        private readonly string $ikelifetime,
+        private readonly string $lifetime,
+        private readonly string $margintime,
+        private readonly ?string $identity = null,
+        private readonly ?string $secondIdentity = null,
+        private readonly ?string $remoteIdentity = null,
     ) {
     }
 
@@ -77,10 +77,10 @@ final class VPNConfiguration implements JsonSerializable
             'modeconfig' => 'string',
             'authentication' => 'string',
             'gateway_ip' => 'string',
-            'identity' => 'string',
-            'second_identity' => 'string',
-            'remote_identity' => 'string',
-            'remote_subnets' => 'string[]',
+            'identity' => '?string',
+            'second_identity' => '?string',
+            'remote_identity' => '?string',
+            'remote_subnets' => 'array',
             'ike' => 'string',
             'esp' => 'string',
             'ikelifetime' => 'string',
@@ -150,23 +150,23 @@ final class VPNConfiguration implements JsonSerializable
         return $this->gatewayIp;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIdentity(): string
+    public function getIdentity(): ?string
     {
         return $this->identity;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSecondIdentity(): string
+    public function getSecondIdentity(): ?string
     {
         return $this->secondIdentity;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRemoteIdentity(): string
+    public function getRemoteIdentity(): ?string
     {
         return $this->remoteIdentity;
     }

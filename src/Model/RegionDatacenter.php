@@ -25,9 +25,9 @@ final class RegionDatacenter implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $name = null,
-        private ?string $label = null,
-        private ?string $location = null,
+       private readonly ?string $name = null,
+       private readonly ?string $label = null,
+       private readonly ?string $location = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class RegionDatacenter implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'name' => 'string',
-            'label' => 'string',
-            'location' => 'string',
+            'name' => '?string',
+            'label' => '?string',
+            'location' => '?string',
         ];
     }
 

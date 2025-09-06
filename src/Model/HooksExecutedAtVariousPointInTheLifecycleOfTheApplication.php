@@ -25,9 +25,9 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     ];
 
     public function __construct(
-        private string $build,
-        private string $deploy,
-        private string $postDeploy,
+        private readonly ?string $build = null,
+        private readonly ?string $deploy = null,
+        private readonly ?string $postDeploy = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     public static function openAPITypes()
     {
         return [
-            'build' => 'string',
-            'deploy' => 'string',
-            'post_deploy' => 'string',
+            'build' => '?string',
+            'deploy' => '?string',
+            'post_deploy' => '?string',
         ];
     }
 
@@ -65,23 +65,23 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBuild(): string
+    public function getBuild(): ?string
     {
         return $this->build;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeploy(): string
+    public function getDeploy(): ?string
     {
         return $this->deploy;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPostDeploy(): string
+    public function getPostDeploy(): ?string
     {
         return $this->postDeploy;
     }

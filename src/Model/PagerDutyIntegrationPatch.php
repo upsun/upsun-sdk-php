@@ -24,8 +24,8 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $routingKey,
+        private readonly string $type,
+        private readonly string $routingKey,
     ) {
     }
 

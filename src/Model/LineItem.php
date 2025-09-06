@@ -37,15 +37,15 @@ final class LineItem implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $type = null,
-        private ?float $licenseId = null,
-        private ?string $projectId = null,
-        private ?string $product = null,
-        private ?string $sku = null,
-        private ?float $total = null,
-        private ?string $totalFormatted = null,
-        private ?array $components = [],
-        private ?bool $excludeFromInvoice = null,
+        private readonly ?float $licenseId = null,
+        private readonly ?string $projectId = null,
+       private readonly ?string $type = null,
+       private readonly ?string $product = null,
+       private readonly ?string $sku = null,
+       private readonly ?float $total = null,
+       private readonly ?string $totalFormatted = null,
+        private readonly ?array $components = [],
+       private readonly ?bool $excludeFromInvoice = null,
     ) {
     }
 
@@ -62,15 +62,15 @@ final class LineItem implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'type' => 'string',
-            'license_id' => 'float',
-            'project_id' => 'string',
-            'product' => 'string',
-            'sku' => 'string',
-            'total' => 'float',
-            'total_formatted' => 'string',
-            'components' => 'array&lt;string,\Upsun\Model\LineItemComponent&gt;',
-            'exclude_from_invoice' => 'bool',
+            'type' => '?string',
+            'license_id' => '?float',
+            'project_id' => '?string',
+            'product' => '?string',
+            'sku' => '?string',
+            'total' => '?float',
+            'total_formatted' => '?string',
+            'components' => '?array',
+            'exclude_from_invoice' => '?bool',
         ];
     }
 

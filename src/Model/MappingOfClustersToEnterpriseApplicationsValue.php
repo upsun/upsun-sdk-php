@@ -24,8 +24,8 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     ];
 
     public function __construct(
-        private string $activeDocroot,
-        private array $docrootVersions,
+        private readonly ?string $activeDocroot = null,
+        private readonly ?array $docrootVersions = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     public static function openAPITypes()
     {
         return [
-            'active_docroot' => 'string',
-            'docroot_versions' => 'string[]',
+            'active_docroot' => '?string',
+            'docroot_versions' => '?array',
         ];
     }
 
@@ -61,16 +61,16 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getActiveDocroot(): string
+    public function getActiveDocroot(): ?string
     {
         return $this->activeDocroot;
     }
     /**
-     * @return string[]
+     * @return string[]|null
      */
-    public function getDocrootVersions(): array
+    public function getDocrootVersions(): ?array
     {
         return $this->docrootVersions;
     }

@@ -40,22 +40,22 @@ final class User implements JsonSerializable
     ];
 
     public function __construct(
-        private string $id,
-        private bool $deactivated,
-        private string $namespace,
-        private string $username,
-        private string $email,
-        private bool $emailVerified,
-        private string $firstName,
-        private string $lastName,
-        private string $picture,
-        private string $company,
-        private string $website,
-        private string $country,
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private ?\DateTime $consentedAt = null,
-        private ?string $consentMethod = null,
+        private readonly string $id,
+        private readonly bool $deactivated,
+        private readonly string $namespace,
+        private readonly string $username,
+        private readonly string $email,
+        private readonly bool $emailVerified,
+        private readonly string $firstName,
+        private readonly string $lastName,
+        private readonly string $picture,
+        private readonly string $company,
+        private readonly string $website,
+        private readonly string $country,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+       private readonly ?\DateTime $consentedAt = null,
+       private readonly ?string $consentMethod = null,
     ) {
     }
 
@@ -86,8 +86,8 @@ final class User implements JsonSerializable
             'country' => 'string',
             'created_at' => '\DateTime',
             'updated_at' => '\DateTime',
-            'consented_at' => '\DateTime',
-            'consent_method' => 'string',
+            'consented_at' => '?\DateTime',
+            'consent_method' => '?string',
         ];
     }
 

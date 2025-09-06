@@ -199,7 +199,6 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a commit object
      *
@@ -350,7 +349,6 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a ref object
      *
@@ -501,7 +499,6 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a tree object
      *
@@ -652,7 +649,6 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of repository refs
      *
@@ -782,5 +778,4 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

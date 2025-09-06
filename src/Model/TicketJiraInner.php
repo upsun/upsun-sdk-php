@@ -28,12 +28,12 @@ final class TicketJiraInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $id = null,
-        private ?int $ticketId = null,
-        private ?int $issueId = null,
-        private ?string $issueKey = null,
-        private ?float $createdAt = null,
-        private ?float $updatedAt = null,
+       private readonly ?int $id = null,
+       private readonly ?int $ticketId = null,
+       private readonly ?int $issueId = null,
+       private readonly ?string $issueKey = null,
+       private readonly ?float $createdAt = null,
+       private readonly ?float $updatedAt = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class TicketJiraInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'int',
-            'ticket_id' => 'int',
-            'issue_id' => 'int',
-            'issue_key' => 'string',
-            'created_at' => 'float',
-            'updated_at' => 'float',
+            'id' => '?int',
+            'ticket_id' => '?int',
+            'issue_id' => '?int',
+            'issue_key' => '?string',
+            'created_at' => '?float',
+            'updated_at' => '?float',
         ];
     }
 

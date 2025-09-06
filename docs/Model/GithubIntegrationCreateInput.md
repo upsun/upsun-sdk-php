@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
+**token** | **string** |  |
+**repository** | **string** |  |
 **fetchBranches** | **bool** |  | [optional]
 **pruneBranches** | **bool** |  | [optional]
 **environmentInitResources** | **string** |  | [optional]
-**token** | **string** |  |
 **baseUrl** | **string** |  | [optional]
-**repository** | **string** |  |
 **buildPullRequests** | **bool** |  | [optional]
 **buildDraftPullRequests** | **bool** |  | [optional]
 **buildPullRequestsPostMerge** | **bool** |  | [optional]

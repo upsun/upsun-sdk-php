@@ -37,17 +37,17 @@ final class GitLabIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private bool $fetchBranches,
-        private bool $pruneBranches,
-        private string $environmentInitResources,
-        private string $baseUrl,
-        private string $project,
-        private bool $buildMergeRequests,
-        private bool $buildWipMergeRequests,
-        private bool $mergeRequestsCloneParentData,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
+        private readonly string $baseUrl,
+        private readonly string $project,
+        private readonly bool $buildMergeRequests,
+        private readonly bool $buildWipMergeRequests,
+        private readonly bool $mergeRequestsCloneParentData,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -64,8 +64,8 @@ final class GitLabIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
             'fetch_branches' => 'bool',
             'prune_branches' => 'bool',
@@ -101,16 +101,16 @@ final class GitLabIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

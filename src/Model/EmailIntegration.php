@@ -27,11 +27,11 @@ final class EmailIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private string $fromAddress,
-        private array $recipients,
+        private readonly string $type,
+        private readonly array $recipients,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $fromAddress = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class EmailIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'from_address' => 'string',
-            'recipients' => 'string[]',
+            'from_address' => '?string',
+            'recipients' => 'array',
         ];
     }
 
@@ -73,16 +73,16 @@ final class EmailIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -94,9 +94,9 @@ final class EmailIntegration implements JsonSerializable
         return $this->type;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFromAddress(): string
+    public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }

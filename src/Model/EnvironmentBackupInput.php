@@ -23,7 +23,7 @@ final class EnvironmentBackupInput implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $safe,
+        private readonly bool $safe,
     ) {
     }
 

@@ -26,10 +26,10 @@ final class CurrencyAmountNullable implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $formatted = null,
-        private ?float $amount = null,
-        private ?string $currencyCode = null,
-        private ?string $currencySymbol = null,
+       private readonly ?string $formatted = null,
+       private readonly ?float $amount = null,
+       private readonly ?string $currencyCode = null,
+       private readonly ?string $currencySymbol = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class CurrencyAmountNullable implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'formatted' => 'string',
-            'amount' => 'float',
-            'currency_code' => 'string',
-            'currency_symbol' => 'string',
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
         ];
     }
 

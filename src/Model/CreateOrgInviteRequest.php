@@ -31,9 +31,9 @@ final class CreateOrgInviteRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $email,
-        private array $permissions,
-        private ?bool $force = null,
+        private readonly string $email,
+        private readonly array $permissions,
+       private readonly ?bool $force = null,
     ) {
     }
 
@@ -51,8 +51,8 @@ final class CreateOrgInviteRequest implements JsonSerializable
     {
         return [
             'email' => 'string',
-            'permissions' => 'string[]',
-            'force' => 'bool',
+            'permissions' => 'array',
+            'force' => '?bool',
         ];
     }
 

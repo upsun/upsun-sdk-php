@@ -26,10 +26,10 @@ final class CacheConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $enabled,
-        private int $defaultTtl,
-        private array $cookies,
-        private array $headers,
+        private readonly bool $enabled,
+        private readonly int $defaultTtl,
+        private readonly array $cookies,
+        private readonly array $headers,
     ) {
     }
 
@@ -48,8 +48,8 @@ final class CacheConfiguration implements JsonSerializable
         return [
             'enabled' => 'bool',
             'default_ttl' => 'int',
-            'cookies' => 'string[]',
-            'headers' => 'string[]',
+            'cookies' => 'array',
+            'headers' => 'array',
         ];
     }
 

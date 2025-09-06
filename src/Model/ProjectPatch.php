@@ -29,13 +29,13 @@ final class ProjectPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $attributes = [],
-        private ?string $title = null,
-        private ?string $description = null,
-        private ?string $defaultBranch = null,
-        private ?string $timezone = null,
-        private ?string $region = null,
-        private ?string $defaultDomain = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?string $defaultDomain = null,
+        private readonly ?array $attributes = [],
+       private readonly ?string $title = null,
+       private readonly ?string $description = null,
+       private readonly ?string $timezone = null,
+       private readonly ?string $region = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class ProjectPatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'attributes' => 'array&lt;string,string&gt;',
-            'title' => 'string',
-            'description' => 'string',
-            'default_branch' => 'string',
-            'timezone' => 'string',
-            'region' => 'string',
-            'default_domain' => 'string',
+            'attributes' => '?array',
+            'title' => '?string',
+            'description' => '?string',
+            'default_branch' => '?string',
+            'timezone' => '?string',
+            'region' => '?string',
+            'default_domain' => '?string',
         ];
     }
 

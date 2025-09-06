@@ -24,8 +24,8 @@ final class CreateUsageAlertRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+       private readonly ?string $id = null,
+       private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CreateUsageAlertRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'config' => '\Upsun\Model\CreateUsageAlertRequestConfig',
+            'id' => '?string',
+            'config' => '?\Upsun\Model\CreateUsageAlertRequestConfig',
         ];
     }
 

@@ -24,8 +24,8 @@ final class HealthEmailNotificationIntegrationConfigurations implements JsonSeri
     ];
 
     public function __construct(
-        private ?bool $enabled = null,
-        private ?string $role = null,
+       private readonly ?bool $enabled = null,
+       private readonly ?string $role = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class HealthEmailNotificationIntegrationConfigurations implements JsonSeri
     public static function openAPITypes()
     {
         return [
-            'enabled' => 'bool',
-            'role' => 'string',
+            'enabled' => '?bool',
+            'role' => '?string',
         ];
     }
 

@@ -176,7 +176,6 @@ final class DiscountsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get the value of the First Project Incentive discount
      *
@@ -286,7 +285,6 @@ final class DiscountsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List organization discounts
      *
@@ -414,5 +412,4 @@ final class DiscountsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

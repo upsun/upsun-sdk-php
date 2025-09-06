@@ -34,18 +34,18 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $projectTitle = null,
-        private ?string $plan = null,
-        private ?string $timezone = null,
-        private ?int $environments = null,
-        private ?int $storage = null,
-        private ?string $bigDev = null,
-        private ?string $bigDevService = null,
-        private ?string $backups = null,
-        private ?string $observabilitySuite = null,
-        private ?string $blackfire = null,
-        private ?string $continuousProfiling = null,
-        private ?string $projectSupportLevel = null,
+       private readonly ?string $projectTitle = null,
+       private readonly ?string $plan = null,
+       private readonly ?string $timezone = null,
+       private readonly ?int $environments = null,
+       private readonly ?int $storage = null,
+       private readonly ?string $bigDev = null,
+       private readonly ?string $bigDevService = null,
+       private readonly ?string $backups = null,
+       private readonly ?string $observabilitySuite = null,
+       private readonly ?string $blackfire = null,
+       private readonly ?string $continuousProfiling = null,
+       private readonly ?string $projectSupportLevel = null,
     ) {
     }
 
@@ -62,18 +62,18 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'project_title' => 'string',
-            'plan' => 'string',
-            'timezone' => 'string',
-            'environments' => 'int',
-            'storage' => 'int',
-            'big_dev' => 'string',
-            'big_dev_service' => 'string',
-            'backups' => 'string',
-            'observability_suite' => 'string',
-            'blackfire' => 'string',
-            'continuous_profiling' => 'string',
-            'project_support_level' => 'string',
+            'project_title' => '?string',
+            'plan' => '?string',
+            'timezone' => '?string',
+            'environments' => '?int',
+            'storage' => '?int',
+            'big_dev' => '?string',
+            'big_dev_service' => '?string',
+            'backups' => '?string',
+            'observability_suite' => '?string',
+            'blackfire' => '?string',
+            'continuous_profiling' => '?string',
+            'project_support_level' => '?string',
         ];
     }
 

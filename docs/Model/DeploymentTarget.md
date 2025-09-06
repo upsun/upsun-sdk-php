@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **docroots** | [**array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>**](MappingOfClustersToEnterpriseApplicationsValue.md) |  |
 **siteUrls** | **object** |  |
 **sshHosts** | **string[]** |  |
-**enterpriseEnvironmentsMapping** | **object** |  | [optional]
 **useDedicatedGrid** | **bool** |  |
 **storageType** | **string** |  |
+**enterpriseEnvironmentsMapping** | **object** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

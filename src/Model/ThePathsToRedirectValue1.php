@@ -23,8 +23,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     public const CODE_NUMBER_308 = 308;
 
     private static array $attributeMap = [
-        'regexp' => 'regexp',
         'to' => 'to',
+        'regexp' => 'regexp',
         'prefix' => 'prefix',
         'appendSuffix' => 'append_suffix',
         'code' => 'code',
@@ -32,12 +32,12 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     ];
 
     public function __construct(
-        private ?bool $regexp = null,
-        private string $to,
-        private ?bool $prefix = null,
-        private ?bool $appendSuffix = null,
-        private ?int $code = null,
-        private ?string $expires = null,
+        private readonly string $to,
+        private readonly ?bool $prefix = null,
+        private readonly ?bool $appendSuffix = null,
+        private readonly ?string $expires = null,
+       private readonly ?bool $regexp = null,
+       private readonly ?int $code = null,
     ) {
     }
 
@@ -54,20 +54,20 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'regexp' => 'bool',
             'to' => 'string',
-            'prefix' => 'bool',
-            'append_suffix' => 'bool',
-            'code' => 'int',
-            'expires' => 'string',
+            'regexp' => '?bool',
+            'prefix' => '?bool',
+            'append_suffix' => '?bool',
+            'code' => '?int',
+            'expires' => '?string',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'regexp' => $this->regexp,
             'to' => $this->to,
+            'regexp' => $this->regexp,
             'prefix' => $this->prefix,
             'appendSuffix' => $this->appendSuffix,
             'code' => $this->code,
@@ -81,18 +81,18 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     }
 
     /**
-     * @return bool|null
-     */
-    public function getRegexp(): ?bool
-    {
-        return $this->regexp;
-    }
-    /**
      * @return string
      */
     public function getTo(): string
     {
         return $this->to;
+    }
+    /**
+     * @return bool|null
+     */
+    public function getRegexp(): ?bool
+    {
+        return $this->regexp;
     }
     /**
      * @return bool|null

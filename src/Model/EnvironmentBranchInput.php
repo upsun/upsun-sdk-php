@@ -29,11 +29,11 @@ final class EnvironmentBranchInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $title,
-        private string $name,
-        private bool $cloneParent,
-        private string $type,
-        private \Upsun\Model\Resources2 $resources,
+        private readonly string $title,
+        private readonly string $name,
+        private readonly bool $cloneParent,
+        private readonly string $type,
+        private readonly ?\Upsun\Model\Resources2 $resources = null,
     ) {
     }
 
@@ -54,7 +54,7 @@ final class EnvironmentBranchInput implements JsonSerializable
             'name' => 'string',
             'clone_parent' => 'bool',
             'type' => 'string',
-            'resources' => '\Upsun\Model\Resources2',
+            'resources' => '?\Upsun\Model\Resources2',
         ];
     }
 
@@ -103,9 +103,9 @@ final class EnvironmentBranchInput implements JsonSerializable
         return $this->type;
     }
     /**
-     * @return \Upsun\Model\Resources2
+     * @return \Upsun\Model\Resources2|null
      */
-    public function getResources(): \Upsun\Model\Resources2
+    public function getResources(): ?\Upsun\Model\Resources2
     {
         return $this->resources;
     }

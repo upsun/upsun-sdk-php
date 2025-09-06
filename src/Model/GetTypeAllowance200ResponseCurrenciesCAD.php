@@ -26,10 +26,10 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $formatted = null,
-        private ?float $amount = null,
-        private ?string $currency = null,
-        private ?string $currencySymbol = null,
+       private readonly ?string $formatted = null,
+       private readonly ?float $amount = null,
+       private readonly ?string $currency = null,
+       private readonly ?string $currencySymbol = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'formatted' => 'string',
-            'amount' => 'float',
-            'currency' => 'string',
-            'currency_symbol' => 'string',
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
         ];
     }
 

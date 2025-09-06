@@ -27,11 +27,11 @@ final class BlackfireIntegration implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private array $environmentsCredentials,
-        private bool $continuousProfiling,
+        private readonly string $type,
+        private readonly array $environmentsCredentials,
+        private readonly bool $continuousProfiling,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -48,10 +48,10 @@ final class BlackfireIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
-            'environments_credentials' => 'array&lt;string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue&gt;',
+            'environments_credentials' => 'array',
             'continuous_profiling' => 'bool',
         ];
     }
@@ -73,16 +73,16 @@ final class BlackfireIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

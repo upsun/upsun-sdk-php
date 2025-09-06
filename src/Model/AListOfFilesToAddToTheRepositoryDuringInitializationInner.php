@@ -25,9 +25,9 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     ];
 
     public function __construct(
-        private string $path,
-        private int $mode,
-        private string $contents,
+        private readonly string $path,
+        private readonly int $mode,
+        private readonly string $contents,
     ) {
     }
 

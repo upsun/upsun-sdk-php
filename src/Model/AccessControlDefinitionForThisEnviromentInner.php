@@ -27,8 +27,8 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     ];
 
     public function __construct(
-        private string $entityId,
-        private string $role,
+        private readonly string $entityId,
+        private readonly string $role,
     ) {
     }
 

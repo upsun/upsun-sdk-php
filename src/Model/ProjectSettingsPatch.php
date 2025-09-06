@@ -25,9 +25,9 @@ final class ProjectSettingsPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private ?object $initialize = null,
-        private ?array $dataRetention = [],
-        private ?\Upsun\Model\BuildResources2 $buildResources = null,
+        private readonly ?array $dataRetention = [],
+       private readonly ?object $initialize = null,
+       private readonly ?\Upsun\Model\BuildResources2 $buildResources = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ProjectSettingsPatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'initialize' => 'object',
-            'data_retention' => 'array&lt;string,\Upsun\Model\DataRetentionConfigurationValue1&gt;',
-            'build_resources' => '\Upsun\Model\BuildResources2',
+            'initialize' => '?object',
+            'data_retention' => '?array',
+            'build_resources' => '?\Upsun\Model\BuildResources2',
         ];
     }
 

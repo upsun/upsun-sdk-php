@@ -24,8 +24,8 @@ final class UpdateTeamRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $label = null,
-        private ?array $projectPermissions = [],
+       private readonly ?string $label = null,
+        private readonly ?array $projectPermissions = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class UpdateTeamRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'label' => 'string',
-            'project_permissions' => 'string[]',
+            'label' => '?string',
+            'project_permissions' => '?array',
         ];
     }
 

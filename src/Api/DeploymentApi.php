@@ -222,7 +222,6 @@ final class DeploymentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment&#39;s deployment information
      *
@@ -375,5 +374,4 @@ final class DeploymentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

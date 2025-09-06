@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**regexp** | **bool** |  | [optional]
 **to** | **string** |  |
+**regexp** | **bool** |  | [optional]
 **prefix** | **bool** |  | [optional]
 **appendSuffix** | **bool** |  | [optional]
 **code** | **int** |  | [optional]

@@ -39,8 +39,6 @@ final class Integration implements JsonSerializable
         'fetchBranches' => 'fetch_branches',
         'pruneBranches' => 'prune_branches',
         'environmentInitResources' => 'environment_init_resources',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials',
         'repository' => 'repository',
         'buildPullRequests' => 'build_pull_requests',
         'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
@@ -79,57 +77,59 @@ final class Integration implements JsonSerializable
         'protocol' => 'protocol',
         'facility' => 'facility',
         'messageFormat' => 'message_format',
-        'sharedKey' => 'shared_key'
+        'sharedKey' => 'shared_key',
+        'appCredentials' => 'app_credentials',
+        'addonCredentials' => 'addon_credentials'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private bool $fetchBranches,
-        private bool $pruneBranches,
-        private string $environmentInitResources,
-        private ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
-        private ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
-        private string $repository,
-        private bool $buildPullRequests,
-        private bool $pullRequestsCloneParentData,
-        private bool $resyncPullRequests,
-        private string $url,
-        private string $username,
-        private string $project,
-        private array $environmentsCredentials,
-        private bool $continuousProfiling,
-        private array $events,
-        private array $environments,
-        private array $excludedEnvironments,
-        private array $states,
-        private string $result,
-        private string $serviceId,
-        private string $baseUrl,
-        private bool $buildDraftPullRequests,
-        private bool $buildPullRequestsPostMerge,
-        private string $tokenType,
-        private bool $buildMergeRequests,
-        private bool $buildWipMergeRequests,
-        private bool $mergeRequestsCloneParentData,
-        private string $fromAddress,
-        private array $recipients,
-        private string $routingKey,
-        private string $channel,
-        private array $extra,
-        private array $headers,
-        private bool $tlsVerify,
-        private string $script,
-        private string $index,
-        private string $sourcetype,
-        private string $category,
-        private string $host,
-        private int $port,
-        private string $protocol,
-        private int $facility,
-        private string $messageFormat,
-        private string $sharedKey,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
+        private readonly string $repository,
+        private readonly bool $buildPullRequests,
+        private readonly bool $pullRequestsCloneParentData,
+        private readonly bool $resyncPullRequests,
+        private readonly string $url,
+        private readonly string $username,
+        private readonly string $project,
+        private readonly array $environmentsCredentials,
+        private readonly bool $continuousProfiling,
+        private readonly array $events,
+        private readonly array $environments,
+        private readonly array $excludedEnvironments,
+        private readonly array $states,
+        private readonly string $result,
+        private readonly string $serviceId,
+        private readonly string $baseUrl,
+        private readonly bool $buildDraftPullRequests,
+        private readonly bool $buildPullRequestsPostMerge,
+        private readonly string $tokenType,
+        private readonly bool $buildMergeRequests,
+        private readonly bool $buildWipMergeRequests,
+        private readonly bool $mergeRequestsCloneParentData,
+        private readonly array $recipients,
+        private readonly string $routingKey,
+        private readonly string $channel,
+        private readonly array $extra,
+        private readonly array $headers,
+        private readonly bool $tlsVerify,
+        private readonly string $script,
+        private readonly string $index,
+        private readonly string $sourcetype,
+        private readonly string $category,
+        private readonly string $host,
+        private readonly int $port,
+        private readonly string $protocol,
+        private readonly int $facility,
+        private readonly string $messageFormat,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $fromAddress = null,
+        private readonly ?string $sharedKey = null,
+        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
+        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
     ) {
     }
 
@@ -146,14 +146,12 @@ final class Integration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
             'fetch_branches' => 'bool',
             'prune_branches' => 'bool',
             'environment_init_resources' => 'string',
-            'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional',
-            'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional',
             'repository' => 'string',
             'build_pull_requests' => 'bool',
             'pull_requests_clone_parent_data' => 'bool',
@@ -161,12 +159,12 @@ final class Integration implements JsonSerializable
             'url' => 'string',
             'username' => 'string',
             'project' => 'string',
-            'environments_credentials' => 'array&lt;string,\Upsun\Model\BlackfireEnvironmentsCredentialsValue&gt;',
+            'environments_credentials' => 'array',
             'continuous_profiling' => 'bool',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
+            'events' => 'array',
+            'environments' => 'array',
+            'excluded_environments' => 'array',
+            'states' => 'array',
             'result' => 'string',
             'service_id' => 'string',
             'base_url' => 'string',
@@ -176,12 +174,12 @@ final class Integration implements JsonSerializable
             'build_merge_requests' => 'bool',
             'build_wip_merge_requests' => 'bool',
             'merge_requests_clone_parent_data' => 'bool',
-            'from_address' => 'string',
-            'recipients' => 'string[]',
+            'from_address' => '?string',
+            'recipients' => 'array',
             'routing_key' => 'string',
             'channel' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
-            'headers' => 'array&lt;string,string&gt;',
+            'extra' => 'array',
+            'headers' => 'array',
             'tls_verify' => 'bool',
             'script' => 'string',
             'index' => 'string',
@@ -192,7 +190,9 @@ final class Integration implements JsonSerializable
             'protocol' => 'string',
             'facility' => 'int',
             'message_format' => 'string',
-            'shared_key' => 'string',
+            'shared_key' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
         ];
     }
 
@@ -205,8 +205,6 @@ final class Integration implements JsonSerializable
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
-            'appCredentials' => $this->appCredentials,
-            'addonCredentials' => $this->addonCredentials,
             'repository' => $this->repository,
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
@@ -246,6 +244,8 @@ final class Integration implements JsonSerializable
             'facility' => $this->facility,
             'messageFormat' => $this->messageFormat,
             'sharedKey' => $this->sharedKey,
+            'appCredentials' => $this->appCredentials,
+            'addonCredentials' => $this->addonCredentials,
         ];
     }
 
@@ -255,16 +255,16 @@ final class Integration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -295,20 +295,6 @@ final class Integration implements JsonSerializable
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
-    }
-    /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
-    {
-        return $this->appCredentials;
-    }
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
-    {
-        return $this->addonCredentials;
     }
     /**
      * @return string
@@ -465,9 +451,9 @@ final class Integration implements JsonSerializable
         return $this->mergeRequestsCloneParentData;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFromAddress(): string
+    public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
@@ -577,11 +563,25 @@ final class Integration implements JsonSerializable
         return $this->messageFormat;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSharedKey(): string
+    public function getSharedKey(): ?string
     {
         return $this->sharedKey;
+    }
+    /**
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
+     */
+    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
+    {
+        return $this->appCredentials;
+    }
+    /**
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
+     */
+    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
+    {
+        return $this->addonCredentials;
     }
 }
 

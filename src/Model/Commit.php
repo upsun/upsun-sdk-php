@@ -28,12 +28,12 @@ final class Commit implements JsonSerializable
     ];
 
     public function __construct(
-        private string $sha,
-        private \Upsun\Model\TheInformationAboutTheAuthor $author,
-        private \Upsun\Model\TheInformationAboutTheCommitter $committer,
-        private string $message,
-        private string $tree,
-        private array $parents,
+        private readonly string $sha,
+        private readonly \Upsun\Model\TheInformationAboutTheAuthor $author,
+        private readonly \Upsun\Model\TheInformationAboutTheCommitter $committer,
+        private readonly string $message,
+        private readonly string $tree,
+        private readonly array $parents,
     ) {
     }
 
@@ -55,7 +55,7 @@ final class Commit implements JsonSerializable
             'committer' => '\Upsun\Model\TheInformationAboutTheCommitter',
             'message' => 'string',
             'tree' => 'string',
-            'parents' => 'string[]',
+            'parents' => 'array',
         ];
     }
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**plan** | **string** | The project plan. | [optional]
 **projectRegion** | **string** | The machine name of the region where the project is located. Cannot be changed after project creation. |
+**plan** | **string** | The project plan. | [optional]
 **projectTitle** | **string** | The name given to the project. Appears as the title in the UI. | [optional]
 **optionsUrl** | **string** | The URL of the project options file. | [optional]
 **defaultBranch** | **string** | The default Git branch name for the project. | [optional]

@@ -23,7 +23,7 @@ final class CreateProfilePicture200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $url = null,
+       private readonly ?string $url = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class CreateProfilePicture200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'url' => 'string',
+            'url' => '?string',
         ];
     }
 

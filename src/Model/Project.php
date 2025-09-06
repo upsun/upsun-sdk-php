@@ -32,26 +32,26 @@ final class Project implements JsonSerializable
         'timezone' => 'timezone',
         'region' => 'region',
         'repository' => 'repository',
-        'defaultDomain' => 'default_domain',
-        'subscription' => 'subscription'
+        'subscription' => 'subscription',
+        'defaultDomain' => 'default_domain'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private array $attributes,
-        private string $title,
-        private string $description,
-        private string $owner,
-        private string $namespace,
-        private string $organization,
-        private string $defaultBranch,
-        private \Upsun\Model\Status $status,
-        private string $timezone,
-        private string $region,
-        private \Upsun\Model\RepositoryInformation $repository,
-        private ?string $defaultDomain = null,
-        private \Upsun\Model\SubscriptionInformation $subscription,
+        private readonly array $attributes,
+        private readonly string $title,
+        private readonly string $description,
+        private readonly string $owner,
+        private readonly \Upsun\Model\Status $status,
+        private readonly string $timezone,
+        private readonly string $region,
+        private readonly \Upsun\Model\RepositoryInformation $repository,
+        private readonly \Upsun\Model\SubscriptionInformation $subscription,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $namespace = null,
+        private readonly ?string $organization = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?string $defaultDomain = null,
     ) {
     }
 
@@ -68,21 +68,21 @@ final class Project implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'attributes' => 'array&lt;string,string&gt;',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'attributes' => 'array',
             'title' => 'string',
             'description' => 'string',
             'owner' => 'string',
-            'namespace' => 'string',
-            'organization' => 'string',
-            'default_branch' => 'string',
+            'namespace' => '?string',
+            'organization' => '?string',
+            'default_branch' => '?string',
             'status' => '\Upsun\Model\Status',
             'timezone' => 'string',
             'region' => 'string',
             'repository' => '\Upsun\Model\RepositoryInformation',
-            'default_domain' => 'string',
             'subscription' => '\Upsun\Model\SubscriptionInformation',
+            'default_domain' => '?string',
         ];
     }
 
@@ -102,8 +102,8 @@ final class Project implements JsonSerializable
             'timezone' => $this->timezone,
             'region' => $this->region,
             'repository' => $this->repository,
-            'defaultDomain' => $this->defaultDomain,
             'subscription' => $this->subscription,
+            'defaultDomain' => $this->defaultDomain,
         ];
     }
 
@@ -113,16 +113,16 @@ final class Project implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -155,23 +155,23 @@ final class Project implements JsonSerializable
         return $this->owner;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getNamespace(): string
+    public function getNamespace(): ?string
     {
         return $this->namespace;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOrganization(): string
+    public function getOrganization(): ?string
     {
         return $this->organization;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDefaultBranch(): string
+    public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
@@ -204,18 +204,18 @@ final class Project implements JsonSerializable
         return $this->repository;
     }
     /**
-     * @return string|null
-     */
-    public function getDefaultDomain(): ?string
-    {
-        return $this->defaultDomain;
-    }
-    /**
      * @return \Upsun\Model\SubscriptionInformation
      */
     public function getSubscription(): \Upsun\Model\SubscriptionInformation
     {
         return $this->subscription;
+    }
+    /**
+     * @return string|null
+     */
+    public function getDefaultDomain(): ?string
+    {
+        return $this->defaultDomain;
     }
 }
 

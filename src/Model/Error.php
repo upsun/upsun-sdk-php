@@ -27,11 +27,11 @@ final class Error implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $status = null,
-        private ?string $message = null,
-        private ?float $code = null,
-        private ?object $detail = null,
-        private ?string $title = null,
+       private readonly ?string $status = null,
+       private readonly ?string $message = null,
+       private readonly ?float $code = null,
+       private readonly ?object $detail = null,
+       private readonly ?string $title = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class Error implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'status' => 'string',
-            'message' => 'string',
-            'code' => 'float',
-            'detail' => 'object',
-            'title' => 'string',
+            'status' => '?string',
+            'message' => '?string',
+            'code' => '?float',
+            'detail' => '?object',
+            'title' => '?string',
         ];
     }
 

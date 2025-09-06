@@ -32,12 +32,12 @@ final class ThePathsToRedirectValue implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $regexp,
-        private string $to,
-        private bool $prefix,
-        private bool $appendSuffix,
-        private int $code,
-        private string $expires,
+        private readonly bool $regexp,
+        private readonly string $to,
+        private readonly int $code,
+        private readonly ?bool $prefix = null,
+        private readonly ?bool $appendSuffix = null,
+        private readonly ?string $expires = null,
     ) {
     }
 
@@ -56,10 +56,10 @@ final class ThePathsToRedirectValue implements JsonSerializable
         return [
             'regexp' => 'bool',
             'to' => 'string',
-            'prefix' => 'bool',
-            'append_suffix' => 'bool',
+            'prefix' => '?bool',
+            'append_suffix' => '?bool',
             'code' => 'int',
-            'expires' => 'string',
+            'expires' => '?string',
         ];
     }
 
@@ -95,16 +95,16 @@ final class ThePathsToRedirectValue implements JsonSerializable
         return $this->to;
     }
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getPrefix(): bool
+    public function getPrefix(): ?bool
     {
         return $this->prefix;
     }
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getAppendSuffix(): bool
+    public function getAppendSuffix(): ?bool
     {
         return $this->appendSuffix;
     }
@@ -116,9 +116,9 @@ final class ThePathsToRedirectValue implements JsonSerializable
         return $this->code;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getExpires(): string
+    public function getExpires(): ?string
     {
         return $this->expires;
     }

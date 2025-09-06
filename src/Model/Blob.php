@@ -28,10 +28,10 @@ final class Blob implements JsonSerializable
     ];
 
     public function __construct(
-        private string $sha,
-        private int $size,
-        private string $encoding,
-        private string $content,
+        private readonly string $sha,
+        private readonly int $size,
+        private readonly string $encoding,
+        private readonly string $content,
     ) {
     }
 

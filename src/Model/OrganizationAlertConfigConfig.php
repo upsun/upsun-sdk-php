@@ -24,8 +24,8 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
-        private ?string $mode = null,
+       private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
+       private readonly ?string $mode = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'threshold' => '\Upsun\Model\OrganizationAlertConfigConfigThreshold',
-            'mode' => 'string',
+            'threshold' => '?\Upsun\Model\OrganizationAlertConfigConfigThreshold',
+            'mode' => '?string',
         ];
     }
 

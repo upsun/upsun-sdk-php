@@ -29,13 +29,13 @@ final class PrepaymentTransactionObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $orderId = null,
-        private ?string $message = null,
-        private ?string $status = null,
-        private ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
-        private ?string $created = null,
-        private ?string $updated = null,
-        private ?string $expireDate = null,
+        private readonly ?string $updated = null,
+        private readonly ?string $expireDate = null,
+       private readonly ?string $orderId = null,
+       private readonly ?string $message = null,
+       private readonly ?string $status = null,
+       private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+       private readonly ?string $created = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class PrepaymentTransactionObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'order_id' => 'string',
-            'message' => 'string',
-            'status' => 'string',
-            'amount' => '\Upsun\Model\PrepaymentObjectPrepaymentBalance',
-            'created' => 'string',
-            'updated' => 'string',
-            'expire_date' => 'string',
+            'order_id' => '?string',
+            'message' => '?string',
+            'status' => '?string',
+            'amount' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
+            'created' => '?string',
+            'updated' => '?string',
+            'expire_date' => '?string',
         ];
     }
 

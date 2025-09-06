@@ -24,8 +24,8 @@ final class ListUserOrgs200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $items = [],
-        private ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?array $items = [],
+       private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class ListUserOrgs200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'items' => '\Upsun\Model\Organization[]',
-            '_links' => '\Upsun\Model\ListLinks',
+            'items' => '?array',
+            '_links' => '?\Upsun\Model\ListLinks',
         ];
     }
 

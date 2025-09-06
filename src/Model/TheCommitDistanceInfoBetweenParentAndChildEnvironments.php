@@ -25,9 +25,9 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     ];
 
     public function __construct(
-        private int $commitsAhead,
-        private int $commitsBehind,
-        private string $parentRef,
+        private readonly ?int $commitsAhead = null,
+        private readonly ?int $commitsBehind = null,
+        private readonly ?string $parentRef = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     public static function openAPITypes()
     {
         return [
-            'commits_ahead' => 'int',
-            'commits_behind' => 'int',
-            'parent_ref' => 'string',
+            'commits_ahead' => '?int',
+            'commits_behind' => '?int',
+            'parent_ref' => '?string',
         ];
     }
 
@@ -65,23 +65,23 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCommitsAhead(): int
+    public function getCommitsAhead(): ?int
     {
         return $this->commitsAhead;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getCommitsBehind(): int
+    public function getCommitsBehind(): ?int
     {
         return $this->commitsBehind;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getParentRef(): string
+    public function getParentRef(): ?string
     {
         return $this->parentRef;
     }

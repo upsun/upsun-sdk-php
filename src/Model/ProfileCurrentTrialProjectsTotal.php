@@ -26,10 +26,10 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $amount = null,
-        private ?string $currencyCode = null,
-        private ?string $currencySymbol = null,
-        private ?string $formatted = null,
+       private readonly ?int $amount = null,
+       private readonly ?string $currencyCode = null,
+       private readonly ?string $currencySymbol = null,
+       private readonly ?string $formatted = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'amount' => 'int',
-            'currency_code' => 'string',
-            'currency_symbol' => 'string',
-            'formatted' => 'string',
+            'amount' => '?int',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
+            'formatted' => '?string',
         ];
     }
 

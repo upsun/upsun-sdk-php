@@ -24,8 +24,8 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $threshold = null,
-        private ?string $mode = null,
+       private readonly ?int $threshold = null,
+       private readonly ?string $mode = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'threshold' => 'int',
-            'mode' => 'string',
+            'threshold' => '?int',
+            'mode' => '?string',
         ];
     }
 

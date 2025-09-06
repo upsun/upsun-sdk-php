@@ -25,9 +25,9 @@ final class OrganizationAddonsObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
-        private ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
-        private ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+       private readonly ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
+       private readonly ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
+       private readonly ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class OrganizationAddonsObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'available' => '\Upsun\Model\OrganizationAddonsObjectAvailable',
-            'current' => '\Upsun\Model\OrganizationAddonsObjectCurrent',
-            'upgrades_available' => '\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable',
+            'available' => '?\Upsun\Model\OrganizationAddonsObjectAvailable',
+            'current' => '?\Upsun\Model\OrganizationAddonsObjectCurrent',
+            'upgrades_available' => '?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable',
         ];
     }
 

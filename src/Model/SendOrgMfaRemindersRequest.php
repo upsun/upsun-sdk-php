@@ -23,7 +23,7 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $userIds = [],
+        private readonly ?array $userIds = [],
     ) {
     }
 
@@ -40,7 +40,7 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'user_ids' => 'string[]',
+            'user_ids' => '?array',
         ];
     }
 

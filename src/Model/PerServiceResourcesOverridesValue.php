@@ -25,9 +25,9 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private float $cpu,
-        private int $memory,
-        private int $disk,
+        private readonly ?float $cpu = null,
+        private readonly ?int $memory = null,
+        private readonly ?int $disk = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'cpu' => 'float',
-            'memory' => 'int',
-            'disk' => 'int',
+            'cpu' => '?float',
+            'memory' => '?int',
+            'disk' => '?int',
         ];
     }
 
@@ -65,23 +65,23 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getCpu(): float
+    public function getCpu(): ?float
     {
         return $this->cpu;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMemory(): int
+    public function getMemory(): ?int
     {
         return $this->memory;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDisk(): int
+    public function getDisk(): ?int
     {
         return $this->disk;
     }

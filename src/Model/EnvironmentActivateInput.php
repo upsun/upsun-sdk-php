@@ -23,7 +23,7 @@ final class EnvironmentActivateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private \Upsun\Model\Resources1 $resources,
+        private readonly ?\Upsun\Model\Resources1 $resources = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class EnvironmentActivateInput implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'resources' => '\Upsun\Model\Resources1',
+            'resources' => '?\Upsun\Model\Resources1',
         ];
     }
 
@@ -57,9 +57,9 @@ final class EnvironmentActivateInput implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Resources1
+     * @return \Upsun\Model\Resources1|null
      */
-    public function getResources(): \Upsun\Model\Resources1
+    public function getResources(): ?\Upsun\Model\Resources1
     {
         return $this->resources;
     }

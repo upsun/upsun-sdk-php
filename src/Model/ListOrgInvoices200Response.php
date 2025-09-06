@@ -23,7 +23,7 @@ final class ListOrgInvoices200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $items = [],
+        private readonly ?array $items = [],
     ) {
     }
 
@@ -40,7 +40,7 @@ final class ListOrgInvoices200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'items' => '\Upsun\Model\Invoice[]',
+            'items' => '?array',
         ];
     }
 

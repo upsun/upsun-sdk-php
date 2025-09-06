@@ -26,10 +26,10 @@ final class VouchersVouchersInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $code = null,
-        private ?string $amount = null,
-        private ?string $currency = null,
-        private ?array $orders = [],
+       private readonly ?string $code = null,
+       private readonly ?string $amount = null,
+       private readonly ?string $currency = null,
+        private readonly ?array $orders = [],
     ) {
     }
 
@@ -46,10 +46,10 @@ final class VouchersVouchersInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'code' => 'string',
-            'amount' => 'string',
-            'currency' => 'string',
-            'orders' => '\Upsun\Model\VouchersVouchersInnerOrdersInner[]',
+            'code' => '?string',
+            'amount' => '?string',
+            'currency' => '?string',
+            'orders' => '?array',
         ];
     }
 

@@ -19,31 +19,31 @@ final class ProjectCapabilities implements JsonSerializable
 {
 
     private static array $attributeMap = [
-        'customDomains' => 'custom_domains',
-        'sourceOperations' => 'source_operations',
-        'runtimeOperations' => 'runtime_operations',
-        'outboundFirewall' => 'outbound_firewall',
         'metrics' => 'metrics',
         'logsForwarding' => 'logs_forwarding',
         'images' => 'images',
         'instanceLimit' => 'instance_limit',
         'buildResources' => 'build_resources',
         'dataRetention' => 'data_retention',
+        'customDomains' => 'custom_domains',
+        'sourceOperations' => 'source_operations',
+        'runtimeOperations' => 'runtime_operations',
+        'outboundFirewall' => 'outbound_firewall',
         'integrations' => 'integrations'
     ];
 
     public function __construct(
-        private ?\Upsun\Model\CustomDomains $customDomains = null,
-        private ?\Upsun\Model\SourceOperations $sourceOperations = null,
-        private ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
-        private ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
-        private \Upsun\Model\Metrics $metrics,
-        private \Upsun\Model\LogsForwarding $logsForwarding,
-        private array $images,
-        private int $instanceLimit,
-        private \Upsun\Model\BuildResources $buildResources,
-        private \Upsun\Model\DataRetention $dataRetention,
-        private ?\Upsun\Model\Integrations $integrations = null,
+        private readonly \Upsun\Model\Metrics $metrics,
+        private readonly \Upsun\Model\LogsForwarding $logsForwarding,
+        private readonly array $images,
+        private readonly int $instanceLimit,
+        private readonly \Upsun\Model\BuildResources $buildResources,
+        private readonly \Upsun\Model\DataRetention $dataRetention,
+       private readonly ?\Upsun\Model\CustomDomains $customDomains = null,
+       private readonly ?\Upsun\Model\SourceOperations $sourceOperations = null,
+       private readonly ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
+       private readonly ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
+       private readonly ?\Upsun\Model\Integrations $integrations = null,
     ) {
     }
 
@@ -60,33 +60,33 @@ final class ProjectCapabilities implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'custom_domains' => '\Upsun\Model\CustomDomains',
-            'source_operations' => '\Upsun\Model\SourceOperations',
-            'runtime_operations' => '\Upsun\Model\RuntimeOperations',
-            'outbound_firewall' => '\Upsun\Model\OutboundFirewall',
             'metrics' => '\Upsun\Model\Metrics',
             'logs_forwarding' => '\Upsun\Model\LogsForwarding',
-            'images' => 'array&lt;string,array&lt;string,\Upsun\Model\ImagesValueValue&gt;&gt;',
+            'images' => 'array',
             'instance_limit' => 'int',
             'build_resources' => '\Upsun\Model\BuildResources',
             'data_retention' => '\Upsun\Model\DataRetention',
-            'integrations' => '\Upsun\Model\Integrations',
+            'custom_domains' => '?\Upsun\Model\CustomDomains',
+            'source_operations' => '?\Upsun\Model\SourceOperations',
+            'runtime_operations' => '?\Upsun\Model\RuntimeOperations',
+            'outbound_firewall' => '?\Upsun\Model\OutboundFirewall',
+            'integrations' => '?\Upsun\Model\Integrations',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'customDomains' => $this->customDomains,
-            'sourceOperations' => $this->sourceOperations,
-            'runtimeOperations' => $this->runtimeOperations,
-            'outboundFirewall' => $this->outboundFirewall,
             'metrics' => $this->metrics,
             'logsForwarding' => $this->logsForwarding,
             'images' => $this->images,
             'instanceLimit' => $this->instanceLimit,
             'buildResources' => $this->buildResources,
             'dataRetention' => $this->dataRetention,
+            'customDomains' => $this->customDomains,
+            'sourceOperations' => $this->sourceOperations,
+            'runtimeOperations' => $this->runtimeOperations,
+            'outboundFirewall' => $this->outboundFirewall,
             'integrations' => $this->integrations,
         ];
     }
@@ -96,34 +96,6 @@ final class ProjectCapabilities implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\CustomDomains|null
-     */
-    public function getCustomDomains(): ?\Upsun\Model\CustomDomains
-    {
-        return $this->customDomains;
-    }
-    /**
-     * @return \Upsun\Model\SourceOperations|null
-     */
-    public function getSourceOperations(): ?\Upsun\Model\SourceOperations
-    {
-        return $this->sourceOperations;
-    }
-    /**
-     * @return \Upsun\Model\RuntimeOperations|null
-     */
-    public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
-    {
-        return $this->runtimeOperations;
-    }
-    /**
-     * @return \Upsun\Model\OutboundFirewall|null
-     */
-    public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
-    {
-        return $this->outboundFirewall;
-    }
     /**
      * @return \Upsun\Model\Metrics
      */
@@ -165,6 +137,34 @@ final class ProjectCapabilities implements JsonSerializable
     public function getDataRetention(): \Upsun\Model\DataRetention
     {
         return $this->dataRetention;
+    }
+    /**
+     * @return \Upsun\Model\CustomDomains|null
+     */
+    public function getCustomDomains(): ?\Upsun\Model\CustomDomains
+    {
+        return $this->customDomains;
+    }
+    /**
+     * @return \Upsun\Model\SourceOperations|null
+     */
+    public function getSourceOperations(): ?\Upsun\Model\SourceOperations
+    {
+        return $this->sourceOperations;
+    }
+    /**
+     * @return \Upsun\Model\RuntimeOperations|null
+     */
+    public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
+    {
+        return $this->runtimeOperations;
+    }
+    /**
+     * @return \Upsun\Model\OutboundFirewall|null
+     */
+    public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
+    {
+        return $this->outboundFirewall;
     }
     /**
      * @return \Upsun\Model\Integrations|null

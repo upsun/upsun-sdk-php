@@ -29,13 +29,13 @@ final class OrganizationReference implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $ownerId = null,
-        private ?string $name = null,
-        private ?string $label = null,
-        private ?string $vendor = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
+       private readonly ?string $id = null,
+       private readonly ?string $ownerId = null,
+       private readonly ?string $name = null,
+       private readonly ?string $label = null,
+       private readonly ?string $vendor = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class OrganizationReference implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'owner_id' => 'string',
-            'name' => 'string',
-            'label' => 'string',
-            'vendor' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'id' => '?string',
+            'owner_id' => '?string',
+            'name' => '?string',
+            'label' => '?string',
+            'vendor' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
         ];
     }
 

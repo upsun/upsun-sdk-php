@@ -20,18 +20,18 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'extra' => 'extra',
         'url' => 'url',
+        'extra' => 'extra',
         'category' => 'category',
         'tlsVerify' => 'tls_verify'
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $extra = [],
-        private string $url,
-        private ?string $category = null,
-        private ?bool $tlsVerify = null,
+        private readonly string $type,
+        private readonly string $url,
+        private readonly ?array $extra = [],
+       private readonly ?string $category = null,
+       private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -49,10 +49,10 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
             'url' => 'string',
-            'category' => 'string',
-            'tls_verify' => 'bool',
+            'extra' => '?array',
+            'category' => '?string',
+            'tls_verify' => '?bool',
         ];
     }
 
@@ -60,8 +60,8 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'extra' => $this->extra,
             'url' => $this->url,
+            'extra' => $this->extra,
             'category' => $this->category,
             'tlsVerify' => $this->tlsVerify,
         ];
@@ -80,18 +80,18 @@ final class SumologicIntegrationCreateInput implements JsonSerializable
         return $this->type;
     }
     /**
-     * @return array&lt;string,string&gt;|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    /**
      * @return string
      */
     public function getUrl(): string
     {
         return $this->url;
+    }
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
+    public function getExtra(): ?array
+    {
+        return $this->extra;
     }
     /**
      * @return string|null

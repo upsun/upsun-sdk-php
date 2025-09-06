@@ -29,13 +29,13 @@ final class OrganizationEstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $total = null,
-        private ?string $subTotal = null,
-        private ?string $vouchers = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
-        private ?string $userManagement = null,
-        private ?string $supportLevel = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+       private readonly ?string $total = null,
+       private readonly ?string $subTotal = null,
+       private readonly ?string $vouchers = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
+       private readonly ?string $userManagement = null,
+       private readonly ?string $supportLevel = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class OrganizationEstimationObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'total' => 'string',
-            'sub_total' => 'string',
-            'vouchers' => 'string',
-            'user_licenses' => '\Upsun\Model\OrganizationEstimationObjectUserLicenses',
-            'user_management' => 'string',
-            'support_level' => 'string',
-            'subscriptions' => '\Upsun\Model\OrganizationEstimationObjectSubscriptions',
+            'total' => '?string',
+            'sub_total' => '?string',
+            'vouchers' => '?string',
+            'user_licenses' => '?\Upsun\Model\OrganizationEstimationObjectUserLicenses',
+            'user_management' => '?string',
+            'support_level' => '?string',
+            'subscriptions' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptions',
         ];
     }
 

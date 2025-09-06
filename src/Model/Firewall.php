@@ -23,7 +23,7 @@ final class Firewall implements JsonSerializable
     ];
 
     public function __construct(
-        private array $outbound,
+        private readonly array $outbound,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class Firewall implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'outbound' => '\Upsun\Model\OutboundFirewallRestrictionsInner[]',
+            'outbound' => 'array',
         ];
     }
 

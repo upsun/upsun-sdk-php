@@ -24,8 +24,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     ];
 
     public function __construct(
-        private string $service,
-        private string $endpoint,
+        private readonly ?string $service = null,
+        private readonly ?string $endpoint = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     public static function openAPITypes()
     {
         return [
-            'service' => 'string',
-            'endpoint' => 'string',
+            'service' => '?string',
+            'endpoint' => '?string',
         ];
     }
 
@@ -61,16 +61,16 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getService(): string
+    public function getService(): ?string
     {
         return $this->service;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEndpoint(): string
+    public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }

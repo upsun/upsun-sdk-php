@@ -23,7 +23,7 @@ final class OrderLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrderLinksInvoices $invoices = null,
+       private readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class OrderLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'invoices' => '\Upsun\Model\OrderLinksInvoices',
+            'invoices' => '?\Upsun\Model\OrderLinksInvoices',
         ];
     }
 

@@ -39,15 +39,15 @@ final class OrganizationMember implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $organizationId = null,
-        private ?string $userId = null,
-        private ?array $permissions = [],
-        private ?string $level = null,
-        private ?bool $owner = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\Upsun\Model\OrganizationMemberLinks $links = null,
+       private readonly ?string $id = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $userId = null,
+        private readonly ?array $permissions = [],
+       private readonly ?string $level = null,
+       private readonly ?bool $owner = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+       private readonly ?\Upsun\Model\OrganizationMemberLinks $links = null,
     ) {
     }
 
@@ -64,15 +64,15 @@ final class OrganizationMember implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'organization_id' => 'string',
-            'user_id' => 'string',
-            'permissions' => 'string[]',
-            'level' => 'string',
-            'owner' => 'bool',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            '_links' => '\Upsun\Model\OrganizationMemberLinks',
+            'id' => '?string',
+            'organization_id' => '?string',
+            'user_id' => '?string',
+            'permissions' => '?array',
+            'level' => '?string',
+            'owner' => '?bool',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\OrganizationMemberLinks',
         ];
     }
 

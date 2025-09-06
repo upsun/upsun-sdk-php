@@ -27,11 +27,11 @@ final class EnvironmentRestoreInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $environmentName,
-        private string $branchFrom,
-        private bool $restoreCode,
-        private bool $restoreResources,
-        private \Upsun\Model\Resources5 $resources,
+        private readonly bool $restoreCode,
+        private readonly bool $restoreResources,
+        private readonly ?string $environmentName = null,
+        private readonly ?string $branchFrom = null,
+        private readonly ?\Upsun\Model\Resources5 $resources = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class EnvironmentRestoreInput implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'environment_name' => 'string',
-            'branch_from' => 'string',
+            'environment_name' => '?string',
+            'branch_from' => '?string',
             'restore_code' => 'bool',
             'restore_resources' => 'bool',
-            'resources' => '\Upsun\Model\Resources5',
+            'resources' => '?\Upsun\Model\Resources5',
         ];
     }
 
@@ -73,16 +73,16 @@ final class EnvironmentRestoreInput implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEnvironmentName(): string
+    public function getEnvironmentName(): ?string
     {
         return $this->environmentName;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBranchFrom(): string
+    public function getBranchFrom(): ?string
     {
         return $this->branchFrom;
     }
@@ -101,9 +101,9 @@ final class EnvironmentRestoreInput implements JsonSerializable
         return $this->restoreResources;
     }
     /**
-     * @return \Upsun\Model\Resources5
+     * @return \Upsun\Model\Resources5|null
      */
-    public function getResources(): \Upsun\Model\Resources5
+    public function getResources(): ?\Upsun\Model\Resources5
     {
         return $this->resources;
     }

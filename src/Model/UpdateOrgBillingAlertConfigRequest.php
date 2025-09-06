@@ -24,8 +24,8 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?bool $active = null,
-        private ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
+       private readonly ?bool $active = null,
+       private readonly ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'active' => 'bool',
-            'config' => '\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig',
+            'active' => '?bool',
+            'config' => '?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig',
         ];
     }
 

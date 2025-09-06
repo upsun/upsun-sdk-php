@@ -24,8 +24,8 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     ];
 
     public function __construct(
-        private bool $enabled,
-        private string $maxRequestSize,
+        private readonly bool $enabled,
+        private readonly ?string $maxRequestSize = null,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     {
         return [
             'enabled' => 'bool',
-            'max_request_size' => 'string',
+            'max_request_size' => '?string',
         ];
     }
 
@@ -68,9 +68,9 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
         return $this->enabled;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getMaxRequestSize(): string
+    public function getMaxRequestSize(): ?string
     {
         return $this->maxRequestSize;
     }

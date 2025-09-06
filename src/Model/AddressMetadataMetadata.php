@@ -25,9 +25,9 @@ final class AddressMetadataMetadata implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $requiredFields = [],
-        private ?object $fieldLabels = null,
-        private ?bool $showVat = null,
+        private readonly ?array $requiredFields = [],
+       private readonly ?object $fieldLabels = null,
+       private readonly ?bool $showVat = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class AddressMetadataMetadata implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'required_fields' => 'string[]',
-            'field_labels' => 'object',
-            'show_vat' => 'bool',
+            'required_fields' => '?array',
+            'field_labels' => '?object',
+            'show_vat' => '?bool',
         ];
     }
 

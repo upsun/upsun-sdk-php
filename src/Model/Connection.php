@@ -29,13 +29,13 @@ final class Connection implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $provider = null,
-        private ?string $providerType = null,
-        private ?bool $isMandatory = null,
-        private ?string $subject = null,
-        private ?string $emailAddress = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
+       private readonly ?string $provider = null,
+       private readonly ?string $providerType = null,
+       private readonly ?bool $isMandatory = null,
+       private readonly ?string $subject = null,
+       private readonly ?string $emailAddress = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class Connection implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'provider' => 'string',
-            'provider_type' => 'string',
-            'is_mandatory' => 'bool',
-            'subject' => 'string',
-            'email_address' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'provider' => '?string',
+            'provider_type' => '?string',
+            'is_mandatory' => '?bool',
+            'subject' => '?string',
+            'email_address' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
         ];
     }
 

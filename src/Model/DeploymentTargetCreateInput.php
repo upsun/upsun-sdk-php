@@ -33,14 +33,14 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private ?object $enforcedMounts = null,
-        private ?object $siteUrls = null,
-        private ?array $sshHosts = [],
-        private ?object $enterpriseEnvironmentsMapping = null,
-        private ?array $hosts = [],
-        private ?bool $useDedicatedGrid = null,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly ?array $hosts = [],
+       private readonly ?object $enforcedMounts = null,
+       private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+       private readonly ?object $enterpriseEnvironmentsMapping = null,
+       private readonly ?bool $useDedicatedGrid = null,
     ) {
     }
 
@@ -59,12 +59,12 @@ final class DeploymentTargetCreateInput implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'enforced_mounts' => 'object',
-            'site_urls' => 'object',
-            'ssh_hosts' => 'string[]',
-            'enterprise_environments_mapping' => 'object',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
-            'use_dedicated_grid' => 'bool',
+            'enforced_mounts' => '?object',
+            'site_urls' => '?object',
+            'ssh_hosts' => '?array',
+            'enterprise_environments_mapping' => '?object',
+            'hosts' => '?array',
+            'use_dedicated_grid' => '?bool',
         ];
     }
 

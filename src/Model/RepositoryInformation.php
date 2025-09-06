@@ -24,8 +24,8 @@ final class RepositoryInformation implements JsonSerializable
     ];
 
     public function __construct(
-        private string $url,
-        private string $clientSshKey,
+        private readonly string $url,
+        private readonly ?string $clientSshKey = null,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class RepositoryInformation implements JsonSerializable
     {
         return [
             'url' => 'string',
-            'client_ssh_key' => 'string',
+            'client_ssh_key' => '?string',
         ];
     }
 
@@ -68,9 +68,9 @@ final class RepositoryInformation implements JsonSerializable
         return $this->url;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getClientSshKey(): string
+    public function getClientSshKey(): ?string
     {
         return $this->clientSshKey;
     }

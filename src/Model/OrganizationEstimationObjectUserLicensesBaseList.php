@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     public static function openAPITypes()
     {
         return [
-            'admin_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser',
-            'viewer_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser',
+            'admin_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser',
+            'viewer_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser',
         ];
     }
 

@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 **projectLabel** | **string** | The label to display on existing projects. |
 **timezone** | **string** | Default timezone of the region. |
 **available** | **bool** | Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout. |
-**private** | **bool** | Indicator whether or not this platform is for private use only. | [optional]
 **endpoint** | **string** | Link to the region API endpoint. |
-**code** | **string** | The code of the region | [optional]
 **provider** | **object** | Information about the region provider. |
 **datacenter** | **object** | Information about the region provider data center. |
-**envimpact** | **object** | Information about the region provider&#39;s environmental impact. | [optional]
 **compliance** | **object** | Information about the region&#39;s compliance. |
 **createdAt** | **\DateTime** | The date and time when the resource was created. |
 **updatedAt** | **\DateTime** | The date and time when the resource was last updated. |
+**private** | **bool** | Indicator whether or not this platform is for private use only. | [optional]
+**code** | **string** | The code of the region | [optional]
+**envimpact** | **object** | Information about the region provider&#39;s environmental impact. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

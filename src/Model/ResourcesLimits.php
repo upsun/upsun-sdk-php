@@ -25,9 +25,9 @@ final class ResourcesLimits implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $containerProfiles,
-        private \Upsun\Model\ResourcesForProductionEnvironments $production,
-        private \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
+        private readonly bool $containerProfiles,
+        private readonly \Upsun\Model\ResourcesForProductionEnvironments $production,
+        private readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
     ) {
     }
 

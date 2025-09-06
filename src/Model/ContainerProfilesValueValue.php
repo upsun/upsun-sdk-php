@@ -24,8 +24,8 @@ final class ContainerProfilesValueValue implements JsonSerializable
     ];
 
     public function __construct(
-        private float $cpu,
-        private int $memory,
+        private readonly float $cpu,
+        private readonly int $memory,
     ) {
     }
 

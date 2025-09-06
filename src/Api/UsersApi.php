@@ -158,7 +158,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get current logged-in user info
      *
@@ -268,7 +267,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Check if phone verification is required
      *
@@ -378,7 +376,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Check if verification is required
      *
@@ -488,7 +485,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a user
      *
@@ -616,7 +612,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a user by email
      *
@@ -744,7 +739,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a user by username
      *
@@ -872,7 +866,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Reset email address
      *
@@ -1007,7 +1000,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Reset user password
      *
@@ -1131,7 +1123,6 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a user
      *
@@ -1270,5 +1261,4 @@ final class UsersApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

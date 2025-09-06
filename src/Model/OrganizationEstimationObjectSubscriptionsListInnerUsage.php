@@ -26,10 +26,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ];
 
     public function __construct(
-        private ?float $cpu = null,
-        private ?float $memory = null,
-        private ?float $storage = null,
-        private ?int $environments = null,
+       private readonly ?float $cpu = null,
+       private readonly ?float $memory = null,
+       private readonly ?float $storage = null,
+       private readonly ?int $environments = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     public static function openAPITypes()
     {
         return [
-            'cpu' => 'float',
-            'memory' => 'float',
-            'storage' => 'float',
-            'environments' => 'int',
+            'cpu' => '?float',
+            'memory' => '?float',
+            'storage' => '?float',
+            'environments' => '?int',
         ];
     }
 

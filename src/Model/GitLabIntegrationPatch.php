@@ -24,28 +24,28 @@ final class GitLabIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
+        'token' => 'token',
+        'project' => 'project',
         'fetchBranches' => 'fetch_branches',
         'pruneBranches' => 'prune_branches',
         'environmentInitResources' => 'environment_init_resources',
-        'token' => 'token',
         'baseUrl' => 'base_url',
-        'project' => 'project',
         'buildMergeRequests' => 'build_merge_requests',
         'buildWipMergeRequests' => 'build_wip_merge_requests',
         'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
     ];
 
     public function __construct(
-        private string $type,
-        private ?bool $fetchBranches = null,
-        private ?bool $pruneBranches = null,
-        private ?string $environmentInitResources = null,
-        private string $token,
-        private ?string $baseUrl = null,
-        private string $project,
-        private ?bool $buildMergeRequests = null,
-        private ?bool $buildWipMergeRequests = null,
-        private ?bool $mergeRequestsCloneParentData = null,
+        private readonly string $type,
+        private readonly string $token,
+        private readonly string $project,
+       private readonly ?bool $fetchBranches = null,
+       private readonly ?bool $pruneBranches = null,
+       private readonly ?string $environmentInitResources = null,
+       private readonly ?string $baseUrl = null,
+       private readonly ?bool $buildMergeRequests = null,
+       private readonly ?bool $buildWipMergeRequests = null,
+       private readonly ?bool $mergeRequestsCloneParentData = null,
     ) {
     }
 
@@ -63,15 +63,15 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
             'token' => 'string',
-            'base_url' => 'string',
             'project' => 'string',
-            'build_merge_requests' => 'bool',
-            'build_wip_merge_requests' => 'bool',
-            'merge_requests_clone_parent_data' => 'bool',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'base_url' => '?string',
+            'build_merge_requests' => '?bool',
+            'build_wip_merge_requests' => '?bool',
+            'merge_requests_clone_parent_data' => '?bool',
         ];
     }
 
@@ -79,12 +79,12 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
+            'token' => $this->token,
+            'project' => $this->project,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
-            'token' => $this->token,
             'baseUrl' => $this->baseUrl,
-            'project' => $this->project,
             'buildMergeRequests' => $this->buildMergeRequests,
             'buildWipMergeRequests' => $this->buildWipMergeRequests,
             'mergeRequestsCloneParentData' => $this->mergeRequestsCloneParentData,
@@ -102,6 +102,20 @@ final class GitLabIntegrationPatch implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+    /**
+     * @return string
+     */
+    public function getProject(): string
+    {
+        return $this->project;
     }
     /**
      * @return bool|null
@@ -125,25 +139,11 @@ final class GitLabIntegrationPatch implements JsonSerializable
         return $this->environmentInitResources;
     }
     /**
-     * @return string
-     */
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    /**
      * @return string|null
      */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
-    }
-    /**
-     * @return string
-     */
-    public function getProject(): string
-    {
-        return $this->project;
     }
     /**
      * @return bool|null

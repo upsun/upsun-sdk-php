@@ -197,7 +197,6 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete a project variable
      *
@@ -348,7 +347,6 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a project variable
      *
@@ -499,7 +497,6 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of project variables
      *
@@ -629,7 +626,6 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a project variable
      *
@@ -801,5 +797,4 @@ final class ProjectVariablesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

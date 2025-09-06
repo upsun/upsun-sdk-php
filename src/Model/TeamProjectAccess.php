@@ -29,13 +29,13 @@ final class TeamProjectAccess implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $teamId = null,
-        private ?string $organizationId = null,
-        private ?string $projectId = null,
-        private ?string $projectTitle = null,
-        private ?\DateTime $grantedAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+       private readonly ?string $teamId = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?string $projectId = null,
+       private readonly ?string $projectTitle = null,
+       private readonly ?\DateTime $grantedAt = null,
+       private readonly ?\DateTime $updatedAt = null,
+       private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class TeamProjectAccess implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'team_id' => 'string',
-            'organization_id' => 'string',
-            'project_id' => 'string',
-            'project_title' => 'string',
-            'granted_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            '_links' => '\Upsun\Model\TeamProjectAccessLinks',
+            'team_id' => '?string',
+            'organization_id' => '?string',
+            'project_id' => '?string',
+            'project_title' => '?string',
+            'granted_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
         ];
     }
 

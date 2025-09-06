@@ -25,9 +25,9 @@ final class DiscountCommitmentAmount implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\CurrencyAmount $monthly = null,
-        private ?\Upsun\Model\CurrencyAmount $commitmentPeriod = null,
-        private ?\Upsun\Model\CurrencyAmount $contractTotal = null,
+       private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
+       private readonly ?\Upsun\Model\CurrencyAmount $commitmentPeriod = null,
+       private readonly ?\Upsun\Model\CurrencyAmount $contractTotal = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class DiscountCommitmentAmount implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'monthly' => '\Upsun\Model\CurrencyAmount',
-            'commitment_period' => '\Upsun\Model\CurrencyAmount',
-            'contract_total' => '\Upsun\Model\CurrencyAmount',
+            'monthly' => '?\Upsun\Model\CurrencyAmount',
+            'commitment_period' => '?\Upsun\Model\CurrencyAmount',
+            'contract_total' => '?\Upsun\Model\CurrencyAmount',
         ];
     }
 

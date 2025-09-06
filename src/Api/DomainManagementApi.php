@@ -197,7 +197,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Add an environment domain
      *
@@ -369,7 +368,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete a project domain
      *
@@ -520,7 +518,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an environment domain
      *
@@ -694,7 +691,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a project domain
      *
@@ -845,7 +841,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment domain
      *
@@ -1019,7 +1014,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of project domains
      *
@@ -1149,7 +1143,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a list of environment domains
      *
@@ -1302,7 +1295,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a project domain
      *
@@ -1474,7 +1466,6 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Update an environment domain
      *
@@ -1669,5 +1660,4 @@ final class DomainManagementApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

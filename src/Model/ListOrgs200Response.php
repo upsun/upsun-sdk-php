@@ -25,9 +25,9 @@ final class ListOrgs200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?int $count = null,
-        private ?array $items = [],
-        private ?\Upsun\Model\ListLinks $links = null,
+       private readonly ?int $count = null,
+        private readonly ?array $items = [],
+       private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ListOrgs200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'count' => 'int',
-            'items' => '\Upsun\Model\Organization[]',
-            '_links' => '\Upsun\Model\ListLinks',
+            'count' => '?int',
+            'items' => '?array',
+            '_links' => '?\Upsun\Model\ListLinks',
         ];
     }
 

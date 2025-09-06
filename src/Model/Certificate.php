@@ -33,17 +33,17 @@ final class Certificate implements JsonSerializable
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $certificate,
-        private array $chain,
-        private bool $isProvisioned,
-        private bool $isInvalid,
-        private bool $isRoot,
-        private array $domains,
-        private array $authType,
-        private array $issuer,
-        private \DateTime $expiresAt,
+        private readonly string $certificate,
+        private readonly array $chain,
+        private readonly bool $isProvisioned,
+        private readonly bool $isInvalid,
+        private readonly bool $isRoot,
+        private readonly array $domains,
+        private readonly array $authType,
+        private readonly array $issuer,
+        private readonly \DateTime $expiresAt,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -60,16 +60,16 @@ final class Certificate implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'certificate' => 'string',
-            'chain' => 'string[]',
+            'chain' => 'array',
             'is_provisioned' => 'bool',
             'is_invalid' => 'bool',
             'is_root' => 'bool',
-            'domains' => 'string[]',
-            'auth_type' => 'string[]',
-            'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
+            'domains' => 'array',
+            'auth_type' => 'array',
+            'issuer' => 'array',
             'expires_at' => '\DateTime',
         ];
     }
@@ -97,16 +97,16 @@ final class Certificate implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

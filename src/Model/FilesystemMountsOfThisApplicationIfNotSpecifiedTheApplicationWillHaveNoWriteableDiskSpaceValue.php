@@ -31,9 +31,9 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     ];
 
     public function __construct(
-        private string $source,
-        private string $sourcePath,
-        private ?string $service = null,
+        private readonly string $source,
+        private readonly string $sourcePath,
+        private readonly ?string $service = null,
     ) {
     }
 
@@ -52,7 +52,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
         return [
             'source' => 'string',
             'source_path' => 'string',
-            'service' => 'string',
+            'service' => '?string',
         ];
     }
 

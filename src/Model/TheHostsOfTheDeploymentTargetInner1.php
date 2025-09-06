@@ -27,9 +27,9 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     ];
 
     public function __construct(
-        private string $id,
-        private string $type,
-        private ?array $services = [],
+        private readonly string $type,
+        private readonly ?string $id = null,
+        private readonly ?array $services = [],
     ) {
     }
 
@@ -46,9 +46,9 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
+            'id' => '?string',
             'type' => 'string',
-            'services' => 'string[]',
+            'services' => '?array',
         ];
     }
 
@@ -67,9 +67,9 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }

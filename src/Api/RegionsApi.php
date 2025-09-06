@@ -176,7 +176,6 @@ final class RegionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List regions
      *
@@ -406,5 +405,4 @@ final class RegionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

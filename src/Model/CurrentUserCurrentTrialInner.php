@@ -26,10 +26,10 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\DateTime $created = null,
-        private ?string $description = null,
-        private ?string $spendRemaining = null,
-        private ?\DateTime $expiration = null,
+       private readonly ?\DateTime $created = null,
+       private readonly ?string $description = null,
+       private readonly ?string $spendRemaining = null,
+       private readonly ?\DateTime $expiration = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created' => '\DateTime',
-            'description' => 'string',
-            'spend_remaining' => 'string',
-            'expiration' => '\DateTime',
+            'created' => '?\DateTime',
+            'description' => '?string',
+            'spend_remaining' => '?string',
+            'expiration' => '?\DateTime',
         ];
     }
 

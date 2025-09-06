@@ -23,7 +23,7 @@ final class PrepaymentObject implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
+       private readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class PrepaymentObject implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'prepayment' => '\Upsun\Model\PrepaymentObjectPrepayment',
+            'prepayment' => '?\Upsun\Model\PrepaymentObjectPrepayment',
         ];
     }
 

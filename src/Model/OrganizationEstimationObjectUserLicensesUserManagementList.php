@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
-        private ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
+       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     public static function openAPITypes()
     {
         return [
-            'standard_management_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser',
-            'advanced_management_user' => '\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser',
+            'standard_management_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser',
+            'advanced_management_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser',
         ];
     }
 

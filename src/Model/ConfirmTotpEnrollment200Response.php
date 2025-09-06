@@ -23,7 +23,7 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $recoveryCodes = [],
+        private readonly ?array $recoveryCodes = [],
     ) {
     }
 
@@ -40,7 +40,7 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'recovery_codes' => 'string[]',
+            'recovery_codes' => '?array',
         ];
     }
 

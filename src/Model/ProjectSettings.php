@@ -100,66 +100,66 @@ final class ProjectSettings implements JsonSerializable
     ];
 
     public function __construct(
-        private object $initialize,
-        private string $productName,
-        private string $productCode,
-        private string $uiUriTemplate,
-        private string $variablesPrefix,
-        private string $botEmail,
-        private string $applicationConfigFile,
-        private string $projectConfigDir,
-        private bool $useDrupalDefaults,
-        private bool $useLegacySubdomains,
-        private string $developmentServiceSize,
-        private string $developmentApplicationSize,
-        private bool $enableCertificateProvisioning,
-        private string $certificateStyle,
-        private bool $certificateRenewalActivity,
-        private string $developmentDomainTemplate,
-        private bool $enableStateApiDeployments,
-        private int $temporaryDiskSize,
-        private int $localDiskSize,
-        private int $cronMinimumInterval,
-        private int $cronMaximumJitter,
-        private array $concurrencyLimits,
-        private bool $flexibleBuildCache,
-        private bool $strictConfiguration,
-        private bool $hasSleepyCrons,
-        private bool $cronsInGit,
-        private string $customErrorTemplate,
-        private string $appErrorPageTemplate,
-        private string $environmentNameStrategy,
-        private array $dataRetention,
-        private bool $enableCodesourceIntegrationPush,
-        private bool $enforceMfa,
-        private bool $systemd,
-        private bool $routerGen2,
-        private \Upsun\Model\BuildResources1 $buildResources,
-        private string $outboundRestrictionsDefaultPolicy,
-        private bool $selfUpgrade,
-        private array $additionalHosts,
-        private int $maxAllowedRoutes,
-        private int $maxAllowedRedirectsPaths,
-        private bool $enableIncrementalBackups,
-        private bool $sizingApiEnabled,
-        private bool $enableCacheGracePeriod,
-        private bool $enableZeroDowntimeDeployments,
-        private bool $enableAdminAgent,
-        private string $certifierUrl,
-        private bool $centralizedPermissions,
-        private int $glueServerMaxRequestSize,
-        private bool $persistentEndpointsSsh,
-        private bool $persistentEndpointsSslCertificates,
-        private bool $enableDiskHealthMonitoring,
-        private bool $enablePausedEnvironments,
-        private bool $enableUnifiedConfiguration,
-        private bool $enableRoutesTracing,
-        private bool $imageDeploymentValidation,
-        private bool $supportGenericImages,
-        private bool $enableGithubAppTokenExchange,
-        private \Upsun\Model\TheContinuousProfilingConfiguration $continuousProfiling,
-        private bool $disableAgentErrorReporter,
-        private bool $requiresDomainOwnership,
+        private readonly object $initialize,
+        private readonly string $productName,
+        private readonly string $productCode,
+        private readonly string $uiUriTemplate,
+        private readonly string $variablesPrefix,
+        private readonly string $botEmail,
+        private readonly string $applicationConfigFile,
+        private readonly string $projectConfigDir,
+        private readonly bool $useDrupalDefaults,
+        private readonly bool $useLegacySubdomains,
+        private readonly string $developmentServiceSize,
+        private readonly string $developmentApplicationSize,
+        private readonly bool $enableCertificateProvisioning,
+        private readonly string $certificateStyle,
+        private readonly bool $certificateRenewalActivity,
+        private readonly bool $enableStateApiDeployments,
+        private readonly int $cronMinimumInterval,
+        private readonly int $cronMaximumJitter,
+        private readonly array $concurrencyLimits,
+        private readonly bool $flexibleBuildCache,
+        private readonly bool $strictConfiguration,
+        private readonly bool $hasSleepyCrons,
+        private readonly bool $cronsInGit,
+        private readonly string $environmentNameStrategy,
+        private readonly bool $enableCodesourceIntegrationPush,
+        private readonly bool $enforceMfa,
+        private readonly bool $systemd,
+        private readonly bool $routerGen2,
+        private readonly \Upsun\Model\BuildResources1 $buildResources,
+        private readonly string $outboundRestrictionsDefaultPolicy,
+        private readonly bool $selfUpgrade,
+        private readonly array $additionalHosts,
+        private readonly int $maxAllowedRoutes,
+        private readonly int $maxAllowedRedirectsPaths,
+        private readonly bool $enableIncrementalBackups,
+        private readonly bool $sizingApiEnabled,
+        private readonly bool $enableCacheGracePeriod,
+        private readonly bool $enableZeroDowntimeDeployments,
+        private readonly bool $enableAdminAgent,
+        private readonly string $certifierUrl,
+        private readonly bool $centralizedPermissions,
+        private readonly int $glueServerMaxRequestSize,
+        private readonly bool $persistentEndpointsSsh,
+        private readonly bool $persistentEndpointsSslCertificates,
+        private readonly bool $enableDiskHealthMonitoring,
+        private readonly bool $enablePausedEnvironments,
+        private readonly bool $enableUnifiedConfiguration,
+        private readonly bool $enableRoutesTracing,
+        private readonly bool $imageDeploymentValidation,
+        private readonly bool $supportGenericImages,
+        private readonly bool $enableGithubAppTokenExchange,
+        private readonly \Upsun\Model\TheContinuousProfilingConfiguration $continuousProfiling,
+        private readonly bool $disableAgentErrorReporter,
+        private readonly bool $requiresDomainOwnership,
+        private readonly ?string $developmentDomainTemplate = null,
+        private readonly ?int $temporaryDiskSize = null,
+        private readonly ?int $localDiskSize = null,
+        private readonly ?string $customErrorTemplate = null,
+        private readonly ?string $appErrorPageTemplate = null,
+        private readonly ?array $dataRetention = [],
     ) {
     }
 
@@ -191,21 +191,21 @@ final class ProjectSettings implements JsonSerializable
             'enable_certificate_provisioning' => 'bool',
             'certificate_style' => 'string',
             'certificate_renewal_activity' => 'bool',
-            'development_domain_template' => 'string',
+            'development_domain_template' => '?string',
             'enable_state_api_deployments' => 'bool',
-            'temporary_disk_size' => 'int',
-            'local_disk_size' => 'int',
+            'temporary_disk_size' => '?int',
+            'local_disk_size' => '?int',
             'cron_minimum_interval' => 'int',
             'cron_maximum_jitter' => 'int',
-            'concurrency_limits' => 'array&lt;string,int&gt;',
+            'concurrency_limits' => 'array',
             'flexible_build_cache' => 'bool',
             'strict_configuration' => 'bool',
             'has_sleepy_crons' => 'bool',
             'crons_in_git' => 'bool',
-            'custom_error_template' => 'string',
-            'app_error_page_template' => 'string',
+            'custom_error_template' => '?string',
+            'app_error_page_template' => '?string',
             'environment_name_strategy' => 'string',
-            'data_retention' => 'array&lt;string,\Upsun\Model\DataRetentionConfigurationValue&gt;',
+            'data_retention' => '?array',
             'enable_codesource_integration_push' => 'bool',
             'enforce_mfa' => 'bool',
             'systemd' => 'bool',
@@ -213,7 +213,7 @@ final class ProjectSettings implements JsonSerializable
             'build_resources' => '\Upsun\Model\BuildResources1',
             'outbound_restrictions_default_policy' => 'string',
             'self_upgrade' => 'bool',
-            'additional_hosts' => 'array&lt;string,string&gt;',
+            'additional_hosts' => 'array',
             'max_allowed_routes' => 'int',
             'max_allowed_redirects_paths' => 'int',
             'enable_incremental_backups' => 'bool',
@@ -416,9 +416,9 @@ final class ProjectSettings implements JsonSerializable
         return $this->certificateRenewalActivity;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDevelopmentDomainTemplate(): string
+    public function getDevelopmentDomainTemplate(): ?string
     {
         return $this->developmentDomainTemplate;
     }
@@ -430,16 +430,16 @@ final class ProjectSettings implements JsonSerializable
         return $this->enableStateApiDeployments;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTemporaryDiskSize(): int
+    public function getTemporaryDiskSize(): ?int
     {
         return $this->temporaryDiskSize;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getLocalDiskSize(): int
+    public function getLocalDiskSize(): ?int
     {
         return $this->localDiskSize;
     }
@@ -493,16 +493,16 @@ final class ProjectSettings implements JsonSerializable
         return $this->cronsInGit;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCustomErrorTemplate(): string
+    public function getCustomErrorTemplate(): ?string
     {
         return $this->customErrorTemplate;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAppErrorPageTemplate(): string
+    public function getAppErrorPageTemplate(): ?string
     {
         return $this->appErrorPageTemplate;
     }
@@ -514,9 +514,9 @@ final class ProjectSettings implements JsonSerializable
         return $this->environmentNameStrategy;
     }
     /**
-     * @return \Upsun\Model\DataRetentionConfigurationValue[]
+     * @return \Upsun\Model\DataRetentionConfigurationValue[]|null
      */
-    public function getDataRetention(): array
+    public function getDataRetention(): ?array
     {
         return $this->dataRetention;
     }

@@ -24,8 +24,8 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
     ];
 
     public function __construct(
-        private string $addonKey,
-        private string $clientKey,
+        private readonly string $addonKey,
+        private readonly string $clientKey,
     ) {
     }
 

@@ -187,7 +187,6 @@ final class AlertsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete a usage alert.
      *
@@ -334,7 +333,6 @@ final class AlertsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get usage alerts for a subscription
      *
@@ -462,7 +460,6 @@ final class AlertsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a usage alert.
      *
@@ -624,5 +621,4 @@ final class AlertsApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

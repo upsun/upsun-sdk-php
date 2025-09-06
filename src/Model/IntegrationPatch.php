@@ -34,25 +34,31 @@ final class IntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
+        'repository' => 'repository',
+        'url' => 'url',
+        'username' => 'username',
+        'token' => 'token',
+        'project' => 'project',
+        'serviceId' => 'service_id',
+        'recipients' => 'recipients',
+        'routingKey' => 'routing_key',
+        'channel' => 'channel',
+        'licenseKey' => 'license_key',
+        'script' => 'script',
+        'index' => 'index',
         'fetchBranches' => 'fetch_branches',
         'pruneBranches' => 'prune_branches',
         'environmentInitResources' => 'environment_init_resources',
         'appCredentials' => 'app_credentials',
         'addonCredentials' => 'addon_credentials',
-        'repository' => 'repository',
         'buildPullRequests' => 'build_pull_requests',
         'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
         'resyncPullRequests' => 'resync_pull_requests',
-        'url' => 'url',
-        'username' => 'username',
-        'token' => 'token',
-        'project' => 'project',
         'events' => 'events',
         'environments' => 'environments',
         'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
         'result' => 'result',
-        'serviceId' => 'service_id',
         'baseUrl' => 'base_url',
         'buildDraftPullRequests' => 'build_draft_pull_requests',
         'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
@@ -60,16 +66,10 @@ final class IntegrationPatch implements JsonSerializable
         'buildWipMergeRequests' => 'build_wip_merge_requests',
         'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
         'fromAddress' => 'from_address',
-        'recipients' => 'recipients',
-        'routingKey' => 'routing_key',
-        'channel' => 'channel',
         'sharedKey' => 'shared_key',
         'extra' => 'extra',
         'headers' => 'headers',
         'tlsVerify' => 'tls_verify',
-        'licenseKey' => 'license_key',
-        'script' => 'script',
-        'index' => 'index',
         'sourcetype' => 'sourcetype',
         'category' => 'category',
         'host' => 'host',
@@ -82,52 +82,52 @@ final class IntegrationPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private ?bool $fetchBranches = null,
-        private ?bool $pruneBranches = null,
-        private ?string $environmentInitResources = null,
-        private ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
-        private ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
-        private string $repository,
-        private ?bool $buildPullRequests = null,
-        private ?bool $pullRequestsCloneParentData = null,
-        private ?bool $resyncPullRequests = null,
-        private string $url,
-        private string $username,
-        private string $token,
-        private string $project,
-        private ?array $events = [],
-        private ?array $environments = [],
-        private ?array $excludedEnvironments = [],
-        private ?array $states = [],
-        private ?string $result = null,
-        private string $serviceId,
-        private ?string $baseUrl = null,
-        private ?bool $buildDraftPullRequests = null,
-        private ?bool $buildPullRequestsPostMerge = null,
-        private ?bool $buildMergeRequests = null,
-        private ?bool $buildWipMergeRequests = null,
-        private ?bool $mergeRequestsCloneParentData = null,
-        private ?string $fromAddress = null,
-        private array $recipients,
-        private string $routingKey,
-        private string $channel,
-        private ?string $sharedKey = null,
-        private ?array $extra = [],
-        private ?array $headers = [],
-        private ?bool $tlsVerify = null,
-        private string $licenseKey,
-        private string $script,
-        private string $index,
-        private ?string $sourcetype = null,
-        private ?string $category = null,
-        private ?string $host = null,
-        private ?int $port = null,
-        private ?string $protocol = null,
-        private ?int $facility = null,
-        private ?string $messageFormat = null,
-        private ?string $authToken = null,
-        private ?string $authMode = null,
+        private readonly string $type,
+        private readonly string $repository,
+        private readonly string $url,
+        private readonly string $username,
+        private readonly string $token,
+        private readonly string $project,
+        private readonly string $serviceId,
+        private readonly array $recipients,
+        private readonly string $routingKey,
+        private readonly string $channel,
+        private readonly string $licenseKey,
+        private readonly string $script,
+        private readonly string $index,
+        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
+        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
+        private readonly ?string $fromAddress = null,
+        private readonly ?string $sharedKey = null,
+       private readonly ?bool $fetchBranches = null,
+       private readonly ?bool $pruneBranches = null,
+       private readonly ?string $environmentInitResources = null,
+       private readonly ?bool $buildPullRequests = null,
+       private readonly ?bool $pullRequestsCloneParentData = null,
+       private readonly ?bool $resyncPullRequests = null,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+       private readonly ?string $result = null,
+       private readonly ?string $baseUrl = null,
+       private readonly ?bool $buildDraftPullRequests = null,
+       private readonly ?bool $buildPullRequestsPostMerge = null,
+       private readonly ?bool $buildMergeRequests = null,
+       private readonly ?bool $buildWipMergeRequests = null,
+       private readonly ?bool $mergeRequestsCloneParentData = null,
+        private readonly ?array $extra = [],
+        private readonly ?array $headers = [],
+       private readonly ?bool $tlsVerify = null,
+       private readonly ?string $sourcetype = null,
+       private readonly ?string $category = null,
+       private readonly ?string $host = null,
+       private readonly ?int $port = null,
+       private readonly ?string $protocol = null,
+       private readonly ?int $facility = null,
+       private readonly ?string $messageFormat = null,
+       private readonly ?string $authToken = null,
+       private readonly ?string $authMode = null,
     ) {
     }
 
@@ -145,51 +145,51 @@ final class IntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
-            'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
-            'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional1',
             'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
-            'resync_pull_requests' => 'bool',
             'url' => 'string',
             'username' => 'string',
             'token' => 'string',
             'project' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
             'service_id' => 'string',
-            'base_url' => 'string',
-            'build_draft_pull_requests' => 'bool',
-            'build_pull_requests_post_merge' => 'bool',
-            'build_merge_requests' => 'bool',
-            'build_wip_merge_requests' => 'bool',
-            'merge_requests_clone_parent_data' => 'bool',
-            'from_address' => 'string',
-            'recipients' => 'string[]',
+            'recipients' => 'array',
             'routing_key' => 'string',
             'channel' => 'string',
-            'shared_key' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
-            'headers' => 'array&lt;string,string&gt;',
-            'tls_verify' => 'bool',
             'license_key' => 'string',
             'script' => 'string',
             'index' => 'string',
-            'sourcetype' => 'string',
-            'category' => 'string',
-            'host' => 'string',
-            'port' => 'int',
-            'protocol' => 'string',
-            'facility' => 'int',
-            'message_format' => 'string',
-            'auth_token' => 'string',
-            'auth_mode' => 'string',
+            'fetch_branches' => '?bool',
+            'prune_branches' => '?bool',
+            'environment_init_resources' => '?string',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
+            'build_pull_requests' => '?bool',
+            'pull_requests_clone_parent_data' => '?bool',
+            'resync_pull_requests' => '?bool',
+            'events' => '?array',
+            'environments' => '?array',
+            'excluded_environments' => '?array',
+            'states' => '?array',
+            'result' => '?string',
+            'base_url' => '?string',
+            'build_draft_pull_requests' => '?bool',
+            'build_pull_requests_post_merge' => '?bool',
+            'build_merge_requests' => '?bool',
+            'build_wip_merge_requests' => '?bool',
+            'merge_requests_clone_parent_data' => '?bool',
+            'from_address' => '?string',
+            'shared_key' => '?string',
+            'extra' => '?array',
+            'headers' => '?array',
+            'tls_verify' => '?bool',
+            'sourcetype' => '?string',
+            'category' => '?string',
+            'host' => '?string',
+            'port' => '?int',
+            'protocol' => '?string',
+            'facility' => '?int',
+            'message_format' => '?string',
+            'auth_token' => '?string',
+            'auth_mode' => '?string',
         ];
     }
 
@@ -197,25 +197,31 @@ final class IntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
+            'repository' => $this->repository,
+            'url' => $this->url,
+            'username' => $this->username,
+            'token' => $this->token,
+            'project' => $this->project,
+            'serviceId' => $this->serviceId,
+            'recipients' => $this->recipients,
+            'routingKey' => $this->routingKey,
+            'channel' => $this->channel,
+            'licenseKey' => $this->licenseKey,
+            'script' => $this->script,
+            'index' => $this->index,
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
             'appCredentials' => $this->appCredentials,
             'addonCredentials' => $this->addonCredentials,
-            'repository' => $this->repository,
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'resyncPullRequests' => $this->resyncPullRequests,
-            'url' => $this->url,
-            'username' => $this->username,
-            'token' => $this->token,
-            'project' => $this->project,
             'events' => $this->events,
             'environments' => $this->environments,
             'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
-            'serviceId' => $this->serviceId,
             'baseUrl' => $this->baseUrl,
             'buildDraftPullRequests' => $this->buildDraftPullRequests,
             'buildPullRequestsPostMerge' => $this->buildPullRequestsPostMerge,
@@ -223,16 +229,10 @@ final class IntegrationPatch implements JsonSerializable
             'buildWipMergeRequests' => $this->buildWipMergeRequests,
             'mergeRequestsCloneParentData' => $this->mergeRequestsCloneParentData,
             'fromAddress' => $this->fromAddress,
-            'recipients' => $this->recipients,
-            'routingKey' => $this->routingKey,
-            'channel' => $this->channel,
             'sharedKey' => $this->sharedKey,
             'extra' => $this->extra,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
-            'licenseKey' => $this->licenseKey,
-            'script' => $this->script,
-            'index' => $this->index,
             'sourcetype' => $this->sourcetype,
             'category' => $this->category,
             'host' => $this->host,
@@ -256,6 +256,90 @@ final class IntegrationPatch implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getRepository(): string
+    {
+        return $this->repository;
+    }
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+    /**
+     * @return string
+     */
+    public function getProject(): string
+    {
+        return $this->project;
+    }
+    /**
+     * @return string
+     */
+    public function getServiceId(): string
+    {
+        return $this->serviceId;
+    }
+    /**
+     * @return string[]
+     */
+    public function getRecipients(): array
+    {
+        return $this->recipients;
+    }
+    /**
+     * @return string
+     */
+    public function getRoutingKey(): string
+    {
+        return $this->routingKey;
+    }
+    /**
+     * @return string
+     */
+    public function getChannel(): string
+    {
+        return $this->channel;
+    }
+    /**
+     * @return string
+     */
+    public function getLicenseKey(): string
+    {
+        return $this->licenseKey;
+    }
+    /**
+     * @return string
+     */
+    public function getScript(): string
+    {
+        return $this->script;
+    }
+    /**
+     * @return string
+     */
+    public function getIndex(): string
+    {
+        return $this->index;
     }
     /**
      * @return bool|null
@@ -293,13 +377,6 @@ final class IntegrationPatch implements JsonSerializable
         return $this->addonCredentials;
     }
     /**
-     * @return string
-     */
-    public function getRepository(): string
-    {
-        return $this->repository;
-    }
-    /**
      * @return bool|null
      */
     public function getBuildPullRequests(): ?bool
@@ -319,34 +396,6 @@ final class IntegrationPatch implements JsonSerializable
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;
-    }
-    /**
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return $this->url;
-    }
-    /**
-     * @return string
-     */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-    /**
-     * @return string
-     */
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    /**
-     * @return string
-     */
-    public function getProject(): string
-    {
-        return $this->project;
     }
     /**
      * @return string[]|null
@@ -382,13 +431,6 @@ final class IntegrationPatch implements JsonSerializable
     public function getResult(): ?string
     {
         return $this->result;
-    }
-    /**
-     * @return string
-     */
-    public function getServiceId(): string
-    {
-        return $this->serviceId;
     }
     /**
      * @return string|null
@@ -440,27 +482,6 @@ final class IntegrationPatch implements JsonSerializable
         return $this->fromAddress;
     }
     /**
-     * @return string[]
-     */
-    public function getRecipients(): array
-    {
-        return $this->recipients;
-    }
-    /**
-     * @return string
-     */
-    public function getRoutingKey(): string
-    {
-        return $this->routingKey;
-    }
-    /**
-     * @return string
-     */
-    public function getChannel(): string
-    {
-        return $this->channel;
-    }
-    /**
      * @return string|null
      */
     public function getSharedKey(): ?string
@@ -487,27 +508,6 @@ final class IntegrationPatch implements JsonSerializable
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
-    }
-    /**
-     * @return string
-     */
-    public function getLicenseKey(): string
-    {
-        return $this->licenseKey;
-    }
-    /**
-     * @return string
-     */
-    public function getScript(): string
-    {
-        return $this->script;
-    }
-    /**
-     * @return string
-     */
-    public function getIndex(): string
-    {
-        return $this->index;
     }
     /**
      * @return string|null

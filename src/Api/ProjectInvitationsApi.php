@@ -195,7 +195,6 @@ final class ProjectInvitationsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Invite user to a project by email
      *
@@ -334,7 +333,6 @@ final class ProjectInvitationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List invitations to a project
      *
@@ -557,5 +555,4 @@ final class ProjectInvitationsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     ];
 
     public function __construct(
-        private ?string $total = null,
-        private ?array $list = [],
+       private readonly ?string $total = null,
+        private readonly ?array $list = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     public static function openAPITypes()
     {
         return [
-            'total' => 'string',
-            'list' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]',
+            'total' => '?string',
+            'list' => '?array',
         ];
     }
 

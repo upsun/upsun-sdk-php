@@ -23,7 +23,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements J
     ];
 
     public function __construct(
-        private ?string $href = null,
+       private readonly ?string $href = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements J
     public static function openAPITypes()
     {
         return [
-            'href' => 'string',
+            'href' => '?string',
         ];
     }
 

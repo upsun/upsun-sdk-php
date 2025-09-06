@@ -23,7 +23,7 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     ];
 
     public function __construct(
-        private array $supportedRuntimes,
+        private readonly array $supportedRuntimes,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'supported_runtimes' => 'string[]',
+            'supported_runtimes' => 'array',
         ];
     }
 

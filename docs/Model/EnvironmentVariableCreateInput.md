@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** |  |
-**attributes** | **array<string,string>** |  | [optional]
 **value** | **string** |  |
+**attributes** | **array<string,string>** |  | [optional]
 **isJson** | **bool** |  | [optional]
 **isSensitive** | **bool** |  | [optional]
 **visibleBuild** | **bool** |  | [optional]

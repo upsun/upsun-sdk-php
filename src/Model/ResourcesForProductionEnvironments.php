@@ -26,10 +26,10 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $legacyDevelopment,
-        private float $maxCpu,
-        private int $maxMemory,
-        private int $maxEnvironments,
+        private readonly bool $legacyDevelopment,
+        private readonly ?float $maxCpu = null,
+        private readonly ?int $maxMemory = null,
+        private readonly ?int $maxEnvironments = null,
     ) {
     }
 
@@ -47,9 +47,9 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
     {
         return [
             'legacy_development' => 'bool',
-            'max_cpu' => 'float',
-            'max_memory' => 'int',
-            'max_environments' => 'int',
+            'max_cpu' => '?float',
+            'max_memory' => '?int',
+            'max_environments' => '?int',
         ];
     }
 
@@ -76,23 +76,23 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
         return $this->legacyDevelopment;
     }
     /**
-     * @return float
+     * @return float|null
      */
-    public function getMaxCpu(): float
+    public function getMaxCpu(): ?float
     {
         return $this->maxCpu;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMaxMemory(): int
+    public function getMaxMemory(): ?int
     {
         return $this->maxMemory;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMaxEnvironments(): int
+    public function getMaxEnvironments(): ?int
     {
         return $this->maxEnvironments;
     }

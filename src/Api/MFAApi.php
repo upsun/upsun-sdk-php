@@ -187,7 +187,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Disable organization MFA enforcement
      *
@@ -311,7 +310,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Enable organization MFA enforcement
      *
@@ -435,7 +433,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get organization MFA settings
      *
@@ -563,7 +560,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get information about TOTP enrollment
      *
@@ -691,7 +687,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Re-create recovery codes
      *
@@ -819,7 +814,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Send MFA reminders to organization members
      *
@@ -958,7 +952,6 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Withdraw TOTP enrollment
      *
@@ -1082,5 +1075,4 @@ final class MFAApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
 }

@@ -23,7 +23,7 @@ final class VersionCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
+       private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class VersionCreateInput implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'routing' => '\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1',
+            'routing' => '?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1',
         ];
     }
 

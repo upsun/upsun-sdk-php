@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
-**extra** | **array<string,string>** |  | [optional]
 **url** | **string** |  |
+**extra** | **array<string,string>** |  | [optional]
 **category** | **string** |  | [optional]
 **tlsVerify** | **bool** |  | [optional]
 

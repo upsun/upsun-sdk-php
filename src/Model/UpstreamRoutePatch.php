@@ -22,29 +22,29 @@ final class UpstreamRoutePatch implements JsonSerializable
     public const TYPE_UPSTREAM = 'upstream';
 
     private static array $attributeMap = [
+        'type' => 'type',
+        'upstream' => 'upstream',
         'primary' => 'primary',
         'id' => 'id',
         'productionUrl' => 'production_url',
         'attributes' => 'attributes',
-        'type' => 'type',
         'tls' => 'tls',
         'cache' => 'cache',
         'ssi' => 'ssi',
-        'upstream' => 'upstream',
         'redirects' => 'redirects'
     ];
 
     public function __construct(
-        private ?bool $primary = null,
-        private ?string $id = null,
-        private ?string $productionUrl = null,
-        private ?array $attributes = [],
-        private string $type,
-        private ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        private ?\Upsun\Model\CacheConfiguration1 $cache = null,
-        private ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
-        private string $upstream,
-        private ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+        private readonly string $type,
+        private readonly string $upstream,
+        private readonly ?bool $primary = null,
+        private readonly ?string $id = null,
+        private readonly ?string $productionUrl = null,
+        private readonly ?array $attributes = [],
+       private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+       private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
+       private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+       private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
     ) {
     }
 
@@ -61,31 +61,31 @@ final class UpstreamRoutePatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'primary' => 'bool',
-            'id' => 'string',
-            'production_url' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
             'type' => 'string',
-            'tls' => '\Upsun\Model\TLSSettingsForTheRoute1',
-            'cache' => '\Upsun\Model\CacheConfiguration1',
-            'ssi' => '\Upsun\Model\ServerSideIncludeConfiguration',
             'upstream' => 'string',
-            'redirects' => '\Upsun\Model\TheConfigurationOfTheRedirects1',
+            'primary' => '?bool',
+            'id' => '?string',
+            'production_url' => '?string',
+            'attributes' => '?array',
+            'tls' => '?\Upsun\Model\TLSSettingsForTheRoute1',
+            'cache' => '?\Upsun\Model\CacheConfiguration1',
+            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
+            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects1',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
+            'type' => $this->type,
+            'upstream' => $this->upstream,
             'primary' => $this->primary,
             'id' => $this->id,
             'productionUrl' => $this->productionUrl,
             'attributes' => $this->attributes,
-            'type' => $this->type,
             'tls' => $this->tls,
             'cache' => $this->cache,
             'ssi' => $this->ssi,
-            'upstream' => $this->upstream,
             'redirects' => $this->redirects,
         ];
     }
@@ -95,6 +95,20 @@ final class UpstreamRoutePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getUpstream(): string
+    {
+        return $this->upstream;
+    }
     /**
      * @return bool|null
      */
@@ -124,13 +138,6 @@ final class UpstreamRoutePatch implements JsonSerializable
         return $this->attributes;
     }
     /**
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-    /**
      * @return \Upsun\Model\TLSSettingsForTheRoute1|null
      */
     public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
@@ -150,13 +157,6 @@ final class UpstreamRoutePatch implements JsonSerializable
     public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
     {
         return $this->ssi;
-    }
-    /**
-     * @return string
-     */
-    public function getUpstream(): string
-    {
-        return $this->upstream;
     }
     /**
      * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null

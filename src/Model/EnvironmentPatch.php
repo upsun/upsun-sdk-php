@@ -34,15 +34,15 @@ final class EnvironmentPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $name = null,
-        private ?string $title = null,
-        private ?array $attributes = [],
-        private ?string $type = null,
-        private ?string $parent = null,
-        private ?bool $cloneParentOnCreate = null,
-        private ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
-        private ?bool $enableSmtp = null,
-        private ?bool $restrictRobots = null,
+        private readonly ?string $parent = null,
+       private readonly ?string $name = null,
+       private readonly ?string $title = null,
+        private readonly ?array $attributes = [],
+       private readonly ?string $type = null,
+       private readonly ?bool $cloneParentOnCreate = null,
+       private readonly ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
+       private readonly ?bool $enableSmtp = null,
+       private readonly ?bool $restrictRobots = null,
     ) {
     }
 
@@ -59,15 +59,15 @@ final class EnvironmentPatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'name' => 'string',
-            'title' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
-            'type' => 'string',
-            'parent' => 'string',
-            'clone_parent_on_create' => 'bool',
-            'http_access' => '\Upsun\Model\HttpAccessPermissions1',
-            'enable_smtp' => 'bool',
-            'restrict_robots' => 'bool',
+            'name' => '?string',
+            'title' => '?string',
+            'attributes' => '?array',
+            'type' => '?string',
+            'parent' => '?string',
+            'clone_parent_on_create' => '?bool',
+            'http_access' => '?\Upsun\Model\HttpAccessPermissions1',
+            'enable_smtp' => '?bool',
+            'restrict_robots' => '?bool',
         ];
     }
 

@@ -25,9 +25,9 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     ];
 
     public function __construct(
-        private ?bool $enabled = null,
-        private ?bool $includeSubdomains = null,
-        private ?bool $preload = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?bool $includeSubdomains = null,
+        private readonly ?bool $preload = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'enabled' => 'bool',
-            'include_subdomains' => 'bool',
-            'preload' => 'bool',
+            'enabled' => '?bool',
+            'include_subdomains' => '?bool',
+            'preload' => '?bool',
         ];
     }
 

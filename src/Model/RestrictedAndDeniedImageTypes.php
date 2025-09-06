@@ -24,8 +24,8 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $only = [],
-        private ?array $exclude = [],
+        private readonly ?array $only = [],
+        private readonly ?array $exclude = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'only' => 'string[]',
-            'exclude' => 'string[]',
+            'only' => '?array',
+            'exclude' => '?array',
         ];
     }
 

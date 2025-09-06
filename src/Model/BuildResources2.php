@@ -24,8 +24,8 @@ final class BuildResources2 implements JsonSerializable
     ];
 
     public function __construct(
-        private ?float $cpu = null,
-        private ?int $memory = null,
+       private readonly ?float $cpu = null,
+       private readonly ?int $memory = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class BuildResources2 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'cpu' => 'float',
-            'memory' => 'int',
+            'cpu' => '?float',
+            'memory' => '?int',
         ];
     }
 

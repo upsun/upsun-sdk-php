@@ -29,13 +29,13 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $orderId = null,
-        private ?string $status = null,
-        private ?string $billingPeriodStart = null,
-        private ?string $billingPeriodEnd = null,
-        private ?string $orderTotal = null,
-        private ?string $orderDiscount = null,
-        private ?string $currency = null,
+       private readonly ?string $orderId = null,
+       private readonly ?string $status = null,
+       private readonly ?string $billingPeriodStart = null,
+       private readonly ?string $billingPeriodEnd = null,
+       private readonly ?string $orderTotal = null,
+       private readonly ?string $orderDiscount = null,
+       private readonly ?string $currency = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'order_id' => 'string',
-            'status' => 'string',
-            'billing_period_start' => 'string',
-            'billing_period_end' => 'string',
-            'order_total' => 'string',
-            'order_discount' => 'string',
-            'currency' => 'string',
+            'order_id' => '?string',
+            'status' => '?string',
+            'billing_period_start' => '?string',
+            'billing_period_end' => '?string',
+            'order_total' => '?string',
+            'order_discount' => '?string',
+            'currency' => '?string',
         ];
     }
 

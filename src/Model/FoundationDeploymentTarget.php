@@ -30,11 +30,11 @@ final class FoundationDeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private array $hosts,
-        private bool $useDedicatedGrid,
-        private string $storageType,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly bool $useDedicatedGrid,
+        private readonly ?array $hosts = [],
+        private readonly ?string $storageType = null,
     ) {
     }
 
@@ -53,9 +53,9 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'hosts' => '?array',
             'use_dedicated_grid' => 'bool',
-            'storage_type' => 'string',
+            'storage_type' => '?string',
         ];
     }
 
@@ -90,9 +90,9 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return $this->name;
     }
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
      */
-    public function getHosts(): array
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }
@@ -104,9 +104,9 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return $this->useDedicatedGrid;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStorageType(): string
+    public function getStorageType(): ?string
     {
         return $this->storageType;
     }

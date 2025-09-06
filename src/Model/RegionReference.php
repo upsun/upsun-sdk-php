@@ -26,34 +26,34 @@ final class RegionReference implements JsonSerializable
         'projectLabel' => 'project_label',
         'timezone' => 'timezone',
         'available' => 'available',
-        'private' => 'private',
         'endpoint' => 'endpoint',
-        'code' => 'code',
         'provider' => 'provider',
         'datacenter' => 'datacenter',
-        'envimpact' => 'envimpact',
         'compliance' => 'compliance',
         'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
+        'updatedAt' => 'updated_at',
+        'private' => 'private',
+        'code' => 'code',
+        'envimpact' => 'envimpact'
     ];
 
     public function __construct(
-        private string $id,
-        private string $label,
-        private string $zone,
-        private string $selectionLabel,
-        private string $projectLabel,
-        private string $timezone,
-        private bool $available,
-        private ?bool $private = null,
-        private string $endpoint,
-        private ?string $code = null,
-        private object $provider,
-        private object $datacenter,
-        private ?object $envimpact = null,
-        private object $compliance,
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
+        private readonly string $id,
+        private readonly string $label,
+        private readonly string $zone,
+        private readonly string $selectionLabel,
+        private readonly string $projectLabel,
+        private readonly string $timezone,
+        private readonly bool $available,
+        private readonly string $endpoint,
+        private readonly object $provider,
+        private readonly object $datacenter,
+        private readonly object $compliance,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+       private readonly ?bool $private = null,
+       private readonly ?string $code = null,
+       private readonly ?object $envimpact = null,
     ) {
     }
 
@@ -77,15 +77,15 @@ final class RegionReference implements JsonSerializable
             'project_label' => 'string',
             'timezone' => 'string',
             'available' => 'bool',
-            'private' => 'bool',
             'endpoint' => 'string',
-            'code' => 'string',
             'provider' => 'object',
             'datacenter' => 'object',
-            'envimpact' => 'object',
             'compliance' => 'object',
             'created_at' => '\DateTime',
             'updated_at' => '\DateTime',
+            'private' => '?bool',
+            'code' => '?string',
+            'envimpact' => '?object',
         ];
     }
 
@@ -99,15 +99,15 @@ final class RegionReference implements JsonSerializable
             'projectLabel' => $this->projectLabel,
             'timezone' => $this->timezone,
             'available' => $this->available,
-            'private' => $this->private,
             'endpoint' => $this->endpoint,
-            'code' => $this->code,
             'provider' => $this->provider,
             'datacenter' => $this->datacenter,
-            'envimpact' => $this->envimpact,
             'compliance' => $this->compliance,
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,
+            'private' => $this->private,
+            'code' => $this->code,
+            'envimpact' => $this->envimpact,
         ];
     }
 
@@ -180,15 +180,6 @@ final class RegionReference implements JsonSerializable
         return $this->available;
     }
     /**
-     * Indicator whether or not this platform is for private use only.
-     *
-     * @return bool|null
-     */
-    public function getPrivate(): ?bool
-    {
-        return $this->private;
-    }
-    /**
      * Link to the region API endpoint.
      *
      * @return string
@@ -196,15 +187,6 @@ final class RegionReference implements JsonSerializable
     public function getEndpoint(): string
     {
         return $this->endpoint;
-    }
-    /**
-     * The code of the region
-     *
-     * @return string|null
-     */
-    public function getCode(): ?string
-    {
-        return $this->code;
     }
     /**
      * Information about the region provider.
@@ -223,15 +205,6 @@ final class RegionReference implements JsonSerializable
     public function getDatacenter(): object
     {
         return $this->datacenter;
-    }
-    /**
-     * Information about the region provider's environmental impact.
-     *
-     * @return object|null
-     */
-    public function getEnvimpact(): ?object
-    {
-        return $this->envimpact;
     }
     /**
      * Information about the region's compliance.
@@ -259,6 +232,33 @@ final class RegionReference implements JsonSerializable
     public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
+    }
+    /**
+     * Indicator whether or not this platform is for private use only.
+     *
+     * @return bool|null
+     */
+    public function getPrivate(): ?bool
+    {
+        return $this->private;
+    }
+    /**
+     * The code of the region
+     *
+     * @return string|null
+     */
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+    /**
+     * Information about the region provider's environmental impact.
+     *
+     * @return object|null
+     */
+    public function getEnvimpact(): ?object
+    {
+        return $this->envimpact;
     }
 }
 

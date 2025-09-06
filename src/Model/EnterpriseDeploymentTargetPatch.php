@@ -30,11 +30,11 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private ?object $siteUrls = null,
-        private ?array $sshHosts = [],
-        private ?object $enterpriseEnvironmentsMapping = null,
+        private readonly string $type,
+        private readonly string $name,
+       private readonly ?object $siteUrls = null,
+        private readonly ?array $sshHosts = [],
+       private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
@@ -53,9 +53,9 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'site_urls' => 'object',
-            'ssh_hosts' => 'string[]',
-            'enterprise_environments_mapping' => 'object',
+            'site_urls' => '?object',
+            'ssh_hosts' => '?array',
+            'enterprise_environments_mapping' => '?object',
         ];
     }
 

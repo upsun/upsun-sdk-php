@@ -24,8 +24,8 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     ];
 
     public function __construct(
-        private ?string $action = null,
-        private ?string $type = null,
+       private readonly ?string $action = null,
+       private readonly ?string $type = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     public static function openAPITypes()
     {
         return [
-            'action' => 'string',
-            'type' => 'string',
+            'action' => '?string',
+            'type' => '?string',
         ];
     }
 

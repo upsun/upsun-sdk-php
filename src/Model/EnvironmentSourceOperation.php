@@ -25,9 +25,9 @@ final class EnvironmentSourceOperation implements JsonSerializable
     ];
 
     public function __construct(
-        private string $app,
-        private string $operation,
-        private string $command,
+        private readonly string $app,
+        private readonly string $operation,
+        private readonly string $command,
     ) {
     }
 

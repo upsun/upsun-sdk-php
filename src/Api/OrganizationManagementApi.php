@@ -176,7 +176,6 @@ final class OrganizationManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get billing alert configuration
      *
@@ -304,7 +303,6 @@ final class OrganizationManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get organization prepayment information
      *
@@ -432,7 +430,6 @@ final class OrganizationManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List organization prepayment transactions
      *
@@ -560,7 +557,6 @@ final class OrganizationManagementApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update billing alert configuration
      *
@@ -699,5 +695,4 @@ final class OrganizationManagementApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

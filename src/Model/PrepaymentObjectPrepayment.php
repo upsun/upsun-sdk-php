@@ -27,11 +27,11 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $organizationId = null,
-        private ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
-        private ?string $lastUpdatedAt = null,
-        private ?bool $sufficient = null,
-        private ?string $fallback = null,
+        private readonly ?string $lastUpdatedAt = null,
+        private readonly ?string $fallback = null,
+       private readonly ?string $organizationId = null,
+       private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
+       private readonly ?bool $sufficient = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'organization_id' => 'string',
-            'balance' => '\Upsun\Model\PrepaymentObjectPrepaymentBalance',
-            'last_updated_at' => 'string',
-            'sufficient' => 'bool',
-            'fallback' => 'string',
+            'organization_id' => '?string',
+            'balance' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
+            'last_updated_at' => '?string',
+            'sufficient' => '?bool',
+            'fallback' => '?string',
         ];
     }
 

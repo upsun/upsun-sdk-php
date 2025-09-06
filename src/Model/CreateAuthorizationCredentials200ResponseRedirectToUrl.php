@@ -24,8 +24,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     ];
 
     public function __construct(
-        private ?string $returnUrl = null,
-        private ?string $url = null,
+       private readonly ?string $returnUrl = null,
+       private readonly ?string $url = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     public static function openAPITypes()
     {
         return [
-            'return_url' => 'string',
-            'url' => 'string',
+            'return_url' => '?string',
+            'url' => '?string',
         ];
     }
 

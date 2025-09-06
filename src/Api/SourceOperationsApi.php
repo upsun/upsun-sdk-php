@@ -201,7 +201,6 @@ final class SourceOperationsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Trigger a source operation
      *
@@ -373,5 +372,4 @@ final class SourceOperationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
 }

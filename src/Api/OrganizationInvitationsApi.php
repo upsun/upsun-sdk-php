@@ -195,7 +195,6 @@ final class OrganizationInvitationsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Invite user to an organization by email
      *
@@ -334,7 +333,6 @@ final class OrganizationInvitationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List invitations to an organization
      *
@@ -557,5 +555,4 @@ final class OrganizationInvitationsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

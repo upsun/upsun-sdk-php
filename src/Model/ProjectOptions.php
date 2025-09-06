@@ -27,11 +27,11 @@ final class ProjectOptions implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
-        private ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
-        private ?array $regions = [],
-        private ?array $plans = [],
-        private ?object $billing = null,
+       private readonly ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
+       private readonly ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
+        private readonly ?array $regions = [],
+        private readonly ?array $plans = [],
+       private readonly ?object $billing = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class ProjectOptions implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'defaults' => '\Upsun\Model\ProjectOptionsDefaults',
-            'enforced' => '\Upsun\Model\ProjectOptionsEnforced',
-            'regions' => 'string[]',
-            'plans' => 'string[]',
-            'billing' => 'object',
+            'defaults' => '?\Upsun\Model\ProjectOptionsDefaults',
+            'enforced' => '?\Upsun\Model\ProjectOptionsEnforced',
+            'regions' => '?array',
+            'plans' => '?array',
+            'billing' => '?object',
         ];
     }
 

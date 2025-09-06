@@ -24,8 +24,8 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     ];
 
     public function __construct(
-        private string $interval,
-        private int $count,
+        private readonly string $interval,
+        private readonly int $count,
     ) {
     }
 

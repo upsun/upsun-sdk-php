@@ -199,7 +199,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get project access for a user
      *
@@ -350,7 +349,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Grant user access to a project
      *
@@ -495,7 +493,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Grant project access to a user
      *
@@ -640,7 +637,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List user access for a project
      *
@@ -845,7 +841,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List project access for a user
      *
@@ -1066,7 +1061,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Remove user access for a project
      *
@@ -1213,7 +1207,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Remove project access for a user
      *
@@ -1360,7 +1353,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Update user access for a project
      *
@@ -1518,7 +1510,6 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Update project access for a user
      *
@@ -1676,5 +1667,4 @@ final class UserAccessApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

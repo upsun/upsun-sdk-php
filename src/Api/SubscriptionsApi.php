@@ -176,7 +176,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Create subscription
      *
@@ -325,7 +324,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete subscription
      *
@@ -472,7 +470,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Estimate the price of a new subscription
      *
@@ -720,7 +717,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Estimate the price of a subscription
      *
@@ -961,7 +957,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get subscription
      *
@@ -1112,7 +1107,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get current usage for a subscription
      *
@@ -1295,7 +1289,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List subscriptions
      *
@@ -1596,7 +1589,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List addons for a subscription
      *
@@ -1747,7 +1739,6 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update subscription
      *
@@ -1909,5 +1900,4 @@ final class SubscriptionsApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

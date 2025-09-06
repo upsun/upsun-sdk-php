@@ -27,8 +27,8 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $channel,
-        private string $phoneNumber,
+        private readonly string $channel,
+        private readonly string $phoneNumber,
     ) {
     }
 

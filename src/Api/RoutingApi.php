@@ -220,7 +220,6 @@ final class RoutingApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete a route
      *
@@ -394,7 +393,6 @@ final class RoutingApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a route&#39;s info
      *
@@ -568,7 +566,6 @@ final class RoutingApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of routes
      *
@@ -721,7 +718,6 @@ final class RoutingApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a route
      *
@@ -916,5 +912,4 @@ final class RoutingApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

@@ -24,8 +24,8 @@ final class EnvironmentOperationInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $service,
-        private string $operation,
+        private readonly string $service,
+        private readonly string $operation,
     ) {
     }
 

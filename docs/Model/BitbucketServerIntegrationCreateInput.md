@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
-**fetchBranches** | **bool** |  | [optional]
-**pruneBranches** | **bool** |  | [optional]
-**environmentInitResources** | **string** |  | [optional]
 **url** | **string** |  |
 **username** | **string** |  |
 **token** | **string** |  |
 **project** | **string** |  |
 **repository** | **string** |  |
+**fetchBranches** | **bool** |  | [optional]
+**pruneBranches** | **bool** |  | [optional]
+**environmentInitResources** | **string** |  | [optional]
 **buildPullRequests** | **bool** |  | [optional]
 **pullRequestsCloneParentData** | **bool** |  | [optional]
 

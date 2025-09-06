@@ -23,7 +23,7 @@ final class GrantTeamProjectAccessRequestInner implements JsonSerializable
     ];
 
     public function __construct(
-        private string $projectId,
+        private readonly string $projectId,
     ) {
     }
 

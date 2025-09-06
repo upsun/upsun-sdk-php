@@ -29,27 +29,27 @@ final class BitbucketIntegration implements JsonSerializable
         'fetchBranches' => 'fetch_branches',
         'pruneBranches' => 'prune_branches',
         'environmentInitResources' => 'environment_init_resources',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials',
         'repository' => 'repository',
         'buildPullRequests' => 'build_pull_requests',
         'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'resyncPullRequests' => 'resync_pull_requests'
+        'resyncPullRequests' => 'resync_pull_requests',
+        'appCredentials' => 'app_credentials',
+        'addonCredentials' => 'addon_credentials'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private bool $fetchBranches,
-        private bool $pruneBranches,
-        private string $environmentInitResources,
-        private ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
-        private ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
-        private string $repository,
-        private bool $buildPullRequests,
-        private bool $pullRequestsCloneParentData,
-        private bool $resyncPullRequests,
+        private readonly string $type,
+        private readonly bool $fetchBranches,
+        private readonly bool $pruneBranches,
+        private readonly string $environmentInitResources,
+        private readonly string $repository,
+        private readonly bool $buildPullRequests,
+        private readonly bool $pullRequestsCloneParentData,
+        private readonly bool $resyncPullRequests,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
+        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
     ) {
     }
 
@@ -66,18 +66,18 @@ final class BitbucketIntegration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
             'fetch_branches' => 'bool',
             'prune_branches' => 'bool',
             'environment_init_resources' => 'string',
-            'app_credentials' => '\Upsun\Model\TheOAuth2ConsumerInformationOptional',
-            'addon_credentials' => '\Upsun\Model\TheAddonCredentialInformationOptional',
             'repository' => 'string',
             'build_pull_requests' => 'bool',
             'pull_requests_clone_parent_data' => 'bool',
             'resync_pull_requests' => 'bool',
+            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
+            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
         ];
     }
 
@@ -90,12 +90,12 @@ final class BitbucketIntegration implements JsonSerializable
             'fetchBranches' => $this->fetchBranches,
             'pruneBranches' => $this->pruneBranches,
             'environmentInitResources' => $this->environmentInitResources,
-            'appCredentials' => $this->appCredentials,
-            'addonCredentials' => $this->addonCredentials,
             'repository' => $this->repository,
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'resyncPullRequests' => $this->resyncPullRequests,
+            'appCredentials' => $this->appCredentials,
+            'addonCredentials' => $this->addonCredentials,
         ];
     }
 
@@ -105,16 +105,16 @@ final class BitbucketIntegration implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -147,20 +147,6 @@ final class BitbucketIntegration implements JsonSerializable
         return $this->environmentInitResources;
     }
     /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
-    {
-        return $this->appCredentials;
-    }
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
-    {
-        return $this->addonCredentials;
-    }
-    /**
      * @return string
      */
     public function getRepository(): string
@@ -187,6 +173,20 @@ final class BitbucketIntegration implements JsonSerializable
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
+    }
+    /**
+     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
+     */
+    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
+    {
+        return $this->appCredentials;
+    }
+    /**
+     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
+     */
+    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
+    {
+        return $this->addonCredentials;
     }
 }
 

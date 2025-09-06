@@ -27,11 +27,11 @@ final class EnvironmentInitializeInput implements JsonSerializable
     ];
 
     public function __construct(
-        private string $profile,
-        private string $repository,
-        private string $config,
-        private array $files,
-        private \Upsun\Model\Resources3 $resources,
+        private readonly string $profile,
+        private readonly string $repository,
+        private readonly array $files,
+        private readonly ?string $config = null,
+        private readonly ?\Upsun\Model\Resources3 $resources = null,
     ) {
     }
 
@@ -50,9 +50,9 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return [
             'profile' => 'string',
             'repository' => 'string',
-            'config' => 'string',
-            'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
-            'resources' => '\Upsun\Model\Resources3',
+            'config' => '?string',
+            'files' => 'array',
+            'resources' => '?\Upsun\Model\Resources3',
         ];
     }
 
@@ -87,9 +87,9 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return $this->repository;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getConfig(): string
+    public function getConfig(): ?string
     {
         return $this->config;
     }
@@ -101,9 +101,9 @@ final class EnvironmentInitializeInput implements JsonSerializable
         return $this->files;
     }
     /**
-     * @return \Upsun\Model\Resources3
+     * @return \Upsun\Model\Resources3|null
      */
-    public function getResources(): \Upsun\Model\Resources3
+    public function getResources(): ?\Upsun\Model\Resources3
     {
         return $this->resources;
     }

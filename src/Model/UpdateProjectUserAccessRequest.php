@@ -34,7 +34,7 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private array $permissions,
+        private readonly array $permissions,
     ) {
     }
 
@@ -51,7 +51,7 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'permissions' => 'string[]',
+            'permissions' => 'array',
         ];
     }
 

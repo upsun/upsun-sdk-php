@@ -19,13 +19,13 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
 {
 
     private static array $attributeMap = [
-        'maxBackups' => 'max_backups',
-        'defaultConfig' => 'default_config'
+        'defaultConfig' => 'default_config',
+        'maxBackups' => 'max_backups'
     ];
 
     public function __construct(
-        private ?int $maxBackups = null,
-        private \Upsun\Model\DefaultConfig1 $defaultConfig,
+        private readonly \Upsun\Model\DefaultConfig1 $defaultConfig,
+       private readonly ?int $maxBackups = null,
     ) {
     }
 
@@ -42,16 +42,16 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'max_backups' => 'int',
             'default_config' => '\Upsun\Model\DefaultConfig1',
+            'max_backups' => '?int',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'maxBackups' => $this->maxBackups,
             'defaultConfig' => $this->defaultConfig,
+            'maxBackups' => $this->maxBackups,
         ];
     }
 
@@ -61,18 +61,18 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     }
 
     /**
-     * @return int|null
-     */
-    public function getMaxBackups(): ?int
-    {
-        return $this->maxBackups;
-    }
-    /**
      * @return \Upsun\Model\DefaultConfig1
      */
     public function getDefaultConfig(): \Upsun\Model\DefaultConfig1
     {
         return $this->defaultConfig;
+    }
+    /**
+     * @return int|null
+     */
+    public function getMaxBackups(): ?int
+    {
+        return $this->maxBackups;
     }
 }
 

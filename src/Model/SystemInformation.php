@@ -25,9 +25,9 @@ final class SystemInformation implements JsonSerializable
     ];
 
     public function __construct(
-        private string $version,
-        private string $image,
-        private \DateTime $startedAt,
+        private readonly string $version,
+        private readonly string $image,
+        private readonly \DateTime $startedAt,
     ) {
     }
 

@@ -23,7 +23,7 @@ final class LogsForwarding implements JsonSerializable
     ];
 
     public function __construct(
-        private int $maxExtraPayloadSize,
+        private readonly int $maxExtraPayloadSize,
     ) {
     }
 

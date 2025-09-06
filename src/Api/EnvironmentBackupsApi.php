@@ -220,7 +220,6 @@ final class EnvironmentBackupsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an environment snapshot
      *
@@ -394,7 +393,6 @@ final class EnvironmentBackupsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment snapshot&#39;s info
      *
@@ -568,7 +566,6 @@ final class EnvironmentBackupsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment&#39;s snapshot list
      *
@@ -721,7 +718,6 @@ final class EnvironmentBackupsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Restore an environment snapshot
      *
@@ -916,5 +912,4 @@ final class EnvironmentBackupsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
 }

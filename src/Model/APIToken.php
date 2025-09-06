@@ -29,13 +29,13 @@ final class APIToken implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $name = null,
-        private ?bool $mfaOnCreation = null,
-        private ?string $token = null,
-        private ?\DateTime $createdAt = null,
-        private ?\DateTime $updatedAt = null,
-        private ?\DateTime $lastUsedAt = null,
+        private readonly ?\DateTime $lastUsedAt = null,
+       private readonly ?string $id = null,
+       private readonly ?string $name = null,
+       private readonly ?bool $mfaOnCreation = null,
+       private readonly ?string $token = null,
+       private readonly ?\DateTime $createdAt = null,
+       private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -52,13 +52,13 @@ final class APIToken implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'name' => 'string',
-            'mfa_on_creation' => 'bool',
-            'token' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'last_used_at' => '\DateTime',
+            'id' => '?string',
+            'name' => '?string',
+            'mfa_on_creation' => '?bool',
+            'token' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'last_used_at' => '?\DateTime',
         ];
     }
 

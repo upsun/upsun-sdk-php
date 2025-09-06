@@ -38,31 +38,31 @@ final class DeploymentTarget implements JsonSerializable
         'docroots' => 'docroots',
         'siteUrls' => 'site_urls',
         'sshHosts' => 'ssh_hosts',
-        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping',
         'useDedicatedGrid' => 'use_dedicated_grid',
-        'storageType' => 'storage_type'
+        'storageType' => 'storage_type',
+        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private string $deployHost,
-        private int $deployPort,
-        private string $sshHost,
-        private array $hosts,
-        private bool $autoMounts,
-        private array $excludedMounts,
-        private object $enforcedMounts,
-        private bool $autoCrons,
-        private bool $autoNginx,
-        private bool $maintenanceMode,
-        private int $guardrailsPhase,
-        private array $docroots,
-        private object $siteUrls,
-        private array $sshHosts,
-        private ?object $enterpriseEnvironmentsMapping = null,
-        private bool $useDedicatedGrid,
-        private string $storageType,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly bool $autoMounts,
+        private readonly array $excludedMounts,
+        private readonly object $enforcedMounts,
+        private readonly bool $autoCrons,
+        private readonly bool $autoNginx,
+        private readonly bool $maintenanceMode,
+        private readonly int $guardrailsPhase,
+        private readonly array $docroots,
+        private readonly object $siteUrls,
+        private readonly array $sshHosts,
+        private readonly bool $useDedicatedGrid,
+        private readonly ?string $deployHost = null,
+        private readonly ?int $deployPort = null,
+        private readonly ?string $sshHost = null,
+        private readonly ?array $hosts = [],
+        private readonly ?string $storageType = null,
+       private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
@@ -81,23 +81,23 @@ final class DeploymentTarget implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'deploy_host' => 'string',
-            'deploy_port' => 'int',
-            'ssh_host' => 'string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'deploy_host' => '?string',
+            'deploy_port' => '?int',
+            'ssh_host' => '?string',
+            'hosts' => '?array',
             'auto_mounts' => 'bool',
-            'excluded_mounts' => 'string[]',
+            'excluded_mounts' => 'array',
             'enforced_mounts' => 'object',
             'auto_crons' => 'bool',
             'auto_nginx' => 'bool',
             'maintenance_mode' => 'bool',
             'guardrails_phase' => 'int',
-            'docroots' => 'array&lt;string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue&gt;',
+            'docroots' => 'array',
             'site_urls' => 'object',
-            'ssh_hosts' => 'string[]',
-            'enterprise_environments_mapping' => 'object',
+            'ssh_hosts' => 'array',
             'use_dedicated_grid' => 'bool',
-            'storage_type' => 'string',
+            'storage_type' => '?string',
+            'enterprise_environments_mapping' => '?object',
         ];
     }
 
@@ -120,9 +120,9 @@ final class DeploymentTarget implements JsonSerializable
             'docroots' => $this->docroots,
             'siteUrls' => $this->siteUrls,
             'sshHosts' => $this->sshHosts,
-            'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
             'useDedicatedGrid' => $this->useDedicatedGrid,
             'storageType' => $this->storageType,
+            'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
         ];
     }
 
@@ -146,30 +146,30 @@ final class DeploymentTarget implements JsonSerializable
         return $this->name;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeployHost(): string
+    public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDeployPort(): int
+    public function getDeployPort(): ?int
     {
         return $this->deployPort;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSshHost(): string
+    public function getSshHost(): ?string
     {
         return $this->sshHost;
     }
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
      */
-    public function getHosts(): array
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }
@@ -244,13 +244,6 @@ final class DeploymentTarget implements JsonSerializable
         return $this->sshHosts;
     }
     /**
-     * @return object|null
-     */
-    public function getEnterpriseEnvironmentsMapping(): ?object
-    {
-        return $this->enterpriseEnvironmentsMapping;
-    }
-    /**
      * @return bool
      */
     public function getUseDedicatedGrid(): bool
@@ -258,11 +251,18 @@ final class DeploymentTarget implements JsonSerializable
         return $this->useDedicatedGrid;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStorageType(): string
+    public function getStorageType(): ?string
     {
         return $this->storageType;
+    }
+    /**
+     * @return object|null
+     */
+    public function getEnterpriseEnvironmentsMapping(): ?object
+    {
+        return $this->enterpriseEnvironmentsMapping;
     }
 }
 

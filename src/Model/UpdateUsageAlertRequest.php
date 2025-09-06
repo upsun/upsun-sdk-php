@@ -23,7 +23,7 @@ final class UpdateUsageAlertRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+       private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class UpdateUsageAlertRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'config' => '\Upsun\Model\CreateUsageAlertRequestConfig',
+            'config' => '?\Upsun\Model\CreateUsageAlertRequestConfig',
         ];
     }
 

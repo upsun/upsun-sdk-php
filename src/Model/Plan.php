@@ -24,8 +24,8 @@ final class Plan implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $name = null,
-        private ?string $label = null,
+       private readonly ?string $name = null,
+       private readonly ?string $label = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class Plan implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'name' => 'string',
-            'label' => 'string',
+            'name' => '?string',
+            'label' => '?string',
         ];
     }
 

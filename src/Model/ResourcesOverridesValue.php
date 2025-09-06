@@ -27,11 +27,11 @@ final class ResourcesOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private array $services,
-        private \DateTime $startsAt,
-        private \DateTime $endsAt,
-        private bool $redeployedStart,
-        private bool $redeployedEnd,
+        private readonly array $services,
+        private readonly bool $redeployedStart,
+        private readonly bool $redeployedEnd,
+        private readonly ?\DateTime $startsAt = null,
+        private readonly ?\DateTime $endsAt = null,
     ) {
     }
 
@@ -48,9 +48,9 @@ final class ResourcesOverridesValue implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'services' => 'array&lt;string,\Upsun\Model\PerServiceResourcesOverridesValue&gt;',
-            'starts_at' => '\DateTime',
-            'ends_at' => '\DateTime',
+            'services' => 'array',
+            'starts_at' => '?\DateTime',
+            'ends_at' => '?\DateTime',
             'redeployed_start' => 'bool',
             'redeployed_end' => 'bool',
         ];
@@ -80,16 +80,16 @@ final class ResourcesOverridesValue implements JsonSerializable
         return $this->services;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getStartsAt(): \DateTime
+    public function getStartsAt(): ?\DateTime
     {
         return $this->startsAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getEndsAt(): \DateTime
+    public function getEndsAt(): ?\DateTime
     {
         return $this->endsAt;
     }

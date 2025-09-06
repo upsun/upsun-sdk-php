@@ -199,7 +199,6 @@ final class EnvironmentTypeApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get environment types
      *
@@ -329,5 +328,4 @@ final class EnvironmentTypeApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

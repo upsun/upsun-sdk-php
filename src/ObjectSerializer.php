@@ -407,15 +407,24 @@ class ObjectSerializer
             } elseif (is_array($data)) {
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
-            
+
+            if ($value instanceof \stdClass && $paramType?->getName() === 'array') {
+                $value = (array) $value;
+            }
+
+            if ($value === null && $paramType?->allowsNull()) {
+                $args[] = null;
+                continue;
+            }
+
             if ($value === null && $param->isDefaultValueAvailable()) {
                 $value = $param->getDefaultValue();
             }
-            
+
             if ($value === null && $paramType && $paramType->getName() === 'array') {
                 $value = [];
             }
-    
+
             if ($paramType) {
                 $typeName = $paramType->getName();
 
@@ -473,8 +482,15 @@ class ObjectSerializer
             } else {
                 $args[] = $value;
             }
-    
+
             if ($args[count($args)-1] === null && !$allowsNull) {
+                if (method_exists($class, 'openAPITypes')) {
+                    $types = $class::openAPITypes();
+                    var_dump('ici'. $types[$jsonKey]);
+                    if (isset($types[$jsonKey]) && str_contains($types[$jsonKey], 'null')) {
+                        continue;
+                    }
+                }
                 throw new \InvalidArgumentException("Required value '{$paramName}' missing for class {$class}");
             }
         }

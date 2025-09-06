@@ -23,7 +23,7 @@ final class ConfirmPhoneNumberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $code,
+        private readonly string $code,
     ) {
     }
 

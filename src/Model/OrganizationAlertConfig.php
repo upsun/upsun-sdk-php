@@ -28,12 +28,12 @@ final class OrganizationAlertConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?bool $active = null,
-        private ?float $alertsSent = null,
-        private ?string $lastAlertAt = null,
-        private ?string $updatedAt = null,
-        private ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
+        private readonly ?string $lastAlertAt = null,
+        private readonly ?string $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
+       private readonly ?string $id = null,
+       private readonly ?bool $active = null,
+       private readonly ?float $alertsSent = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class OrganizationAlertConfig implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'active' => 'bool',
-            'alerts_sent' => 'float',
-            'last_alert_at' => 'string',
-            'updated_at' => 'string',
-            'config' => '\Upsun\Model\OrganizationAlertConfigConfig',
+            'id' => '?string',
+            'active' => '?bool',
+            'alerts_sent' => '?float',
+            'last_alert_at' => '?string',
+            'updated_at' => '?string',
+            'config' => '?\Upsun\Model\OrganizationAlertConfigConfig',
         ];
     }
 

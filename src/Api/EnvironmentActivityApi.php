@@ -222,7 +222,6 @@ final class EnvironmentActivityApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment activity log entry
      *
@@ -396,7 +395,6 @@ final class EnvironmentActivityApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get environment activity log
      *
@@ -549,5 +547,4 @@ final class EnvironmentActivityApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

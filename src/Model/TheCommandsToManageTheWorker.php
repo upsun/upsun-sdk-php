@@ -19,13 +19,13 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
 {
 
     private static array $attributeMap = [
-        'preStart' => 'pre_start',
-        'start' => 'start'
+        'start' => 'start',
+        'preStart' => 'pre_start'
     ];
 
     public function __construct(
-        private ?string $preStart = null,
-        private string $start,
+        private readonly string $start,
+        private readonly ?string $preStart = null,
     ) {
     }
 
@@ -42,16 +42,16 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'pre_start' => 'string',
             'start' => 'string',
+            'pre_start' => '?string',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'preStart' => $this->preStart,
             'start' => $this->start,
+            'preStart' => $this->preStart,
         ];
     }
 
@@ -61,18 +61,18 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     }
 
     /**
-     * @return string|null
-     */
-    public function getPreStart(): ?string
-    {
-        return $this->preStart;
-    }
-    /**
      * @return string
      */
     public function getStart(): string
     {
         return $this->start;
+    }
+    /**
+     * @return string|null
+     */
+    public function getPreStart(): ?string
+    {
+        return $this->preStart;
     }
 }
 

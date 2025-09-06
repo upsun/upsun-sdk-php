@@ -304,7 +304,6 @@ final class RecordsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List usage records
      *
@@ -512,5 +511,4 @@ final class RecordsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

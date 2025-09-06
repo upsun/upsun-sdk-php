@@ -24,8 +24,8 @@ final class RegionProvider implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $name = null,
-        private ?string $logo = null,
+       private readonly ?string $name = null,
+       private readonly ?string $logo = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class RegionProvider implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'name' => 'string',
-            'logo' => 'string',
+            'name' => '?string',
+            'logo' => '?string',
         ];
     }
 

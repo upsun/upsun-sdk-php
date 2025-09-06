@@ -243,5 +243,4 @@ final class RuntimeOperationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
 }

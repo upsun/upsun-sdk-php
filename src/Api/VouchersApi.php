@@ -193,7 +193,6 @@ final class VouchersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List vouchers
      *
@@ -321,5 +320,4 @@ final class VouchersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

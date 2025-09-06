@@ -23,7 +23,6 @@ final class EnvironmentVariable implements JsonSerializable
         'updatedAt' => 'updated_at',
         'name' => 'name',
         'attributes' => 'attributes',
-        'value' => 'value',
         'isJson' => 'is_json',
         'isSensitive' => 'is_sensitive',
         'visibleBuild' => 'visible_build',
@@ -32,24 +31,25 @@ final class EnvironmentVariable implements JsonSerializable
         'environment' => 'environment',
         'inherited' => 'inherited',
         'isEnabled' => 'is_enabled',
-        'isInheritable' => 'is_inheritable'
+        'isInheritable' => 'is_inheritable',
+        'value' => 'value'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $name,
-        private array $attributes,
-        private ?string $value = null,
-        private bool $isJson,
-        private bool $isSensitive,
-        private bool $visibleBuild,
-        private bool $visibleRuntime,
-        private string $project,
-        private string $environment,
-        private bool $inherited,
-        private bool $isEnabled,
-        private bool $isInheritable,
+        private readonly string $name,
+        private readonly array $attributes,
+        private readonly bool $isJson,
+        private readonly bool $isSensitive,
+        private readonly bool $visibleBuild,
+        private readonly bool $visibleRuntime,
+        private readonly string $project,
+        private readonly string $environment,
+        private readonly bool $inherited,
+        private readonly bool $isEnabled,
+        private readonly bool $isInheritable,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+       private readonly ?string $value = null,
     ) {
     }
 
@@ -66,11 +66,10 @@ final class EnvironmentVariable implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'name' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
-            'value' => 'string',
+            'attributes' => 'array',
             'is_json' => 'bool',
             'is_sensitive' => 'bool',
             'visible_build' => 'bool',
@@ -80,6 +79,7 @@ final class EnvironmentVariable implements JsonSerializable
             'inherited' => 'bool',
             'is_enabled' => 'bool',
             'is_inheritable' => 'bool',
+            'value' => '?string',
         ];
     }
 
@@ -90,7 +90,6 @@ final class EnvironmentVariable implements JsonSerializable
             'updatedAt' => $this->updatedAt,
             'name' => $this->name,
             'attributes' => $this->attributes,
-            'value' => $this->value,
             'isJson' => $this->isJson,
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
@@ -100,6 +99,7 @@ final class EnvironmentVariable implements JsonSerializable
             'inherited' => $this->inherited,
             'isEnabled' => $this->isEnabled,
             'isInheritable' => $this->isInheritable,
+            'value' => $this->value,
         ];
     }
 
@@ -109,16 +109,16 @@ final class EnvironmentVariable implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -135,13 +135,6 @@ final class EnvironmentVariable implements JsonSerializable
     public function getAttributes(): array
     {
         return $this->attributes;
-    }
-    /**
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->value;
     }
     /**
      * @return bool
@@ -205,6 +198,13 @@ final class EnvironmentVariable implements JsonSerializable
     public function getIsInheritable(): bool
     {
         return $this->isInheritable;
+    }
+    /**
+     * @return string|null
+     */
+    public function getValue(): ?string
+    {
+        return $this->value;
     }
 }
 

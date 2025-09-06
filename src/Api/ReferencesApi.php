@@ -205,7 +205,6 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced projects
      *
@@ -362,7 +361,6 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced regions
      *
@@ -519,7 +517,6 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced teams
      *
@@ -676,7 +673,6 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced users
      *
@@ -833,5 +829,4 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

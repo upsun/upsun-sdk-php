@@ -20,18 +20,18 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
-        'extra' => 'extra',
         'url' => 'url',
         'licenseKey' => 'license_key',
+        'extra' => 'extra',
         'tlsVerify' => 'tls_verify'
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $extra = [],
-        private string $url,
-        private string $licenseKey,
-        private ?bool $tlsVerify = null,
+        private readonly string $type,
+        private readonly string $url,
+        private readonly string $licenseKey,
+        private readonly ?array $extra = [],
+       private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -49,10 +49,10 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'extra' => 'array&lt;string,string&gt;',
             'url' => 'string',
             'license_key' => 'string',
-            'tls_verify' => 'bool',
+            'extra' => '?array',
+            'tls_verify' => '?bool',
         ];
     }
 
@@ -60,9 +60,9 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
     {
         return [
             'type' => $this->type,
-            'extra' => $this->extra,
             'url' => $this->url,
             'licenseKey' => $this->licenseKey,
+            'extra' => $this->extra,
             'tlsVerify' => $this->tlsVerify,
         ];
     }
@@ -80,13 +80,6 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
         return $this->type;
     }
     /**
-     * @return array&lt;string,string&gt;|null
-     */
-    public function getExtra(): ?array
-    {
-        return $this->extra;
-    }
-    /**
      * @return string
      */
     public function getUrl(): string
@@ -99,6 +92,13 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
+    }
+    /**
+     * @return array&lt;string,string&gt;|null
+     */
+    public function getExtra(): ?array
+    {
+        return $this->extra;
     }
     /**
      * @return bool|null

@@ -28,12 +28,12 @@ final class Resources implements JsonSerializable
     ];
 
     public function __construct(
-        private int $baseMemory,
-        private int $memoryRatio,
-        private string $profileSize,
-        private \Upsun\Model\TheMinimumResourcesForThisService $minimum,
-        private \Upsun\Model\TheDefaultResourcesForThisService $default,
-        private \Upsun\Model\TheDisksResources $disk,
+        private readonly ?int $baseMemory = null,
+        private readonly ?int $memoryRatio = null,
+        private readonly ?string $profileSize = null,
+        private readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
+        private readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default = null,
+        private readonly ?\Upsun\Model\TheDisksResources $disk = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class Resources implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'base_memory' => 'int',
-            'memory_ratio' => 'int',
-            'profile_size' => 'string',
-            'minimum' => '\Upsun\Model\TheMinimumResourcesForThisService',
-            'default' => '\Upsun\Model\TheDefaultResourcesForThisService',
-            'disk' => '\Upsun\Model\TheDisksResources',
+            'base_memory' => '?int',
+            'memory_ratio' => '?int',
+            'profile_size' => '?string',
+            'minimum' => '?\Upsun\Model\TheMinimumResourcesForThisService',
+            'default' => '?\Upsun\Model\TheDefaultResourcesForThisService',
+            'disk' => '?\Upsun\Model\TheDisksResources',
         ];
     }
 
@@ -77,44 +77,44 @@ final class Resources implements JsonSerializable
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getBaseMemory(): int
+    public function getBaseMemory(): ?int
     {
         return $this->baseMemory;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMemoryRatio(): int
+    public function getMemoryRatio(): ?int
     {
         return $this->memoryRatio;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProfileSize(): string
+    public function getProfileSize(): ?string
     {
         return $this->profileSize;
     }
     /**
-     * @return \Upsun\Model\TheMinimumResourcesForThisService
+     * @return \Upsun\Model\TheMinimumResourcesForThisService|null
      */
-    public function getMinimum(): \Upsun\Model\TheMinimumResourcesForThisService
+    public function getMinimum(): ?\Upsun\Model\TheMinimumResourcesForThisService
     {
         return $this->minimum;
     }
     /**
-     * @return \Upsun\Model\TheDefaultResourcesForThisService
+     * @return \Upsun\Model\TheDefaultResourcesForThisService|null
      */
-    public function getDefault(): \Upsun\Model\TheDefaultResourcesForThisService
+    public function getDefault(): ?\Upsun\Model\TheDefaultResourcesForThisService
     {
         return $this->default;
     }
     /**
-     * @return \Upsun\Model\TheDisksResources
+     * @return \Upsun\Model\TheDisksResources|null
      */
-    public function getDisk(): \Upsun\Model\TheDisksResources
+    public function getDisk(): ?\Upsun\Model\TheDisksResources
     {
         return $this->disk;
     }

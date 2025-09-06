@@ -23,7 +23,7 @@ final class EnvironmentMergeInput implements JsonSerializable
     ];
 
     public function __construct(
-        private \Upsun\Model\Resources4 $resources,
+        private readonly ?\Upsun\Model\Resources4 $resources = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class EnvironmentMergeInput implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'resources' => '\Upsun\Model\Resources4',
+            'resources' => '?\Upsun\Model\Resources4',
         ];
     }
 
@@ -57,9 +57,9 @@ final class EnvironmentMergeInput implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Resources4
+     * @return \Upsun\Model\Resources4|null
      */
-    public function getResources(): \Upsun\Model\Resources4
+    public function getResources(): ?\Upsun\Model\Resources4
     {
         return $this->resources;
     }

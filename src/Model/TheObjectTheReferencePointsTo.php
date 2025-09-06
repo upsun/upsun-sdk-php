@@ -24,8 +24,8 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $sha,
+        private readonly string $type,
+        private readonly string $sha,
     ) {
     }
 

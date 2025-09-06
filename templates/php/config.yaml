@@ -33,6 +33,7 @@ additionalProperties:
   modelPropertyNaming: "camelCase"
   generateEnums: true
   enumClassPrefix: true
+  sortModelPropertiesByRequiredFlag: true
 files:
   abstract_api.mustache:
     templateType: SupportingFiles

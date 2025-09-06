@@ -158,5 +158,4 @@ final class PlansApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

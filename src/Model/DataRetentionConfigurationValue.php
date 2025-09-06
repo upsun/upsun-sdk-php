@@ -24,8 +24,8 @@ final class DataRetentionConfigurationValue implements JsonSerializable
     ];
 
     public function __construct(
-        private int $maxBackups,
-        private \Upsun\Model\DefaultConfig $defaultConfig,
+        private readonly int $maxBackups,
+        private readonly \Upsun\Model\DefaultConfig $defaultConfig,
     ) {
     }
 

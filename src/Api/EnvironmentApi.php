@@ -220,7 +220,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Branch an environment
      *
@@ -392,7 +391,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Create versions associated with the environment
      *
@@ -564,7 +562,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Deactivate an environment
      *
@@ -715,7 +712,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an environment
      *
@@ -866,7 +862,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete the version
      *
@@ -1040,7 +1035,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment
      *
@@ -1191,7 +1185,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List the version
      *
@@ -1365,7 +1358,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Initialize a new environment
      *
@@ -1537,7 +1529,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of project environments
      *
@@ -1667,7 +1658,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List versions associated with the environment
      *
@@ -1820,7 +1810,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Merge an environment
      *
@@ -1992,7 +1981,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Pause an environment
      *
@@ -2143,7 +2131,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Redeploy an environment
      *
@@ -2294,7 +2281,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Resume a paused environment
      *
@@ -2445,7 +2431,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Synchronize a child environment with its parent
      *
@@ -2617,7 +2602,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Update an environment
      *
@@ -2789,7 +2773,6 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Update the version
      *
@@ -2984,5 +2967,4 @@ final class EnvironmentApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

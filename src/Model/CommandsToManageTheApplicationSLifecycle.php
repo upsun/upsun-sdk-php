@@ -24,8 +24,8 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $preStart = null,
-        private ?string $start = null,
+        private readonly ?string $preStart = null,
+        private readonly ?string $start = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'pre_start' => 'string',
-            'start' => 'string',
+            'pre_start' => '?string',
+            'start' => '?string',
         ];
     }
 

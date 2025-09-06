@@ -26,10 +26,10 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     ];
 
     public function __construct(
-        private string $directory,
-        private array $watch,
-        private bool $allowStale,
-        private bool $shareBetweenApps,
+        private readonly array $watch,
+        private readonly bool $allowStale,
+        private readonly bool $shareBetweenApps,
+        private readonly ?string $directory = null,
     ) {
     }
 
@@ -46,8 +46,8 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     public static function openAPITypes()
     {
         return [
-            'directory' => 'string',
-            'watch' => 'string[]',
+            'directory' => '?string',
+            'watch' => 'array',
             'allow_stale' => 'bool',
             'share_between_apps' => 'bool',
         ];
@@ -69,9 +69,9 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDirectory(): string
+    public function getDirectory(): ?string
     {
         return $this->directory;
     }

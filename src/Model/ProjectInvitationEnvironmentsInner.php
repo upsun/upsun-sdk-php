@@ -29,10 +29,10 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $type = null,
-        private ?string $role = null,
-        private ?string $title = null,
+       private readonly ?string $id = null,
+       private readonly ?string $type = null,
+       private readonly ?string $role = null,
+       private readonly ?string $title = null,
     ) {
     }
 
@@ -49,10 +49,10 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'type' => 'string',
-            'role' => 'string',
-            'title' => 'string',
+            'id' => '?string',
+            'type' => '?string',
+            'role' => '?string',
+            'title' => '?string',
         ];
     }
 

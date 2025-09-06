@@ -19,8 +19,8 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
 
     private static array $attributeMap = [
-        'plan' => 'plan',
         'projectRegion' => 'project_region',
+        'plan' => 'plan',
         'projectTitle' => 'project_title',
         'optionsUrl' => 'options_url',
         'defaultBranch' => 'default_branch',
@@ -29,13 +29,13 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $plan = null,
-        private string $projectRegion,
-        private ?string $projectTitle = null,
-        private ?string $optionsUrl = null,
-        private ?string $defaultBranch = null,
-        private ?int $environments = null,
-        private ?int $storage = null,
+        private readonly string $projectRegion,
+       private readonly ?string $plan = null,
+       private readonly ?string $projectTitle = null,
+       private readonly ?string $optionsUrl = null,
+       private readonly ?string $defaultBranch = null,
+       private readonly ?int $environments = null,
+       private readonly ?int $storage = null,
     ) {
     }
 
@@ -52,21 +52,21 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'plan' => 'string',
             'project_region' => 'string',
-            'project_title' => 'string',
-            'options_url' => 'string',
-            'default_branch' => 'string',
-            'environments' => 'int',
-            'storage' => 'int',
+            'plan' => '?string',
+            'project_title' => '?string',
+            'options_url' => '?string',
+            'default_branch' => '?string',
+            'environments' => '?int',
+            'storage' => '?int',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'plan' => $this->plan,
             'projectRegion' => $this->projectRegion,
+            'plan' => $this->plan,
             'projectTitle' => $this->projectTitle,
             'optionsUrl' => $this->optionsUrl,
             'defaultBranch' => $this->defaultBranch,
@@ -81,15 +81,6 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     }
 
     /**
-     * The project plan.
-     *
-     * @return string|null
-     */
-    public function getPlan(): ?string
-    {
-        return $this->plan;
-    }
-    /**
      * The machine name of the region where the project is located. Cannot be changed after project creation.
      *
      * @return string
@@ -97,6 +88,15 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     public function getProjectRegion(): string
     {
         return $this->projectRegion;
+    }
+    /**
+     * The project plan.
+     *
+     * @return string|null
+     */
+    public function getPlan(): ?string
+    {
+        return $this->plan;
     }
     /**
      * The name given to the project. Appears as the title in the UI.

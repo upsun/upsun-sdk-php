@@ -197,7 +197,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an existing third-party integration
      *
@@ -348,7 +347,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get information about an existing third-party integration
      *
@@ -499,7 +497,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of existing integrations for a project
      *
@@ -629,7 +626,6 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update an existing third-party integration
      *
@@ -801,5 +797,4 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

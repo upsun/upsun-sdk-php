@@ -27,11 +27,11 @@ final class SpecificOverridesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $expires = null,
-        private ?string $passthru = null,
-        private ?bool $scripts = null,
-        private ?bool $allow = null,
-        private ?array $headers = [],
+        private readonly ?string $expires = null,
+       private readonly ?string $passthru = null,
+       private readonly ?bool $scripts = null,
+       private readonly ?bool $allow = null,
+        private readonly ?array $headers = [],
     ) {
     }
 
@@ -48,11 +48,11 @@ final class SpecificOverridesValue implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'expires' => 'string',
-            'passthru' => 'string',
-            'scripts' => 'bool',
-            'allow' => 'bool',
-            'headers' => 'array&lt;string,string&gt;',
+            'expires' => '?string',
+            'passthru' => '?string',
+            'scripts' => '?bool',
+            'allow' => '?bool',
+            'headers' => '?array',
         ];
     }
 

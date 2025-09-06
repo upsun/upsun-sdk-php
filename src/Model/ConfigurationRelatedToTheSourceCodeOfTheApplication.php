@@ -24,8 +24,8 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     ];
 
     public function __construct(
-        private string $root,
-        private array $operations,
+        private readonly array $operations,
+        private readonly ?string $root = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     public static function openAPITypes()
     {
         return [
-            'root' => 'string',
-            'operations' => 'array&lt;string,\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue&gt;',
+            'root' => '?string',
+            'operations' => 'array',
         ];
     }
 
@@ -61,9 +61,9 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRoot(): string
+    public function getRoot(): ?string
     {
         return $this->root;
     }

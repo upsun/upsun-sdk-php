@@ -31,8 +31,6 @@ final class Activity implements JsonSerializable
         'type' => 'type',
         'parameters' => 'parameters',
         'project' => 'project',
-        'integration' => 'integration',
-        'environments' => 'environments',
         'state' => 'state',
         'result' => 'result',
         'startedAt' => 'started_at',
@@ -44,29 +42,31 @@ final class Activity implements JsonSerializable
         'payload' => 'payload',
         'description' => 'description',
         'text' => 'text',
-        'expiresAt' => 'expires_at'
+        'expiresAt' => 'expires_at',
+        'integration' => 'integration',
+        'environments' => 'environments'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $type,
-        private object $parameters,
-        private string $project,
-        private ?string $integration = null,
-        private ?array $environments = [],
-        private string $state,
-        private string $result,
-        private \DateTime $startedAt,
-        private \DateTime $completedAt,
-        private int $completionPercent,
-        private \DateTime $cancelledAt,
-        private array $timings,
-        private string $log,
-        private object $payload,
-        private string $description,
-        private string $text,
-        private \DateTime $expiresAt,
+        private readonly string $type,
+        private readonly object $parameters,
+        private readonly string $project,
+        private readonly string $state,
+        private readonly int $completionPercent,
+        private readonly array $timings,
+        private readonly string $log,
+        private readonly object $payload,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $result = null,
+        private readonly ?\DateTime $startedAt = null,
+        private readonly ?\DateTime $completedAt = null,
+        private readonly ?\DateTime $cancelledAt = null,
+        private readonly ?string $description = null,
+        private readonly ?string $text = null,
+        private readonly ?\DateTime $expiresAt = null,
+       private readonly ?string $integration = null,
+        private readonly ?array $environments = [],
     ) {
     }
 
@@ -83,25 +83,25 @@ final class Activity implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'type' => 'string',
             'parameters' => 'object',
             'project' => 'string',
-            'integration' => 'string',
-            'environments' => 'string[]',
             'state' => 'string',
-            'result' => 'string',
-            'started_at' => '\DateTime',
-            'completed_at' => '\DateTime',
+            'result' => '?string',
+            'started_at' => '?\DateTime',
+            'completed_at' => '?\DateTime',
             'completion_percent' => 'int',
-            'cancelled_at' => '\DateTime',
-            'timings' => 'array&lt;string,float&gt;',
+            'cancelled_at' => '?\DateTime',
+            'timings' => 'array',
             'log' => 'string',
             'payload' => 'object',
-            'description' => 'string',
-            'text' => 'string',
-            'expires_at' => '\DateTime',
+            'description' => '?string',
+            'text' => '?string',
+            'expires_at' => '?\DateTime',
+            'integration' => '?string',
+            'environments' => '?array',
         ];
     }
 
@@ -113,8 +113,6 @@ final class Activity implements JsonSerializable
             'type' => $this->type,
             'parameters' => $this->parameters,
             'project' => $this->project,
-            'integration' => $this->integration,
-            'environments' => $this->environments,
             'state' => $this->state,
             'result' => $this->result,
             'startedAt' => $this->startedAt,
@@ -127,6 +125,8 @@ final class Activity implements JsonSerializable
             'description' => $this->description,
             'text' => $this->text,
             'expiresAt' => $this->expiresAt,
+            'integration' => $this->integration,
+            'environments' => $this->environments,
         ];
     }
 
@@ -136,16 +136,16 @@ final class Activity implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -171,20 +171,6 @@ final class Activity implements JsonSerializable
         return $this->project;
     }
     /**
-     * @return string|null
-     */
-    public function getIntegration(): ?string
-    {
-        return $this->integration;
-    }
-    /**
-     * @return string[]|null
-     */
-    public function getEnvironments(): ?array
-    {
-        return $this->environments;
-    }
-    /**
      * @return string
      */
     public function getState(): string
@@ -192,23 +178,23 @@ final class Activity implements JsonSerializable
         return $this->state;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getResult(): string
+    public function getResult(): ?string
     {
         return $this->result;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getStartedAt(): \DateTime
+    public function getStartedAt(): ?\DateTime
     {
         return $this->startedAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCompletedAt(): \DateTime
+    public function getCompletedAt(): ?\DateTime
     {
         return $this->completedAt;
     }
@@ -220,9 +206,9 @@ final class Activity implements JsonSerializable
         return $this->completionPercent;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCancelledAt(): \DateTime
+    public function getCancelledAt(): ?\DateTime
     {
         return $this->cancelledAt;
     }
@@ -248,25 +234,39 @@ final class Activity implements JsonSerializable
         return $this->payload;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getText(): string
+    public function getText(): ?string
     {
         return $this->text;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
+    }
+    /**
+     * @return string|null
+     */
+    public function getIntegration(): ?string
+    {
+        return $this->integration;
+    }
+    /**
+     * @return string[]|null
+     */
+    public function getEnvironments(): ?array
+    {
+        return $this->environments;
     }
 }
 

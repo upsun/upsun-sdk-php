@@ -28,12 +28,12 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $defaultCatalog = null,
-        private ?string $projectOptionsUrl = null,
-        private ?string $securityContact = null,
-        private ?string $companyName = null,
-        private ?string $vatNumber = null,
-        private ?string $billingContact = null,
+       private readonly ?string $defaultCatalog = null,
+       private readonly ?string $projectOptionsUrl = null,
+       private readonly ?string $securityContact = null,
+       private readonly ?string $companyName = null,
+       private readonly ?string $vatNumber = null,
+       private readonly ?string $billingContact = null,
     ) {
     }
 
@@ -50,12 +50,12 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'default_catalog' => 'string',
-            'project_options_url' => 'string',
-            'security_contact' => 'string',
-            'company_name' => 'string',
-            'vat_number' => 'string',
-            'billing_contact' => 'string',
+            'default_catalog' => '?string',
+            'project_options_url' => '?string',
+            'security_contact' => '?string',
+            'company_name' => '?string',
+            'vat_number' => '?string',
+            'billing_contact' => '?string',
         ];
     }
 

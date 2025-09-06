@@ -176,5 +176,4 @@ final class AddOnsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

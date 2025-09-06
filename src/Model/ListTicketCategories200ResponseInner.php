@@ -24,8 +24,8 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $label = null,
+       private readonly ?string $id = null,
+       private readonly ?string $label = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'label' => 'string',
+            'id' => '?string',
+            'label' => '?string',
         ];
     }
 

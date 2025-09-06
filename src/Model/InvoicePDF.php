@@ -26,8 +26,8 @@ final class InvoicePDF implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $url = null,
-        private ?string $status = null,
+       private readonly ?string $url = null,
+       private readonly ?string $status = null,
     ) {
     }
 
@@ -44,8 +44,8 @@ final class InvoicePDF implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'url' => 'string',
-            'status' => 'string',
+            'url' => '?string',
+            'status' => '?string',
         ];
     }
 

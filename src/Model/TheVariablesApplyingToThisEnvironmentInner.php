@@ -20,20 +20,20 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
 
     private static array $attributeMap = [
         'name' => 'name',
-        'value' => 'value',
         'isSensitive' => 'is_sensitive',
         'isJson' => 'is_json',
         'visibleBuild' => 'visible_build',
-        'visibleRuntime' => 'visible_runtime'
+        'visibleRuntime' => 'visible_runtime',
+        'value' => 'value'
     ];
 
     public function __construct(
-        private string $name,
-        private ?string $value = null,
-        private bool $isSensitive,
-        private bool $isJson,
-        private bool $visibleBuild,
-        private bool $visibleRuntime,
+        private readonly string $name,
+        private readonly bool $isSensitive,
+        private readonly bool $isJson,
+        private readonly bool $visibleBuild,
+        private readonly bool $visibleRuntime,
+       private readonly ?string $value = null,
     ) {
     }
 
@@ -51,11 +51,11 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return [
             'name' => 'string',
-            'value' => 'string',
             'is_sensitive' => 'bool',
             'is_json' => 'bool',
             'visible_build' => 'bool',
             'visible_runtime' => 'bool',
+            'value' => '?string',
         ];
     }
 
@@ -63,11 +63,11 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return [
             'name' => $this->name,
-            'value' => $this->value,
             'isSensitive' => $this->isSensitive,
             'isJson' => $this->isJson,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'value' => $this->value,
         ];
     }
 
@@ -82,13 +82,6 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     public function getName(): string
     {
         return $this->name;
-    }
-    /**
-     * @return string|null
-     */
-    public function getValue(): ?string
-    {
-        return $this->value;
     }
     /**
      * @return bool
@@ -117,6 +110,13 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
+    }
+    /**
+     * @return string|null
+     */
+    public function getValue(): ?string
+    {
+        return $this->value;
     }
 }
 

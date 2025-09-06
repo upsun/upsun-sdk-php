@@ -24,8 +24,8 @@ final class CertificatePatch implements JsonSerializable
     ];
 
     public function __construct(
-        private ?array $chain = [],
-        private ?bool $isInvalid = null,
+        private readonly ?array $chain = [],
+       private readonly ?bool $isInvalid = null,
     ) {
     }
 
@@ -42,8 +42,8 @@ final class CertificatePatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'chain' => 'string[]',
-            'is_invalid' => 'bool',
+            'chain' => '?array',
+            'is_invalid' => '?bool',
         ];
     }
 

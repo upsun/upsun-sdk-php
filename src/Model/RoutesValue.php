@@ -36,17 +36,17 @@ final class RoutesValue implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $primary,
-        private string $id,
-        private string $productionUrl,
-        private array $attributes,
-        private string $type,
-        private \Upsun\Model\TLSSettingsForTheRoute $tls,
-        private string $to,
-        private \Upsun\Model\TheConfigurationOfTheRedirects $redirects,
-        private \Upsun\Model\CacheConfiguration $cache,
-        private \Upsun\Model\ServerSideIncludeConfiguration $ssi,
-        private string $upstream,
+        private readonly array $attributes,
+        private readonly string $type,
+        private readonly \Upsun\Model\TLSSettingsForTheRoute $tls,
+        private readonly string $to,
+        private readonly \Upsun\Model\TheConfigurationOfTheRedirects $redirects,
+        private readonly \Upsun\Model\CacheConfiguration $cache,
+        private readonly \Upsun\Model\ServerSideIncludeConfiguration $ssi,
+        private readonly string $upstream,
+        private readonly ?bool $primary = null,
+        private readonly ?string $id = null,
+        private readonly ?string $productionUrl = null,
     ) {
     }
 
@@ -63,10 +63,10 @@ final class RoutesValue implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'primary' => 'bool',
-            'id' => 'string',
-            'production_url' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
+            'primary' => '?bool',
+            'id' => '?string',
+            'production_url' => '?string',
+            'attributes' => 'array',
             'type' => 'string',
             'tls' => '\Upsun\Model\TLSSettingsForTheRoute',
             'to' => 'string',
@@ -100,23 +100,23 @@ final class RoutesValue implements JsonSerializable
     }
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public function getPrimary(): bool
+    public function getPrimary(): ?bool
     {
         return $this->primary;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getProductionUrl(): string
+    public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
     }

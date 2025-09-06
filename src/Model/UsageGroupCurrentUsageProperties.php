@@ -31,15 +31,15 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $title = null,
-        private ?bool $type = null,
-        private ?float $currentUsage = null,
-        private ?string $currentUsageFormatted = null,
-        private ?bool $notCharged = null,
-        private ?float $freeQuantity = null,
-        private ?string $freeQuantityFormatted = null,
-        private ?float $dailyAverage = null,
-        private ?string $dailyAverageFormatted = null,
+       private readonly ?string $title = null,
+       private readonly ?bool $type = null,
+       private readonly ?float $currentUsage = null,
+       private readonly ?string $currentUsageFormatted = null,
+       private readonly ?bool $notCharged = null,
+       private readonly ?float $freeQuantity = null,
+       private readonly ?string $freeQuantityFormatted = null,
+       private readonly ?float $dailyAverage = null,
+       private readonly ?string $dailyAverageFormatted = null,
     ) {
     }
 
@@ -56,15 +56,15 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'title' => 'string',
-            'type' => 'bool',
-            'current_usage' => 'float',
-            'current_usage_formatted' => 'string',
-            'not_charged' => 'bool',
-            'free_quantity' => 'float',
-            'free_quantity_formatted' => 'string',
-            'daily_average' => 'float',
-            'daily_average_formatted' => 'string',
+            'title' => '?string',
+            'type' => '?bool',
+            'current_usage' => '?float',
+            'current_usage_formatted' => '?string',
+            'not_charged' => '?bool',
+            'free_quantity' => '?float',
+            'free_quantity_formatted' => '?string',
+            'daily_average' => '?float',
+            'daily_average_formatted' => '?string',
         ];
     }
 

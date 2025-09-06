@@ -27,8 +27,8 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $role = null,
+       private readonly ?string $id = null,
+       private readonly ?string $role = null,
     ) {
     }
 
@@ -45,8 +45,8 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'role' => 'string',
+            'id' => '?string',
+            'role' => '?string',
         ];
     }
 

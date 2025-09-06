@@ -199,7 +199,6 @@ final class ProjectActivityApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a project activity log entry
      *
@@ -350,7 +349,6 @@ final class ProjectActivityApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get project activity log
      *
@@ -480,5 +478,4 @@ final class ProjectActivityApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

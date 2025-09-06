@@ -24,8 +24,8 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
     ];
 
     public function __construct(
-        private ?array $continuousProfiling = [],
-        private ?array $projectSupportLevel = [],
+        private readonly ?array $continuousProfiling = [],
+        private readonly ?array $projectSupportLevel = [],
     ) {
     }
 
@@ -42,8 +42,8 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
     public static function openAPITypes()
     {
         return [
-            'continuous_profiling' => 'string[]',
-            'project_support_level' => 'string[]',
+            'continuous_profiling' => '?array',
+            'project_support_level' => '?array',
         ];
     }
 

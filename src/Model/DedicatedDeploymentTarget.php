@@ -38,19 +38,19 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     ];
 
     public function __construct(
-        private string $type,
-        private string $name,
-        private string $deployHost,
-        private int $deployPort,
-        private string $sshHost,
-        private array $hosts,
-        private bool $autoMounts,
-        private array $excludedMounts,
-        private object $enforcedMounts,
-        private bool $autoCrons,
-        private bool $autoNginx,
-        private bool $maintenanceMode,
-        private int $guardrailsPhase,
+        private readonly string $type,
+        private readonly string $name,
+        private readonly bool $autoMounts,
+        private readonly array $excludedMounts,
+        private readonly object $enforcedMounts,
+        private readonly bool $autoCrons,
+        private readonly bool $autoNginx,
+        private readonly bool $maintenanceMode,
+        private readonly int $guardrailsPhase,
+        private readonly ?string $deployHost = null,
+        private readonly ?int $deployPort = null,
+        private readonly ?string $sshHost = null,
+        private readonly ?array $hosts = [],
     ) {
     }
 
@@ -69,12 +69,12 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'deploy_host' => 'string',
-            'deploy_port' => 'int',
-            'ssh_host' => 'string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
+            'deploy_host' => '?string',
+            'deploy_port' => '?int',
+            'ssh_host' => '?string',
+            'hosts' => '?array',
             'auto_mounts' => 'bool',
-            'excluded_mounts' => 'string[]',
+            'excluded_mounts' => 'array',
             'enforced_mounts' => 'object',
             'auto_crons' => 'bool',
             'auto_nginx' => 'bool',
@@ -122,30 +122,30 @@ final class DedicatedDeploymentTarget implements JsonSerializable
         return $this->name;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeployHost(): string
+    public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getDeployPort(): int
+    public function getDeployPort(): ?int
     {
         return $this->deployPort;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSshHost(): string
+    public function getSshHost(): ?string
     {
         return $this->sshHost;
     }
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]
+     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
      */
-    public function getHosts(): array
+    public function getHosts(): ?array
     {
         return $this->hosts;
     }

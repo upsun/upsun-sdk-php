@@ -361,5 +361,4 @@ final class DefaultApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
 }

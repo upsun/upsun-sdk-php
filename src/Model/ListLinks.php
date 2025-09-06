@@ -25,9 +25,9 @@ final class ListLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\LinkSelf $self = null,
-        private ?\Upsun\Model\LinkPrevious $previous = null,
-        private ?\Upsun\Model\LinkNext $next = null,
+       private readonly ?\Upsun\Model\LinkSelf $self = null,
+       private readonly ?\Upsun\Model\LinkPrevious $previous = null,
+       private readonly ?\Upsun\Model\LinkNext $next = null,
     ) {
     }
 
@@ -44,9 +44,9 @@ final class ListLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\LinkSelf',
-            'previous' => '\Upsun\Model\LinkPrevious',
-            'next' => '\Upsun\Model\LinkNext',
+            'self' => '?\Upsun\Model\LinkSelf',
+            'previous' => '?\Upsun\Model\LinkPrevious',
+            'next' => '?\Upsun\Model\LinkNext',
         ];
     }
 

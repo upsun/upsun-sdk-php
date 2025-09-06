@@ -17,13 +17,39 @@ final class {{classname}} implements JsonSerializable
 
     public function __construct(
     {{#vars}}
-        {{#isContainer}}
-        private {{^required}}?{{/required}}array ${{name}}{{^required}} = []{{/required}},
-        {{/isContainer}}
-        {{^isContainer}}
-        private {{^required}}?{{/required}}{{{dataType}}} ${{name}}{{^required}} = {{#defaultValue}}{{{defaultValue}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}},
-        {{/isContainer}}
+      {{#required}}
+      {{^isNullable}}
+      {{#isContainer}}
+        private readonly array ${{name}},
+      {{/isContainer}}
+      {{^isContainer}}
+        private readonly {{{dataType}}} ${{name}},
+      {{/isContainer}}
+      {{/isNullable}}
+      {{/required}}      
     {{/vars}}
+    {{#vars}}
+      {{#isNullable}}
+      {{#isContainer}}
+        private readonly ?array ${{name}} = [],
+      {{/isContainer}}
+      {{^isContainer}}
+        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+      {{/isContainer}}
+      {{/isNullable}}      
+    {{/vars}}
+    {{#vars}}
+    {{^required}}
+    {{^isNullable}}
+    {{#isContainer}}
+        private readonly ?array ${{name}} = [],
+    {{/isContainer}}
+    {{^isContainer}}
+       private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+    {{/isContainer}}
+    {{/isNullable}}      
+    {{/required}}      
+    {{/vars}}  
     ) {
     }
 
@@ -41,7 +67,7 @@ final class {{classname}} implements JsonSerializable
     {
         return [
     {{#vars}}
-            '{{baseName}}' => '{{dataType}}',
+            '{{baseName}}' => '{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}}',
     {{/vars}}
         ];
     }
@@ -68,17 +94,17 @@ final class {{classname}} implements JsonSerializable
     {{/description}}
     {{#isContainer}}
     {{#items.isModel}}
-     * @return {{items.dataType}}[]{{^required}}|null{{/required}}
+     * @return {{items.dataType}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
     {{/items.isModel}}
     {{^items.isModel}}
-     * @return {{dataType}}{{^required}}|null{{/required}}
+     * @return {{dataType}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
     {{/items.isModel}}
     {{/isContainer}}
     {{^isContainer}}
-     * @return {{dataType}}{{^required}}|null{{/required}}
+     * @return {{dataType}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
     {{/isContainer}}
      */
-    public function {{{getter}}}(): {{#isContainer}}{{^required}}?{{/required}}array{{/isContainer}}{{^isContainer}}{{^required}}?{{/required}}{{{datatype}}}{{/isContainer}}
+    public function {{{getter}}}(): {{#isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}array{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{{datatype}}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

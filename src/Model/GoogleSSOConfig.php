@@ -25,8 +25,8 @@ final class GoogleSSOConfig implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $providerType = null,
-        private ?string $domain = null,
+       private readonly ?string $providerType = null,
+       private readonly ?string $domain = null,
     ) {
     }
 
@@ -43,8 +43,8 @@ final class GoogleSSOConfig implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'provider_type' => 'string',
-            'domain' => 'string',
+            'provider_type' => '?string',
+            'domain' => '?string',
         ];
     }
 

@@ -26,10 +26,10 @@ final class ProjectOptionsDefaults implements JsonSerializable
     ];
 
     public function __construct(
-        private ?object $settings = null,
-        private ?object $variables = null,
-        private ?object $access = null,
-        private ?object $capabilities = null,
+       private readonly ?object $settings = null,
+       private readonly ?object $variables = null,
+       private readonly ?object $access = null,
+       private readonly ?object $capabilities = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class ProjectOptionsDefaults implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'settings' => 'object',
-            'variables' => 'object',
-            'access' => 'object',
-            'capabilities' => 'object',
+            'settings' => '?object',
+            'variables' => '?object',
+            'access' => '?object',
+            'capabilities' => '?object',
         ];
     }
 

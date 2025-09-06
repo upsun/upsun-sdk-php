@@ -25,9 +25,9 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     ];
 
     public function __construct(
-        private bool $lastDeploymentSuccessful,
-        private \DateTime $lastDeploymentAt,
-        private \Upsun\Model\TheCronsDeploymentState $crons,
+        private readonly bool $lastDeploymentSuccessful,
+        private readonly \Upsun\Model\TheCronsDeploymentState $crons,
+        private readonly ?\DateTime $lastDeploymentAt = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     {
         return [
             'last_deployment_successful' => 'bool',
-            'last_deployment_at' => '\DateTime',
+            'last_deployment_at' => '?\DateTime',
             'crons' => '\Upsun\Model\TheCronsDeploymentState',
         ];
     }
@@ -72,9 +72,9 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
         return $this->lastDeploymentSuccessful;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastDeploymentAt(): \DateTime
+    public function getLastDeploymentAt(): ?\DateTime
     {
         return $this->lastDeploymentAt;
     }

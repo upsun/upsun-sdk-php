@@ -176,7 +176,6 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete a user profile picture
      *
@@ -300,7 +299,6 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a user address
      *
@@ -428,7 +426,6 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a single user profile
      *
@@ -556,7 +553,6 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List user profiles
      *
@@ -666,7 +662,6 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a user address
      *
@@ -805,7 +800,6 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a user profile
      *
@@ -944,5 +938,4 @@ final class UserProfilesApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

@@ -24,8 +24,8 @@ final class TheCommandsDefinition implements JsonSerializable
     ];
 
     public function __construct(
-        private string $start,
-        private ?string $stop = null,
+        private readonly string $start,
+        private readonly ?string $stop = null,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class TheCommandsDefinition implements JsonSerializable
     {
         return [
             'start' => 'string',
-            'stop' => 'string',
+            'stop' => '?string',
         ];
     }
 

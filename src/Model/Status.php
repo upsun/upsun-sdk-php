@@ -24,8 +24,8 @@ final class Status implements JsonSerializable
     ];
 
     public function __construct(
-        private string $code,
-        private string $message,
+        private readonly string $code,
+        private readonly string $message,
     ) {
     }
 

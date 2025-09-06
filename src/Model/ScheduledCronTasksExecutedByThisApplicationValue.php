@@ -21,17 +21,17 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     private static array $attributeMap = [
         'spec' => 'spec',
         'commands' => 'commands',
-        'shutdownTimeout' => 'shutdown_timeout',
         'timeout' => 'timeout',
+        'shutdownTimeout' => 'shutdown_timeout',
         'cmd' => 'cmd'
     ];
 
     public function __construct(
-        private string $spec,
-        private \Upsun\Model\TheCommandsDefinition $commands,
-        private ?int $shutdownTimeout = null,
-        private int $timeout,
-        private ?string $cmd = null,
+        private readonly string $spec,
+        private readonly \Upsun\Model\TheCommandsDefinition $commands,
+        private readonly int $timeout,
+        private readonly ?int $shutdownTimeout = null,
+       private readonly ?string $cmd = null,
     ) {
     }
 
@@ -50,9 +50,9 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return [
             'spec' => 'string',
             'commands' => '\Upsun\Model\TheCommandsDefinition',
-            'shutdown_timeout' => 'int',
             'timeout' => 'int',
-            'cmd' => 'string',
+            'shutdown_timeout' => '?int',
+            'cmd' => '?string',
         ];
     }
 
@@ -61,8 +61,8 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return [
             'spec' => $this->spec,
             'commands' => $this->commands,
-            'shutdownTimeout' => $this->shutdownTimeout,
             'timeout' => $this->timeout,
+            'shutdownTimeout' => $this->shutdownTimeout,
             'cmd' => $this->cmd,
         ];
     }
@@ -87,18 +87,18 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return $this->commands;
     }
     /**
-     * @return int|null
-     */
-    public function getShutdownTimeout(): ?int
-    {
-        return $this->shutdownTimeout;
-    }
-    /**
      * @return int
      */
     public function getTimeout(): int
     {
         return $this->timeout;
+    }
+    /**
+     * @return int|null
+     */
+    public function getShutdownTimeout(): ?int
+    {
+        return $this->shutdownTimeout;
     }
     /**
      * @return string|null

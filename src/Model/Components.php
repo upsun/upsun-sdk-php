@@ -23,7 +23,7 @@ final class Components implements JsonSerializable
     ];
 
     public function __construct(
-        private ?object $voucherVatBaseprice = null,
+       private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class Components implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'voucher/vat/baseprice' => 'object',
+            'voucher/vat/baseprice' => '?object',
         ];
     }
 

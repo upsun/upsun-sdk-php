@@ -23,24 +23,24 @@ final class FastlyIntegrationPatch implements JsonSerializable
 
     private static array $attributeMap = [
         'type' => 'type',
+        'token' => 'token',
+        'serviceId' => 'service_id',
         'events' => 'events',
         'environments' => 'environments',
         'excludedEnvironments' => 'excluded_environments',
         'states' => 'states',
-        'result' => 'result',
-        'token' => 'token',
-        'serviceId' => 'service_id'
+        'result' => 'result'
     ];
 
     public function __construct(
-        private string $type,
-        private ?array $events = [],
-        private ?array $environments = [],
-        private ?array $excludedEnvironments = [],
-        private ?array $states = [],
-        private ?string $result = null,
-        private string $token,
-        private string $serviceId,
+        private readonly string $type,
+        private readonly string $token,
+        private readonly string $serviceId,
+        private readonly ?array $events = [],
+        private readonly ?array $environments = [],
+        private readonly ?array $excludedEnvironments = [],
+        private readonly ?array $states = [],
+       private readonly ?string $result = null,
     ) {
     }
 
@@ -58,13 +58,13 @@ final class FastlyIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
             'token' => 'string',
             'service_id' => 'string',
+            'events' => '?array',
+            'environments' => '?array',
+            'excluded_environments' => '?array',
+            'states' => '?array',
+            'result' => '?string',
         ];
     }
 
@@ -72,13 +72,13 @@ final class FastlyIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => $this->type,
+            'token' => $this->token,
+            'serviceId' => $this->serviceId,
             'events' => $this->events,
             'environments' => $this->environments,
             'excludedEnvironments' => $this->excludedEnvironments,
             'states' => $this->states,
             'result' => $this->result,
-            'token' => $this->token,
-            'serviceId' => $this->serviceId,
         ];
     }
 
@@ -93,6 +93,20 @@ final class FastlyIntegrationPatch implements JsonSerializable
     public function getType(): string
     {
         return $this->type;
+    }
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+    /**
+     * @return string
+     */
+    public function getServiceId(): string
+    {
+        return $this->serviceId;
     }
     /**
      * @return string[]|null
@@ -128,20 +142,6 @@ final class FastlyIntegrationPatch implements JsonSerializable
     public function getResult(): ?string
     {
         return $this->result;
-    }
-    /**
-     * @return string
-     */
-    public function getToken(): string
-    {
-        return $this->token;
-    }
-    /**
-     * @return string
-     */
-    public function getServiceId(): string
-    {
-        return $this->serviceId;
     }
 }
 

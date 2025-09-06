@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **parent** | **string** |  |
-**defaultDomain** | **string** |  | [optional]
 **hasDomains** | **bool** |  |
 **cloneParentOnCreate** | **bool** |  |
 **deploymentTarget** | **string** |  |
@@ -36,5 +35,6 @@ Name | Type | Description | Notes
 **mergeInfo** | [**\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments**](TheCommitDistanceInfoBetweenParentAndChildEnvironments.md) |  |
 **hasDeployment** | **bool** |  |
 **supportsRestrictRobots** | **bool** |  |
+**defaultDomain** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

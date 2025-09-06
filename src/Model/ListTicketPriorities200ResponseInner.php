@@ -26,10 +26,10 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $id = null,
-        private ?string $label = null,
-        private ?string $shortDescription = null,
-        private ?string $description = null,
+       private readonly ?string $id = null,
+       private readonly ?string $label = null,
+       private readonly ?string $shortDescription = null,
+       private readonly ?string $description = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'id' => 'string',
-            'label' => 'string',
-            'short_description' => 'string',
-            'description' => 'string',
+            'id' => '?string',
+            'label' => '?string',
+            'short_description' => '?string',
+            'description' => '?string',
         ];
     }
 

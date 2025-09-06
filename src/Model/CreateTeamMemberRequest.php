@@ -23,7 +23,7 @@ final class CreateTeamMemberRequest implements JsonSerializable
     ];
 
     public function __construct(
-        private string $userId,
+        private readonly string $userId,
     ) {
     }
 

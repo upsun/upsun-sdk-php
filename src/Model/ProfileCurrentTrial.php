@@ -34,17 +34,17 @@ final class ProfileCurrentTrial implements JsonSerializable
     ];
 
     public function __construct(
-        private ?bool $active = null,
-        private ?\DateTime $created = null,
-        private ?string $description = null,
-        private ?\DateTime $expiration = null,
-        private ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
-        private ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
-        private ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
-        private ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
-        private ?string $pendingVerification = null,
-        private ?string $model = null,
-        private ?int $daysRemaining = null,
+        private readonly ?string $pendingVerification = null,
+       private readonly ?bool $active = null,
+       private readonly ?\DateTime $created = null,
+       private readonly ?string $description = null,
+       private readonly ?\DateTime $expiration = null,
+       private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+       private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+       private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
+       private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+       private readonly ?string $model = null,
+       private readonly ?int $daysRemaining = null,
     ) {
     }
 
@@ -61,17 +61,17 @@ final class ProfileCurrentTrial implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'active' => 'bool',
-            'created' => '\DateTime',
-            'description' => 'string',
-            'expiration' => '\DateTime',
-            'current' => '\Upsun\Model\ProfileCurrentTrialCurrent',
-            'spend' => '\Upsun\Model\ProfileCurrentTrialSpend',
-            'spend_remaining' => '\Upsun\Model\ProfileCurrentTrialSpendRemaining',
-            'projects' => '\Upsun\Model\ProfileCurrentTrialProjects',
-            'pending_verification' => 'string',
-            'model' => 'string',
-            'days_remaining' => 'int',
+            'active' => '?bool',
+            'created' => '?\DateTime',
+            'description' => '?string',
+            'expiration' => '?\DateTime',
+            'current' => '?\Upsun\Model\ProfileCurrentTrialCurrent',
+            'spend' => '?\Upsun\Model\ProfileCurrentTrialSpend',
+            'spend_remaining' => '?\Upsun\Model\ProfileCurrentTrialSpendRemaining',
+            'projects' => '?\Upsun\Model\ProfileCurrentTrialProjects',
+            'pending_verification' => '?string',
+            'model' => '?string',
+            'days_remaining' => '?int',
         ];
     }
 

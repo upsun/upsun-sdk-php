@@ -27,11 +27,11 @@ final class OrganizationProjectLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
-        private ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
-        private ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
-        private ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
-        private ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
+       private readonly ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
+       private readonly ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
+       private readonly ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
+       private readonly ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
+       private readonly ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class OrganizationProjectLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\OrganizationProjectLinksSelf',
-            'update' => '\Upsun\Model\OrganizationProjectLinksUpdate',
-            'delete' => '\Upsun\Model\OrganizationProjectLinksDelete',
-            'subscription' => '\Upsun\Model\OrganizationProjectLinksSubscription',
-            'api' => '\Upsun\Model\OrganizationProjectLinksApi',
+            'self' => '?\Upsun\Model\OrganizationProjectLinksSelf',
+            'update' => '?\Upsun\Model\OrganizationProjectLinksUpdate',
+            'delete' => '?\Upsun\Model\OrganizationProjectLinksDelete',
+            'subscription' => '?\Upsun\Model\OrganizationProjectLinksSubscription',
+            'api' => '?\Upsun\Model\OrganizationProjectLinksApi',
         ];
     }
 

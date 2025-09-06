@@ -37,21 +37,21 @@ final class OrganizationLinks implements JsonSerializable
     ];
 
     public function __construct(
-        private ?\Upsun\Model\OrganizationLinksSelf $self = null,
-        private ?\Upsun\Model\OrganizationLinksUpdate $update = null,
-        private ?\Upsun\Model\OrganizationLinksDelete $delete = null,
-        private ?\Upsun\Model\OrganizationLinksMembers $members = null,
-        private ?\Upsun\Model\OrganizationLinksCreateMember $createMember = null,
-        private ?\Upsun\Model\OrganizationLinksAddress $address = null,
-        private ?\Upsun\Model\OrganizationLinksProfile $profile = null,
-        private ?\Upsun\Model\OrganizationLinksPaymentSource $paymentSource = null,
-        private ?\Upsun\Model\OrganizationLinksOrders $orders = null,
-        private ?\Upsun\Model\OrganizationLinksVouchers $vouchers = null,
-        private ?\Upsun\Model\OrganizationLinksApplyVoucher $applyVoucher = null,
-        private ?\Upsun\Model\OrganizationLinksSubscriptions $subscriptions = null,
-        private ?\Upsun\Model\OrganizationLinksCreateSubscription $createSubscription = null,
-        private ?\Upsun\Model\OrganizationLinksEstimateSubscription $estimateSubscription = null,
-        private ?\Upsun\Model\OrganizationLinksMfaEnforcement $mfaEnforcement = null,
+       private readonly ?\Upsun\Model\OrganizationLinksSelf $self = null,
+       private readonly ?\Upsun\Model\OrganizationLinksUpdate $update = null,
+       private readonly ?\Upsun\Model\OrganizationLinksDelete $delete = null,
+       private readonly ?\Upsun\Model\OrganizationLinksMembers $members = null,
+       private readonly ?\Upsun\Model\OrganizationLinksCreateMember $createMember = null,
+       private readonly ?\Upsun\Model\OrganizationLinksAddress $address = null,
+       private readonly ?\Upsun\Model\OrganizationLinksProfile $profile = null,
+       private readonly ?\Upsun\Model\OrganizationLinksPaymentSource $paymentSource = null,
+       private readonly ?\Upsun\Model\OrganizationLinksOrders $orders = null,
+       private readonly ?\Upsun\Model\OrganizationLinksVouchers $vouchers = null,
+       private readonly ?\Upsun\Model\OrganizationLinksApplyVoucher $applyVoucher = null,
+       private readonly ?\Upsun\Model\OrganizationLinksSubscriptions $subscriptions = null,
+       private readonly ?\Upsun\Model\OrganizationLinksCreateSubscription $createSubscription = null,
+       private readonly ?\Upsun\Model\OrganizationLinksEstimateSubscription $estimateSubscription = null,
+       private readonly ?\Upsun\Model\OrganizationLinksMfaEnforcement $mfaEnforcement = null,
     ) {
     }
 
@@ -68,21 +68,21 @@ final class OrganizationLinks implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'self' => '\Upsun\Model\OrganizationLinksSelf',
-            'update' => '\Upsun\Model\OrganizationLinksUpdate',
-            'delete' => '\Upsun\Model\OrganizationLinksDelete',
-            'members' => '\Upsun\Model\OrganizationLinksMembers',
-            'create-member' => '\Upsun\Model\OrganizationLinksCreateMember',
-            'address' => '\Upsun\Model\OrganizationLinksAddress',
-            'profile' => '\Upsun\Model\OrganizationLinksProfile',
-            'payment-source' => '\Upsun\Model\OrganizationLinksPaymentSource',
-            'orders' => '\Upsun\Model\OrganizationLinksOrders',
-            'vouchers' => '\Upsun\Model\OrganizationLinksVouchers',
-            'apply-voucher' => '\Upsun\Model\OrganizationLinksApplyVoucher',
-            'subscriptions' => '\Upsun\Model\OrganizationLinksSubscriptions',
-            'create-subscription' => '\Upsun\Model\OrganizationLinksCreateSubscription',
-            'estimate-subscription' => '\Upsun\Model\OrganizationLinksEstimateSubscription',
-            'mfa-enforcement' => '\Upsun\Model\OrganizationLinksMfaEnforcement',
+            'self' => '?\Upsun\Model\OrganizationLinksSelf',
+            'update' => '?\Upsun\Model\OrganizationLinksUpdate',
+            'delete' => '?\Upsun\Model\OrganizationLinksDelete',
+            'members' => '?\Upsun\Model\OrganizationLinksMembers',
+            'create-member' => '?\Upsun\Model\OrganizationLinksCreateMember',
+            'address' => '?\Upsun\Model\OrganizationLinksAddress',
+            'profile' => '?\Upsun\Model\OrganizationLinksProfile',
+            'payment-source' => '?\Upsun\Model\OrganizationLinksPaymentSource',
+            'orders' => '?\Upsun\Model\OrganizationLinksOrders',
+            'vouchers' => '?\Upsun\Model\OrganizationLinksVouchers',
+            'apply-voucher' => '?\Upsun\Model\OrganizationLinksApplyVoucher',
+            'subscriptions' => '?\Upsun\Model\OrganizationLinksSubscriptions',
+            'create-subscription' => '?\Upsun\Model\OrganizationLinksCreateSubscription',
+            'estimate-subscription' => '?\Upsun\Model\OrganizationLinksEstimateSubscription',
+            'mfa-enforcement' => '?\Upsun\Model\OrganizationLinksMfaEnforcement',
         ];
     }
 

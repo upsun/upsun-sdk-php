@@ -35,7 +35,6 @@ final class Environment implements JsonSerializable
         'attributes' => 'attributes',
         'type' => 'type',
         'parent' => 'parent',
-        'defaultDomain' => 'default_domain',
         'hasDomains' => 'has_domains',
         'cloneParentOnCreate' => 'clone_parent_on_create',
         'deploymentTarget' => 'deployment_target',
@@ -58,42 +57,43 @@ final class Environment implements JsonSerializable
         'headCommit' => 'head_commit',
         'mergeInfo' => 'merge_info',
         'hasDeployment' => 'has_deployment',
-        'supportsRestrictRobots' => 'supports_restrict_robots'
+        'supportsRestrictRobots' => 'supports_restrict_robots',
+        'defaultDomain' => 'default_domain'
     ];
 
     public function __construct(
-        private \DateTime $createdAt,
-        private \DateTime $updatedAt,
-        private string $name,
-        private string $machineName,
-        private string $title,
-        private array $attributes,
-        private string $type,
-        private string $parent,
-        private ?string $defaultDomain = null,
-        private bool $hasDomains,
-        private bool $cloneParentOnCreate,
-        private string $deploymentTarget,
-        private bool $isPr,
-        private bool $hasRemote,
-        private string $status,
-        private \Upsun\Model\HttpAccessPermissions $httpAccess,
-        private bool $enableSmtp,
-        private bool $restrictRobots,
-        private string $edgeHostname,
-        private \Upsun\Model\TheEnvironmentDeploymentState $deploymentState,
-        private array $resourcesOverrides,
-        private int $maxInstanceCount,
-        private \DateTime $lastActiveAt,
-        private \DateTime $lastBackupAt,
-        private string $project,
-        private bool $isMain,
-        private bool $isDirty,
-        private bool $hasCode,
-        private string $headCommit,
-        private \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
-        private bool $hasDeployment,
-        private bool $supportsRestrictRobots,
+        private readonly string $name,
+        private readonly string $machineName,
+        private readonly string $title,
+        private readonly array $attributes,
+        private readonly string $type,
+        private readonly bool $hasDomains,
+        private readonly bool $cloneParentOnCreate,
+        private readonly bool $isPr,
+        private readonly bool $hasRemote,
+        private readonly string $status,
+        private readonly \Upsun\Model\HttpAccessPermissions $httpAccess,
+        private readonly bool $enableSmtp,
+        private readonly bool $restrictRobots,
+        private readonly string $edgeHostname,
+        private readonly array $resourcesOverrides,
+        private readonly string $project,
+        private readonly bool $isMain,
+        private readonly bool $isDirty,
+        private readonly bool $hasCode,
+        private readonly \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
+        private readonly bool $hasDeployment,
+        private readonly bool $supportsRestrictRobots,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $parent = null,
+        private readonly ?string $deploymentTarget = null,
+        private readonly ?\Upsun\Model\TheEnvironmentDeploymentState $deploymentState = null,
+        private readonly ?int $maxInstanceCount = null,
+        private readonly ?\DateTime $lastActiveAt = null,
+        private readonly ?\DateTime $lastBackupAt = null,
+        private readonly ?string $headCommit = null,
+        private readonly ?string $defaultDomain = null,
     ) {
     }
 
@@ -110,18 +110,17 @@ final class Environment implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
             'name' => 'string',
             'machine_name' => 'string',
             'title' => 'string',
-            'attributes' => 'array&lt;string,string&gt;',
+            'attributes' => 'array',
             'type' => 'string',
-            'parent' => 'string',
-            'default_domain' => 'string',
+            'parent' => '?string',
             'has_domains' => 'bool',
             'clone_parent_on_create' => 'bool',
-            'deployment_target' => 'string',
+            'deployment_target' => '?string',
             'is_pr' => 'bool',
             'has_remote' => 'bool',
             'status' => 'string',
@@ -129,19 +128,20 @@ final class Environment implements JsonSerializable
             'enable_smtp' => 'bool',
             'restrict_robots' => 'bool',
             'edge_hostname' => 'string',
-            'deployment_state' => '\Upsun\Model\TheEnvironmentDeploymentState',
-            'resources_overrides' => 'array&lt;string,\Upsun\Model\ResourcesOverridesValue&gt;',
-            'max_instance_count' => 'int',
-            'last_active_at' => '\DateTime',
-            'last_backup_at' => '\DateTime',
+            'deployment_state' => '?\Upsun\Model\TheEnvironmentDeploymentState',
+            'resources_overrides' => 'array',
+            'max_instance_count' => '?int',
+            'last_active_at' => '?\DateTime',
+            'last_backup_at' => '?\DateTime',
             'project' => 'string',
             'is_main' => 'bool',
             'is_dirty' => 'bool',
             'has_code' => 'bool',
-            'head_commit' => 'string',
+            'head_commit' => '?string',
             'merge_info' => '\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments',
             'has_deployment' => 'bool',
             'supports_restrict_robots' => 'bool',
+            'default_domain' => '?string',
         ];
     }
 
@@ -156,7 +156,6 @@ final class Environment implements JsonSerializable
             'attributes' => $this->attributes,
             'type' => $this->type,
             'parent' => $this->parent,
-            'defaultDomain' => $this->defaultDomain,
             'hasDomains' => $this->hasDomains,
             'cloneParentOnCreate' => $this->cloneParentOnCreate,
             'deploymentTarget' => $this->deploymentTarget,
@@ -180,6 +179,7 @@ final class Environment implements JsonSerializable
             'mergeInfo' => $this->mergeInfo,
             'hasDeployment' => $this->hasDeployment,
             'supportsRestrictRobots' => $this->supportsRestrictRobots,
+            'defaultDomain' => $this->defaultDomain,
         ];
     }
 
@@ -189,16 +189,16 @@ final class Environment implements JsonSerializable
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -238,18 +238,11 @@ final class Environment implements JsonSerializable
         return $this->type;
     }
     /**
-     * @return string
-     */
-    public function getParent(): string
-    {
-        return $this->parent;
-    }
-    /**
      * @return string|null
      */
-    public function getDefaultDomain(): ?string
+    public function getParent(): ?string
     {
-        return $this->defaultDomain;
+        return $this->parent;
     }
     /**
      * @return bool
@@ -266,9 +259,9 @@ final class Environment implements JsonSerializable
         return $this->cloneParentOnCreate;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDeploymentTarget(): string
+    public function getDeploymentTarget(): ?string
     {
         return $this->deploymentTarget;
     }
@@ -322,9 +315,9 @@ final class Environment implements JsonSerializable
         return $this->edgeHostname;
     }
     /**
-     * @return \Upsun\Model\TheEnvironmentDeploymentState
+     * @return \Upsun\Model\TheEnvironmentDeploymentState|null
      */
-    public function getDeploymentState(): \Upsun\Model\TheEnvironmentDeploymentState
+    public function getDeploymentState(): ?\Upsun\Model\TheEnvironmentDeploymentState
     {
         return $this->deploymentState;
     }
@@ -336,23 +329,23 @@ final class Environment implements JsonSerializable
         return $this->resourcesOverrides;
     }
     /**
-     * @return int
+     * @return int|null
      */
-    public function getMaxInstanceCount(): int
+    public function getMaxInstanceCount(): ?int
     {
         return $this->maxInstanceCount;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastActiveAt(): \DateTime
+    public function getLastActiveAt(): ?\DateTime
     {
         return $this->lastActiveAt;
     }
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getLastBackupAt(): \DateTime
+    public function getLastBackupAt(): ?\DateTime
     {
         return $this->lastBackupAt;
     }
@@ -385,9 +378,9 @@ final class Environment implements JsonSerializable
         return $this->hasCode;
     }
     /**
-     * @return string
+     * @return string|null
      */
-    public function getHeadCommit(): string
+    public function getHeadCommit(): ?string
     {
         return $this->headCommit;
     }
@@ -411,6 +404,13 @@ final class Environment implements JsonSerializable
     public function getSupportsRestrictRobots(): bool
     {
         return $this->supportsRestrictRobots;
+    }
+    /**
+     * @return string|null
+     */
+    public function getDefaultDomain(): ?string
+    {
+        return $this->defaultDomain;
     }
 }
 

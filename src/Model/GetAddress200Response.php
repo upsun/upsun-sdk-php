@@ -33,17 +33,17 @@ final class GetAddress200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $country = null,
-        private ?string $nameLine = null,
-        private ?string $premise = null,
-        private ?string $subPremise = null,
-        private ?string $thoroughfare = null,
-        private ?string $administrativeArea = null,
-        private ?string $subAdministrativeArea = null,
-        private ?string $locality = null,
-        private ?string $dependentLocality = null,
-        private ?string $postalCode = null,
-        private ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
+       private readonly ?string $country = null,
+       private readonly ?string $nameLine = null,
+       private readonly ?string $premise = null,
+       private readonly ?string $subPremise = null,
+       private readonly ?string $thoroughfare = null,
+       private readonly ?string $administrativeArea = null,
+       private readonly ?string $subAdministrativeArea = null,
+       private readonly ?string $locality = null,
+       private readonly ?string $dependentLocality = null,
+       private readonly ?string $postalCode = null,
+       private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
     ) {
     }
 
@@ -60,17 +60,17 @@ final class GetAddress200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'country' => 'string',
-            'name_line' => 'string',
-            'premise' => 'string',
-            'sub_premise' => 'string',
-            'thoroughfare' => 'string',
-            'administrative_area' => 'string',
-            'sub_administrative_area' => 'string',
-            'locality' => 'string',
-            'dependent_locality' => 'string',
-            'postal_code' => 'string',
-            'metadata' => '\Upsun\Model\AddressMetadataMetadata',
+            'country' => '?string',
+            'name_line' => '?string',
+            'premise' => '?string',
+            'sub_premise' => '?string',
+            'thoroughfare' => '?string',
+            'administrative_area' => '?string',
+            'sub_administrative_area' => '?string',
+            'locality' => '?string',
+            'dependent_locality' => '?string',
+            'postal_code' => '?string',
+            'metadata' => '?\Upsun\Model\AddressMetadataMetadata',
         ];
     }
 

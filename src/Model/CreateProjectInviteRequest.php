@@ -21,19 +21,19 @@ final class CreateProjectInviteRequest implements JsonSerializable
     public const ROLE_VIEWER = 'viewer';
 
     private static array $attributeMap = [
-        'role' => 'role',
         'email' => 'email',
+        'role' => 'role',
         'permissions' => 'permissions',
         'environments' => 'environments',
         'force' => 'force'
     ];
 
     public function __construct(
-        private ?string $role = null,
-        private string $email,
-        private ?array $permissions = [],
-        private ?array $environments = [],
-        private ?bool $force = null,
+        private readonly string $email,
+       private readonly ?string $role = null,
+        private readonly ?array $permissions = [],
+        private readonly ?array $environments = [],
+       private readonly ?bool $force = null,
     ) {
     }
 
@@ -50,19 +50,19 @@ final class CreateProjectInviteRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'role' => 'string',
             'email' => 'string',
-            'permissions' => '\Upsun\Model\CreateProjectInviteRequestPermissionsInner[]',
-            'environments' => '\Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]',
-            'force' => 'bool',
+            'role' => '?string',
+            'permissions' => '?array',
+            'environments' => '?array',
+            'force' => '?bool',
         ];
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'role' => $this->role,
             'email' => $this->email,
+            'role' => $this->role,
             'permissions' => $this->permissions,
             'environments' => $this->environments,
             'force' => $this->force,
@@ -75,15 +75,6 @@ final class CreateProjectInviteRequest implements JsonSerializable
     }
 
     /**
-     * The role the invitee should be given on the project.
-     *
-     * @return string|null
-     */
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-    /**
      * The email address of the invitee.
      *
      * @return string
@@ -91,6 +82,15 @@ final class CreateProjectInviteRequest implements JsonSerializable
     public function getEmail(): string
     {
         return $this->email;
+    }
+    /**
+     * The role the invitee should be given on the project.
+     *
+     * @return string|null
+     */
+    public function getRole(): ?string
+    {
+        return $this->role;
     }
     /**
      * Specifying the role on each environment type.

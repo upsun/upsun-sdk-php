@@ -24,8 +24,8 @@ final class Tree implements JsonSerializable
     ];
 
     public function __construct(
-        private string $sha,
-        private array $tree,
+        private readonly string $sha,
+        private readonly array $tree,
     ) {
     }
 
@@ -43,7 +43,7 @@ final class Tree implements JsonSerializable
     {
         return [
             'sha' => 'string',
-            'tree' => '\Upsun\Model\TheTreeItemsInner[]',
+            'tree' => 'array',
         ];
     }
 

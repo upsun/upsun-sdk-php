@@ -176,7 +176,6 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a project
      *
@@ -304,7 +303,6 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a project&#39;s capabilities
      *
@@ -432,7 +430,6 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update a project
      *
@@ -581,5 +578,4 @@ final class ProjectApi extends AbstractApi
 
         return $this->createRequest('PATCH', $uri, $headers, $httpBody);
     }
-
 }

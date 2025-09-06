@@ -27,11 +27,11 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $formatted = null,
-        private ?string $amount = null,
-        private ?string $currency = null,
-        private ?string $currencySymbol = null,
-        private ?bool $unlimited = null,
+       private readonly ?string $formatted = null,
+       private readonly ?string $amount = null,
+       private readonly ?string $currency = null,
+       private readonly ?string $currencySymbol = null,
+       private readonly ?bool $unlimited = null,
     ) {
     }
 
@@ -48,11 +48,11 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'formatted' => 'string',
-            'amount' => 'string',
-            'currency' => 'string',
-            'currency_symbol' => 'string',
-            'unlimited' => 'bool',
+            'formatted' => '?string',
+            'amount' => '?string',
+            'currency' => '?string',
+            'currency_symbol' => '?string',
+            'unlimited' => '?bool',
         ];
     }
 

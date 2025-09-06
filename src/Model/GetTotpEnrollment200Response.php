@@ -26,10 +26,10 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ];
 
     public function __construct(
-        private ?string $issuer = null,
-        private ?string $accountName = null,
-        private ?string $secret = null,
-        private ?string $qrCode = null,
+       private readonly ?string $issuer = null,
+       private readonly ?string $accountName = null,
+       private readonly ?string $secret = null,
+       private readonly ?string $qrCode = null,
     ) {
     }
 
@@ -46,10 +46,10 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'issuer' => 'string',
-            'account_name' => 'string',
-            'secret' => 'string',
-            'qr_code' => 'string',
+            'issuer' => '?string',
+            'account_name' => '?string',
+            'secret' => '?string',
+            'qr_code' => '?string',
         ];
     }
 
