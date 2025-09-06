@@ -28,6 +28,8 @@ class WorkerTask extends TaskBase
      * Lists workers of an environment
      *
      * @throws ApiException|Exception
+     *
+     * @return Deployment[]
      */
     public function list(string $projectId, string $environmentId): array
     {

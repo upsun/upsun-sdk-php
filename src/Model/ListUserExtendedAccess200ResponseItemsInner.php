@@ -47,11 +47,9 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return [
             'user_id' => '?string',

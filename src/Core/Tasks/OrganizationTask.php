@@ -236,7 +236,7 @@ class OrganizationTask extends TaskBase
      * @throws ApiException
      */
     public function listTeams(
-        string $organizationId,
+        ?string $organizationId,
         ?string $filterUpdatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
@@ -244,8 +244,8 @@ class OrganizationTask extends TaskBase
         ?string $sort = null
     ): ListTeams200Response {
         return $this->client->team->list(
-            ['eq' => $organizationId],
-            [],
+            $organizationId ? ['eq' => $organizationId] : null,
+            null,
             $filterUpdatedAt,
             $pageSize,
             $pageBefore,
@@ -285,15 +285,15 @@ class OrganizationTask extends TaskBase
     ): ListOrgProjects200Response {
         return $this->projectsApi->listOrgProjects(
             $organizationId,
-            new StringFilter($filterId),
-            new StringFilter($filterTitle),
-            new StringFilter($filterStatus),
-            new DateTimeFilter($filterUpdatedAt),
-            new DateTimeFilter($filterCreatedAt),
-            $pageSize,
-            $pageBefore,
-            $pageAfter,
-            $sort
+            $filterId? new StringFilter(...$this->normalizeFilter($filterId)) : null,
+            $filterTitle ? new StringFilter(...$this->normalizeFilter($filterTitle)) : null,
+            $filterStatus ? new StringFilter(...$this->normalizeFilter($filterStatus)) : null,
+            $filterUpdatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)) : null,
+            $filterCreatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterCreatedAt)) : null,
+            $pageSize ?? null,
+            $pageBefore ?? null,
+            $pageAfter ?? null,
+            $sort ?? null
         );
     }
 
@@ -310,7 +310,7 @@ class OrganizationTask extends TaskBase
     ): OrganizationMember {
         $createOrgMemberRequest = new CreateOrgMemberRequest(
             userId: $userId,
-            permissions: $permissions
+            permissions: $permissions ?? null
         );
         return $this->membersApi->createOrgMember($organizationId, $createOrgMemberRequest);
     }
@@ -357,7 +357,7 @@ class OrganizationTask extends TaskBase
     ): ListOrgMembers200Response {
         return $this->membersApi->listOrgMembers(
             $organizationId,
-            new ArrayFilter($filterPermissions),
+            $filterPermissions ? new ArrayFilter(...$this->normalizeFilter($filterPermissions)) : null,
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -442,7 +442,6 @@ class OrganizationTask extends TaskBase
         ?int $userLicenses = null,
         ?string $format = null
     ): EstimationObject {
-
         return $this->subscriptionsApi->estimateOrgSubscription(
             $organizationId,
             $projectId,

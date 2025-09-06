@@ -341,7 +341,7 @@ class EnvironmentTask extends TaskBase
         ?int $percentage = null
     ): AcceptedResponse {
         $versionPatch = new VersionPatch(
-            new ConfigurationAboutTheTrafficRoutedToThisVersion1(percentage: $percentage)
+            $percentage ? new ConfigurationAboutTheTrafficRoutedToThisVersion1(percentage: $percentage) : null
         );
         return $this->api->updateProjectsEnvironmentsVersions(
             $projectId,
@@ -434,11 +434,11 @@ class EnvironmentTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
-     *     environmentName: string,
-     *     branchFrom: string,
      *     restoreCode: bool,
      *     restoreResources: bool,
-     *     init: string
+     *     environmentName?: string,
+     *     branchFrom?: string,
+     *     init?: string
      * } $options Configuration options for environment restoration
      */
     public function restoreBackup(
@@ -525,18 +525,30 @@ class EnvironmentTask extends TaskBase
      * Updates an environment variable
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     value?: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     *     isEnabled?: bool,
+     *     isInheritable?: bool,
+     * } $data
      */
     public function updateVariable(
         string $projectId,
         string $environmentId,
         string $variableId,
-        array $environmentVariablePatch
+        array $data
     ): AcceptedResponse {
         return $this->client->variables->updateEnvironmentVariable(
             $projectId,
             $environmentId,
             $variableId,
-            $environmentVariablePatch
+            $data
         );
     }
 
@@ -586,14 +598,45 @@ class EnvironmentTask extends TaskBase
      * Updates a route
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     type: string,
+     *     to: string,
+     *     upstream: string,
+     *     primary?: bool,
+     *     id?: string,
+     *     productionUrl?: string,
+     *     attributes?: bool,
+     *     tls?: array{
+     *       minVersion?: string,
+     *       clientAuthentication?: string,
+     *       clientCertificateAuthorities?: array,
+     *       strictTransportSecurity?: array{
+     *         enabled?: bool,
+     *         includeSubdomains?: bool,
+     *         preload?: bool,
+     *       },
+     *     },
+     *     redirects?: array{
+     *       expires?: string,
+     *       paths: array,
+     *     },
+     *     cache?: array{
+     *       enabled: bool,
+     *       defaultTtl?: int,
+     *       cookies?: array,
+     *       headers?: array
+     *     },
+     *     ssi_enabled?: bool,
+     * } $data
      */
     public function updateRoute(
         string $projectId,
         string $environmentId,
         string $routeId,
-        array $routePatch
+        array $data
     ): AcceptedResponse {
-        return $this->client->route->update($projectId, $environmentId, $routeId, $routePatch);
+        return $this->client->route->update($projectId, $environmentId, $routeId, $data);
     }
 
     /**
@@ -602,7 +645,7 @@ class EnvironmentTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
-     *     name?: string,
+     *     name: string,
      *     attributes?: array,
      *     isDefault?: bool,
      *     replacementFor?: string,
@@ -610,8 +653,8 @@ class EnvironmentTask extends TaskBase
      */
     public function createDomain(
         string $projectId,
-        string $environmentId,
-        array $data
+        array $data,
+        ?string $environmentId = null,
     ): AcceptedResponse {
         return $this->client->domain->create($projectId, $data, $environmentId);
     }
@@ -652,14 +695,19 @@ class EnvironmentTask extends TaskBase
      * Updates an environment domain
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     attributes?: array,
+     *     isDefault?: bool,
+     * } $data
      */
     public function updateDomain(
         string $projectId,
         string $environmentId,
         string $domainId,
-        array $domainPatch
+        array $data
     ): AcceptedResponse {
-        return $this->client->domain->update($projectId, $domainId, $domainPatch, $environmentId);
+        return $this->client->domain->update($projectId, $domainId, $data, $environmentId);
     }
 
     /**
@@ -700,6 +748,11 @@ class EnvironmentTask extends TaskBase
      * Triggers a source operation
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     operation: string,
+     *     variables: array,
+     * } $data
      */
     public function runSourceOperation(
         string $projectId,

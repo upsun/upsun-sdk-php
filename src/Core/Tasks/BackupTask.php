@@ -104,7 +104,7 @@ class BackupTask extends TaskBase
             restoreResources: $options['restoreResources'],
             environmentName: $options['environmentName'] ?? null,
             branchFrom: $options['branchFrom'] ?? null,
-            resources: new Resources5(init: $options['init']),
+            resources: new Resources5(init: $options['init'] ?? null),
         );
         return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
     }

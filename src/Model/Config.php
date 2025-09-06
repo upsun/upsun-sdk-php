@@ -65,11 +65,9 @@ final class Config implements JsonSerializable
     }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return [
             'newrelic' => '?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations',

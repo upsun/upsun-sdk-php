@@ -71,25 +71,25 @@ class RouteTask extends TaskBase
     public function create(string $projectId, string $environmentId, array $data): AcceptedResponse
     {
         $routeCreateInput = new RouteCreateInput(
+            type: $data['type'],
+            to: $data['to'],
+            upstream: $data['upstream'],
             primary: $data['primary'] ?? null,
             id: $data['id'] ?? null,
             productionUrl: $data['productionUrl'] ?? null,
             attributes: $data['attributes'] ?? null,
-            type: $data['type'],
             tls: $data['tls'] ? new TLSSettingsForTheRoute1(
+                minVersion: $data['tls']['minVersion'] ?? null,
+                clientAuthentication: $data['tls']['clientAuthentication'] ?? null,
                 strictTransportSecurity: ($data['tls']['strictTransportSecurity'] ?
                     new StrictTransportSecurityOptions1(...$data['tls']['strictTransportSecurity'])
                     : null
                 ),
-                minVersion: $data['tls']['minVersion'] ?? null,
-                clientAuthentication: $data['tls']['clientAuthentication'] ?? null,
-                clientCertificateAuthorities: $data['tls']['clientCertificateAuthorities'] ?? [],
+                clientCertificateAuthorities: $data['tls']['clientCertificateAuthorities'] ?? null,
             ) : null,
-            to: $data['to'],
             redirects: $data['redirects'] ? new TheConfigurationOfTheRedirects1(...$data['redirects']) : null,
             cache: $data['cache'] ? new CacheConfiguration1(...$data['cache']) : null,
             ssi: $data['ssi_enabled'] ? new ServerSideIncludeConfiguration(enabled: $data['ssi_enabled']) : null,
-            upstream: $data['upstream'],
         );
         return $this->api->createProjectsEnvironmentsRoutes($projectId, $environmentId, $routeCreateInput);
     }
@@ -167,25 +167,24 @@ class RouteTask extends TaskBase
         array $data
     ): AcceptedResponse {
         $routePatch = new RoutePatch(
+            type: $data['type'],
+            to: $data['to'],
+            upstream: $data['upstream'],
             primary: $data['primary'] ?? null,
             id: $data['id'] ?? null,
             productionUrl: $data['productionUrl'] ?? null,
             attributes: $data['attributes'] ?? null,
-            type: $data['type'],
             tls: $data['tls'] ? new TLSSettingsForTheRoute1(
-                strictTransportSecurity: ($data['tls']['strictTransportSecurity'] ?
-                    new StrictTransportSecurityOptions1(...$data['tls']['strictTransportSecurity'])
-                    : null
-                ),
                 minVersion: $data['tls']['minVersion'] ?? null,
                 clientAuthentication: $data['tls']['clientAuthentication'] ?? null,
-                clientCertificateAuthorities: $data['tls']['clientCertificateAuthorities'] ?? [],
+                strictTransportSecurity: $data['tls']['strictTransportSecurity'] ?
+                    new StrictTransportSecurityOptions1(...$data['tls']['strictTransportSecurity'])
+                    : null,
+                clientCertificateAuthorities: $data['tls']['clientCertificateAuthorities'] ?? null,
             ) : null,
-            to: $data['to'],
             redirects: $data['redirects'] ? new TheConfigurationOfTheRedirects1(...$data['redirects']) : null,
             cache: $data['cache'] ? new CacheConfiguration1(...$data['cache']) : null,
             ssi: $data['ssi_enabled'] ? new ServerSideIncludeConfiguration(enabled: $data['ssi_enabled']) : null,
-            upstream: $data['upstream'],
         );
         return $this->api->updateProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId, $routePatch);
     }

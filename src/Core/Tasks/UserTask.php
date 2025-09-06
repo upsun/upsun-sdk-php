@@ -161,10 +161,20 @@ class UserTask extends TaskBase
      *
      * @throws InvalidArgumentException
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array|null{
+     *   username?: string,
+     *   firstName?: string,
+     *   lastName?: string,
+     *   picture?: string,
+     *   company?: string,
+     *   website?: string,
+     *   country?: string,
+     * } $data
      */
-    public function update(string $userId, ?array $update_user_data = []): User
+    public function update(string $userId, ?array $data = []): User
     {
-        $update_user_request = new UpdateUserRequest($update_user_data);
+        $update_user_request = new UpdateUserRequest(...$data);
         return $this->api->updateUser($userId, $update_user_request);
     }
 
@@ -203,9 +213,9 @@ class UserTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function grantUserProjectAccess(string $userId, array $grantUserProjectAccessRequest): void
+    public function grantUserProjectAccess(string $userId, array $data): void
     {
-        $this->accessApi->grantUserProjectAccess($userId, $grantUserProjectAccessRequest);
+        $this->accessApi->grantUserProjectAccess($userId, $data);
     }
 
     /**
@@ -440,10 +450,12 @@ class UserTask extends TaskBase
      * Lists a user's API tokens
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return APIToken[]
      */
-    public function listApiTokens(string $userId): APIToken
+    public function listApiTokens(string $userId): array
     {
-        return $this->tokensApi->createApiToken($userId);
+        return $this->tokensApi->listApiTokens($userId);
     }
 
     /**
@@ -470,6 +482,8 @@ class UserTask extends TaskBase
      * Lists federated login connections
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Connection[]
      */
     public function listLoginConnections(string $userId): array
     {
@@ -489,9 +503,9 @@ class UserTask extends TaskBase
     ): ListUserExtendedAccess200Response {
         return $this->grantsApi->listUserExtendedAccess(
             $userId,
-            new StringFilter($filterResourceType),
-            new StringFilter($filterOrganizationId),
-            new StringFilter($filterPermissions)
+            $filterResourceType ? new StringFilter(...$this->normalizeFilter($filterResourceType)) : null,
+            $filterOrganizationId ? new StringFilter(...$this->normalizeFilter($filterOrganizationId)) : null,
+            $filterPermissions ? new StringFilter(...$this->normalizeFilter($filterPermissions)) : null,
         );
     }
 

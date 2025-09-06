@@ -9,7 +9,9 @@ use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\DateTimeFilter;
+use Upsun\Model\ListTeamMembers200Response;
 use Upsun\Model\ListTeamProjectAccess200Response;
+use Upsun\Model\ListTeams200Response;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
@@ -112,7 +114,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeamMembers200Response {
+    ): ListTeamMembers200Response {
         return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
     }
 
@@ -129,7 +131,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): ListTeams200Response {
         return $this->teamsApi->listTeams(
             new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
             new StringFilter(...$this->normalizeFilter($filterId)),
@@ -154,7 +156,7 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListTeams200Response {
+    ): ListTeams200Response {
         return $this->teamsApi->listUserTeams(
             $userId,
             new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
@@ -212,9 +214,9 @@ class TeamTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
+    public function grantTeamProjectAccess(string $teamId, array $data): void
     {
-        $this->accessApi->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
+        $this->accessApi->grantTeamProjectAccess($teamId, $data);
     }
 
     /**

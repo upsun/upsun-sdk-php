@@ -39,11 +39,9 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     }
 
     /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
      */
-    public static function openAPITypes()
+    public static function openAPITypes(): array
     {
         return [
             'self' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
