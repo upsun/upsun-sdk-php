@@ -81,6 +81,7 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
      */
@@ -88,6 +89,7 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     {
         return $this->balance;
     }
+
     /**
      * The date the prepayment balance was last updated.
      *
@@ -97,6 +99,7 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     {
         return $this->lastUpdatedAt;
     }
+
     /**
      * Whether the prepayment balance is enough to cover the upcoming order.
      *
@@ -106,6 +109,7 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     {
         return $this->sufficient;
     }
+
     /**
      * The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order.
      *

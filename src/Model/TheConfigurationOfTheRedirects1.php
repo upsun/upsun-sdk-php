@@ -67,6 +67,7 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     {
         return $this->paths;
     }
+
     /**
      * @return string|null
      */

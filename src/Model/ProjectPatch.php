@@ -81,12 +81,13 @@ final class ProjectPatch implements JsonSerializable
     }
 
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return string|null
      */
@@ -94,6 +95,7 @@ final class ProjectPatch implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @return string|null
      */
@@ -101,6 +103,7 @@ final class ProjectPatch implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * @return string|null
      */
@@ -108,6 +111,7 @@ final class ProjectPatch implements JsonSerializable
     {
         return $this->defaultBranch;
     }
+
     /**
      * @return string|null
      */
@@ -115,6 +119,7 @@ final class ProjectPatch implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
      * @return string|null
      */
@@ -122,6 +127,7 @@ final class ProjectPatch implements JsonSerializable
     {
         return $this->region;
     }
+
     /**
      * @return string|null
      */

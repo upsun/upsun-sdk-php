@@ -71,6 +71,7 @@ final class RegionDatacenter implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */
@@ -78,6 +79,7 @@ final class RegionDatacenter implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * @return string|null
      */

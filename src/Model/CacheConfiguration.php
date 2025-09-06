@@ -75,6 +75,7 @@ final class CacheConfiguration implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return int
      */
@@ -82,6 +83,7 @@ final class CacheConfiguration implements JsonSerializable
     {
         return $this->defaultTtl;
     }
+
     /**
      * @return string[]
      */
@@ -89,6 +91,7 @@ final class CacheConfiguration implements JsonSerializable
     {
         return $this->cookies;
     }
+
     /**
      * @return string[]
      */

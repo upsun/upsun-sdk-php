@@ -135,6 +135,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->clusterName;
     }
+
     /**
      * @return \Upsun\Model\ProjectInfo
      */
@@ -142,6 +143,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->projectInfo;
     }
+
     /**
      * @return \Upsun\Model\EnvironmentInfo
      */
@@ -149,6 +151,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->environmentInfo;
     }
+
     /**
      * @return string
      */
@@ -156,6 +159,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->deploymentTarget;
     }
+
     /**
      * @return \Upsun\Model\VPNConfiguration|null
      */
@@ -163,6 +167,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->vpn;
     }
+
     /**
      * @return \Upsun\Model\HttpAccessPermissions
      */
@@ -170,6 +175,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->httpAccess;
     }
+
     /**
      * @return bool
      */
@@ -177,6 +183,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->enableSmtp;
     }
+
     /**
      * @return bool
      */
@@ -184,6 +191,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->restrictRobots;
     }
+
     /**
      * @return \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]
      */
@@ -191,6 +199,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->variables;
     }
+
     /**
      * @return \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]
      */
@@ -198,6 +207,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->access;
     }
+
     /**
      * @return \Upsun\Model\Subscription1
      */
@@ -205,6 +215,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->subscription;
     }
+
     /**
      * @return \Upsun\Model\ServicesValue[]
      */
@@ -212,6 +223,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->services;
     }
+
     /**
      * @return \Upsun\Model\RoutesValue[]
      */
@@ -219,6 +231,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->routes;
     }
+
     /**
      * @return \Upsun\Model\WebApplicationsValue[]
      */
@@ -226,6 +239,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->webapps;
     }
+
     /**
      * @return \Upsun\Model\WorkersValue[]
      */
@@ -233,13 +247,15 @@ final class Deployment implements JsonSerializable
     {
         return $this->workers;
     }
+
     /**
-     * @return array&lt;string,array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;&gt;
+     * @return array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>
      */
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -247,6 +263,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -254,6 +271,7 @@ final class Deployment implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string|null
      */

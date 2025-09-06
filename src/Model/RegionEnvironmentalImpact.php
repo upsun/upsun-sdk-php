@@ -71,6 +71,7 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     {
         return $this->zone;
     }
+
     /**
      * @return string|null
      */
@@ -78,6 +79,7 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     {
         return $this->carbonIntensity;
     }
+
     /**
      * @return bool|null
      */

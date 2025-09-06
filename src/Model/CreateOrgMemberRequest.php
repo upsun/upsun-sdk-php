@@ -75,6 +75,7 @@ final class CreateOrgMemberRequest implements JsonSerializable
     {
         return $this->userId;
     }
+
     /**
      * The organization member permissions.
      *

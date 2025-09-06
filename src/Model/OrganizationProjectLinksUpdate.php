@@ -69,6 +69,7 @@ final class OrganizationProjectLinksUpdate implements JsonSerializable
     {
         return $this->href;
     }
+
     /**
      * The HTTP method to use.
      *

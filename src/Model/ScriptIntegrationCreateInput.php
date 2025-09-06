@@ -90,6 +90,7 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -97,6 +98,7 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return $this->script;
     }
+
     /**
      * @return string[]|null
      */
@@ -104,6 +106,7 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return $this->events;
     }
+
     /**
      * @return string[]|null
      */
@@ -111,6 +114,7 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * @return string[]|null
      */
@@ -118,6 +122,7 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return $this->excludedEnvironments;
     }
+
     /**
      * @return string[]|null
      */
@@ -125,6 +130,7 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
     {
         return $this->states;
     }
+
     /**
      * @return string|null
      */

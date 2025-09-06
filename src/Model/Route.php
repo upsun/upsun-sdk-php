@@ -106,6 +106,7 @@ final class Route implements JsonSerializable
     {
         return $this->primary;
     }
+
     /**
      * @return string|null
      */
@@ -113,6 +114,7 @@ final class Route implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * @return string|null
      */
@@ -120,13 +122,15 @@ final class Route implements JsonSerializable
     {
         return $this->productionUrl;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return string
      */
@@ -134,6 +138,7 @@ final class Route implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\TLSSettingsForTheRoute
      */
@@ -141,6 +146,7 @@ final class Route implements JsonSerializable
     {
         return $this->tls;
     }
+
     /**
      * @return string
      */
@@ -148,6 +154,7 @@ final class Route implements JsonSerializable
     {
         return $this->to;
     }
+
     /**
      * @return \Upsun\Model\TheConfigurationOfTheRedirects
      */
@@ -155,6 +162,7 @@ final class Route implements JsonSerializable
     {
         return $this->redirects;
     }
+
     /**
      * @return \Upsun\Model\CacheConfiguration
      */
@@ -162,6 +170,7 @@ final class Route implements JsonSerializable
     {
         return $this->cache;
     }
+
     /**
      * @return \Upsun\Model\ServerSideIncludeConfiguration
      */
@@ -169,6 +178,7 @@ final class Route implements JsonSerializable
     {
         return $this->ssi;
     }
+
     /**
      * @return string
      */

@@ -94,6 +94,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -101,6 +102,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string[]|null
      */
@@ -108,6 +110,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->events;
     }
+
     /**
      * @return string[]|null
      */
@@ -115,6 +118,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * @return string[]|null
      */
@@ -122,6 +126,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->excludedEnvironments;
     }
+
     /**
      * @return string[]|null
      */
@@ -129,6 +134,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->states;
     }
+
     /**
      * @return string|null
      */
@@ -136,6 +142,7 @@ final class WebHookIntegrationPatch implements JsonSerializable
     {
         return $this->result;
     }
+
     /**
      * @return string|null
      */

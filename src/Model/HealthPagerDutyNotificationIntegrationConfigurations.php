@@ -67,6 +67,7 @@ final class HealthPagerDutyNotificationIntegrationConfigurations implements Json
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

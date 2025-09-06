@@ -67,6 +67,7 @@ final class ListTeamProjectAccess200Response implements JsonSerializable
     {
         return $this->items;
     }
+
     /**
      * @return \Upsun\Model\ListLinks|null
      */

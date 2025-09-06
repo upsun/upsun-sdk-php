@@ -75,6 +75,7 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     {
         return $this->legacyDevelopment;
     }
+
     /**
      * @return float|null
      */
@@ -82,6 +83,7 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     {
         return $this->maxCpu;
     }
+
     /**
      * @return int|null
      */
@@ -89,6 +91,7 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     {
         return $this->maxMemory;
     }
+
     /**
      * @return int|null
      */

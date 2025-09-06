@@ -103,6 +103,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -110,6 +111,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->token;
     }
+
     /**
      * @return string
      */
@@ -117,6 +119,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return bool|null
      */
@@ -124,6 +127,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool|null
      */
@@ -131,6 +135,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string|null
      */
@@ -138,6 +143,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return string|null
      */
@@ -145,6 +151,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->baseUrl;
     }
+
     /**
      * @return bool|null
      */
@@ -152,6 +159,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->buildMergeRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -159,6 +167,7 @@ final class GitLabIntegrationPatch implements JsonSerializable
     {
         return $this->buildWipMergeRequests;
     }
+
     /**
      * @return bool|null
      */

@@ -69,6 +69,7 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     {
         return $this->filename;
     }
+
     /**
      * the base64 encoded file.
      *

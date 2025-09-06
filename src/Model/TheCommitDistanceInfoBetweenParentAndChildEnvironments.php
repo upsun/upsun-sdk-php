@@ -71,6 +71,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     {
         return $this->commitsAhead;
     }
+
     /**
      * @return int|null
      */
@@ -78,6 +79,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     {
         return $this->commitsBehind;
     }
+
     /**
      * @return string|null
      */

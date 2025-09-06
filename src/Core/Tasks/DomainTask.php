@@ -33,7 +33,7 @@ class DomainTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
-     *     name?: string,
+     *     name: string,
      *     attributes?: array,
      *     isDefault?: bool,
      *     replacementFor?: string,

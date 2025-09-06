@@ -77,6 +77,7 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The human-readable label of the priority.
      *
@@ -86,6 +87,7 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * The short description of the priority.
      *
@@ -95,6 +97,7 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     {
         return $this->shortDescription;
     }
+
     /**
      * The long description of the priority.
      *

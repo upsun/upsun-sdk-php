@@ -77,6 +77,7 @@ final class LineItemComponent implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * The price formatted with currency.
      *
@@ -86,6 +87,7 @@ final class LineItemComponent implements JsonSerializable
     {
         return $this->amountFormatted;
     }
+
     /**
      * The display title for the component.
      *
@@ -95,6 +97,7 @@ final class LineItemComponent implements JsonSerializable
     {
         return $this->displayTitle;
     }
+
     /**
      * The currency code for the component.
      *

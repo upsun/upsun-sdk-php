@@ -67,6 +67,7 @@ final class CustomDomains implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return int
      */

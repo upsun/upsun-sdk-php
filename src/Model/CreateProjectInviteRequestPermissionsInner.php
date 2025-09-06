@@ -75,6 +75,7 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     {
         return $this->type;
     }
+
     /**
      * The role the invitee should be given on the environment type.
      *

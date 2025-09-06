@@ -106,6 +106,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->active;
     }
+
     /**
      * The trial creation date.
      *
@@ -115,6 +116,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->created;
     }
+
     /**
      * The trial description.
      *
@@ -124,6 +126,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * The trial expiration-date.
      *
@@ -133,6 +136,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->expiration;
     }
+
     /**
      * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
      */
@@ -140,6 +144,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->current;
     }
+
     /**
      * @return \Upsun\Model\ProfileCurrentTrialSpend|null
      */
@@ -147,6 +152,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->spend;
     }
+
     /**
      * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
      */
@@ -154,6 +160,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->spendRemaining;
     }
+
     /**
      * @return \Upsun\Model\ProfileCurrentTrialProjects|null
      */
@@ -161,6 +168,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->projects;
     }
+
     /**
      * Required verification method (if applicable).
      *
@@ -170,6 +178,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->pendingVerification;
     }
+
     /**
      * The trial trial model.
      *
@@ -179,6 +188,7 @@ final class ProfileCurrentTrial implements JsonSerializable
     {
         return $this->model;
     }
+
     /**
      * The amount of days until the trial expires.
      *

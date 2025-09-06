@@ -73,6 +73,7 @@ final class CreateTeamRequest implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The human-readable label of the team.
      *
@@ -82,6 +83,7 @@ final class CreateTeamRequest implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * Project permissions that are granted to the team.
      *

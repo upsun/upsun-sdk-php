@@ -73,6 +73,7 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * @return \Upsun\Model\PrepaymentTransactionObject[]|null
      */
@@ -80,6 +81,7 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     {
         return $this->transactions;
     }
+
     /**
      * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
      */

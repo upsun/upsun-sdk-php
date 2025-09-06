@@ -67,6 +67,7 @@ final class HealthEmailNotificationIntegrationConfigurations implements JsonSeri
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

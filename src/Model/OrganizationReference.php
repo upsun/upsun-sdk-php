@@ -89,6 +89,7 @@ final class OrganizationReference implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ID of the owner.
      *
@@ -98,6 +99,7 @@ final class OrganizationReference implements JsonSerializable
     {
         return $this->ownerId;
     }
+
     /**
      * A unique machine name representing the organization.
      *
@@ -107,6 +109,7 @@ final class OrganizationReference implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * The human-readable label of the organization.
      *
@@ -116,6 +119,7 @@ final class OrganizationReference implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * The vendor.
      *
@@ -125,6 +129,7 @@ final class OrganizationReference implements JsonSerializable
     {
         return $this->vendor;
     }
+
     /**
      * The date and time when the organization was created.
      *
@@ -134,6 +139,7 @@ final class OrganizationReference implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the organization was last updated.
      *

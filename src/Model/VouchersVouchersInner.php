@@ -77,6 +77,7 @@ final class VouchersVouchersInner implements JsonSerializable
     {
         return $this->code;
     }
+
     /**
      * The total voucher credit.
      *
@@ -86,6 +87,7 @@ final class VouchersVouchersInner implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * The currency of the voucher.
      *
@@ -95,6 +97,7 @@ final class VouchersVouchersInner implements JsonSerializable
     {
         return $this->currency;
     }
+
     /**
      * Array of orders to which a voucher applied.
      *

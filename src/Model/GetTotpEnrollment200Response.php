@@ -77,6 +77,7 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     {
         return $this->issuer;
     }
+
     /**
      * Account name for the enrollment.
      *
@@ -86,6 +87,7 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     {
         return $this->accountName;
     }
+
     /**
      * The secret seed for the enrollment
      *
@@ -95,6 +97,7 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     {
         return $this->secret;
     }
+
     /**
      * Data URI of a PNG QR code image for the enrollment.
      *

@@ -73,6 +73,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     {
         return $this->count;
     }
+
     /**
      * The total price for user_management licenses.
      *
@@ -82,6 +83,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     {
         return $this->total;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList|null
      */

@@ -115,6 +115,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -122,6 +123,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -129,13 +131,15 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return bool
      */
@@ -143,6 +147,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->isJson;
     }
+
     /**
      * @return bool
      */
@@ -150,6 +155,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->isSensitive;
     }
+
     /**
      * @return bool
      */
@@ -157,6 +163,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->visibleBuild;
     }
+
     /**
      * @return bool
      */
@@ -164,6 +171,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->visibleRuntime;
     }
+
     /**
      * @return string
      */
@@ -171,6 +179,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return string
      */
@@ -178,6 +187,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->environment;
     }
+
     /**
      * @return bool
      */
@@ -185,6 +195,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->inherited;
     }
+
     /**
      * @return bool
      */
@@ -192,6 +203,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->isEnabled;
     }
+
     /**
      * @return bool
      */
@@ -199,6 +211,7 @@ final class EnvironmentVariable implements JsonSerializable
     {
         return $this->isInheritable;
     }
+
     /**
      * @return string|null
      */

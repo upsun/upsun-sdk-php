@@ -84,11 +84,11 @@ class BackupTask extends TaskBase
      * @throws Exception
      *
      * @param array{
-     *     environmentName: string,
-     *     branchFrom: string,
      *     restoreCode: bool,
      *     restoreResources: bool,
-     *     init: string
+     *     environmentName?: string,
+     *     branchFrom?: string,
+     *     init?: string
      * } $options Configuration options for environment restoration
      *
      * @see EnvironmentRestoreInput For detailed parameter descriptions
@@ -100,10 +100,10 @@ class BackupTask extends TaskBase
         array $options
     ): AcceptedResponse {
         $environmentRestoreInput = new EnvironmentRestoreInput(
-            environmentName: $options['environmentName'],
-            branchFrom: $options['branchFrom'],
             restoreCode: $options['restoreCode'],
             restoreResources: $options['restoreResources'],
+            environmentName: $options['environmentName'] ?? null,
+            branchFrom: $options['branchFrom'] ?? null,
             resources: new Resources5(init: $options['init']),
         );
         return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);

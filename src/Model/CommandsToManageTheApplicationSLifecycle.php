@@ -67,6 +67,7 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
     {
         return $this->preStart;
     }
+
     /**
      * @return string|null
      */

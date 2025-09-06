@@ -77,6 +77,7 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * Currency code
      *
@@ -86,6 +87,7 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     {
         return $this->currencyCode;
     }
+
     /**
      * Currency symbol
      *
@@ -95,6 +97,7 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
     {
         return $this->currencySymbol;
     }
+
     /**
      * Trial project cost formatted with currency sign
      *

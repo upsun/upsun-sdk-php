@@ -83,6 +83,7 @@ final class CreateProjectInviteRequest implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * The role the invitee should be given on the project.
      *
@@ -92,6 +93,7 @@ final class CreateProjectInviteRequest implements JsonSerializable
     {
         return $this->role;
     }
+
     /**
      * Specifying the role on each environment type.
      *
@@ -101,6 +103,7 @@ final class CreateProjectInviteRequest implements JsonSerializable
     {
         return $this->permissions;
     }
+
     /**
      * (Deprecated, use permissions instead) Specifying the role on each environment.
      *
@@ -110,6 +113,7 @@ final class CreateProjectInviteRequest implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
      *

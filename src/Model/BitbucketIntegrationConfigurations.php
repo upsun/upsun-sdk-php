@@ -67,6 +67,7 @@ final class BitbucketIntegrationConfigurations implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

@@ -90,6 +90,7 @@ final class ProxyRoutePatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -97,6 +98,7 @@ final class ProxyRoutePatch implements JsonSerializable
     {
         return $this->to;
     }
+
     /**
      * @return bool|null
      */
@@ -104,6 +106,7 @@ final class ProxyRoutePatch implements JsonSerializable
     {
         return $this->primary;
     }
+
     /**
      * @return string|null
      */
@@ -111,6 +114,7 @@ final class ProxyRoutePatch implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * @return string|null
      */
@@ -118,13 +122,15 @@ final class ProxyRoutePatch implements JsonSerializable
     {
         return $this->productionUrl;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return \Upsun\Model\TLSSettingsForTheRoute1|null
      */

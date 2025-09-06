@@ -125,6 +125,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The human-readable name of the region.
      *
@@ -134,6 +135,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * The geographical zone of the region.
      *
@@ -143,6 +145,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->zone;
     }
+
     /**
      * The label to display when choosing between regions for new projects.
      *
@@ -152,6 +155,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->selectionLabel;
     }
+
     /**
      * The label to display on existing projects.
      *
@@ -161,6 +165,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->projectLabel;
     }
+
     /**
      * Default timezone of the region.
      *
@@ -170,6 +175,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
      * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
      *
@@ -179,6 +185,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->available;
     }
+
     /**
      * Link to the region API endpoint.
      *
@@ -188,6 +195,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->endpoint;
     }
+
     /**
      * Information about the region provider.
      *
@@ -197,6 +205,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->provider;
     }
+
     /**
      * Information about the region provider data center.
      *
@@ -206,6 +215,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->datacenter;
     }
+
     /**
      * Information about the region's compliance.
      *
@@ -215,6 +225,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->compliance;
     }
+
     /**
      * The date and time when the resource was created.
      *
@@ -224,6 +235,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the resource was last updated.
      *
@@ -233,6 +245,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * Indicator whether or not this platform is for private use only.
      *
@@ -242,6 +255,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->private;
     }
+
     /**
      * The code of the region
      *
@@ -251,6 +265,7 @@ final class RegionReference implements JsonSerializable
     {
         return $this->code;
     }
+
     /**
      * Information about the region provider's environmental impact.
      *

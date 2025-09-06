@@ -89,6 +89,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
     {
         return $this->orderId;
     }
+
     /**
      * The message associated with transaction.
      *
@@ -98,6 +99,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
     {
         return $this->message;
     }
+
     /**
      * Whether the transactions was successful or a failure.
      *
@@ -107,6 +109,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
      */
@@ -114,6 +117,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * Time the transaction was created.
      *
@@ -123,6 +127,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
     {
         return $this->created;
     }
+
     /**
      * Time the transaction was last updated.
      *
@@ -132,6 +137,7 @@ final class PrepaymentTransactionObject implements JsonSerializable
     {
         return $this->updated;
     }
+
     /**
      * The expiration date of the transaction (deposits only).
      *

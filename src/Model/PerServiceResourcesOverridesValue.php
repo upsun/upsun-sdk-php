@@ -71,6 +71,7 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     {
         return $this->cpu;
     }
+
     /**
      * @return int|null
      */
@@ -78,6 +79,7 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     {
         return $this->memory;
     }
+
     /**
      * @return int|null
      */

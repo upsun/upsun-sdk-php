@@ -77,6 +77,7 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     {
         return $this->created;
     }
+
     /**
      * The human readable trial description
      *
@@ -86,6 +87,7 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * Total spend amount of the voucher minus existing project costs for the existing billing cycle.
      *
@@ -95,6 +97,7 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     {
         return $this->spendRemaining;
     }
+
     /**
      * Date the trial expires.
      *

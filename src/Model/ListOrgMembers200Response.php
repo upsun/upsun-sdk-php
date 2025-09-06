@@ -73,6 +73,7 @@ final class ListOrgMembers200Response implements JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * @return \Upsun\Model\OrganizationMember[]|null
      */
@@ -80,6 +81,7 @@ final class ListOrgMembers200Response implements JsonSerializable
     {
         return $this->items;
     }
+
     /**
      * @return \Upsun\Model\ListLinks|null
      */

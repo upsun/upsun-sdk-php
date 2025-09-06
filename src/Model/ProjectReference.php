@@ -101,6 +101,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ID of the organization.
      *
@@ -110,6 +111,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The ID of the subscription.
      *
@@ -119,6 +121,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * The machine name of the region where the project is located.
      *
@@ -128,6 +131,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->region;
     }
+
     /**
      * The title of the project.
      *
@@ -137,6 +141,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectType
      */
@@ -144,6 +149,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectPlan
      */
@@ -151,6 +157,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectStatus
      */
@@ -158,6 +165,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The date and time when the project was created.
      *
@@ -167,6 +175,7 @@ final class ProjectReference implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the project was last updated.
      *

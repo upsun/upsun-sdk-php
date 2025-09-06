@@ -67,6 +67,7 @@ final class ContainerProfilesValueValue implements JsonSerializable
     {
         return $this->cpu;
     }
+
     /**
      * @return int
      */

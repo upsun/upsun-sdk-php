@@ -77,6 +77,7 @@ final class TeamMember implements JsonSerializable
     {
         return $this->teamId;
     }
+
     /**
      * The ID of the user.
      *
@@ -86,6 +87,7 @@ final class TeamMember implements JsonSerializable
     {
         return $this->userId;
     }
+
     /**
      * The date and time when the team member was created.
      *
@@ -95,6 +97,7 @@ final class TeamMember implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the team member was last updated.
      *

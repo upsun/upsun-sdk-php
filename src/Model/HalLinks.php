@@ -71,6 +71,7 @@ final class HalLinks implements JsonSerializable
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\HalLinksPrevious|null
      */
@@ -78,6 +79,7 @@ final class HalLinks implements JsonSerializable
     {
         return $this->previous;
     }
+
     /**
      * @return \Upsun\Model\HalLinksNext|null
      */

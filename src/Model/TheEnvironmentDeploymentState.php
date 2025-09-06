@@ -71,6 +71,7 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     {
         return $this->lastDeploymentSuccessful;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -78,6 +79,7 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     {
         return $this->lastDeploymentAt;
     }
+
     /**
      * @return \Upsun\Model\TheCronsDeploymentState
      */

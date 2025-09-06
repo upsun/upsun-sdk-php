@@ -87,6 +87,7 @@ final class HttpLogIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -94,6 +95,7 @@ final class HttpLogIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -101,13 +103,15 @@ final class HttpLogIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getExtra(): array
     {
         return $this->extra;
     }
+
     /**
      * @return string
      */
@@ -115,13 +119,15 @@ final class HttpLogIntegration implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getHeaders(): array
     {
         return $this->headers;
     }
+
     /**
      * @return bool
      */

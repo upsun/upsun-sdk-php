@@ -109,6 +109,7 @@ final class Region implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The human-readable name of the region.
      *
@@ -118,6 +119,7 @@ final class Region implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * Geographical zone of the region
      *
@@ -127,6 +129,7 @@ final class Region implements JsonSerializable
     {
         return $this->zone;
     }
+
     /**
      * The label to display when choosing between regions for new projects.
      *
@@ -136,6 +139,7 @@ final class Region implements JsonSerializable
     {
         return $this->selectionLabel;
     }
+
     /**
      * The label to display on existing projects.
      *
@@ -145,6 +149,7 @@ final class Region implements JsonSerializable
     {
         return $this->projectLabel;
     }
+
     /**
      * Default timezone of the region
      *
@@ -154,6 +159,7 @@ final class Region implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
      * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
      *
@@ -163,6 +169,7 @@ final class Region implements JsonSerializable
     {
         return $this->available;
     }
+
     /**
      * Indicator whether or not this platform is for private use only.
      *
@@ -172,6 +179,7 @@ final class Region implements JsonSerializable
     {
         return $this->private;
     }
+
     /**
      * Link to the region API endpoint.
      *
@@ -181,6 +189,7 @@ final class Region implements JsonSerializable
     {
         return $this->endpoint;
     }
+
     /**
      * @return \Upsun\Model\RegionProvider|null
      */
@@ -188,6 +197,7 @@ final class Region implements JsonSerializable
     {
         return $this->provider;
     }
+
     /**
      * @return \Upsun\Model\RegionDatacenter|null
      */
@@ -195,6 +205,7 @@ final class Region implements JsonSerializable
     {
         return $this->datacenter;
     }
+
     /**
      * @return \Upsun\Model\RegionEnvironmentalImpact|null
      */

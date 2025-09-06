@@ -73,6 +73,7 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     {
         return $this->canCreate;
     }
+
     /**
      * Details in case of negative check result.
      *
@@ -82,6 +83,7 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     {
         return $this->message;
     }
+
     /**
      * @return \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
      */

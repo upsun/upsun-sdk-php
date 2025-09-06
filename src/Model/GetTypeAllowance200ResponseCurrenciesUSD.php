@@ -77,6 +77,7 @@ final class GetTypeAllowance200ResponseCurrenciesUSD implements JsonSerializable
     {
         return $this->formatted;
     }
+
     /**
      * The discount amount.
      *
@@ -86,6 +87,7 @@ final class GetTypeAllowance200ResponseCurrenciesUSD implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * The currency.
      *
@@ -95,6 +97,7 @@ final class GetTypeAllowance200ResponseCurrenciesUSD implements JsonSerializable
     {
         return $this->currency;
     }
+
     /**
      * Currency symbol.
      *

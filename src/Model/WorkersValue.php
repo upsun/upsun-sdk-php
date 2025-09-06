@@ -166,6 +166,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->resources;
     }
+
     /**
      * @return string
      */
@@ -173,6 +174,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->size;
     }
+
     /**
      * @return int|null
      */
@@ -180,13 +182,15 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->disk;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAccess(): array
     {
         return $this->access;
     }
+
     /**
      * @return \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
@@ -194,13 +198,15 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->relationships;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
+
     /**
      * @return \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
@@ -208,6 +214,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->mounts;
     }
+
     /**
      * @return string|null
      */
@@ -215,13 +222,15 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
-     * @return array&lt;string,array&lt;string,mixed&gt;&gt;
+     * @return array<string,array<string,mixed>>
      */
     public function getVariables(): array
     {
         return $this->variables;
     }
+
     /**
      * @return \Upsun\Model\Firewall|null
      */
@@ -229,6 +238,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->firewall;
     }
+
     /**
      * @return string|null
      */
@@ -236,6 +246,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->containerProfile;
     }
+
     /**
      * @return \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */
@@ -243,6 +254,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->operations;
     }
+
     /**
      * @return string
      */
@@ -250,6 +262,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string
      */
@@ -257,6 +270,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationForPreFlightChecks
      */
@@ -264,6 +278,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->preflight;
     }
+
     /**
      * @return string
      */
@@ -271,6 +286,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->treeId;
     }
+
     /**
      * @return string
      */
@@ -278,6 +294,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->appDir;
     }
+
     /**
      * @return object|null
      */
@@ -285,6 +302,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->endpoints;
     }
+
     /**
      * @return object
      */
@@ -292,6 +310,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->runtime;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationOfAWorkerContainerInstance
      */
@@ -299,6 +318,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->worker;
     }
+
     /**
      * @return string
      */
@@ -306,6 +326,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->app;
     }
+
     /**
      * @return object[]|null
      */
@@ -313,6 +334,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->stack;
     }
+
     /**
      * @return int|null
      */
@@ -320,6 +342,7 @@ final class WorkersValue implements JsonSerializable
     {
         return $this->instanceCount;
     }
+
     /**
      * @return string
      */

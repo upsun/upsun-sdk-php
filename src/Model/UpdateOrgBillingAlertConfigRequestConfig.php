@@ -69,6 +69,7 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     {
         return $this->threshold;
     }
+
     /**
      * The mode in which the alert is triggered.
      *

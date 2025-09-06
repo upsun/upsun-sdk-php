@@ -71,6 +71,7 @@ final class OrganizationAddonsObject implements JsonSerializable
     {
         return $this->available;
     }
+
     /**
      * @return \Upsun\Model\OrganizationAddonsObjectCurrent|null
      */
@@ -78,6 +79,7 @@ final class OrganizationAddonsObject implements JsonSerializable
     {
         return $this->current;
     }
+
     /**
      * @return \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
      */

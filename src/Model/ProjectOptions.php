@@ -79,6 +79,7 @@ final class ProjectOptions implements JsonSerializable
     {
         return $this->defaults;
     }
+
     /**
      * @return \Upsun\Model\ProjectOptionsEnforced|null
      */
@@ -86,6 +87,7 @@ final class ProjectOptions implements JsonSerializable
     {
         return $this->enforced;
     }
+
     /**
      * The available regions.
      *
@@ -95,6 +97,7 @@ final class ProjectOptions implements JsonSerializable
     {
         return $this->regions;
     }
+
     /**
      * The available plans.
      *
@@ -104,6 +107,7 @@ final class ProjectOptions implements JsonSerializable
     {
         return $this->plans;
     }
+
     /**
      * The billing settings.
      *

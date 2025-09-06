@@ -121,6 +121,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->version;
     }
+
     /**
      * @return string
      */
@@ -128,6 +129,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->aggressive;
     }
+
     /**
      * @return string
      */
@@ -135,6 +137,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->modeconfig;
     }
+
     /**
      * @return string
      */
@@ -142,6 +145,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->authentication;
     }
+
     /**
      * @return string
      */
@@ -149,6 +153,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->gatewayIp;
     }
+
     /**
      * @return string|null
      */
@@ -156,6 +161,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->identity;
     }
+
     /**
      * @return string|null
      */
@@ -163,6 +169,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->secondIdentity;
     }
+
     /**
      * @return string|null
      */
@@ -170,6 +177,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->remoteIdentity;
     }
+
     /**
      * @return string[]
      */
@@ -177,6 +185,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->remoteSubnets;
     }
+
     /**
      * @return string
      */
@@ -184,6 +193,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->ike;
     }
+
     /**
      * @return string
      */
@@ -191,6 +201,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->esp;
     }
+
     /**
      * @return string
      */
@@ -198,6 +209,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->ikelifetime;
     }
+
     /**
      * @return string
      */
@@ -205,6 +217,7 @@ final class VPNConfiguration implements JsonSerializable
     {
         return $this->lifetime;
     }
+
     /**
      * @return string
      */

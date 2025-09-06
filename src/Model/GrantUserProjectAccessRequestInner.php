@@ -80,6 +80,7 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     {
         return $this->projectId;
     }
+
     /**
      * An array of project permissions.
      *

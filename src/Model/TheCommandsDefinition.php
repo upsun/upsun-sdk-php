@@ -67,6 +67,7 @@ final class TheCommandsDefinition implements JsonSerializable
     {
         return $this->start;
     }
+
     /**
      * @return string|null
      */

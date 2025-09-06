@@ -71,6 +71,7 @@ final class Ref implements JsonSerializable
     {
         return $this->ref;
     }
+
     /**
      * @return \Upsun\Model\TheObjectTheReferencePointsTo
      */
@@ -78,6 +79,7 @@ final class Ref implements JsonSerializable
     {
         return $this->object;
     }
+
     /**
      * @return string
      */

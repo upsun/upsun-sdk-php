@@ -95,6 +95,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string
      */
@@ -102,6 +103,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return bool
      */
@@ -109,6 +111,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->isMain;
     }
+
     /**
      * @return bool
      */
@@ -116,6 +119,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->isProduction;
     }
+
     /**
      * @return object
      */
@@ -123,6 +127,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->constraints;
     }
+
     /**
      * @return string
      */
@@ -130,6 +135,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->reference;
     }
+
     /**
      * @return string
      */
@@ -137,6 +143,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->machineName;
     }
+
     /**
      * @return string
      */
@@ -144,6 +151,7 @@ final class EnvironmentInfo implements JsonSerializable
     {
         return $this->environmentType;
     }
+
     /**
      * @return object
      */

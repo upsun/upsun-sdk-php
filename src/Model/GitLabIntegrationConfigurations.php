@@ -67,6 +67,7 @@ final class GitLabIntegrationConfigurations implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

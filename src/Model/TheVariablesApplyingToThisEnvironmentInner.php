@@ -83,6 +83,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return $this->name;
     }
+
     /**
      * @return bool
      */
@@ -90,6 +91,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return $this->isSensitive;
     }
+
     /**
      * @return bool
      */
@@ -97,6 +99,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return $this->isJson;
     }
+
     /**
      * @return bool
      */
@@ -104,6 +107,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return $this->visibleBuild;
     }
+
     /**
      * @return bool
      */
@@ -111,6 +115,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
     {
         return $this->visibleRuntime;
     }
+
     /**
      * @return string|null
      */

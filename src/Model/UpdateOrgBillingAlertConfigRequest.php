@@ -69,6 +69,7 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     {
         return $this->active;
     }
+
     /**
      * @return \Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig|null
      */

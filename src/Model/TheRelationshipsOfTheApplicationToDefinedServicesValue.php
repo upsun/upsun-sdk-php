@@ -67,6 +67,7 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     {
         return $this->service;
     }
+
     /**
      * @return string|null
      */

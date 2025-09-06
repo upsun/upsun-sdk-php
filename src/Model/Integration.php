@@ -261,6 +261,7 @@ final class Integration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -268,6 +269,7 @@ final class Integration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -275,6 +277,7 @@ final class Integration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return bool
      */
@@ -282,6 +285,7 @@ final class Integration implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool
      */
@@ -289,6 +293,7 @@ final class Integration implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string
      */
@@ -296,6 +301,7 @@ final class Integration implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return string
      */
@@ -303,6 +309,7 @@ final class Integration implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return bool
      */
@@ -310,6 +317,7 @@ final class Integration implements JsonSerializable
     {
         return $this->buildPullRequests;
     }
+
     /**
      * @return bool
      */
@@ -317,6 +325,7 @@ final class Integration implements JsonSerializable
     {
         return $this->pullRequestsCloneParentData;
     }
+
     /**
      * @return bool
      */
@@ -324,6 +333,7 @@ final class Integration implements JsonSerializable
     {
         return $this->resyncPullRequests;
     }
+
     /**
      * @return string
      */
@@ -331,6 +341,7 @@ final class Integration implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string
      */
@@ -338,6 +349,7 @@ final class Integration implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * @return string
      */
@@ -345,6 +357,7 @@ final class Integration implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]
      */
@@ -352,6 +365,7 @@ final class Integration implements JsonSerializable
     {
         return $this->environmentsCredentials;
     }
+
     /**
      * @return bool
      */
@@ -359,6 +373,7 @@ final class Integration implements JsonSerializable
     {
         return $this->continuousProfiling;
     }
+
     /**
      * @return string[]
      */
@@ -366,6 +381,7 @@ final class Integration implements JsonSerializable
     {
         return $this->events;
     }
+
     /**
      * @return string[]
      */
@@ -373,6 +389,7 @@ final class Integration implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * @return string[]
      */
@@ -380,6 +397,7 @@ final class Integration implements JsonSerializable
     {
         return $this->excludedEnvironments;
     }
+
     /**
      * @return string[]
      */
@@ -387,6 +405,7 @@ final class Integration implements JsonSerializable
     {
         return $this->states;
     }
+
     /**
      * @return string
      */
@@ -394,6 +413,7 @@ final class Integration implements JsonSerializable
     {
         return $this->result;
     }
+
     /**
      * @return string
      */
@@ -401,6 +421,7 @@ final class Integration implements JsonSerializable
     {
         return $this->serviceId;
     }
+
     /**
      * @return string
      */
@@ -408,6 +429,7 @@ final class Integration implements JsonSerializable
     {
         return $this->baseUrl;
     }
+
     /**
      * @return bool
      */
@@ -415,6 +437,7 @@ final class Integration implements JsonSerializable
     {
         return $this->buildDraftPullRequests;
     }
+
     /**
      * @return bool
      */
@@ -422,6 +445,7 @@ final class Integration implements JsonSerializable
     {
         return $this->buildPullRequestsPostMerge;
     }
+
     /**
      * @return string
      */
@@ -429,6 +453,7 @@ final class Integration implements JsonSerializable
     {
         return $this->tokenType;
     }
+
     /**
      * @return bool
      */
@@ -436,6 +461,7 @@ final class Integration implements JsonSerializable
     {
         return $this->buildMergeRequests;
     }
+
     /**
      * @return bool
      */
@@ -443,6 +469,7 @@ final class Integration implements JsonSerializable
     {
         return $this->buildWipMergeRequests;
     }
+
     /**
      * @return bool
      */
@@ -450,6 +477,7 @@ final class Integration implements JsonSerializable
     {
         return $this->mergeRequestsCloneParentData;
     }
+
     /**
      * @return string|null
      */
@@ -457,6 +485,7 @@ final class Integration implements JsonSerializable
     {
         return $this->fromAddress;
     }
+
     /**
      * @return string[]
      */
@@ -464,6 +493,7 @@ final class Integration implements JsonSerializable
     {
         return $this->recipients;
     }
+
     /**
      * @return string
      */
@@ -471,6 +501,7 @@ final class Integration implements JsonSerializable
     {
         return $this->routingKey;
     }
+
     /**
      * @return string
      */
@@ -478,20 +509,23 @@ final class Integration implements JsonSerializable
     {
         return $this->channel;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getExtra(): array
     {
         return $this->extra;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getHeaders(): array
     {
         return $this->headers;
     }
+
     /**
      * @return bool
      */
@@ -499,6 +533,7 @@ final class Integration implements JsonSerializable
     {
         return $this->tlsVerify;
     }
+
     /**
      * @return string
      */
@@ -506,6 +541,7 @@ final class Integration implements JsonSerializable
     {
         return $this->script;
     }
+
     /**
      * @return string
      */
@@ -513,6 +549,7 @@ final class Integration implements JsonSerializable
     {
         return $this->index;
     }
+
     /**
      * @return string
      */
@@ -520,6 +557,7 @@ final class Integration implements JsonSerializable
     {
         return $this->sourcetype;
     }
+
     /**
      * @return string
      */
@@ -527,6 +565,7 @@ final class Integration implements JsonSerializable
     {
         return $this->category;
     }
+
     /**
      * @return string
      */
@@ -534,6 +573,7 @@ final class Integration implements JsonSerializable
     {
         return $this->host;
     }
+
     /**
      * @return int
      */
@@ -541,6 +581,7 @@ final class Integration implements JsonSerializable
     {
         return $this->port;
     }
+
     /**
      * @return string
      */
@@ -548,6 +589,7 @@ final class Integration implements JsonSerializable
     {
         return $this->protocol;
     }
+
     /**
      * @return int
      */
@@ -555,6 +597,7 @@ final class Integration implements JsonSerializable
     {
         return $this->facility;
     }
+
     /**
      * @return string
      */
@@ -562,6 +605,7 @@ final class Integration implements JsonSerializable
     {
         return $this->messageFormat;
     }
+
     /**
      * @return string|null
      */
@@ -569,6 +613,7 @@ final class Integration implements JsonSerializable
     {
         return $this->sharedKey;
     }
+
     /**
      * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
      */
@@ -576,6 +621,7 @@ final class Integration implements JsonSerializable
     {
         return $this->appCredentials;
     }
+
     /**
      * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
      */

@@ -77,6 +77,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     {
         return $this->source;
     }
+
     /**
      * @return string
      */
@@ -84,6 +85,7 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     {
         return $this->sourcePath;
     }
+
     /**
      * @return string|null
      */

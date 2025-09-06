@@ -147,6 +147,7 @@ final class Order implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The status of the subscription.
      *
@@ -156,6 +157,7 @@ final class Order implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The UUID of the owner.
      *
@@ -165,6 +167,7 @@ final class Order implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * @return \Upsun\Model\Address|null
      */
@@ -172,6 +175,7 @@ final class Order implements JsonSerializable
     {
         return $this->address;
     }
+
     /**
      * The company name.
      *
@@ -181,6 +185,7 @@ final class Order implements JsonSerializable
     {
         return $this->company;
     }
+
     /**
      * An identifier used in many countries for value added tax purposes.
      *
@@ -190,6 +195,7 @@ final class Order implements JsonSerializable
     {
         return $this->vatNumber;
     }
+
     /**
      * The time when the billing period of the order started.
      *
@@ -199,6 +205,7 @@ final class Order implements JsonSerializable
     {
         return $this->billingPeriodStart;
     }
+
     /**
      * The time when the billing period of the order ended.
      *
@@ -208,6 +215,7 @@ final class Order implements JsonSerializable
     {
         return $this->billingPeriodEnd;
     }
+
     /**
      * @return \Upsun\Model\OrderBillingPeriodLabel|null
      */
@@ -215,6 +223,7 @@ final class Order implements JsonSerializable
     {
         return $this->billingPeriodLabel;
     }
+
     /**
      * The duration of the billing period of the order in seconds.
      *
@@ -224,6 +233,7 @@ final class Order implements JsonSerializable
     {
         return $this->billingPeriodDuration;
     }
+
     /**
      * The time when the order was successfully charged.
      *
@@ -233,6 +243,7 @@ final class Order implements JsonSerializable
     {
         return $this->paidOn;
     }
+
     /**
      * The total of the order.
      *
@@ -242,6 +253,7 @@ final class Order implements JsonSerializable
     {
         return $this->total;
     }
+
     /**
      * The total of the order, formatted with currency.
      *
@@ -251,6 +263,7 @@ final class Order implements JsonSerializable
     {
         return $this->totalFormatted;
     }
+
     /**
      * @return \Upsun\Model\Components|null
      */
@@ -258,6 +271,7 @@ final class Order implements JsonSerializable
     {
         return $this->components;
     }
+
     /**
      * The order currency code.
      *
@@ -267,6 +281,7 @@ final class Order implements JsonSerializable
     {
         return $this->currency;
     }
+
     /**
      * A link to the PDF invoice.
      *
@@ -276,6 +291,7 @@ final class Order implements JsonSerializable
     {
         return $this->invoiceUrl;
     }
+
     /**
      * The time when the order was last refreshed.
      *
@@ -285,6 +301,7 @@ final class Order implements JsonSerializable
     {
         return $this->lastRefreshed;
     }
+
     /**
      * The customer is invoiced.
      *
@@ -294,6 +311,7 @@ final class Order implements JsonSerializable
     {
         return $this->invoiced;
     }
+
     /**
      * The line items that comprise the order.
      *
@@ -303,6 +321,7 @@ final class Order implements JsonSerializable
     {
         return $this->lineItems;
     }
+
     /**
      * @return \Upsun\Model\OrderLinks|null
      */

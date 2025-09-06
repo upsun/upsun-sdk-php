@@ -71,6 +71,7 @@ final class HttpAccessPermissions1 implements JsonSerializable
     {
         return $this->isEnabled;
     }
+
     /**
      * @return \Upsun\Model\AddressGrantsInner[]|null
      */
@@ -78,8 +79,9 @@ final class HttpAccessPermissions1 implements JsonSerializable
     {
         return $this->addresses;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getBasicAuth(): ?array
     {

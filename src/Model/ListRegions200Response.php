@@ -67,6 +67,7 @@ final class ListRegions200Response implements JsonSerializable
     {
         return $this->regions;
     }
+
     /**
      * @return \Upsun\Model\ListLinks|null
      */

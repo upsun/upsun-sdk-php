@@ -109,6 +109,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->projectTitle;
     }
+
     /**
      * The project plan.
      *
@@ -118,6 +119,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * Timezone of the project.
      *
@@ -127,6 +129,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
      * The maximum number of environments which can be provisioned on the project.
      *
@@ -136,6 +139,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * The total storage available to each environment, in MiB.
      *
@@ -145,6 +149,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->storage;
     }
+
     /**
      * The development environment plan.
      *
@@ -154,6 +159,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->bigDev;
     }
+
     /**
      * The development service plan.
      *
@@ -163,6 +169,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->bigDevService;
     }
+
     /**
      * The backups plan.
      *
@@ -172,6 +179,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->backups;
     }
+
     /**
      * The observability suite option.
      *
@@ -181,6 +189,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->observabilitySuite;
     }
+
     /**
      * The Blackfire integration option.
      *
@@ -190,6 +199,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->blackfire;
     }
+
     /**
      * The Blackfire continuous profiling option.
      *
@@ -199,6 +209,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->continuousProfiling;
     }
+
     /**
      * The project uptime option.
      *

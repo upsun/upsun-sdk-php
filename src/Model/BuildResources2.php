@@ -67,6 +67,7 @@ final class BuildResources2 implements JsonSerializable
     {
         return $this->cpu;
     }
+
     /**
      * @return int|null
      */

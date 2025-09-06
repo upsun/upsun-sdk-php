@@ -67,6 +67,7 @@ final class ListTeamMembers200Response implements JsonSerializable
     {
         return $this->items;
     }
+
     /**
      * @return \Upsun\Model\ListLinks|null
      */

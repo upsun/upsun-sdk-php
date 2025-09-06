@@ -67,6 +67,7 @@ final class GitHubIntegrationConfigurations implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

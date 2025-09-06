@@ -67,6 +67,7 @@ final class DataRetentionConfigurationValue1 implements JsonSerializable
     {
         return $this->defaultConfig;
     }
+
     /**
      * @return int|null
      */

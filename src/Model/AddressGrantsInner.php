@@ -69,6 +69,7 @@ final class AddressGrantsInner implements JsonSerializable
     {
         return $this->permission;
     }
+
     /**
      * @return string
      */

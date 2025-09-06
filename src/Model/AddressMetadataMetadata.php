@@ -73,6 +73,7 @@ final class AddressMetadataMetadata implements JsonSerializable
     {
         return $this->requiredFields;
     }
+
     /**
      * Localized labels for address fields.
      *
@@ -82,6 +83,7 @@ final class AddressMetadataMetadata implements JsonSerializable
     {
         return $this->fieldLabels;
     }
+
     /**
      * Whether this country supports a VAT number.
      *

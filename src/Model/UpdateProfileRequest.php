@@ -113,6 +113,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->displayName;
     }
+
     /**
      * The user's username.
      *
@@ -122,6 +123,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The user's current password.
      *
@@ -131,6 +133,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->currentPassword;
     }
+
     /**
      * The user's new password.
      *
@@ -140,6 +143,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->password;
     }
+
     /**
      * The company type.
      *
@@ -149,6 +153,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->companyType;
     }
+
     /**
      * The name of the company.
      *
@@ -158,6 +163,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->companyName;
     }
+
     /**
      * The vat number of the user.
      *
@@ -167,6 +173,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->vatNumber;
     }
+
     /**
      * The role of the user in the company.
      *
@@ -176,6 +183,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->companyRole;
     }
+
     /**
      * Flag if the user agreed to receive marketing communication.
      *
@@ -185,6 +193,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->marketing;
     }
+
     /**
      * The user's chosen color scheme for user interfaces. Available values are 'light' and 'dark'.
      *
@@ -194,6 +203,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->uiColorscheme;
     }
+
     /**
      * The URL of a catalog file which overrides the default.
      *
@@ -203,6 +213,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->defaultCatalog;
     }
+
     /**
      * The URL of an account-wide project options file.
      *
@@ -212,6 +223,7 @@ final class UpdateProfileRequest implements JsonSerializable
     {
         return $this->projectOptionsUrl;
     }
+
     /**
      * Url of the user's picture.
      *

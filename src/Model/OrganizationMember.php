@@ -105,6 +105,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ID of the organization.
      *
@@ -114,6 +115,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The ID of the user.
      *
@@ -123,6 +125,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->userId;
     }
+
     /**
      * The organization member permissions.
      *
@@ -132,6 +135,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->permissions;
     }
+
     /**
      * Access level of the member.
      *
@@ -141,6 +145,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->level;
     }
+
     /**
      * Whether the member is the organization owner.
      *
@@ -150,6 +155,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * The date and time when the member was created.
      *
@@ -159,6 +165,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the member was last updated.
      *
@@ -168,6 +175,7 @@ final class OrganizationMember implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return \Upsun\Model\OrganizationMemberLinks|null
      */

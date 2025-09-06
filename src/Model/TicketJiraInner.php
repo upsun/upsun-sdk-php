@@ -85,6 +85,7 @@ final class TicketJiraInner implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The id of the ticket.
      *
@@ -94,6 +95,7 @@ final class TicketJiraInner implements JsonSerializable
     {
         return $this->ticketId;
     }
+
     /**
      * The issue id number.
      *
@@ -103,6 +105,7 @@ final class TicketJiraInner implements JsonSerializable
     {
         return $this->issueId;
     }
+
     /**
      * The issue key.
      *
@@ -112,6 +115,7 @@ final class TicketJiraInner implements JsonSerializable
     {
         return $this->issueKey;
     }
+
     /**
      * The created at timestamp.
      *
@@ -121,6 +125,7 @@ final class TicketJiraInner implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The updated at timestamp.
      *

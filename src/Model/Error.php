@@ -79,6 +79,7 @@ final class Error implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return string|null
      */
@@ -86,6 +87,7 @@ final class Error implements JsonSerializable
     {
         return $this->message;
     }
+
     /**
      * @return float|null
      */
@@ -93,6 +95,7 @@ final class Error implements JsonSerializable
     {
         return $this->code;
     }
+
     /**
      * @return object|null
      */
@@ -100,6 +103,7 @@ final class Error implements JsonSerializable
     {
         return $this->detail;
     }
+
     /**
      * @return string|null
      */

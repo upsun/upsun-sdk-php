@@ -67,6 +67,7 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     {
         return $this->commands;
     }
+
     /**
      * @return int|null
      */

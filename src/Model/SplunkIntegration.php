@@ -91,6 +91,7 @@ final class SplunkIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -98,6 +99,7 @@ final class SplunkIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -105,13 +107,15 @@ final class SplunkIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getExtra(): array
     {
         return $this->extra;
     }
+
     /**
      * @return string
      */
@@ -119,6 +123,7 @@ final class SplunkIntegration implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string
      */
@@ -126,6 +131,7 @@ final class SplunkIntegration implements JsonSerializable
     {
         return $this->index;
     }
+
     /**
      * @return string
      */
@@ -133,6 +139,7 @@ final class SplunkIntegration implements JsonSerializable
     {
         return $this->sourcetype;
     }
+
     /**
      * @return bool
      */

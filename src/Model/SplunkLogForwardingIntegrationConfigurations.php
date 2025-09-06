@@ -67,6 +67,7 @@ final class SplunkLogForwardingIntegrationConfigurations implements JsonSerializ
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

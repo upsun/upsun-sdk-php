@@ -67,6 +67,7 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     {
         return $this->threshold;
     }
+
     /**
      * The mode of alert.
      *

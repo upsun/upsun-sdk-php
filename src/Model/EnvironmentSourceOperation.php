@@ -71,6 +71,7 @@ final class EnvironmentSourceOperation implements JsonSerializable
     {
         return $this->app;
     }
+
     /**
      * @return string
      */
@@ -78,6 +79,7 @@ final class EnvironmentSourceOperation implements JsonSerializable
     {
         return $this->operation;
     }
+
     /**
      * @return string
      */

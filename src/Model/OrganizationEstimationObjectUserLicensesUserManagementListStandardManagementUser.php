@@ -69,6 +69,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListStandardMa
     {
         return $this->count;
     }
+
     /**
      * The total price for standard_management_user licenses.
      *

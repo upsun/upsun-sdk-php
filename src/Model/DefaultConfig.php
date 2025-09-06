@@ -67,6 +67,7 @@ final class DefaultConfig implements JsonSerializable
     {
         return $this->manualCount;
     }
+
     /**
      * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]
      */

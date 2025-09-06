@@ -71,6 +71,7 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
     {
         return $this->date;
     }
+
     /**
      * @return string
      */
@@ -78,6 +79,7 @@ final class TheInformationAboutTheAuthor implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string
      */

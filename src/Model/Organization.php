@@ -119,6 +119,7 @@ final class Organization implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The type of the organization.
      *
@@ -128,6 +129,7 @@ final class Organization implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The ID of the owner.
      *
@@ -137,6 +139,7 @@ final class Organization implements JsonSerializable
     {
         return $this->ownerId;
     }
+
     /**
      * The namespace in which the organization name is unique.
      *
@@ -146,6 +149,7 @@ final class Organization implements JsonSerializable
     {
         return $this->namespace;
     }
+
     /**
      * A unique machine name representing the organization.
      *
@@ -155,6 +159,7 @@ final class Organization implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * The human-readable label of the organization.
      *
@@ -164,6 +169,7 @@ final class Organization implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * The organization country (2-letter country code).
      *
@@ -173,6 +179,7 @@ final class Organization implements JsonSerializable
     {
         return $this->country;
     }
+
     /**
      * The organization capabilities.
      *
@@ -182,6 +189,7 @@ final class Organization implements JsonSerializable
     {
         return $this->capabilities;
     }
+
     /**
      * The vendor.
      *
@@ -191,6 +199,7 @@ final class Organization implements JsonSerializable
     {
         return $this->vendor;
     }
+
     /**
      * The status of the organization.
      *
@@ -200,6 +209,7 @@ final class Organization implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The date and time when the organization was created.
      *
@@ -209,6 +219,7 @@ final class Organization implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the organization was last updated.
      *
@@ -218,6 +229,7 @@ final class Organization implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinks|null
      */

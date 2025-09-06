@@ -115,6 +115,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->licenseUri;
     }
+
     /**
      * @return int
      */
@@ -122,6 +123,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->storage;
     }
+
     /**
      * @return int
      */
@@ -129,6 +131,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->includedUsers;
     }
+
     /**
      * @return string
      */
@@ -136,6 +139,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->subscriptionManagementUri;
     }
+
     /**
      * @return bool
      */
@@ -143,6 +147,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->restricted;
     }
+
     /**
      * @return bool
      */
@@ -150,6 +155,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->suspended;
     }
+
     /**
      * @return int
      */
@@ -157,6 +163,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->userLicenses;
     }
+
     /**
      * @return string|null
      */
@@ -164,6 +171,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * @return int|null
      */
@@ -171,6 +179,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * @return \Upsun\Model\ResourcesLimits|null
      */
@@ -178,6 +187,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->resources;
     }
+
     /**
      * @return string|null
      */
@@ -185,6 +195,7 @@ final class SubscriptionInformation implements JsonSerializable
     {
         return $this->resourceValidationUrl;
     }
+
     /**
      * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
      */

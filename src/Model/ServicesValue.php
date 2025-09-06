@@ -106,6 +106,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -113,6 +114,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->size;
     }
+
     /**
      * @return int|null
      */
@@ -120,6 +122,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->disk;
     }
+
     /**
      * @return object
      */
@@ -127,6 +130,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->access;
     }
+
     /**
      * @return object
      */
@@ -134,13 +138,15 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->configuration;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getRelationships(): array
     {
         return $this->relationships;
     }
+
     /**
      * @return \Upsun\Model\Firewall|null
      */
@@ -148,6 +154,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->firewall;
     }
+
     /**
      * @return \Upsun\Model\Resources|null
      */
@@ -155,6 +162,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->resources;
     }
+
     /**
      * @return string|null
      */
@@ -162,6 +170,7 @@ final class ServicesValue implements JsonSerializable
     {
         return $this->containerProfile;
     }
+
     /**
      * @return object|null
      */

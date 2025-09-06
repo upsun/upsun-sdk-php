@@ -71,6 +71,7 @@ final class TheDisksResources implements JsonSerializable
     {
         return $this->temporary;
     }
+
     /**
      * @return int|null
      */
@@ -78,6 +79,7 @@ final class TheDisksResources implements JsonSerializable
     {
         return $this->instance;
     }
+
     /**
      * @return int|null
      */

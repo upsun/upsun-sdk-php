@@ -89,6 +89,7 @@ final class TeamProjectAccess implements JsonSerializable
     {
         return $this->teamId;
     }
+
     /**
      * The ID of the organization.
      *
@@ -98,6 +99,7 @@ final class TeamProjectAccess implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The ID of the project.
      *
@@ -107,6 +109,7 @@ final class TeamProjectAccess implements JsonSerializable
     {
         return $this->projectId;
     }
+
     /**
      * The title of the project.
      *
@@ -116,6 +119,7 @@ final class TeamProjectAccess implements JsonSerializable
     {
         return $this->projectTitle;
     }
+
     /**
      * The date and time when the access was granted.
      *
@@ -125,6 +129,7 @@ final class TeamProjectAccess implements JsonSerializable
     {
         return $this->grantedAt;
     }
+
     /**
      * The date and time when the access was last updated.
      *
@@ -134,6 +139,7 @@ final class TeamProjectAccess implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return \Upsun\Model\TeamProjectAccessLinks|null
      */

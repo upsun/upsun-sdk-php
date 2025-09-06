@@ -71,6 +71,7 @@ final class SlackIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -78,6 +79,7 @@ final class SlackIntegrationPatch implements JsonSerializable
     {
         return $this->token;
     }
+
     /**
      * @return string
      */

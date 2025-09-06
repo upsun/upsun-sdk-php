@@ -98,6 +98,7 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */
@@ -105,13 +106,15 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return string|null
      */
@@ -119,6 +122,7 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string|null
      */
@@ -126,6 +130,7 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->parent;
     }
+
     /**
      * @return bool|null
      */
@@ -133,6 +138,7 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->cloneParentOnCreate;
     }
+
     /**
      * @return \Upsun\Model\HttpAccessPermissions1|null
      */
@@ -140,6 +146,7 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->httpAccess;
     }
+
     /**
      * @return bool|null
      */
@@ -147,6 +154,7 @@ final class EnvironmentPatch implements JsonSerializable
     {
         return $this->enableSmtp;
     }
+
     /**
      * @return bool|null
      */

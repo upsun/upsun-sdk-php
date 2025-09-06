@@ -67,6 +67,7 @@ final class RegionProvider implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */

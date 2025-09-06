@@ -69,6 +69,7 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
     {
         return $this->total;
     }
+
     /**
      * The list of active subscriptions.
      *

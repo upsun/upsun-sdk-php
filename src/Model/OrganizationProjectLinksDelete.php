@@ -69,6 +69,7 @@ final class OrganizationProjectLinksDelete implements JsonSerializable
     {
         return $this->href;
     }
+
     /**
      * The HTTP method to use.
      *

@@ -69,6 +69,7 @@ final class OrganizationLinksApplyVoucher implements JsonSerializable
     {
         return $this->href;
     }
+
     /**
      * The HTTP method to use.
      *

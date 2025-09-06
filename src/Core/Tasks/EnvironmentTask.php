@@ -76,10 +76,10 @@ class EnvironmentTask extends TaskBase
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
-     *     title?: string,
-     *     name?: string,
-     *     cloneParent?: bool,
-     *     type?: string,
+     *     title: string,
+     *     name: string,
+     *     cloneParent: bool,
+     *     type: string,
      *     init?: string,
      * } $data
      */
@@ -93,7 +93,7 @@ class EnvironmentTask extends TaskBase
             name: $data['name'],
             cloneParent: $data['cloneParent'],
             type: $data['type'],
-            resources: new Resources2($data['init']),
+            resources: new Resources2($data['init'] ?? null),
         );
         return $this->api->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
     }
@@ -173,13 +173,13 @@ class EnvironmentTask extends TaskBase
      * @param array{
      *     profile: string,
      *     repository: string,
-     *     config: string,
      *     files: array{
      *       mode: string,
      *       path: string,
      *       contents: string
      *     },
-     *     init: int,
+     *     config?: string,
+     *     init?: int,
      * } $data
      */
     public function initialize(
@@ -190,9 +190,9 @@ class EnvironmentTask extends TaskBase
         $environmentInitializeInput = new EnvironmentInitializeInput(
             profile: $data['profile'],
             repository: $data['repository'],
-            config: $data['config'],
             files: $data['files'],
-            resources: new Resources3(init: $data['init']),
+            config: $data['config'] ?? null,
+            resources: new Resources3(init: $data['init'] ?? null),
         );
         return $this->api->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
     }
@@ -226,7 +226,7 @@ class EnvironmentTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function merge(string $projectId, string $environmentId, int $init): AcceptedResponse
+    public function merge(string $projectId, string $environmentId, ?int $init = null): AcceptedResponse
     {
         $environmentMergeInput = new EnvironmentMergeInput(
             new Resources4(init: $init)
@@ -291,11 +291,11 @@ class EnvironmentTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      * @param array{
+     *     parent?: string,
      *     name?: string,
      *     title?: string,
      *     attributes?: array,
      *     type?: string,
-     *     parent?: string,
      *     cloneParentOnCreate?: bool,
      *     httpAccess?: array{
      *        isEnabled?: bool,
@@ -312,18 +312,19 @@ class EnvironmentTask extends TaskBase
     public function update(string $projectId, string $environmentId, array $data): AcceptedResponse
     {
         $environmentPatch = new EnvironmentPatch(
-            name: $data['name'],
-            title: $data['title'],
-            attributes: $data['attributes'],
-            type: $data['type'],
-            parent: $data['parent'],
-            cloneParentOnCreate: $data['cloneParentOnCreate'],
-            httpAccess: new HttpAccessPermissions1(
-                isEnabled: $data['httpAccess']['isEnabled'],
-                addresses: $data['httpAccess']['addresses']
-            ),
-            enableSmtp: $data['enableSmtp'],
-            restrictRobots: $data['restrictRobots']
+            parent: $data['parent'] ?? null,
+            name: $data['name'] ?? null,
+            title: $data['title'] ?? null,
+            attributes: $data['attributes'] ?? [],
+            type: $data['type'] ?? null,
+            cloneParentOnCreate: $data['cloneParentOnCreate'] ?? null,
+            httpAccess: isset($data['httpAccess']) ? new HttpAccessPermissions1(
+                isEnabled: $data['httpAccess']['isEnabled'] ?? null,
+                addresses: $data['httpAccess']['addresses'] ?? null,
+                basicAuth: $data['httpAccess']['basicAuth'] ?? null
+            ) : null,
+            enableSmtp: $data['enableSmtp'] ?? null,
+            restrictRobots: $data['restrictRobots'] ?? null
         );
         return $this->api->updateEnvironment($projectId, $environmentId, $environmentPatch);
     }

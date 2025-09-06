@@ -77,6 +77,7 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     {
         return $this->formatted;
     }
+
     /**
      * The month of the billing cycle.
      *
@@ -86,6 +87,7 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     {
         return $this->month;
     }
+
     /**
      * The year of the billing cycle.
      *
@@ -95,6 +97,7 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     {
         return $this->year;
     }
+
     /**
      * The name of the next month following this billing cycle.
      *

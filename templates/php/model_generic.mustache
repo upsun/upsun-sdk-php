@@ -85,28 +85,28 @@ final class {{classname}} implements JsonSerializable
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
+{{#vars}}
 
-    {{#vars}}
     /**
-    {{#description}}
+{{#description}}
      * {{{description}}}
      *
-    {{/description}}
-    {{#isContainer}}
-    {{#items.isModel}}
-     * @return {{items.dataType}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-    {{/items.isModel}}
-    {{^items.isModel}}
-     * @return {{dataType}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-    {{/items.isModel}}
-    {{/isContainer}}
-    {{^isContainer}}
-     * @return {{dataType}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-    {{/isContainer}}
+{{/description}}
+{{#isContainer}}
+  {{#items.isModel}}
+     * @return {{{items.dataType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+  {{/items.isModel}}
+  {{^items.isModel}}
+     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+  {{/items.isModel}}
+{{/isContainer}}
+{{^isContainer}}
+     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+{{/isContainer}}
      */
-    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{datatype}}}{{/isContainer}}
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }
-    {{/vars}}
+{{/vars}}
 }

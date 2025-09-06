@@ -71,6 +71,7 @@ final class EmailIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string[]
      */
@@ -78,6 +79,7 @@ final class EmailIntegrationCreateInput implements JsonSerializable
     {
         return $this->recipients;
     }
+
     /**
      * @return string|null
      */

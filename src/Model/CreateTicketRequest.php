@@ -120,6 +120,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->subject;
     }
+
     /**
      * The description body of the support ticket.
      *
@@ -129,6 +130,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * UUID of the ticket requester. Converted from the ZID value.
      *
@@ -138,6 +140,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->requesterId;
     }
+
     /**
      * A priority of the ticket.
      *
@@ -147,6 +150,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->priority;
     }
+
     /**
      * see create()
      *
@@ -156,6 +160,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * see create()
      *
@@ -165,6 +170,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * see create().
      *
@@ -174,6 +180,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->affectedUrl;
     }
+
     /**
      * The unique ID of the ticket which this ticket is a follow-up to.
      *
@@ -183,6 +190,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->followupTid;
     }
+
     /**
      * The category of the support ticket.
      *
@@ -192,6 +200,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->category;
     }
+
     /**
      * A list of attachments for the ticket.
      *
@@ -201,6 +210,7 @@ final class CreateTicketRequest implements JsonSerializable
     {
         return $this->attachments;
     }
+
     /**
      * A list of collaborators uuids for the ticket.
      *

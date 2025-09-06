@@ -106,13 +106,15 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+
     /**
      * @return string|null
      */
@@ -120,6 +122,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->host;
     }
+
     /**
      * @return int|null
      */
@@ -127,6 +130,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->port;
     }
+
     /**
      * @return string|null
      */
@@ -134,6 +138,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->protocol;
     }
+
     /**
      * @return int|null
      */
@@ -141,6 +146,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->facility;
     }
+
     /**
      * @return string|null
      */
@@ -148,6 +154,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->messageFormat;
     }
+
     /**
      * @return string|null
      */
@@ -155,6 +162,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->authToken;
     }
+
     /**
      * @return string|null
      */
@@ -162,6 +170,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return $this->authMode;
     }
+
     /**
      * @return bool|null
      */

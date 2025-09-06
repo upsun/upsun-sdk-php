@@ -69,6 +69,7 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     {
         return $this->secret;
     }
+
     /**
      * TOTP passcode for the enrollment
      *

@@ -69,6 +69,7 @@ final class OrganizationAddonsObjectUpgradesAvailable implements JsonSerializabl
     {
         return $this->userManagement;
     }
+
     /**
      * Available upgrade options for support.
      *

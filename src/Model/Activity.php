@@ -142,6 +142,7 @@ final class Activity implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -149,6 +150,7 @@ final class Activity implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -156,6 +158,7 @@ final class Activity implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return object
      */
@@ -163,6 +166,7 @@ final class Activity implements JsonSerializable
     {
         return $this->parameters;
     }
+
     /**
      * @return string
      */
@@ -170,6 +174,7 @@ final class Activity implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return string
      */
@@ -177,6 +182,7 @@ final class Activity implements JsonSerializable
     {
         return $this->state;
     }
+
     /**
      * @return string|null
      */
@@ -184,6 +190,7 @@ final class Activity implements JsonSerializable
     {
         return $this->result;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -191,6 +198,7 @@ final class Activity implements JsonSerializable
     {
         return $this->startedAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -198,6 +206,7 @@ final class Activity implements JsonSerializable
     {
         return $this->completedAt;
     }
+
     /**
      * @return int
      */
@@ -205,6 +214,7 @@ final class Activity implements JsonSerializable
     {
         return $this->completionPercent;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -212,13 +222,15 @@ final class Activity implements JsonSerializable
     {
         return $this->cancelledAt;
     }
+
     /**
-     * @return array&lt;string,float&gt;
+     * @return array<string,float>
      */
     public function getTimings(): array
     {
         return $this->timings;
     }
+
     /**
      * @return string
      */
@@ -226,6 +238,7 @@ final class Activity implements JsonSerializable
     {
         return $this->log;
     }
+
     /**
      * @return object
      */
@@ -233,6 +246,7 @@ final class Activity implements JsonSerializable
     {
         return $this->payload;
     }
+
     /**
      * @return string|null
      */
@@ -240,6 +254,7 @@ final class Activity implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * @return string|null
      */
@@ -247,6 +262,7 @@ final class Activity implements JsonSerializable
     {
         return $this->text;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -254,6 +270,7 @@ final class Activity implements JsonSerializable
     {
         return $this->expiresAt;
     }
+
     /**
      * @return string|null
      */
@@ -261,6 +278,7 @@ final class Activity implements JsonSerializable
     {
         return $this->integration;
     }
+
     /**
      * @return string[]|null
      */

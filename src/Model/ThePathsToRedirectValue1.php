@@ -87,6 +87,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     {
         return $this->to;
     }
+
     /**
      * @return bool|null
      */
@@ -94,6 +95,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     {
         return $this->regexp;
     }
+
     /**
      * @return bool|null
      */
@@ -101,6 +103,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     {
         return $this->prefix;
     }
+
     /**
      * @return bool|null
      */
@@ -108,6 +111,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     {
         return $this->appendSuffix;
     }
+
     /**
      * @return int|null
      */
@@ -115,6 +119,7 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
     {
         return $this->code;
     }
+
     /**
      * @return string|null
      */

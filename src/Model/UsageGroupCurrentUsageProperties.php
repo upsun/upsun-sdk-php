@@ -97,6 +97,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * The usage group type.
      *
@@ -106,6 +107,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The value of current usage for the group.
      *
@@ -115,6 +117,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->currentUsage;
     }
+
     /**
      * The formatted value of current usage for the group.
      *
@@ -124,6 +127,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->currentUsageFormatted;
     }
+
     /**
      * Whether the group is not charged for the subscription.
      *
@@ -133,6 +137,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->notCharged;
     }
+
     /**
      * The amount of free usage for the group.
      *
@@ -142,6 +147,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->freeQuantity;
     }
+
     /**
      * The formatted amount of free usage for the group.
      *
@@ -151,6 +157,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->freeQuantityFormatted;
     }
+
     /**
      * The daily average usage calculated for the group.
      *
@@ -160,6 +167,7 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     {
         return $this->dailyAverage;
     }
+
     /**
      * The formatted daily average usage calculated for the group.
      *

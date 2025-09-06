@@ -75,6 +75,7 @@ final class UpdateTicketRequest implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * A list of collaborators uuids for the ticket.
      *
@@ -84,6 +85,7 @@ final class UpdateTicketRequest implements JsonSerializable
     {
         return $this->collaboratorIds;
     }
+
     /**
      * Whether or not should replace ticket collaborators with the provided values. If false, the collaborators will be appended.
      *

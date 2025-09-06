@@ -89,6 +89,7 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The user's first name.
      *
@@ -98,6 +99,7 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return $this->firstName;
     }
+
     /**
      * The user's last name.
      *
@@ -107,6 +109,7 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return $this->lastName;
     }
+
     /**
      * The user's picture.
      *
@@ -116,6 +119,7 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return $this->picture;
     }
+
     /**
      * The user's company.
      *
@@ -125,6 +129,7 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return $this->company;
     }
+
     /**
      * The user's website.
      *
@@ -134,6 +139,7 @@ final class UpdateUserRequest implements JsonSerializable
     {
         return $this->website;
     }
+
     /**
      * The user's country (2-letter country code).
      *

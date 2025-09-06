@@ -86,6 +86,7 @@ final class OrganizationSSOConfig implements JsonSerializable
     {
         return $this->providerType;
     }
+
     /**
      * Google hosted domain.
      *
@@ -95,6 +96,7 @@ final class OrganizationSSOConfig implements JsonSerializable
     {
         return $this->domain;
     }
+
     /**
      * Organization ID.
      *
@@ -104,6 +106,7 @@ final class OrganizationSSOConfig implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * Whether the configuration is enforced for all the organization members.
      *
@@ -113,6 +116,7 @@ final class OrganizationSSOConfig implements JsonSerializable
     {
         return $this->enforced;
     }
+
     /**
      * The date and time when the SSO configuration was created.
      *
@@ -122,6 +126,7 @@ final class OrganizationSSOConfig implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the SSO configuration was last updated.
      *

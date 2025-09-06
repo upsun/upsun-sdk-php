@@ -70,6 +70,7 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     {
         return $this->entityId;
     }
+
     /**
      * @return string
      */

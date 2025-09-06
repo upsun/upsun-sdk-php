@@ -63,16 +63,17 @@ final class SubscriptionAddonsObjectAvailable implements JsonSerializable
     /**
      * Information about the continuous profiling options available.
      *
-     * @return array&lt;string,float&gt;|null
+     * @return array<string,float>|null
      */
     public function getContinuousProfiling(): ?array
     {
         return $this->continuousProfiling;
     }
+
     /**
      * Information about the project uptime options available.
      *
-     * @return array&lt;string,float&gt;|null
+     * @return array<string,float>|null
      */
     public function getProjectSupportLevel(): ?array
     {

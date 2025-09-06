@@ -67,6 +67,7 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     {
         return $this->only;
     }
+
     /**
      * @return string[]|null
      */

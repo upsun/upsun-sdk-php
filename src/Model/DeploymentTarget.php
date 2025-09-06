@@ -138,6 +138,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -145,6 +146,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */
@@ -152,6 +154,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->deployHost;
     }
+
     /**
      * @return int|null
      */
@@ -159,6 +162,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->deployPort;
     }
+
     /**
      * @return string|null
      */
@@ -166,6 +170,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->sshHost;
     }
+
     /**
      * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
      */
@@ -173,6 +178,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->hosts;
     }
+
     /**
      * @return bool
      */
@@ -180,6 +186,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->autoMounts;
     }
+
     /**
      * @return string[]
      */
@@ -187,6 +194,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->excludedMounts;
     }
+
     /**
      * @return object
      */
@@ -194,6 +202,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->enforcedMounts;
     }
+
     /**
      * @return bool
      */
@@ -201,6 +210,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->autoCrons;
     }
+
     /**
      * @return bool
      */
@@ -208,6 +218,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->autoNginx;
     }
+
     /**
      * @return bool
      */
@@ -215,6 +226,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->maintenanceMode;
     }
+
     /**
      * @return int
      */
@@ -222,6 +234,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->guardrailsPhase;
     }
+
     /**
      * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]
      */
@@ -229,6 +242,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->docroots;
     }
+
     /**
      * @return object
      */
@@ -236,6 +250,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->siteUrls;
     }
+
     /**
      * @return string[]
      */
@@ -243,6 +258,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->sshHosts;
     }
+
     /**
      * @return bool
      */
@@ -250,6 +266,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->useDedicatedGrid;
     }
+
     /**
      * @return string|null
      */
@@ -257,6 +274,7 @@ final class DeploymentTarget implements JsonSerializable
     {
         return $this->storageType;
     }
+
     /**
      * @return object|null
      */

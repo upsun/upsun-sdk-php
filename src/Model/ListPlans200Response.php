@@ -73,6 +73,7 @@ final class ListPlans200Response implements JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * Array of plans.
      *
@@ -82,6 +83,7 @@ final class ListPlans200Response implements JsonSerializable
     {
         return $this->plans;
     }
+
     /**
      * @return \Upsun\Model\HalLinks|null
      */

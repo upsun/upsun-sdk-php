@@ -69,6 +69,7 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     {
         return $this->action;
     }
+
     /**
      * Specification of the type of action.
      *

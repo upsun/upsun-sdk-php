@@ -83,6 +83,7 @@ final class Commit implements JsonSerializable
     {
         return $this->sha;
     }
+
     /**
      * @return \Upsun\Model\TheInformationAboutTheAuthor
      */
@@ -90,6 +91,7 @@ final class Commit implements JsonSerializable
     {
         return $this->author;
     }
+
     /**
      * @return \Upsun\Model\TheInformationAboutTheCommitter
      */
@@ -97,6 +99,7 @@ final class Commit implements JsonSerializable
     {
         return $this->committer;
     }
+
     /**
      * @return string
      */
@@ -104,6 +107,7 @@ final class Commit implements JsonSerializable
     {
         return $this->message;
     }
+
     /**
      * @return string
      */
@@ -111,6 +115,7 @@ final class Commit implements JsonSerializable
     {
         return $this->tree;
     }
+
     /**
      * @return string[]
      */

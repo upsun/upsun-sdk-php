@@ -103,6 +103,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -110,6 +111,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -117,6 +119,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->certificate;
     }
+
     /**
      * @return string[]
      */
@@ -124,6 +127,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->chain;
     }
+
     /**
      * @return bool
      */
@@ -131,6 +135,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->isProvisioned;
     }
+
     /**
      * @return bool
      */
@@ -138,6 +143,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->isInvalid;
     }
+
     /**
      * @return bool
      */
@@ -145,6 +151,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->isRoot;
     }
+
     /**
      * @return string[]
      */
@@ -152,6 +159,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->domains;
     }
+
     /**
      * @return string[]
      */
@@ -159,6 +167,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->authType;
     }
+
     /**
      * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]
      */
@@ -166,6 +175,7 @@ final class Certificate implements JsonSerializable
     {
         return $this->issuer;
     }
+
     /**
      * @return \DateTime
      */

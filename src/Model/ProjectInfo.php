@@ -83,6 +83,7 @@ final class ProjectInfo implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @return string
      */
@@ -90,6 +91,7 @@ final class ProjectInfo implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */
@@ -97,6 +99,7 @@ final class ProjectInfo implements JsonSerializable
     {
         return $this->namespace;
     }
+
     /**
      * @return string|null
      */
@@ -104,6 +107,7 @@ final class ProjectInfo implements JsonSerializable
     {
         return $this->organization;
     }
+
     /**
      * @return object
      */
@@ -111,6 +115,7 @@ final class ProjectInfo implements JsonSerializable
     {
         return $this->capabilities;
     }
+
     /**
      * @return object
      */

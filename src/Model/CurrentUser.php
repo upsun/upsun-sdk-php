@@ -121,6 +121,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The UUID of the owner.
      *
@@ -130,6 +131,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->uuid;
     }
+
     /**
      * The username of the owner.
      *
@@ -139,6 +141,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The full name of the owner.
      *
@@ -148,6 +151,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->displayName;
     }
+
     /**
      * Status of the user. 0 = blocked; 1 = active.
      *
@@ -157,6 +161,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The email address of the owner.
      *
@@ -166,6 +171,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->mail;
     }
+
     /**
      * The list of user's public SSH keys.
      *
@@ -175,6 +181,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->sshKeys;
     }
+
     /**
      * The indicator whether the user has a public ssh key on file or not.
      *
@@ -184,6 +191,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->hasKey;
     }
+
     /**
      * @return \Upsun\Model\CurrentUserProjectsInner[]|null
      */
@@ -191,6 +199,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->projects;
     }
+
     /**
      * The sequential ID of the user.
      *
@@ -200,6 +209,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->sequence;
     }
+
     /**
      * @return string[]|null
      */
@@ -207,6 +217,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->roles;
     }
+
     /**
      * The URL of the user image.
      *
@@ -216,6 +227,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->picture;
     }
+
     /**
      * Number of support tickets by status.
      *
@@ -225,6 +237,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->tickets;
     }
+
     /**
      * The indicator whether the user is in trial or not.
      *
@@ -234,6 +247,7 @@ final class CurrentUser implements JsonSerializable
     {
         return $this->trial;
     }
+
     /**
      * @return \Upsun\Model\CurrentUserCurrentTrialInner[]|null
      */

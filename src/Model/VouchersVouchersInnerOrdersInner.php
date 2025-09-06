@@ -89,6 +89,7 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     {
         return $this->orderId;
     }
+
     /**
      * The status of the order.
      *
@@ -98,6 +99,7 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The billing period start timestamp of the order (ISO 8601).
      *
@@ -107,6 +109,7 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     {
         return $this->billingPeriodStart;
     }
+
     /**
      * The billing period end timestamp of the order (ISO 8601).
      *
@@ -116,6 +119,7 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     {
         return $this->billingPeriodEnd;
     }
+
     /**
      * The total of the order.
      *
@@ -125,6 +129,7 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     {
         return $this->orderTotal;
     }
+
     /**
      * The total voucher credit applied to the order.
      *
@@ -134,6 +139,7 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     {
         return $this->orderDiscount;
     }
+
     /**
      * The currency of the order.
      *

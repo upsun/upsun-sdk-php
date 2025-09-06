@@ -82,6 +82,7 @@ final class FoundationDeploymentTarget implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -89,6 +90,7 @@ final class FoundationDeploymentTarget implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
      */
@@ -96,6 +98,7 @@ final class FoundationDeploymentTarget implements JsonSerializable
     {
         return $this->hosts;
     }
+
     /**
      * @return bool
      */
@@ -103,6 +106,7 @@ final class FoundationDeploymentTarget implements JsonSerializable
     {
         return $this->useDedicatedGrid;
     }
+
     /**
      * @return string|null
      */

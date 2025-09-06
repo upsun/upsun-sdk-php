@@ -71,6 +71,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     {
         return $this->build;
     }
+
     /**
      * @return string|null
      */
@@ -78,6 +79,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     {
         return $this->deploy;
     }
+
     /**
      * @return string|null
      */

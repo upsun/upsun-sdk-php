@@ -75,6 +75,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     {
         return $this->directory;
     }
+
     /**
      * @return string[]
      */
@@ -82,6 +83,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     {
         return $this->watch;
     }
+
     /**
      * @return bool
      */
@@ -89,6 +91,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     {
         return $this->allowStale;
     }
+
     /**
      * @return bool
      */

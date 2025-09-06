@@ -72,6 +72,7 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     {
         return $this->id;
     }
+
     /**
      * The role the invitee should be given on the environment.
      *

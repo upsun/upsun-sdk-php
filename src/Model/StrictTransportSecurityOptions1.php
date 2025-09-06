@@ -71,6 +71,7 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return bool|null
      */
@@ -78,6 +79,7 @@ final class StrictTransportSecurityOptions1 implements JsonSerializable
     {
         return $this->includeSubdomains;
     }
+
     /**
      * @return bool|null
      */

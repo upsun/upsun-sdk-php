@@ -73,6 +73,7 @@ final class DiscountCommitment implements JsonSerializable
     {
         return $this->months;
     }
+
     /**
      * @return \Upsun\Model\DiscountCommitmentAmount|null
      */
@@ -80,6 +81,7 @@ final class DiscountCommitment implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * @return \Upsun\Model\DiscountCommitmentNet|null
      */

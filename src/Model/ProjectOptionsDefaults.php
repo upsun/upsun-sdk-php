@@ -77,6 +77,7 @@ final class ProjectOptionsDefaults implements JsonSerializable
     {
         return $this->settings;
     }
+
     /**
      * The project variables.
      *
@@ -86,6 +87,7 @@ final class ProjectOptionsDefaults implements JsonSerializable
     {
         return $this->variables;
     }
+
     /**
      * The project access list.
      *
@@ -95,6 +97,7 @@ final class ProjectOptionsDefaults implements JsonSerializable
     {
         return $this->access;
     }
+
     /**
      * The project capabilities.
      *

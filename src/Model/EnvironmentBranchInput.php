@@ -81,6 +81,7 @@ final class EnvironmentBranchInput implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @return string
      */
@@ -88,6 +89,7 @@ final class EnvironmentBranchInput implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return bool
      */
@@ -95,6 +97,7 @@ final class EnvironmentBranchInput implements JsonSerializable
     {
         return $this->cloneParent;
     }
+
     /**
      * @return string
      */
@@ -102,6 +105,7 @@ final class EnvironmentBranchInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\Resources2|null
      */

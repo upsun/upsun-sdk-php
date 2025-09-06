@@ -119,6 +119,7 @@ final class Project implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -126,13 +127,15 @@ final class Project implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return string
      */
@@ -140,6 +143,7 @@ final class Project implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @return string
      */
@@ -147,6 +151,7 @@ final class Project implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * @return string
      */
@@ -154,6 +159,7 @@ final class Project implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * @return string|null
      */
@@ -161,6 +167,7 @@ final class Project implements JsonSerializable
     {
         return $this->namespace;
     }
+
     /**
      * @return string|null
      */
@@ -168,6 +175,7 @@ final class Project implements JsonSerializable
     {
         return $this->organization;
     }
+
     /**
      * @return string|null
      */
@@ -175,6 +183,7 @@ final class Project implements JsonSerializable
     {
         return $this->defaultBranch;
     }
+
     /**
      * @return \Upsun\Model\Status
      */
@@ -182,6 +191,7 @@ final class Project implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return string
      */
@@ -189,6 +199,7 @@ final class Project implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
      * @return string
      */
@@ -196,6 +207,7 @@ final class Project implements JsonSerializable
     {
         return $this->region;
     }
+
     /**
      * @return \Upsun\Model\RepositoryInformation
      */
@@ -203,6 +215,7 @@ final class Project implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return \Upsun\Model\SubscriptionInformation
      */
@@ -210,6 +223,7 @@ final class Project implements JsonSerializable
     {
         return $this->subscription;
     }
+
     /**
      * @return string|null
      */

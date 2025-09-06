@@ -71,6 +71,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     {
         return $this->socketFamily;
     }
+
     /**
      * @return string|null
      */

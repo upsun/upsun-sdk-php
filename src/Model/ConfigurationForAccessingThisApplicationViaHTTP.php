@@ -99,6 +99,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->locations;
     }
+
     /**
      * @return bool
      */
@@ -106,6 +107,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->moveToRoot;
     }
+
     /**
      * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
      */
@@ -113,6 +115,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->commands;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
      */
@@ -120,6 +123,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->upstream;
     }
+
     /**
      * @return string|null
      */
@@ -127,6 +131,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->documentRoot;
     }
+
     /**
      * @return string|null
      */
@@ -134,6 +139,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->passthru;
     }
+
     /**
      * @return string[]|null
      */
@@ -141,6 +147,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->indexFiles;
     }
+
     /**
      * @return string[]|null
      */
@@ -148,6 +155,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->whitelist;
     }
+
     /**
      * @return string[]|null
      */
@@ -155,6 +163,7 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     {
         return $this->blacklist;
     }
+
     /**
      * @return string|null
      */

@@ -69,6 +69,7 @@ final class CreateUsageAlertRequest implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * @return \Upsun\Model\CreateUsageAlertRequestConfig|null
      */

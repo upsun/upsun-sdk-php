@@ -67,6 +67,7 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     {
         return $this->adminUser;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
      */

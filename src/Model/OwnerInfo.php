@@ -73,6 +73,7 @@ final class OwnerInfo implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The username of the owner.
      *
@@ -82,6 +83,7 @@ final class OwnerInfo implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The full name of the owner.
      *

@@ -67,6 +67,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     {
         return $this->root;
     }
+
     /**
      * @return \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]
      */

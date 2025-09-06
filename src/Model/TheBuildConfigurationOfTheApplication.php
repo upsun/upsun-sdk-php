@@ -67,6 +67,7 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     {
         return $this->flavor;
     }
+
     /**
      * @return \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]
      */

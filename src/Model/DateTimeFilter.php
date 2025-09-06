@@ -89,6 +89,7 @@ final class DateTimeFilter implements JsonSerializable
     {
         return $this->eq;
     }
+
     /**
      * Not equal
      *
@@ -98,6 +99,7 @@ final class DateTimeFilter implements JsonSerializable
     {
         return $this->ne;
     }
+
     /**
      * Between (comma-separated list)
      *
@@ -107,6 +109,7 @@ final class DateTimeFilter implements JsonSerializable
     {
         return $this->between;
     }
+
     /**
      * Greater than
      *
@@ -116,6 +119,7 @@ final class DateTimeFilter implements JsonSerializable
     {
         return $this->gt;
     }
+
     /**
      * Greater than or equal
      *
@@ -125,6 +129,7 @@ final class DateTimeFilter implements JsonSerializable
     {
         return $this->gte;
     }
+
     /**
      * Less than
      *
@@ -134,6 +139,7 @@ final class DateTimeFilter implements JsonSerializable
     {
         return $this->lt;
     }
+
     /**
      * Less than or equal
      *

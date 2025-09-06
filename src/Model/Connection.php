@@ -89,6 +89,7 @@ final class Connection implements JsonSerializable
     {
         return $this->provider;
     }
+
     /**
      * The type of the federation provider.
      *
@@ -98,6 +99,7 @@ final class Connection implements JsonSerializable
     {
         return $this->providerType;
     }
+
     /**
      * Whether the federated login connection is mandatory.
      *
@@ -107,6 +109,7 @@ final class Connection implements JsonSerializable
     {
         return $this->isMandatory;
     }
+
     /**
      * The identity on the federation provider.
      *
@@ -116,6 +119,7 @@ final class Connection implements JsonSerializable
     {
         return $this->subject;
     }
+
     /**
      * The email address presented on the federated login connection.
      *
@@ -125,6 +129,7 @@ final class Connection implements JsonSerializable
     {
         return $this->emailAddress;
     }
+
     /**
      * The date and time when the connection was created.
      *
@@ -134,6 +139,7 @@ final class Connection implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the connection was last updated.
      *

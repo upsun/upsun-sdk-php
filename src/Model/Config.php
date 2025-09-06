@@ -127,6 +127,7 @@ final class Config implements JsonSerializable
     {
         return $this->newrelic;
     }
+
     /**
      * @return \Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations|null
      */
@@ -134,6 +135,7 @@ final class Config implements JsonSerializable
     {
         return $this->sumologic;
     }
+
     /**
      * @return \Upsun\Model\SplunkLogForwardingIntegrationConfigurations|null
      */
@@ -141,6 +143,7 @@ final class Config implements JsonSerializable
     {
         return $this->splunk;
     }
+
     /**
      * @return \Upsun\Model\HTTPLogForwardingIntegrationConfigurations|null
      */
@@ -148,6 +151,7 @@ final class Config implements JsonSerializable
     {
         return $this->httplog;
     }
+
     /**
      * @return \Upsun\Model\SyslogLogForwardingIntegrationConfigurations|null
      */
@@ -155,6 +159,7 @@ final class Config implements JsonSerializable
     {
         return $this->syslog;
     }
+
     /**
      * @return \Upsun\Model\WebhookIntegrationConfigurations|null
      */
@@ -162,6 +167,7 @@ final class Config implements JsonSerializable
     {
         return $this->webhook;
     }
+
     /**
      * @return \Upsun\Model\ScriptIntegrationConfigurations|null
      */
@@ -169,6 +175,7 @@ final class Config implements JsonSerializable
     {
         return $this->script;
     }
+
     /**
      * @return \Upsun\Model\GitHubIntegrationConfigurations|null
      */
@@ -176,6 +183,7 @@ final class Config implements JsonSerializable
     {
         return $this->github;
     }
+
     /**
      * @return \Upsun\Model\GitLabIntegrationConfigurations|null
      */
@@ -183,6 +191,7 @@ final class Config implements JsonSerializable
     {
         return $this->gitlab;
     }
+
     /**
      * @return \Upsun\Model\BitbucketIntegrationConfigurations|null
      */
@@ -190,6 +199,7 @@ final class Config implements JsonSerializable
     {
         return $this->bitbucket;
     }
+
     /**
      * @return \Upsun\Model\BitbucketServerIntegrationConfigurations|null
      */
@@ -197,6 +207,7 @@ final class Config implements JsonSerializable
     {
         return $this->bitbucketServer;
     }
+
     /**
      * @return \Upsun\Model\HealthEmailNotificationIntegrationConfigurations|null
      */
@@ -204,6 +215,7 @@ final class Config implements JsonSerializable
     {
         return $this->healthEmail;
     }
+
     /**
      * @return \Upsun\Model\HealthWebhookNotificationIntegrationConfigurations|null
      */
@@ -211,6 +223,7 @@ final class Config implements JsonSerializable
     {
         return $this->healthWebhook;
     }
+
     /**
      * @return \Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations|null
      */
@@ -218,6 +231,7 @@ final class Config implements JsonSerializable
     {
         return $this->healthPagerduty;
     }
+
     /**
      * @return \Upsun\Model\HealthSlackNotificationIntegrationConfigurations|null
      */
@@ -225,6 +239,7 @@ final class Config implements JsonSerializable
     {
         return $this->healthSlack;
     }
+
     /**
      * @return \Upsun\Model\FastlyCDNIntegrationConfigurations|null
      */
@@ -232,6 +247,7 @@ final class Config implements JsonSerializable
     {
         return $this->cdnFastly;
     }
+
     /**
      * @return \Upsun\Model\BlackfireIntegrationConfigurations|null
      */

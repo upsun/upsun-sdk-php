@@ -141,6 +141,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The name given to the project. Appears as the title in the user interface.
      *
@@ -150,6 +151,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * The name given to the project. Appears as the title in the user interface.
      *
@@ -159,6 +161,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * The machine name of the region where the project is located. Cannot be changed after project creation.
      *
@@ -168,6 +171,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->cluster;
     }
+
     /**
      * The human-readable name of the region where the project is located.
      *
@@ -177,6 +181,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->clusterLabel;
     }
+
     /**
      * The machine name of the region where the project is located. Cannot be changed after project creation.
      *
@@ -186,6 +191,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->region;
     }
+
     /**
      * The human-readable name of the region where the project is located.
      *
@@ -195,6 +201,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->regionLabel;
     }
+
     /**
      * The URL for the project's user interface.
      *
@@ -204,6 +211,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->uri;
     }
+
     /**
      * The project API endpoint for the project.
      *
@@ -213,6 +221,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->endpoint;
     }
+
     /**
      * The ID of the subscription.
      *
@@ -222,6 +231,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->licenseId;
     }
+
     /**
      * The UUID of the owner.
      *
@@ -231,6 +241,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * @return \Upsun\Model\OwnerInfo|null
      */
@@ -238,6 +249,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->ownerInfo;
     }
+
     /**
      * The plan type of the subscription.
      *
@@ -247,6 +259,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * The ID of the subscription.
      *
@@ -256,6 +269,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * The status of the project.
      *
@@ -265,6 +279,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The machine name of the vendor the subscription belongs to.
      *
@@ -274,6 +289,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->vendor;
     }
+
     /**
      * The machine name of the vendor the subscription belongs to.
      *
@@ -283,6 +299,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->vendorLabel;
     }
+
     /**
      * The URL of the vendor the subscription belongs to.
      *
@@ -292,6 +309,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->vendorWebsite;
     }
+
     /**
      * The link to the resources of the vendor the subscription belongs to.
      *
@@ -301,6 +319,7 @@ final class CurrentUserProjectsInner implements JsonSerializable
     {
         return $this->vendorResources;
     }
+
     /**
      * The creation date of the subscription.
      *

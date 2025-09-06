@@ -93,6 +93,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->eq;
     }
+
     /**
      * Not equal
      *
@@ -102,6 +103,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->ne;
     }
+
     /**
      * In (comma-separated list)
      *
@@ -111,6 +113,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->in;
     }
+
     /**
      * Not in (comma-separated list)
      *
@@ -120,6 +123,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->nin;
     }
+
     /**
      * Between (comma-separated list)
      *
@@ -129,6 +133,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->between;
     }
+
     /**
      * Contains
      *
@@ -138,6 +143,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->contains;
     }
+
     /**
      * Starts with
      *
@@ -147,6 +153,7 @@ final class StringFilter implements JsonSerializable
     {
         return $this->starts;
     }
+
     /**
      * Ends with
      *

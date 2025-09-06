@@ -133,6 +133,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The invoice number.
      *
@@ -142,6 +143,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->invoiceNumber;
     }
+
     /**
      * Invoice type.
      *
@@ -151,6 +153,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The id of the related order.
      *
@@ -160,6 +163,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->orderId;
     }
+
     /**
      * If the invoice is a credit memo (type=credit_memo), this field stores the id of the related/original invoice.
      *
@@ -169,6 +173,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->relatedInvoiceId;
     }
+
     /**
      * The invoice status.
      *
@@ -178,6 +183,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The ULID of the owner.
      *
@@ -187,6 +193,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * The invoice date.
      *
@@ -196,6 +203,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->invoiceDate;
     }
+
     /**
      * The invoice due date.
      *
@@ -205,6 +213,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->invoiceDue;
     }
+
     /**
      * The time when the invoice was created.
      *
@@ -214,6 +223,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->created;
     }
+
     /**
      * The time when the invoice was changed.
      *
@@ -223,6 +233,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->changed;
     }
+
     /**
      * Company name (if any).
      *
@@ -232,6 +243,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->company;
     }
+
     /**
      * The invoice total.
      *
@@ -241,6 +253,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->total;
     }
+
     /**
      * @return \Upsun\Model\Address|null
      */
@@ -248,6 +261,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->address;
     }
+
     /**
      * The invoice note.
      *
@@ -257,6 +271,7 @@ final class Invoice implements JsonSerializable
     {
         return $this->notes;
     }
+
     /**
      * @return \Upsun\Model\InvoicePDF|null
      */

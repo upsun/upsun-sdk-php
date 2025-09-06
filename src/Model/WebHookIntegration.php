@@ -102,6 +102,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -109,6 +110,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -116,6 +118,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string[]
      */
@@ -123,6 +126,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->events;
     }
+
     /**
      * @return string[]
      */
@@ -130,6 +134,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * @return string[]
      */
@@ -137,6 +142,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->excludedEnvironments;
     }
+
     /**
      * @return string[]
      */
@@ -144,6 +150,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->states;
     }
+
     /**
      * @return string
      */
@@ -151,6 +158,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->result;
     }
+
     /**
      * @return string|null
      */
@@ -158,6 +166,7 @@ final class WebHookIntegration implements JsonSerializable
     {
         return $this->sharedKey;
     }
+
     /**
      * @return string
      */

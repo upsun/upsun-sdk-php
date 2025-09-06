@@ -71,6 +71,7 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     {
         return $this->oid;
     }
+
     /**
      * @return string|null
      */
@@ -78,6 +79,7 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
     {
         return $this->alias;
     }
+
     /**
      * @return string
      */

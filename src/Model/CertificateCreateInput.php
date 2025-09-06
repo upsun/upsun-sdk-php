@@ -75,6 +75,7 @@ final class CertificateCreateInput implements JsonSerializable
     {
         return $this->certificate;
     }
+
     /**
      * @return string
      */
@@ -82,6 +83,7 @@ final class CertificateCreateInput implements JsonSerializable
     {
         return $this->key;
     }
+
     /**
      * @return string[]|null
      */
@@ -89,6 +91,7 @@ final class CertificateCreateInput implements JsonSerializable
     {
         return $this->chain;
     }
+
     /**
      * @return bool|null
      */

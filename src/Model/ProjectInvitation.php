@@ -108,6 +108,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The invitation state.
      *
@@ -117,6 +118,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->state;
     }
+
     /**
      * The ID of the project.
      *
@@ -126,6 +128,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->projectId;
     }
+
     /**
      * The project role.
      *
@@ -135,6 +138,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->role;
     }
+
     /**
      * The email address of the invitee.
      *
@@ -144,6 +148,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * @return \Upsun\Model\OrganizationInvitationOwner|null
      */
@@ -151,6 +156,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * The date and time when the invitation was created.
      *
@@ -160,6 +166,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the invitation was last updated.
      *
@@ -169,6 +176,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The date and time when the invitation was finished.
      *
@@ -178,6 +186,7 @@ final class ProjectInvitation implements JsonSerializable
     {
         return $this->finishedAt;
     }
+
     /**
      * @return \Upsun\Model\ProjectInvitationEnvironmentsInner[]|null
      */

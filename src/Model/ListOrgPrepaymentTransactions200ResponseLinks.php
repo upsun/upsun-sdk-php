@@ -75,6 +75,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious|null
      */
@@ -82,6 +83,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     {
         return $this->previous;
     }
+
     /**
      * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext|null
      */
@@ -89,6 +91,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     {
         return $this->next;
     }
+
     /**
      * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment|null
      */

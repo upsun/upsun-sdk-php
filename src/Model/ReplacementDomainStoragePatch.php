@@ -57,7 +57,7 @@ final class ReplacementDomainStoragePatch implements JsonSerializable
     }
 
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {

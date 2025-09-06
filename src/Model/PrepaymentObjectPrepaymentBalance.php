@@ -77,6 +77,7 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
     {
         return $this->formatted;
     }
+
     /**
      * The balance amount.
      *
@@ -86,6 +87,7 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * The balance currency code.
      *
@@ -95,6 +97,7 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
     {
         return $this->currencyCode;
     }
+
     /**
      * The balance currency symbol.
      *

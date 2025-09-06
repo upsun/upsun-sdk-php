@@ -67,6 +67,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     {
         return $this->standardManagementUser;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
      */

@@ -71,6 +71,7 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     {
         return $this->addonKey;
     }
+
     /**
      * @return string
      */
@@ -78,6 +79,7 @@ final class TheAddonCredentialInformationOptional1 implements JsonSerializable
     {
         return $this->clientKey;
     }
+
     /**
      * @return string
      */

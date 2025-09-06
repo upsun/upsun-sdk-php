@@ -67,6 +67,7 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
     {
         return $this->prepayment;
     }
+
     /**
      * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null
      */

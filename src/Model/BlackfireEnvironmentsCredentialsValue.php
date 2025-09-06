@@ -67,6 +67,7 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     {
         return $this->serverUuid;
     }
+
     /**
      * @return string
      */

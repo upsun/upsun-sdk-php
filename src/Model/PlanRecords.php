@@ -97,6 +97,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The UUID of the owner.
      *
@@ -106,6 +107,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * The ID of the subscription this record pertains to.
      *
@@ -115,6 +117,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * The product SKU of the plan that this record represents.
      *
@@ -124,6 +127,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->sku;
     }
+
     /**
      * The machine name of the plan that this record represents.
      *
@@ -133,6 +137,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * @return string[]|null
      */
@@ -140,6 +145,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->options;
     }
+
     /**
      * The start timestamp of this plan record (ISO 8601).
      *
@@ -149,6 +155,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->start;
     }
+
     /**
      * The end timestamp of this plan record (ISO 8601).
      *
@@ -158,6 +165,7 @@ final class PlanRecords implements JsonSerializable
     {
         return $this->end;
     }
+
     /**
      * The status of the subscription during this record: active or suspended.
      *

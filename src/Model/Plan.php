@@ -69,6 +69,7 @@ final class Plan implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * The human-readable name of the plan.
      *

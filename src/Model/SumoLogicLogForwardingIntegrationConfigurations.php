@@ -67,6 +67,7 @@ final class SumoLogicLogForwardingIntegrationConfigurations implements JsonSeria
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

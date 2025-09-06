@@ -71,6 +71,7 @@ final class OrganizationMemberLinks implements JsonSerializable
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\OrganizationMemberLinksUpdate|null
      */
@@ -78,6 +79,7 @@ final class OrganizationMemberLinks implements JsonSerializable
     {
         return $this->update;
     }
+
     /**
      * @return \Upsun\Model\OrganizationMemberLinksDelete|null
      */

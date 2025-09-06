@@ -63,16 +63,17 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
     /**
      * Information about the type of user management currently selected.
      *
-     * @return array&lt;string,float&gt;|null
+     * @return array<string,float>|null
      */
     public function getUserManagement(): ?array
     {
         return $this->userManagement;
     }
+
     /**
      * Information about the level of support currently selected.
      *
-     * @return array&lt;string,float&gt;|null
+     * @return array<string,float>|null
      */
     public function getSupportLevel(): ?array
     {

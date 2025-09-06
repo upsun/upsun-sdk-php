@@ -93,6 +93,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The user's username.
      *
@@ -102,6 +103,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The user's email address.
      *
@@ -111,6 +113,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * The user's first name.
      *
@@ -120,6 +123,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->firstName;
     }
+
     /**
      * The user's last name.
      *
@@ -129,6 +133,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->lastName;
     }
+
     /**
      * The user's picture.
      *
@@ -138,6 +143,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->picture;
     }
+
     /**
      * Whether the user has enabled MFA. Note: the built-in MFA feature may not be necessary if the user is linked to a mandatory SSO provider that itself supports MFA (see \"sso_enabled\\\").
      *
@@ -147,6 +153,7 @@ final class UserReference implements JsonSerializable
     {
         return $this->mfaEnabled;
     }
+
     /**
      * Whether the user is linked to a mandatory SSO provider.
      *

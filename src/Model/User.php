@@ -127,6 +127,7 @@ final class User implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * Whether the user has been deactivated.
      *
@@ -136,6 +137,7 @@ final class User implements JsonSerializable
     {
         return $this->deactivated;
     }
+
     /**
      * The namespace in which the user's username is unique.
      *
@@ -145,6 +147,7 @@ final class User implements JsonSerializable
     {
         return $this->namespace;
     }
+
     /**
      * The user's username.
      *
@@ -154,6 +157,7 @@ final class User implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The user's email address.
      *
@@ -163,6 +167,7 @@ final class User implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * Whether the user's email address has been verified.
      *
@@ -172,6 +177,7 @@ final class User implements JsonSerializable
     {
         return $this->emailVerified;
     }
+
     /**
      * The user's first name.
      *
@@ -181,6 +187,7 @@ final class User implements JsonSerializable
     {
         return $this->firstName;
     }
+
     /**
      * The user's last name.
      *
@@ -190,6 +197,7 @@ final class User implements JsonSerializable
     {
         return $this->lastName;
     }
+
     /**
      * The user's picture.
      *
@@ -199,6 +207,7 @@ final class User implements JsonSerializable
     {
         return $this->picture;
     }
+
     /**
      * The user's company.
      *
@@ -208,6 +217,7 @@ final class User implements JsonSerializable
     {
         return $this->company;
     }
+
     /**
      * The user's website.
      *
@@ -217,6 +227,7 @@ final class User implements JsonSerializable
     {
         return $this->website;
     }
+
     /**
      * The user's ISO 3166-1 alpha-2 country code.
      *
@@ -226,6 +237,7 @@ final class User implements JsonSerializable
     {
         return $this->country;
     }
+
     /**
      * The date and time when the user was created.
      *
@@ -235,6 +247,7 @@ final class User implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the user was last updated.
      *
@@ -244,6 +257,7 @@ final class User implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The date and time when the user consented to the Terms of Service.
      *
@@ -253,6 +267,7 @@ final class User implements JsonSerializable
     {
         return $this->consentedAt;
     }
+
     /**
      * The method by which the user consented to the Terms of Service.
      *

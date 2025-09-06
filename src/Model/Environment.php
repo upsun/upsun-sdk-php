@@ -195,6 +195,7 @@ final class Environment implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -202,6 +203,7 @@ final class Environment implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -209,6 +211,7 @@ final class Environment implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string
      */
@@ -216,6 +219,7 @@ final class Environment implements JsonSerializable
     {
         return $this->machineName;
     }
+
     /**
      * @return string
      */
@@ -223,13 +227,15 @@ final class Environment implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return string
      */
@@ -237,6 +243,7 @@ final class Environment implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string|null
      */
@@ -244,6 +251,7 @@ final class Environment implements JsonSerializable
     {
         return $this->parent;
     }
+
     /**
      * @return bool
      */
@@ -251,6 +259,7 @@ final class Environment implements JsonSerializable
     {
         return $this->hasDomains;
     }
+
     /**
      * @return bool
      */
@@ -258,6 +267,7 @@ final class Environment implements JsonSerializable
     {
         return $this->cloneParentOnCreate;
     }
+
     /**
      * @return string|null
      */
@@ -265,6 +275,7 @@ final class Environment implements JsonSerializable
     {
         return $this->deploymentTarget;
     }
+
     /**
      * @return bool
      */
@@ -272,6 +283,7 @@ final class Environment implements JsonSerializable
     {
         return $this->isPr;
     }
+
     /**
      * @return bool
      */
@@ -279,6 +291,7 @@ final class Environment implements JsonSerializable
     {
         return $this->hasRemote;
     }
+
     /**
      * @return string
      */
@@ -286,6 +299,7 @@ final class Environment implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return \Upsun\Model\HttpAccessPermissions
      */
@@ -293,6 +307,7 @@ final class Environment implements JsonSerializable
     {
         return $this->httpAccess;
     }
+
     /**
      * @return bool
      */
@@ -300,6 +315,7 @@ final class Environment implements JsonSerializable
     {
         return $this->enableSmtp;
     }
+
     /**
      * @return bool
      */
@@ -307,6 +323,7 @@ final class Environment implements JsonSerializable
     {
         return $this->restrictRobots;
     }
+
     /**
      * @return string
      */
@@ -314,6 +331,7 @@ final class Environment implements JsonSerializable
     {
         return $this->edgeHostname;
     }
+
     /**
      * @return \Upsun\Model\TheEnvironmentDeploymentState|null
      */
@@ -321,6 +339,7 @@ final class Environment implements JsonSerializable
     {
         return $this->deploymentState;
     }
+
     /**
      * @return \Upsun\Model\ResourcesOverridesValue[]
      */
@@ -328,6 +347,7 @@ final class Environment implements JsonSerializable
     {
         return $this->resourcesOverrides;
     }
+
     /**
      * @return int|null
      */
@@ -335,6 +355,7 @@ final class Environment implements JsonSerializable
     {
         return $this->maxInstanceCount;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -342,6 +363,7 @@ final class Environment implements JsonSerializable
     {
         return $this->lastActiveAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -349,6 +371,7 @@ final class Environment implements JsonSerializable
     {
         return $this->lastBackupAt;
     }
+
     /**
      * @return string
      */
@@ -356,6 +379,7 @@ final class Environment implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return bool
      */
@@ -363,6 +387,7 @@ final class Environment implements JsonSerializable
     {
         return $this->isMain;
     }
+
     /**
      * @return bool
      */
@@ -370,6 +395,7 @@ final class Environment implements JsonSerializable
     {
         return $this->isDirty;
     }
+
     /**
      * @return bool
      */
@@ -377,6 +403,7 @@ final class Environment implements JsonSerializable
     {
         return $this->hasCode;
     }
+
     /**
      * @return string|null
      */
@@ -384,6 +411,7 @@ final class Environment implements JsonSerializable
     {
         return $this->headCommit;
     }
+
     /**
      * @return \Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments
      */
@@ -391,6 +419,7 @@ final class Environment implements JsonSerializable
     {
         return $this->mergeInfo;
     }
+
     /**
      * @return bool
      */
@@ -398,6 +427,7 @@ final class Environment implements JsonSerializable
     {
         return $this->hasDeployment;
     }
+
     /**
      * @return bool
      */
@@ -405,6 +435,7 @@ final class Environment implements JsonSerializable
     {
         return $this->supportsRestrictRobots;
     }
+
     /**
      * @return string|null
      */

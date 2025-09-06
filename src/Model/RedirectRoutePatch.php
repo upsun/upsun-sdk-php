@@ -94,6 +94,7 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -101,6 +102,7 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->to;
     }
+
     /**
      * @return bool|null
      */
@@ -108,6 +110,7 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->primary;
     }
+
     /**
      * @return string|null
      */
@@ -115,6 +118,7 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * @return string|null
      */
@@ -122,13 +126,15 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->productionUrl;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return \Upsun\Model\TLSSettingsForTheRoute1|null
      */
@@ -136,6 +142,7 @@ final class RedirectRoutePatch implements JsonSerializable
     {
         return $this->tls;
     }
+
     /**
      * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
      */

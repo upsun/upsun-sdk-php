@@ -75,6 +75,7 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     {
         return $this->synchronizeCode;
     }
+
     /**
      * @return bool
      */
@@ -82,6 +83,7 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     {
         return $this->rebase;
     }
+
     /**
      * @return bool
      */
@@ -89,6 +91,7 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     {
         return $this->synchronizeData;
     }
+
     /**
      * @return bool
      */

@@ -235,6 +235,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->ticketId;
     }
+
     /**
      * The time when the support ticket was created.
      *
@@ -244,6 +245,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->created;
     }
+
     /**
      * The time when the support ticket was updated.
      *
@@ -253,6 +255,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->updated;
     }
+
     /**
      * A type of the ticket.
      *
@@ -262,6 +265,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * A title of the ticket.
      *
@@ -271,6 +275,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->subject;
     }
+
     /**
      * The description body of the support ticket.
      *
@@ -280,6 +285,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->description;
     }
+
     /**
      * A priority of the ticket.
      *
@@ -289,6 +295,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->priority;
     }
+
     /**
      * Followup ticket ID. The unique ID of the ticket which this ticket is a follow-up to.
      *
@@ -298,6 +305,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->followupTid;
     }
+
     /**
      * The status of the support ticket.
      *
@@ -307,6 +315,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * Email address of the ticket recipient, defaults to support@platform.sh.
      *
@@ -316,6 +325,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->recipient;
     }
+
     /**
      * UUID of the ticket requester.
      *
@@ -325,6 +335,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->requesterId;
     }
+
     /**
      * UUID of the ticket submitter.
      *
@@ -334,6 +345,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->submitterId;
     }
+
     /**
      * UUID of the ticket assignee.
      *
@@ -343,6 +355,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->assigneeId;
     }
+
     /**
      * A reference id that is usable to find the commerce license.
      *
@@ -352,6 +365,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * A list of the collaborators uuids for this ticket.
      *
@@ -361,6 +375,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->collaboratorIds;
     }
+
     /**
      * Whether or not this ticket has incidents.
      *
@@ -370,6 +385,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->hasIncidents;
     }
+
     /**
      * A time that the ticket is due at.
      *
@@ -379,6 +395,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->due;
     }
+
     /**
      * A list of tags assigned to the ticket.
      *
@@ -388,6 +405,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->tags;
     }
+
     /**
      * The internal ID of the subscription.
      *
@@ -397,6 +415,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * Maps to zendesk field 'Request group'.
      *
@@ -406,6 +425,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->ticketGroup;
     }
+
     /**
      * Maps to zendesk field 'The support plan associated with this ticket.
      *
@@ -415,6 +435,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->supportPlan;
     }
+
     /**
      * The affected URL associated with the support ticket.
      *
@@ -424,6 +445,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->affectedUrl;
     }
+
     /**
      * The queue the support ticket is in.
      *
@@ -433,6 +455,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->queue;
     }
+
     /**
      * The issue type of the support ticket.
      *
@@ -442,6 +465,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->issueType;
     }
+
     /**
      * Maps to zendesk field 'Resolution Time'.
      *
@@ -451,6 +475,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->resolutionTime;
     }
+
     /**
      * Maps to zendesk field 'Response Time (time from request to reply).
      *
@@ -460,6 +485,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->responseTime;
     }
+
     /**
      * Maps to zendesk field 'Project URL'.
      *
@@ -469,6 +495,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->projectUrl;
     }
+
     /**
      * Maps to zendesk field 'Region'.
      *
@@ -478,6 +505,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->region;
     }
+
     /**
      * Maps to zendesk field 'Category'.
      *
@@ -487,6 +515,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->category;
     }
+
     /**
      * Maps to zendesk field 'Environment'.
      *
@@ -496,6 +525,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->environment;
     }
+
     /**
      * Maps to zendesk field 'Ticket Sharing Status'.
      *
@@ -505,6 +535,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->ticketSharingStatus;
     }
+
     /**
      * Maps to zendesk field 'Application Ticket URL'.
      *
@@ -514,6 +545,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->applicationTicketUrl;
     }
+
     /**
      * Maps to zendesk field 'Infrastructure Ticket URL'.
      *
@@ -523,6 +555,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->infrastructureTicketUrl;
     }
+
     /**
      * A list of JIRA issues related to the support ticket.
      *
@@ -532,6 +565,7 @@ final class Ticket implements JsonSerializable
     {
         return $this->jira;
     }
+
     /**
      * URL to the customer-facing ticket in Zendesk.
      *

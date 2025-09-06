@@ -69,6 +69,7 @@ final class TeamCounts implements JsonSerializable
     {
         return $this->memberCount;
     }
+
     /**
      * Total count of projects that the team has access to.
      *

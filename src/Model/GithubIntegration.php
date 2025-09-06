@@ -117,6 +117,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -124,6 +125,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -131,6 +133,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return bool
      */
@@ -138,6 +141,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool
      */
@@ -145,6 +149,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string
      */
@@ -152,6 +157,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return string|null
      */
@@ -159,6 +165,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->baseUrl;
     }
+
     /**
      * @return string
      */
@@ -166,6 +173,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return bool
      */
@@ -173,6 +181,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->buildPullRequests;
     }
+
     /**
      * @return bool
      */
@@ -180,6 +189,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->buildDraftPullRequests;
     }
+
     /**
      * @return bool
      */
@@ -187,6 +197,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->buildPullRequestsPostMerge;
     }
+
     /**
      * @return bool
      */
@@ -194,6 +205,7 @@ final class GithubIntegration implements JsonSerializable
     {
         return $this->pullRequestsCloneParentData;
     }
+
     /**
      * @return string
      */

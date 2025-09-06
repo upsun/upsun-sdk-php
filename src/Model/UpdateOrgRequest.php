@@ -73,6 +73,7 @@ final class UpdateOrgRequest implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * The human-readable label of the organization.
      *
@@ -82,6 +83,7 @@ final class UpdateOrgRequest implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * The organization country (2-letter country code).
      *

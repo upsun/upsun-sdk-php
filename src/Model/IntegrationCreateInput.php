@@ -257,6 +257,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -264,6 +265,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return string
      */
@@ -271,6 +273,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string
      */
@@ -278,6 +281,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * @return string
      */
@@ -285,6 +289,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->token;
     }
+
     /**
      * @return string
      */
@@ -292,6 +297,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return string
      */
@@ -299,6 +305,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->serviceId;
     }
+
     /**
      * @return string[]
      */
@@ -306,6 +313,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->recipients;
     }
+
     /**
      * @return string
      */
@@ -313,6 +321,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->routingKey;
     }
+
     /**
      * @return string
      */
@@ -320,6 +329,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->channel;
     }
+
     /**
      * @return string
      */
@@ -327,6 +337,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->licenseKey;
     }
+
     /**
      * @return string
      */
@@ -334,6 +345,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->script;
     }
+
     /**
      * @return string
      */
@@ -341,6 +353,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->index;
     }
+
     /**
      * @return bool|null
      */
@@ -348,6 +361,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool|null
      */
@@ -355,6 +369,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string|null
      */
@@ -362,6 +377,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
      */
@@ -369,6 +385,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->appCredentials;
     }
+
     /**
      * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
      */
@@ -376,6 +393,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->addonCredentials;
     }
+
     /**
      * @return bool|null
      */
@@ -383,6 +401,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->buildPullRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -390,6 +409,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->pullRequestsCloneParentData;
     }
+
     /**
      * @return bool|null
      */
@@ -397,6 +417,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->resyncPullRequests;
     }
+
     /**
      * @return string[]|null
      */
@@ -404,6 +425,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->events;
     }
+
     /**
      * @return string[]|null
      */
@@ -411,6 +433,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * @return string[]|null
      */
@@ -418,6 +441,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->excludedEnvironments;
     }
+
     /**
      * @return string[]|null
      */
@@ -425,6 +449,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->states;
     }
+
     /**
      * @return string|null
      */
@@ -432,6 +457,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->result;
     }
+
     /**
      * @return string|null
      */
@@ -439,6 +465,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->baseUrl;
     }
+
     /**
      * @return bool|null
      */
@@ -446,6 +473,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->buildDraftPullRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -453,6 +481,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->buildPullRequestsPostMerge;
     }
+
     /**
      * @return bool|null
      */
@@ -460,6 +489,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->buildMergeRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -467,6 +497,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->buildWipMergeRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -474,6 +505,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->mergeRequestsCloneParentData;
     }
+
     /**
      * @return string|null
      */
@@ -481,6 +513,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->fromAddress;
     }
+
     /**
      * @return string|null
      */
@@ -488,20 +521,23 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->sharedKey;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
+
     /**
      * @return bool|null
      */
@@ -509,6 +545,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->tlsVerify;
     }
+
     /**
      * @return string|null
      */
@@ -516,6 +553,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->sourcetype;
     }
+
     /**
      * @return string|null
      */
@@ -523,6 +561,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->category;
     }
+
     /**
      * @return string|null
      */
@@ -530,6 +569,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->host;
     }
+
     /**
      * @return int|null
      */
@@ -537,6 +577,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->port;
     }
+
     /**
      * @return string|null
      */
@@ -544,6 +585,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->protocol;
     }
+
     /**
      * @return int|null
      */
@@ -551,6 +593,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->facility;
     }
+
     /**
      * @return string|null
      */
@@ -558,6 +601,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->messageFormat;
     }
+
     /**
      * @return string|null
      */
@@ -565,6 +609,7 @@ final class IntegrationCreateInput implements JsonSerializable
     {
         return $this->authToken;
     }
+
     /**
      * @return string|null
      */

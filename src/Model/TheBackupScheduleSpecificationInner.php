@@ -67,6 +67,7 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     {
         return $this->interval;
     }
+
     /**
      * @return int
      */

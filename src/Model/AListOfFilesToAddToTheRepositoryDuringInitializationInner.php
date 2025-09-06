@@ -71,6 +71,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     {
         return $this->path;
     }
+
     /**
      * @return int
      */
@@ -78,6 +79,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     {
         return $this->mode;
     }
+
     /**
      * @return string
      */

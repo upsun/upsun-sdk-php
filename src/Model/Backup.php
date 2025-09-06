@@ -121,6 +121,7 @@ final class Backup implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -128,6 +129,7 @@ final class Backup implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -135,13 +137,15 @@ final class Backup implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return string
      */
@@ -149,6 +153,7 @@ final class Backup implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -156,6 +161,7 @@ final class Backup implements JsonSerializable
     {
         return $this->expiresAt;
     }
+
     /**
      * @return int|null
      */
@@ -163,6 +169,7 @@ final class Backup implements JsonSerializable
     {
         return $this->index;
     }
+
     /**
      * @return string
      */
@@ -170,6 +177,7 @@ final class Backup implements JsonSerializable
     {
         return $this->commitId;
     }
+
     /**
      * @return string
      */
@@ -177,6 +185,7 @@ final class Backup implements JsonSerializable
     {
         return $this->environment;
     }
+
     /**
      * @return bool
      */
@@ -184,6 +193,7 @@ final class Backup implements JsonSerializable
     {
         return $this->safe;
     }
+
     /**
      * @return int|null
      */
@@ -191,6 +201,7 @@ final class Backup implements JsonSerializable
     {
         return $this->sizeOfVolumes;
     }
+
     /**
      * @return int|null
      */
@@ -198,6 +209,7 @@ final class Backup implements JsonSerializable
     {
         return $this->sizeUsed;
     }
+
     /**
      * @return string|null
      */
@@ -205,6 +217,7 @@ final class Backup implements JsonSerializable
     {
         return $this->deployment;
     }
+
     /**
      * @return bool
      */
@@ -212,6 +225,7 @@ final class Backup implements JsonSerializable
     {
         return $this->restorable;
     }
+
     /**
      * @return bool
      */

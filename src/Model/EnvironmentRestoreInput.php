@@ -79,6 +79,7 @@ final class EnvironmentRestoreInput implements JsonSerializable
     {
         return $this->environmentName;
     }
+
     /**
      * @return string|null
      */
@@ -86,6 +87,7 @@ final class EnvironmentRestoreInput implements JsonSerializable
     {
         return $this->branchFrom;
     }
+
     /**
      * @return bool
      */
@@ -93,6 +95,7 @@ final class EnvironmentRestoreInput implements JsonSerializable
     {
         return $this->restoreCode;
     }
+
     /**
      * @return bool
      */
@@ -100,6 +103,7 @@ final class EnvironmentRestoreInput implements JsonSerializable
     {
         return $this->restoreResources;
     }
+
     /**
      * @return \Upsun\Model\Resources5|null
      */

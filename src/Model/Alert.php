@@ -85,6 +85,7 @@ final class Alert implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * Whether the alert is currently active.
      *
@@ -94,6 +95,7 @@ final class Alert implements JsonSerializable
     {
         return $this->active;
     }
+
     /**
      * The amount of alerts of this type that have been sent so far.
      *
@@ -103,6 +105,7 @@ final class Alert implements JsonSerializable
     {
         return $this->alertsSent;
     }
+
     /**
      * The time the last alert has been sent.
      *
@@ -112,6 +115,7 @@ final class Alert implements JsonSerializable
     {
         return $this->lastAlertAt;
     }
+
     /**
      * The time the alert has last been updated.
      *
@@ -121,6 +125,7 @@ final class Alert implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The alert type specific configuration.
      *

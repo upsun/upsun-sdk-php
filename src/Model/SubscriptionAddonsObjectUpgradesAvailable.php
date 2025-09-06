@@ -69,6 +69,7 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
     {
         return $this->continuousProfiling;
     }
+
     /**
      * Available upgrade options for project uptime.
      *

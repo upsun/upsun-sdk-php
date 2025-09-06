@@ -67,6 +67,7 @@ final class TheCommandsToManageTheWorker implements JsonSerializable
     {
         return $this->start;
     }
+
     /**
      * @return string|null
      */

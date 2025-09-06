@@ -77,6 +77,7 @@ final class ArrayFilter implements JsonSerializable
     {
         return $this->eq;
     }
+
     /**
      * Not equal
      *
@@ -86,6 +87,7 @@ final class ArrayFilter implements JsonSerializable
     {
         return $this->ne;
     }
+
     /**
      * In (comma-separated list)
      *
@@ -95,6 +97,7 @@ final class ArrayFilter implements JsonSerializable
     {
         return $this->in;
     }
+
     /**
      * Not in (comma-separated list)
      *

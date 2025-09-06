@@ -119,6 +119,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksUpdate|null
      */
@@ -126,6 +127,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->update;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksDelete|null
      */
@@ -133,6 +135,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->delete;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksMembers|null
      */
@@ -140,6 +143,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->members;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksCreateMember|null
      */
@@ -147,6 +151,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->createMember;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksAddress|null
      */
@@ -154,6 +159,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->address;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksProfile|null
      */
@@ -161,6 +167,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->profile;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksPaymentSource|null
      */
@@ -168,6 +175,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->paymentSource;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksOrders|null
      */
@@ -175,6 +183,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->orders;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksVouchers|null
      */
@@ -182,6 +191,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->vouchers;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksApplyVoucher|null
      */
@@ -189,6 +199,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->applyVoucher;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksSubscriptions|null
      */
@@ -196,6 +207,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->subscriptions;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksCreateSubscription|null
      */
@@ -203,6 +215,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->createSubscription;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksEstimateSubscription|null
      */
@@ -210,6 +223,7 @@ final class OrganizationLinks implements JsonSerializable
     {
         return $this->estimateSubscription;
     }
+
     /**
      * @return \Upsun\Model\OrganizationLinksMfaEnforcement|null
      */

@@ -107,6 +107,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -114,6 +115,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -121,6 +123,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return bool
      */
@@ -128,6 +131,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool
      */
@@ -135,6 +139,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string
      */
@@ -142,6 +147,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return string
      */
@@ -149,6 +155,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->baseUrl;
     }
+
     /**
      * @return string
      */
@@ -156,6 +163,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return bool
      */
@@ -163,6 +171,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->buildMergeRequests;
     }
+
     /**
      * @return bool
      */
@@ -170,6 +179,7 @@ final class GitLabIntegration implements JsonSerializable
     {
         return $this->buildWipMergeRequests;
     }
+
     /**
      * @return bool
      */

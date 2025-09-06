@@ -111,6 +111,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -118,6 +119,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -125,6 +127,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return bool
      */
@@ -132,6 +135,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool
      */
@@ -139,6 +143,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string
      */
@@ -146,6 +151,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return string
      */
@@ -153,6 +159,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string
      */
@@ -160,6 +167,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * @return string
      */
@@ -167,6 +175,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return string
      */
@@ -174,6 +183,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return bool
      */
@@ -181,6 +191,7 @@ final class BitbucketServerIntegration implements JsonSerializable
     {
         return $this->buildPullRequests;
     }
+
     /**
      * @return bool
      */

@@ -79,6 +79,7 @@ final class CreateOrgInviteRequest implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * The permissions the invitee should be given on the organization.
      *
@@ -88,6 +89,7 @@ final class CreateOrgInviteRequest implements JsonSerializable
     {
         return $this->permissions;
     }
+
     /**
      * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
      *

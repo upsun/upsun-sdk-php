@@ -69,6 +69,7 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
     {
         return $this->code;
     }
+
     /**
      * A human-readable message describing the result of the operation for the specific user
      *

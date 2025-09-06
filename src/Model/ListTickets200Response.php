@@ -73,6 +73,7 @@ final class ListTickets200Response implements JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * Array of support tickets.
      *
@@ -82,6 +83,7 @@ final class ListTickets200Response implements JsonSerializable
     {
         return $this->tickets;
     }
+
     /**
      * @return \Upsun\Model\HalLinks|null
      */

@@ -67,6 +67,7 @@ final class DataRetentionConfigurationValue implements JsonSerializable
     {
         return $this->maxBackups;
     }
+
     /**
      * @return \Upsun\Model\DefaultConfig
      */

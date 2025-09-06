@@ -75,13 +75,15 @@ final class DomainCreateInput implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return bool|null
      */
@@ -89,6 +91,7 @@ final class DomainCreateInput implements JsonSerializable
     {
         return $this->isDefault;
     }
+
     /**
      * @return string|null
      */

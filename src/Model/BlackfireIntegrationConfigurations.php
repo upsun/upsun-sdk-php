@@ -67,6 +67,7 @@ final class BlackfireIntegrationConfigurations implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

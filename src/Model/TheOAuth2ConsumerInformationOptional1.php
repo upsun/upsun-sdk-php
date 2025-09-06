@@ -67,6 +67,7 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
     {
         return $this->key;
     }
+
     /**
      * @return string
      */

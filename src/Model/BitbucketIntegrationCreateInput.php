@@ -103,6 +103,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -110,6 +111,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return bool|null
      */
@@ -117,6 +119,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool|null
      */
@@ -124,6 +127,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string|null
      */
@@ -131,6 +135,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
      */
@@ -138,6 +143,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->appCredentials;
     }
+
     /**
      * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
      */
@@ -145,6 +151,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->addonCredentials;
     }
+
     /**
      * @return bool|null
      */
@@ -152,6 +159,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->buildPullRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -159,6 +167,7 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
     {
         return $this->pullRequestsCloneParentData;
     }
+
     /**
      * @return bool|null
      */

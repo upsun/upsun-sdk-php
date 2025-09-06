@@ -94,6 +94,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -101,6 +102,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */
@@ -108,6 +110,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->deployHost;
     }
+
     /**
      * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]
      */
@@ -115,6 +118,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->docroots;
     }
+
     /**
      * @return object
      */
@@ -122,6 +126,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->siteUrls;
     }
+
     /**
      * @return string[]
      */
@@ -129,6 +134,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->sshHosts;
     }
+
     /**
      * @return bool
      */
@@ -136,6 +142,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     {
         return $this->maintenanceMode;
     }
+
     /**
      * @return object|null
      */

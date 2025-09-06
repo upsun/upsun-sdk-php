@@ -89,6 +89,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->projectRegion;
     }
+
     /**
      * The project plan.
      *
@@ -98,6 +99,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * The name given to the project. Appears as the title in the UI.
      *
@@ -107,6 +109,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->projectTitle;
     }
+
     /**
      * The URL of the project options file.
      *
@@ -116,6 +119,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->optionsUrl;
     }
+
     /**
      * The default Git branch name for the project.
      *
@@ -125,6 +129,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->defaultBranch;
     }
+
     /**
      * The maximum number of active environments on the project.
      *
@@ -134,6 +139,7 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
      *

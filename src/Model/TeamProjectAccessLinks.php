@@ -71,6 +71,7 @@ final class TeamProjectAccessLinks implements JsonSerializable
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\TeamProjectAccessLinksUpdate|null
      */
@@ -78,6 +79,7 @@ final class TeamProjectAccessLinks implements JsonSerializable
     {
         return $this->update;
     }
+
     /**
      * @return \Upsun\Model\TeamProjectAccessLinksDelete|null
      */

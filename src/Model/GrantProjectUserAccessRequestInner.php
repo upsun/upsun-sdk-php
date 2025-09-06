@@ -84,6 +84,7 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     {
         return $this->userId;
     }
+
     /**
      * An array of project permissions.
      *
@@ -93,6 +94,7 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     {
         return $this->permissions;
     }
+
     /**
      * If the specified user is not a member of the project's organization, add it automatically.
      *

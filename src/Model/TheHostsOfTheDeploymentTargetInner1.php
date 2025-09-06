@@ -73,6 +73,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * @return string
      */
@@ -80,6 +81,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string[]|null
      */

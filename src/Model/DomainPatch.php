@@ -61,12 +61,13 @@ final class DomainPatch implements JsonSerializable
     }
 
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return bool|null
      */

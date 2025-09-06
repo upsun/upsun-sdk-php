@@ -71,6 +71,7 @@ final class SubscriptionAddonsObject implements JsonSerializable
     {
         return $this->available;
     }
+
     /**
      * @return \Upsun\Model\SubscriptionAddonsObjectCurrent|null
      */
@@ -78,6 +79,7 @@ final class SubscriptionAddonsObject implements JsonSerializable
     {
         return $this->current;
     }
+
     /**
      * @return \Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable|null
      */

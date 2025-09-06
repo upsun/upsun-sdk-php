@@ -163,6 +163,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The status of the subscription.
      *
@@ -172,6 +173,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The date and time when the subscription was created.
      *
@@ -181,6 +183,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the subscription was last updated.
      *
@@ -190,6 +193,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The UUID of the owner.
      *
@@ -199,6 +203,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * @return \Upsun\Model\OwnerInfo|null
      */
@@ -206,6 +211,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->ownerInfo;
     }
+
     /**
      * The machine name of the vendor the subscription belongs to.
      *
@@ -215,6 +221,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->vendor;
     }
+
     /**
      * The plan type of the subscription.
      *
@@ -224,6 +231,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * The number of environments which can be provisioned on the project.
      *
@@ -233,6 +241,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
      *
@@ -242,6 +251,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->storage;
     }
+
     /**
      * The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.
      *
@@ -251,6 +261,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->userLicenses;
     }
+
     /**
      * The unique ID string of the project.
      *
@@ -260,6 +271,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectId;
     }
+
     /**
      * The project API endpoint for the project.
      *
@@ -269,6 +281,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectEndpoint;
     }
+
     /**
      * The name given to the project. Appears as the title in the UI.
      *
@@ -278,6 +291,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectTitle;
     }
+
     /**
      * The machine name of the region where the project is located. Cannot be changed after project creation.
      *
@@ -287,6 +301,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectRegion;
     }
+
     /**
      * The human-readable name of the region where the project is located.
      *
@@ -296,6 +311,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectRegionLabel;
     }
+
     /**
      * The URL for the project's user interface.
      *
@@ -305,6 +321,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectUi;
     }
+
     /**
      * @return \Upsun\Model\ProjectOptions|null
      */
@@ -312,6 +329,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->projectOptions;
     }
+
     /**
      * True if the project is an agency site.
      *
@@ -321,6 +339,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->agencySite;
     }
+
     /**
      * Whether the subscription is invoiced.
      *
@@ -330,6 +349,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->invoiced;
     }
+
     /**
      * Whether the project is marked as HIPAA.
      *
@@ -339,6 +359,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->hipaa;
     }
+
     /**
      * Whether the project is currently on a trial plan.
      *
@@ -348,6 +369,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->isTrialPlan;
     }
+
     /**
      * Details of the attached services.
      *
@@ -357,6 +379,7 @@ final class Subscription implements JsonSerializable
     {
         return $this->services;
     }
+
     /**
      * Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.
      *

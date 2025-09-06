@@ -77,6 +77,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     {
         return $this->licenseId;
     }
+
     /**
      * The name of the project.
      *
@@ -86,6 +87,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     {
         return $this->projectTitle;
     }
+
     /**
      * The total price for the subscription.
      *
@@ -95,6 +97,7 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     {
         return $this->total;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
      */

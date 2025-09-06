@@ -70,6 +70,7 @@ final class GoogleSSOConfig implements JsonSerializable
     {
         return $this->providerType;
     }
+
     /**
      * Google hosted domain.
      *

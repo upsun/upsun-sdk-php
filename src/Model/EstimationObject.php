@@ -85,6 +85,7 @@ final class EstimationObject implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * The monthly price of the user licenses.
      *
@@ -94,6 +95,7 @@ final class EstimationObject implements JsonSerializable
     {
         return $this->userLicenses;
     }
+
     /**
      * The monthly price of the environments.
      *
@@ -103,6 +105,7 @@ final class EstimationObject implements JsonSerializable
     {
         return $this->environments;
     }
+
     /**
      * The monthly price of the storage.
      *
@@ -112,6 +115,7 @@ final class EstimationObject implements JsonSerializable
     {
         return $this->storage;
     }
+
     /**
      * The total monthly price.
      *
@@ -121,6 +125,7 @@ final class EstimationObject implements JsonSerializable
     {
         return $this->total;
     }
+
     /**
      * The unit prices of the options.
      *

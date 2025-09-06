@@ -79,6 +79,7 @@ final class BlackfireIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -86,6 +87,7 @@ final class BlackfireIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -93,6 +95,7 @@ final class BlackfireIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]
      */
@@ -100,6 +103,7 @@ final class BlackfireIntegration implements JsonSerializable
     {
         return $this->environmentsCredentials;
     }
+
     /**
      * @return bool
      */

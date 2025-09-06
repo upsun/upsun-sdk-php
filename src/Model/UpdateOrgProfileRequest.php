@@ -85,6 +85,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     {
         return $this->defaultCatalog;
     }
+
     /**
      * The URL of an organization-wide project options file.
      *
@@ -94,6 +95,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     {
         return $this->projectOptionsUrl;
     }
+
     /**
      * The e-mail address of a contact to whom security notices will be sent.
      *
@@ -103,6 +105,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     {
         return $this->securityContact;
     }
+
     /**
      * The company name.
      *
@@ -112,6 +115,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     {
         return $this->companyName;
     }
+
     /**
      * The VAT number of the company.
      *
@@ -121,6 +125,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     {
         return $this->vatNumber;
     }
+
     /**
      * The e-mail address of a contact to whom billing notices will be sent.
      *

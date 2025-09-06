@@ -77,6 +77,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     {
         return $this->cpu;
     }
+
     /**
      * The total memory for this subsciption.
      *
@@ -86,6 +87,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     {
         return $this->memory;
     }
+
     /**
      * The total storage for this subsciption.
      *
@@ -95,6 +97,7 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     {
         return $this->storage;
     }
+
     /**
      * The total environments for this subsciption.
      *

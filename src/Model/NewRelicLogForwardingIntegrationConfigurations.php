@@ -67,6 +67,7 @@ final class NewRelicLogForwardingIntegrationConfigurations implements JsonSerial
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

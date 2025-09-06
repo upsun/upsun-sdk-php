@@ -100,6 +100,7 @@ final class Team implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ID of the parent organization.
      *
@@ -109,6 +110,7 @@ final class Team implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The human-readable label of the team.
      *
@@ -118,6 +120,7 @@ final class Team implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * Project permissions that are granted to the team.
      *
@@ -127,6 +130,7 @@ final class Team implements JsonSerializable
     {
         return $this->projectPermissions;
     }
+
     /**
      * @return \Upsun\Model\TeamCounts|null
      */
@@ -134,6 +138,7 @@ final class Team implements JsonSerializable
     {
         return $this->counts;
     }
+
     /**
      * The date and time when the team was created.
      *
@@ -143,6 +148,7 @@ final class Team implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the team was last updated.
      *

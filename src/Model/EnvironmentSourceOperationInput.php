@@ -67,8 +67,9 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
     {
         return $this->operation;
     }
+
     /**
-     * @return array&lt;string,array&lt;string,mixed&gt;&gt;
+     * @return array<string,array<string,mixed>>
      */
     public function getVariables(): array
     {

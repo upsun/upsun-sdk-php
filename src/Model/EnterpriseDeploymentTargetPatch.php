@@ -82,6 +82,7 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -89,6 +90,7 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return object|null
      */
@@ -96,6 +98,7 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     {
         return $this->siteUrls;
     }
+
     /**
      * @return string[]|null
      */
@@ -103,6 +106,7 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
     {
         return $this->sshHosts;
     }
+
     /**
      * @return object|null
      */

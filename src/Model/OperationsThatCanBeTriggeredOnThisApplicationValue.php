@@ -74,6 +74,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     {
         return $this->commands;
     }
+
     /**
      * @return int|null
      */
@@ -81,6 +82,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     {
         return $this->timeout;
     }
+
     /**
      * @return string
      */

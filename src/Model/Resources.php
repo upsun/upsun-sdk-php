@@ -83,6 +83,7 @@ final class Resources implements JsonSerializable
     {
         return $this->baseMemory;
     }
+
     /**
      * @return int|null
      */
@@ -90,6 +91,7 @@ final class Resources implements JsonSerializable
     {
         return $this->memoryRatio;
     }
+
     /**
      * @return string|null
      */
@@ -97,6 +99,7 @@ final class Resources implements JsonSerializable
     {
         return $this->profileSize;
     }
+
     /**
      * @return \Upsun\Model\TheMinimumResourcesForThisService|null
      */
@@ -104,6 +107,7 @@ final class Resources implements JsonSerializable
     {
         return $this->minimum;
     }
+
     /**
      * @return \Upsun\Model\TheDefaultResourcesForThisService|null
      */
@@ -111,6 +115,7 @@ final class Resources implements JsonSerializable
     {
         return $this->default;
     }
+
     /**
      * @return \Upsun\Model\TheDisksResources|null
      */

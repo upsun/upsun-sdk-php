@@ -79,6 +79,7 @@ final class EmailIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -86,6 +87,7 @@ final class EmailIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -93,6 +95,7 @@ final class EmailIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string|null
      */
@@ -100,6 +103,7 @@ final class EmailIntegration implements JsonSerializable
     {
         return $this->fromAddress;
     }
+
     /**
      * @return string[]
      */

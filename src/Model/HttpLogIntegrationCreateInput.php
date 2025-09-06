@@ -79,6 +79,7 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -86,20 +87,23 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
+
     /**
      * @return bool|null
      */

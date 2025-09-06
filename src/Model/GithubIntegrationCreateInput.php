@@ -107,6 +107,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -114,6 +115,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->token;
     }
+
     /**
      * @return string
      */
@@ -121,6 +123,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return bool|null
      */
@@ -128,6 +131,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->fetchBranches;
     }
+
     /**
      * @return bool|null
      */
@@ -135,6 +139,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->pruneBranches;
     }
+
     /**
      * @return string|null
      */
@@ -142,6 +147,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->environmentInitResources;
     }
+
     /**
      * @return string|null
      */
@@ -149,6 +155,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->baseUrl;
     }
+
     /**
      * @return bool|null
      */
@@ -156,6 +163,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->buildPullRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -163,6 +171,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->buildDraftPullRequests;
     }
+
     /**
      * @return bool|null
      */
@@ -170,6 +179,7 @@ final class GithubIntegrationCreateInput implements JsonSerializable
     {
         return $this->buildPullRequestsPostMerge;
     }
+
     /**
      * @return bool|null
      */

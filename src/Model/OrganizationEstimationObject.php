@@ -89,6 +89,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return $this->total;
     }
+
     /**
      * The sub total for all projects and sellables.
      *
@@ -98,6 +99,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return $this->subTotal;
     }
+
     /**
      * The total amount of vouchers.
      *
@@ -107,6 +109,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return $this->vouchers;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
      */
@@ -114,6 +117,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return $this->userLicenses;
     }
+
     /**
      * An estimation of the advanced user management sellable cost.
      *
@@ -123,6 +127,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return $this->userManagement;
     }
+
     /**
      * The total monthly price for premium support.
      *
@@ -132,6 +137,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     {
         return $this->supportLevel;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
      */

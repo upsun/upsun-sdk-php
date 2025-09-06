@@ -71,6 +71,7 @@ final class BuildResources implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return float
      */
@@ -78,6 +79,7 @@ final class BuildResources implements JsonSerializable
     {
         return $this->maxCpu;
     }
+
     /**
      * @return int
      */

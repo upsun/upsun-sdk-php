@@ -73,6 +73,7 @@ final class ListProfiles200Response implements JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * Array of user profiles.
      *
@@ -82,6 +83,7 @@ final class ListProfiles200Response implements JsonSerializable
     {
         return $this->profiles;
     }
+
     /**
      * @return \Upsun\Model\HalLinks|null
      */

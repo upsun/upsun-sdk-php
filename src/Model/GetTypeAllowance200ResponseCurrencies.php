@@ -79,6 +79,7 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     {
         return $this->eUR;
     }
+
     /**
      * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD|null
      */
@@ -86,6 +87,7 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     {
         return $this->uSD;
     }
+
     /**
      * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP|null
      */
@@ -93,6 +95,7 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     {
         return $this->gBP;
     }
+
     /**
      * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD|null
      */
@@ -100,6 +103,7 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     {
         return $this->aUD;
     }
+
     /**
      * @return \Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD|null
      */

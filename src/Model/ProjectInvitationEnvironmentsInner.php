@@ -80,6 +80,7 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The environment type.
      *
@@ -89,6 +90,7 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The environment role.
      *
@@ -98,6 +100,7 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     {
         return $this->role;
     }
+
     /**
      * The environment title.
      *

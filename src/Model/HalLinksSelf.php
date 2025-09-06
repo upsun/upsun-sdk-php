@@ -69,6 +69,7 @@ final class HalLinksSelf implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * URL of the link
      *

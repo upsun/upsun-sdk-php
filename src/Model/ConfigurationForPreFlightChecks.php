@@ -67,6 +67,7 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string[]
      */

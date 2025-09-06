@@ -76,6 +76,7 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     {
         return $this->protocol;
     }
+
     /**
      * @return string[]
      */
@@ -83,6 +84,7 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     {
         return $this->ips;
     }
+
     /**
      * @return string[]
      */
@@ -90,6 +92,7 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     {
         return $this->domains;
     }
+
     /**
      * @return int[]
      */

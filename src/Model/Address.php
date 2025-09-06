@@ -101,6 +101,7 @@ final class Address implements JsonSerializable
     {
         return $this->country;
     }
+
     /**
      * The full name of the user
      *
@@ -110,6 +111,7 @@ final class Address implements JsonSerializable
     {
         return $this->nameLine;
     }
+
     /**
      * Premise (i.e. Apt, Suite, Bldg.)
      *
@@ -119,6 +121,7 @@ final class Address implements JsonSerializable
     {
         return $this->premise;
     }
+
     /**
      * Sub Premise (i.e. Suite, Apartment, Floor, Unknown.
      *
@@ -128,6 +131,7 @@ final class Address implements JsonSerializable
     {
         return $this->subPremise;
     }
+
     /**
      * The address of the user
      *
@@ -137,6 +141,7 @@ final class Address implements JsonSerializable
     {
         return $this->thoroughfare;
     }
+
     /**
      * The administrative area of the user address
      *
@@ -146,6 +151,7 @@ final class Address implements JsonSerializable
     {
         return $this->administrativeArea;
     }
+
     /**
      * The sub-administrative area of the user address
      *
@@ -155,6 +161,7 @@ final class Address implements JsonSerializable
     {
         return $this->subAdministrativeArea;
     }
+
     /**
      * The locality of the user address
      *
@@ -164,6 +171,7 @@ final class Address implements JsonSerializable
     {
         return $this->locality;
     }
+
     /**
      * The dependant_locality area of the user address
      *
@@ -173,6 +181,7 @@ final class Address implements JsonSerializable
     {
         return $this->dependentLocality;
     }
+
     /**
      * The postal code area of the user address
      *

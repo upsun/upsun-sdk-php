@@ -77,6 +77,7 @@ final class Blob implements JsonSerializable
     {
         return $this->sha;
     }
+
     /**
      * @return int
      */
@@ -84,6 +85,7 @@ final class Blob implements JsonSerializable
     {
         return $this->size;
     }
+
     /**
      * @return string
      */
@@ -91,6 +93,7 @@ final class Blob implements JsonSerializable
     {
         return $this->encoding;
     }
+
     /**
      * @return string
      */

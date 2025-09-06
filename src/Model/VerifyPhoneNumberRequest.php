@@ -72,6 +72,7 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     {
         return $this->channel;
     }
+
     /**
      * The phone number used to receive the verification code.
      *

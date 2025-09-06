@@ -67,6 +67,7 @@ final class RepositoryInformation implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string|null
      */

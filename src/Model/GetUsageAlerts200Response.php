@@ -69,6 +69,7 @@ final class GetUsageAlerts200Response implements JsonSerializable
     {
         return $this->available;
     }
+
     /**
      * The list of the current usage alerts.
      *

@@ -80,6 +80,7 @@ final class TheTreeItemsInner implements JsonSerializable
     {
         return $this->path;
     }
+
     /**
      * @return string
      */
@@ -87,6 +88,7 @@ final class TheTreeItemsInner implements JsonSerializable
     {
         return $this->mode;
     }
+
     /**
      * @return string
      */
@@ -94,6 +96,7 @@ final class TheTreeItemsInner implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string|null
      */

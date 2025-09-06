@@ -69,6 +69,7 @@ final class UpdateTeamRequest implements JsonSerializable
     {
         return $this->label;
     }
+
     /**
      * Project permissions that are granted to the team.
      *

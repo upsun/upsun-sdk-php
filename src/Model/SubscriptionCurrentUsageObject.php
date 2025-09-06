@@ -111,6 +111,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->cpuApp;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -118,6 +119,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->storageAppServices;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -125,6 +127,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->memoryApp;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -132,6 +135,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->cpuServices;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -139,6 +143,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->memoryServices;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -146,6 +151,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->backupStorage;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -153,6 +159,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->buildCpu;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -160,6 +167,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->buildMemory;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -167,6 +175,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->egressBandwidth;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -174,6 +183,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->ingressRequests;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -181,6 +191,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->logsFwdContentSize;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */
@@ -188,6 +199,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     {
         return $this->fastlyBandwidth;
     }
+
     /**
      * @return \Upsun\Model\UsageGroupCurrentUsageProperties|null
      */

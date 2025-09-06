@@ -57,7 +57,7 @@ final class EnvironmentType implements JsonSerializable
     }
 
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {

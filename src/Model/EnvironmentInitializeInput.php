@@ -79,6 +79,7 @@ final class EnvironmentInitializeInput implements JsonSerializable
     {
         return $this->profile;
     }
+
     /**
      * @return string
      */
@@ -86,6 +87,7 @@ final class EnvironmentInitializeInput implements JsonSerializable
     {
         return $this->repository;
     }
+
     /**
      * @return string|null
      */
@@ -93,6 +95,7 @@ final class EnvironmentInitializeInput implements JsonSerializable
     {
         return $this->config;
     }
+
     /**
      * @return \Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]
      */
@@ -100,6 +103,7 @@ final class EnvironmentInitializeInput implements JsonSerializable
     {
         return $this->files;
     }
+
     /**
      * @return \Upsun\Model\Resources3|null
      */

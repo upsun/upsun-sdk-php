@@ -74,6 +74,7 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -81,6 +82,7 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return object|null
      */

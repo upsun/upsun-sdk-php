@@ -73,6 +73,7 @@ final class CreateSshKeyRequest implements JsonSerializable
     {
         return $this->value;
     }
+
     /**
      * The title of the ssh key.
      *
@@ -82,6 +83,7 @@ final class CreateSshKeyRequest implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * The uuid of the user.
      *

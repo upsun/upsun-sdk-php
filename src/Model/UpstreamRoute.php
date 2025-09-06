@@ -102,6 +102,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->primary;
     }
+
     /**
      * @return string|null
      */
@@ -109,6 +110,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * @return string|null
      */
@@ -116,13 +118,15 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->productionUrl;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return string
      */
@@ -130,6 +134,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\TLSSettingsForTheRoute
      */
@@ -137,6 +142,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->tls;
     }
+
     /**
      * @return \Upsun\Model\CacheConfiguration
      */
@@ -144,6 +150,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->cache;
     }
+
     /**
      * @return \Upsun\Model\ServerSideIncludeConfiguration
      */
@@ -151,6 +158,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->ssi;
     }
+
     /**
      * @return string
      */
@@ -158,6 +166,7 @@ final class UpstreamRoute implements JsonSerializable
     {
         return $this->upstream;
     }
+
     /**
      * @return \Upsun\Model\TheConfigurationOfTheRedirects
      */

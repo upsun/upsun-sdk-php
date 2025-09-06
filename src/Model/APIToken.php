@@ -89,6 +89,7 @@ final class APIToken implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The token name.
      *
@@ -98,6 +99,7 @@ final class APIToken implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * Whether the user had multi-factor authentication (MFA) enabled when they created the token.
      *
@@ -107,6 +109,7 @@ final class APIToken implements JsonSerializable
     {
         return $this->mfaOnCreation;
     }
+
     /**
      * The token in plain text (available only when created).
      *
@@ -116,6 +119,7 @@ final class APIToken implements JsonSerializable
     {
         return $this->token;
     }
+
     /**
      * The date and time when the token was created.
      *
@@ -125,6 +129,7 @@ final class APIToken implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the token was last updated.
      *
@@ -134,6 +139,7 @@ final class APIToken implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The date and time when the token was last exchanged for an access token. This will be <code>null</code> for a token which has never been used, or not used since this API property was added. <strong>Note:</strong> After an API token is used, the derived access token may continue to be used until its expiry. This also applies to SSH certificate(s) derived from the access token.
      *

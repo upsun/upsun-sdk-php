@@ -67,6 +67,7 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

@@ -69,6 +69,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagementListAdvancedMa
     {
         return $this->count;
     }
+
     /**
      * The total price for advanced_management_user licenses.
      *

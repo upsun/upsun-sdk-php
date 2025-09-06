@@ -75,6 +75,7 @@ final class SlackIntegration implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -82,6 +83,7 @@ final class SlackIntegration implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -89,6 +91,7 @@ final class SlackIntegration implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */

@@ -190,6 +190,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->resources;
     }
+
     /**
      * @return string
      */
@@ -197,6 +198,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->size;
     }
+
     /**
      * @return int|null
      */
@@ -204,13 +206,15 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->disk;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAccess(): array
     {
         return $this->access;
     }
+
     /**
      * @return \Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]
      */
@@ -218,13 +222,15 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->relationships;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
+
     /**
      * @return \Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]
      */
@@ -232,6 +238,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->mounts;
     }
+
     /**
      * @return string|null
      */
@@ -239,13 +246,15 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->timezone;
     }
+
     /**
-     * @return array&lt;string,array&lt;string,mixed&gt;&gt;
+     * @return array<string,array<string,mixed>>
      */
     public function getVariables(): array
     {
         return $this->variables;
     }
+
     /**
      * @return \Upsun\Model\Firewall|null
      */
@@ -253,6 +262,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->firewall;
     }
+
     /**
      * @return string|null
      */
@@ -260,6 +270,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->containerProfile;
     }
+
     /**
      * @return \Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]
      */
@@ -267,6 +278,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->operations;
     }
+
     /**
      * @return string
      */
@@ -274,6 +286,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string
      */
@@ -281,6 +294,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationForPreFlightChecks
      */
@@ -288,6 +302,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->preflight;
     }
+
     /**
      * @return string
      */
@@ -295,6 +310,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->treeId;
     }
+
     /**
      * @return string
      */
@@ -302,6 +318,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->appDir;
     }
+
     /**
      * @return object|null
      */
@@ -309,6 +326,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->endpoints;
     }
+
     /**
      * @return object
      */
@@ -316,6 +334,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->runtime;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP
      */
@@ -323,6 +342,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->web;
     }
+
     /**
      * @return \Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication
      */
@@ -330,6 +350,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->hooks;
     }
+
     /**
      * @return \Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue[]
      */
@@ -337,6 +358,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->crons;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication
      */
@@ -344,6 +366,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->source;
     }
+
     /**
      * @return \Upsun\Model\TheBuildConfigurationOfTheApplication
      */
@@ -351,13 +374,15 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->build;
     }
+
     /**
-     * @return array&lt;string,object&gt;
+     * @return array<string,object>
      */
     public function getDependencies(): array
     {
         return $this->dependencies;
     }
+
     /**
      * @return object[]|null
      */
@@ -365,6 +390,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->stack;
     }
+
     /**
      * @return bool
      */
@@ -372,6 +398,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->isAcrossSubmodule;
     }
+
     /**
      * @return int|null
      */
@@ -379,6 +406,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->instanceCount;
     }
+
     /**
      * @return string
      */
@@ -386,6 +414,7 @@ final class WebApplicationsValue implements JsonSerializable
     {
         return $this->configId;
     }
+
     /**
      * @return string
      */

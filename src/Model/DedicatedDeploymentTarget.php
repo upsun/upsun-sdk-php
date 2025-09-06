@@ -114,6 +114,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -121,6 +122,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return string|null
      */
@@ -128,6 +130,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->deployHost;
     }
+
     /**
      * @return int|null
      */
@@ -135,6 +138,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->deployPort;
     }
+
     /**
      * @return string|null
      */
@@ -142,6 +146,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->sshHost;
     }
+
     /**
      * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
      */
@@ -149,6 +154,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->hosts;
     }
+
     /**
      * @return bool
      */
@@ -156,6 +162,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->autoMounts;
     }
+
     /**
      * @return string[]
      */
@@ -163,6 +170,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->excludedMounts;
     }
+
     /**
      * @return object
      */
@@ -170,6 +178,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->enforcedMounts;
     }
+
     /**
      * @return bool
      */
@@ -177,6 +186,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->autoCrons;
     }
+
     /**
      * @return bool
      */
@@ -184,6 +194,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->autoNginx;
     }
+
     /**
      * @return bool
      */
@@ -191,6 +202,7 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     {
         return $this->maintenanceMode;
     }
+
     /**
      * @return int
      */

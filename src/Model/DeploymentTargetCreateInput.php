@@ -94,6 +94,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -101,6 +102,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return object|null
      */
@@ -108,6 +110,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->enforcedMounts;
     }
+
     /**
      * @return object|null
      */
@@ -115,6 +118,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->siteUrls;
     }
+
     /**
      * @return string[]|null
      */
@@ -122,6 +126,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->sshHosts;
     }
+
     /**
      * @return object|null
      */
@@ -129,6 +134,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->enterpriseEnvironmentsMapping;
     }
+
     /**
      * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
      */
@@ -136,6 +142,7 @@ final class DeploymentTargetCreateInput implements JsonSerializable
     {
         return $this->hosts;
     }
+
     /**
      * @return bool|null
      */

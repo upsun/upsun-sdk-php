@@ -317,6 +317,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->initialize;
     }
+
     /**
      * @return string
      */
@@ -324,6 +325,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->productName;
     }
+
     /**
      * @return string
      */
@@ -331,6 +333,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->productCode;
     }
+
     /**
      * @return string
      */
@@ -338,6 +341,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->uiUriTemplate;
     }
+
     /**
      * @return string
      */
@@ -345,6 +349,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->variablesPrefix;
     }
+
     /**
      * @return string
      */
@@ -352,6 +357,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->botEmail;
     }
+
     /**
      * @return string
      */
@@ -359,6 +365,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->applicationConfigFile;
     }
+
     /**
      * @return string
      */
@@ -366,6 +373,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->projectConfigDir;
     }
+
     /**
      * @return bool
      */
@@ -373,6 +381,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->useDrupalDefaults;
     }
+
     /**
      * @return bool
      */
@@ -380,6 +389,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->useLegacySubdomains;
     }
+
     /**
      * @return string
      */
@@ -387,6 +397,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->developmentServiceSize;
     }
+
     /**
      * @return string
      */
@@ -394,6 +405,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->developmentApplicationSize;
     }
+
     /**
      * @return bool
      */
@@ -401,6 +413,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableCertificateProvisioning;
     }
+
     /**
      * @return string
      */
@@ -408,6 +421,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->certificateStyle;
     }
+
     /**
      * @return bool
      */
@@ -415,6 +429,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->certificateRenewalActivity;
     }
+
     /**
      * @return string|null
      */
@@ -422,6 +437,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->developmentDomainTemplate;
     }
+
     /**
      * @return bool
      */
@@ -429,6 +445,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableStateApiDeployments;
     }
+
     /**
      * @return int|null
      */
@@ -436,6 +453,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->temporaryDiskSize;
     }
+
     /**
      * @return int|null
      */
@@ -443,6 +461,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->localDiskSize;
     }
+
     /**
      * @return int
      */
@@ -450,6 +469,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->cronMinimumInterval;
     }
+
     /**
      * @return int
      */
@@ -457,13 +477,15 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->cronMaximumJitter;
     }
+
     /**
-     * @return array&lt;string,int&gt;
+     * @return array<string,int>
      */
     public function getConcurrencyLimits(): array
     {
         return $this->concurrencyLimits;
     }
+
     /**
      * @return bool
      */
@@ -471,6 +493,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->flexibleBuildCache;
     }
+
     /**
      * @return bool
      */
@@ -478,6 +501,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->strictConfiguration;
     }
+
     /**
      * @return bool
      */
@@ -485,6 +509,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->hasSleepyCrons;
     }
+
     /**
      * @return bool
      */
@@ -492,6 +517,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->cronsInGit;
     }
+
     /**
      * @return string|null
      */
@@ -499,6 +525,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->customErrorTemplate;
     }
+
     /**
      * @return string|null
      */
@@ -506,6 +533,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->appErrorPageTemplate;
     }
+
     /**
      * @return string
      */
@@ -513,6 +541,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->environmentNameStrategy;
     }
+
     /**
      * @return \Upsun\Model\DataRetentionConfigurationValue[]|null
      */
@@ -520,6 +549,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->dataRetention;
     }
+
     /**
      * @return bool
      */
@@ -527,6 +557,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableCodesourceIntegrationPush;
     }
+
     /**
      * @return bool
      */
@@ -534,6 +565,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enforceMfa;
     }
+
     /**
      * @return bool
      */
@@ -541,6 +573,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->systemd;
     }
+
     /**
      * @return bool
      */
@@ -548,6 +581,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->routerGen2;
     }
+
     /**
      * @return \Upsun\Model\BuildResources1
      */
@@ -555,6 +589,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->buildResources;
     }
+
     /**
      * @return string
      */
@@ -562,6 +597,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->outboundRestrictionsDefaultPolicy;
     }
+
     /**
      * @return bool
      */
@@ -569,13 +605,15 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->selfUpgrade;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
+
     /**
      * @return int
      */
@@ -583,6 +621,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->maxAllowedRoutes;
     }
+
     /**
      * @return int
      */
@@ -590,6 +629,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->maxAllowedRedirectsPaths;
     }
+
     /**
      * @return bool
      */
@@ -597,6 +637,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableIncrementalBackups;
     }
+
     /**
      * @return bool
      */
@@ -604,6 +645,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->sizingApiEnabled;
     }
+
     /**
      * @return bool
      */
@@ -611,6 +653,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableCacheGracePeriod;
     }
+
     /**
      * @return bool
      */
@@ -618,6 +661,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableZeroDowntimeDeployments;
     }
+
     /**
      * @return bool
      */
@@ -625,6 +669,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableAdminAgent;
     }
+
     /**
      * @return string
      */
@@ -632,6 +677,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->certifierUrl;
     }
+
     /**
      * @return bool
      */
@@ -639,6 +685,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->centralizedPermissions;
     }
+
     /**
      * @return int
      */
@@ -646,6 +693,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->glueServerMaxRequestSize;
     }
+
     /**
      * @return bool
      */
@@ -653,6 +701,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->persistentEndpointsSsh;
     }
+
     /**
      * @return bool
      */
@@ -660,6 +709,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->persistentEndpointsSslCertificates;
     }
+
     /**
      * @return bool
      */
@@ -667,6 +717,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableDiskHealthMonitoring;
     }
+
     /**
      * @return bool
      */
@@ -674,6 +725,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enablePausedEnvironments;
     }
+
     /**
      * @return bool
      */
@@ -681,6 +733,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableUnifiedConfiguration;
     }
+
     /**
      * @return bool
      */
@@ -688,6 +741,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableRoutesTracing;
     }
+
     /**
      * @return bool
      */
@@ -695,6 +749,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->imageDeploymentValidation;
     }
+
     /**
      * @return bool
      */
@@ -702,6 +757,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->supportGenericImages;
     }
+
     /**
      * @return bool
      */
@@ -709,6 +765,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->enableGithubAppTokenExchange;
     }
+
     /**
      * @return \Upsun\Model\TheContinuousProfilingConfiguration
      */
@@ -716,6 +773,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->continuousProfiling;
     }
+
     /**
      * @return bool
      */
@@ -723,6 +781,7 @@ final class ProjectSettings implements JsonSerializable
     {
         return $this->disableAgentErrorReporter;
     }
+
     /**
      * @return bool
      */

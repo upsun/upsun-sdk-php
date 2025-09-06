@@ -81,6 +81,7 @@ final class Usage implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ID of the subscription.
      *
@@ -90,6 +91,7 @@ final class Usage implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * The type of usage that this record represents.
      *
@@ -99,6 +101,7 @@ final class Usage implements JsonSerializable
     {
         return $this->usageGroup;
     }
+
     /**
      * The quantity used.
      *
@@ -108,6 +111,7 @@ final class Usage implements JsonSerializable
     {
         return $this->quantity;
     }
+
     /**
      * The start timestamp of this usage record (ISO 8601).
      *

@@ -67,6 +67,7 @@ final class PagerDutyIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */

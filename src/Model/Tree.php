@@ -67,6 +67,7 @@ final class Tree implements JsonSerializable
     {
         return $this->sha;
     }
+
     /**
      * @return \Upsun\Model\TheTreeItemsInner[]
      */

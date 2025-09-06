@@ -103,6 +103,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The associated subscription identifier.
      *
@@ -112,6 +113,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->licenseId;
     }
+
     /**
      * The associated project identifier.
      *
@@ -121,6 +123,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->projectId;
     }
+
     /**
      * Display name of the line item product.
      *
@@ -130,6 +133,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->product;
     }
+
     /**
      * The line item product SKU.
      *
@@ -139,6 +143,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->sku;
     }
+
     /**
      * Total price as a decimal.
      *
@@ -148,6 +153,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->total;
     }
+
     /**
      * Total price, formatted with currency.
      *
@@ -157,6 +163,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->totalFormatted;
     }
+
     /**
      * The price components for the line item, keyed by type.
      *
@@ -166,6 +173,7 @@ final class LineItem implements JsonSerializable
     {
         return $this->components;
     }
+
     /**
      * Line item should not be considered billable.
      *

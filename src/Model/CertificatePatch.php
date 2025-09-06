@@ -67,6 +67,7 @@ final class CertificatePatch implements JsonSerializable
     {
         return $this->chain;
     }
+
     /**
      * @return bool|null
      */

@@ -155,6 +155,7 @@ final class Profile implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The user's display name.
      *
@@ -164,6 +165,7 @@ final class Profile implements JsonSerializable
     {
         return $this->displayName;
     }
+
     /**
      * The user's email address.
      *
@@ -173,6 +175,7 @@ final class Profile implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * The user's username.
      *
@@ -182,6 +185,7 @@ final class Profile implements JsonSerializable
     {
         return $this->username;
     }
+
     /**
      * The user's type (user/organization).
      *
@@ -191,6 +195,7 @@ final class Profile implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The URL of the user's picture.
      *
@@ -200,6 +205,7 @@ final class Profile implements JsonSerializable
     {
         return $this->picture;
     }
+
     /**
      * The company type.
      *
@@ -209,6 +215,7 @@ final class Profile implements JsonSerializable
     {
         return $this->companyType;
     }
+
     /**
      * The name of the company.
      *
@@ -218,6 +225,7 @@ final class Profile implements JsonSerializable
     {
         return $this->companyName;
     }
+
     /**
      * A 3-letter ISO 4217 currency code (assigned according to the billing address).
      *
@@ -227,6 +235,7 @@ final class Profile implements JsonSerializable
     {
         return $this->currency;
     }
+
     /**
      * The vat number of the user.
      *
@@ -236,6 +245,7 @@ final class Profile implements JsonSerializable
     {
         return $this->vatNumber;
     }
+
     /**
      * The role of the user in the company.
      *
@@ -245,6 +255,7 @@ final class Profile implements JsonSerializable
     {
         return $this->companyRole;
     }
+
     /**
      * The user or company website.
      *
@@ -254,6 +265,7 @@ final class Profile implements JsonSerializable
     {
         return $this->websiteUrl;
     }
+
     /**
      * Whether the new UI features are enabled for this user.
      *
@@ -263,6 +275,7 @@ final class Profile implements JsonSerializable
     {
         return $this->newUi;
     }
+
     /**
      * The user's chosen color scheme for user interfaces.
      *
@@ -272,6 +285,7 @@ final class Profile implements JsonSerializable
     {
         return $this->uiColorscheme;
     }
+
     /**
      * The URL of a catalog file which overrides the default.
      *
@@ -281,6 +295,7 @@ final class Profile implements JsonSerializable
     {
         return $this->defaultCatalog;
     }
+
     /**
      * The URL of an account-wide project options file.
      *
@@ -290,6 +305,7 @@ final class Profile implements JsonSerializable
     {
         return $this->projectOptionsUrl;
     }
+
     /**
      * Flag if the user agreed to receive marketing communication.
      *
@@ -299,6 +315,7 @@ final class Profile implements JsonSerializable
     {
         return $this->marketing;
     }
+
     /**
      * The timestamp representing when the user account was created.
      *
@@ -308,6 +325,7 @@ final class Profile implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The timestamp representing when the user account was last modified.
      *
@@ -317,6 +335,7 @@ final class Profile implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The e-mail address of a contact to whom billing notices will be sent.
      *
@@ -326,6 +345,7 @@ final class Profile implements JsonSerializable
     {
         return $this->billingContact;
     }
+
     /**
      * The e-mail address of a contact to whom security notices will be sent.
      *
@@ -335,6 +355,7 @@ final class Profile implements JsonSerializable
     {
         return $this->securityContact;
     }
+
     /**
      * @return \Upsun\Model\ProfileCurrentTrial|null
      */
@@ -342,6 +363,7 @@ final class Profile implements JsonSerializable
     {
         return $this->currentTrial;
     }
+
     /**
      * The customer is invoiced.
      *

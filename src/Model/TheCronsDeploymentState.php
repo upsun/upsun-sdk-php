@@ -70,6 +70,7 @@ final class TheCronsDeploymentState implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string
      */

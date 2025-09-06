@@ -69,6 +69,7 @@ final class ProjectOptionsEnforced implements JsonSerializable
     {
         return $this->settings;
     }
+
     /**
      * The project capabilities.
      *

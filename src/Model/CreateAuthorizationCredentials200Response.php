@@ -67,6 +67,7 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     {
         return $this->redirectToUrl;
     }
+
     /**
      * Required payment action type.
      *

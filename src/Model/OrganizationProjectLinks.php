@@ -79,6 +79,7 @@ final class OrganizationProjectLinks implements JsonSerializable
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectLinksUpdate|null
      */
@@ -86,6 +87,7 @@ final class OrganizationProjectLinks implements JsonSerializable
     {
         return $this->update;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectLinksDelete|null
      */
@@ -93,6 +95,7 @@ final class OrganizationProjectLinks implements JsonSerializable
     {
         return $this->delete;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectLinksSubscription|null
      */
@@ -100,6 +103,7 @@ final class OrganizationProjectLinks implements JsonSerializable
     {
         return $this->subscription;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectLinksApi|null
      */

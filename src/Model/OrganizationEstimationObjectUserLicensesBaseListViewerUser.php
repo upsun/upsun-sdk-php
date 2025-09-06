@@ -69,6 +69,7 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
     {
         return $this->count;
     }
+
     /**
      * The total price for viewer user licenses.
      *

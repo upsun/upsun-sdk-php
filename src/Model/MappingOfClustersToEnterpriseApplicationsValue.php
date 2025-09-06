@@ -67,6 +67,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     {
         return $this->activeDocroot;
     }
+
     /**
      * @return string[]|null
      */

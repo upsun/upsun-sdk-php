@@ -112,6 +112,7 @@ final class Discount implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ULID of the organization the discount applies to.
      *
@@ -121,6 +122,7 @@ final class Discount implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The machine name of the discount type.
      *
@@ -130,6 +132,7 @@ final class Discount implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * The label of the discount type.
      *
@@ -139,6 +142,7 @@ final class Discount implements JsonSerializable
     {
         return $this->typeLabel;
     }
+
     /**
      * The status of the discount.
      *
@@ -148,6 +152,7 @@ final class Discount implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return \Upsun\Model\DiscountCommitment|null
      */
@@ -155,6 +160,7 @@ final class Discount implements JsonSerializable
     {
         return $this->commitment;
     }
+
     /**
      * The contract length in months (if applicable).
      *
@@ -164,6 +170,7 @@ final class Discount implements JsonSerializable
     {
         return $this->totalMonths;
     }
+
     /**
      * @return \Upsun\Model\DiscountDiscount|null
      */
@@ -171,6 +178,7 @@ final class Discount implements JsonSerializable
     {
         return $this->discount;
     }
+
     /**
      * The discount type specific configuration.
      *
@@ -180,6 +188,7 @@ final class Discount implements JsonSerializable
     {
         return $this->config;
     }
+
     /**
      * The start time of the discount period.
      *
@@ -189,6 +198,7 @@ final class Discount implements JsonSerializable
     {
         return $this->startAt;
     }
+
     /**
      * The end time of the discount period (if applicable).
      *

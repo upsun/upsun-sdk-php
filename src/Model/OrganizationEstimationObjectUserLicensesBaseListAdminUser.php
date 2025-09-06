@@ -69,6 +69,7 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     {
         return $this->count;
     }
+
     /**
      * The total price for admin user licenses.
      *

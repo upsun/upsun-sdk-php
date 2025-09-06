@@ -79,6 +79,7 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -86,6 +87,7 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     {
         return $this->url;
     }
+
     /**
      * @return string
      */
@@ -93,13 +95,15 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     {
         return $this->licenseKey;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
+
     /**
      * @return bool|null
      */

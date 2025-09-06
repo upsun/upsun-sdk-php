@@ -77,6 +77,7 @@ final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
     {
         return $this->formatted;
     }
+
     /**
      * Threshold value.
      *
@@ -86,6 +87,7 @@ final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * Threshold currency code.
      *
@@ -95,6 +97,7 @@ final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
     {
         return $this->currencyCode;
     }
+
     /**
      * Threshold currency symbol.
      *

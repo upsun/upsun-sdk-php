@@ -81,6 +81,7 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     {
         return $this->formatted;
     }
+
     /**
      * The total amount.
      *
@@ -90,6 +91,7 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * The currency.
      *
@@ -99,6 +101,7 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     {
         return $this->currency;
     }
+
     /**
      * Currency symbol.
      *
@@ -108,6 +111,7 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     {
         return $this->currencySymbol;
     }
+
     /**
      * Spend limit is ignored (in favor of resource limitations).
      *

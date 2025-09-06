@@ -69,6 +69,7 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     {
         return $this->state;
     }
+
     /**
      * What type of verification is needed (phone or ticket)
      *

@@ -71,6 +71,7 @@ final class SystemInformation implements JsonSerializable
     {
         return $this->version;
     }
+
     /**
      * @return string
      */
@@ -78,6 +79,7 @@ final class SystemInformation implements JsonSerializable
     {
         return $this->image;
     }
+
     /**
      * @return \DateTime
      */

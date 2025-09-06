@@ -67,6 +67,7 @@ final class Status implements JsonSerializable
     {
         return $this->code;
     }
+
     /**
      * @return string
      */

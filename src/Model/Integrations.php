@@ -71,6 +71,7 @@ final class Integrations implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return \Upsun\Model\Config|null
      */
@@ -78,6 +79,7 @@ final class Integrations implements JsonSerializable
     {
         return $this->config;
     }
+
     /**
      * @return string[]|null
      */

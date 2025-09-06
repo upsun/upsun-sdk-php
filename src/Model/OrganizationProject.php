@@ -116,6 +116,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The ID of the organization.
      *
@@ -125,6 +126,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The ID of the subscription.
      *
@@ -134,6 +136,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->subscriptionId;
     }
+
     /**
      * The machine name of the region where the project is located.
      *
@@ -143,6 +146,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->region;
     }
+
     /**
      * The title of the project.
      *
@@ -152,6 +156,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectType|null
      */
@@ -159,6 +164,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectPlan|null
      */
@@ -166,6 +172,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->plan;
     }
+
     /**
      * The access migration status of the project.
      *
@@ -175,6 +182,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->accessMigrationStatus;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectStatus|null
      */
@@ -182,6 +190,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * The vendor.
      *
@@ -191,6 +200,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->vendor;
     }
+
     /**
      * The date and time when the project was created.
      *
@@ -200,6 +210,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the project was last updated.
      *
@@ -209,6 +220,7 @@ final class OrganizationProject implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return \Upsun\Model\OrganizationProjectLinks|null
      */

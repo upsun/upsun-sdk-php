@@ -67,6 +67,7 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     {
         return $this->base;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement|null
      */

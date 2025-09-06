@@ -71,6 +71,7 @@ final class ListLinks implements JsonSerializable
     {
         return $this->self;
     }
+
     /**
      * @return \Upsun\Model\LinkPrevious|null
      */
@@ -78,6 +79,7 @@ final class ListLinks implements JsonSerializable
     {
         return $this->previous;
     }
+
     /**
      * @return \Upsun\Model\LinkNext|null
      */

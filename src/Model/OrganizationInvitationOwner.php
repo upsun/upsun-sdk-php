@@ -69,6 +69,7 @@ final class OrganizationInvitationOwner implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The user's display name.
      *

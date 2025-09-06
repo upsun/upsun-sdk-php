@@ -73,6 +73,7 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     {
         return $this->count;
     }
+
     /**
      * The total price for base user licenses.
      *
@@ -82,6 +83,7 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     {
         return $this->total;
     }
+
     /**
      * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList|null
      */

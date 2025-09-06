@@ -79,6 +79,7 @@ final class ResourcesOverridesValue implements JsonSerializable
     {
         return $this->services;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -86,6 +87,7 @@ final class ResourcesOverridesValue implements JsonSerializable
     {
         return $this->startsAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -93,6 +95,7 @@ final class ResourcesOverridesValue implements JsonSerializable
     {
         return $this->endsAt;
     }
+
     /**
      * @return bool
      */
@@ -100,6 +103,7 @@ final class ResourcesOverridesValue implements JsonSerializable
     {
         return $this->redeployedStart;
     }
+
     /**
      * @return bool
      */

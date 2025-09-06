@@ -95,13 +95,15 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
+
     /**
      * @return string|null
      */
@@ -109,6 +111,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->value;
     }
+
     /**
      * @return bool|null
      */
@@ -116,6 +119,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->isJson;
     }
+
     /**
      * @return bool|null
      */
@@ -123,6 +127,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->isSensitive;
     }
+
     /**
      * @return bool|null
      */
@@ -130,6 +135,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->visibleBuild;
     }
+
     /**
      * @return bool|null
      */
@@ -137,6 +143,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->visibleRuntime;
     }
+
     /**
      * @return bool|null
      */
@@ -144,6 +151,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return $this->isEnabled;
     }
+
     /**
      * @return bool|null
      */

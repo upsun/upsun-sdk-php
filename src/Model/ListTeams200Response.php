@@ -71,6 +71,7 @@ final class ListTeams200Response implements JsonSerializable
     {
         return $this->items;
     }
+
     /**
      * Total count of all the teams.
      *
@@ -80,6 +81,7 @@ final class ListTeams200Response implements JsonSerializable
     {
         return $this->count;
     }
+
     /**
      * @return \Upsun\Model\ListLinks|null
      */

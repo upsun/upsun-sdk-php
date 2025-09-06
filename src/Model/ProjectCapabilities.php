@@ -103,6 +103,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->metrics;
     }
+
     /**
      * @return \Upsun\Model\LogsForwarding
      */
@@ -110,13 +111,15 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->logsForwarding;
     }
+
     /**
-     * @return array&lt;string,array&lt;string,\Upsun\Model\ImagesValueValue&gt;&gt;
+     * @return array<string,array<string,\Upsun\Model\ImagesValueValue>>
      */
     public function getImages(): array
     {
         return $this->images;
     }
+
     /**
      * @return int
      */
@@ -124,6 +127,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->instanceLimit;
     }
+
     /**
      * @return \Upsun\Model\BuildResources
      */
@@ -131,6 +135,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->buildResources;
     }
+
     /**
      * @return \Upsun\Model\DataRetention
      */
@@ -138,6 +143,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->dataRetention;
     }
+
     /**
      * @return \Upsun\Model\CustomDomains|null
      */
@@ -145,6 +151,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->customDomains;
     }
+
     /**
      * @return \Upsun\Model\SourceOperations|null
      */
@@ -152,6 +159,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->sourceOperations;
     }
+
     /**
      * @return \Upsun\Model\RuntimeOperations|null
      */
@@ -159,6 +167,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->runtimeOperations;
     }
+
     /**
      * @return \Upsun\Model\OutboundFirewall|null
      */
@@ -166,6 +175,7 @@ final class ProjectCapabilities implements JsonSerializable
     {
         return $this->outboundFirewall;
     }
+
     /**
      * @return \Upsun\Model\Integrations|null
      */

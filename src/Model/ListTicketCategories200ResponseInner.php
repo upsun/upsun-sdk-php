@@ -69,6 +69,7 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The human-readable label of the category.
      *

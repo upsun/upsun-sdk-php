@@ -85,6 +85,7 @@ final class SSHKey implements JsonSerializable
     {
         return $this->keyId;
     }
+
     /**
      * The internal user ID.
      *
@@ -94,6 +95,7 @@ final class SSHKey implements JsonSerializable
     {
         return $this->uid;
     }
+
     /**
      * The fingerprint of the public key.
      *
@@ -103,6 +105,7 @@ final class SSHKey implements JsonSerializable
     {
         return $this->fingerprint;
     }
+
     /**
      * The title of the public key.
      *
@@ -112,6 +115,7 @@ final class SSHKey implements JsonSerializable
     {
         return $this->title;
     }
+
     /**
      * The actual value of the public key.
      *
@@ -121,6 +125,7 @@ final class SSHKey implements JsonSerializable
     {
         return $this->value;
     }
+
     /**
      * The time of the last key modification (ISO 8601)
      *

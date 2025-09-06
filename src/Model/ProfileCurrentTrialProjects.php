@@ -73,6 +73,7 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * Trial project name
      *
@@ -82,6 +83,7 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
      */

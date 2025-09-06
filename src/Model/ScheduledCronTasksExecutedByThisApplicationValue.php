@@ -79,6 +79,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     {
         return $this->spec;
     }
+
     /**
      * @return \Upsun\Model\TheCommandsDefinition
      */
@@ -86,6 +87,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     {
         return $this->commands;
     }
+
     /**
      * @return int
      */
@@ -93,6 +95,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     {
         return $this->timeout;
     }
+
     /**
      * @return int|null
      */
@@ -100,6 +103,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     {
         return $this->shutdownTimeout;
     }
+
     /**
      * @return string|null
      */

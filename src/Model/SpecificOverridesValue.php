@@ -79,6 +79,7 @@ final class SpecificOverridesValue implements JsonSerializable
     {
         return $this->expires;
     }
+
     /**
      * @return string|null
      */
@@ -86,6 +87,7 @@ final class SpecificOverridesValue implements JsonSerializable
     {
         return $this->passthru;
     }
+
     /**
      * @return bool|null
      */
@@ -93,6 +95,7 @@ final class SpecificOverridesValue implements JsonSerializable
     {
         return $this->scripts;
     }
+
     /**
      * @return bool|null
      */
@@ -100,8 +103,9 @@ final class SpecificOverridesValue implements JsonSerializable
     {
         return $this->allow;
     }
+
     /**
-     * @return array&lt;string,string&gt;|null
+     * @return array<string,string>|null
      */
     public function getHeaders(): ?array
     {

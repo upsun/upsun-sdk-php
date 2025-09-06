@@ -71,6 +71,7 @@ final class ResourcesLimits implements JsonSerializable
     {
         return $this->containerProfiles;
     }
+
     /**
      * @return \Upsun\Model\ResourcesForProductionEnvironments
      */
@@ -78,6 +79,7 @@ final class ResourcesLimits implements JsonSerializable
     {
         return $this->production;
     }
+
     /**
      * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
      */

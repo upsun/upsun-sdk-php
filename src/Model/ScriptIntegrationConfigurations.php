@@ -67,6 +67,7 @@ final class ScriptIntegrationConfigurations implements JsonSerializable
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

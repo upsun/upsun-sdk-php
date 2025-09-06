@@ -75,6 +75,7 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     {
         return $this->cpu;
     }
+
     /**
      * @return int
      */
@@ -82,6 +83,7 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     {
         return $this->memory;
     }
+
     /**
      * @return int|null
      */
@@ -89,6 +91,7 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
     {
         return $this->disk;
     }
+
     /**
      * @return string|null
      */

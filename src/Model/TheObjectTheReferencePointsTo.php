@@ -67,6 +67,7 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */

@@ -85,6 +85,7 @@ final class OrganizationAlertConfig implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * Whether the billing alert should be active or not.
      *
@@ -94,6 +95,7 @@ final class OrganizationAlertConfig implements JsonSerializable
     {
         return $this->active;
     }
+
     /**
      * Number of alerts sent.
      *
@@ -103,6 +105,7 @@ final class OrganizationAlertConfig implements JsonSerializable
     {
         return $this->alertsSent;
     }
+
     /**
      * The datetime the alert was last sent.
      *
@@ -112,6 +115,7 @@ final class OrganizationAlertConfig implements JsonSerializable
     {
         return $this->lastAlertAt;
     }
+
     /**
      * The datetime the alert was last updated.
      *
@@ -121,6 +125,7 @@ final class OrganizationAlertConfig implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return \Upsun\Model\OrganizationAlertConfigConfig|null
      */

@@ -91,6 +91,7 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * @return \DateTime|null
      */
@@ -98,6 +99,7 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * @return string
      */
@@ -105,6 +107,7 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -112,13 +115,15 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
+
     /**
      * @return string|null
      */
@@ -126,6 +131,7 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->project;
     }
+
     /**
      * @return string|null
      */
@@ -133,6 +139,7 @@ final class ProdDomainStorage implements JsonSerializable
     {
         return $this->registeredName;
     }
+
     /**
      * @return bool|null
      */

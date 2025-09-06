@@ -91,6 +91,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->userId;
     }
+
     /**
      * The ID of the resource.
      *
@@ -100,6 +101,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->resourceId;
     }
+
     /**
      * The type of the resource access to which is granted.
      *
@@ -109,6 +111,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->resourceType;
     }
+
     /**
      * The ID of the organization owning the resource.
      *
@@ -118,6 +121,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->organizationId;
     }
+
     /**
      * List of project permissions.
      *
@@ -127,6 +131,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->permissions;
     }
+
     /**
      * The date and time when the access was granted.
      *
@@ -136,6 +141,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     {
         return $this->grantedAt;
     }
+
     /**
      * The date and time when the access was updated.
      *

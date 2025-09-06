@@ -89,6 +89,7 @@ final class Vouchers implements JsonSerializable
     {
         return $this->uuid;
     }
+
     /**
      * The total voucher credit given to the user.
      *
@@ -98,6 +99,7 @@ final class Vouchers implements JsonSerializable
     {
         return $this->vouchersTotal;
     }
+
     /**
      * The part of total voucher credit applied to orders.
      *
@@ -107,6 +109,7 @@ final class Vouchers implements JsonSerializable
     {
         return $this->vouchersApplied;
     }
+
     /**
      * The remaining voucher credit, available for future orders.
      *
@@ -116,6 +119,7 @@ final class Vouchers implements JsonSerializable
     {
         return $this->vouchersRemainingBalance;
     }
+
     /**
      * The currency of the vouchers.
      *
@@ -125,6 +129,7 @@ final class Vouchers implements JsonSerializable
     {
         return $this->currency;
     }
+
     /**
      * Array of vouchers.
      *
@@ -134,6 +139,7 @@ final class Vouchers implements JsonSerializable
     {
         return $this->vouchers;
     }
+
     /**
      * @return \Upsun\Model\VouchersLinks|null
      */

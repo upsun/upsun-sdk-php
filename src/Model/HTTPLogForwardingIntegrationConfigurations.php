@@ -67,6 +67,7 @@ final class HTTPLogForwardingIntegrationConfigurations implements JsonSerializab
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

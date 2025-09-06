@@ -106,6 +106,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->id;
     }
+
     /**
      * The invitation state.
      *
@@ -115,6 +116,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->state;
     }
+
     /**
      * The ID of the organization.
      *
@@ -124,6 +126,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->organizationId;
     }
+
     /**
      * The email address of the invitee.
      *
@@ -133,6 +136,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->email;
     }
+
     /**
      * @return \Upsun\Model\OrganizationInvitationOwner|null
      */
@@ -140,6 +144,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->owner;
     }
+
     /**
      * The date and time when the invitation was created.
      *
@@ -149,6 +154,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->createdAt;
     }
+
     /**
      * The date and time when the invitation was last updated.
      *
@@ -158,6 +164,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->updatedAt;
     }
+
     /**
      * The date and time when the invitation was finished.
      *
@@ -167,6 +174,7 @@ final class OrganizationInvitation implements JsonSerializable
     {
         return $this->finishedAt;
     }
+
     /**
      * The permissions the invitee should be given on the organization.
      *

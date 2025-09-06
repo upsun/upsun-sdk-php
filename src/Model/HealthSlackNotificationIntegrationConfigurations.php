@@ -67,6 +67,7 @@ final class HealthSlackNotificationIntegrationConfigurations implements JsonSeri
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

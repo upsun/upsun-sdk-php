@@ -69,6 +69,7 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     {
         return $this->returnUrl;
     }
+
     /**
      * URL for payment finalization.
      *

@@ -78,6 +78,7 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */
@@ -85,6 +86,7 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
     {
         return $this->name;
     }
+
     /**
      * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
      */
@@ -92,6 +94,7 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
     {
         return $this->hosts;
     }
+
     /**
      * @return bool|null
      */

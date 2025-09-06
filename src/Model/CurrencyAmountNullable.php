@@ -77,6 +77,7 @@ final class CurrencyAmountNullable implements JsonSerializable
     {
         return $this->formatted;
     }
+
     /**
      * Plain amount.
      *
@@ -86,6 +87,7 @@ final class CurrencyAmountNullable implements JsonSerializable
     {
         return $this->amount;
     }
+
     /**
      * Currency code.
      *
@@ -95,6 +97,7 @@ final class CurrencyAmountNullable implements JsonSerializable
     {
         return $this->currencyCode;
     }
+
     /**
      * Currency symbol.
      *

@@ -71,6 +71,7 @@ final class DiscountCommitmentNet implements JsonSerializable
     {
         return $this->monthly;
     }
+
     /**
      * @return \Upsun\Model\CurrencyAmount|null
      */
@@ -78,6 +79,7 @@ final class DiscountCommitmentNet implements JsonSerializable
     {
         return $this->commitmentPeriod;
     }
+
     /**
      * @return \Upsun\Model\CurrencyAmount|null
      */

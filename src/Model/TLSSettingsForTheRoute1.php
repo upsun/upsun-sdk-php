@@ -81,6 +81,7 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     {
         return $this->strictTransportSecurity;
     }
+
     /**
      * @return string|null
      */
@@ -88,6 +89,7 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     {
         return $this->minVersion;
     }
+
     /**
      * @return string|null
      */
@@ -95,6 +97,7 @@ final class TLSSettingsForTheRoute1 implements JsonSerializable
     {
         return $this->clientAuthentication;
     }
+
     /**
      * @return string[]|null
      */

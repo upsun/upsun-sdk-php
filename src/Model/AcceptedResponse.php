@@ -67,6 +67,7 @@ final class AcceptedResponse implements JsonSerializable
     {
         return $this->status;
     }
+
     /**
      * @return int
      */

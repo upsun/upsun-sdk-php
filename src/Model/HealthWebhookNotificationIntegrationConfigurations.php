@@ -67,6 +67,7 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

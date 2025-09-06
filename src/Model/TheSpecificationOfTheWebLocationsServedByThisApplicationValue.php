@@ -95,6 +95,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->root;
     }
+
     /**
      * @return string
      */
@@ -102,6 +103,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->expires;
     }
+
     /**
      * @return string
      */
@@ -109,6 +111,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->passthru;
     }
+
     /**
      * @return bool
      */
@@ -116,6 +119,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->scripts;
     }
+
     /**
      * @return bool
      */
@@ -123,13 +127,15 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->allow;
     }
+
     /**
-     * @return array&lt;string,string&gt;
+     * @return array<string,string>
      */
     public function getHeaders(): array
     {
         return $this->headers;
     }
+
     /**
      * @return \Upsun\Model\SpecificOverridesValue[]
      */
@@ -137,6 +143,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->rules;
     }
+
     /**
      * @return string[]|null
      */
@@ -144,6 +151,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     {
         return $this->index;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationForSupportingRequestBuffering|null
      */

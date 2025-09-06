@@ -67,6 +67,7 @@ final class SyslogLogForwardingIntegrationConfigurations implements JsonSerializ
     {
         return $this->enabled;
     }
+
     /**
      * @return string|null
      */

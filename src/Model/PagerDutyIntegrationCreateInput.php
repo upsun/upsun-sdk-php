@@ -67,6 +67,7 @@ final class PagerDutyIntegrationCreateInput implements JsonSerializable
     {
         return $this->type;
     }
+
     /**
      * @return string
      */

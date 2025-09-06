@@ -71,6 +71,7 @@ final class Version implements JsonSerializable
     {
         return $this->commit;
     }
+
     /**
      * @return bool
      */
@@ -78,6 +79,7 @@ final class Version implements JsonSerializable
     {
         return $this->locked;
     }
+
     /**
      * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
      */

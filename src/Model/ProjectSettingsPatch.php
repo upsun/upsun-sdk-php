@@ -71,6 +71,7 @@ final class ProjectSettingsPatch implements JsonSerializable
     {
         return $this->initialize;
     }
+
     /**
      * @return \Upsun\Model\DataRetentionConfigurationValue1[]|null
      */
@@ -78,6 +79,7 @@ final class ProjectSettingsPatch implements JsonSerializable
     {
         return $this->dataRetention;
     }
+
     /**
      * @return \Upsun\Model\BuildResources2|null
      */

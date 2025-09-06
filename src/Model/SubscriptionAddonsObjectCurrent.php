@@ -63,16 +63,17 @@ final class SubscriptionAddonsObjectCurrent implements JsonSerializable
     /**
      * The current continuous profiling level of the license.
      *
-     * @return array&lt;string,float&gt;|null
+     * @return array<string,float>|null
      */
     public function getContinuousProfiling(): ?array
     {
         return $this->continuousProfiling;
     }
+
     /**
      * The current project uptime level of the license.
      *
-     * @return array&lt;string,float&gt;|null
+     * @return array<string,float>|null
      */
     public function getProjectSupportLevel(): ?array
     {
