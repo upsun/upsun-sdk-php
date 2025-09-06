@@ -31,15 +31,15 @@ final class EnvironmentVariablePatch implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $name = null,
+        private readonly ?string $name = null,
         private readonly ?array $attributes = [],
-       private readonly ?string $value = null,
-       private readonly ?bool $isJson = null,
-       private readonly ?bool $isSensitive = null,
-       private readonly ?bool $visibleBuild = null,
-       private readonly ?bool $visibleRuntime = null,
-       private readonly ?bool $isEnabled = null,
-       private readonly ?bool $isInheritable = null,
+        private readonly ?string $value = null,
+        private readonly ?bool $isJson = null,
+        private readonly ?bool $isSensitive = null,
+        private readonly ?bool $visibleBuild = null,
+        private readonly ?bool $visibleRuntime = null,
+        private readonly ?bool $isEnabled = null,
+        private readonly ?bool $isInheritable = null,
     ) {
     }
 
@@ -57,7 +57,7 @@ final class EnvironmentVariablePatch implements JsonSerializable
     {
         return [
             'name' => '?string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'value' => '?string',
             'is_json' => '?bool',
             'is_sensitive' => '?bool',

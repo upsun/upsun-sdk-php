@@ -49,7 +49,7 @@ final class EnvironmentVariable implements JsonSerializable
         private readonly bool $isInheritable,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
-       private readonly ?string $value = null,
+        private readonly ?string $value = null,
     ) {
     }
 
@@ -69,7 +69,7 @@ final class EnvironmentVariable implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'name' => 'string',
-            'attributes' => 'array',
+            'attributes' => 'string[]',
             'is_json' => 'bool',
             'is_sensitive' => 'bool',
             'visible_build' => 'bool',

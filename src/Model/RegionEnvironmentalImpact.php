@@ -25,9 +25,9 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $zone = null,
-       private readonly ?string $carbonIntensity = null,
-       private readonly ?bool $green = null,
+        private readonly ?string $zone = null,
+        private readonly ?string $carbonIntensity = null,
+        private readonly ?bool $green = null,
     ) {
     }
 

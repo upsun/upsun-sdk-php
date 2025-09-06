@@ -45,7 +45,7 @@ final class EmailIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'recipients' => 'array',
+            'recipients' => 'string[]',
             'from_address' => '?string',
         ];
     }

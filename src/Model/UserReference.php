@@ -30,14 +30,14 @@ final class UserReference implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $username = null,
-       private readonly ?string $email = null,
-       private readonly ?string $firstName = null,
-       private readonly ?string $lastName = null,
-       private readonly ?string $picture = null,
-       private readonly ?bool $mfaEnabled = null,
-       private readonly ?bool $ssoEnabled = null,
+        private readonly ?string $id = null,
+        private readonly ?string $username = null,
+        private readonly ?string $email = null,
+        private readonly ?string $firstName = null,
+        private readonly ?string $lastName = null,
+        private readonly ?string $picture = null,
+        private readonly ?bool $mfaEnabled = null,
+        private readonly ?bool $ssoEnabled = null,
     ) {
     }
 

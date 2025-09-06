@@ -63,13 +63,13 @@ final class Certificate implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'certificate' => 'string',
-            'chain' => 'array',
+            'chain' => 'string[]',
             'is_provisioned' => 'bool',
             'is_invalid' => 'bool',
             'is_root' => 'bool',
-            'domains' => 'array',
-            'auth_type' => 'array',
-            'issuer' => 'array',
+            'domains' => 'string[]',
+            'auth_type' => 'string[]',
+            'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
             'expires_at' => '\DateTime',
         ];
     }

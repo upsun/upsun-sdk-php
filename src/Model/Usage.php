@@ -27,11 +27,11 @@ final class Usage implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $subscriptionId = null,
-       private readonly ?string $usageGroup = null,
-       private readonly ?float $quantity = null,
-       private readonly ?\DateTime $start = null,
+        private readonly ?string $id = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $usageGroup = null,
+        private readonly ?float $quantity = null,
+        private readonly ?\DateTime $start = null,
     ) {
     }
 

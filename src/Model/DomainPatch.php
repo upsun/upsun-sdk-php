@@ -25,7 +25,7 @@ final class DomainPatch implements JsonSerializable
 
     public function __construct(
         private readonly ?array $attributes = [],
-       private readonly ?bool $isDefault = null,
+        private readonly ?bool $isDefault = null,
     ) {
     }
 
@@ -42,7 +42,7 @@ final class DomainPatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'is_default' => '?bool',
         ];
     }

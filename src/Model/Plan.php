@@ -24,8 +24,8 @@ final class Plan implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $name = null,
-       private readonly ?string $label = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
     ) {
     }
 

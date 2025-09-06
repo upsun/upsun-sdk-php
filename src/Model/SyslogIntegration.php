@@ -66,7 +66,7 @@ final class SyslogIntegration implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'type' => 'string',
-            'extra' => 'array',
+            'extra' => 'string[]',
             'host' => 'string',
             'port' => 'int',
             'protocol' => 'string',

@@ -35,9 +35,9 @@ final class ProdDomainStorage implements JsonSerializable
         private readonly array $attributes,
         private readonly ?\DateTime $createdAt = null,
         private readonly ?\DateTime $updatedAt = null,
-       private readonly ?string $project = null,
-       private readonly ?string $registeredName = null,
-       private readonly ?bool $isDefault = null,
+        private readonly ?string $project = null,
+        private readonly ?string $registeredName = null,
+        private readonly ?bool $isDefault = null,
     ) {
     }
 
@@ -58,7 +58,7 @@ final class ProdDomainStorage implements JsonSerializable
             'updated_at' => '?\DateTime',
             'type' => 'string',
             'name' => 'string',
-            'attributes' => 'array',
+            'attributes' => 'string[]',
             'project' => '?string',
             'registered_name' => '?string',
             'is_default' => '?bool',

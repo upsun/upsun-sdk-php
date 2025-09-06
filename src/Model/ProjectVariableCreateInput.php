@@ -32,10 +32,10 @@ final class ProjectVariableCreateInput implements JsonSerializable
         private readonly string $name,
         private readonly string $value,
         private readonly ?array $attributes = [],
-       private readonly ?bool $isJson = null,
-       private readonly ?bool $isSensitive = null,
-       private readonly ?bool $visibleBuild = null,
-       private readonly ?bool $visibleRuntime = null,
+        private readonly ?bool $isJson = null,
+        private readonly ?bool $isSensitive = null,
+        private readonly ?bool $visibleBuild = null,
+        private readonly ?bool $visibleRuntime = null,
     ) {
     }
 
@@ -54,7 +54,7 @@ final class ProjectVariableCreateInput implements JsonSerializable
         return [
             'name' => 'string',
             'value' => 'string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'is_json' => '?bool',
             'is_sensitive' => '?bool',
             'visible_build' => '?bool',

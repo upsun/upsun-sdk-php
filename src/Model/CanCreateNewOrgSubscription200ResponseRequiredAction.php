@@ -24,8 +24,8 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
     ];
 
     public function __construct(
-       private readonly ?string $action = null,
-       private readonly ?string $type = null,
+        private readonly ?string $action = null,
+        private readonly ?string $type = null,
     ) {
     }
 

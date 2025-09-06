@@ -33,17 +33,17 @@ final class GetAddress200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $country = null,
-       private readonly ?string $nameLine = null,
-       private readonly ?string $premise = null,
-       private readonly ?string $subPremise = null,
-       private readonly ?string $thoroughfare = null,
-       private readonly ?string $administrativeArea = null,
-       private readonly ?string $subAdministrativeArea = null,
-       private readonly ?string $locality = null,
-       private readonly ?string $dependentLocality = null,
-       private readonly ?string $postalCode = null,
-       private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
+        private readonly ?string $country = null,
+        private readonly ?string $nameLine = null,
+        private readonly ?string $premise = null,
+        private readonly ?string $subPremise = null,
+        private readonly ?string $thoroughfare = null,
+        private readonly ?string $administrativeArea = null,
+        private readonly ?string $subAdministrativeArea = null,
+        private readonly ?string $locality = null,
+        private readonly ?string $dependentLocality = null,
+        private readonly ?string $postalCode = null,
+        private readonly ?\Upsun\Model\AddressMetadataMetadata $metadata = null,
     ) {
     }
 

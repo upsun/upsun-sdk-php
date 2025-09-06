@@ -25,9 +25,9 @@ final class OrganizationEstimationObjectUserLicensesBase implements JsonSerializ
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
-       private readonly ?string $total = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
+        private readonly ?int $count = null,
+        private readonly ?string $total = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList $list = null,
     ) {
     }
 

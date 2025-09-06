@@ -25,9 +25,9 @@ final class OrganizationMemberLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
-       private readonly ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
-       private readonly ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
+        private readonly ?\Upsun\Model\OrganizationMemberLinksSelf $self = null,
+        private readonly ?\Upsun\Model\OrganizationMemberLinksUpdate $update = null,
+        private readonly ?\Upsun\Model\OrganizationMemberLinksDelete $delete = null,
     ) {
     }
 

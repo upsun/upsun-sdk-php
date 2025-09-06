@@ -40,7 +40,7 @@ final class ListOrgInvoices200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'items' => '?array',
+            'items' => '\Upsun\Model\Invoice[]',
         ];
     }
 

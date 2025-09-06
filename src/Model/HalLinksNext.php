@@ -24,8 +24,8 @@ final class HalLinksNext implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $title = null,
-       private readonly ?string $href = null,
+        private readonly ?string $title = null,
+        private readonly ?string $href = null,
     ) {
     }
 

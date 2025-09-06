@@ -26,10 +26,10 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
-       private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
-       private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
-       private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
+        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
+        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
+        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
+        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
     ) {
     }
 

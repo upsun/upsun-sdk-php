@@ -57,7 +57,7 @@ final class SplunkIntegration implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'type' => 'string',
-            'extra' => 'array',
+            'extra' => 'string[]',
             'url' => 'string',
             'index' => 'string',
             'sourcetype' => 'string',

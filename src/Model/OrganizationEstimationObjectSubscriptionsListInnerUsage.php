@@ -26,10 +26,10 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ];
 
     public function __construct(
-       private readonly ?float $cpu = null,
-       private readonly ?float $memory = null,
-       private readonly ?float $storage = null,
-       private readonly ?int $environments = null,
+        private readonly ?float $cpu = null,
+        private readonly ?float $memory = null,
+        private readonly ?float $storage = null,
+        private readonly ?int $environments = null,
     ) {
     }
 

@@ -25,9 +25,9 @@ final class DiscountCommitmentAmount implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
-       private readonly ?\Upsun\Model\CurrencyAmount $commitmentPeriod = null,
-       private readonly ?\Upsun\Model\CurrencyAmount $contractTotal = null,
+        private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
+        private readonly ?\Upsun\Model\CurrencyAmount $commitmentPeriod = null,
+        private readonly ?\Upsun\Model\CurrencyAmount $contractTotal = null,
     ) {
     }
 

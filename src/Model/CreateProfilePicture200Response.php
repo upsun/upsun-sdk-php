@@ -23,7 +23,7 @@ final class CreateProfilePicture200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $url = null,
+        private readonly ?string $url = null,
     ) {
     }
 

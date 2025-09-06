@@ -52,7 +52,7 @@ final class EmailIntegration implements JsonSerializable
             'updated_at' => '?\DateTime',
             'type' => 'string',
             'from_address' => '?string',
-            'recipients' => 'array',
+            'recipients' => 'string[]',
         ];
     }
 

@@ -30,12 +30,12 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
 
     public function __construct(
         private readonly string $projectRegion,
-       private readonly ?string $plan = null,
-       private readonly ?string $projectTitle = null,
-       private readonly ?string $optionsUrl = null,
-       private readonly ?string $defaultBranch = null,
-       private readonly ?int $environments = null,
-       private readonly ?int $storage = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $optionsUrl = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
     ) {
     }
 

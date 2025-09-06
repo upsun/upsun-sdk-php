@@ -26,10 +26,10 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     ];
 
     public function __construct(
-       private readonly ?string $licenseId = null,
-       private readonly ?string $projectTitle = null,
-       private readonly ?string $total = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+        private readonly ?string $licenseId = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $total = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
 

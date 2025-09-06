@@ -41,19 +41,19 @@ final class Organization implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $type = null,
-       private readonly ?string $ownerId = null,
-       private readonly ?string $namespace = null,
-       private readonly ?string $name = null,
-       private readonly ?string $label = null,
-       private readonly ?string $country = null,
+        private readonly ?string $id = null,
+        private readonly ?string $type = null,
+        private readonly ?string $ownerId = null,
+        private readonly ?string $namespace = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
+        private readonly ?string $country = null,
         private readonly ?array $capabilities = [],
-       private readonly ?string $vendor = null,
-       private readonly ?string $status = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
-       private readonly ?\Upsun\Model\OrganizationLinks $links = null,
+        private readonly ?string $vendor = null,
+        private readonly ?string $status = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationLinks $links = null,
     ) {
     }
 
@@ -77,7 +77,7 @@ final class Organization implements JsonSerializable
             'name' => '?string',
             'label' => '?string',
             'country' => '?string',
-            'capabilities' => '?array',
+            'capabilities' => 'string[]',
             'vendor' => '?string',
             'status' => '?string',
             'created_at' => '?\DateTime',

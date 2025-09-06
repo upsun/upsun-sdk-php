@@ -51,7 +51,7 @@ final class UpdateProjectUserAccessRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'permissions' => 'array',
+            'permissions' => 'string[]',
         ];
     }
 

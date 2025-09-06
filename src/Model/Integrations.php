@@ -26,7 +26,7 @@ final class Integrations implements JsonSerializable
 
     public function __construct(
         private readonly bool $enabled,
-       private readonly ?\Upsun\Model\Config $config = null,
+        private readonly ?\Upsun\Model\Config $config = null,
         private readonly ?array $allowedIntegrations = [],
     ) {
     }
@@ -46,7 +46,7 @@ final class Integrations implements JsonSerializable
         return [
             'enabled' => 'bool',
             'config' => '?\Upsun\Model\Config',
-            'allowed_integrations' => '?array',
+            'allowed_integrations' => 'string[]',
         ];
     }
 

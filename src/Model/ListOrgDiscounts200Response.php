@@ -25,7 +25,7 @@ final class ListOrgDiscounts200Response implements JsonSerializable
 
     public function __construct(
         private readonly ?array $items = [],
-       private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -42,7 +42,7 @@ final class ListOrgDiscounts200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'items' => '?array',
+            'items' => '\Upsun\Model\Discount[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ];
     }

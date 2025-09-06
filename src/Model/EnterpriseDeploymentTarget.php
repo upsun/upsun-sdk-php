@@ -40,7 +40,7 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
         private readonly array $sshHosts,
         private readonly bool $maintenanceMode,
         private readonly ?string $deployHost = null,
-       private readonly ?object $enterpriseEnvironmentsMapping = null,
+        private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
 
@@ -60,9 +60,9 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
             'type' => 'string',
             'name' => 'string',
             'deploy_host' => '?string',
-            'docroots' => 'array',
+            'docroots' => '\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]',
             'site_urls' => 'object',
-            'ssh_hosts' => 'array',
+            'ssh_hosts' => 'string[]',
             'maintenance_mode' => 'bool',
             'enterprise_environments_mapping' => '?object',
         ];

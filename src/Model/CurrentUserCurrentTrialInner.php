@@ -26,10 +26,10 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\DateTime $created = null,
-       private readonly ?string $description = null,
-       private readonly ?string $spendRemaining = null,
-       private readonly ?\DateTime $expiration = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?string $description = null,
+        private readonly ?string $spendRemaining = null,
+        private readonly ?\DateTime $expiration = null,
     ) {
     }
 

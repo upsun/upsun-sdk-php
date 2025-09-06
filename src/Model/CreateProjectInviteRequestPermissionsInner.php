@@ -30,8 +30,8 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     ];
 
     public function __construct(
-       private readonly ?string $type = null,
-       private readonly ?string $role = null,
+        private readonly ?string $type = null,
+        private readonly ?string $role = null,
     ) {
     }
 

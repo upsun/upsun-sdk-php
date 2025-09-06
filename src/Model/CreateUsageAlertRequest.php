@@ -24,8 +24,8 @@ final class CreateUsageAlertRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+        private readonly ?string $id = null,
+        private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 

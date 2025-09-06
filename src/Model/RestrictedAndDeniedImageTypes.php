@@ -42,8 +42,8 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'only' => '?array',
-            'exclude' => '?array',
+            'only' => 'string[]',
+            'exclude' => 'string[]',
         ];
     }
 

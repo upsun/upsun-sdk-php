@@ -34,8 +34,8 @@ final class SplunkIntegrationPatch implements JsonSerializable
         private readonly string $index,
         private readonly string $token,
         private readonly ?array $extra = [],
-       private readonly ?string $sourcetype = null,
-       private readonly ?bool $tlsVerify = null,
+        private readonly ?string $sourcetype = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -56,7 +56,7 @@ final class SplunkIntegrationPatch implements JsonSerializable
             'url' => 'string',
             'index' => 'string',
             'token' => 'string',
-            'extra' => '?array',
+            'extra' => 'string[]',
             'sourcetype' => '?string',
             'tls_verify' => '?bool',
         ];

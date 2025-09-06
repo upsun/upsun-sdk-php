@@ -34,12 +34,12 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
         private readonly string $name,
         private readonly string $value,
         private readonly ?array $attributes = [],
-       private readonly ?bool $isJson = null,
-       private readonly ?bool $isSensitive = null,
-       private readonly ?bool $visibleBuild = null,
-       private readonly ?bool $visibleRuntime = null,
-       private readonly ?bool $isEnabled = null,
-       private readonly ?bool $isInheritable = null,
+        private readonly ?bool $isJson = null,
+        private readonly ?bool $isSensitive = null,
+        private readonly ?bool $visibleBuild = null,
+        private readonly ?bool $visibleRuntime = null,
+        private readonly ?bool $isEnabled = null,
+        private readonly ?bool $isInheritable = null,
     ) {
     }
 
@@ -58,7 +58,7 @@ final class EnvironmentVariableCreateInput implements JsonSerializable
         return [
             'name' => 'string',
             'value' => 'string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'is_json' => '?bool',
             'is_sensitive' => '?bool',
             'visible_build' => '?bool',

@@ -40,13 +40,13 @@ final class TeamReference implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $label = null,
+        private readonly ?string $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
-       private readonly ?\Upsun\Model\TeamCounts $counts = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\TeamCounts $counts = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -66,7 +66,7 @@ final class TeamReference implements JsonSerializable
             'id' => '?string',
             'organization_id' => '?string',
             'label' => '?string',
-            'project_permissions' => '?array',
+            'project_permissions' => 'string[]',
             'counts' => '?\Upsun\Model\TeamCounts',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',

@@ -24,8 +24,8 @@ final class GetOrgPrepaymentInfo200ResponseLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
-       private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions = null,
+        private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
+        private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions $transactions = null,
     ) {
     }
 

@@ -27,11 +27,11 @@ final class OrganizationProjectLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
-       private readonly ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
-       private readonly ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
-       private readonly ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
-       private readonly ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
+        private readonly ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
+        private readonly ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
+        private readonly ?\Upsun\Model\OrganizationProjectLinksDelete $delete = null,
+        private readonly ?\Upsun\Model\OrganizationProjectLinksSubscription $subscription = null,
+        private readonly ?\Upsun\Model\OrganizationProjectLinksApi $api = null,
     ) {
     }
 

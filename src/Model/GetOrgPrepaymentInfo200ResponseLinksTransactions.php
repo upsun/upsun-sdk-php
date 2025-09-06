@@ -23,7 +23,7 @@ final class GetOrgPrepaymentInfo200ResponseLinksTransactions implements JsonSeri
     ];
 
     public function __construct(
-       private readonly ?string $href = null,
+        private readonly ?string $href = null,
     ) {
     }
 

@@ -26,10 +26,10 @@ final class CurrencyAmountNullable implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $formatted = null,
-       private readonly ?float $amount = null,
-       private readonly ?string $currencyCode = null,
-       private readonly ?string $currencySymbol = null,
+        private readonly ?string $formatted = null,
+        private readonly ?float $amount = null,
+        private readonly ?string $currencyCode = null,
+        private readonly ?string $currencySymbol = null,
     ) {
     }
 

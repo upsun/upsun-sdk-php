@@ -65,7 +65,7 @@ final class Activity implements JsonSerializable
         private readonly ?string $description = null,
         private readonly ?string $text = null,
         private readonly ?\DateTime $expiresAt = null,
-       private readonly ?string $integration = null,
+        private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
     }
@@ -94,14 +94,14 @@ final class Activity implements JsonSerializable
             'completed_at' => '?\DateTime',
             'completion_percent' => 'int',
             'cancelled_at' => '?\DateTime',
-            'timings' => 'array',
+            'timings' => 'float[]',
             'log' => 'string',
             'payload' => 'object',
             'description' => '?string',
             'text' => '?string',
             'expires_at' => '?\DateTime',
             'integration' => '?string',
-            'environments' => '?array',
+            'environments' => 'string[]',
         ];
     }
 

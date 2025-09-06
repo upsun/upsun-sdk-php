@@ -25,9 +25,9 @@ final class OrganizationAddonsObject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
-       private readonly ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
-       private readonly ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+        private readonly ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
+        private readonly ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
+        private readonly ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 

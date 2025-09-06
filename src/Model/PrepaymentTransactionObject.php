@@ -31,11 +31,11 @@ final class PrepaymentTransactionObject implements JsonSerializable
     public function __construct(
         private readonly ?string $updated = null,
         private readonly ?string $expireDate = null,
-       private readonly ?string $orderId = null,
-       private readonly ?string $message = null,
-       private readonly ?string $status = null,
-       private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
-       private readonly ?string $created = null,
+        private readonly ?string $orderId = null,
+        private readonly ?string $message = null,
+        private readonly ?string $status = null,
+        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+        private readonly ?string $created = null,
     ) {
     }
 

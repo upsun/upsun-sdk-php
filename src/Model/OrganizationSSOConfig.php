@@ -29,12 +29,12 @@ final class OrganizationSSOConfig implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $providerType = null,
-       private readonly ?string $domain = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?bool $enforced = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $providerType = null,
+        private readonly ?string $domain = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?bool $enforced = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 

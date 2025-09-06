@@ -24,8 +24,8 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
-       private readonly ?string $type = null,
+        private readonly ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
+        private readonly ?string $type = null,
     ) {
     }
 

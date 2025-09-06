@@ -26,8 +26,8 @@ final class InvoicePDF implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $url = null,
-       private readonly ?string $status = null,
+        private readonly ?string $url = null,
+        private readonly ?string $status = null,
     ) {
     }
 

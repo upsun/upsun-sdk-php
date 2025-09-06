@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicenses implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBase $base = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement $userManagement = null,
     ) {
     }
 

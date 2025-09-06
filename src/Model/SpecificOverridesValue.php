@@ -28,9 +28,9 @@ final class SpecificOverridesValue implements JsonSerializable
 
     public function __construct(
         private readonly ?string $expires = null,
-       private readonly ?string $passthru = null,
-       private readonly ?bool $scripts = null,
-       private readonly ?bool $allow = null,
+        private readonly ?string $passthru = null,
+        private readonly ?bool $scripts = null,
+        private readonly ?bool $allow = null,
         private readonly ?array $headers = [],
     ) {
     }
@@ -52,7 +52,7 @@ final class SpecificOverridesValue implements JsonSerializable
             'passthru' => '?string',
             'scripts' => '?bool',
             'allow' => '?bool',
-            'headers' => '?array',
+            'headers' => 'string[]',
         ];
     }
 

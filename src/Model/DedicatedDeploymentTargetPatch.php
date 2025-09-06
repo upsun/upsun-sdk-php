@@ -30,7 +30,7 @@ final class DedicatedDeploymentTargetPatch implements JsonSerializable
     public function __construct(
         private readonly string $type,
         private readonly string $name,
-       private readonly ?object $enforcedMounts = null,
+        private readonly ?object $enforcedMounts = null,
     ) {
     }
 

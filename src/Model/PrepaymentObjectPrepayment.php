@@ -29,9 +29,9 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
     public function __construct(
         private readonly ?string $lastUpdatedAt = null,
         private readonly ?string $fallback = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
-       private readonly ?bool $sufficient = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
+        private readonly ?bool $sufficient = null,
     ) {
     }
 

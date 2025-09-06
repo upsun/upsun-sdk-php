@@ -24,8 +24,8 @@ final class OrganizationLinksApplyVoucher implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $href = null,
-       private readonly ?string $method = null,
+        private readonly ?string $href = null,
+        private readonly ?string $method = null,
     ) {
     }
 

@@ -33,7 +33,7 @@ final class TheVariablesApplyingToThisEnvironmentInner implements JsonSerializab
         private readonly bool $isJson,
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
-       private readonly ?string $value = null,
+        private readonly ?string $value = null,
     ) {
     }
 

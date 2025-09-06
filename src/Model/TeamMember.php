@@ -26,10 +26,10 @@ final class TeamMember implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $teamId = null,
-       private readonly ?string $userId = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $teamId = null,
+        private readonly ?string $userId = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 

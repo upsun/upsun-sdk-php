@@ -27,7 +27,7 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
-       private readonly ?bool $isDefault = null,
+        private readonly ?bool $isDefault = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ProdDomainStorageCreateInput implements JsonSerializable
     {
         return [
             'name' => 'string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'is_default' => '?bool',
         ];
     }

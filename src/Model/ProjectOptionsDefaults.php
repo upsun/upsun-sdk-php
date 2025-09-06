@@ -26,10 +26,10 @@ final class ProjectOptionsDefaults implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?object $settings = null,
-       private readonly ?object $variables = null,
-       private readonly ?object $access = null,
-       private readonly ?object $capabilities = null,
+        private readonly ?object $settings = null,
+        private readonly ?object $variables = null,
+        private readonly ?object $access = null,
+        private readonly ?object $capabilities = null,
     ) {
     }
 

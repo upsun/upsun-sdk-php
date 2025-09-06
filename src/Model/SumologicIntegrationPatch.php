@@ -30,8 +30,8 @@ final class SumologicIntegrationPatch implements JsonSerializable
         private readonly string $type,
         private readonly string $url,
         private readonly ?array $extra = [],
-       private readonly ?string $category = null,
-       private readonly ?bool $tlsVerify = null,
+        private readonly ?string $category = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -50,7 +50,7 @@ final class SumologicIntegrationPatch implements JsonSerializable
         return [
             'type' => 'string',
             'url' => 'string',
-            'extra' => '?array',
+            'extra' => 'string[]',
             'category' => '?string',
             'tls_verify' => '?bool',
         ];

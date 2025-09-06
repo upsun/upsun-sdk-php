@@ -54,8 +54,8 @@ final class User implements JsonSerializable
         private readonly string $country,
         private readonly \DateTime $createdAt,
         private readonly \DateTime $updatedAt,
-       private readonly ?\DateTime $consentedAt = null,
-       private readonly ?string $consentMethod = null,
+        private readonly ?\DateTime $consentedAt = null,
+        private readonly ?string $consentMethod = null,
     ) {
     }
 

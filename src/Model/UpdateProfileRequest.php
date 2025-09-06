@@ -35,19 +35,19 @@ final class UpdateProfileRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $displayName = null,
-       private readonly ?string $username = null,
-       private readonly ?string $currentPassword = null,
-       private readonly ?string $password = null,
-       private readonly ?string $companyType = null,
-       private readonly ?string $companyName = null,
-       private readonly ?string $vatNumber = null,
-       private readonly ?string $companyRole = null,
-       private readonly ?bool $marketing = null,
-       private readonly ?string $uiColorscheme = null,
-       private readonly ?string $defaultCatalog = null,
-       private readonly ?string $projectOptionsUrl = null,
-       private readonly ?string $picture = null,
+        private readonly ?string $displayName = null,
+        private readonly ?string $username = null,
+        private readonly ?string $currentPassword = null,
+        private readonly ?string $password = null,
+        private readonly ?string $companyType = null,
+        private readonly ?string $companyName = null,
+        private readonly ?string $vatNumber = null,
+        private readonly ?string $companyRole = null,
+        private readonly ?bool $marketing = null,
+        private readonly ?string $uiColorscheme = null,
+        private readonly ?string $defaultCatalog = null,
+        private readonly ?string $projectOptionsUrl = null,
+        private readonly ?string $picture = null,
     ) {
     }
 

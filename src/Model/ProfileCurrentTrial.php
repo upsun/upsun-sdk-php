@@ -35,16 +35,16 @@ final class ProfileCurrentTrial implements JsonSerializable
 
     public function __construct(
         private readonly ?string $pendingVerification = null,
-       private readonly ?bool $active = null,
-       private readonly ?\DateTime $created = null,
-       private readonly ?string $description = null,
-       private readonly ?\DateTime $expiration = null,
-       private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
-       private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
-       private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
-       private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
-       private readonly ?string $model = null,
-       private readonly ?int $daysRemaining = null,
+        private readonly ?bool $active = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?string $description = null,
+        private readonly ?\DateTime $expiration = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        private readonly ?string $model = null,
+        private readonly ?int $daysRemaining = null,
     ) {
     }
 

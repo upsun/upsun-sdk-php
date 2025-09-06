@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicensesBaseListAdminUser implements
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
-       private readonly ?string $total = null,
+        private readonly ?int $count = null,
+        private readonly ?string $total = null,
     ) {
     }
 

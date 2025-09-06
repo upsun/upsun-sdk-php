@@ -38,7 +38,7 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     public function __construct(
         private readonly string $userId,
         private readonly array $permissions,
-       private readonly ?bool $autoAddMember = null,
+        private readonly ?bool $autoAddMember = null,
     ) {
     }
 
@@ -56,7 +56,7 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
     {
         return [
             'user_id' => 'string',
-            'permissions' => 'array',
+            'permissions' => 'string[]',
             'auto_add_member' => '?bool',
         ];
     }

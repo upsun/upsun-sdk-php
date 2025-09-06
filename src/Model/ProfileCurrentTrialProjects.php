@@ -25,9 +25,9 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $name = null,
-       private readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
+        private readonly ?string $id = null,
+        private readonly ?string $name = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
     ) {
     }
 

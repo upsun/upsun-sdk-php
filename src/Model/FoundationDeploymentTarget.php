@@ -53,7 +53,7 @@ final class FoundationDeploymentTarget implements JsonSerializable
         return [
             'type' => 'string',
             'name' => 'string',
-            'hosts' => '?array',
+            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
             'use_dedicated_grid' => 'bool',
             'storage_type' => '?string',
         ];

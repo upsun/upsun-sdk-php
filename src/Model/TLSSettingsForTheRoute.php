@@ -55,7 +55,7 @@ final class TLSSettingsForTheRoute implements JsonSerializable
             'strict_transport_security' => '\Upsun\Model\StrictTransportSecurityOptions',
             'min_version' => '?string',
             'client_authentication' => '?string',
-            'client_certificate_authorities' => 'array',
+            'client_certificate_authorities' => 'string[]',
         ];
     }
 

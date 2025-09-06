@@ -53,7 +53,7 @@ final class NewRelicIntegration implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'type' => 'string',
-            'extra' => 'array',
+            'extra' => 'string[]',
             'url' => 'string',
             'tls_verify' => 'bool',
         ];

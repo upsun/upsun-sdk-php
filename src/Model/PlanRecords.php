@@ -32,14 +32,14 @@ final class PlanRecords implements JsonSerializable
 
     public function __construct(
         private readonly ?\DateTime $end = null,
-       private readonly ?string $id = null,
-       private readonly ?string $owner = null,
-       private readonly ?string $subscriptionId = null,
-       private readonly ?string $sku = null,
-       private readonly ?string $plan = null,
+        private readonly ?string $id = null,
+        private readonly ?string $owner = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $sku = null,
+        private readonly ?string $plan = null,
         private readonly ?array $options = [],
-       private readonly ?\DateTime $start = null,
-       private readonly ?string $status = null,
+        private readonly ?\DateTime $start = null,
+        private readonly ?string $status = null,
     ) {
     }
 
@@ -61,7 +61,7 @@ final class PlanRecords implements JsonSerializable
             'subscription_id' => '?string',
             'sku' => '?string',
             'plan' => '?string',
-            'options' => '?array',
+            'options' => 'string[]',
             'start' => '?\DateTime',
             'end' => '?\DateTime',
             'status' => '?string',

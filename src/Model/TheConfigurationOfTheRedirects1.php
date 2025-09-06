@@ -25,7 +25,7 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 
     public function __construct(
         private readonly array $paths,
-       private readonly ?string $expires = null,
+        private readonly ?string $expires = null,
     ) {
     }
 
@@ -42,7 +42,7 @@ final class TheConfigurationOfTheRedirects1 implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'paths' => 'array',
+            'paths' => '\Upsun\Model\ThePathsToRedirectValue1[]',
             'expires' => '?string',
         ];
     }

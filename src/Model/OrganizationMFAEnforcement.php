@@ -23,7 +23,7 @@ final class OrganizationMFAEnforcement implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?bool $enforceMfa = null,
+        private readonly ?bool $enforceMfa = null,
     ) {
     }
 

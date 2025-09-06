@@ -26,10 +26,10 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $issuer = null,
-       private readonly ?string $accountName = null,
-       private readonly ?string $secret = null,
-       private readonly ?string $qrCode = null,
+        private readonly ?string $issuer = null,
+        private readonly ?string $accountName = null,
+        private readonly ?string $secret = null,
+        private readonly ?string $qrCode = null,
     ) {
     }
 

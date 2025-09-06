@@ -35,14 +35,14 @@ final class EnvironmentPatch implements JsonSerializable
 
     public function __construct(
         private readonly ?string $parent = null,
-       private readonly ?string $name = null,
-       private readonly ?string $title = null,
+        private readonly ?string $name = null,
+        private readonly ?string $title = null,
         private readonly ?array $attributes = [],
-       private readonly ?string $type = null,
-       private readonly ?bool $cloneParentOnCreate = null,
-       private readonly ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
-       private readonly ?bool $enableSmtp = null,
-       private readonly ?bool $restrictRobots = null,
+        private readonly ?string $type = null,
+        private readonly ?bool $cloneParentOnCreate = null,
+        private readonly ?\Upsun\Model\HttpAccessPermissions1 $httpAccess = null,
+        private readonly ?bool $enableSmtp = null,
+        private readonly ?bool $restrictRobots = null,
     ) {
     }
 
@@ -61,7 +61,7 @@ final class EnvironmentPatch implements JsonSerializable
         return [
             'name' => '?string',
             'title' => '?string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'type' => '?string',
             'parent' => '?string',
             'clone_parent_on_create' => '?bool',

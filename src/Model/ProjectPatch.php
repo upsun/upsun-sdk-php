@@ -32,10 +32,10 @@ final class ProjectPatch implements JsonSerializable
         private readonly ?string $defaultBranch = null,
         private readonly ?string $defaultDomain = null,
         private readonly ?array $attributes = [],
-       private readonly ?string $title = null,
-       private readonly ?string $description = null,
-       private readonly ?string $timezone = null,
-       private readonly ?string $region = null,
+        private readonly ?string $title = null,
+        private readonly ?string $description = null,
+        private readonly ?string $timezone = null,
+        private readonly ?string $region = null,
     ) {
     }
 
@@ -52,7 +52,7 @@ final class ProjectPatch implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'title' => '?string',
             'description' => '?string',
             'default_branch' => '?string',

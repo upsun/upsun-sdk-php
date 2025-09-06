@@ -28,12 +28,12 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $defaultCatalog = null,
-       private readonly ?string $projectOptionsUrl = null,
-       private readonly ?string $securityContact = null,
-       private readonly ?string $companyName = null,
-       private readonly ?string $vatNumber = null,
-       private readonly ?string $billingContact = null,
+        private readonly ?string $defaultCatalog = null,
+        private readonly ?string $projectOptionsUrl = null,
+        private readonly ?string $securityContact = null,
+        private readonly ?string $companyName = null,
+        private readonly ?string $vatNumber = null,
+        private readonly ?string $billingContact = null,
     ) {
     }
 

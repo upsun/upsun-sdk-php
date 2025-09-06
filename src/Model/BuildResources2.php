@@ -24,8 +24,8 @@ final class BuildResources2 implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?float $cpu = null,
-       private readonly ?int $memory = null,
+        private readonly ?float $cpu = null,
+        private readonly ?int $memory = null,
     ) {
     }
 

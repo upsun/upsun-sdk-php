@@ -51,7 +51,7 @@ final class BlackfireIntegration implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'type' => 'string',
-            'environments_credentials' => 'array',
+            'environments_credentials' => '\Upsun\Model\BlackfireEnvironmentsCredentialsValue[]',
             'continuous_profiling' => 'bool',
         ];
     }

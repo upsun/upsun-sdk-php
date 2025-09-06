@@ -35,19 +35,19 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuApp = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $storageAppServices = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryApp = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuServices = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryServices = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $backupStorage = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildCpu = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildMemory = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $egressBandwidth = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $ingressRequests = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $logsFwdContentSize = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyBandwidth = null,
-       private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyRequests = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuApp = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $storageAppServices = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryApp = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuServices = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $memoryServices = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $backupStorage = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildCpu = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $buildMemory = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $egressBandwidth = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $ingressRequests = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $logsFwdContentSize = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyBandwidth = null,
+        private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $fastlyRequests = null,
     ) {
     }
 

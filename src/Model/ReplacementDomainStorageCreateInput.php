@@ -27,7 +27,7 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
-       private readonly ?string $replacementFor = null,
+        private readonly ?string $replacementFor = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ReplacementDomainStorageCreateInput implements JsonSerializable
     {
         return [
             'name' => 'string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'replacement_for' => '?string',
         ];
     }

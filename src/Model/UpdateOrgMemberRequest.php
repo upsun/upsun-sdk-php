@@ -46,7 +46,7 @@ final class UpdateOrgMemberRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'permissions' => '?array',
+            'permissions' => 'string[]',
         ];
     }
 

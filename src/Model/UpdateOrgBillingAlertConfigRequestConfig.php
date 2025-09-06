@@ -24,8 +24,8 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $threshold = null,
-       private readonly ?string $mode = null,
+        private readonly ?int $threshold = null,
+        private readonly ?string $mode = null,
     ) {
     }
 

@@ -24,8 +24,8 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $filename = null,
-       private readonly ?string $data = null,
+        private readonly ?string $filename = null,
+        private readonly ?string $data = null,
     ) {
     }
 

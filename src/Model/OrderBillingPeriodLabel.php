@@ -26,10 +26,10 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $formatted = null,
-       private readonly ?string $month = null,
-       private readonly ?string $year = null,
-       private readonly ?string $nextMonth = null,
+        private readonly ?string $formatted = null,
+        private readonly ?string $month = null,
+        private readonly ?string $year = null,
+        private readonly ?string $nextMonth = null,
     ) {
     }
 

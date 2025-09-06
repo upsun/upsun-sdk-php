@@ -29,13 +29,13 @@ final class UpdateUserRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $username = null,
-       private readonly ?string $firstName = null,
-       private readonly ?string $lastName = null,
-       private readonly ?string $picture = null,
-       private readonly ?string $company = null,
-       private readonly ?string $website = null,
-       private readonly ?string $country = null,
+        private readonly ?string $username = null,
+        private readonly ?string $firstName = null,
+        private readonly ?string $lastName = null,
+        private readonly ?string $picture = null,
+        private readonly ?string $company = null,
+        private readonly ?string $website = null,
+        private readonly ?string $country = null,
     ) {
     }
 

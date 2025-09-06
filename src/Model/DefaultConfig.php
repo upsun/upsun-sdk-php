@@ -43,7 +43,7 @@ final class DefaultConfig implements JsonSerializable
     {
         return [
             'manual_count' => 'int',
-            'schedule' => 'array',
+            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
         ];
     }
 

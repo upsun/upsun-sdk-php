@@ -70,7 +70,7 @@ final class Project implements JsonSerializable
         return [
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
-            'attributes' => 'array',
+            'attributes' => 'string[]',
             'title' => 'string',
             'description' => 'string',
             'owner' => 'string',

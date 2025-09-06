@@ -23,7 +23,7 @@ final class OrganizationLinksMfaEnforcement implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $href = null,
+        private readonly ?string $href = null,
     ) {
     }
 

@@ -40,7 +40,7 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
         private readonly ?array $environments = [],
         private readonly ?array $excludedEnvironments = [],
         private readonly ?array $states = [],
-       private readonly ?string $result = null,
+        private readonly ?string $result = null,
     ) {
     }
 
@@ -60,10 +60,10 @@ final class FastlyIntegrationCreateInput implements JsonSerializable
             'type' => 'string',
             'token' => 'string',
             'service_id' => 'string',
-            'events' => '?array',
-            'environments' => '?array',
-            'excluded_environments' => '?array',
-            'states' => '?array',
+            'events' => 'string[]',
+            'environments' => 'string[]',
+            'excluded_environments' => 'string[]',
+            'states' => 'string[]',
             'result' => '?string',
         ];
     }

@@ -28,12 +28,12 @@ final class Alert implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?bool $active = null,
-       private readonly ?int $alertsSent = null,
-       private readonly ?\DateTime $lastAlertAt = null,
-       private readonly ?\DateTime $updatedAt = null,
-       private readonly ?object $config = null,
+        private readonly ?string $id = null,
+        private readonly ?bool $active = null,
+        private readonly ?int $alertsSent = null,
+        private readonly ?\DateTime $lastAlertAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?object $config = null,
     ) {
     }
 

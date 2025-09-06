@@ -23,7 +23,7 @@ final class LinkSelf implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $href = null,
+        private readonly ?string $href = null,
     ) {
     }
 

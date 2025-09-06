@@ -43,7 +43,7 @@ final class EnvironmentSourceOperationInput implements JsonSerializable
     {
         return [
             'operation' => 'string',
-            'variables' => 'array',
+            'variables' => 'array&lt;string,mixed&gt;[]',
         ];
     }
 

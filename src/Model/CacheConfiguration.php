@@ -48,8 +48,8 @@ final class CacheConfiguration implements JsonSerializable
         return [
             'enabled' => 'bool',
             'default_ttl' => 'int',
-            'cookies' => 'array',
-            'headers' => 'array',
+            'cookies' => 'string[]',
+            'headers' => 'string[]',
         ];
     }
 

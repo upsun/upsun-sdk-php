@@ -27,11 +27,11 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
-       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
-       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
-       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
-       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP $gBP = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD $aUD = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD $cAD = null,
     ) {
     }
 

@@ -39,15 +39,15 @@ final class OrganizationMember implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $userId = null,
+        private readonly ?string $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $userId = null,
         private readonly ?array $permissions = [],
-       private readonly ?string $level = null,
-       private readonly ?bool $owner = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
-       private readonly ?\Upsun\Model\OrganizationMemberLinks $links = null,
+        private readonly ?string $level = null,
+        private readonly ?bool $owner = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationMemberLinks $links = null,
     ) {
     }
 
@@ -67,7 +67,7 @@ final class OrganizationMember implements JsonSerializable
             'id' => '?string',
             'organization_id' => '?string',
             'user_id' => '?string',
-            'permissions' => '?array',
+            'permissions' => 'string[]',
             'level' => '?string',
             'owner' => '?bool',
             'created_at' => '?\DateTime',

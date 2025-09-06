@@ -24,8 +24,8 @@ final class UpdateOrgBillingAlertConfigRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?bool $active = null,
-       private readonly ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
+        private readonly ?bool $active = null,
+        private readonly ?\Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig $config = null,
     ) {
     }
 

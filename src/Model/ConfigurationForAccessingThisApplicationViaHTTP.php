@@ -40,8 +40,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         private readonly ?array $whitelist = [],
         private readonly ?array $blacklist = [],
         private readonly ?string $expires = null,
-       private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-       private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
+        private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
+        private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
     ) {
     }
 
@@ -58,15 +58,15 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     public static function openAPITypes()
     {
         return [
-            'locations' => 'array',
+            'locations' => '\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]',
             'move_to_root' => 'bool',
             'commands' => '?\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
             'upstream' => '?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
             'document_root' => '?string',
             'passthru' => '?string',
-            'index_files' => '?array',
-            'whitelist' => '?array',
-            'blacklist' => '?array',
+            'index_files' => 'string[]',
+            'whitelist' => 'string[]',
+            'blacklist' => 'string[]',
             'expires' => '?string',
         ];
     }

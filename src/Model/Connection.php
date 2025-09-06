@@ -29,13 +29,13 @@ final class Connection implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $provider = null,
-       private readonly ?string $providerType = null,
-       private readonly ?bool $isMandatory = null,
-       private readonly ?string $subject = null,
-       private readonly ?string $emailAddress = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $provider = null,
+        private readonly ?string $providerType = null,
+        private readonly ?bool $isMandatory = null,
+        private readonly ?string $subject = null,
+        private readonly ?string $emailAddress = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 

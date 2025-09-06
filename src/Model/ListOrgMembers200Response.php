@@ -25,9 +25,9 @@ final class ListOrgMembers200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
+        private readonly ?int $count = null,
         private readonly ?array $items = [],
-       private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ListOrgMembers200Response implements JsonSerializable
     {
         return [
             'count' => '?int',
-            'items' => '?array',
+            'items' => '\Upsun\Model\OrganizationMember[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ];
     }

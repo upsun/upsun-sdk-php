@@ -24,7 +24,7 @@ final class DefaultConfig1 implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $manualCount = null,
+        private readonly ?int $manualCount = null,
         private readonly ?array $schedule = [],
     ) {
     }
@@ -43,7 +43,7 @@ final class DefaultConfig1 implements JsonSerializable
     {
         return [
             'manual_count' => '?int',
-            'schedule' => '?array',
+            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
         ];
     }
 

@@ -38,7 +38,7 @@ final class ProxyRoutePatch implements JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?array $attributes = [],
-       private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+        private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
     ) {
     }
 
@@ -60,7 +60,7 @@ final class ProxyRoutePatch implements JsonSerializable
             'primary' => '?bool',
             'id' => '?string',
             'production_url' => '?string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'tls' => '?\Upsun\Model\TLSSettingsForTheRoute1',
         ];
     }

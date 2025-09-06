@@ -70,7 +70,7 @@ final class ServicesValue implements JsonSerializable
             'disk' => '?int',
             'access' => 'object',
             'configuration' => 'object',
-            'relationships' => 'array',
+            'relationships' => 'string[]',
             'firewall' => '?\Upsun\Model\Firewall',
             'resources' => '?\Upsun\Model\Resources',
             'container_profile' => '?string',

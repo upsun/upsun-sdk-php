@@ -51,7 +51,7 @@ final class EnvironmentInitializeInput implements JsonSerializable
             'profile' => 'string',
             'repository' => 'string',
             'config' => '?string',
-            'files' => 'array',
+            'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
             'resources' => '?\Upsun\Model\Resources3',
         ];
     }

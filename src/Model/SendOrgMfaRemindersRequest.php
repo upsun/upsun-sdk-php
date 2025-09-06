@@ -40,7 +40,7 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'user_ids' => '?array',
+            'user_ids' => 'string[]',
         ];
     }
 

@@ -23,7 +23,7 @@ final class Components implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?object $voucherVatBaseprice = null,
+        private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
 

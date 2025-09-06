@@ -43,7 +43,7 @@ final class Tree implements JsonSerializable
     {
         return [
             'sha' => 'string',
-            'tree' => 'array',
+            'tree' => '\Upsun\Model\TheTreeItemsInner[]',
         ];
     }
 

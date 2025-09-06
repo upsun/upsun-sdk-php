@@ -23,7 +23,7 @@ final class UpdateUsageAlertRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
+        private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 

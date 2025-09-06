@@ -43,7 +43,7 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     {
         return [
             'expires' => 'string',
-            'paths' => 'array',
+            'paths' => '\Upsun\Model\ThePathsToRedirectValue[]',
         ];
     }
 

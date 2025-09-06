@@ -25,9 +25,9 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
-       private readonly ?string $total = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
+        private readonly ?int $count = null,
+        private readonly ?string $total = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
     ) {
     }
 

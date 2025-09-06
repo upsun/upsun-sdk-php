@@ -42,8 +42,8 @@ final class OrganizationAddonsObjectAvailable implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'user_management' => '?array',
-            'support_level' => '?array',
+            'user_management' => 'float[]',
+            'support_level' => 'float[]',
         ];
     }
 

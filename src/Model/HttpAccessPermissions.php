@@ -45,8 +45,8 @@ final class HttpAccessPermissions implements JsonSerializable
     {
         return [
             'is_enabled' => 'bool',
-            'addresses' => 'array',
-            'basic_auth' => 'array',
+            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
+            'basic_auth' => 'string[]',
         ];
     }
 

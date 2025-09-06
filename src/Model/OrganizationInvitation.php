@@ -41,13 +41,13 @@ final class OrganizationInvitation implements JsonSerializable
 
     public function __construct(
         private readonly ?\DateTime $finishedAt = null,
-       private readonly ?string $id = null,
-       private readonly ?string $state = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $email = null,
-       private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $id = null,
+        private readonly ?string $state = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $email = null,
+        private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?array $permissions = [],
     ) {
     }
@@ -73,7 +73,7 @@ final class OrganizationInvitation implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'finished_at' => '?\DateTime',
-            'permissions' => '?array',
+            'permissions' => 'string[]',
         ];
     }
 

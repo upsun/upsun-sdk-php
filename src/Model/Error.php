@@ -27,11 +27,11 @@ final class Error implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $status = null,
-       private readonly ?string $message = null,
-       private readonly ?float $code = null,
-       private readonly ?object $detail = null,
-       private readonly ?string $title = null,
+        private readonly ?string $status = null,
+        private readonly ?string $message = null,
+        private readonly ?float $code = null,
+        private readonly ?object $detail = null,
+        private readonly ?string $title = null,
     ) {
     }
 

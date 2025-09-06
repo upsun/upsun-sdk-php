@@ -48,7 +48,7 @@ final class ResourcesOverridesValue implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'services' => 'array',
+            'services' => '\Upsun\Model\PerServiceResourcesOverridesValue[]',
             'starts_at' => '?\DateTime',
             'ends_at' => '?\DateTime',
             'redeployed_start' => 'bool',

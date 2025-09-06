@@ -29,13 +29,13 @@ final class VouchersVouchersInnerOrdersInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $orderId = null,
-       private readonly ?string $status = null,
-       private readonly ?string $billingPeriodStart = null,
-       private readonly ?string $billingPeriodEnd = null,
-       private readonly ?string $orderTotal = null,
-       private readonly ?string $orderDiscount = null,
-       private readonly ?string $currency = null,
+        private readonly ?string $orderId = null,
+        private readonly ?string $status = null,
+        private readonly ?string $billingPeriodStart = null,
+        private readonly ?string $billingPeriodEnd = null,
+        private readonly ?string $orderTotal = null,
+        private readonly ?string $orderDiscount = null,
+        private readonly ?string $currency = null,
     ) {
     }
 

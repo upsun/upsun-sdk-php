@@ -26,8 +26,8 @@ final class ListTeams200Response implements JsonSerializable
 
     public function __construct(
         private readonly ?array $items = [],
-       private readonly ?int $count = null,
-       private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?int $count = null,
+        private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class ListTeams200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'items' => '?array',
+            'items' => '\Upsun\Model\Team[]',
             'count' => '?int',
             '_links' => '?\Upsun\Model\ListLinks',
         ];

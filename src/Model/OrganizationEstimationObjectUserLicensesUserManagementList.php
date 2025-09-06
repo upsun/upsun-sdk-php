@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
     ) {
     }
 

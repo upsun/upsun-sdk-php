@@ -51,9 +51,9 @@ final class RegionReference implements JsonSerializable
         private readonly object $compliance,
         private readonly \DateTime $createdAt,
         private readonly \DateTime $updatedAt,
-       private readonly ?bool $private = null,
-       private readonly ?string $code = null,
-       private readonly ?object $envimpact = null,
+        private readonly ?bool $private = null,
+        private readonly ?string $code = null,
+        private readonly ?object $envimpact = null,
     ) {
     }
 

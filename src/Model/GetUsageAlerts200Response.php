@@ -42,8 +42,8 @@ final class GetUsageAlerts200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'available' => '?array',
-            'current' => '?array',
+            'available' => '\Upsun\Model\Alert[]',
+            'current' => '\Upsun\Model\Alert[]',
         ];
     }
 

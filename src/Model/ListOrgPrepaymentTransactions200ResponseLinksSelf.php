@@ -23,7 +23,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinksSelf implements JsonSer
     ];
 
     public function __construct(
-       private readonly ?string $href = null,
+        private readonly ?string $href = null,
     ) {
     }
 

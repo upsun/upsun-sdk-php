@@ -26,8 +26,8 @@ final class ProjectSettingsPatch implements JsonSerializable
 
     public function __construct(
         private readonly ?array $dataRetention = [],
-       private readonly ?object $initialize = null,
-       private readonly ?\Upsun\Model\BuildResources2 $buildResources = null,
+        private readonly ?object $initialize = null,
+        private readonly ?\Upsun\Model\BuildResources2 $buildResources = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ProjectSettingsPatch implements JsonSerializable
     {
         return [
             'initialize' => '?object',
-            'data_retention' => '?array',
+            'data_retention' => '\Upsun\Model\DataRetentionConfigurationValue1[]',
             'build_resources' => '?\Upsun\Model\BuildResources2',
         ];
     }

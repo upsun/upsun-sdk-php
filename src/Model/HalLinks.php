@@ -25,9 +25,9 @@ final class HalLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\HalLinksSelf $self = null,
-       private readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
-       private readonly ?\Upsun\Model\HalLinksNext $next = null,
+        private readonly ?\Upsun\Model\HalLinksSelf $self = null,
+        private readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
+        private readonly ?\Upsun\Model\HalLinksNext $next = null,
     ) {
     }
 

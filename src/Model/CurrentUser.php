@@ -37,20 +37,20 @@ final class CurrentUser implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $uuid = null,
-       private readonly ?string $username = null,
-       private readonly ?string $displayName = null,
-       private readonly ?int $status = null,
-       private readonly ?string $mail = null,
+        private readonly ?string $id = null,
+        private readonly ?string $uuid = null,
+        private readonly ?string $username = null,
+        private readonly ?string $displayName = null,
+        private readonly ?int $status = null,
+        private readonly ?string $mail = null,
         private readonly ?array $sshKeys = [],
-       private readonly ?bool $hasKey = null,
+        private readonly ?bool $hasKey = null,
         private readonly ?array $projects = [],
-       private readonly ?int $sequence = null,
+        private readonly ?int $sequence = null,
         private readonly ?array $roles = [],
-       private readonly ?string $picture = null,
-       private readonly ?object $tickets = null,
-       private readonly ?bool $trial = null,
+        private readonly ?string $picture = null,
+        private readonly ?object $tickets = null,
+        private readonly ?bool $trial = null,
         private readonly ?array $currentTrial = [],
     ) {
     }
@@ -74,15 +74,15 @@ final class CurrentUser implements JsonSerializable
             'display_name' => '?string',
             'status' => '?int',
             'mail' => '?string',
-            'ssh_keys' => '?array',
+            'ssh_keys' => '\Upsun\Model\SSHKey[]',
             'has_key' => '?bool',
-            'projects' => '?array',
+            'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
             'sequence' => '?int',
-            'roles' => '?array',
+            'roles' => 'string[]',
             'picture' => '?string',
             'tickets' => '?object',
             'trial' => '?bool',
-            'current_trial' => '?array',
+            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
         ];
     }
 

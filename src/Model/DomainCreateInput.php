@@ -28,8 +28,8 @@ final class DomainCreateInput implements JsonSerializable
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
-       private readonly ?bool $isDefault = null,
-       private readonly ?string $replacementFor = null,
+        private readonly ?bool $isDefault = null,
+        private readonly ?string $replacementFor = null,
     ) {
     }
 
@@ -47,7 +47,7 @@ final class DomainCreateInput implements JsonSerializable
     {
         return [
             'name' => 'string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'is_default' => '?bool',
             'replacement_for' => '?string',
         ];

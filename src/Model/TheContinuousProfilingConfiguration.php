@@ -40,7 +40,7 @@ final class TheContinuousProfilingConfiguration implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'supported_runtimes' => 'array',
+            'supported_runtimes' => 'string[]',
         ];
     }
 

@@ -49,7 +49,7 @@ final class CreateOrgMemberRequest implements JsonSerializable
     {
         return [
             'user_id' => 'string',
-            'permissions' => '?array',
+            'permissions' => 'string[]',
         ];
     }
 

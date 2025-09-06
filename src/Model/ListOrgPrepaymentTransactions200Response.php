@@ -25,9 +25,9 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
+        private readonly ?int $count = null,
         private readonly ?array $transactions = [],
-       private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
+        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
     {
         return [
             'count' => '?int',
-            'transactions' => '?array',
+            'transactions' => '\Upsun\Model\PrepaymentTransactionObject[]',
             '_links' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks',
         ];
     }

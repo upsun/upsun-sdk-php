@@ -34,18 +34,18 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $projectTitle = null,
-       private readonly ?string $plan = null,
-       private readonly ?string $timezone = null,
-       private readonly ?int $environments = null,
-       private readonly ?int $storage = null,
-       private readonly ?string $bigDev = null,
-       private readonly ?string $bigDevService = null,
-       private readonly ?string $backups = null,
-       private readonly ?string $observabilitySuite = null,
-       private readonly ?string $blackfire = null,
-       private readonly ?string $continuousProfiling = null,
-       private readonly ?string $projectSupportLevel = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $timezone = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
+        private readonly ?string $bigDev = null,
+        private readonly ?string $bigDevService = null,
+        private readonly ?string $backups = null,
+        private readonly ?string $observabilitySuite = null,
+        private readonly ?string $blackfire = null,
+        private readonly ?string $continuousProfiling = null,
+        private readonly ?string $projectSupportLevel = null,
     ) {
     }
 

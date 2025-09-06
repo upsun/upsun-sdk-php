@@ -28,12 +28,12 @@ final class EstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $plan = null,
-       private readonly ?string $userLicenses = null,
-       private readonly ?string $environments = null,
-       private readonly ?string $storage = null,
-       private readonly ?string $total = null,
-       private readonly ?object $options = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $userLicenses = null,
+        private readonly ?string $environments = null,
+        private readonly ?string $storage = null,
+        private readonly ?string $total = null,
+        private readonly ?object $options = null,
     ) {
     }
 

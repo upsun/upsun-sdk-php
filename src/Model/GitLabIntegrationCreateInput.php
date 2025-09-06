@@ -39,13 +39,13 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
         private readonly string $type,
         private readonly string $token,
         private readonly string $project,
-       private readonly ?bool $fetchBranches = null,
-       private readonly ?bool $pruneBranches = null,
-       private readonly ?string $environmentInitResources = null,
-       private readonly ?string $baseUrl = null,
-       private readonly ?bool $buildMergeRequests = null,
-       private readonly ?bool $buildWipMergeRequests = null,
-       private readonly ?bool $mergeRequestsCloneParentData = null,
+        private readonly ?bool $fetchBranches = null,
+        private readonly ?bool $pruneBranches = null,
+        private readonly ?string $environmentInitResources = null,
+        private readonly ?string $baseUrl = null,
+        private readonly ?bool $buildMergeRequests = null,
+        private readonly ?bool $buildWipMergeRequests = null,
+        private readonly ?bool $mergeRequestsCloneParentData = null,
     ) {
     }
 

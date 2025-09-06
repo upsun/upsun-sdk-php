@@ -23,7 +23,7 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $sid = null,
+        private readonly ?string $sid = null,
     ) {
     }
 

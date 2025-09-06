@@ -23,7 +23,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinksNext implements JsonSer
     ];
 
     public function __construct(
-       private readonly ?string $href = null,
+        private readonly ?string $href = null,
     ) {
     }
 

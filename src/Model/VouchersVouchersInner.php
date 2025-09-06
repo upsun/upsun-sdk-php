@@ -26,9 +26,9 @@ final class VouchersVouchersInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $code = null,
-       private readonly ?string $amount = null,
-       private readonly ?string $currency = null,
+        private readonly ?string $code = null,
+        private readonly ?string $amount = null,
+        private readonly ?string $currency = null,
         private readonly ?array $orders = [],
     ) {
     }
@@ -49,7 +49,7 @@ final class VouchersVouchersInner implements JsonSerializable
             'code' => '?string',
             'amount' => '?string',
             'currency' => '?string',
-            'orders' => '?array',
+            'orders' => '\Upsun\Model\VouchersVouchersInnerOrdersInner[]',
         ];
     }
 

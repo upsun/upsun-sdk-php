@@ -50,13 +50,13 @@ final class CreateTicketRequest implements JsonSerializable
     public function __construct(
         private readonly string $subject,
         private readonly string $description,
-       private readonly ?string $requesterId = null,
-       private readonly ?string $priority = null,
-       private readonly ?string $subscriptionId = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $affectedUrl = null,
-       private readonly ?string $followupTid = null,
-       private readonly ?string $category = null,
+        private readonly ?string $requesterId = null,
+        private readonly ?string $priority = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $affectedUrl = null,
+        private readonly ?string $followupTid = null,
+        private readonly ?string $category = null,
         private readonly ?array $attachments = [],
         private readonly ?array $collaboratorIds = [],
     ) {
@@ -84,8 +84,8 @@ final class CreateTicketRequest implements JsonSerializable
             'affected_url' => '?string',
             'followup_tid' => '?string',
             'category' => '?string',
-            'attachments' => '?array',
-            'collaborator_ids' => '?array',
+            'attachments' => '\Upsun\Model\CreateTicketRequestAttachmentsInner[]',
+            'collaborator_ids' => 'string[]',
         ];
     }
 

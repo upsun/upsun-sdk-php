@@ -29,13 +29,13 @@ final class Vouchers implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $uuid = null,
-       private readonly ?string $vouchersTotal = null,
-       private readonly ?string $vouchersApplied = null,
-       private readonly ?string $vouchersRemainingBalance = null,
-       private readonly ?string $currency = null,
+        private readonly ?string $uuid = null,
+        private readonly ?string $vouchersTotal = null,
+        private readonly ?string $vouchersApplied = null,
+        private readonly ?string $vouchersRemainingBalance = null,
+        private readonly ?string $currency = null,
         private readonly ?array $vouchers = [],
-       private readonly ?\Upsun\Model\VouchersLinks $links = null,
+        private readonly ?\Upsun\Model\VouchersLinks $links = null,
     ) {
     }
 
@@ -57,7 +57,7 @@ final class Vouchers implements JsonSerializable
             'vouchers_applied' => '?string',
             'vouchers_remaining_balance' => '?string',
             'currency' => '?string',
-            'vouchers' => '?array',
+            'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
             '_links' => '?\Upsun\Model\VouchersLinks',
         ];
     }

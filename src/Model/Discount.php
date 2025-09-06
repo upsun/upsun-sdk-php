@@ -43,14 +43,14 @@ final class Discount implements JsonSerializable
         private readonly ?\Upsun\Model\DiscountCommitment $commitment = null,
         private readonly ?int $totalMonths = null,
         private readonly ?\DateTime $endAt = null,
-       private readonly ?int $id = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $type = null,
-       private readonly ?string $typeLabel = null,
-       private readonly ?string $status = null,
-       private readonly ?\Upsun\Model\DiscountDiscount $discount = null,
-       private readonly ?object $config = null,
-       private readonly ?\DateTime $startAt = null,
+        private readonly ?int $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $type = null,
+        private readonly ?string $typeLabel = null,
+        private readonly ?string $status = null,
+        private readonly ?\Upsun\Model\DiscountDiscount $discount = null,
+        private readonly ?object $config = null,
+        private readonly ?\DateTime $startAt = null,
     ) {
     }
 

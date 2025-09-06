@@ -23,7 +23,7 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
     ];
 
     public function __construct(
-       private readonly ?int $percentage = null,
+        private readonly ?int $percentage = null,
     ) {
     }
 

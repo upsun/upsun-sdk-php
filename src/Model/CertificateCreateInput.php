@@ -29,7 +29,7 @@ final class CertificateCreateInput implements JsonSerializable
         private readonly string $certificate,
         private readonly string $key,
         private readonly ?array $chain = [],
-       private readonly ?bool $isInvalid = null,
+        private readonly ?bool $isInvalid = null,
     ) {
     }
 
@@ -48,7 +48,7 @@ final class CertificateCreateInput implements JsonSerializable
         return [
             'certificate' => 'string',
             'key' => 'string',
-            'chain' => '?array',
+            'chain' => 'string[]',
             'is_invalid' => '?bool',
         ];
     }

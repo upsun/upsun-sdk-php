@@ -26,10 +26,10 @@ final class ProfileCurrentTrialSpend implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $formatted = null,
-       private readonly ?string $amount = null,
-       private readonly ?string $currency = null,
-       private readonly ?string $currencySymbol = null,
+        private readonly ?string $formatted = null,
+        private readonly ?string $amount = null,
+        private readonly ?string $currency = null,
+        private readonly ?string $currencySymbol = null,
     ) {
     }
 

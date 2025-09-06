@@ -39,13 +39,13 @@ final class LineItem implements JsonSerializable
     public function __construct(
         private readonly ?float $licenseId = null,
         private readonly ?string $projectId = null,
-       private readonly ?string $type = null,
-       private readonly ?string $product = null,
-       private readonly ?string $sku = null,
-       private readonly ?float $total = null,
-       private readonly ?string $totalFormatted = null,
+        private readonly ?string $type = null,
+        private readonly ?string $product = null,
+        private readonly ?string $sku = null,
+        private readonly ?float $total = null,
+        private readonly ?string $totalFormatted = null,
         private readonly ?array $components = [],
-       private readonly ?bool $excludeFromInvoice = null,
+        private readonly ?bool $excludeFromInvoice = null,
     ) {
     }
 
@@ -69,7 +69,7 @@ final class LineItem implements JsonSerializable
             'sku' => '?string',
             'total' => '?float',
             'total_formatted' => '?string',
-            'components' => '?array',
+            'components' => '\Upsun\Model\LineItemComponent[]',
             'exclude_from_invoice' => '?bool',
         ];
     }

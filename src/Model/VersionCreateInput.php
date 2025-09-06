@@ -23,7 +23,7 @@ final class VersionCreateInput implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
+        private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
     ) {
     }
 

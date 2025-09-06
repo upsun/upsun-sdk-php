@@ -38,19 +38,19 @@ final class OrganizationProject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $subscriptionId = null,
-       private readonly ?string $region = null,
-       private readonly ?string $title = null,
-       private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
-       private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
-       private readonly ?string $accessMigrationStatus = null,
-       private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
-       private readonly ?string $vendor = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
-       private readonly ?\Upsun\Model\OrganizationProjectLinks $links = null,
+        private readonly ?string $id = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $subscriptionId = null,
+        private readonly ?string $region = null,
+        private readonly ?string $title = null,
+        private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
+        private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
+        private readonly ?string $accessMigrationStatus = null,
+        private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
+        private readonly ?string $vendor = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\OrganizationProjectLinks $links = null,
     ) {
     }
 

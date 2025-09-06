@@ -24,8 +24,8 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
     ];
 
     public function __construct(
-       private readonly ?string $returnUrl = null,
-       private readonly ?string $url = null,
+        private readonly ?string $returnUrl = null,
+        private readonly ?string $url = null,
     ) {
     }
 

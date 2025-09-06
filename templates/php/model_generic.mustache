@@ -45,7 +45,7 @@ final class {{classname}} implements JsonSerializable
         private readonly ?array ${{name}} = [],
     {{/isContainer}}
     {{^isContainer}}
-       private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
     {{/isContainer}}
     {{/isNullable}}      
     {{/required}}      
@@ -67,7 +67,7 @@ final class {{classname}} implements JsonSerializable
     {
         return [
     {{#vars}}
-            '{{baseName}}' => '{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{^isContainer}}{{dataType}}{{/isContainer}}{{#isContainer}}array{{/isContainer}}',
+            '{{baseName}}' => '{{#isContainer}}{{#items}}{{dataType}}[]{{/items}}{{^items}}array{{/items}}{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{dataType}}{{/isContainer}}',
     {{/vars}}
         ];
     }
@@ -104,7 +104,7 @@ final class {{classname}} implements JsonSerializable
      * @return {{dataType}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
     {{/isContainer}}
      */
-    public function {{{getter}}}(): {{#isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}array{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{{datatype}}}{{/isContainer}}
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{datatype}}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

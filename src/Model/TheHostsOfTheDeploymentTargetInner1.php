@@ -48,7 +48,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
         return [
             'id' => '?string',
             'type' => 'string',
-            'services' => '?array',
+            'services' => 'string[]',
         ];
     }
 

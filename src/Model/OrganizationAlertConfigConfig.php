@@ -24,8 +24,8 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
-       private readonly ?string $mode = null,
+        private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
+        private readonly ?string $mode = null,
     ) {
     }
 

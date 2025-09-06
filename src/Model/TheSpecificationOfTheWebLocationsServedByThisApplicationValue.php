@@ -39,7 +39,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         private readonly array $rules,
         private readonly ?string $root = null,
         private readonly ?array $index = [],
-       private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
+        private readonly ?\Upsun\Model\ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {
     }
 
@@ -61,9 +61,9 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
             'passthru' => 'string',
             'scripts' => 'bool',
             'allow' => 'bool',
-            'headers' => 'array',
-            'rules' => 'array',
-            'index' => '?array',
+            'headers' => 'string[]',
+            'rules' => '\Upsun\Model\SpecificOverridesValue[]',
+            'index' => 'string[]',
             'request_buffering' => '?\Upsun\Model\ConfigurationForSupportingRequestBuffering',
         ];
     }

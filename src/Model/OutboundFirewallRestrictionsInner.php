@@ -48,9 +48,9 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     {
         return [
             'protocol' => 'string',
-            'ips' => 'array',
-            'domains' => 'array',
-            'ports' => 'array',
+            'ips' => 'string[]',
+            'domains' => 'string[]',
+            'ports' => 'int[]',
         ];
     }
 

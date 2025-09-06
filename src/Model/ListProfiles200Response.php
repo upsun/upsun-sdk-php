@@ -25,9 +25,9 @@ final class ListProfiles200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
+        private readonly ?int $count = null,
         private readonly ?array $profiles = [],
-       private readonly ?\Upsun\Model\HalLinks $links = null,
+        private readonly ?\Upsun\Model\HalLinks $links = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ListProfiles200Response implements JsonSerializable
     {
         return [
             'count' => '?int',
-            'profiles' => '?array',
+            'profiles' => '\Upsun\Model\Profile[]',
             '_links' => '?\Upsun\Model\HalLinks',
         ];
     }

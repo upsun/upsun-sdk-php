@@ -29,13 +29,13 @@ final class TeamProjectAccess implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $teamId = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $projectId = null,
-       private readonly ?string $projectTitle = null,
-       private readonly ?\DateTime $grantedAt = null,
-       private readonly ?\DateTime $updatedAt = null,
-       private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+        private readonly ?string $teamId = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $projectId = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
     ) {
     }
 

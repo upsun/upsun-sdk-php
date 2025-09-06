@@ -23,7 +23,7 @@ final class GetTypeAllowance200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
+        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
     ) {
     }
 

@@ -30,10 +30,10 @@ final class CreateOrgRequest implements JsonSerializable
 
     public function __construct(
         private readonly string $label,
-       private readonly ?string $type = null,
-       private readonly ?string $ownerId = null,
-       private readonly ?string $name = null,
-       private readonly ?string $country = null,
+        private readonly ?string $type = null,
+        private readonly ?string $ownerId = null,
+        private readonly ?string $name = null,
+        private readonly ?string $country = null,
     ) {
     }
 

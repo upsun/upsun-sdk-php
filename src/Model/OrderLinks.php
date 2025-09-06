@@ -23,7 +23,7 @@ final class OrderLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
+        private readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
     ) {
     }
 

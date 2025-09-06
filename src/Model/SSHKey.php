@@ -28,12 +28,12 @@ final class SSHKey implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $keyId = null,
-       private readonly ?int $uid = null,
-       private readonly ?string $fingerprint = null,
-       private readonly ?string $title = null,
-       private readonly ?string $value = null,
-       private readonly ?string $changed = null,
+        private readonly ?int $keyId = null,
+        private readonly ?int $uid = null,
+        private readonly ?string $fingerprint = null,
+        private readonly ?string $title = null,
+        private readonly ?string $value = null,
+        private readonly ?string $changed = null,
     ) {
     }
 

@@ -43,7 +43,7 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
     {
         return [
             'flavor' => '?string',
-            'caches' => 'array',
+            'caches' => '\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]',
         ];
     }
 

@@ -64,7 +64,7 @@ final class UpstreamRoute implements JsonSerializable
             'primary' => '?bool',
             'id' => '?string',
             'production_url' => '?string',
-            'attributes' => 'array',
+            'attributes' => 'string[]',
             'type' => 'string',
             'tls' => '\Upsun\Model\TLSSettingsForTheRoute',
             'cache' => '\Upsun\Model\CacheConfiguration',

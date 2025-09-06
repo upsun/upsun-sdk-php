@@ -25,9 +25,9 @@ final class SubscriptionAddonsObject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
-       private readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
-       private readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+        private readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
+        private readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
+        private readonly ?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 

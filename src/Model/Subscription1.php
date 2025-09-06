@@ -49,11 +49,11 @@ final class Subscription1 implements JsonSerializable
         private readonly bool $restricted,
         private readonly bool $suspended,
         private readonly int $userLicenses,
-       private readonly ?string $plan = null,
-       private readonly ?int $environments = null,
-       private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
-       private readonly ?string $resourceValidationUrl = null,
-       private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
+        private readonly ?string $plan = null,
+        private readonly ?int $environments = null,
+        private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
+        private readonly ?string $resourceValidationUrl = null,
+        private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
     ) {
     }
 

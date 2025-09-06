@@ -29,13 +29,13 @@ final class DateTimeFilter implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $eq = null,
-       private readonly ?string $ne = null,
-       private readonly ?string $between = null,
-       private readonly ?string $gt = null,
-       private readonly ?string $gte = null,
-       private readonly ?string $lt = null,
-       private readonly ?string $lte = null,
+        private readonly ?string $eq = null,
+        private readonly ?string $ne = null,
+        private readonly ?string $between = null,
+        private readonly ?string $gt = null,
+        private readonly ?string $gte = null,
+        private readonly ?string $lt = null,
+        private readonly ?string $lte = null,
     ) {
     }
 

@@ -24,8 +24,8 @@ final class OrganizationInvitationOwner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $displayName = null,
+        private readonly ?string $id = null,
+        private readonly ?string $displayName = null,
     ) {
     }
 

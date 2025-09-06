@@ -43,7 +43,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
     {
         return [
             'root' => '?string',
-            'operations' => 'array',
+            'operations' => '\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]',
         ];
     }
 

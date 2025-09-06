@@ -26,8 +26,8 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 
     public function __construct(
         private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
-       private readonly ?bool $canCreate = null,
-       private readonly ?string $message = null,
+        private readonly ?bool $canCreate = null,
+        private readonly ?string $message = null,
     ) {
     }
 

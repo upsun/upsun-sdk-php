@@ -40,7 +40,7 @@ final class EnvironmentType implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'attributes' => 'array',
+            'attributes' => 'string[]',
         ];
     }
 

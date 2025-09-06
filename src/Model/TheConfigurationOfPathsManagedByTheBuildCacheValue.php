@@ -47,7 +47,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     {
         return [
             'directory' => '?string',
-            'watch' => 'array',
+            'watch' => 'string[]',
             'allow_stale' => 'bool',
             'share_between_apps' => 'bool',
         ];

@@ -34,18 +34,18 @@ final class Region implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $label = null,
-       private readonly ?string $zone = null,
-       private readonly ?string $selectionLabel = null,
-       private readonly ?string $projectLabel = null,
-       private readonly ?string $timezone = null,
-       private readonly ?bool $available = null,
-       private readonly ?bool $private = null,
-       private readonly ?string $endpoint = null,
-       private readonly ?\Upsun\Model\RegionProvider $provider = null,
-       private readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
-       private readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
+        private readonly ?string $id = null,
+        private readonly ?string $label = null,
+        private readonly ?string $zone = null,
+        private readonly ?string $selectionLabel = null,
+        private readonly ?string $projectLabel = null,
+        private readonly ?string $timezone = null,
+        private readonly ?bool $available = null,
+        private readonly ?bool $private = null,
+        private readonly ?string $endpoint = null,
+        private readonly ?\Upsun\Model\RegionProvider $provider = null,
+        private readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
+        private readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
     ) {
     }
 

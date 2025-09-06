@@ -41,14 +41,14 @@ final class UserProjectAccess implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $userId = null,
-       private readonly ?string $organizationId = null,
-       private readonly ?string $projectId = null,
-       private readonly ?string $projectTitle = null,
+        private readonly ?string $userId = null,
+        private readonly ?string $organizationId = null,
+        private readonly ?string $projectId = null,
+        private readonly ?string $projectTitle = null,
         private readonly ?array $permissions = [],
-       private readonly ?\DateTime $grantedAt = null,
-       private readonly ?\DateTime $updatedAt = null,
-       private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
     ) {
     }
 
@@ -69,7 +69,7 @@ final class UserProjectAccess implements JsonSerializable
             'organization_id' => '?string',
             'project_id' => '?string',
             'project_title' => '?string',
-            'permissions' => '?array',
+            'permissions' => 'string[]',
             'granted_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             '_links' => '?\Upsun\Model\TeamProjectAccessLinks',

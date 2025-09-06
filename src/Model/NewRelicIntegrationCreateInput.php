@@ -31,7 +31,7 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
         private readonly string $url,
         private readonly string $licenseKey,
         private readonly ?array $extra = [],
-       private readonly ?bool $tlsVerify = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -51,7 +51,7 @@ final class NewRelicIntegrationCreateInput implements JsonSerializable
             'type' => 'string',
             'url' => 'string',
             'license_key' => 'string',
-            'extra' => '?array',
+            'extra' => 'string[]',
             'tls_verify' => '?bool',
         ];
     }

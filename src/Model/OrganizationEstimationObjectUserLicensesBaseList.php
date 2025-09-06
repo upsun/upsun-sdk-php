@@ -24,8 +24,8 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
     ) {
     }
 

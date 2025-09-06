@@ -29,10 +29,10 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $type = null,
-       private readonly ?string $role = null,
-       private readonly ?string $title = null,
+        private readonly ?string $id = null,
+        private readonly ?string $type = null,
+        private readonly ?string $role = null,
+        private readonly ?string $title = null,
     ) {
     }
 

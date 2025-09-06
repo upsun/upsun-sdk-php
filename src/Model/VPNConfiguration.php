@@ -80,7 +80,7 @@ final class VPNConfiguration implements JsonSerializable
             'identity' => '?string',
             'second_identity' => '?string',
             'remote_identity' => '?string',
-            'remote_subnets' => 'array',
+            'remote_subnets' => 'string[]',
             'ike' => 'string',
             'esp' => 'string',
             'ikelifetime' => 'string',

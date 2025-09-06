@@ -27,9 +27,9 @@ final class UpdateTicketRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $status = null,
+        private readonly ?string $status = null,
         private readonly ?array $collaboratorIds = [],
-       private readonly ?bool $collaboratorsReplace = null,
+        private readonly ?bool $collaboratorsReplace = null,
     ) {
     }
 
@@ -47,7 +47,7 @@ final class UpdateTicketRequest implements JsonSerializable
     {
         return [
             'status' => '?string',
-            'collaborator_ids' => '?array',
+            'collaborator_ids' => 'string[]',
             'collaborators_replace' => '?bool',
         ];
     }

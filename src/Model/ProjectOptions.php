@@ -27,11 +27,11 @@ final class ProjectOptions implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
-       private readonly ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
+        private readonly ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
+        private readonly ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
         private readonly ?array $regions = [],
         private readonly ?array $plans = [],
-       private readonly ?object $billing = null,
+        private readonly ?object $billing = null,
     ) {
     }
 
@@ -50,8 +50,8 @@ final class ProjectOptions implements JsonSerializable
         return [
             'defaults' => '?\Upsun\Model\ProjectOptionsDefaults',
             'enforced' => '?\Upsun\Model\ProjectOptionsEnforced',
-            'regions' => '?array',
-            'plans' => '?array',
+            'regions' => 'string[]',
+            'plans' => 'string[]',
             'billing' => '?object',
         ];
     }

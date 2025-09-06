@@ -25,7 +25,7 @@ final class ListRegions200Response implements JsonSerializable
 
     public function __construct(
         private readonly ?array $regions = [],
-       private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
@@ -42,7 +42,7 @@ final class ListRegions200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'regions' => '?array',
+            'regions' => '\Upsun\Model\Region[]',
             '_links' => '?\Upsun\Model\ListLinks',
         ];
     }

@@ -73,7 +73,7 @@ final class Backup implements JsonSerializable
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'id' => 'string',
-            'attributes' => 'array',
+            'attributes' => 'string[]',
             'status' => 'string',
             'expires_at' => '?\DateTime',
             'index' => '?int',

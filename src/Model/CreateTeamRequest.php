@@ -46,7 +46,7 @@ final class CreateTeamRequest implements JsonSerializable
         return [
             'organization_id' => 'string',
             'label' => 'string',
-            'project_permissions' => '?array',
+            'project_permissions' => 'string[]',
         ];
     }
 

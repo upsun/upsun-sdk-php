@@ -25,9 +25,9 @@ final class ListLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\LinkSelf $self = null,
-       private readonly ?\Upsun\Model\LinkPrevious $previous = null,
-       private readonly ?\Upsun\Model\LinkNext $next = null,
+        private readonly ?\Upsun\Model\LinkSelf $self = null,
+        private readonly ?\Upsun\Model\LinkPrevious $previous = null,
+        private readonly ?\Upsun\Model\LinkNext $next = null,
     ) {
     }
 

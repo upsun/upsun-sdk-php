@@ -25,8 +25,8 @@ final class GoogleSSOConfig implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $providerType = null,
-       private readonly ?string $domain = null,
+        private readonly ?string $providerType = null,
+        private readonly ?string $domain = null,
     ) {
     }
 

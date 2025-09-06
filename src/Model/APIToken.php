@@ -30,12 +30,12 @@ final class APIToken implements JsonSerializable
 
     public function __construct(
         private readonly ?\DateTime $lastUsedAt = null,
-       private readonly ?string $id = null,
-       private readonly ?string $name = null,
-       private readonly ?bool $mfaOnCreation = null,
-       private readonly ?string $token = null,
-       private readonly ?\DateTime $createdAt = null,
-       private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $id = null,
+        private readonly ?string $name = null,
+        private readonly ?bool $mfaOnCreation = null,
+        private readonly ?string $token = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 

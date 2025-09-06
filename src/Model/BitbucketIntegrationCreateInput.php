@@ -40,12 +40,12 @@ final class BitbucketIntegrationCreateInput implements JsonSerializable
         private readonly string $repository,
         private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
         private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
-       private readonly ?bool $fetchBranches = null,
-       private readonly ?bool $pruneBranches = null,
-       private readonly ?string $environmentInitResources = null,
-       private readonly ?bool $buildPullRequests = null,
-       private readonly ?bool $pullRequestsCloneParentData = null,
-       private readonly ?bool $resyncPullRequests = null,
+        private readonly ?bool $fetchBranches = null,
+        private readonly ?bool $pruneBranches = null,
+        private readonly ?string $environmentInitResources = null,
+        private readonly ?bool $buildPullRequests = null,
+        private readonly ?bool $pullRequestsCloneParentData = null,
+        private readonly ?bool $resyncPullRequests = null,
     ) {
     }
 

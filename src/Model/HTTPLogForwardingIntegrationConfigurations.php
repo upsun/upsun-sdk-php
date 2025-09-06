@@ -24,8 +24,8 @@ final class HTTPLogForwardingIntegrationConfigurations implements JsonSerializab
     ];
 
     public function __construct(
-       private readonly ?bool $enabled = null,
-       private readonly ?string $role = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?string $role = null,
     ) {
     }
 

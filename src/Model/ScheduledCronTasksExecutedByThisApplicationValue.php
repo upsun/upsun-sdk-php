@@ -31,7 +31,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         private readonly \Upsun\Model\TheCommandsDefinition $commands,
         private readonly int $timeout,
         private readonly ?int $shutdownTimeout = null,
-       private readonly ?string $cmd = null,
+        private readonly ?string $cmd = null,
     ) {
     }
 

@@ -31,7 +31,7 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
         private readonly string $url,
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
-       private readonly ?bool $tlsVerify = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -50,8 +50,8 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
         return [
             'type' => 'string',
             'url' => 'string',
-            'extra' => '?array',
-            'headers' => '?array',
+            'extra' => 'string[]',
+            'headers' => 'string[]',
             'tls_verify' => '?bool',
         ];
     }

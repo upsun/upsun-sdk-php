@@ -43,7 +43,7 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     {
         return [
             'enabled' => 'bool',
-            'ignored_rules' => 'array',
+            'ignored_rules' => 'string[]',
         ];
     }
 

@@ -25,9 +25,9 @@ final class TeamProjectAccessLinks implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
-       private readonly ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
-       private readonly ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
+        private readonly ?\Upsun\Model\TeamProjectAccessLinksSelf $self = null,
+        private readonly ?\Upsun\Model\TeamProjectAccessLinksUpdate $update = null,
+        private readonly ?\Upsun\Model\TeamProjectAccessLinksDelete $delete = null,
     ) {
     }
 

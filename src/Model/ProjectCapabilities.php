@@ -39,11 +39,11 @@ final class ProjectCapabilities implements JsonSerializable
         private readonly int $instanceLimit,
         private readonly \Upsun\Model\BuildResources $buildResources,
         private readonly \Upsun\Model\DataRetention $dataRetention,
-       private readonly ?\Upsun\Model\CustomDomains $customDomains = null,
-       private readonly ?\Upsun\Model\SourceOperations $sourceOperations = null,
-       private readonly ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
-       private readonly ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
-       private readonly ?\Upsun\Model\Integrations $integrations = null,
+        private readonly ?\Upsun\Model\CustomDomains $customDomains = null,
+        private readonly ?\Upsun\Model\SourceOperations $sourceOperations = null,
+        private readonly ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
+        private readonly ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
+        private readonly ?\Upsun\Model\Integrations $integrations = null,
     ) {
     }
 
@@ -62,7 +62,7 @@ final class ProjectCapabilities implements JsonSerializable
         return [
             'metrics' => '\Upsun\Model\Metrics',
             'logs_forwarding' => '\Upsun\Model\LogsForwarding',
-            'images' => 'array',
+            'images' => 'array&lt;string,\Upsun\Model\ImagesValueValue&gt;[]',
             'instance_limit' => 'int',
             'build_resources' => '\Upsun\Model\BuildResources',
             'data_retention' => '\Upsun\Model\DataRetention',

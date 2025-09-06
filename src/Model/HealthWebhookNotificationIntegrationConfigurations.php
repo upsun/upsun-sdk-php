@@ -24,8 +24,8 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
     ];
 
     public function __construct(
-       private readonly ?bool $enabled = null,
-       private readonly ?string $role = null,
+        private readonly ?bool $enabled = null,
+        private readonly ?string $role = null,
     ) {
     }
 

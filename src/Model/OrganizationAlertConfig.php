@@ -31,9 +31,9 @@ final class OrganizationAlertConfig implements JsonSerializable
         private readonly ?string $lastAlertAt = null,
         private readonly ?string $updatedAt = null,
         private readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
-       private readonly ?string $id = null,
-       private readonly ?bool $active = null,
-       private readonly ?float $alertsSent = null,
+        private readonly ?string $id = null,
+        private readonly ?bool $active = null,
+        private readonly ?float $alertsSent = null,
     ) {
     }
 

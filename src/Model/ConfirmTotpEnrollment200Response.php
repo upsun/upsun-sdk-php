@@ -40,7 +40,7 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
     public static function openAPITypes()
     {
         return [
-            'recovery_codes' => '?array',
+            'recovery_codes' => 'string[]',
         ];
     }
 

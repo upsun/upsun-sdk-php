@@ -28,12 +28,12 @@ final class TicketJiraInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $id = null,
-       private readonly ?int $ticketId = null,
-       private readonly ?int $issueId = null,
-       private readonly ?string $issueKey = null,
-       private readonly ?float $createdAt = null,
-       private readonly ?float $updatedAt = null,
+        private readonly ?int $id = null,
+        private readonly ?int $ticketId = null,
+        private readonly ?int $issueId = null,
+        private readonly ?string $issueKey = null,
+        private readonly ?float $createdAt = null,
+        private readonly ?float $updatedAt = null,
     ) {
     }
 

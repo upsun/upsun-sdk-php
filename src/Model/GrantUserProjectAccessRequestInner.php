@@ -54,7 +54,7 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     {
         return [
             'project_id' => 'string',
-            'permissions' => 'array',
+            'permissions' => 'string[]',
         ];
     }
 

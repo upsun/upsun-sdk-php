@@ -25,9 +25,9 @@ final class OwnerInfo implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $type = null,
-       private readonly ?string $username = null,
-       private readonly ?string $displayName = null,
+        private readonly ?string $type = null,
+        private readonly ?string $username = null,
+        private readonly ?string $displayName = null,
     ) {
     }
 

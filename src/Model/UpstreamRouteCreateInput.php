@@ -41,10 +41,10 @@ final class UpstreamRouteCreateInput implements JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?array $attributes = [],
-       private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-       private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
-       private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
-       private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
+        private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
+        private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
+        private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
     ) {
     }
 
@@ -66,7 +66,7 @@ final class UpstreamRouteCreateInput implements JsonSerializable
             'primary' => '?bool',
             'id' => '?string',
             'production_url' => '?string',
-            'attributes' => '?array',
+            'attributes' => 'string[]',
             'tls' => '?\Upsun\Model\TLSSettingsForTheRoute1',
             'cache' => '?\Upsun\Model\CacheConfiguration1',
             'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',

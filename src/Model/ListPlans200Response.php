@@ -25,9 +25,9 @@ final class ListPlans200Response implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $count = null,
+        private readonly ?int $count = null,
         private readonly ?array $plans = [],
-       private readonly ?\Upsun\Model\HalLinks $links = null,
+        private readonly ?\Upsun\Model\HalLinks $links = null,
     ) {
     }
 
@@ -45,7 +45,7 @@ final class ListPlans200Response implements JsonSerializable
     {
         return [
             'count' => '?int',
-            'plans' => '?array',
+            'plans' => '\Upsun\Model\Plan[]',
             '_links' => '?\Upsun\Model\HalLinks',
         ];
     }

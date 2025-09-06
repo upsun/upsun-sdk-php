@@ -43,7 +43,7 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
     {
         return [
             'active_docroot' => '?string',
-            'docroot_versions' => '?array',
+            'docroot_versions' => 'string[]',
         ];
     }
 

@@ -25,9 +25,9 @@ final class UpdateOrgRequest implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $name = null,
-       private readonly ?string $label = null,
-       private readonly ?string $country = null,
+        private readonly ?string $name = null,
+        private readonly ?string $label = null,
+        private readonly ?string $country = null,
     ) {
     }
 

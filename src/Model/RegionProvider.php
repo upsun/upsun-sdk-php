@@ -24,8 +24,8 @@ final class RegionProvider implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $name = null,
-       private readonly ?string $logo = null,
+        private readonly ?string $name = null,
+        private readonly ?string $logo = null,
     ) {
     }
 

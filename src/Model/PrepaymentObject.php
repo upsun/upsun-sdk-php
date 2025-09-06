@@ -23,7 +23,7 @@ final class PrepaymentObject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
+        private readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
     ) {
     }
 

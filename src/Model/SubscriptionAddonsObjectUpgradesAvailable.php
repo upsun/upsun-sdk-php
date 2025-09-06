@@ -42,8 +42,8 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
     public static function openAPITypes()
     {
         return [
-            'continuous_profiling' => '?array',
-            'project_support_level' => '?array',
+            'continuous_profiling' => 'string[]',
+            'project_support_level' => 'string[]',
         ];
     }
 

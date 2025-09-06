@@ -24,8 +24,8 @@ final class TeamCounts implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?int $memberCount = null,
-       private readonly ?int $projectCount = null,
+        private readonly ?int $memberCount = null,
+        private readonly ?int $projectCount = null,
     ) {
     }
 

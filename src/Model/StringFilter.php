@@ -30,14 +30,14 @@ final class StringFilter implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $eq = null,
-       private readonly ?string $ne = null,
-       private readonly ?string $in = null,
-       private readonly ?string $nin = null,
-       private readonly ?string $between = null,
-       private readonly ?string $contains = null,
-       private readonly ?string $starts = null,
-       private readonly ?string $ends = null,
+        private readonly ?string $eq = null,
+        private readonly ?string $ne = null,
+        private readonly ?string $in = null,
+        private readonly ?string $nin = null,
+        private readonly ?string $between = null,
+        private readonly ?string $contains = null,
+        private readonly ?string $starts = null,
+        private readonly ?string $ends = null,
     ) {
     }
 

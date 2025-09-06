@@ -26,10 +26,10 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $label = null,
-       private readonly ?string $shortDescription = null,
-       private readonly ?string $description = null,
+        private readonly ?string $id = null,
+        private readonly ?string $label = null,
+        private readonly ?string $shortDescription = null,
+        private readonly ?string $description = null,
     ) {
     }
 

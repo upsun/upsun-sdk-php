@@ -55,7 +55,7 @@ final class Commit implements JsonSerializable
             'committer' => '\Upsun\Model\TheInformationAboutTheCommitter',
             'message' => 'string',
             'tree' => 'string',
-            'parents' => 'array',
+            'parents' => 'string[]',
         ];
     }
 

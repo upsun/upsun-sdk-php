@@ -30,10 +30,10 @@ final class CreateProjectInviteRequest implements JsonSerializable
 
     public function __construct(
         private readonly string $email,
-       private readonly ?string $role = null,
+        private readonly ?string $role = null,
         private readonly ?array $permissions = [],
         private readonly ?array $environments = [],
-       private readonly ?bool $force = null,
+        private readonly ?bool $force = null,
     ) {
     }
 
@@ -52,8 +52,8 @@ final class CreateProjectInviteRequest implements JsonSerializable
         return [
             'email' => 'string',
             'role' => '?string',
-            'permissions' => '?array',
-            'environments' => '?array',
+            'permissions' => '\Upsun\Model\CreateProjectInviteRequestPermissionsInner[]',
+            'environments' => '\Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]',
             'force' => '?bool',
         ];
     }

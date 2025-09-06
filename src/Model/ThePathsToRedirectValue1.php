@@ -36,8 +36,8 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
         private readonly ?bool $prefix = null,
         private readonly ?bool $appendSuffix = null,
         private readonly ?string $expires = null,
-       private readonly ?bool $regexp = null,
-       private readonly ?int $code = null,
+        private readonly ?bool $regexp = null,
+        private readonly ?int $code = null,
     ) {
     }
 

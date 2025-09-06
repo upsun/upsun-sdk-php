@@ -26,10 +26,10 @@ final class LineItemComponent implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?float $amount = null,
-       private readonly ?string $amountFormatted = null,
-       private readonly ?string $displayTitle = null,
-       private readonly ?string $currency = null,
+        private readonly ?float $amount = null,
+        private readonly ?string $amountFormatted = null,
+        private readonly ?string $displayTitle = null,
+        private readonly ?string $currency = null,
     ) {
     }
 

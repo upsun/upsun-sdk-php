@@ -41,14 +41,14 @@ final class SyslogIntegrationPatch implements JsonSerializable
     public function __construct(
         private readonly string $type,
         private readonly ?array $extra = [],
-       private readonly ?string $host = null,
-       private readonly ?int $port = null,
-       private readonly ?string $protocol = null,
-       private readonly ?int $facility = null,
-       private readonly ?string $messageFormat = null,
-       private readonly ?string $authToken = null,
-       private readonly ?string $authMode = null,
-       private readonly ?bool $tlsVerify = null,
+        private readonly ?string $host = null,
+        private readonly ?int $port = null,
+        private readonly ?string $protocol = null,
+        private readonly ?int $facility = null,
+        private readonly ?string $messageFormat = null,
+        private readonly ?string $authToken = null,
+        private readonly ?string $authMode = null,
+        private readonly ?bool $tlsVerify = null,
     ) {
     }
 
@@ -66,7 +66,7 @@ final class SyslogIntegrationPatch implements JsonSerializable
     {
         return [
             'type' => 'string',
-            'extra' => '?array',
+            'extra' => 'string[]',
             'host' => '?string',
             'port' => '?int',
             'protocol' => '?string',

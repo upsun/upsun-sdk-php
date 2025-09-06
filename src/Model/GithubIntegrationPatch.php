@@ -41,13 +41,13 @@ final class GithubIntegrationPatch implements JsonSerializable
         private readonly string $token,
         private readonly string $repository,
         private readonly ?string $baseUrl = null,
-       private readonly ?bool $fetchBranches = null,
-       private readonly ?bool $pruneBranches = null,
-       private readonly ?string $environmentInitResources = null,
-       private readonly ?bool $buildPullRequests = null,
-       private readonly ?bool $buildDraftPullRequests = null,
-       private readonly ?bool $buildPullRequestsPostMerge = null,
-       private readonly ?bool $pullRequestsCloneParentData = null,
+        private readonly ?bool $fetchBranches = null,
+        private readonly ?bool $pruneBranches = null,
+        private readonly ?string $environmentInitResources = null,
+        private readonly ?bool $buildPullRequests = null,
+        private readonly ?bool $buildDraftPullRequests = null,
+        private readonly ?bool $buildPullRequestsPostMerge = null,
+        private readonly ?bool $pullRequestsCloneParentData = null,
     ) {
     }
 

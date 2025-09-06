@@ -29,13 +29,13 @@ final class OrganizationEstimationObject implements JsonSerializable
     ];
 
     public function __construct(
-       private readonly ?string $total = null,
-       private readonly ?string $subTotal = null,
-       private readonly ?string $vouchers = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
-       private readonly ?string $userManagement = null,
-       private readonly ?string $supportLevel = null,
-       private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+        private readonly ?string $total = null,
+        private readonly ?string $subTotal = null,
+        private readonly ?string $vouchers = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
+        private readonly ?string $userManagement = null,
+        private readonly ?string $supportLevel = null,
+        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
 

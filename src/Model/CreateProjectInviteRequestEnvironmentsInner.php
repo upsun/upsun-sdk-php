@@ -27,8 +27,8 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
     ];
 
     public function __construct(
-       private readonly ?string $id = null,
-       private readonly ?string $role = null,
+        private readonly ?string $id = null,
+        private readonly ?string $role = null,
     ) {
     }
 
