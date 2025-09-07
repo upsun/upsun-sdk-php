@@ -33,15 +33,11 @@ Retrieves the current user, determined from the used access token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 
 try {
@@ -62,7 +58,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -90,15 +86,11 @@ Retrieve information about the currently logged-in user (the user associated wit
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 
 try {
@@ -119,7 +111,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -147,15 +139,11 @@ Find out if the current logged in user requires phone verification to create pro
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 
 try {
@@ -176,7 +164,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -204,15 +192,11 @@ Find out if the current logged in user requires verification (phone or staff) to
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 
 try {
@@ -233,7 +217,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -247,7 +231,7 @@ This endpoint does not need any parameter.
 ## `getUser()`
 
 ```php
-getUser($user_id): \Upsun\Model\User
+getUser($userId): \Upsun\Model\User
 ```
 
 Get a user
@@ -261,20 +245,16 @@ Retrieves the specified user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->getUser($user_id);
+    $result = $apiInstance->getUser($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->getUser: ', $e->getMessage(), PHP_EOL;
@@ -285,7 +265,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -293,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -321,15 +301,11 @@ Retrieves a user matching the specified email address.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $email = hello@example.com; // string | The user's email address.
 
@@ -353,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -381,15 +357,11 @@ Retrieves a user matching the specified username.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $username = platform-sh; // string | The user's username.
 
@@ -413,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -427,7 +399,7 @@ Name | Type | Description  | Notes
 ## `resetEmailAddress()`
 
 ```php
-resetEmailAddress($user_id, $reset_email_address_request)
+resetEmailAddress($userId, $resetEmailAddressRequest)
 ```
 
 Reset email address
@@ -441,21 +413,17 @@ Requests a reset of the user's email address. A confirmation email will be sent 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$reset_email_address_request = new \Upsun\Model\ResetEmailAddressRequest(); // \Upsun\Model\ResetEmailAddressRequest | 
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$resetEmailAddressRequest = new \Upsun\Model\ResetEmailAddressRequest(); // \Upsun\Model\ResetEmailAddressRequest | 
 
 try {
-    $apiInstance->resetEmailAddress($user_id, $reset_email_address_request);
+    $apiInstance->resetEmailAddress($userId, $resetEmailAddressRequest);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->resetEmailAddress: ', $e->getMessage(), PHP_EOL;
 }
@@ -465,8 +433,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **reset_email_address_request** | [**\Upsun\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **resetEmailAddressRequest** | [**\Upsun\Model\ResetEmailAddressRequest**](../Model/ResetEmailAddressRequest.md)|  | [optional]
 
 ### Return type
 
@@ -474,7 +442,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -488,7 +456,7 @@ void (empty response body)
 ## `resetPassword()`
 
 ```php
-resetPassword($user_id)
+resetPassword($userId)
 ```
 
 Reset user password
@@ -502,20 +470,16 @@ Requests a reset of the user's password. A password reset email will be sent to 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $apiInstance->resetPassword($user_id);
+    $apiInstance->resetPassword($userId);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->resetPassword: ', $e->getMessage(), PHP_EOL;
 }
@@ -525,7 +489,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -533,7 +497,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -547,7 +511,7 @@ void (empty response body)
 ## `updateUser()`
 
 ```php
-updateUser($user_id, $update_user_request): \Upsun\Model\User
+updateUser($userId, $updateUserRequest): \Upsun\Model\User
 ```
 
 Update a user
@@ -561,21 +525,17 @@ Updates the specified user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\UsersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$update_user_request = new \Upsun\Model\UpdateUserRequest(); // \Upsun\Model\UpdateUserRequest
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$updateUserRequest = new \Upsun\Model\UpdateUserRequest(); // \Upsun\Model\UpdateUserRequest
 
 try {
-    $result = $apiInstance->updateUser($user_id, $update_user_request);
+    $result = $apiInstance->updateUser($userId, $updateUserRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->updateUser: ', $e->getMessage(), PHP_EOL;
@@ -586,8 +546,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **update_user_request** | [**\Upsun\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **updateUserRequest** | [**\Upsun\Model\UpdateUserRequest**](../Model/UpdateUserRequest.md)|  | [optional]
 
 ### Return type
 
@@ -595,7 +555,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

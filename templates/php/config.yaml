@@ -1,0 +1,45 @@
+generatorName: php
+inputSpec: ./schema/openapispec-platformsh-xreturn.json
+outputDir: .
+packageName: upsun-client
+templateDir: ./templates/php
+library: psr-18
+generateSupportingFiles: true
+
+additionalProperties:
+  invokerPackage: Upsun
+  apiPackage: Api
+  modelPackage: Model
+  srcBasePath: src
+  testBasePath: tests
+  composerVendor: upsun
+  composerProject: upsun-sdk-php
+  licenseName: Apache-2.0
+  composerPackageName: upsun/upsun-sdk-php
+  artifactUrl: https://github.com/upsun/upsun-sdk-php
+  developerOrganization: Upsun
+  developerOrganizationUrl: https://www.upsun.com
+  appDescription: The official **Upsun SDK for PHP**. This SDK provides a PHP interface that maps to the Upsun CLI commands. For more information, read [the documentation](https://docs.upsun.com).
+  escapedInvokerPackage: "Upsun\\"
+  coreTestPath: ./tests/Core
+  generateInterfaces: true
+  projectName: Upsun SDK PHP
+  authorizationUrl: https://auth.upsun.com/oauth2/token
+  basicUser: "platform-api-user"
+  variableNamingConvention: "camelCase"
+  parameterNamingConvention: "camelCase"
+  propertyNamingConvention: "camelCase"
+  enumPropertyNaming: "camelCase"
+  modelPropertyNaming: "camelCase"
+  generateEnums: true
+  enumClassPrefix: true
+  sortModelPropertiesByRequiredFlag: true
+files:
+  abstract_api.mustache:
+    templateType: SupportingFiles
+    destinationFilename: AbstractApi.php
+    folder: src/Api
+  oauth_provider.mustache:
+    templateType: SupportingFiles
+    destinationFilename: OAuthProvider.php
+    folder: src/Core

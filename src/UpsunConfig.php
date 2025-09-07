@@ -2,7 +2,17 @@
 
 namespace Upsun;
 
-class UpsunConfig
+/**
+ * Upsun Configuration class.
+ *
+ * Holds the default API and authentication endpoints, as well as the API token
+ * used for authenticating with the Upsun API.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
+final class UpsunConfig
 {
     public function __construct(
         public readonly string $base_url = "https://api.upsun.com",

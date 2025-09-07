@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
@@ -9,6 +10,13 @@ use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\UpsunClient;
 
+/**
+ * ActivityTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class ActivityTask extends TaskBase
 {
     public function __construct(
@@ -22,11 +30,10 @@ class ActivityTask extends TaskBase
     /**
      * Cancels a project (or environment) activity
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancel(string $projectId, string $activityId, ?string $environmentId = null): AcceptedResponse
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->prjApi->actionProjectsActivitiesCancel($projectId, $activityId);
         } else {
@@ -41,11 +48,10 @@ class ActivityTask extends TaskBase
     /**
      * Gets a project (or environment) activity log entry
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $activityId, ?string $environmentId = null): Activity
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->prjApi->getProjectsActivities($projectId, $activityId);
         } else {
@@ -56,11 +62,12 @@ class ActivityTask extends TaskBase
     /**
      * Gets project (or environment) activity log
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Activity[]
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->prjApi->listProjectsActivities($projectId);
         } else {

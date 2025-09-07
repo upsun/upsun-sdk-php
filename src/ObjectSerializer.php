@@ -1,32 +1,10 @@
 <?php
-/**
- * ObjectSerializer
- *
- * PHP version 8.1
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
-
-/**
- * Platform.sh Rest API
- *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
- */
 
 namespace Upsun;
+
+use DateTime;
+use ReflectionClass;
+use ReflectionProperty;
 
 use GuzzleHttp\Psr7\Utils;
 use Upsun\Model\ModelInterface;
@@ -41,15 +19,12 @@ use Upsun\Model\ModelInterface;
  */
 class ObjectSerializer
 {
-    /** @var string */
-    private static $dateTimeFormat = \DateTime::ATOM;
+    private static string $dateTimeFormat = \DateTime::ATOM;
 
     /**
      * Change the date format
-     *
-     * @param string $format   the new date format to use
      */
-    public static function setDateTimeFormat($format)
+    public static function setDateTimeFormat(string $format): void
     {
         self::$dateTimeFormat = $format;
     }
@@ -63,7 +38,7 @@ class ObjectSerializer
      *
      * @return scalar|object|array|null serialized form of $data
      */
-    public static function sanitizeForSerialization($data, $type = null, $format = null)
+    public static function sanitizeForSerialization(mixed $data, ?string $type = null, ?string $format = null)
     {
         if (is_scalar($data) || null === $data) {
             return $data;
@@ -94,16 +69,19 @@ class ObjectSerializer
                             $allowedEnumTypes = $callable();
                             if (!in_array($value, $allowedEnumTypes, true)) {
                                 $imploded = implode("', '", $allowedEnumTypes);
-                                throw new \InvalidArgumentException("Invalid value for enum '$openAPIType', must be one of: '$imploded'");
+                                throw new \InvalidArgumentException(
+                                    "Invalid value for enum '$openAPIType', must be one of: '$imploded'"
+                                );
                             }
                         }
                     }
                     if (($data::isNullable($property) && $data->isNullableSetToNull($property)) || $value !== null) {
-                        $values[$data::attributeMap()[$property]] = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
+                        $values[$data::attributeMap()[$property]]
+                            = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
                     }
                 }
             } else {
-                foreach($data as $property => $value) {
+                foreach ($data as $property => $value) {
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
@@ -297,7 +275,10 @@ class ObjectSerializer
      */
     public static function convertBoolToQueryStringFormat(bool $value)
     {
-        if (Configuration::BOOLEAN_FORMAT_STRING == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()) {
+        if (
+            Configuration::BOOLEAN_FORMAT_STRING 
+            == Configuration::getDefaultConfiguration()->getBooleanFormatForQueryString()
+        ) {
             return $value ? 'true' : 'false';
         }
 
@@ -382,156 +363,223 @@ class ObjectSerializer
     }
 
     /**
-     * Deserialize a JSON string into an object
-     *
-     * @param mixed    $data          object or primitive to be deserialized
-     * @param string   $class         class name is passed as a string
-     * @param string[]|null $httpHeaders   HTTP headers
-     *
-     * @return object|array|null a single or an array of $class instances
+     * Simple deserializer for new models with parameterized constructors
      */
-    public static function deserialize($data, $class, $httpHeaders = null)
+    private static function deserializeSimplifiedModel($data, string $class)
     {
         if (null === $data) {
             return null;
         }
+    
+        if (!class_exists($class)) {
+            throw new \InvalidArgumentException("Class {$class} does not exist");
+        }
+    
+        if (substr($class, -2) === '[]') {
+            $subClass = substr($class, 0, -2);
+            if (!is_array($data)) {
+                throw new \InvalidArgumentException("Data must be an array to deserialize into {$class}");
+            }
+            return array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), $data);
+        }
+    
+        $reflectionClass = new \ReflectionClass($class);
+        $constructor = $reflectionClass->getConstructor();
+    
+        if (!$constructor) {
+            return new $class(); // no-arg constructor
+        }
+    
+        $args = [];
+        foreach ($constructor->getParameters() as $param) {
+            $paramName = $param->getName();
+            $paramType = $param->getType();
+            $allowsNull = $paramType?->allowsNull() ?? true;
+    
+            $jsonKey = $paramName; // fallback
+            if (method_exists($class, 'attributeMap')) {
+                $attributeMap = $class::attributeMap();
+                $jsonKey = $attributeMap[$paramName] ?? $paramName;
+            }
+            $value = null;
+            if (is_object($data)) {
+                $value = $data->{$jsonKey} ?? $data->{$paramName} ?? null;
+            } elseif (is_array($data)) {
+                $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
+            }
 
-        if (strcasecmp(substr($class, -2), '[]') === 0) {
-            $data = is_string($data) ? json_decode($data) : $data;
+            if ($value instanceof \stdClass && $paramType?->getName() === 'array') {
+                $value = (array) $value;
+            }
+
+            if ($value === null && $paramType?->allowsNull()) {
+                $args[] = null;
+                continue;
+            }
+
+            if ($value === null && $param->isDefaultValueAvailable()) {
+                $value = $param->getDefaultValue();
+            }
+
+            if ($value === null && $paramType && $paramType->getName() === 'array') {
+                $value = [];
+            }
+
+            if ($paramType) {
+                $typeName = $paramType->getName();
+
+                if ($paramType && $paramType->getName() === 'array' && $value !== null && is_array($value)) {
+                    if (method_exists($class, 'openAPITypes')) {
+                        $types = $class::openAPITypes();
+        
+                        if (isset($types[$paramName]) && str_ends_with($types[$paramName], '[]')) {
+                            $itemClass = substr($types[$paramName], 0, -2); // Enlever []
+        
+                            if (class_exists($itemClass)) {
+                                $args[] = array_map(function($item) use ($itemClass) {
+                                    return self::deserializeSimplifiedModel($item, $itemClass);
+                                }, $value);
+                                continue;
+                            }
+                        }
+                    }
+                    
+                    // Fallback si pas de métadonnées
+                    $args[] = $value ?? [];
+                }
+
+                
+                if (substr($typeName, -2) === '[]') {
+                    $subClass = substr($typeName, 0, -2);
+                    $args[] = $value !== null
+                        ? array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), (array)$value)
+                        : [];
+                    continue;
+                }
+    
+                if ($paramType->isBuiltin()) {
+                    switch ($typeName) {
+                        case 'string': $args[] = $value !== null ? (string)$value : null; break;
+                        case 'int':    $args[] = $value !== null ? (int)$value : null; break;
+                        case 'float':  $args[] = $value !== null ? (float)$value : null; break;
+                        case 'bool':   $args[] = $value !== null ? (bool)$value : null; break;
+                        case 'array':  break;
+                        case 'object': $args[] = $value !== null ? (object)$value : null; break;
+                        default: $args[] = $value; break;
+                    }
+                } elseif ($typeName === 'DateTime') {
+                    $args[] = $value !== null ? new \DateTime($value) : null;
+                } elseif (class_exists($typeName)) {
+                    if (is_string($value) && in_array('getAllowableEnumValues', get_class_methods($typeName))) {
+                        // Generated Enum
+                        $args[] = new $typeName($value);
+                    } else {
+                        $args[] = $value !== null ? self::deserializeSimplifiedModel($value, $typeName) : null;
+                    }
+                } else {
+                    $args[] = $value;
+                }
+            } else {
+                $args[] = $value;
+            }
+
+            if ($args[count($args)-1] === null && !$allowsNull) {
+                if (method_exists($class, 'openAPITypes')) {
+                    $types = $class::openAPITypes();
+                    var_dump('ici'. $types[$jsonKey]);
+                    if (isset($types[$jsonKey]) && str_contains($types[$jsonKey], 'null')) {
+                        continue;
+                    }
+                }
+                throw new \InvalidArgumentException("Required value '{$paramName}' missing for class {$class}");
+            }
+        }
+    
+        return new $class(...$args);
+    }
+
+
+    public static function deserialize($data, string $class, $httpHeaders = null, $discriminator = null)
+    {    
+        if ($data === null) {
+            return null;
+        }
+
+        // Handle ActivityCollection (or any Collection schema with only "items")
+        if (class_exists($class) && is_subclass_of($class, ModelInterface::class)) {
+            $types = $class::openAPITypes();
+            if (isset($types['items']) && str_ends_with($types['items'], '[]')) {
+                $subClass = substr($types['items'], 0, -2);
+                $values = [];
+                foreach ($data as $item) {
+                    $values[] = self::deserialize($item, $subClass, $httpHeaders, $discriminator);
+                }
+                return $values;
+            }
+        }
+        
+        // Handle array of models
+        if (substr($class, -2) === '[]') {
+            $subClass = substr($class, 0, -2); // remove []
+            $values = [];
 
             if (!is_array($data)) {
-                throw new \InvalidArgumentException("Invalid array '$class'");
+                throw new \InvalidArgumentException("Data must be an array to deserialize into {$class}");
             }
 
-            $subClass = substr($class, 0, -2);
-            $values = [];
-            foreach ($data as $key => $value) {
-                $values[] = self::deserialize($value, $subClass, null);
+            foreach ($data as $item) {
+                $values[] = self::deserialize($item, $subClass, $httpHeaders, $discriminator);
             }
+
             return $values;
         }
 
-        if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
-            $data = is_string($data) ? json_decode($data) : $data;
-            settype($data, 'array');
-            $inner = substr($class, 4, -1);
-            $deserialized = [];
-            if (strrpos($inner, ",") !== false) {
-                $subClass_array = explode(',', $inner, 2);
-                $subClass = $subClass_array[1];
-                foreach ($data as $key => $value) {
-                    $deserialized[$key] = self::deserialize($value, $subClass, null);
+        // Primitive types
+        switch ($class) {
+            case 'bool':
+            case 'boolean':
+                return (bool) $data;
+            case 'int':
+            case 'integer':
+                return (int) $data;
+            case 'float':
+            case 'double':
+                return (float) $data;
+            case 'string':
+            case 'byte':
+                return (string) $data;
+            case 'mixed':
+                return $data;
+            case 'array':
+                return (array) $data;
+            case 'DateTime':
+                return new \DateTime($data);
+            case 'SplFileObject':
+                $data = Utils::streamFor($data);
+
+                /** @var \Psr\Http\Message\StreamInterface $data */
+    
+                // determine file name
+                if (
+                    is_array($httpHeaders)
+                    && array_key_exists('Content-Disposition', $httpHeaders)
+                    && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
+                ) {
+                    $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
+                } else {
+                    $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
                 }
-            }
-            return $deserialized;
-        }
-
-        if ($class === 'object') {
-            settype($data, 'array');
-            return $data;
-        } elseif ($class === 'mixed') {
-            settype($data, gettype($data));
-            return $data;
-        }
-
-        if ($class === '\DateTime') {
-            // Some APIs return an invalid, empty string as a
-            // date-time property. DateTime::__construct() will return
-            // the current time for empty input which is probably not
-            // what is meant. The invalid empty string is probably to
-            // be interpreted as a missing field/value. Let's handle
-            // this graceful.
-            if (!empty($data)) {
-                try {
-                    return new \DateTime($data);
-                } catch (\Exception $exception) {
-                    // Some APIs return a date-time with too high nanosecond
-                    // precision for php's DateTime to handle.
-                    // With provided regexp 6 digits of microseconds saved
-                    return new \DateTime(self::sanitizeTimestamp($data));
+    
+                $file = fopen($filename, 'w');
+                while ($chunk = $data->read(200)) {
+                    fwrite($file, $chunk);
                 }
-            } else {
-                return null;
-            }
-        }
-
-        if ($class === '\SplFileObject') {
-            $data = Utils::streamFor($data);
-
-            /** @var \Psr\Http\Message\StreamInterface $data */
-
-            // determine file name
-            if (
-                is_array($httpHeaders)
-                && array_key_exists('Content-Disposition', $httpHeaders)
-                && preg_match('/inline; filename=[\'"]?([^\'"\s]+)[\'"]?$/i', $httpHeaders['Content-Disposition'], $match)
-            ) {
-                $filename = Configuration::getDefaultConfiguration()->getTempFolderPath() . DIRECTORY_SEPARATOR . self::sanitizeFilename($match[1]);
-            } else {
-                $filename = tempnam(Configuration::getDefaultConfiguration()->getTempFolderPath(), '');
-            }
-
-            $file = fopen($filename, 'w');
-            while ($chunk = $data->read(200)) {
-                fwrite($file, $chunk);
-            }
-            fclose($file);
-
-            return new \SplFileObject($filename, 'r');
-        }
-
-        /** @psalm-suppress ParadoxicalCondition */
-        if (in_array($class, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
-            settype($data, $class);
-            return $data;
-        }
-
-
-        if (method_exists($class, 'getAllowableEnumValues')) {
-            if (!in_array($data, $class::getAllowableEnumValues(), true)) {
-                $imploded = implode("', '", $class::getAllowableEnumValues());
-                throw new \InvalidArgumentException("Invalid value for enum '$class', must be one of: '$imploded'");
-            }
-            return $data;
-        } else {
-            $data = is_string($data) ? json_decode($data) : $data;
-
-            if (is_array($data)) {
-                $data = (object)$data;
-            }
-
-            // If a discriminator is defined and points to a valid subclass, use it.
-            $discriminator = $class::DISCRIMINATOR;
-            if (!empty($discriminator) && isset($data->{$discriminator}) && is_string($data->{$discriminator})) {
-                $subclass = '\Upsun\Model\\' . $data->{$discriminator};
-                if (is_subclass_of($subclass, $class)) {
-                    $class = $subclass;
-                }
-            }
-
-            /** @var ModelInterface $instance */
-            $instance = new $class();
-            foreach ($instance::openAPITypes() as $property => $type) {
-                $propertySetter = $instance::setters()[$property];
-
-                if (!isset($propertySetter)) {
-                    continue;
-                }
-
-                if (!isset($data->{$instance::attributeMap()[$property]})) {
-                    if ($instance::isNullable($property)) {
-                        $instance->$propertySetter(null);
-                    }
-
-                    continue;
-                }
-
-                if (isset($data->{$instance::attributeMap()[$property]})) {
-                    $propertyValue = $data->{$instance::attributeMap()[$property]};
-                    $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
-                }
-            }
-            return $instance;
+                fclose($file);
+    
+                return new \SplFileObject($filename, 'r');
+            default:
+                // Nested model
+                return self::deserializeSimplifiedModel($data, $class);
         }
     }
 
@@ -544,11 +592,6 @@ class ObjectSerializer
     *
     * The function is copied from https://github.com/guzzle/psr7/blob/a243f80a1ca7fe8ceed4deee17f12c1930efe662/src/Query.php#L59-L112
     * with a modification which is described in https://github.com/guzzle/psr7/pull/603
-    *
-    * @param array     $params              Query string parameters.
-    * @param int|false $encoding            Set to false to not encode, PHP_QUERY_RFC3986
-    *                                       to encode using RFC3986, or PHP_QUERY_RFC1738
-    *                                       to encode using RFC1738.
     */
     public static function buildQuery(array $params, $encoding = PHP_QUERY_RFC3986): string
     {
@@ -595,5 +638,16 @@ class ObjectSerializer
         }
 
         return $qs ? (string) substr($qs, 0, -1) : '';
+    }
+    
+    private static function guessItemClass(string $parentClass, string $paramName): ?string 
+    {
+        if (preg_match('/List(\w+)200Response$/', $parentClass, $matches)) {
+            $modelName = $matches[1];
+            $singular = rtrim($modelName, 's');
+            return "\\Upsun\\Model\\{$singular}";
+        }
+        
+        return null;
     }
 }

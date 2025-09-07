@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **type** | **string** |  |
 **channel** | **string** |  |
 

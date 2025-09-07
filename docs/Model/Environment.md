@@ -4,37 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **name** | **string** |  |
-**machine_name** | **string** |  |
+**machineName** | **string** |  |
 **title** | **string** |  |
 **attributes** | **array<string,string>** |  |
 **type** | **string** |  |
 **parent** | **string** |  |
-**default_domain** | **string** |  |
-**has_domains** | **bool** |  |
-**clone_parent_on_create** | **bool** |  |
-**deployment_target** | **string** |  |
-**is_pr** | **bool** |  |
-**has_remote** | **bool** |  |
+**hasDomains** | **bool** |  |
+**cloneParentOnCreate** | **bool** |  |
+**deploymentTarget** | **string** |  |
+**isPr** | **bool** |  |
+**hasRemote** | **bool** |  |
 **status** | **string** |  |
-**http_access** | [**\Upsun\Model\HttpAccessPermissions**](HttpAccessPermissions.md) |  |
-**enable_smtp** | **bool** |  |
-**restrict_robots** | **bool** |  |
-**edge_hostname** | **string** |  |
-**deployment_state** | [**\Upsun\Model\TheEnvironmentDeploymentState**](TheEnvironmentDeploymentState.md) |  |
-**resources_overrides** | [**array<string,\Upsun\Model\ResourcesOverridesValue>**](ResourcesOverridesValue.md) |  |
-**max_instance_count** | **int** |  |
-**last_active_at** | **\DateTime** |  |
-**last_backup_at** | **\DateTime** |  |
+**httpAccess** | [**\Upsun\Model\HttpAccessPermissions**](HttpAccessPermissions.md) |  |
+**enableSmtp** | **bool** |  |
+**restrictRobots** | **bool** |  |
+**edgeHostname** | **string** |  |
+**deploymentState** | [**\Upsun\Model\TheEnvironmentDeploymentState**](TheEnvironmentDeploymentState.md) |  |
+**resourcesOverrides** | [**array<string,\Upsun\Model\ResourcesOverridesValue>**](ResourcesOverridesValue.md) |  |
+**maxInstanceCount** | **int** |  |
+**lastActiveAt** | **\DateTime** |  |
+**lastBackupAt** | **\DateTime** |  |
 **project** | **string** |  |
-**is_main** | **bool** |  |
-**is_dirty** | **bool** |  |
-**has_code** | **bool** |  |
-**head_commit** | **string** |  |
-**merge_info** | [**\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments**](TheCommitDistanceInfoBetweenParentAndChildEnvironments.md) |  |
-**has_deployment** | **bool** |  |
-**supports_restrict_robots** | **bool** |  |
+**isMain** | **bool** |  |
+**isDirty** | **bool** |  |
+**hasCode** | **bool** |  |
+**headCommit** | **string** |  |
+**mergeInfo** | [**\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments**](TheCommitDistanceInfoBetweenParentAndChildEnvironments.md) |  |
+**hasDeployment** | **bool** |  |
+**supportsRestrictRobots** | **bool** |  |
+**defaultDomain** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

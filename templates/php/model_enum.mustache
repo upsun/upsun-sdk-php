@@ -1,0 +1,71 @@
+final class {{classname}} implements JsonSerializable
+{
+    /**
+     * Possible values of this enum
+     */
+    {{#allowableValues}}
+    {{#enumVars}}
+    {{#enumDescription}}
+    /**
+     * {{enumDescription}}
+     */
+    {{/enumDescription}}
+    public const {{{name}}} = {{{value}}};
+
+    {{/enumVars}}
+    {{/allowableValues}}
+
+    private string $value;
+
+    /**
+     * Constructor
+     *
+     * @param string $value one of the allowable enum values
+     * @throws \InvalidArgumentException if value is not allowed
+     */
+    public function __construct(string $value)
+    {
+        if (!in_array($value, self::getAllowableEnumValues(), true)) {
+            throw new \InvalidArgumentException("Invalid value '{$value}' for enum {{classname}}");
+        }
+        $this->value = $value;
+    }
+
+    /**
+     * Get the enum value
+     *
+     * @return string
+     */
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public static function getAllowableEnumValues(): array
+    {
+        return [
+{{#allowableValues}}
+            {{#enumVars}}
+            self::{{{name}}}{{^-last}},
+            {{/-last}}
+            {{/enumVars}}
+{{/allowableValues}}        
+
+        ];
+    }
+
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+}

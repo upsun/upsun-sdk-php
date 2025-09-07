@@ -19,7 +19,7 @@ Method | HTTP request | Description
 ## `canCreateNewOrgSubscription()`
 
 ```php
-canCreateNewOrgSubscription($organization_id): \Upsun\Model\CanCreateNewOrgSubscription200Response
+canCreateNewOrgSubscription($organizationId): \Upsun\Model\CanCreateNewOrgSubscription200Response
 ```
 
 Checks if the user is able to create a new project.
@@ -31,20 +31,16 @@ Checks if the user is able to create a new project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
 
 try {
-    $result = $apiInstance->canCreateNewOrgSubscription($organization_id);
+    $result = $apiInstance->canCreateNewOrgSubscription($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->canCreateNewOrgSubscription: ', $e->getMessage(), PHP_EOL;
@@ -55,7 +51,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
+ **organizationId** | **string**| The ID of the organization. |
 
 ### Return type
 
@@ -63,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -77,7 +73,7 @@ Name | Type | Description  | Notes
 ## `createOrgSubscription()`
 
 ```php
-createOrgSubscription($organization_id, $create_org_subscription_request): \Upsun\Model\Subscription
+createOrgSubscription($organizationId, $createOrgSubscriptionRequest): \Upsun\Model\Subscription
 ```
 
 Create subscription
@@ -91,21 +87,17 @@ Creates a subscription for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$create_org_subscription_request = new \Upsun\Model\CreateOrgSubscriptionRequest(); // \Upsun\Model\CreateOrgSubscriptionRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$createOrgSubscriptionRequest = new \Upsun\Model\CreateOrgSubscriptionRequest(); // \Upsun\Model\CreateOrgSubscriptionRequest
 
 try {
-    $result = $apiInstance->createOrgSubscription($organization_id, $create_org_subscription_request);
+    $result = $apiInstance->createOrgSubscription($organizationId, $createOrgSubscriptionRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->createOrgSubscription: ', $e->getMessage(), PHP_EOL;
@@ -116,8 +108,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **create_org_subscription_request** | [**\Upsun\Model\CreateOrgSubscriptionRequest**](../Model/CreateOrgSubscriptionRequest.md)|  |
+ **organizationId** | **string**| The ID of the organization. |
+ **createOrgSubscriptionRequest** | [**\Upsun\Model\CreateOrgSubscriptionRequest**](../Model/CreateOrgSubscriptionRequest.md)|  |
 
 ### Return type
 
@@ -125,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -139,7 +131,7 @@ Name | Type | Description  | Notes
 ## `deleteOrgSubscription()`
 
 ```php
-deleteOrgSubscription($organization_id, $subscription_id)
+deleteOrgSubscription($organizationId, $subscriptionId)
 ```
 
 Delete subscription
@@ -153,21 +145,17 @@ Deletes a subscription for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription.
 
 try {
-    $apiInstance->deleteOrgSubscription($organization_id, $subscription_id);
+    $apiInstance->deleteOrgSubscription($organizationId, $subscriptionId);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->deleteOrgSubscription: ', $e->getMessage(), PHP_EOL;
 }
@@ -177,8 +165,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **subscription_id** | **string**| The ID of the subscription. |
+ **organizationId** | **string**| The ID of the organization. |
+ **subscriptionId** | **string**| The ID of the subscription. |
 
 ### Return type
 
@@ -186,7 +174,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -200,7 +188,7 @@ void (empty response body)
 ## `estimateNewOrgSubscription()`
 
 ```php
-estimateNewOrgSubscription($organization_id, $plan, $environments, $storage, $user_licenses, $format): \Upsun\Model\EstimationObject
+estimateNewOrgSubscription($organizationId, $plan, $environments, $storage, $userLicenses, $format): \Upsun\Model\EstimationObject
 ```
 
 Estimate the price of a new subscription
@@ -212,25 +200,21 @@ Estimate the price of a new subscription
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
 $plan = 'plan_example'; // string | The plan type of the subscription.
 $environments = 56; // int | The maximum number of environments which can be provisioned on the project.
 $storage = 56; // int | The total storage available to each environment, in MiB.
-$user_licenses = 56; // int | The number of user licenses.
+$userLicenses = 56; // int | The number of user licenses.
 $format = 'format_example'; // string | The format of the estimation output.
 
 try {
-    $result = $apiInstance->estimateNewOrgSubscription($organization_id, $plan, $environments, $storage, $user_licenses, $format);
+    $result = $apiInstance->estimateNewOrgSubscription($organizationId, $plan, $environments, $storage, $userLicenses, $format);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->estimateNewOrgSubscription: ', $e->getMessage(), PHP_EOL;
@@ -241,11 +225,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
+ **organizationId** | **string**| The ID of the organization. |
  **plan** | **string**| The plan type of the subscription. |
  **environments** | **int**| The maximum number of environments which can be provisioned on the project. |
  **storage** | **int**| The total storage available to each environment, in MiB. |
- **user_licenses** | **int**| The number of user licenses. |
+ **userLicenses** | **int**| The number of user licenses. |
  **format** | **string**| The format of the estimation output. | [optional]
 
 ### Return type
@@ -254,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -268,7 +252,7 @@ Name | Type | Description  | Notes
 ## `estimateOrgSubscription()`
 
 ```php
-estimateOrgSubscription($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format): \Upsun\Model\EstimationObject
+estimateOrgSubscription($organizationId, $subscriptionId, $plan, $environments, $storage, $userLicenses, $format): \Upsun\Model\EstimationObject
 ```
 
 Estimate the price of a subscription
@@ -280,26 +264,22 @@ Estimate the price of a subscription
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription.
 $plan = 'plan_example'; // string | The plan type of the subscription.
 $environments = 56; // int | The maximum number of environments which can be provisioned on the project.
 $storage = 56; // int | The total storage available to each environment, in MiB.
-$user_licenses = 56; // int | The number of user licenses.
+$userLicenses = 56; // int | The number of user licenses.
 $format = 'format_example'; // string | The format of the estimation output.
 
 try {
-    $result = $apiInstance->estimateOrgSubscription($organization_id, $subscription_id, $plan, $environments, $storage, $user_licenses, $format);
+    $result = $apiInstance->estimateOrgSubscription($organizationId, $subscriptionId, $plan, $environments, $storage, $userLicenses, $format);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->estimateOrgSubscription: ', $e->getMessage(), PHP_EOL;
@@ -310,12 +290,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **subscription_id** | **string**| The ID of the subscription. |
+ **organizationId** | **string**| The ID of the organization. |
+ **subscriptionId** | **string**| The ID of the subscription. |
  **plan** | **string**| The plan type of the subscription. |
  **environments** | **int**| The maximum number of environments which can be provisioned on the project. | [optional]
  **storage** | **int**| The total storage available to each environment, in MiB. | [optional]
- **user_licenses** | **int**| The number of user licenses. | [optional]
+ **userLicenses** | **int**| The number of user licenses. | [optional]
  **format** | **string**| The format of the estimation output. | [optional]
 
 ### Return type
@@ -324,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -338,7 +318,7 @@ Name | Type | Description  | Notes
 ## `getOrgSubscription()`
 
 ```php
-getOrgSubscription($organization_id, $subscription_id): \Upsun\Model\Subscription
+getOrgSubscription($organizationId, $subscriptionId): \Upsun\Model\Subscription
 ```
 
 Get subscription
@@ -352,21 +332,17 @@ Retrieves a subscription for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription.
 
 try {
-    $result = $apiInstance->getOrgSubscription($organization_id, $subscription_id);
+    $result = $apiInstance->getOrgSubscription($organizationId, $subscriptionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->getOrgSubscription: ', $e->getMessage(), PHP_EOL;
@@ -377,8 +353,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **subscription_id** | **string**| The ID of the subscription. |
+ **organizationId** | **string**| The ID of the organization. |
+ **subscriptionId** | **string**| The ID of the subscription. |
 
 ### Return type
 
@@ -386,7 +362,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -400,7 +376,7 @@ Name | Type | Description  | Notes
 ## `getOrgSubscriptionCurrentUsage()`
 
 ```php
-getOrgSubscriptionCurrentUsage($organization_id, $subscription_id, $usage_groups, $include_not_charged): \Upsun\Model\SubscriptionCurrentUsageObject
+getOrgSubscriptionCurrentUsage($organizationId, $subscriptionId, $usageGroups, $includeNotCharged): \Upsun\Model\SubscriptionCurrentUsageObject
 ```
 
 Get current usage for a subscription
@@ -412,23 +388,19 @@ Get current usage for a subscription
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
-$usage_groups = 'usage_groups_example'; // string | A list of usage groups to retrieve current usage for.
-$include_not_charged = True; // bool | Whether to include not charged usage groups.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription.
+$usageGroups = 'usageGroups_example'; // string | A list of usage groups to retrieve current usage for.
+$includeNotCharged = True; // bool | Whether to include not charged usage groups.
 
 try {
-    $result = $apiInstance->getOrgSubscriptionCurrentUsage($organization_id, $subscription_id, $usage_groups, $include_not_charged);
+    $result = $apiInstance->getOrgSubscriptionCurrentUsage($organizationId, $subscriptionId, $usageGroups, $includeNotCharged);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->getOrgSubscriptionCurrentUsage: ', $e->getMessage(), PHP_EOL;
@@ -439,10 +411,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **subscription_id** | **string**| The ID of the subscription. |
- **usage_groups** | **string**| A list of usage groups to retrieve current usage for. | [optional]
- **include_not_charged** | **bool**| Whether to include not charged usage groups. | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **subscriptionId** | **string**| The ID of the subscription. |
+ **usageGroups** | **string**| A list of usage groups to retrieve current usage for. | [optional]
+ **includeNotCharged** | **bool**| Whether to include not charged usage groups. | [optional]
 
 ### Return type
 
@@ -450,7 +422,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -464,7 +436,7 @@ Name | Type | Description  | Notes
 ## `listOrgSubscriptions()`
 
 ```php
-listOrgSubscriptions($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort): \Upsun\Model\ListOrgSubscriptions200Response
+listOrgSubscriptions($organizationId, $filterStatus, $filterId, $filterProjectId, $filterProjectTitle, $filterRegion, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListOrgSubscriptions200Response
 ```
 
 List subscriptions
@@ -478,30 +450,26 @@ Retrieves subscriptions for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$filter_status = 'filter_status_example'; // string | The status of the subscription.
-$filter_id = 'filter_id_example'; // string | Machine name of the region.
-$filter_project_id = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `project_id` using one or more operators.
-$filter_project_title = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `project_title` using one or more operators.
-$filter_region = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `region` using one or more operators.
-$filter_updated_at = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | Allows filtering by `updated_at` using one or more operators.
-$page_size = 56; // int | Determines the number of items to show.
-$page_before = 'page_before_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-$page_after = 'page_after_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$filterStatus = 'filterStatus_example'; // string | The status of the subscription.
+$filterId = 'filterId_example'; // string | Machine name of the region.
+$filterProjectId = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `project_id` using one or more operators.
+$filterProjectTitle = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `project_title` using one or more operators.
+$filterRegion = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `region` using one or more operators.
+$filterUpdatedAt = new \Upsun\Model\\Upsun\Model\DateTimeFilter(); // \Upsun\Model\DateTimeFilter | Allows filtering by `updated_at` using one or more operators.
+$pageSize = 56; // int | Determines the number of items to show.
+$pageBefore = 'pageBefore_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
 $sort = -updated_at; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `region`, `project_title`, `type`, `plan`, `status`, `created_at`, `updated_at`.
 
 try {
-    $result = $apiInstance->listOrgSubscriptions($organization_id, $filter_status, $filter_id, $filter_project_id, $filter_project_title, $filter_region, $filter_updated_at, $page_size, $page_before, $page_after, $sort);
+    $result = $apiInstance->listOrgSubscriptions($organizationId, $filterStatus, $filterId, $filterProjectId, $filterProjectTitle, $filterRegion, $filterUpdatedAt, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->listOrgSubscriptions: ', $e->getMessage(), PHP_EOL;
@@ -512,16 +480,16 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **filter_status** | **string**| The status of the subscription. | [optional]
- **filter_id** | **string**| Machine name of the region. | [optional]
- **filter_project_id** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_id&#x60; using one or more operators. | [optional]
- **filter_project_title** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_title&#x60; using one or more operators. | [optional]
- **filter_region** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;region&#x60; using one or more operators. | [optional]
- **filter_updated_at** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
- **page_size** | **int**| Determines the number of items to show. | [optional]
- **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **filterStatus** | **string**| The status of the subscription. | [optional]
+ **filterId** | **string**| Machine name of the region. | [optional]
+ **filterProjectId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_id&#x60; using one or more operators. | [optional]
+ **filterProjectTitle** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;project_title&#x60; using one or more operators. | [optional]
+ **filterRegion** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;region&#x60; using one or more operators. | [optional]
+ **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
+ **pageSize** | **int**| Determines the number of items to show. | [optional]
+ **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
  **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;region&#x60;, &#x60;project_title&#x60;, &#x60;type&#x60;, &#x60;plan&#x60;, &#x60;status&#x60;, &#x60;created_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
@@ -530,7 +498,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -544,7 +512,7 @@ Name | Type | Description  | Notes
 ## `listSubscriptionAddons()`
 
 ```php
-listSubscriptionAddons($organization_id, $subscription_id): \Upsun\Model\SubscriptionAddonsObject
+listSubscriptionAddons($organizationId, $subscriptionId): \Upsun\Model\SubscriptionAddonsObject
 ```
 
 List addons for a subscription
@@ -556,21 +524,17 @@ List addons for a subscription
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription.
 
 try {
-    $result = $apiInstance->listSubscriptionAddons($organization_id, $subscription_id);
+    $result = $apiInstance->listSubscriptionAddons($organizationId, $subscriptionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->listSubscriptionAddons: ', $e->getMessage(), PHP_EOL;
@@ -581,8 +545,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **subscription_id** | **string**| The ID of the subscription. |
+ **organizationId** | **string**| The ID of the organization. |
+ **subscriptionId** | **string**| The ID of the subscription. |
 
 ### Return type
 
@@ -590,7 +554,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -604,7 +568,7 @@ Name | Type | Description  | Notes
 ## `updateOrgSubscription()`
 
 ```php
-updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request): \Upsun\Model\Subscription
+updateOrgSubscription($organizationId, $subscriptionId, $updateOrgSubscriptionRequest): \Upsun\Model\Subscription
 ```
 
 Update subscription
@@ -618,22 +582,18 @@ Updates a subscription for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SubscriptionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription.
-$update_org_subscription_request = new \Upsun\Model\UpdateOrgSubscriptionRequest(); // \Upsun\Model\UpdateOrgSubscriptionRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription.
+$updateOrgSubscriptionRequest = new \Upsun\Model\UpdateOrgSubscriptionRequest(); // \Upsun\Model\UpdateOrgSubscriptionRequest
 
 try {
-    $result = $apiInstance->updateOrgSubscription($organization_id, $subscription_id, $update_org_subscription_request);
+    $result = $apiInstance->updateOrgSubscription($organizationId, $subscriptionId, $updateOrgSubscriptionRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SubscriptionsApi->updateOrgSubscription: ', $e->getMessage(), PHP_EOL;
@@ -644,9 +604,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **subscription_id** | **string**| The ID of the subscription. |
- **update_org_subscription_request** | [**\Upsun\Model\UpdateOrgSubscriptionRequest**](../Model/UpdateOrgSubscriptionRequest.md)|  | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **subscriptionId** | **string**| The ID of the subscription. |
+ **updateOrgSubscriptionRequest** | [**\Upsun\Model\UpdateOrgSubscriptionRequest**](../Model/UpdateOrgSubscriptionRequest.md)|  | [optional]
 
 ### Return type
 
@@ -654,7 +614,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

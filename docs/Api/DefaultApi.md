@@ -10,7 +10,7 @@ Method | HTTP request | Description
 ## `listTickets()`
 
 ```php
-listTickets($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page): \Upsun\Model\ListTickets200Response
+listTickets($filterTicketId, $filterCreated, $filterUpdated, $filterType, $filterPriority, $filterStatus, $filterRequesterId, $filterSubmitterId, $filterAssigneeId, $filterHasIncidents, $filterDue, $search, $page): \Upsun\Model\ListTickets200Response
 ```
 
 List support tickets
@@ -22,32 +22,28 @@ List support tickets
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\DefaultApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$filter_ticket_id = 56; // int | The ID of the ticket.
-$filter_created = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | ISO dateformat expected. The time when the support ticket was created.
-$filter_updated = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | ISO dateformat expected. The time when the support ticket was updated.
-$filter_type = 'filter_type_example'; // string | The type of the support ticket.
-$filter_priority = 'filter_priority_example'; // string | The priority of the support ticket.
-$filter_status = 'filter_status_example'; // string | The status of the support ticket.
-$filter_requester_id = 'filter_requester_id_example'; // string | UUID of the ticket requester. Converted from the ZID value.
-$filter_submitter_id = 'filter_submitter_id_example'; // string | UUID of the ticket submitter. Converted from the ZID value.
-$filter_assignee_id = 'filter_assignee_id_example'; // string | UUID of the ticket assignee. Converted from the ZID value.
-$filter_has_incidents = True; // bool | Whether or not this ticket has incidents.
-$filter_due = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | ISO dateformat expected. A time that the ticket is due at.
+$filterTicketId = 56; // int | The ID of the ticket.
+$filterCreated = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | ISO dateformat expected. The time when the support ticket was created.
+$filterUpdated = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | ISO dateformat expected. The time when the support ticket was updated.
+$filterType = 'filterType_example'; // string | The type of the support ticket.
+$filterPriority = 'filterPriority_example'; // string | The priority of the support ticket.
+$filterStatus = 'filterStatus_example'; // string | The status of the support ticket.
+$filterRequesterId = 'filterRequesterId_example'; // string | UUID of the ticket requester. Converted from the ZID value.
+$filterSubmitterId = 'filterSubmitterId_example'; // string | UUID of the ticket submitter. Converted from the ZID value.
+$filterAssigneeId = 'filterAssigneeId_example'; // string | UUID of the ticket assignee. Converted from the ZID value.
+$filterHasIncidents = True; // bool | Whether or not this ticket has incidents.
+$filterDue = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | ISO dateformat expected. A time that the ticket is due at.
 $search = 'search_example'; // string | Search string for the ticket subject and description.
 $page = 56; // int | Page to be displayed. Defaults to 1.
 
 try {
-    $result = $apiInstance->listTickets($filter_ticket_id, $filter_created, $filter_updated, $filter_type, $filter_priority, $filter_status, $filter_requester_id, $filter_submitter_id, $filter_assignee_id, $filter_has_incidents, $filter_due, $search, $page);
+    $result = $apiInstance->listTickets($filterTicketId, $filterCreated, $filterUpdated, $filterType, $filterPriority, $filterStatus, $filterRequesterId, $filterSubmitterId, $filterAssigneeId, $filterHasIncidents, $filterDue, $search, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DefaultApi->listTickets: ', $e->getMessage(), PHP_EOL;
@@ -58,17 +54,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter_ticket_id** | **int**| The ID of the ticket. | [optional]
- **filter_created** | **\DateTime**| ISO dateformat expected. The time when the support ticket was created. | [optional]
- **filter_updated** | **\DateTime**| ISO dateformat expected. The time when the support ticket was updated. | [optional]
- **filter_type** | **string**| The type of the support ticket. | [optional]
- **filter_priority** | **string**| The priority of the support ticket. | [optional]
- **filter_status** | **string**| The status of the support ticket. | [optional]
- **filter_requester_id** | **string**| UUID of the ticket requester. Converted from the ZID value. | [optional]
- **filter_submitter_id** | **string**| UUID of the ticket submitter. Converted from the ZID value. | [optional]
- **filter_assignee_id** | **string**| UUID of the ticket assignee. Converted from the ZID value. | [optional]
- **filter_has_incidents** | **bool**| Whether or not this ticket has incidents. | [optional]
- **filter_due** | **\DateTime**| ISO dateformat expected. A time that the ticket is due at. | [optional]
+ **filterTicketId** | **int**| The ID of the ticket. | [optional]
+ **filterCreated** | **\DateTime**| ISO dateformat expected. The time when the support ticket was created. | [optional]
+ **filterUpdated** | **\DateTime**| ISO dateformat expected. The time when the support ticket was updated. | [optional]
+ **filterType** | **string**| The type of the support ticket. | [optional]
+ **filterPriority** | **string**| The priority of the support ticket. | [optional]
+ **filterStatus** | **string**| The status of the support ticket. | [optional]
+ **filterRequesterId** | **string**| UUID of the ticket requester. Converted from the ZID value. | [optional]
+ **filterSubmitterId** | **string**| UUID of the ticket submitter. Converted from the ZID value. | [optional]
+ **filterAssigneeId** | **string**| UUID of the ticket assignee. Converted from the ZID value. | [optional]
+ **filterHasIncidents** | **bool**| Whether or not this ticket has incidents. | [optional]
+ **filterDue** | **\DateTime**| ISO dateformat expected. A time that the ticket is due at. | [optional]
  **search** | **string**| Search string for the ticket subject and description. | [optional]
  **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
 
@@ -78,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

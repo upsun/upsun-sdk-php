@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `listProjectsEnvironmentsSourceOperations()`
 
 ```php
-listProjectsEnvironmentsSourceOperations($project_id, $environment_id): \Upsun\Model\EnvironmentSourceOperation[]
+listProjectsEnvironmentsSourceOperations($projectId, $environmentId): \Upsun\Model\EnvironmentSourceOperation[]
 ```
 
 List source operations
@@ -25,21 +25,17 @@ Lists all the source operations, defined in `.platform.app.yaml`, that are avail
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SourceOperationsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsSourceOperations($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsSourceOperations($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SourceOperationsApi->listProjectsEnvironmentsSourceOperations: ', $e->getMessage(), PHP_EOL;
@@ -50,8 +46,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -59,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -73,7 +69,7 @@ Name | Type | Description  | Notes
 ## `runSourceOperation()`
 
 ```php
-runSourceOperation($project_id, $environment_id, $environment_source_operation_input): \Upsun\Model\AcceptedResponse
+runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput): \Upsun\Model\AcceptedResponse
 ```
 
 Trigger a source operation
@@ -87,22 +83,18 @@ This endpoint triggers a source code operation as defined in the `source.operati
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SourceOperationsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_source_operation_input = new \Upsun\Model\EnvironmentSourceOperationInput(); // \Upsun\Model\EnvironmentSourceOperationInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentSourceOperationInput = new \Upsun\Model\EnvironmentSourceOperationInput(); // \Upsun\Model\EnvironmentSourceOperationInput | 
 
 try {
-    $result = $apiInstance->runSourceOperation($project_id, $environment_id, $environment_source_operation_input);
+    $result = $apiInstance->runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SourceOperationsApi->runSourceOperation: ', $e->getMessage(), PHP_EOL;
@@ -113,9 +105,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_source_operation_input** | [**\Upsun\Model\EnvironmentSourceOperationInput**](../Model/EnvironmentSourceOperationInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentSourceOperationInput** | [**\Upsun\Model\EnvironmentSourceOperationInput**](../Model/EnvironmentSourceOperationInput.md)|  |
 
 ### Return type
 
@@ -123,7 +115,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

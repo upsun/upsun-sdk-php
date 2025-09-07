@@ -6,22 +6,22 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
 **name** | **string** |  |
-**deploy_host** | **string** |  |
-**deploy_port** | **int** |  |
-**ssh_host** | **string** |  |
+**deployHost** | **string** |  |
+**deployPort** | **int** |  |
+**sshHost** | **string** |  |
 **hosts** | [**\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]**](TheHostsOfTheDeploymentTargetInner.md) |  |
-**auto_mounts** | **bool** |  |
-**excluded_mounts** | **string[]** |  |
-**enforced_mounts** | **object** |  |
-**auto_crons** | **bool** |  |
-**auto_nginx** | **bool** |  |
-**maintenance_mode** | **bool** |  |
-**guardrails_phase** | **int** |  |
+**autoMounts** | **bool** |  |
+**excludedMounts** | **string[]** |  |
+**enforcedMounts** | **object** |  |
+**autoCrons** | **bool** |  |
+**autoNginx** | **bool** |  |
+**maintenanceMode** | **bool** |  |
+**guardrailsPhase** | **int** |  |
 **docroots** | [**array<string,\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue>**](MappingOfClustersToEnterpriseApplicationsValue.md) |  |
-**site_urls** | **object** |  |
-**ssh_hosts** | **string[]** |  |
-**enterprise_environments_mapping** | **object** |  | [optional]
-**use_dedicated_grid** | **bool** |  |
-**storage_type** | **string** |  |
+**siteUrls** | **object** |  |
+**sshHosts** | **string[]** |  |
+**useDedicatedGrid** | **bool** |  |
+**storageType** | **string** |  |
+**enterpriseEnvironmentsMapping** | **object** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

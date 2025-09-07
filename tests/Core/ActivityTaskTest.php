@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Upsun\Core\Tasks;
+namespace Upsun\Test\Core;
 
 use GuzzleHttp\Client;
 use Upsun\ApiException;

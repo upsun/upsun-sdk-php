@@ -2,7 +2,7 @@ name: Check OpenAPI Spec Update
 
 on:
     schedule:
-        -   cron: '* 3 * * *'
+        -   cron: '0 3 * * *'
     workflow_dispatch: ~
 permissions:
     contents: write
@@ -21,17 +21,6 @@ jobs:
                 run: |
                     git config --global user.name "github-actions[bot]"
                     git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-            -   name: Install OpenAPI Generator CLI
-                run: |
-                    npm install -g @openapitools/openapi-generator-cli
-            
-            -   name: Keep existing files (removed by openapi-generator-cli generate)
-                run: |
-                    mv .gitignore .gitignore.bak
-                    mv README.md README.md.bak
-                    mv composer.json composer.json.bak
-                    mv phpunit.xml.dist phpunit.xml.dist.bak
             
             -   name: Download and patch OpenAPI spec
                 run: |
@@ -41,29 +30,22 @@ jobs:
                     echo "Patch OpenAPI spec..."
                     sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
 
-            -   name: Generate code (php)
+            -   name: Patch openapispec-platformsh.yaml (add x-<info> for better generation)
                 run: |
-                    export GIT_USER_ID=upsun
-                    export GIT_REPO_ID=upsun-sdk-go
-                    openapi-generator-cli generate \
-                      -i ./schema/openapispec-platformsh.json \
-                      -g php \
-                      -o apisgen \
-                      --additional-properties="apiPackage=.,invokerPackage=Upsun\\Client,apiPackage=Api,modelPackage=Model,srcBasePath=src" \
-                      --library="psr-18"
+                    php templates/pre-processing/preprocess_openapi.php
+            
+            -   name: Generate code (php)
+                uses: openapitools/openapi-generator-cli@v2
+                with:
+                    generator: php
+                    config-file: templates/php/config.yaml
+                    openapi-file: schema/openapispec-platformsh.json                    
 
             -   name: Remove empty phpunit tests from OpenAPI Generator 
                 run: |
                     if [ -d "./test" ]; then
                         rm -Rf "./test"
                     fi
-            -   name: Get back existing files (removed by openapi-generator-cli generate)
-                run: |
-                    mv README.md.bak README.md
-                    mv .gitignore.bak .gitignore
-                    mv composer.json.bak composer.json
-                    rm -Rf phpunit.xml.dist
-                    mv phpunit.xml.dist.bak phpunit.xml.dist
 
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6
@@ -71,14 +53,11 @@ jobs:
                     token: ${{ secrets.OPENAPI_WORKFLOW_TOKEN }}
                     commit-message: "Update OpenAPI spec"
                     body: "This PR updates the OpenAPI spec from the upstream source and applies formatting changes."
-
                     author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-                    signoff: false
                     draft: false
                     delete-branch: false
                     branch: update-openapi-spec
                     title: "[API-BOT] Update OpenAPI spec and regenerate SDK"
-
                     base: main
                     labels: |
                         report
@@ -88,6 +67,5 @@ jobs:
                         src/
                         tests/
                         docs/
-                        README-OPENAPI.md
                         
                         

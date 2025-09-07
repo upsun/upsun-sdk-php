@@ -2,8 +2,16 @@
 
 namespace Upsun\Core\Tasks;
 
+use DateTimeInterface;
 use Upsun\UpsunClient;
 
+/**
+ * TaskBase class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 abstract class TaskBase
 {
     public function __construct(
@@ -11,8 +19,21 @@ abstract class TaskBase
     ) {
     }
 
-    public function refreshToken()
+    protected function normalizeFilter(array|string|int|\DateTime|null $value): array
     {
-        $this->client->apiConfig->setAccessToken($this->client->auth->getAccessToken());
+        if ($value === null) {
+            return [];
+        }
+
+        if (is_array($value)) {
+            return $value;
+        }
+
+        if ($value instanceof \DateTime) {
+            return ['eq' => $value->format(DateTimeInterface::ATOM)];
+        }
+
+        // string or int
+        return ['eq' => (string) $value];
     }
 }

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `createApiToken()`
 
 ```php
-createApiToken($user_id, $create_api_token_request): \Upsun\Model\APIToken
+createApiToken($userId, $createApiTokenRequest): \Upsun\Model\APIToken
 ```
 
 Create an API token
@@ -27,21 +27,17 @@ Creates an API token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\APITokensApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$create_api_token_request = new \Upsun\Model\CreateApiTokenRequest(); // \Upsun\Model\CreateApiTokenRequest
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$createApiTokenRequest = new \Upsun\Model\CreateApiTokenRequest(); // \Upsun\Model\CreateApiTokenRequest
 
 try {
-    $result = $apiInstance->createApiToken($user_id, $create_api_token_request);
+    $result = $apiInstance->createApiToken($userId, $createApiTokenRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->createApiToken: ', $e->getMessage(), PHP_EOL;
@@ -52,8 +48,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **create_api_token_request** | [**\Upsun\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **createApiTokenRequest** | [**\Upsun\Model\CreateApiTokenRequest**](../Model/CreateApiTokenRequest.md)|  | [optional]
 
 ### Return type
 
@@ -61,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -75,7 +71,7 @@ Name | Type | Description  | Notes
 ## `deleteApiToken()`
 
 ```php
-deleteApiToken($user_id, $token_id)
+deleteApiToken($userId, $tokenId)
 ```
 
 Delete an API token
@@ -89,21 +85,17 @@ Deletes an API token
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\APITokensApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$token_id = 'token_id_example'; // string | The ID of the token.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$tokenId = 'tokenId_example'; // string | The ID of the token.
 
 try {
-    $apiInstance->deleteApiToken($user_id, $token_id);
+    $apiInstance->deleteApiToken($userId, $tokenId);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->deleteApiToken: ', $e->getMessage(), PHP_EOL;
 }
@@ -113,8 +105,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **token_id** | **string**| The ID of the token. |
+ **userId** | **string**| The ID of the user. |
+ **tokenId** | **string**| The ID of the token. |
 
 ### Return type
 
@@ -122,7 +114,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -136,7 +128,7 @@ void (empty response body)
 ## `getApiToken()`
 
 ```php
-getApiToken($user_id, $token_id): \Upsun\Model\APIToken
+getApiToken($userId, $tokenId): \Upsun\Model\APIToken
 ```
 
 Get an API token
@@ -150,21 +142,17 @@ Retrieves the specified API token.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\APITokensApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$token_id = 'token_id_example'; // string | The ID of the token.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$tokenId = 'tokenId_example'; // string | The ID of the token.
 
 try {
-    $result = $apiInstance->getApiToken($user_id, $token_id);
+    $result = $apiInstance->getApiToken($userId, $tokenId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->getApiToken: ', $e->getMessage(), PHP_EOL;
@@ -175,8 +163,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **token_id** | **string**| The ID of the token. |
+ **userId** | **string**| The ID of the user. |
+ **tokenId** | **string**| The ID of the token. |
 
 ### Return type
 
@@ -184,7 +172,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -198,7 +186,7 @@ Name | Type | Description  | Notes
 ## `listApiTokens()`
 
 ```php
-listApiTokens($user_id): \Upsun\Model\APIToken[]
+listApiTokens($userId): \Upsun\Model\APIToken[]
 ```
 
 List a user's API tokens
@@ -212,20 +200,16 @@ Retrieves a list of API tokens associated with a single user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\APITokensApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->listApiTokens($user_id);
+    $result = $apiInstance->listApiTokens($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling APITokensApi->listApiTokens: ', $e->getMessage(), PHP_EOL;
@@ -236,7 +220,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -244,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

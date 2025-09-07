@@ -1,287 +1,22 @@
 <?php
-/**
- * ServicesValue
- *
- * PHP version 8.1
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level ServicesValue (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Model;
 
-use \ArrayAccess;
-use \Upsun\ObjectSerializer;
+use ArrayAccess;
+use JsonSerializable;
 
-/**
- * ServicesValue Class Doc Comment
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
- */
-class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ServicesValue implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-
-    /**
-      * The original name of the model.
-      *
-      * @var string
-      */
-    protected static $openAPIModelName = 'Services_value';
-
-    /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
-    protected static $openAPITypes = [
-        'type' => 'string',
-        'size' => 'string',
-        'disk' => 'int',
-        'access' => 'object',
-        'configuration' => 'object',
-        'relationships' => 'array<string,string>',
-        'firewall' => '\Upsun\Model\Firewall',
-        'resources' => '\Upsun\Model\Resources',
-        'container_profile' => 'string',
-        'endpoints' => 'object'
-    ];
-
-    /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
-    protected static $openAPIFormats = [
-        'type' => null,
-        'size' => null,
-        'disk' => null,
-        'access' => null,
-        'configuration' => null,
-        'relationships' => null,
-        'firewall' => null,
-        'resources' => null,
-        'container_profile' => null,
-        'endpoints' => null
-    ];
-
-    /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
-    protected static array $openAPINullables = [
-        'type' => false,
-        'size' => false,
-        'disk' => true,
-        'access' => false,
-        'configuration' => false,
-        'relationships' => false,
-        'firewall' => true,
-        'resources' => true,
-        'container_profile' => true,
-        'endpoints' => true
-    ];
-
-    /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
-    protected array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     *
-     * @return array
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     *
-     * @return boolean[]
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     *
-     * @param boolean[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @var string[]
-     */
-    protected static $attributeMap = [
-        'type' => 'type',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'configuration' => 'configuration',
-        'relationships' => 'relationships',
-        'firewall' => 'firewall',
-        'resources' => 'resources',
-        'container_profile' => 'container_profile',
-        'endpoints' => 'endpoints'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
-     */
-    protected static $setters = [
-        'type' => 'setType',
-        'size' => 'setSize',
-        'disk' => 'setDisk',
-        'access' => 'setAccess',
-        'configuration' => 'setConfiguration',
-        'relationships' => 'setRelationships',
-        'firewall' => 'setFirewall',
-        'resources' => 'setResources',
-        'container_profile' => 'setContainerProfile',
-        'endpoints' => 'setEndpoints'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'type' => 'getType',
-        'size' => 'getSize',
-        'disk' => 'getDisk',
-        'access' => 'getAccess',
-        'configuration' => 'getConfiguration',
-        'relationships' => 'getRelationships',
-        'firewall' => 'getFirewall',
-        'resources' => 'getResources',
-        'container_profile' => 'getContainerProfile',
-        'endpoints' => 'getEndpoints'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @return array
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
     public const SIZE__2_XL = '2XL';
     public const SIZE__4_XL = '4XL';
     public const SIZE_AUTO = 'AUTO';
@@ -290,535 +25,156 @@ class ServicesValue implements ModelInterface, ArrayAccess, \JsonSerializable
     public const SIZE_S = 'S';
     public const SIZE_XL = 'XL';
 
+    private static array $attributeMap = [
+        'type' => 'type',
+        'size' => 'size',
+        'disk' => 'disk',
+        'access' => 'access',
+        'configuration' => 'configuration',
+        'relationships' => 'relationships',
+        'firewall' => 'firewall',
+        'resources' => 'resources',
+        'containerProfile' => 'container_profile',
+        'endpoints' => 'endpoints'
+    ];
+
+    public function __construct(
+        private readonly string $type,
+        private readonly string $size,
+        private readonly object $access,
+        private readonly object $configuration,
+        private readonly array $relationships,
+        private readonly ?int $disk = null,
+        private readonly ?\Upsun\Model\Firewall $firewall = null,
+        private readonly ?\Upsun\Model\Resources $resources = null,
+        private readonly ?string $containerProfile = null,
+        private readonly ?object $endpoints = null,
+    ) {
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
      */
-    public function getSizeAllowableValues()
+    public static function openAPITypes(): array
     {
         return [
-            self::SIZE__2_XL,
-            self::SIZE__4_XL,
-            self::SIZE_AUTO,
-            self::SIZE_L,
-            self::SIZE_M,
-            self::SIZE_S,
-            self::SIZE_XL,
+            'type' => 'string',
+            'size' => 'string',
+            'disk' => '?int',
+            'access' => 'object',
+            'configuration' => 'object',
+            'relationships' => 'string[]',
+            'firewall' => '?\Upsun\Model\Firewall',
+            'resources' => '?\Upsun\Model\Resources',
+            'container_profile' => '?string',
+            'endpoints' => '?object',
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(?array $data = null)
+    public function jsonSerialize(): array
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('disk', $data ?? [], null);
-        $this->setIfExists('access', $data ?? [], null);
-        $this->setIfExists('configuration', $data ?? [], null);
-        $this->setIfExists('relationships', $data ?? [], null);
-        $this->setIfExists('firewall', $data ?? [], null);
-        $this->setIfExists('resources', $data ?? [], null);
-        $this->setIfExists('container_profile', $data ?? [], null);
-        $this->setIfExists('endpoints', $data ?? [], null);
+        return [
+            'type' => $this->type,
+            'size' => $this->size,
+            'disk' => $this->disk,
+            'access' => $this->access,
+            'configuration' => $this->configuration,
+            'relationships' => $this->relationships,
+            'firewall' => $this->firewall,
+            'resources' => $this->resources,
+            'containerProfile' => $this->containerProfile,
+            'endpoints' => $this->endpoints,
+        ];
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
-    {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['size'] === null) {
-            $invalidProperties[] = "'size' can't be null";
-        }
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!is_null($this->container['size']) && !in_array($this->container['size'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'size', must be one of '%s'",
-                $this->container['size'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['disk'] === null) {
-            $invalidProperties[] = "'disk' can't be null";
-        }
-        if ($this->container['access'] === null) {
-            $invalidProperties[] = "'access' can't be null";
-        }
-        if ($this->container['configuration'] === null) {
-            $invalidProperties[] = "'configuration' can't be null";
-        }
-        if ($this->container['relationships'] === null) {
-            $invalidProperties[] = "'relationships' can't be null";
-        }
-        if ($this->container['firewall'] === null) {
-            $invalidProperties[] = "'firewall' can't be null";
-        }
-        if ($this->container['resources'] === null) {
-            $invalidProperties[] = "'resources' can't be null";
-        }
-        if ($this->container['container_profile'] === null) {
-            $invalidProperties[] = "'container_profile' can't be null";
-        }
-        if ($this->container['endpoints'] === null) {
-            $invalidProperties[] = "'endpoints' can't be null";
-        }
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets type
-     *
      * @return string
      */
-    public function getType()
+    public function getType(): string
     {
-        return $this->container['type'];
+        return $this->type;
     }
 
     /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets size
-     *
      * @return string
      */
-    public function getSize()
+    public function getSize(): string
     {
-        return $this->container['size'];
+        return $this->size;
     }
 
     /**
-     * Sets size
-     *
-     * @param string $size size
-     *
-     * @return self
+     * @return int|null
      */
-    public function setSize($size)
+    public function getDisk(): ?int
     {
-        if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
-        }
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!in_array($size, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'size', must be one of '%s'",
-                    $size,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['size'] = $size;
-
-        return $this;
+        return $this->disk;
     }
 
     /**
-     * Gets disk
-     *
-     * @return int
-     */
-    public function getDisk()
-    {
-        return $this->container['disk'];
-    }
-
-    /**
-     * Sets disk
-     *
-     * @param int $disk disk
-     *
-     * @return self
-     */
-    public function setDisk($disk)
-    {
-        if (is_null($disk)) {
-            array_push($this->openAPINullablesSetToNull, 'disk');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('disk', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['disk'] = $disk;
-
-        return $this;
-    }
-
-    /**
-     * Gets access
-     *
      * @return object
      */
-    public function getAccess()
+    public function getAccess(): object
     {
-        return $this->container['access'];
+        return $this->access;
     }
 
     /**
-     * Sets access
-     *
-     * @param object $access access
-     *
-     * @return self
-     */
-    public function setAccess($access)
-    {
-        if (is_null($access)) {
-            throw new \InvalidArgumentException('non-nullable access cannot be null');
-        }
-        $this->container['access'] = $access;
-
-        return $this;
-    }
-
-    /**
-     * Gets configuration
-     *
      * @return object
      */
-    public function getConfiguration()
+    public function getConfiguration(): object
     {
-        return $this->container['configuration'];
+        return $this->configuration;
     }
 
     /**
-     * Sets configuration
-     *
-     * @param object $configuration configuration
-     *
-     * @return self
-     */
-    public function setConfiguration($configuration)
-    {
-        if (is_null($configuration)) {
-            throw new \InvalidArgumentException('non-nullable configuration cannot be null');
-        }
-        $this->container['configuration'] = $configuration;
-
-        return $this;
-    }
-
-    /**
-     * Gets relationships
-     *
      * @return array<string,string>
      */
-    public function getRelationships()
+    public function getRelationships(): array
     {
-        return $this->container['relationships'];
+        return $this->relationships;
     }
 
     /**
-     * Sets relationships
-     *
-     * @param array<string,string> $relationships relationships
-     *
-     * @return self
+     * @return \Upsun\Model\Firewall|null
      */
-    public function setRelationships($relationships)
+    public function getFirewall(): ?\Upsun\Model\Firewall
     {
-        if (is_null($relationships)) {
-            throw new \InvalidArgumentException('non-nullable relationships cannot be null');
-        }
-        $this->container['relationships'] = $relationships;
-
-        return $this;
+        return $this->firewall;
     }
 
     /**
-     * Gets firewall
-     *
-     * @return \Upsun\Model\Firewall
+     * @return \Upsun\Model\Resources|null
      */
-    public function getFirewall()
+    public function getResources(): ?\Upsun\Model\Resources
     {
-        return $this->container['firewall'];
+        return $this->resources;
     }
 
     /**
-     * Sets firewall
-     *
-     * @param \Upsun\Model\Firewall $firewall firewall
-     *
-     * @return self
+     * @return string|null
      */
-    public function setFirewall($firewall)
+    public function getContainerProfile(): ?string
     {
-        if (is_null($firewall)) {
-            array_push($this->openAPINullablesSetToNull, 'firewall');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('firewall', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['firewall'] = $firewall;
-
-        return $this;
+        return $this->containerProfile;
     }
 
     /**
-     * Gets resources
-     *
-     * @return \Upsun\Model\Resources
+     * @return object|null
      */
-    public function getResources()
+    public function getEndpoints(): ?object
     {
-        return $this->container['resources'];
-    }
-
-    /**
-     * Sets resources
-     *
-     * @param \Upsun\Model\Resources $resources resources
-     *
-     * @return self
-     */
-    public function setResources($resources)
-    {
-        if (is_null($resources)) {
-            array_push($this->openAPINullablesSetToNull, 'resources');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('resources', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['resources'] = $resources;
-
-        return $this;
-    }
-
-    /**
-     * Gets container_profile
-     *
-     * @return string
-     */
-    public function getContainerProfile()
-    {
-        return $this->container['container_profile'];
-    }
-
-    /**
-     * Sets container_profile
-     *
-     * @param string $container_profile container_profile
-     *
-     * @return self
-     */
-    public function setContainerProfile($container_profile)
-    {
-        if (is_null($container_profile)) {
-            array_push($this->openAPINullablesSetToNull, 'container_profile');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('container_profile', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['container_profile'] = $container_profile;
-
-        return $this;
-    }
-
-    /**
-     * Gets endpoints
-     *
-     * @return object
-     */
-    public function getEndpoints()
-    {
-        return $this->container['endpoints'];
-    }
-
-    /**
-     * Sets endpoints
-     *
-     * @param object $endpoints endpoints
-     *
-     * @return self
-     */
-    public function setEndpoints($endpoints)
-    {
-        if (is_null($endpoints)) {
-            array_push($this->openAPINullablesSetToNull, 'endpoints');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('endpoints', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['endpoints'] = $endpoints;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
-     */
-    public function offsetExists($offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed|null
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
-     */
-    public function offsetSet($offset, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
-     */
-    public function offsetUnset($offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize()
-    {
-       return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return $this->endpoints;
     }
 }
-
 

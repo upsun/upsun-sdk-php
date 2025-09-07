@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **services** | [**array<string,\Upsun\Model\PerServiceResourcesOverridesValue>**](PerServiceResourcesOverridesValue.md) |  |
-**starts_at** | **\DateTime** |  |
-**ends_at** | **\DateTime** |  |
-**redeployed_start** | **bool** |  |
-**redeployed_end** | **bool** |  |
+**startsAt** | **\DateTime** |  |
+**endsAt** | **\DateTime** |  |
+**redeployedStart** | **bool** |  |
+**redeployedEnd** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

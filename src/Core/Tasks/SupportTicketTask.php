@@ -3,6 +3,7 @@
 namespace Upsun\Core\Tasks;
 
 use DateTime;
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
@@ -12,6 +13,13 @@ use Upsun\Model\Ticket;
 use Upsun\Model\UpdateTicketRequest;
 use Upsun\UpsunClient;
 
+/**
+ * SupportTicketTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class SupportTicketTask extends TaskBase
 {
     public function __construct(
@@ -25,7 +33,7 @@ class SupportTicketTask extends TaskBase
     /**
      * Lists support tickets
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(
         ?int $filterTicketId = null,
@@ -42,7 +50,6 @@ class SupportTicketTask extends TaskBase
         ?string $search = null,
         ?int $page = null
     ): ListTickets200Response {
-        $this->refreshToken();
         return $this->defaultApi->listTickets(
             $filterTicketId,
             $filterCreated,
@@ -63,46 +70,62 @@ class SupportTicketTask extends TaskBase
     /**
      * Creates a new support ticket
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array|null{
+     *     subject: string,
+     *     description: string,
+     *     requestId?: string,
+     *     priority?: string,
+     *     subscriptionId?: string,
+     *     organizationId?: string,
+     *     affectedUrl?: string,
+     *     followupTid?: string,
+     *     category?: string,
+     *     attachments?: array,
+     *     collaboratorIds?: array,
+     * } $data
      */
-    public function create(?array $createTicketRequest = null): Ticket
+    public function create(?array $data = null): Ticket
     {
-        $this->refreshToken();
-        $createTicketRequest = new CreateTicketRequest($createTicketRequest);
+        $createTicketRequest = new CreateTicketRequest(...$data);
         return $this->supportApi->createTicket($createTicketRequest);
     }
 
     /**
      * Lists support ticket categories
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listCategories(?string $projectId = null, ?string $organizationId = null): array
     {
-        $this->refreshToken();
         return $this->supportApi->listTicketCategories($projectId, $organizationId);
     }
 
     /**
      * Lists support ticket priorities
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
-        $this->refreshToken();
         return $this->supportApi->listTicketPriorities($projectId, $category);
     }
 
     /**
      * Updates a ticket
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array|null{
+     *     status?: string,
+     *     collaboratorIds?: array,
+     *     collaboratorsReplace?: bool,
+     * } $data
      */
-    public function update(string $ticket_id, ?array $updateTicketRequest = null): Ticket
+    public function update(string $ticket_id, ?array $data = null): Ticket
     {
-        $this->refreshToken();
-        $updateTicketRequest = new UpdateTicketRequest($updateTicketRequest);
+        $updateTicketRequest = new UpdateTicketRequest(...$data);
         return $this->supportApi->updateTicket($ticket_id, $updateTicketRequest);
     }
 }

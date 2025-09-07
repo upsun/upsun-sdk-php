@@ -8,11 +8,11 @@ Name | Type | Description | Notes
 **aggressive** | **string** |  |
 **modeconfig** | **string** |  |
 **authentication** | **string** |  |
-**gateway_ip** | **string** |  |
+**gatewayIp** | **string** |  |
 **identity** | **string** |  |
-**second_identity** | **string** |  |
-**remote_identity** | **string** |  |
-**remote_subnets** | **string[]** |  |
+**secondIdentity** | **string** |  |
+**remoteIdentity** | **string** |  |
+**remoteSubnets** | **string[]** |  |
 **ike** | **string** |  |
 **esp** | **string** |  |
 **ikelifetime** | **string** |  |

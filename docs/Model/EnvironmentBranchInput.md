@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **title** | **string** |  |
 **name** | **string** |  |
-**clone_parent** | **bool** |  |
+**cloneParent** | **bool** |  |
 **type** | **string** |  |
 **resources** | [**\Upsun\Model\Resources2**](Resources2.md) |  |
 

@@ -7,6 +7,6 @@ Name | Type | Description | Notes
 **certificate** | **string** |  |
 **key** | **string** |  |
 **chain** | **string[]** |  | [optional]
-**is_invalid** | **bool** |  | [optional]
+**isInvalid** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

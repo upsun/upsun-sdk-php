@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `confirmPhoneNumber()`
 
 ```php
-confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request)
+confirmPhoneNumber($sid, $userId, $confirmPhoneNumberRequest)
 ```
 
 Confirm phone number
@@ -25,22 +25,18 @@ Confirms phone number using a verification code.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\PhoneNumberApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $sid = 'sid_example'; // string | The session ID obtained from `POST /users/{user_id}/phonenumber`.
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$confirm_phone_number_request = new \Upsun\Model\ConfirmPhoneNumberRequest(); // \Upsun\Model\ConfirmPhoneNumberRequest
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$confirmPhoneNumberRequest = new \Upsun\Model\ConfirmPhoneNumberRequest(); // \Upsun\Model\ConfirmPhoneNumberRequest
 
 try {
-    $apiInstance->confirmPhoneNumber($sid, $user_id, $confirm_phone_number_request);
+    $apiInstance->confirmPhoneNumber($sid, $userId, $confirmPhoneNumberRequest);
 } catch (Exception $e) {
     echo 'Exception when calling PhoneNumberApi->confirmPhoneNumber: ', $e->getMessage(), PHP_EOL;
 }
@@ -51,8 +47,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sid** | **string**| The session ID obtained from &#x60;POST /users/{user_id}/phonenumber&#x60;. |
- **user_id** | **string**| The ID of the user. |
- **confirm_phone_number_request** | [**\Upsun\Model\ConfirmPhoneNumberRequest**](../Model/ConfirmPhoneNumberRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **confirmPhoneNumberRequest** | [**\Upsun\Model\ConfirmPhoneNumberRequest**](../Model/ConfirmPhoneNumberRequest.md)|  | [optional]
 
 ### Return type
 
@@ -60,7 +56,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -74,7 +70,7 @@ void (empty response body)
 ## `verifyPhoneNumber()`
 
 ```php
-verifyPhoneNumber($user_id, $verify_phone_number_request): \Upsun\Model\VerifyPhoneNumber200Response
+verifyPhoneNumber($userId, $verifyPhoneNumberRequest): \Upsun\Model\VerifyPhoneNumber200Response
 ```
 
 Verify phone number
@@ -88,21 +84,17 @@ Starts a phone number verification session.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\PhoneNumberApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
-$verify_phone_number_request = new \Upsun\Model\VerifyPhoneNumberRequest(); // \Upsun\Model\VerifyPhoneNumberRequest
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$verifyPhoneNumberRequest = new \Upsun\Model\VerifyPhoneNumberRequest(); // \Upsun\Model\VerifyPhoneNumberRequest
 
 try {
-    $result = $apiInstance->verifyPhoneNumber($user_id, $verify_phone_number_request);
+    $result = $apiInstance->verifyPhoneNumber($userId, $verifyPhoneNumberRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PhoneNumberApi->verifyPhoneNumber: ', $e->getMessage(), PHP_EOL;
@@ -113,8 +105,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
- **verify_phone_number_request** | [**\Upsun\Model\VerifyPhoneNumberRequest**](../Model/VerifyPhoneNumberRequest.md)|  | [optional]
+ **userId** | **string**| The ID of the user. |
+ **verifyPhoneNumberRequest** | [**\Upsun\Model\VerifyPhoneNumberRequest**](../Model/VerifyPhoneNumberRequest.md)|  | [optional]
 
 ### Return type
 
@@ -122,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

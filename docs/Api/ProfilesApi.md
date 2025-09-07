@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `getOrgAddress()`
 
 ```php
-getOrgAddress($organization_id): \Upsun\Model\Address
+getOrgAddress($organizationId): \Upsun\Model\Address
 ```
 
 Get address
@@ -27,20 +27,16 @@ Retrieves the address for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProfilesApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->getOrgAddress($organization_id);
+    $result = $apiInstance->getOrgAddress($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->getOrgAddress: ', $e->getMessage(), PHP_EOL;
@@ -51,7 +47,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -59,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -73,7 +69,7 @@ Name | Type | Description  | Notes
 ## `getOrgProfile()`
 
 ```php
-getOrgProfile($organization_id): \Upsun\Model\Profile
+getOrgProfile($organizationId): \Upsun\Model\Profile
 ```
 
 Get profile
@@ -87,20 +83,16 @@ Retrieves the profile for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProfilesApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->getOrgProfile($organization_id);
+    $result = $apiInstance->getOrgProfile($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->getOrgProfile: ', $e->getMessage(), PHP_EOL;
@@ -111,7 +103,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -119,7 +111,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -133,7 +125,7 @@ Name | Type | Description  | Notes
 ## `updateOrgAddress()`
 
 ```php
-updateOrgAddress($organization_id, $address): \Upsun\Model\Address
+updateOrgAddress($organizationId, $address): \Upsun\Model\Address
 ```
 
 Update address
@@ -147,21 +139,17 @@ Updates the address for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProfilesApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
 $address = new \Upsun\Model\Address(); // \Upsun\Model\Address
 
 try {
-    $result = $apiInstance->updateOrgAddress($organization_id, $address);
+    $result = $apiInstance->updateOrgAddress($organizationId, $address);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->updateOrgAddress: ', $e->getMessage(), PHP_EOL;
@@ -172,7 +160,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
+ **organizationId** | **string**| The ID of the organization. |
  **address** | [**\Upsun\Model\Address**](../Model/Address.md)|  | [optional]
 
 ### Return type
@@ -181,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -195,7 +183,7 @@ Name | Type | Description  | Notes
 ## `updateOrgProfile()`
 
 ```php
-updateOrgProfile($organization_id, $update_org_profile_request): \Upsun\Model\Profile
+updateOrgProfile($organizationId, $updateOrgProfileRequest): \Upsun\Model\Profile
 ```
 
 Update profile
@@ -209,21 +197,17 @@ Updates the profile for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProfilesApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$update_org_profile_request = new \Upsun\Model\UpdateOrgProfileRequest(); // \Upsun\Model\UpdateOrgProfileRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$updateOrgProfileRequest = new \Upsun\Model\UpdateOrgProfileRequest(); // \Upsun\Model\UpdateOrgProfileRequest
 
 try {
-    $result = $apiInstance->updateOrgProfile($organization_id, $update_org_profile_request);
+    $result = $apiInstance->updateOrgProfile($organizationId, $updateOrgProfileRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProfilesApi->updateOrgProfile: ', $e->getMessage(), PHP_EOL;
@@ -234,8 +218,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **update_org_profile_request** | [**\Upsun\Model\UpdateOrgProfileRequest**](../Model/UpdateOrgProfileRequest.md)|  | [optional]
+ **organizationId** | **string**| The ID of the organization. |
+ **updateOrgProfileRequest** | [**\Upsun\Model\UpdateOrgProfileRequest**](../Model/UpdateOrgProfileRequest.md)|  | [optional]
 
 ### Return type
 
@@ -243,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

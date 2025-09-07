@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `deleteLoginConnection()`
 
 ```php
-deleteLoginConnection($provider, $user_id)
+deleteLoginConnection($provider, $userId)
 ```
 
 Delete a federated login connection
@@ -26,21 +26,17 @@ Deletes the specified connection.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ConnectionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $provider = 'provider_example'; // string | The name of the federation provider.
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $apiInstance->deleteLoginConnection($provider, $user_id);
+    $apiInstance->deleteLoginConnection($provider, $userId);
 } catch (Exception $e) {
     echo 'Exception when calling ConnectionsApi->deleteLoginConnection: ', $e->getMessage(), PHP_EOL;
 }
@@ -51,7 +47,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provider** | **string**| The name of the federation provider. |
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -59,7 +55,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -73,7 +69,7 @@ void (empty response body)
 ## `getLoginConnection()`
 
 ```php
-getLoginConnection($provider, $user_id): \Upsun\Model\Connection
+getLoginConnection($provider, $userId): \Upsun\Model\Connection
 ```
 
 Get a federated login connection
@@ -87,21 +83,17 @@ Retrieves the specified connection.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ConnectionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $provider = 'provider_example'; // string | The name of the federation provider.
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->getLoginConnection($provider, $user_id);
+    $result = $apiInstance->getLoginConnection($provider, $userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConnectionsApi->getLoginConnection: ', $e->getMessage(), PHP_EOL;
@@ -113,7 +105,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provider** | **string**| The name of the federation provider. |
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -121,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -135,7 +127,7 @@ Name | Type | Description  | Notes
 ## `listLoginConnections()`
 
 ```php
-listLoginConnections($user_id): \Upsun\Model\Connection[]
+listLoginConnections($userId): \Upsun\Model\Connection[]
 ```
 
 List federated login connections
@@ -149,20 +141,16 @@ Retrieves a list of connections associated with a single user.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ConnectionsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$user_id = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
+$userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
 
 try {
-    $result = $apiInstance->listLoginConnections($user_id);
+    $result = $apiInstance->listLoginConnections($userId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ConnectionsApi->listLoginConnections: ', $e->getMessage(), PHP_EOL;
@@ -173,7 +161,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_id** | **string**| The ID of the user. |
+ **userId** | **string**| The ID of the user. |
 
 ### Return type
 
@@ -181,7 +169,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

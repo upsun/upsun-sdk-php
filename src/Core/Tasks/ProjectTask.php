@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentTargetApi;
@@ -15,6 +16,7 @@ use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Activity;
 use Upsun\Model\Blob;
+use Upsun\Model\BuildResources2;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\Certificate;
 use Upsun\Model\Commit;
@@ -23,7 +25,7 @@ use Upsun\Model\DeploymentTarget;
 use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
-use Upsun\Model\Error;
+use Upsun\Model\Environment;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
@@ -35,13 +37,24 @@ use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectPatch;
 use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\ProjectVariable;
 use Upsun\Model\Ref;
+use Upsun\Model\Subscription;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\TheAddonCredentialInformationOptional1;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
 use Upsun\Model\Tree;
 use Upsun\Model\UserProjectAccess;
 use Upsun\UpsunClient;
 
+/**
+ * ProjectTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class ProjectTask extends TaskBase
 {
     public function __construct(
@@ -61,79 +74,89 @@ class ProjectTask extends TaskBase
     /**
      * Deletes a project
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException|Exception
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function delete(string $projectId): AcceptedResponse
+    public function delete(string $organizationId, string $projectId): void
     {
-        $this->refreshToken();
-        return $this->api->deleteProjects($projectId);
+        $project = $this->get($organizationId, $projectId);
+
+        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $project->getSubscriptionId());
     }
 
     /**
      * Gets a project
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException|Exception
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $projectId): OrganizationProject
+    public function get(string $organizationId, string $projectId): OrganizationProject
     {
-        $this->refreshToken();
-        $project = $this->api->getProjects($projectId);
-        $orgId = $project->getOrganization();
-        return $this->organizationProjectsApi->getOrgProject($orgId, $projectId);
+        return $this->organizationProjectsApi->getOrgProject($organizationId, $projectId);
     }
 
     /**
      * Creates a project
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
+     *
+     * @param array{
+     *     projectRegion: string,
+     *     plan?: string,
+     *     projectTitle?: string,
+     *     optionsUrl?: string,
+     *     defaultBranch?: string,
+     *     environments?: int,
+     *     storage?: int
+     * } $projectData Update data
      */
-    public function create(string $organizationId, array $projectData): Error|OrganizationProject
+    public function create(string $organizationId, array $projectData): Subscription
     {
-        $this->refreshToken();
-        $createProjectData = new CreateOrgSubscriptionRequest($projectData);
-        $subscription = $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
-        return $this->organizationProjectsApi->getOrgProject(
-            $this->api->getProjects($subscription->getProjectId())->getOrganization(),
-            $subscription->getProjectId()
-        );
+        $createProjectData = new CreateOrgSubscriptionRequest(...$projectData);
+        return $this->subscriptionsApi->createOrgSubscription($organizationId, $createProjectData);
     }
 
     /**
      * Checks if the user is able to create a new project in the organization.
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException|Exception
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response|Error
+    public function canCreate(string $organizationId): CanCreateNewOrgSubscription200Response
     {
-        $this->refreshToken();
         return $this->subscriptionsApi->canCreateNewOrgSubscription($organizationId);
     }
 
     /**
      * Gets a project's capabilities
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException|Exception
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getCapabilities(string $projectId): ProjectCapabilities
     {
-        $this->refreshToken();
         return $this->api->getProjectsCapabilities($projectId);
     }
 
     /**
      * Updates a project
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException|Exception
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *   defaultBranch?: string,
+     *   defaultDomain?: string,
+     *   attributes?: array,
+     *   title?: string,
+     *   description?: string,
+     *   timezone?: string,
+     *   region?: string
+     * } $data
      */
-    public function update(string $projectId, array $projectData): AcceptedResponse
+    public function update(string $projectId, array $data): AcceptedResponse
     {
-        $this->refreshToken();
-        $project_patch = new ProjectPatch($projectData);
+        $project_patch = new ProjectPatch(...$data);
         return $this->api->updateProjects($projectId, $project_patch);
     }
 
@@ -141,7 +164,7 @@ class ProjectTask extends TaskBase
      * Cancels a pending invitation to a project
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancelInvite(string $projectId, string $invitationId): void
     {
@@ -152,19 +175,25 @@ class ProjectTask extends TaskBase
      * Invites user to a project by email
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     email: string,
+     *     role?: string,
+     *     permissions?: array,
+     *     environments?: bool,
+     *     force?: bool
+     * } $data
      */
-    public function createInvite(
-        string $projectId,
-        ?array $createProjectInviteRequest = null
-    ): ProjectInvitation|Error {
-        return $this->client->invitations->createProjectInvite($projectId, $createProjectInviteRequest);
+    public function createInvite(string $projectId, array $data): ProjectInvitation
+    {
+        return $this->client->invitations->createProjectInvite($projectId, $data);
     }
 
     /**
      * Lists invitations to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listInvites(
         string $projectId,
@@ -173,7 +202,7 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array {
+    ): array {
         return $this->client->invitations->listProjectInvites(
             $projectId,
             $filterState,
@@ -187,30 +216,42 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of project settings
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getSettings(string $projectId): ProjectSettings
     {
-        $this->refreshToken();
         return $this->settingsApi->getProjectsSettings($projectId);
     }
 
     /**
      * Updates a project setting
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     dataRetention?: array,
+     *     initialize: string,
+     *     cpu?: float,
+     *     memory?: int
+     * } $data
      */
-    public function updateSettings(string $projectId, array $projectSettingsPatch): AcceptedResponse
+    public function updateSettings(string $projectId, array $data): AcceptedResponse
     {
-        $this->refreshToken();
-        $projectSettingsPatch = new ProjectSettingsPatch($projectSettingsPatch);
+        $projectSettingsPatch = new ProjectSettingsPatch(
+            dataRetention: $data['dataRetention'] ?? null,
+            initialize: $data['initialize'] ?? null,
+            buildResources: $data['cpu'] || $data['memory'] ? new BuildResources2(
+                cpu: $data['cpu'] ?? null,
+                memory: $data['memory'] ?? null,
+            ) : null,
+        );
         return $this->settingsApi->updateProjectsSettings($projectId, $projectSettingsPatch);
     }
 
     /**
      * Adds a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function createVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
     {
@@ -220,7 +261,7 @@ class ProjectTask extends TaskBase
     /**
      * Deletes a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
@@ -230,7 +271,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of project variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return ProjectVariable[]
      */
     public function listVariables(string $projectId): array
     {
@@ -240,24 +283,34 @@ class ProjectTask extends TaskBase
     /**
      * Updates a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     attributes?: array,
+     *     value?: string,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     * } $data
      */
     public function updateVariable(
         string $projectId,
         string $projectVariableId,
-        array $projectVariablePatch
+        array $data
     ): AcceptedResponse {
         return $this->client->variables->updateProjectVariable(
             $projectId,
             $projectVariableId,
-            $projectVariablePatch
+            $data
         );
     }
 
     /**
      * Cancels a project activity
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
     {
@@ -267,7 +320,7 @@ class ProjectTask extends TaskBase
     /**
      * Gets a project activity log entry
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getActivity(string $projectId, string $activityId): Activity
     {
@@ -277,7 +330,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets project activity log
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Activity[]
      */
     public function listActivities(string $projectId): array
     {
@@ -287,60 +342,98 @@ class ProjectTask extends TaskBase
     /**
      * Creates a project deployment target
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     type: string,
+     *     name: string,
+     *     hosts?: array,
+     *     enforceMounts?: string,
+     *     siteUrls?: string,
+     *     sshHosts?: array,
+     *     enterpriseEnvironmentsMapping?: array,
+     *     useDedicatedGrid?: bool,
+     * } $data
      */
-    public function createDeployment(string $projectId, array $deploymentTargetCreateInput): AcceptedResponse
+    public function createDeployment(string $projectId, array $data): AcceptedResponse
     {
-        $this->refreshToken();
-        $deploymentTargetCreateInput = new DeploymentTargetCreateInput($deploymentTargetCreateInput);
+        $deploymentTargetCreateInput = new DeploymentTargetCreateInput(
+            type: $data['type'],
+            name: $data['name'],
+            hosts: $data['hosts'] ?? null,
+            enforcedMounts: (object) $data['enforceMounts'] ?? null,
+            siteUrls: (object) $data['siteUrls'] ?? null,
+            sshHosts: $data['sshHosts'] ?? null,
+            enterpriseEnvironmentsMapping: (object)$data['enterpriseEnvironmentsMapping'] ?? null,
+            useDedicatedGrid: $data['useDedicatedGrid'] ?? null,
+        );
         return $this->deploymentTargetApi->createProjectsDeployments($projectId, $deploymentTargetCreateInput);
     }
 
     /**
      * Deletes a single project deployment target
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteDeployment(string $projectId, string $deploymentTargetConfigurationId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->deploymentTargetApi->deleteProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     }
 
     /**
      * Gets a single project deployment target
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getDeployment(string $projectId, string $deploymentTargetConfigurationId): DeploymentTarget
     {
-        $this->refreshToken();
         return $this->deploymentTargetApi->getProjectsDeployments($projectId, $deploymentTargetConfigurationId);
     }
 
     /**
      * Gets project deployment target info
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return DeploymentTarget[]
      */
     public function listDeployments(string $projectId): array
     {
-        $this->refreshToken();
         return $this->deploymentTargetApi->listProjectsDeployments($projectId);
     }
 
     /**
      * Updates a project deployment
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     type: string,
+     *     name: string,
+     *     hosts?: array,
+     *     enforceMounts?: string,
+     *     siteUrls?: string,
+     *     sshHosts?: array,
+     *     enterpriseEnvironmentsMapping?: array,
+     *     useDedicatedGrid?: bool,
+     * } $data
      */
     public function updateDeployment(
         string $projectId,
         string $deploymentTargetConfigurationId,
-        array $deploymentTargetPatch
+        array $data
     ): AcceptedResponse {
-        $this->refreshToken();
-        $deploymentTargetPatch = new DeploymentTargetPatch($deploymentTargetPatch);
+        $deploymentTargetPatch = new DeploymentTargetPatch(
+            type: $data['type'],
+            name: $data['name'],
+            hosts: $data['hosts'] ?? null,
+            enforcedMounts: (object) $data['enforceMounts'] ?? null,
+            siteUrls: (object) $data['siteUrls'] ?? null,
+            sshHosts: $data['sshHosts'] ?? null,
+            enterpriseEnvironmentsMapping: (object)$data['enterpriseEnvironmentsMapping'] ?? null,
+            useDedicatedGrid: $data['useDedicatedGrid'] ?? null,
+        );
+
         return $this->deploymentTargetApi->updateProjectsDeployments(
             $projectId,
             $deploymentTargetConfigurationId,
@@ -351,44 +444,40 @@ class ProjectTask extends TaskBase
     /**
      * Gets a blob object
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getGitBlob(string $projectId, string $repositoryBlobId): Blob
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitBlobs($projectId, $repositoryBlobId);
     }
 
     /**
      * Gets a commit object
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getGitCommit(string $projectId, string $repositoryCommitId): Commit
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitCommits($projectId, $repositoryCommitId);
     }
 
     /**
      * Gets a Git ref object
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getGitRef(string $projectId, string $repositoryRefId): Ref
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitRefs($projectId, $repositoryRefId);
     }
 
     /**
      * Gets a Git tree object
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getGitTree(string $projectId, string $repositoryTreeId): Tree
     {
-        $this->refreshToken();
         return $this->repositoryApi->getProjectsGitTrees($projectId, $repositoryTreeId);
     }
 
@@ -396,93 +485,297 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of repository refs
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Ref[]
      */
     public function listGitRefs(string $projectId): array
     {
-        $this->refreshToken();
         return $this->repositoryApi->listProjectsGitRefs($projectId);
     }
 
     /**
      * Restarts the Git server
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function restartGitServer(string $projectId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->systemInfoApi->actionProjectsSystemRestart($projectId);
     }
 
     /**
      * Get information about the Git server.
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getGitInfo(string $projectId): SystemInformation
     {
-        $this->refreshToken();
         return $this->systemInfoApi->getProjectsSystem($projectId);
     }
 
     /**
      * Integrates project with a third-party service
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     type: string,
+     *     repository: string,
+     *     url: string,
+     *     username: string,
+     *     token: string,
+     *     project: string,
+     *     serviceId: string,
+     *     recipients: array,
+     *     routingKey: array,
+     *     channel: string,
+     *     licenseKey: string,
+     *     index: string,
+     *     script: string,
+     *     states: string,
+     *     pruneBranches?: bool,
+     *     environmentInitResources?: string,
+     *     appCredentials?: array{
+     *       key: string,
+     *       secret: string
+     *     },
+     *     addonCredentials?: array{
+     *       addonKey: string,
+     *       clientKey: string,
+     *       sharedSecret: string,
+     *     },
+     *     buildPullRequests?: bool,
+     *     pullRequestsCloneParentData?: bool,
+     *     resyncPullRequests?: bool,
+     *     events?: array,
+     *     environments?: array,
+     *     excludedEnvironments?: array,
+     *     state?: array,
+     *     result?: string,
+     *     baseUrl?: string,
+     *     buildDraftPullRequests?: bool,
+     *     buildPullRequestsPostMerge?: bool,
+     *     buildMergeRequests?: bool,
+     *     buildWipMergeRequests?: bool,
+     *     mergeRequestsCloneParentData?: bool,
+     *     fromAddress?: string,
+     *     sharedKey?: string,
+     *     extra?: array,
+     *     headers?: array,
+     *     tlsVerify?: bool,
+     *     sourcetype?: string,
+     *     category?: string,
+     *     host?: string,
+     *     port?: int,
+     *     protocol?: string,
+     *     facility?: int,
+     *     messageFormat?: string,
+     *     authToken?: string,
+     *     authMode?: string,
+     * } $data
      */
-    public function createIntegration(string $projectId, array $integrationCreateInput): AcceptedResponse
+    public function createIntegration(string $projectId, array $data): AcceptedResponse
     {
-        $this->refreshToken();
-        $integrationCreateInput = new IntegrationCreateInput($integrationCreateInput);
+        $integrationCreateInput = new IntegrationCreateInput(
+            type: $data['type'],
+            repository: $data['repository'],
+            url: $data['url'],
+            username: $data['username'],
+            token: $data['token'],
+            project: $data['project'],
+            serviceId: $data['serviceId'],
+            recipients: $data['recipients'],
+            routingKey: $data['routingKey'],
+            channel: $data['channel'],
+            licenseKey: $data['licenseKey'],
+            script: $data['script'],
+            index: $data['index'],
+            appCredentials: $data['appCredentials'] ?
+                new TheOAuth2ConsumerInformationOptional1(...$data['appCredentials']) : null,
+            addonCredentials: $data['addonCredentials'] ?
+                new TheAddonCredentialInformationOptional1(...$data['addonCredentials']) : null,
+            fromAddress: $data['fromAddress'] ?? null,
+            sharedKey: $data['sharedKey'] ?? null,
+            pruneBranches: $data['pruneBranches'] ?? null,
+            environmentInitResources: $data['environmentInitResources'] ?? null,
+            buildPullRequests: $data['buildPullRequests'] ?? null,
+            pullRequestsCloneParentData: $data['pullRequestsCloneParentData'] ?? null,
+            resyncPullRequests: $data['resyncPullRequests'] ?? null,
+            events: $data['events'] ?? null,
+            environments: $data['environments'] ?? null,
+            excludedEnvironments: $data['excludedEnvironments'] ?? null,
+            states: $data['state'] ?? null,
+            result: $data['result'] ?? null,
+            baseUrl: $data['baseUrl'] ?? null,
+            buildDraftPullRequests: $data['buildDraftPullRequests'] ?? null,
+            buildPullRequestsPostMerge: $data['buildPullRequestsPostMerge'] ?? null,
+            buildMergeRequests: $data['buildMergeRequests'] ?? null,
+            buildWipMergeRequests: $data['buildWipMergeRequests'] ?? null,
+            mergeRequestsCloneParentData: $data['mergeRequestsCloneParentData'] ?? null,
+            extra: $data['extra'] ?? null,
+            headers: $data['headers'] ?? null,
+            tlsVerify: $data['tlsVerify'] ?? null,
+            sourcetype: $data['sourcetype'] ?? null,
+            category: $data['category'] ?? null,
+            host: $data['host'] ?? null,
+            port: $data['port'] ?? null,
+            protocol: $data['protocol'] ?? null,
+            facility: $data['facility'] ?? null,
+            messageFormat: $data['messageFormat'] ?? null,
+            authToken: $data['authToken'] ?? null,
+            authMode: $data['authMode'] ?? null,
+        );
         return $this->thirdPartyIntegrationsApi->createProjectsIntegrations($projectId, $integrationCreateInput);
     }
 
     /**
      * Deletes an existing third-party integration
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteIntegration(string $projectId, string $integrationId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->deleteProjectsIntegrations($projectId, $integrationId);
     }
 
     /**
      * Gets information about an existing third-party integration
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getIntegration(string $projectId, string $integrationId): Integration
     {
-        $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->getProjectsIntegrations($projectId, $integrationId);
     }
 
     /**
      * Gets list of existing integrations for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Integration[]
      */
     public function listIntegrations(string $projectId): array
     {
-        $this->refreshToken();
         return $this->thirdPartyIntegrationsApi->listProjectsIntegrations($projectId);
     }
 
     /**
      * Updates an existing third-party integration
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     type: string,
+     *     repository: string,
+     *     url: string,
+     *     username: string,
+     *     token: string,
+     *     project: string,
+     *     serviceId: string,
+     *     recipients: array,
+     *     routingKey: array,
+     *     channel: string,
+     *     licenseKey: string,
+     *     index: string,
+     *     script: string,
+     *     states: string,
+     *     pruneBranches?: bool,
+     *     environmentInitResources?: string,
+     *     appCredentials?: array{
+     *       key: string,
+     *       secret: string
+     *     },
+     *     addonCredentials?: array{
+     *       addonKey: string,
+     *       clientKey: string,
+     *       sharedSecret: string,
+     *     },
+     *     buildPullRequests?: bool,
+     *     pullRequestsCloneParentData?: bool,
+     *     resyncPullRequests?: bool,
+     *     events?: array,
+     *     environments?: array,
+     *     excludedEnvironments?: array,
+     *     state?: array,
+     *     result?: string,
+     *     baseUrl?: string,
+     *     buildDraftPullRequests?: bool,
+     *     buildPullRequestsPostMerge?: bool,
+     *     buildMergeRequests?: bool,
+     *     buildWipMergeRequests?: bool,
+     *     mergeRequestsCloneParentData?: bool,
+     *     fromAddress?: string,
+     *     sharedKey?: string,
+     *     extra?: array,
+     *     headers?: array,
+     *     tlsVerify?: bool,
+     *     sourcetype?: string,
+     *     category?: string,
+     *     host?: string,
+     *     port?: int,
+     *     protocol?: string,
+     *     facility?: int,
+     *     messageFormat?: string,
+     *     authToken?: string,
+     *     authMode?: string,
+     * } $data
      */
     public function updateIntegration(
         string $projectId,
         string $integrationId,
-        array $integrationPatch
+        array $data
     ): AcceptedResponse {
-        $this->refreshToken();
-        $integrationPatch = new IntegrationPatch($integrationPatch);
+        $integrationPatch = new IntegrationPatch(
+            type: $data['type'],
+            repository: $data['repository'],
+            url: $data['url'],
+            username: $data['username'],
+            token: $data['token'],
+            project: $data['project'],
+            serviceId: $data['serviceId'],
+            recipients: $data['recipients'],
+            routingKey: $data['routingKey'],
+            channel: $data['channel'],
+            licenseKey: $data['licenseKey'],
+            script: $data['script'],
+            index: $data['index'],
+            appCredentials: $data['appCredentials'] ?
+                new TheOAuth2ConsumerInformationOptional1(...$data['appCredentials']) : null,
+            addonCredentials: $data['addonCredentials'] ?
+                new TheAddonCredentialInformationOptional1(...$data['addonCredentials']) : null,
+            fromAddress: $data['fromAddress'] ?? null,
+            sharedKey: $data['sharedKey'] ?? null,
+            pruneBranches: $data['pruneBranches'] ?? null,
+            environmentInitResources: $data['environmentInitResources'] ?? null,
+            buildPullRequests: $data['buildPullRequests'] ?? null,
+            pullRequestsCloneParentData: $data['pullRequestsCloneParentData'] ?? null,
+            resyncPullRequests: $data['resyncPullRequests'] ?? null,
+            events: $data['events'] ?? null,
+            environments: $data['environments'] ?? null,
+            excludedEnvironments: $data['excludedEnvironments'] ?? null,
+            states: $data['state'] ?? null,
+            result: $data['result'] ?? null,
+            baseUrl: $data['baseUrl'] ?? null,
+            buildDraftPullRequests: $data['buildDraftPullRequests'] ?? null,
+            buildPullRequestsPostMerge: $data['buildPullRequestsPostMerge'] ?? null,
+            buildMergeRequests: $data['buildMergeRequests'] ?? null,
+            buildWipMergeRequests: $data['buildWipMergeRequests'] ?? null,
+            mergeRequestsCloneParentData: $data['mergeRequestsCloneParentData'] ?? null,
+            extra: $data['extra'] ?? null,
+            headers: $data['headers'] ?? null,
+            tlsVerify: $data['tlsVerify'] ?? null,
+            sourcetype: $data['sourcetype'] ?? null,
+            category: $data['category'] ?? null,
+            host: $data['host'] ?? null,
+            port: $data['port'] ?? null,
+            protocol: $data['protocol'] ?? null,
+            facility: $data['facility'] ?? null,
+            messageFormat: $data['messageFormat'] ?? null,
+            authToken: $data['authToken'] ?? null,
+            authMode: $data['authMode'] ?? null,
+        );
         return $this->thirdPartyIntegrationsApi->updateProjectsIntegrations(
             $projectId,
             $integrationId,
@@ -493,17 +786,24 @@ class ProjectTask extends TaskBase
     /**
      * Adds a project domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name: string,
+     *     attributes?: array,
+     *     isDefault?: bool,
+     *     replacementFor?: string,
+     * } $data
      */
-    public function createDomain(string $projectId, array $domainCreateInput): AcceptedResponse
+    public function createDomain(string $projectId, array $data): AcceptedResponse
     {
-        return $this->client->domain->create($projectId, $domainCreateInput);
+        return $this->client->domain->create($projectId, $data);
     }
 
     /**
      * Deletes a project domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteDomain(string $projectId, string $domainId): AcceptedResponse
     {
@@ -513,7 +813,7 @@ class ProjectTask extends TaskBase
     /**
      * Gets a project domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getDomain(string $projectId, string $domainId): Domain
     {
@@ -523,38 +823,51 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of project domains
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Domain[]
      */
     public function listDomains(string $projectId): array
     {
-        $this->refreshToken();
         return $this->client->domain->list($projectId);
     }
 
     /**
      * Updates a project domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     attributes?: array,
+     *     isDefault?: bool,
+     * } $data
      */
-    public function updateDomain(string $projectId, string $domainId, array $domainPatch): AcceptedResponse
+    public function updateDomain(string $projectId, string $domainId, array $data): AcceptedResponse
     {
-        return $this->client->domain->update($projectId, $domainId, $domainPatch);
+        return $this->client->domain->update($projectId, $domainId, $data);
     }
 
     /**
      * Adds an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     certificate?: string,
+     *     key?: string,
+     *     chain?: array,
+     *     isInvalid?: bool
+     * } $options Configuration options
      */
-    public function createCertificate(string $projectId, array $certificateCreateInput): AcceptedResponse
+    public function createCertificate(string $projectId, array $options): AcceptedResponse
     {
-        return $this->client->certificate->create($projectId, $certificateCreateInput);
+        return $this->client->certificate->create($projectId, $options);
     }
 
     /**
      * Deletes an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteCertificate(string $projectId, string $certificateId): AcceptedResponse
     {
@@ -564,7 +877,7 @@ class ProjectTask extends TaskBase
     /**
      * Gets an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getCertificate(string $projectId, string $certificateId): Certificate
     {
@@ -574,7 +887,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of SSL certificates
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Certificate[]
      */
     public function listCertificates(string $projectId): array
     {
@@ -584,7 +899,7 @@ class ProjectTask extends TaskBase
     /**
      * Updates an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateCertificate(
         string $projectId,
@@ -597,7 +912,7 @@ class ProjectTask extends TaskBase
     /**
      * Executes a runtime operation
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function runOperation(
         string $projectId,
@@ -616,9 +931,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
+    public function getProjectTeamAccess(string $projectId, string $teamId): TeamProjectAccess
     {
         return $this->client->team->getProjectTeamAccess($projectId, $teamId);
     }
@@ -627,9 +942,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
+    public function getTeamProjectAccess(string $teamId, string $projectId): TeamProjectAccess
     {
         return $this->client->team->getTeamProjectAccess($teamId, $projectId);
     }
@@ -637,7 +952,7 @@ class ProjectTask extends TaskBase
     /**
      * Grants team access to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
@@ -647,17 +962,17 @@ class ProjectTask extends TaskBase
     /**
      * Grants project access to a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
+    public function grantTeamProjectAccess(string $teamId, array $data): void
     {
-        $this->client->team->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
+        $this->client->team->grantTeamProjectAccess($teamId, $data);
     }
 
     /**
      * Lists team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
         string $projectId,
@@ -665,14 +980,14 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
+    ): ListTeamProjectAccess200Response {
         return $this->client->team->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
      * Lists project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
         string $teamId,
@@ -680,14 +995,14 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
+    ): ListTeamProjectAccess200Response {
         return $this->client->team->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
      * Removes team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
@@ -697,7 +1012,7 @@ class ProjectTask extends TaskBase
     /**
      * Removes project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
@@ -707,9 +1022,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectUserAccess(string $projectId, string $userId): Error|UserProjectAccess
+    public function getProjectUserAccess(string $projectId, string $userId): UserProjectAccess
     {
         return $this->client->user->getProjectUserAccess($projectId, $userId);
     }
@@ -717,17 +1032,17 @@ class ProjectTask extends TaskBase
     /**
      * Grants user access to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function grantProjectUserAccess(string $projectId, array $grantProjectUserAccessRequestInner): void
+    public function grantProjectUserAccess(string $projectId, array $data): void
     {
-        $this->client->user->grantProjectUserAccess($projectId, $grantProjectUserAccessRequestInner);
+        $this->client->user->grantProjectUserAccess($projectId, $data);
     }
 
     /**
      * Removes user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeProjectUserAccess(string $projectId, string $userId): void
     {
@@ -737,20 +1052,20 @@ class ProjectTask extends TaskBase
     /**
      * Updates user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function updateProjectUserAccess(
         string $projectId,
         string $userId,
-        ?array $updateProjectUserAccessRequest = null
+        ?array $permissions = null
     ): void {
-        $this->client->user->updateProjectUserAccess($projectId, $userId, $updateProjectUserAccessRequest);
+        $this->client->user->updateProjectUserAccess($projectId, $userId, $permissions);
     }
 
     /**
      * Lists user access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectUserAccess(
         string $projectId,
@@ -758,14 +1073,16 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListProjectUserAccess200Response|Error {
+    ): ListProjectUserAccess200Response {
         return $this->client->user->listProjectUserAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
      * Lists environments of a project
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
+     *
+     * @return Environment[]
      */
     public function listEnvironments(string $projectId): array
     {

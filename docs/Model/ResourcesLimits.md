@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**container_profiles** | **bool** |  |
+**containerProfiles** | **bool** |  |
 **production** | [**\Upsun\Model\ResourcesForProductionEnvironments**](ResourcesForProductionEnvironments.md) |  |
 **development** | [**\Upsun\Model\ResourcesForDevelopmentEnvironments**](ResourcesForDevelopmentEnvironments.md) |  |
 

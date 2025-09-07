@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **name** | **string** |  |
 **attributes** | **array<string,string>** |  |
-**value** | **string** |  | [optional]
-**is_json** | **bool** |  |
-**is_sensitive** | **bool** |  |
-**visible_build** | **bool** |  |
-**visible_runtime** | **bool** |  |
+**isJson** | **bool** |  |
+**isSensitive** | **bool** |  |
+**visibleBuild** | **bool** |  |
+**visibleRuntime** | **bool** |  |
 **project** | **string** |  |
 **environment** | **string** |  |
 **inherited** | **bool** |  |
-**is_enabled** | **bool** |  |
-**is_inheritable** | **bool** |  |
+**isEnabled** | **bool** |  |
+**isInheritable** | **bool** |  |
+**value** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

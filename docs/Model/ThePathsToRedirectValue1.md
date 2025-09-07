@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**regexp** | **bool** |  | [optional]
 **to** | **string** |  |
+**regexp** | **bool** |  | [optional]
 **prefix** | **bool** |  | [optional]
-**append_suffix** | **bool** |  | [optional]
+**appendSuffix** | **bool** |  | [optional]
 **code** | **int** |  | [optional]
 **expires** | **string** |  | [optional]
 

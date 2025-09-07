@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentVariablesApi;
 use Upsun\Api\ProjectVariablesApi;
@@ -14,6 +15,13 @@ use Upsun\Model\ProjectVariableCreateInput;
 use Upsun\Model\ProjectVariablePatch;
 use Upsun\UpsunClient;
 
+/**
+ * VariableTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class VariableTask extends TaskBase
 {
     public function __construct(
@@ -27,60 +35,77 @@ class VariableTask extends TaskBase
     /**
      * Adds a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name: string,
+     *     value: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     * } $data
      */
-    public function createProjectVariable(string $projectId, array $projectVariableCreateInput): AcceptedResponse
+    public function createProjectVariable(string $projectId, array $data): AcceptedResponse
     {
-        $this->refreshToken();
-        $projectVariableCreateInput = new ProjectVariableCreateInput($projectVariableCreateInput);
+        $projectVariableCreateInput = new ProjectVariableCreateInput(...$data);
         return $this->projectVariablesApi->createProjectsVariables($projectId, $projectVariableCreateInput);
     }
 
     /**
      * Deletes a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteProjectVariable(string $projectId, string $projectVariableId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->projectVariablesApi->deleteProjectsVariables($projectId, $projectVariableId);
     }
 
     /**
      * Gets a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getProjectVariable(string $projectId, string $projectVariableId): ProjectVariable
     {
-        $this->refreshToken();
         return $this->projectVariablesApi->getProjectsVariables($projectId, $projectVariableId);
     }
 
     /**
      * Gets list of project variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return ProjectVariable[]
      */
     public function listProjectVariables(string $projectId): array
     {
-        $this->refreshToken();
         return $this->projectVariablesApi->listProjectsVariables($projectId);
     }
 
     /**
      * Updates a project variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     attributes?: array,
+     *     value?: string,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     * } $data
      */
     public function updateProjectVariable(
         string $projectId,
         string $projectVariableId,
-        array $projectVariablePatch
+        array $data
     ): AcceptedResponse {
-        $this->refreshToken();
-        $projectVariablePatch = new ProjectVariablePatch($projectVariablePatch);
+        $projectVariablePatch = new ProjectVariablePatch(...$data);
         return $this->projectVariablesApi->updateProjectsVariables(
             $projectId,
             $projectVariableId,
@@ -91,15 +116,26 @@ class VariableTask extends TaskBase
     /**
      * Adds an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name: string,
+     *     value: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     *     isEnabled?: bool,
+     *     isInheritable?: bool,
+     * } $data
      */
     public function createEnvironmentVariable(
         string $projectId,
         string $environmentId,
-        array $environmentVariableCreateInput
+        array $data
     ): AcceptedResponse {
-        $this->refreshToken();
-        $environmentVariableCreateInput = new EnvironmentVariableCreateInput($environmentVariableCreateInput);
+        $environmentVariableCreateInput = new EnvironmentVariableCreateInput(...$data);
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -110,14 +146,13 @@ class VariableTask extends TaskBase
     /**
      * Deletes an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteEnvironmentVariable(
         string $projectId,
         string $environmentId,
         string $variableId
     ): AcceptedResponse {
-        $this->refreshToken();
         return $this->environmentVariablesApi->deleteProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -128,14 +163,13 @@ class VariableTask extends TaskBase
     /**
      * Gets an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function getEnvironmentVariable(
         string $projectId,
         string $environmentId,
         string $variableId
     ): EnvironmentVariable {
-        $this->refreshToken();
         return $this->environmentVariablesApi->getProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,
@@ -146,27 +180,39 @@ class VariableTask extends TaskBase
     /**
      * Lists environment variables
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return EnvironmentVariable[]
      */
     public function listEnvironmentVariables(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         return $this->environmentVariablesApi->listProjectsEnvironmentsVariables($projectId, $environmentId);
     }
 
     /**
      * Updates an environment variable
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name?: string,
+     *     value?: string,
+     *     attributes?: array,
+     *     isJson?: bool,
+     *     isSensitive?: bool,
+     *     visibleBuild?: bool,
+     *     visibleRuntime?: bool,
+     *     isEnabled?: bool,
+     *     isInheritable?: bool,
+     * } $data
      */
     public function updateEnvironmentVariable(
         string $projectId,
         string $environmentId,
         string $variableId,
-        array $environmentVariablePatch
+        array $data
     ): AcceptedResponse {
-        $this->refreshToken();
-        $environmentVariablePatch = new EnvironmentVariablePatch($environmentVariablePatch);
+        $environmentVariablePatch = new EnvironmentVariablePatch(...$data);
         return $this->environmentVariablesApi->updateProjectsEnvironmentsVariables(
             $projectId,
             $environmentId,

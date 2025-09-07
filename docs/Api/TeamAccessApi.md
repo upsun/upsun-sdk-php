@@ -17,7 +17,7 @@ Method | HTTP request | Description
 ## `getProjectTeamAccess()`
 
 ```php
-getProjectTeamAccess($project_id, $team_id): \Upsun\Model\TeamProjectAccess
+getProjectTeamAccess($projectId, $teamId): \Upsun\Model\TeamProjectAccess
 ```
 
 Get team access for a project
@@ -31,21 +31,17 @@ Retrieves the team's permissions for the current project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$team_id = 'team_id_example'; // string | The ID of the team.
+$projectId = 'projectId_example'; // string | The ID of the project.
+$teamId = 'teamId_example'; // string | The ID of the team.
 
 try {
-    $result = $apiInstance->getProjectTeamAccess($project_id, $team_id);
+    $result = $apiInstance->getProjectTeamAccess($projectId, $teamId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->getProjectTeamAccess: ', $e->getMessage(), PHP_EOL;
@@ -56,8 +52,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **team_id** | **string**| The ID of the team. |
+ **projectId** | **string**| The ID of the project. |
+ **teamId** | **string**| The ID of the team. |
 
 ### Return type
 
@@ -65,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -79,7 +75,7 @@ Name | Type | Description  | Notes
 ## `getTeamProjectAccess()`
 
 ```php
-getTeamProjectAccess($team_id, $project_id): \Upsun\Model\TeamProjectAccess
+getTeamProjectAccess($teamId, $projectId): \Upsun\Model\TeamProjectAccess
 ```
 
 Get project access for a team
@@ -93,21 +89,17 @@ Retrieves the team's permissions for the current project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$team_id = 'team_id_example'; // string | The ID of the team.
-$project_id = 'project_id_example'; // string | The ID of the project.
+$teamId = 'teamId_example'; // string | The ID of the team.
+$projectId = 'projectId_example'; // string | The ID of the project.
 
 try {
-    $result = $apiInstance->getTeamProjectAccess($team_id, $project_id);
+    $result = $apiInstance->getTeamProjectAccess($teamId, $projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->getTeamProjectAccess: ', $e->getMessage(), PHP_EOL;
@@ -118,8 +110,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **team_id** | **string**| The ID of the team. |
- **project_id** | **string**| The ID of the project. |
+ **teamId** | **string**| The ID of the team. |
+ **projectId** | **string**| The ID of the project. |
 
 ### Return type
 
@@ -127,7 +119,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -141,7 +133,7 @@ Name | Type | Description  | Notes
 ## `grantProjectTeamAccess()`
 
 ```php
-grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner)
+grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner)
 ```
 
 Grant team access to a project
@@ -155,21 +147,17 @@ Grants one or more team access to a specific project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$grant_project_team_access_request_inner = array(new \Upsun\Model\GrantProjectTeamAccessRequestInner()); // \Upsun\Model\GrantProjectTeamAccessRequestInner[]
+$projectId = 'projectId_example'; // string | The ID of the project.
+$grantProjectTeamAccessRequestInner = array(new \Upsun\Model\GrantProjectTeamAccessRequestInner()); // \Upsun\Model\GrantProjectTeamAccessRequestInner[]
 
 try {
-    $apiInstance->grantProjectTeamAccess($project_id, $grant_project_team_access_request_inner);
+    $apiInstance->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->grantProjectTeamAccess: ', $e->getMessage(), PHP_EOL;
 }
@@ -179,8 +167,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **grant_project_team_access_request_inner** | [**\Upsun\Model\GrantProjectTeamAccessRequestInner[]**](../Model/GrantProjectTeamAccessRequestInner.md)|  |
+ **projectId** | **string**| The ID of the project. |
+ **grantProjectTeamAccessRequestInner** | [**\Upsun\Model\GrantProjectTeamAccessRequestInner[]**](../Model/GrantProjectTeamAccessRequestInner.md)|  |
 
 ### Return type
 
@@ -188,7 +176,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -202,7 +190,7 @@ void (empty response body)
 ## `grantTeamProjectAccess()`
 
 ```php
-grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner)
+grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner)
 ```
 
 Grant project access to a team
@@ -216,21 +204,17 @@ Adds the team to one or more specified projects.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$team_id = 'team_id_example'; // string | The ID of the team.
-$grant_team_project_access_request_inner = array(new \Upsun\Model\GrantTeamProjectAccessRequestInner()); // \Upsun\Model\GrantTeamProjectAccessRequestInner[]
+$teamId = 'teamId_example'; // string | The ID of the team.
+$grantTeamProjectAccessRequestInner = array(new \Upsun\Model\GrantTeamProjectAccessRequestInner()); // \Upsun\Model\GrantTeamProjectAccessRequestInner[]
 
 try {
-    $apiInstance->grantTeamProjectAccess($team_id, $grant_team_project_access_request_inner);
+    $apiInstance->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->grantTeamProjectAccess: ', $e->getMessage(), PHP_EOL;
 }
@@ -240,8 +224,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **team_id** | **string**| The ID of the team. |
- **grant_team_project_access_request_inner** | [**\Upsun\Model\GrantTeamProjectAccessRequestInner[]**](../Model/GrantTeamProjectAccessRequestInner.md)|  |
+ **teamId** | **string**| The ID of the team. |
+ **grantTeamProjectAccessRequestInner** | [**\Upsun\Model\GrantTeamProjectAccessRequestInner[]**](../Model/GrantTeamProjectAccessRequestInner.md)|  |
 
 ### Return type
 
@@ -249,7 +233,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -263,7 +247,7 @@ void (empty response body)
 ## `listProjectTeamAccess()`
 
 ```php
-listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort): \Upsun\Model\ListTeamProjectAccess200Response
+listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListTeamProjectAccess200Response
 ```
 
 List team access for a project
@@ -277,24 +261,20 @@ Returns a list of items representing the project access.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$page_size = 56; // int | Determines the number of items to show.
-$page_before = 'page_before_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-$page_after = 'page_after_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$projectId = 'projectId_example'; // string | The ID of the project.
+$pageSize = 56; // int | Determines the number of items to show.
+$pageBefore = 'pageBefore_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
 $sort = -updated_at; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `granted_at`, `updated_at`.
 
 try {
-    $result = $apiInstance->listProjectTeamAccess($project_id, $page_size, $page_before, $page_after, $sort);
+    $result = $apiInstance->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->listProjectTeamAccess: ', $e->getMessage(), PHP_EOL;
@@ -305,10 +285,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **page_size** | **int**| Determines the number of items to show. | [optional]
- **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **projectId** | **string**| The ID of the project. |
+ **pageSize** | **int**| Determines the number of items to show. | [optional]
+ **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
  **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
@@ -317,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -331,7 +311,7 @@ Name | Type | Description  | Notes
 ## `listTeamProjectAccess()`
 
 ```php
-listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort): \Upsun\Model\ListTeamProjectAccess200Response
+listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ListTeamProjectAccess200Response
 ```
 
 List project access for a team
@@ -345,24 +325,20 @@ Returns a list of items representing the team's project access.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$team_id = 'team_id_example'; // string | The ID of the team.
-$page_size = 56; // int | Determines the number of items to show.
-$page_before = 'page_before_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-$page_after = 'page_after_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$teamId = 'teamId_example'; // string | The ID of the team.
+$pageSize = 56; // int | Determines the number of items to show.
+$pageBefore = 'pageBefore_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
 $sort = -updated_at; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.<br> Supported fields: `project_title`, `granted_at`, `updated_at`.
 
 try {
-    $result = $apiInstance->listTeamProjectAccess($team_id, $page_size, $page_before, $page_after, $sort);
+    $result = $apiInstance->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->listTeamProjectAccess: ', $e->getMessage(), PHP_EOL;
@@ -373,10 +349,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **team_id** | **string**| The ID of the team. |
- **page_size** | **int**| Determines the number of items to show. | [optional]
- **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **teamId** | **string**| The ID of the team. |
+ **pageSize** | **int**| Determines the number of items to show. | [optional]
+ **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
  **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending.&lt;br&gt; Supported fields: &#x60;project_title&#x60;, &#x60;granted_at&#x60;, &#x60;updated_at&#x60;. | [optional]
 
 ### Return type
@@ -385,7 +361,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -399,7 +375,7 @@ Name | Type | Description  | Notes
 ## `removeProjectTeamAccess()`
 
 ```php
-removeProjectTeamAccess($project_id, $team_id)
+removeProjectTeamAccess($projectId, $teamId)
 ```
 
 Remove team access for a project
@@ -413,21 +389,17 @@ Removes the team from the current project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$team_id = 'team_id_example'; // string | The ID of the team.
+$projectId = 'projectId_example'; // string | The ID of the project.
+$teamId = 'teamId_example'; // string | The ID of the team.
 
 try {
-    $apiInstance->removeProjectTeamAccess($project_id, $team_id);
+    $apiInstance->removeProjectTeamAccess($projectId, $teamId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->removeProjectTeamAccess: ', $e->getMessage(), PHP_EOL;
 }
@@ -437,8 +409,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **team_id** | **string**| The ID of the team. |
+ **projectId** | **string**| The ID of the project. |
+ **teamId** | **string**| The ID of the team. |
 
 ### Return type
 
@@ -446,7 +418,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -460,7 +432,7 @@ void (empty response body)
 ## `removeTeamProjectAccess()`
 
 ```php
-removeTeamProjectAccess($team_id, $project_id)
+removeTeamProjectAccess($teamId, $projectId)
 ```
 
 Remove project access for a team
@@ -474,21 +446,17 @@ Removes the team from the current project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\TeamAccessApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$team_id = 'team_id_example'; // string | The ID of the team.
-$project_id = 'project_id_example'; // string | The ID of the project.
+$teamId = 'teamId_example'; // string | The ID of the team.
+$projectId = 'projectId_example'; // string | The ID of the project.
 
 try {
-    $apiInstance->removeTeamProjectAccess($team_id, $project_id);
+    $apiInstance->removeTeamProjectAccess($teamId, $projectId);
 } catch (Exception $e) {
     echo 'Exception when calling TeamAccessApi->removeTeamProjectAccess: ', $e->getMessage(), PHP_EOL;
 }
@@ -498,8 +466,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **team_id** | **string**| The ID of the team. |
- **project_id** | **string**| The ID of the project. |
+ **teamId** | **string**| The ID of the team. |
+ **projectId** | **string**| The ID of the project. |
 
 ### Return type
 
@@ -507,7 +475,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

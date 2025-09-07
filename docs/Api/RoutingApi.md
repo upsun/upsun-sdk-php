@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createProjectsEnvironmentsRoutes()`
 
 ```php
-createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input): \Upsun\Model\AcceptedResponse
+createProjectsEnvironmentsRoutes($projectId, $environmentId, $routeCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Create a new route
@@ -28,22 +28,18 @@ Add a new route to the specified environment. More information about how routes 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$route_create_input = new \Upsun\Model\RouteCreateInput(); // \Upsun\Model\RouteCreateInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$routeCreateInput = new \Upsun\Model\RouteCreateInput(); // \Upsun\Model\RouteCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsEnvironmentsRoutes($project_id, $environment_id, $route_create_input);
+    $result = $apiInstance->createProjectsEnvironmentsRoutes($projectId, $environmentId, $routeCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RoutingApi->createProjectsEnvironmentsRoutes: ', $e->getMessage(), PHP_EOL;
@@ -54,9 +50,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **route_create_input** | [**\Upsun\Model\RouteCreateInput**](../Model/RouteCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **routeCreateInput** | [**\Upsun\Model\RouteCreateInput**](../Model/RouteCreateInput.md)|  |
 
 ### Return type
 
@@ -64,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -78,7 +74,7 @@ Name | Type | Description  | Notes
 ## `deleteProjectsEnvironmentsRoutes()`
 
 ```php
-deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id): \Upsun\Model\AcceptedResponse
+deleteProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete a route
@@ -92,22 +88,18 @@ Remove a route from an environment using the `id` of the entry retrieved by the 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$route_id = 'route_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$routeId = 'routeId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
+    $result = $apiInstance->deleteProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RoutingApi->deleteProjectsEnvironmentsRoutes: ', $e->getMessage(), PHP_EOL;
@@ -118,9 +110,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **route_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **routeId** | **string**|  |
 
 ### Return type
 
@@ -128,7 +120,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -142,7 +134,7 @@ Name | Type | Description  | Notes
 ## `getProjectsEnvironmentsRoutes()`
 
 ```php
-getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id): \Upsun\Model\Route
+getProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId): \Upsun\Model\Route
 ```
 
 Get a route's info
@@ -156,22 +148,18 @@ Get details of a route from an environment using the `id` of the entry retrieved
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$route_id = 'route_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$routeId = 'routeId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id);
+    $result = $apiInstance->getProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RoutingApi->getProjectsEnvironmentsRoutes: ', $e->getMessage(), PHP_EOL;
@@ -182,9 +170,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **route_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **routeId** | **string**|  |
 
 ### Return type
 
@@ -192,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -206,7 +194,7 @@ Name | Type | Description  | Notes
 ## `listProjectsEnvironmentsRoutes()`
 
 ```php
-listProjectsEnvironmentsRoutes($project_id, $environment_id): \Upsun\Model\Route[]
+listProjectsEnvironmentsRoutes($projectId, $environmentId): \Upsun\Model\Route[]
 ```
 
 Get list of routes
@@ -220,21 +208,17 @@ Retrieve a list of objects containing route definitions for a specific environme
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsRoutes($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsRoutes($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RoutingApi->listProjectsEnvironmentsRoutes: ', $e->getMessage(), PHP_EOL;
@@ -245,8 +229,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -254,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -268,7 +252,7 @@ Name | Type | Description  | Notes
 ## `updateProjectsEnvironmentsRoutes()`
 
 ```php
-updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch): \Upsun\Model\AcceptedResponse
+updateProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId, $routePatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update a route
@@ -282,23 +266,19 @@ Update a route in an environment using the `id` of the entry retrieved by the [G
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RoutingApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$route_id = 'route_id_example'; // string
-$route_patch = new \Upsun\Model\RoutePatch(); // \Upsun\Model\RoutePatch | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$routeId = 'routeId_example'; // string
+$routePatch = new \Upsun\Model\RoutePatch(); // \Upsun\Model\RoutePatch | 
 
 try {
-    $result = $apiInstance->updateProjectsEnvironmentsRoutes($project_id, $environment_id, $route_id, $route_patch);
+    $result = $apiInstance->updateProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId, $routePatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RoutingApi->updateProjectsEnvironmentsRoutes: ', $e->getMessage(), PHP_EOL;
@@ -309,10 +289,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **route_id** | **string**|  |
- **route_patch** | [**\Upsun\Model\RoutePatch**](../Model/RoutePatch.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **routeId** | **string**|  |
+ **routePatch** | [**\Upsun\Model\RoutePatch**](../Model/RoutePatch.md)|  |
 
 ### Return type
 
@@ -320,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

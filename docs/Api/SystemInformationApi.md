@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `actionProjectsSystemRestart()`
 
 ```php
-actionProjectsSystemRestart($project_id): \Upsun\Model\AcceptedResponse
+actionProjectsSystemRestart($projectId): \Upsun\Model\AcceptedResponse
 ```
 
 Restart the Git server
@@ -25,20 +25,16 @@ Force the Git server to restart.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SystemInformationApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->actionProjectsSystemRestart($project_id);
+    $result = $apiInstance->actionProjectsSystemRestart($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SystemInformationApi->actionProjectsSystemRestart: ', $e->getMessage(), PHP_EOL;
@@ -49,7 +45,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -57,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -71,7 +67,7 @@ Name | Type | Description  | Notes
 ## `getProjectsSystem()`
 
 ```php
-getProjectsSystem($project_id): \Upsun\Model\SystemInformation
+getProjectsSystem($projectId): \Upsun\Model\SystemInformation
 ```
 
 Get information about the Git server.
@@ -85,20 +81,16 @@ Output information for the project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SystemInformationApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsSystem($project_id);
+    $result = $apiInstance->getProjectsSystem($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SystemInformationApi->getProjectsSystem: ', $e->getMessage(), PHP_EOL;
@@ -109,7 +101,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -117,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

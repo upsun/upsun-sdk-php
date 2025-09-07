@@ -1,372 +1,22 @@
 <?php
-/**
- * Subscription
- *
- * PHP version 8.1
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level Subscription (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Model;
 
-use \ArrayAccess;
-use \Upsun\ObjectSerializer;
+use ArrayAccess;
+use JsonSerializable;
 
-/**
- * Subscription Class Doc Comment
- *
- * @category Class
- * @description The subscription object.
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
- */
-class Subscription implements ModelInterface, ArrayAccess, \JsonSerializable
+final class Subscription implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
-
-    /**
-      * The original name of the model.
-      *
-      * @var string
-      */
-    protected static $openAPIModelName = 'Subscription';
-
-    /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
-    protected static $openAPITypes = [
-        'id' => 'string',
-        'status' => 'string',
-        'created_at' => '\DateTime',
-        'updated_at' => '\DateTime',
-        'owner' => 'string',
-        'owner_info' => '\Upsun\Model\OwnerInfo',
-        'vendor' => 'string',
-        'plan' => 'string',
-        'environments' => 'int',
-        'storage' => 'int',
-        'user_licenses' => 'int',
-        'project_id' => 'string',
-        'project_endpoint' => 'string',
-        'project_title' => 'string',
-        'project_region' => 'string',
-        'project_region_label' => 'string',
-        'project_ui' => 'string',
-        'project_options' => '\Upsun\Model\ProjectOptions',
-        'agency_site' => 'bool',
-        'invoiced' => 'bool',
-        'hipaa' => 'bool',
-        'is_trial_plan' => 'bool',
-        'services' => 'object[]',
-        'green' => 'bool'
-    ];
-
-    /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
-    protected static $openAPIFormats = [
-        'id' => null,
-        'status' => null,
-        'created_at' => 'date-time',
-        'updated_at' => 'date-time',
-        'owner' => 'uuid',
-        'owner_info' => null,
-        'vendor' => null,
-        'plan' => null,
-        'environments' => null,
-        'storage' => null,
-        'user_licenses' => null,
-        'project_id' => null,
-        'project_endpoint' => null,
-        'project_title' => null,
-        'project_region' => null,
-        'project_region_label' => null,
-        'project_ui' => null,
-        'project_options' => null,
-        'agency_site' => null,
-        'invoiced' => null,
-        'hipaa' => null,
-        'is_trial_plan' => null,
-        'services' => null,
-        'green' => null
-    ];
-
-    /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
-    protected static array $openAPINullables = [
-        'id' => false,
-        'status' => false,
-        'created_at' => false,
-        'updated_at' => false,
-        'owner' => false,
-        'owner_info' => false,
-        'vendor' => false,
-        'plan' => false,
-        'environments' => false,
-        'storage' => false,
-        'user_licenses' => false,
-        'project_id' => false,
-        'project_endpoint' => false,
-        'project_title' => false,
-        'project_region' => false,
-        'project_region_label' => false,
-        'project_ui' => false,
-        'project_options' => false,
-        'agency_site' => false,
-        'invoiced' => false,
-        'hipaa' => false,
-        'is_trial_plan' => false,
-        'services' => false,
-        'green' => false
-    ];
-
-    /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
-    protected array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     *
-     * @return array
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     *
-     * @return boolean[]
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     *
-     * @param boolean[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @var string[]
-     */
-    protected static $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'created_at' => 'created_at',
-        'updated_at' => 'updated_at',
-        'owner' => 'owner',
-        'owner_info' => 'owner_info',
-        'vendor' => 'vendor',
-        'plan' => 'plan',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'user_licenses' => 'user_licenses',
-        'project_id' => 'project_id',
-        'project_endpoint' => 'project_endpoint',
-        'project_title' => 'project_title',
-        'project_region' => 'project_region',
-        'project_region_label' => 'project_region_label',
-        'project_ui' => 'project_ui',
-        'project_options' => 'project_options',
-        'agency_site' => 'agency_site',
-        'invoiced' => 'invoiced',
-        'hipaa' => 'hipaa',
-        'is_trial_plan' => 'is_trial_plan',
-        'services' => 'services',
-        'green' => 'green'
-    ];
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
-     */
-    protected static $setters = [
-        'id' => 'setId',
-        'status' => 'setStatus',
-        'created_at' => 'setCreatedAt',
-        'updated_at' => 'setUpdatedAt',
-        'owner' => 'setOwner',
-        'owner_info' => 'setOwnerInfo',
-        'vendor' => 'setVendor',
-        'plan' => 'setPlan',
-        'environments' => 'setEnvironments',
-        'storage' => 'setStorage',
-        'user_licenses' => 'setUserLicenses',
-        'project_id' => 'setProjectId',
-        'project_endpoint' => 'setProjectEndpoint',
-        'project_title' => 'setProjectTitle',
-        'project_region' => 'setProjectRegion',
-        'project_region_label' => 'setProjectRegionLabel',
-        'project_ui' => 'setProjectUi',
-        'project_options' => 'setProjectOptions',
-        'agency_site' => 'setAgencySite',
-        'invoiced' => 'setInvoiced',
-        'hipaa' => 'setHipaa',
-        'is_trial_plan' => 'setIsTrialPlan',
-        'services' => 'setServices',
-        'green' => 'setGreen'
-    ];
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'id' => 'getId',
-        'status' => 'getStatus',
-        'created_at' => 'getCreatedAt',
-        'updated_at' => 'getUpdatedAt',
-        'owner' => 'getOwner',
-        'owner_info' => 'getOwnerInfo',
-        'vendor' => 'getVendor',
-        'plan' => 'getPlan',
-        'environments' => 'getEnvironments',
-        'storage' => 'getStorage',
-        'user_licenses' => 'getUserLicenses',
-        'project_id' => 'getProjectId',
-        'project_endpoint' => 'getProjectEndpoint',
-        'project_title' => 'getProjectTitle',
-        'project_region' => 'getProjectRegion',
-        'project_region_label' => 'getProjectRegionLabel',
-        'project_ui' => 'getProjectUi',
-        'project_options' => 'getProjectOptions',
-        'agency_site' => 'getAgencySite',
-        'invoiced' => 'getInvoiced',
-        'hipaa' => 'getHipaa',
-        'is_trial_plan' => 'getIsTrialPlan',
-        'services' => 'getServices',
-        'green' => 'getGreen'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @return array
-     */
-    public static function attributeMap()
-    {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
-     */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
     public const STATUS_REQUESTED = 'requested';
     public const STATUS_PROVISIONING_FAILURE = 'provisioning failure';
     public const STATUS_PROVISIONING = 'provisioning';
@@ -374,861 +24,368 @@ class Subscription implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STATUS_SUSPENDED = 'suspended';
     public const STATUS_DELETED = 'deleted';
 
+    private static array $attributeMap = [
+        'id' => 'id',
+        'status' => 'status',
+        'createdAt' => 'created_at',
+        'updatedAt' => 'updated_at',
+        'owner' => 'owner',
+        'ownerInfo' => 'owner_info',
+        'vendor' => 'vendor',
+        'plan' => 'plan',
+        'environments' => 'environments',
+        'storage' => 'storage',
+        'userLicenses' => 'user_licenses',
+        'projectId' => 'project_id',
+        'projectEndpoint' => 'project_endpoint',
+        'projectTitle' => 'project_title',
+        'projectRegion' => 'project_region',
+        'projectRegionLabel' => 'project_region_label',
+        'projectUi' => 'project_ui',
+        'projectOptions' => 'project_options',
+        'agencySite' => 'agency_site',
+        'invoiced' => 'invoiced',
+        'hipaa' => 'hipaa',
+        'isTrialPlan' => 'is_trial_plan',
+        'services' => 'services',
+        'green' => 'green'
+    ];
+
+    public function __construct(
+        private readonly ?string $id = null,
+        private readonly ?string $status = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $owner = null,
+        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private readonly ?string $vendor = null,
+        private readonly ?string $plan = null,
+        private readonly ?int $environments = null,
+        private readonly ?int $storage = null,
+        private readonly ?int $userLicenses = null,
+        private readonly ?string $projectId = null,
+        private readonly ?string $projectEndpoint = null,
+        private readonly ?string $projectTitle = null,
+        private readonly ?string $projectRegion = null,
+        private readonly ?string $projectRegionLabel = null,
+        private readonly ?string $projectUi = null,
+        private readonly ?\Upsun\Model\ProjectOptions $projectOptions = null,
+        private readonly ?bool $agencySite = null,
+        private readonly ?bool $invoiced = null,
+        private readonly ?bool $hipaa = null,
+        private readonly ?bool $isTrialPlan = null,
+        private readonly ?array $services = [],
+        private readonly ?bool $green = null,
+    ) {
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
      */
-    public function getStatusAllowableValues()
+    public static function openAPITypes(): array
     {
         return [
-            self::STATUS_REQUESTED,
-            self::STATUS_PROVISIONING_FAILURE,
-            self::STATUS_PROVISIONING,
-            self::STATUS_ACTIVE,
-            self::STATUS_SUSPENDED,
-            self::STATUS_DELETED,
+            'id' => '?string',
+            'status' => '?string',
+            'created_at' => '?\DateTime',
+            'updated_at' => '?\DateTime',
+            'owner' => '?string',
+            'owner_info' => '?\Upsun\Model\OwnerInfo',
+            'vendor' => '?string',
+            'plan' => '?string',
+            'environments' => '?int',
+            'storage' => '?int',
+            'user_licenses' => '?int',
+            'project_id' => '?string',
+            'project_endpoint' => '?string',
+            'project_title' => '?string',
+            'project_region' => '?string',
+            'project_region_label' => '?string',
+            'project_ui' => '?string',
+            'project_options' => '?\Upsun\Model\ProjectOptions',
+            'agency_site' => '?bool',
+            'invoiced' => '?bool',
+            'hipaa' => '?bool',
+            'is_trial_plan' => '?bool',
+            'services' => 'object[]',
+            'green' => '?bool',
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(?array $data = null)
+    public function jsonSerialize(): array
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('owner_info', $data ?? [], null);
-        $this->setIfExists('vendor', $data ?? [], null);
-        $this->setIfExists('plan', $data ?? [], null);
-        $this->setIfExists('environments', $data ?? [], null);
-        $this->setIfExists('storage', $data ?? [], null);
-        $this->setIfExists('user_licenses', $data ?? [], null);
-        $this->setIfExists('project_id', $data ?? [], null);
-        $this->setIfExists('project_endpoint', $data ?? [], null);
-        $this->setIfExists('project_title', $data ?? [], null);
-        $this->setIfExists('project_region', $data ?? [], null);
-        $this->setIfExists('project_region_label', $data ?? [], null);
-        $this->setIfExists('project_ui', $data ?? [], null);
-        $this->setIfExists('project_options', $data ?? [], null);
-        $this->setIfExists('agency_site', $data ?? [], null);
-        $this->setIfExists('invoiced', $data ?? [], null);
-        $this->setIfExists('hipaa', $data ?? [], null);
-        $this->setIfExists('is_trial_plan', $data ?? [], null);
-        $this->setIfExists('services', $data ?? [], null);
-        $this->setIfExists('green', $data ?? [], null);
+        return [
+            'id' => $this->id,
+            'status' => $this->status,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'owner' => $this->owner,
+            'ownerInfo' => $this->ownerInfo,
+            'vendor' => $this->vendor,
+            'plan' => $this->plan,
+            'environments' => $this->environments,
+            'storage' => $this->storage,
+            'userLicenses' => $this->userLicenses,
+            'projectId' => $this->projectId,
+            'projectEndpoint' => $this->projectEndpoint,
+            'projectTitle' => $this->projectTitle,
+            'projectRegion' => $this->projectRegion,
+            'projectRegionLabel' => $this->projectRegionLabel,
+            'projectUi' => $this->projectUi,
+            'projectOptions' => $this->projectOptions,
+            'agencySite' => $this->agencySite,
+            'invoiced' => $this->invoiced,
+            'hipaa' => $this->hipaa,
+            'isTrialPlan' => $this->isTrialPlan,
+            'services' => $this->services,
+            'green' => $this->green,
+        ];
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
-    {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets id
+     * The internal ID of the subscription.
      *
      * @return string|null
      */
-    public function getId()
+    public function getId(): ?string
     {
-        return $this->container['id'];
+        return $this->id;
     }
 
     /**
-     * Sets id
-     *
-     * @param string|null $id The internal ID of the subscription.
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
-        }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * The status of the subscription.
      *
      * @return string|null
      */
-    public function getStatus()
+    public function getStatus(): ?string
     {
-        return $this->container['status'];
+        return $this->status;
     }
 
     /**
-     * Sets status
-     *
-     * @param string|null $status The status of the subscription.
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets created_at
+     * The date and time when the subscription was created.
      *
      * @return \DateTime|null
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): ?\DateTime
     {
-        return $this->container['created_at'];
+        return $this->createdAt;
     }
 
     /**
-     * Sets created_at
-     *
-     * @param \DateTime|null $created_at The date and time when the subscription was created.
-     *
-     * @return self
-     */
-    public function setCreatedAt($created_at)
-    {
-        if (is_null($created_at)) {
-            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
-        }
-        $this->container['created_at'] = $created_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets updated_at
+     * The date and time when the subscription was last updated.
      *
      * @return \DateTime|null
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTime
     {
-        return $this->container['updated_at'];
+        return $this->updatedAt;
     }
 
     /**
-     * Sets updated_at
-     *
-     * @param \DateTime|null $updated_at The date and time when the subscription was last updated.
-     *
-     * @return self
-     */
-    public function setUpdatedAt($updated_at)
-    {
-        if (is_null($updated_at)) {
-            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
-        }
-        $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner
+     * The UUID of the owner.
      *
      * @return string|null
      */
-    public function getOwner()
+    public function getOwner(): ?string
     {
-        return $this->container['owner'];
+        return $this->owner;
     }
 
     /**
-     * Sets owner
-     *
-     * @param string|null $owner The UUID of the owner.
-     *
-     * @return self
-     */
-    public function setOwner($owner)
-    {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets owner_info
-     *
      * @return \Upsun\Model\OwnerInfo|null
      */
-    public function getOwnerInfo()
+    public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
     {
-        return $this->container['owner_info'];
+        return $this->ownerInfo;
     }
 
     /**
-     * Sets owner_info
-     *
-     * @param \Upsun\Model\OwnerInfo|null $owner_info owner_info
-     *
-     * @return self
-     */
-    public function setOwnerInfo($owner_info)
-    {
-        if (is_null($owner_info)) {
-            throw new \InvalidArgumentException('non-nullable owner_info cannot be null');
-        }
-        $this->container['owner_info'] = $owner_info;
-
-        return $this;
-    }
-
-    /**
-     * Gets vendor
+     * The machine name of the vendor the subscription belongs to.
      *
      * @return string|null
      */
-    public function getVendor()
+    public function getVendor(): ?string
     {
-        return $this->container['vendor'];
+        return $this->vendor;
     }
 
     /**
-     * Sets vendor
-     *
-     * @param string|null $vendor The machine name of the vendor the subscription belongs to.
-     *
-     * @return self
-     */
-    public function setVendor($vendor)
-    {
-        if (is_null($vendor)) {
-            throw new \InvalidArgumentException('non-nullable vendor cannot be null');
-        }
-        $this->container['vendor'] = $vendor;
-
-        return $this;
-    }
-
-    /**
-     * Gets plan
+     * The plan type of the subscription.
      *
      * @return string|null
      */
-    public function getPlan()
+    public function getPlan(): ?string
     {
-        return $this->container['plan'];
+        return $this->plan;
     }
 
     /**
-     * Sets plan
-     *
-     * @param string|null $plan The plan type of the subscription.
-     *
-     * @return self
-     */
-    public function setPlan($plan)
-    {
-        if (is_null($plan)) {
-            throw new \InvalidArgumentException('non-nullable plan cannot be null');
-        }
-        $this->container['plan'] = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets environments
+     * The number of environments which can be provisioned on the project.
      *
      * @return int|null
      */
-    public function getEnvironments()
+    public function getEnvironments(): ?int
     {
-        return $this->container['environments'];
+        return $this->environments;
     }
 
     /**
-     * Sets environments
-     *
-     * @param int|null $environments The number of environments which can be provisioned on the project.
-     *
-     * @return self
-     */
-    public function setEnvironments($environments)
-    {
-        if (is_null($environments)) {
-            throw new \InvalidArgumentException('non-nullable environments cannot be null');
-        }
-        $this->container['environments'] = $environments;
-
-        return $this;
-    }
-
-    /**
-     * Gets storage
+     * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
      *
      * @return int|null
      */
-    public function getStorage()
+    public function getStorage(): ?int
     {
-        return $this->container['storage'];
+        return $this->storage;
     }
 
     /**
-     * Sets storage
-     *
-     * @param int|null $storage The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
-     *
-     * @return self
-     */
-    public function setStorage($storage)
-    {
-        if (is_null($storage)) {
-            throw new \InvalidArgumentException('non-nullable storage cannot be null');
-        }
-        $this->container['storage'] = $storage;
-
-        return $this;
-    }
-
-    /**
-     * Gets user_licenses
+     * The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.
      *
      * @return int|null
      */
-    public function getUserLicenses()
+    public function getUserLicenses(): ?int
     {
-        return $this->container['user_licenses'];
+        return $this->userLicenses;
     }
 
     /**
-     * Sets user_licenses
-     *
-     * @param int|null $user_licenses The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.
-     *
-     * @return self
-     */
-    public function setUserLicenses($user_licenses)
-    {
-        if (is_null($user_licenses)) {
-            throw new \InvalidArgumentException('non-nullable user_licenses cannot be null');
-        }
-        $this->container['user_licenses'] = $user_licenses;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_id
+     * The unique ID string of the project.
      *
      * @return string|null
      */
-    public function getProjectId()
+    public function getProjectId(): ?string
     {
-        return $this->container['project_id'];
+        return $this->projectId;
     }
 
     /**
-     * Sets project_id
-     *
-     * @param string|null $project_id The unique ID string of the project.
-     *
-     * @return self
-     */
-    public function setProjectId($project_id)
-    {
-        if (is_null($project_id)) {
-            throw new \InvalidArgumentException('non-nullable project_id cannot be null');
-        }
-        $this->container['project_id'] = $project_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_endpoint
+     * The project API endpoint for the project.
      *
      * @return string|null
      */
-    public function getProjectEndpoint()
+    public function getProjectEndpoint(): ?string
     {
-        return $this->container['project_endpoint'];
+        return $this->projectEndpoint;
     }
 
     /**
-     * Sets project_endpoint
-     *
-     * @param string|null $project_endpoint The project API endpoint for the project.
-     *
-     * @return self
-     */
-    public function setProjectEndpoint($project_endpoint)
-    {
-        if (is_null($project_endpoint)) {
-            throw new \InvalidArgumentException('non-nullable project_endpoint cannot be null');
-        }
-        $this->container['project_endpoint'] = $project_endpoint;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_title
+     * The name given to the project. Appears as the title in the UI.
      *
      * @return string|null
      */
-    public function getProjectTitle()
+    public function getProjectTitle(): ?string
     {
-        return $this->container['project_title'];
+        return $this->projectTitle;
     }
 
     /**
-     * Sets project_title
-     *
-     * @param string|null $project_title The name given to the project. Appears as the title in the UI.
-     *
-     * @return self
-     */
-    public function setProjectTitle($project_title)
-    {
-        if (is_null($project_title)) {
-            throw new \InvalidArgumentException('non-nullable project_title cannot be null');
-        }
-        $this->container['project_title'] = $project_title;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_region
+     * The machine name of the region where the project is located. Cannot be changed after project creation.
      *
      * @return string|null
      */
-    public function getProjectRegion()
+    public function getProjectRegion(): ?string
     {
-        return $this->container['project_region'];
+        return $this->projectRegion;
     }
 
     /**
-     * Sets project_region
-     *
-     * @param string|null $project_region The machine name of the region where the project is located. Cannot be changed after project creation.
-     *
-     * @return self
-     */
-    public function setProjectRegion($project_region)
-    {
-        if (is_null($project_region)) {
-            throw new \InvalidArgumentException('non-nullable project_region cannot be null');
-        }
-        $this->container['project_region'] = $project_region;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_region_label
+     * The human-readable name of the region where the project is located.
      *
      * @return string|null
      */
-    public function getProjectRegionLabel()
+    public function getProjectRegionLabel(): ?string
     {
-        return $this->container['project_region_label'];
+        return $this->projectRegionLabel;
     }
 
     /**
-     * Sets project_region_label
-     *
-     * @param string|null $project_region_label The human-readable name of the region where the project is located.
-     *
-     * @return self
-     */
-    public function setProjectRegionLabel($project_region_label)
-    {
-        if (is_null($project_region_label)) {
-            throw new \InvalidArgumentException('non-nullable project_region_label cannot be null');
-        }
-        $this->container['project_region_label'] = $project_region_label;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_ui
+     * The URL for the project's user interface.
      *
      * @return string|null
      */
-    public function getProjectUi()
+    public function getProjectUi(): ?string
     {
-        return $this->container['project_ui'];
+        return $this->projectUi;
     }
 
     /**
-     * Sets project_ui
-     *
-     * @param string|null $project_ui The URL for the project's user interface.
-     *
-     * @return self
-     */
-    public function setProjectUi($project_ui)
-    {
-        if (is_null($project_ui)) {
-            throw new \InvalidArgumentException('non-nullable project_ui cannot be null');
-        }
-        $this->container['project_ui'] = $project_ui;
-
-        return $this;
-    }
-
-    /**
-     * Gets project_options
-     *
      * @return \Upsun\Model\ProjectOptions|null
      */
-    public function getProjectOptions()
+    public function getProjectOptions(): ?\Upsun\Model\ProjectOptions
     {
-        return $this->container['project_options'];
+        return $this->projectOptions;
     }
 
     /**
-     * Sets project_options
-     *
-     * @param \Upsun\Model\ProjectOptions|null $project_options project_options
-     *
-     * @return self
-     */
-    public function setProjectOptions($project_options)
-    {
-        if (is_null($project_options)) {
-            throw new \InvalidArgumentException('non-nullable project_options cannot be null');
-        }
-        $this->container['project_options'] = $project_options;
-
-        return $this;
-    }
-
-    /**
-     * Gets agency_site
+     * True if the project is an agency site.
      *
      * @return bool|null
      */
-    public function getAgencySite()
+    public function getAgencySite(): ?bool
     {
-        return $this->container['agency_site'];
+        return $this->agencySite;
     }
 
     /**
-     * Sets agency_site
-     *
-     * @param bool|null $agency_site True if the project is an agency site.
-     *
-     * @return self
-     */
-    public function setAgencySite($agency_site)
-    {
-        if (is_null($agency_site)) {
-            throw new \InvalidArgumentException('non-nullable agency_site cannot be null');
-        }
-        $this->container['agency_site'] = $agency_site;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoiced
+     * Whether the subscription is invoiced.
      *
      * @return bool|null
      */
-    public function getInvoiced()
+    public function getInvoiced(): ?bool
     {
-        return $this->container['invoiced'];
+        return $this->invoiced;
     }
 
     /**
-     * Sets invoiced
-     *
-     * @param bool|null $invoiced Whether the subscription is invoiced.
-     *
-     * @return self
-     */
-    public function setInvoiced($invoiced)
-    {
-        if (is_null($invoiced)) {
-            throw new \InvalidArgumentException('non-nullable invoiced cannot be null');
-        }
-        $this->container['invoiced'] = $invoiced;
-
-        return $this;
-    }
-
-    /**
-     * Gets hipaa
+     * Whether the project is marked as HIPAA.
      *
      * @return bool|null
      */
-    public function getHipaa()
+    public function getHipaa(): ?bool
     {
-        return $this->container['hipaa'];
+        return $this->hipaa;
     }
 
     /**
-     * Sets hipaa
-     *
-     * @param bool|null $hipaa Whether the project is marked as HIPAA.
-     *
-     * @return self
-     */
-    public function setHipaa($hipaa)
-    {
-        if (is_null($hipaa)) {
-            throw new \InvalidArgumentException('non-nullable hipaa cannot be null');
-        }
-        $this->container['hipaa'] = $hipaa;
-
-        return $this;
-    }
-
-    /**
-     * Gets is_trial_plan
+     * Whether the project is currently on a trial plan.
      *
      * @return bool|null
      */
-    public function getIsTrialPlan()
+    public function getIsTrialPlan(): ?bool
     {
-        return $this->container['is_trial_plan'];
+        return $this->isTrialPlan;
     }
 
     /**
-     * Sets is_trial_plan
-     *
-     * @param bool|null $is_trial_plan Whether the project is currently on a trial plan.
-     *
-     * @return self
-     */
-    public function setIsTrialPlan($is_trial_plan)
-    {
-        if (is_null($is_trial_plan)) {
-            throw new \InvalidArgumentException('non-nullable is_trial_plan cannot be null');
-        }
-        $this->container['is_trial_plan'] = $is_trial_plan;
-
-        return $this;
-    }
-
-    /**
-     * Gets services
+     * Details of the attached services.
      *
      * @return object[]|null
      */
-    public function getServices()
+    public function getServices(): ?array
     {
-        return $this->container['services'];
+        return $this->services;
     }
 
     /**
-     * Sets services
-     *
-     * @param object[]|null $services Details of the attached services.
-     *
-     * @return self
-     */
-    public function setServices($services)
-    {
-        if (is_null($services)) {
-            throw new \InvalidArgumentException('non-nullable services cannot be null');
-        }
-        $this->container['services'] = $services;
-
-        return $this;
-    }
-
-    /**
-     * Gets green
+     * Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.
      *
      * @return bool|null
      */
-    public function getGreen()
+    public function getGreen(): ?bool
     {
-        return $this->container['green'];
-    }
-
-    /**
-     * Sets green
-     *
-     * @param bool|null $green Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.
-     *
-     * @return self
-     */
-    public function setGreen($green)
-    {
-        if (is_null($green)) {
-            throw new \InvalidArgumentException('non-nullable green cannot be null');
-        }
-        $this->container['green'] = $green;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
-     */
-    public function offsetExists($offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed|null
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
-     */
-    public function offsetSet($offset, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
-     */
-    public function offsetUnset($offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize()
-    {
-       return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return $this->green;
     }
 }
-
 

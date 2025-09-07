@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\CertManagementApi;
 use Upsun\Model\AcceptedResponse;
@@ -10,6 +11,13 @@ use Upsun\Model\CertificateCreateInput;
 use Upsun\Model\CertificatePatch;
 use Upsun\UpsunClient;
 
+/**
+ * CertificateTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class CertificateTask extends TaskBase
 {
     public function __construct(
@@ -22,57 +30,66 @@ class CertificateTask extends TaskBase
     /**
      * Adds an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     certificate?: string,
+     *     key?: string,
+     *     chain?: array,
+     *     isInvalid?: bool
+     * } $options Configuration options
      */
-    public function create(string $projectId, array $certificateCreateInput): AcceptedResponse
+    public function create(string $projectId, array $options = []): AcceptedResponse
     {
-        $this->refreshToken();
-        $certificateCreateInput = new CertificateCreateInput($certificateCreateInput);
+        $certificateCreateInput = new CertificateCreateInput(...$options);
         return $this->api->createProjectsCertificates($projectId, $certificateCreateInput);
     }
 
     /**
      * Deletes an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $projectId, string $certificateId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->api->deleteProjectsCertificates($projectId, $certificateId);
     }
 
     /**
      * Gets an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $certificateId): Certificate
     {
-        $this->refreshToken();
         return $this->api->getProjectsCertificates($projectId, $certificateId);
     }
 
     /**
      * Gets list of SSL certificates
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Certificate[]
      */
     public function list(string $projectId): array
     {
-        $this->refreshToken();
         return $this->api->listProjectsCertificates($projectId);
     }
 
     /**
      * Updates an SSL certificate
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     chain?: array,
+     *     isInvalid?: bool,
+     * } $data
      */
-    public function update(string $projectId, string $certificateId, array $certificatePatch): AcceptedResponse
+    public function update(string $projectId, string $certificateId, array $data): AcceptedResponse
     {
-        $this->refreshToken();
-        $certificatePatch = new CertificatePatch($certificatePatch);
+        $certificatePatch = new CertificatePatch(...$data);
         return $this->api->updateProjectsCertificates($projectId, $certificateId, $certificatePatch);
     }
 }

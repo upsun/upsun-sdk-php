@@ -2,11 +2,19 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
 use Upsun\UpsunClient;
 
+/**
+ * WorkerTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class WorkerTask extends TaskBase
 {
     public function __construct(
@@ -19,14 +27,16 @@ class WorkerTask extends TaskBase
     /**
      * Lists workers of an environment
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
+     *
+     * @return Deployment[]
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-        $deployments = reset($deployments);
-        /** @var Deployment $deployments */
+        $allDeployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
+        /** @var Deployment|false $deployment */
+        $deployment = reset($allDeployments);
 
-        return !empty($deployments) ? $deployments->getWorkers() : [];
+        return $deployment?->getWorkers() ?? [];
     }
 }

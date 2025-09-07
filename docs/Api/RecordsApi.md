@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `listOrgPlanRecords()`
 
 ```php
-listOrgPlanRecords($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page): \Upsun\Model\ListOrgPlanRecords200Response
+listOrgPlanRecords($organizationId, $filterSubscriptionId, $filterPlan, $filterStatus, $filterStart, $filterEnd, $filterStartedAt, $filterEndedAt, $page): \Upsun\Model\ListOrgPlanRecords200Response
 ```
 
 List plan records
@@ -25,28 +25,24 @@ Retrieves plan records for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RecordsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
-$filter_subscription_id = 'filter_subscription_id_example'; // string | The ID of the subscription
-$filter_plan = 'filter_plan_example'; // string | The plan type of the subscription.
-$filter_status = 'filter_status_example'; // string | The status of the plan record.
-$filter_start = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01
-$filter_end = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01
-$filter_started_at = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=>
-$filter_ended_at = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=>
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$filterSubscriptionId = 'filterSubscriptionId_example'; // string | The ID of the subscription
+$filterPlan = 'filterPlan_example'; // string | The plan type of the subscription.
+$filterStatus = 'filterStatus_example'; // string | The status of the plan record.
+$filterStart = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01
+$filterEnd = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The end of the observation period for the record. E.g. filter[end]=2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01
+$filterStartedAt = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=>
+$filterEndedAt = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The record's end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]=2020-01-01&filter[ended_at][operator]=>
 $page = 56; // int | Page to be displayed. Defaults to 1.
 
 try {
-    $result = $apiInstance->listOrgPlanRecords($organization_id, $filter_subscription_id, $filter_plan, $filter_status, $filter_start, $filter_end, $filter_started_at, $filter_ended_at, $page);
+    $result = $apiInstance->listOrgPlanRecords($organizationId, $filterSubscriptionId, $filterPlan, $filterStatus, $filterStart, $filterEnd, $filterStartedAt, $filterEndedAt, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RecordsApi->listOrgPlanRecords: ', $e->getMessage(), PHP_EOL;
@@ -57,14 +53,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filter_subscription_id** | **string**| The ID of the subscription | [optional]
- **filter_plan** | **string**| The plan type of the subscription. | [optional]
- **filter_status** | **string**| The status of the plan record. | [optional]
- **filter_start** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional]
- **filter_end** | **\DateTime**| The end of the observation period for the record. E.g. filter[end]&#x3D;2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 | [optional]
- **filter_started_at** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional]
- **filter_ended_at** | **\DateTime**| The record&#39;s end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]&#x3D;2020-01-01&amp;filter[ended_at][operator]&#x3D;&gt; | [optional]
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **filterSubscriptionId** | **string**| The ID of the subscription | [optional]
+ **filterPlan** | **string**| The plan type of the subscription. | [optional]
+ **filterStatus** | **string**| The status of the plan record. | [optional]
+ **filterStart** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional]
+ **filterEnd** | **\DateTime**| The end of the observation period for the record. E.g. filter[end]&#x3D;2018-01-01 will display all records that were active on (i.e. they started before) 2018-01-01 | [optional]
+ **filterStartedAt** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional]
+ **filterEndedAt** | **\DateTime**| The record&#39;s end timestamp. You can use this filter to list records ended after, or before a certain time. E.g. filter[ended_at][value]&#x3D;2020-01-01&amp;filter[ended_at][operator]&#x3D;&gt; | [optional]
  **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
 
 ### Return type
@@ -73,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -87,7 +83,7 @@ Name | Type | Description  | Notes
 ## `listOrgUsageRecords()`
 
 ```php
-listOrgUsageRecords($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page): \Upsun\Model\ListOrgUsageRecords200Response
+listOrgUsageRecords($organizationId, $filterSubscriptionId, $filterUsageGroup, $filterStart, $filterStartedAt, $page): \Upsun\Model\ListOrgUsageRecords200Response
 ```
 
 List usage records
@@ -101,25 +97,21 @@ Retrieves usage records for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\RecordsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
-$filter_subscription_id = 'filter_subscription_id_example'; // string | The ID of the subscription
-$filter_usage_group = 'filter_usage_group_example'; // string | Filter records by the type of usage.
-$filter_start = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01
-$filter_started_at = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=>
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$filterSubscriptionId = 'filterSubscriptionId_example'; // string | The ID of the subscription
+$filterUsageGroup = 'filterUsageGroup_example'; // string | Filter records by the type of usage.
+$filterStart = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The start of the observation period for the record. E.g. filter[start]=2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01
+$filterStartedAt = new \DateTime('2013-10-20T19:20:30+01:00'); // \DateTime | The record's start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]=2020-01-01&filter[started_at][operator]=>
 $page = 56; // int | Page to be displayed. Defaults to 1.
 
 try {
-    $result = $apiInstance->listOrgUsageRecords($organization_id, $filter_subscription_id, $filter_usage_group, $filter_start, $filter_started_at, $page);
+    $result = $apiInstance->listOrgUsageRecords($organizationId, $filterSubscriptionId, $filterUsageGroup, $filterStart, $filterStartedAt, $page);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RecordsApi->listOrgUsageRecords: ', $e->getMessage(), PHP_EOL;
@@ -130,11 +122,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filter_subscription_id** | **string**| The ID of the subscription | [optional]
- **filter_usage_group** | **string**| Filter records by the type of usage. | [optional]
- **filter_start** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional]
- **filter_started_at** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional]
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **filterSubscriptionId** | **string**| The ID of the subscription | [optional]
+ **filterUsageGroup** | **string**| Filter records by the type of usage. | [optional]
+ **filterStart** | **\DateTime**| The start of the observation period for the record. E.g. filter[start]&#x3D;2018-01-01 will display all records that were active (i.e. did not end) on 2018-01-01 | [optional]
+ **filterStartedAt** | **\DateTime**| The record&#39;s start timestamp. You can use this filter to list records started after, or before a certain time. E.g. filter[started_at][value]&#x3D;2020-01-01&amp;filter[started_at][operator]&#x3D;&gt; | [optional]
  **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
 
 ### Return type
@@ -143,7 +135,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

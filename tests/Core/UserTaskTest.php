@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Upsun\Core\Tasks;
+namespace Tests\Upsun\Core;
 
 use InvalidArgumentException;
 use Upsun\ApiException;

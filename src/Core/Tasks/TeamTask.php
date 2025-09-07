@@ -2,20 +2,29 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\TeamAccessApi;
 use Upsun\Api\TeamsApi;
 use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
-use Upsun\Model\Error;
+use Upsun\Model\DateTimeFilter;
 use Upsun\Model\ListTeamMembers200Response;
 use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\ListTeams200Response;
+use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
 use Upsun\Model\TeamProjectAccess;
 use Upsun\UpsunClient;
 
+/**
+ * TeamTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class TeamTask extends TaskBase
 {
     public function __construct(
@@ -29,105 +38,104 @@ class TeamTask extends TaskBase
     /**
      * Creates team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function create(array $createTeamRequest): Team|Error
-    {
-        $this->refreshToken();
-        $createTeamRequest = new CreateTeamRequest($createTeamRequest);
+    public function create(
+        string $organizationId,
+        string $label,
+        ?array $projectPermissions = []
+    ): Team {
+        $createTeamRequest = new CreateTeamRequest(
+            organizationId: $organizationId,
+            label: $label,
+            projectPermissions: $projectPermissions
+        );
         return $this->teamsApi->createTeam($createTeamRequest);
     }
 
     /**
      * Creates team member
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function createMember(string $teamId, array $createTeamMemberRequest): Error|TeamMember
+    public function createMember(string $teamId, string $userId): TeamMember
     {
-        $this->refreshToken();
-        $createTeamMemberRequest = new CreateTeamMemberRequest($createTeamMemberRequest);
+        $createTeamMemberRequest = new CreateTeamMemberRequest(userId: $userId);
         return $this->teamsApi->createTeamMember($teamId, $createTeamMemberRequest);
     }
 
     /**
      * Deletes team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $teamId): void
     {
-        $this->refreshToken();
         $this->teamsApi->deleteTeam($teamId);
     }
 
     /**
      * Deletes team member
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function deleteMember(string $teamId, string $userId): void
     {
-        $this->refreshToken();
         $this->teamsApi->deleteTeamMember($teamId, $userId);
     }
 
     /**
      * Gets team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $teamId): Team|Error
+    public function get(string $teamId): Team
     {
-        $this->refreshToken();
         return $this->teamsApi->getTeam($teamId);
     }
 
     /**
      * Gets team member
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getMember(string $teamId, string $userId): Error|TeamMember
+    public function getMember(string $teamId, string $userId): TeamMember
     {
-        $this->refreshToken();
         return $this->teamsApi->getTeamMember($teamId, $userId);
     }
 
     /**
      * Lists team members
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listMembers(
         string $teamId,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamMembers200Response {
-        $this->refreshToken();
+    ): ListTeamMembers200Response {
         return $this->teamsApi->listTeamMembers($teamId, $pageBefore, $pageAfter, $sort);
     }
 
     /**
      * Lists teams
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function list(
-        ?array $filterOrganizationId = null,
-        ?array $filterId = null,
-        ?array $filterUpdatedAt = null,
+        ?array $filterOrganizationId = [],
+        ?array $filterId = [],
+        ?array $filterUpdatedAt = [],
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response {
-        $this->refreshToken();
+    ): ListTeams200Response {
         return $this->teamsApi->listTeams(
-            $filterOrganizationId,
-            $filterId,
-            $filterUpdatedAt,
+            new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
+            new StringFilter(...$this->normalizeFilter($filterId)),
+            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -138,7 +146,7 @@ class TeamTask extends TaskBase
     /**
      * Lists User teams
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listUserTeams(
         string $userId,
@@ -148,12 +156,11 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeams200Response {
-        $this->refreshToken();
+    ): ListTeams200Response {
         return $this->teamsApi->listUserTeams(
             $userId,
-            $filterOrganizationId,
-            $filterUpdatedAt,
+            new StringFilter(...$this->normalizeFilter($filterOrganizationId)),
+            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -164,22 +171,20 @@ class TeamTask extends TaskBase
     /**
      * Updates team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function update(string $teamId, ?array $updateTeamRequest = null): Team|Error
+    public function update(string $teamId, ?array $updateTeamRequest = null): Team
     {
-        $this->refreshToken();
         return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
     }
 
     /**
      * Gets team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getProjectTeamAccess(string $projectId, string $teamId): Error|TeamProjectAccess
+    public function getProjectTeamAccess(string $projectId, string $teamId): TeamProjectAccess
     {
-        $this->refreshToken();
         return $this->accessApi->getProjectTeamAccess($projectId, $teamId);
     }
 
@@ -187,40 +192,37 @@ class TeamTask extends TaskBase
     /**
      * Gets project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function getTeamProjectAccess(string $teamId, string $projectId): Error|TeamProjectAccess
+    public function getTeamProjectAccess(string $teamId, string $projectId): TeamProjectAccess
     {
-        $this->refreshToken();
         return $this->accessApi->getTeamProjectAccess($teamId, $projectId);
     }
 
     /**
      * Grants team access to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function grantProjectTeamAccess(string $projectId, array $grantProjectTeamAccessRequestInner): void
     {
-        $this->refreshToken();
         $this->accessApi->grantProjectTeamAccess($projectId, $grantProjectTeamAccessRequestInner);
     }
 
     /**
      * Grants project access to a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function grantTeamProjectAccess(string $teamId, array $grantTeamProjectAccessRequestInner): void
+    public function grantTeamProjectAccess(string $teamId, array $data): void
     {
-        $this->refreshToken();
-        $this->accessApi->grantTeamProjectAccess($teamId, $grantTeamProjectAccessRequestInner);
+        $this->accessApi->grantTeamProjectAccess($teamId, $data);
     }
 
     /**
      * Lists team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listProjectTeamAccess(
         string $projectId,
@@ -228,15 +230,14 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
-        $this->refreshToken();
+    ): ListTeamProjectAccess200Response {
         return $this->accessApi->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
      * Lists project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listTeamProjectAccess(
         string $teamId,
@@ -244,30 +245,27 @@ class TeamTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|ListTeamProjectAccess200Response {
-        $this->refreshToken();
+    ): ListTeamProjectAccess200Response {
         return $this->accessApi->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
     /**
      * Removes team access for a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeProjectTeamAccess(string $projectId, string $teamId): void
     {
-        $this->refreshToken();
         $this->accessApi->removeProjectTeamAccess($projectId, $teamId);
     }
 
     /**
      * Removes project access for a team
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function removeTeamProjectAccess(string $teamId, string $projectId): void
     {
-        $this->refreshToken();
         $this->accessApi->removeTeamProjectAccess($teamId, $projectId);
     }
 }

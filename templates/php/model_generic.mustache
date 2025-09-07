@@ -1,0 +1,110 @@
+final class {{classname}} implements JsonSerializable
+{
+    {{#vars}}
+    {{#isEnum}}
+    {{#allowableValues}}
+    {{#enumVars}}
+    public const {{enumName}}_{{{name}}} = {{{value}}};
+    {{/enumVars}}
+    {{/allowableValues}}
+    {{/isEnum}}
+    {{/vars}}
+
+    private static array $attributeMap = [
+        {{#vars}}'{{name}}' => '{{baseName}}'{{^-last}},
+        {{/-last}}{{/vars}}
+    ];
+
+    public function __construct(
+    {{#vars}}
+      {{#required}}
+      {{^isNullable}}
+      {{#isContainer}}
+        private readonly array ${{name}},
+      {{/isContainer}}
+      {{^isContainer}}
+        private readonly {{{dataType}}} ${{name}},
+      {{/isContainer}}
+      {{/isNullable}}
+      {{/required}}      
+    {{/vars}}
+    {{#vars}}
+      {{#isNullable}}
+      {{#isContainer}}
+        private readonly ?array ${{name}} = [],
+      {{/isContainer}}
+      {{^isContainer}}
+        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+      {{/isContainer}}
+      {{/isNullable}}      
+    {{/vars}}
+    {{#vars}}
+    {{^required}}
+    {{^isNullable}}
+    {{#isContainer}}
+        private readonly ?array ${{name}} = [],
+    {{/isContainer}}
+    {{^isContainer}}
+        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+    {{/isContainer}}
+    {{/isNullable}}      
+    {{/required}}      
+    {{/vars}}  
+    ) {
+    }
+
+    public static function attributeMap()
+    {
+        return self::$attributeMap;
+    }
+
+    /**
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
+     */
+    public static function openAPITypes(): array
+    {
+        return [
+    {{#vars}}
+            '{{baseName}}' => '{{#isContainer}}{{#items}}{{dataType}}[]{{/items}}{{^items}}array{{/items}}{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{dataType}}{{/isContainer}}',
+    {{/vars}}
+        ];
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            {{#vars}}
+            '{{name}}' => $this->{{name}},
+            {{/vars}}
+        ];
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+{{#vars}}
+
+    /**
+{{#description}}
+     * {{{description}}}
+     *
+{{/description}}
+{{#isContainer}}
+  {{#items.isModel}}
+     * @return {{{items.dataType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+  {{/items.isModel}}
+  {{^items.isModel}}
+     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+  {{/items.isModel}}
+{{/isContainer}}
+{{^isContainer}}
+     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
+{{/isContainer}}
+     */
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}
+    {
+        return $this->{{{name}}};
+    }
+{{/vars}}
+}

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `createAuthorizationCredentials()`
 
 ```php
-createAuthorizationCredentials($organization_id, $order_id): \Upsun\Model\CreateAuthorizationCredentials200Response
+createAuthorizationCredentials($organizationId, $orderId): \Upsun\Model\CreateAuthorizationCredentials200Response
 ```
 
 Create confirmation credentials for for 3D-Secure
@@ -27,21 +27,17 @@ Creates confirmation credentials for payments that require online authorization
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\OrdersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
-$order_id = 'order_id_example'; // string | The ID of the order.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$orderId = 'orderId_example'; // string | The ID of the order.
 
 try {
-    $result = $apiInstance->createAuthorizationCredentials($organization_id, $order_id);
+    $result = $apiInstance->createAuthorizationCredentials($organizationId, $orderId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrdersApi->createAuthorizationCredentials: ', $e->getMessage(), PHP_EOL;
@@ -52,8 +48,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **order_id** | **string**| The ID of the order. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **orderId** | **string**| The ID of the order. |
 
 ### Return type
 
@@ -61,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -87,15 +83,11 @@ Download an invoice.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\OrdersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
 $token = 'token_example'; // string | JWT for invoice.
 
@@ -118,7 +110,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -132,7 +124,7 @@ void (empty response body)
 ## `getOrgOrder()`
 
 ```php
-getOrgOrder($organization_id, $order_id, $mode): \Upsun\Model\Order
+getOrgOrder($organizationId, $orderId, $mode): \Upsun\Model\Order
 ```
 
 Get order
@@ -146,22 +138,18 @@ Retrieves an order for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\OrdersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
-$order_id = 'order_id_example'; // string | The ID of the order.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$orderId = 'orderId_example'; // string | The ID of the order.
 $mode = 'mode_example'; // string | The output mode.
 
 try {
-    $result = $apiInstance->getOrgOrder($organization_id, $order_id, $mode);
+    $result = $apiInstance->getOrgOrder($organizationId, $orderId, $mode);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrdersApi->getOrgOrder: ', $e->getMessage(), PHP_EOL;
@@ -172,8 +160,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **order_id** | **string**| The ID of the order. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **orderId** | **string**| The ID of the order. |
  **mode** | **string**| The output mode. | [optional]
 
 ### Return type
@@ -182,7 +170,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -196,7 +184,7 @@ Name | Type | Description  | Notes
 ## `listOrgOrders()`
 
 ```php
-listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode): \Upsun\Model\ListOrgOrders200Response
+listOrgOrders($organizationId, $filterStatus, $filterTotal, $page, $mode): \Upsun\Model\ListOrgOrders200Response
 ```
 
 List orders
@@ -210,24 +198,20 @@ Retrieves orders for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\OrdersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
-$filter_status = 'filter_status_example'; // string | The status of the order.
-$filter_total = 56; // int | The total of the order.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$filterStatus = 'filterStatus_example'; // string | The status of the order.
+$filterTotal = 56; // int | The total of the order.
 $page = 56; // int | Page to be displayed. Defaults to 1.
 $mode = 'mode_example'; // string | The output mode.
 
 try {
-    $result = $apiInstance->listOrgOrders($organization_id, $filter_status, $filter_total, $page, $mode);
+    $result = $apiInstance->listOrgOrders($organizationId, $filterStatus, $filterTotal, $page, $mode);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrdersApi->listOrgOrders: ', $e->getMessage(), PHP_EOL;
@@ -238,9 +222,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filter_status** | **string**| The status of the order. | [optional]
- **filter_total** | **int**| The total of the order. | [optional]
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **filterStatus** | **string**| The status of the order. | [optional]
+ **filterTotal** | **int**| The total of the order. | [optional]
  **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
  **mode** | **string**| The output mode. | [optional]
 
@@ -250,7 +234,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

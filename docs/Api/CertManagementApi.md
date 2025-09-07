@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `createProjectsCertificates()`
 
 ```php
-createProjectsCertificates($project_id, $certificate_create_input): \Upsun\Model\AcceptedResponse
+createProjectsCertificates($projectId, $certificateCreateInput): \Upsun\Model\AcceptedResponse
 ```
 
 Add an SSL certificate
@@ -28,21 +28,17 @@ Add a single SSL certificate to a project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\CertManagementApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$certificate_create_input = new \Upsun\Model\CertificateCreateInput(); // \Upsun\Model\CertificateCreateInput | 
+$projectId = 'projectId_example'; // string
+$certificateCreateInput = new \Upsun\Model\CertificateCreateInput(); // \Upsun\Model\CertificateCreateInput | 
 
 try {
-    $result = $apiInstance->createProjectsCertificates($project_id, $certificate_create_input);
+    $result = $apiInstance->createProjectsCertificates($projectId, $certificateCreateInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CertManagementApi->createProjectsCertificates: ', $e->getMessage(), PHP_EOL;
@@ -53,8 +49,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **certificate_create_input** | [**\Upsun\Model\CertificateCreateInput**](../Model/CertificateCreateInput.md)|  |
+ **projectId** | **string**|  |
+ **certificateCreateInput** | [**\Upsun\Model\CertificateCreateInput**](../Model/CertificateCreateInput.md)|  |
 
 ### Return type
 
@@ -62,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -76,7 +72,7 @@ Name | Type | Description  | Notes
 ## `deleteProjectsCertificates()`
 
 ```php
-deleteProjectsCertificates($project_id, $certificate_id): \Upsun\Model\AcceptedResponse
+deleteProjectsCertificates($projectId, $certificateId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete an SSL certificate
@@ -90,21 +86,17 @@ Delete a single SSL certificate associated with a project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\CertManagementApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$certificate_id = 'certificate_id_example'; // string
+$projectId = 'projectId_example'; // string
+$certificateId = 'certificateId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsCertificates($project_id, $certificate_id);
+    $result = $apiInstance->deleteProjectsCertificates($projectId, $certificateId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CertManagementApi->deleteProjectsCertificates: ', $e->getMessage(), PHP_EOL;
@@ -115,8 +107,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **certificate_id** | **string**|  |
+ **projectId** | **string**|  |
+ **certificateId** | **string**|  |
 
 ### Return type
 
@@ -124,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -138,7 +130,7 @@ Name | Type | Description  | Notes
 ## `getProjectsCertificates()`
 
 ```php
-getProjectsCertificates($project_id, $certificate_id): \Upsun\Model\Certificate
+getProjectsCertificates($projectId, $certificateId): \Upsun\Model\Certificate
 ```
 
 Get an SSL certificate
@@ -152,21 +144,17 @@ Retrieve information about a single SSL certificate associated with a project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\CertManagementApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$certificate_id = 'certificate_id_example'; // string
+$projectId = 'projectId_example'; // string
+$certificateId = 'certificateId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsCertificates($project_id, $certificate_id);
+    $result = $apiInstance->getProjectsCertificates($projectId, $certificateId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CertManagementApi->getProjectsCertificates: ', $e->getMessage(), PHP_EOL;
@@ -177,8 +165,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **certificate_id** | **string**|  |
+ **projectId** | **string**|  |
+ **certificateId** | **string**|  |
 
 ### Return type
 
@@ -186,7 +174,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -200,7 +188,7 @@ Name | Type | Description  | Notes
 ## `listProjectsCertificates()`
 
 ```php
-listProjectsCertificates($project_id): \Upsun\Model\Certificate[]
+listProjectsCertificates($projectId): \Upsun\Model\Certificate[]
 ```
 
 Get list of SSL certificates
@@ -214,20 +202,16 @@ Retrieve a list of objects representing the SSL certificates associated with a p
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\CertManagementApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsCertificates($project_id);
+    $result = $apiInstance->listProjectsCertificates($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CertManagementApi->listProjectsCertificates: ', $e->getMessage(), PHP_EOL;
@@ -238,7 +222,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -246,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -260,7 +244,7 @@ Name | Type | Description  | Notes
 ## `updateProjectsCertificates()`
 
 ```php
-updateProjectsCertificates($project_id, $certificate_id, $certificate_patch): \Upsun\Model\AcceptedResponse
+updateProjectsCertificates($projectId, $certificateId, $certificatePatch): \Upsun\Model\AcceptedResponse
 ```
 
 Update an SSL certificate
@@ -274,22 +258,18 @@ Update a single SSL certificate associated with a project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\CertManagementApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$certificate_id = 'certificate_id_example'; // string
-$certificate_patch = new \Upsun\Model\CertificatePatch(); // \Upsun\Model\CertificatePatch | 
+$projectId = 'projectId_example'; // string
+$certificateId = 'certificateId_example'; // string
+$certificatePatch = new \Upsun\Model\CertificatePatch(); // \Upsun\Model\CertificatePatch | 
 
 try {
-    $result = $apiInstance->updateProjectsCertificates($project_id, $certificate_id, $certificate_patch);
+    $result = $apiInstance->updateProjectsCertificates($projectId, $certificateId, $certificatePatch);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling CertManagementApi->updateProjectsCertificates: ', $e->getMessage(), PHP_EOL;
@@ -300,9 +280,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **certificate_id** | **string**|  |
- **certificate_patch** | [**\Upsun\Model\CertificatePatch**](../Model/CertificatePatch.md)|  |
+ **projectId** | **string**|  |
+ **certificateId** | **string**|  |
+ **certificatePatch** | [**\Upsun\Model\CertificatePatch**](../Model/CertificatePatch.md)|  |
 
 ### Return type
 
@@ -310,7 +290,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

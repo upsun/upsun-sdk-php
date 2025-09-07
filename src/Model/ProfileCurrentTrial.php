@@ -1,791 +1,200 @@
 <?php
-/**
- * ProfileCurrentTrial
- *
- * PHP version 8.1
- *
- * @category Class
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- */
 
 /**
- * Platform.sh Rest API
+ * Low level ProfileCurrentTrial (auto-generated)
  *
- * # Introduction  Platform.sh is a container-based Platform-as-a-Service. Our main API is simply Git. With a single `git push` and a couple of YAML files in your repository you can deploy an arbitrarily complex cluster. Every [**Project**](#tag/Project) can have multiple applications (PHP, Node.js, Python, Ruby, Go, etc.) and managed, automatically provisioned services (databases, message queues, etc.).  Each project also comes with multiple concurrent live staging/development [**Environments**](#tag/Environment). These ephemeral development environments are automatically created every time you push a new branch or create a pull request, and each has a full copy of the data of its parent branch, which is created on-the-fly in seconds.  Our Git implementation supports integrations with third party Git providers such as GitHub, Bitbucket, or GitLab, allowing you to simply integrate Platform.sh into your existing workflow.  ## Using the REST API  In addition to the Git API, we also offer a REST API that allows you to manage every aspect of the platform, from managing projects and environments, to accessing accounts and subscriptions, to creating robust workflows and integrations with your CI systems and internal services.  These API docs are generated from a standard **OpenAPI (Swagger)** Specification document which you can find here in [YAML](openapispec-platformsh.yaml) and in [JSON](openapispec-platformsh.json) formats.  This RESTful API consumes and produces HAL-style JSON over HTTPS, and any REST library can be used to access it. On GitHub, we also host a few API libraries that you can use to make API access easier, such as our [PHP API client](https://github.com/platformsh/platformsh-client-php) and our [JavaScript API client](https://github.com/platformsh/platformsh-client-js).  In order to use the API you will first need to have a Platform.sh account (we have a [free trial](https://accounts.platform.sh/platform/trial/general/setup) available) and create an API Token.  # Authentication  ## OAuth2  API authentication is done with OAuth2 access tokens.  ### API tokens  You can use an API token as one way to get an OAuth2 access token. This is particularly useful in scripts, e.g. for CI pipelines.  To create an API token, go to the \"API Tokens\" section of the \"Account Settings\" tab on the [Console](https://console.platform.sh).  To exchange this API token for an access token, a `POST` request must be made to `https://auth.api.platform.sh/oauth2/token`.  The request will look like this in cURL:  <pre> curl -u platform-api-user: \\     -d 'grant_type=api_token&amp;api_token=<em><b>API_TOKEN</b></em>' \\     https://auth.api.platform.sh/oauth2/token </pre>  This will return a \"Bearer\" access token that can be used to authenticate further API requests, for example:  <pre> {     \"access_token\": \"<em><b>abcdefghij1234567890</b></em>\",     \"expires_in\": 900,     \"token_type\": \"bearer\" } </pre>  ### Using the Access Token  To authenticate further API requests, include this returned bearer token in the `Authorization` header. For example, to retrieve a list of [Projects](#tag/Project) accessible by the current user, you can make the following request (substituting the dummy token for your own):  <pre> curl -H \"Authorization: Bearer <em><b>abcdefghij1234567890</b></em>\" \\     https://api.platform.sh/projects </pre>  # HAL Links  Most endpoints in the API return fields which defines a HAL (Hypertext Application Language) schema for the requested endpoint. The particular objects returns and their contents can vary by endpoint. The payload examples we give here for the requests do not show these elements. These links can allow you to create a fully dynamic API client that does not need to hardcode any method or schema.  Unless they are used for pagination we do not show the HAL links in the payload examples in this documentation for brevity and as their content is contextual (based on the permissions of the user).  ## _links Objects  Most endpoints that respond to `GET` requests will include a `_links` object in their response. The `_links` object contains a key-object pair labelled `self`, which defines two further key-value pairs:  * `href` - A URL string referring to the fully qualified name of the returned object. For many endpoints, this will be the direct link to the API endpoint on the region gateway, rather than on the general API gateway. This means it may reference a host of, for example, `eu-2.platform.sh` rather than `api.platform.sh`. * `meta` - An object defining the OpenAPI Specification (OAS) [schema object](https://swagger.io/specification/#schemaObject) of the component returned by the endpoint.  There may be zero or more other fields in the `_links` object resembling fragment identifiers beginning with a hash mark, e.g. `#edit` or `#delete`. Each of these keys refers to a JSON object containing two key-value pairs:  * `href` - A URL string referring to the path name of endpoint which can perform the action named in the key. * `meta` - An object defining the OAS schema of the endpoint. This consists of a key-value pair, with the key defining an HTTP method and the value defining the [operation object](https://swagger.io/specification/#operationObject) of the endpoint.  To use one of these HAL links, you must send a new request to the URL defined in the `href` field which contains a body defined the schema object in the `meta` field.  For example, if you make a request such as `GET /projects/abcdefghij1234567890`, the `_links` object in the returned response will include the key `#delete`. That object will look something like this fragment:  ``` \"#delete\": {     \"href\": \"/api/projects/abcdefghij1234567890\",     \"meta\": {         \"delete\": {             \"responses\": {                 . . . // Response definition omitted for space             },             \"parameters\": []         }     } } ```  To use this information to delete a project, you would then send a `DELETE` request to the endpoint `https://api.platform.sh/api/projects/abcdefghij1234567890` with no body or parameters to delete the project that was originally requested.  ## _embedded Objects  Requests to endpoints which create or modify objects, such as `POST`, `PATCH`, or `DELETE` requests, will include an `_embedded` key in their response. The object represented by this key will contain the created or modified object. This object is identical to what would be returned by a subsequent `GET` request for the object referred to by the endpoint.
- *
- * The version of the OpenAPI document: 1.0
- * Generated by: https://openapi-generator.tech
- * Generator version: 7.14.0
- */
-
-/**
- * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
- * https://openapi-generator.tech
- * Do not edit the class manually.
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ * @internal  This file was generated by OpenAPI Generator. Do not edit manually.
+ * @generated
  */
 
 namespace Upsun\Model;
 
-use \ArrayAccess;
-use \Upsun\ObjectSerializer;
+use ArrayAccess;
+use JsonSerializable;
 
-/**
- * ProfileCurrentTrial Class Doc Comment
- *
- * @category Class
- * @description The current trial for the profile.
- * @package  Upsun
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
- * @implements \ArrayAccess<string, mixed>
- */
-class ProfileCurrentTrial implements ModelInterface, ArrayAccess, \JsonSerializable
+final class ProfileCurrentTrial implements JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const PENDING_VERIFICATION_CREDIT_CARD = 'credit-card';
 
-    /**
-      * The original name of the model.
-      *
-      * @var string
-      */
-    protected static $openAPIModelName = 'Profile_current_trial';
-
-    /**
-      * Array of property to type mappings. Used for (de)serialization
-      *
-      * @var string[]
-      */
-    protected static $openAPITypes = [
-        'active' => 'bool',
-        'created' => '\DateTime',
-        'description' => 'string',
-        'expiration' => '\DateTime',
-        'current' => '\Upsun\Model\ProfileCurrentTrialCurrent',
-        'spend' => '\Upsun\Model\ProfileCurrentTrialSpend',
-        'spend_remaining' => '\Upsun\Model\ProfileCurrentTrialSpendRemaining',
-        'projects' => '\Upsun\Model\ProfileCurrentTrialProjects',
-        'pending_verification' => 'string',
-        'model' => 'string',
-        'days_remaining' => 'int'
-    ];
-
-    /**
-      * Array of property to format mappings. Used for (de)serialization
-      *
-      * @var string[]
-      * @phpstan-var array<string, string|null>
-      * @psalm-var array<string, string|null>
-      */
-    protected static $openAPIFormats = [
-        'active' => null,
-        'created' => 'date-time',
-        'description' => null,
-        'expiration' => 'date-time',
-        'current' => null,
-        'spend' => null,
-        'spend_remaining' => null,
-        'projects' => null,
-        'pending_verification' => null,
-        'model' => null,
-        'days_remaining' => null
-    ];
-
-    /**
-      * Array of nullable properties. Used for (de)serialization
-      *
-      * @var boolean[]
-      */
-    protected static array $openAPINullables = [
-        'active' => false,
-        'created' => false,
-        'description' => false,
-        'expiration' => false,
-        'current' => false,
-        'spend' => false,
-        'spend_remaining' => false,
-        'projects' => false,
-        'pending_verification' => true,
-        'model' => false,
-        'days_remaining' => false
-    ];
-
-    /**
-      * If a nullable field gets set to null, insert it here
-      *
-      * @var boolean[]
-      */
-    protected array $openAPINullablesSetToNull = [];
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPITypes()
-    {
-        return self::$openAPITypes;
-    }
-
-    /**
-     * Array of property to format mappings. Used for (de)serialization
-     *
-     * @return array
-     */
-    public static function openAPIFormats()
-    {
-        return self::$openAPIFormats;
-    }
-
-    /**
-     * Array of nullable properties
-     *
-     * @return array
-     */
-    protected static function openAPINullables(): array
-    {
-        return self::$openAPINullables;
-    }
-
-    /**
-     * Array of nullable field names deliberately set to null
-     *
-     * @return boolean[]
-     */
-    private function getOpenAPINullablesSetToNull(): array
-    {
-        return $this->openAPINullablesSetToNull;
-    }
-
-    /**
-     * Setter - Array of nullable field names deliberately set to null
-     *
-     * @param boolean[] $openAPINullablesSetToNull
-     */
-    private function setOpenAPINullablesSetToNull(array $openAPINullablesSetToNull): void
-    {
-        $this->openAPINullablesSetToNull = $openAPINullablesSetToNull;
-    }
-
-    /**
-     * Checks if a property is nullable
-     *
-     * @param string $property
-     * @return bool
-     */
-    public static function isNullable(string $property): bool
-    {
-        return self::openAPINullables()[$property] ?? false;
-    }
-
-    /**
-     * Checks if a nullable property is set to null.
-     *
-     * @param string $property
-     * @return bool
-     */
-    public function isNullableSetToNull(string $property): bool
-    {
-        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
-    }
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @var string[]
-     */
-    protected static $attributeMap = [
+    private static array $attributeMap = [
         'active' => 'active',
         'created' => 'created',
         'description' => 'description',
         'expiration' => 'expiration',
         'current' => 'current',
         'spend' => 'spend',
-        'spend_remaining' => 'spend_remaining',
+        'spendRemaining' => 'spend_remaining',
         'projects' => 'projects',
-        'pending_verification' => 'pending_verification',
+        'pendingVerification' => 'pending_verification',
         'model' => 'model',
-        'days_remaining' => 'days_remaining'
+        'daysRemaining' => 'days_remaining'
     ];
 
-    /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @var string[]
-     */
-    protected static $setters = [
-        'active' => 'setActive',
-        'created' => 'setCreated',
-        'description' => 'setDescription',
-        'expiration' => 'setExpiration',
-        'current' => 'setCurrent',
-        'spend' => 'setSpend',
-        'spend_remaining' => 'setSpendRemaining',
-        'projects' => 'setProjects',
-        'pending_verification' => 'setPendingVerification',
-        'model' => 'setModel',
-        'days_remaining' => 'setDaysRemaining'
-    ];
+    public function __construct(
+        private readonly ?string $pendingVerification = null,
+        private readonly ?bool $active = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?string $description = null,
+        private readonly ?\DateTime $expiration = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
+        private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        private readonly ?string $model = null,
+        private readonly ?int $daysRemaining = null,
+    ) {
+    }
 
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @var string[]
-     */
-    protected static $getters = [
-        'active' => 'getActive',
-        'created' => 'getCreated',
-        'description' => 'getDescription',
-        'expiration' => 'getExpiration',
-        'current' => 'getCurrent',
-        'spend' => 'getSpend',
-        'spend_remaining' => 'getSpendRemaining',
-        'projects' => 'getProjects',
-        'pending_verification' => 'getPendingVerification',
-        'model' => 'getModel',
-        'days_remaining' => 'getDaysRemaining'
-    ];
-
-    /**
-     * Array of attributes where the key is the local name,
-     * and the value is the original name
-     *
-     * @return array
-     */
     public static function attributeMap()
     {
         return self::$attributeMap;
     }
 
     /**
-     * Array of attributes to setter functions (for deserialization of responses)
-     *
-     * @return array
+     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
      */
-    public static function setters()
-    {
-        return self::$setters;
-    }
-
-    /**
-     * Array of attributes to getter functions (for serialization of requests)
-     *
-     * @return array
-     */
-    public static function getters()
-    {
-        return self::$getters;
-    }
-
-    /**
-     * The original name of the model.
-     *
-     * @return string
-     */
-    public function getModelName()
-    {
-        return self::$openAPIModelName;
-    }
-
-    public const PENDING_VERIFICATION_CREDIT_CARD = 'credit-card';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPendingVerificationAllowableValues()
+    public static function openAPITypes(): array
     {
         return [
-            self::PENDING_VERIFICATION_CREDIT_CARD,
+            'active' => '?bool',
+            'created' => '?\DateTime',
+            'description' => '?string',
+            'expiration' => '?\DateTime',
+            'current' => '?\Upsun\Model\ProfileCurrentTrialCurrent',
+            'spend' => '?\Upsun\Model\ProfileCurrentTrialSpend',
+            'spend_remaining' => '?\Upsun\Model\ProfileCurrentTrialSpendRemaining',
+            'projects' => '?\Upsun\Model\ProfileCurrentTrialProjects',
+            'pending_verification' => '?string',
+            'model' => '?string',
+            'days_remaining' => '?int',
         ];
     }
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
-
-    /**
-     * Constructor
-     *
-     * @param mixed[]|null $data Associated array of property values
-     *                      initializing the model
-     */
-    public function __construct(?array $data = null)
+    public function jsonSerialize(): array
     {
-        $this->setIfExists('active', $data ?? [], null);
-        $this->setIfExists('created', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('expiration', $data ?? [], null);
-        $this->setIfExists('current', $data ?? [], null);
-        $this->setIfExists('spend', $data ?? [], null);
-        $this->setIfExists('spend_remaining', $data ?? [], null);
-        $this->setIfExists('projects', $data ?? [], null);
-        $this->setIfExists('pending_verification', $data ?? [], null);
-        $this->setIfExists('model', $data ?? [], null);
-        $this->setIfExists('days_remaining', $data ?? [], null);
+        return [
+            'active' => $this->active,
+            'created' => $this->created,
+            'description' => $this->description,
+            'expiration' => $this->expiration,
+            'current' => $this->current,
+            'spend' => $this->spend,
+            'spendRemaining' => $this->spendRemaining,
+            'projects' => $this->projects,
+            'pendingVerification' => $this->pendingVerification,
+            'model' => $this->model,
+            'daysRemaining' => $this->daysRemaining,
+        ];
+    }
+
+    public function __toString(): string
+    {
+        return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
     /**
-    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
-    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
-    * $this->openAPINullablesSetToNull array
-    *
-    * @param string $variableName
-    * @param array  $fields
-    * @param mixed  $defaultValue
-    */
-    private function setIfExists(string $variableName, array $fields, $defaultValue): void
-    {
-        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
-            $this->openAPINullablesSetToNull[] = $variableName;
-        }
-
-        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
-    }
-
-    /**
-     * Show all the invalid properties with reasons.
-     *
-     * @return array invalid properties with reasons
-     */
-    public function listInvalidProperties()
-    {
-        $invalidProperties = [];
-
-        $allowedValues = $this->getPendingVerificationAllowableValues();
-        if (!is_null($this->container['pending_verification']) && !in_array($this->container['pending_verification'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'pending_verification', must be one of '%s'",
-                $this->container['pending_verification'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        return $invalidProperties;
-    }
-
-    /**
-     * Validate all the properties in the model
-     * return true if all passed
-     *
-     * @return bool True if all properties are valid
-     */
-    public function valid()
-    {
-        return count($this->listInvalidProperties()) === 0;
-    }
-
-
-    /**
-     * Gets active
+     * The trial active status.
      *
      * @return bool|null
      */
-    public function getActive()
+    public function getActive(): ?bool
     {
-        return $this->container['active'];
+        return $this->active;
     }
 
     /**
-     * Sets active
-     *
-     * @param bool|null $active The trial active status.
-     *
-     * @return self
-     */
-    public function setActive($active)
-    {
-        if (is_null($active)) {
-            throw new \InvalidArgumentException('non-nullable active cannot be null');
-        }
-        $this->container['active'] = $active;
-
-        return $this;
-    }
-
-    /**
-     * Gets created
+     * The trial creation date.
      *
      * @return \DateTime|null
      */
-    public function getCreated()
+    public function getCreated(): ?\DateTime
     {
-        return $this->container['created'];
+        return $this->created;
     }
 
     /**
-     * Sets created
-     *
-     * @param \DateTime|null $created The trial creation date.
-     *
-     * @return self
-     */
-    public function setCreated($created)
-    {
-        if (is_null($created)) {
-            throw new \InvalidArgumentException('non-nullable created cannot be null');
-        }
-        $this->container['created'] = $created;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
+     * The trial description.
      *
      * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
-        return $this->container['description'];
+        return $this->description;
     }
 
     /**
-     * Sets description
-     *
-     * @param string|null $description The trial description.
-     *
-     * @return self
-     */
-    public function setDescription($description)
-    {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
-        }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets expiration
+     * The trial expiration-date.
      *
      * @return \DateTime|null
      */
-    public function getExpiration()
+    public function getExpiration(): ?\DateTime
     {
-        return $this->container['expiration'];
+        return $this->expiration;
     }
 
     /**
-     * Sets expiration
-     *
-     * @param \DateTime|null $expiration The trial expiration-date.
-     *
-     * @return self
-     */
-    public function setExpiration($expiration)
-    {
-        if (is_null($expiration)) {
-            throw new \InvalidArgumentException('non-nullable expiration cannot be null');
-        }
-        $this->container['expiration'] = $expiration;
-
-        return $this;
-    }
-
-    /**
-     * Gets current
-     *
      * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
      */
-    public function getCurrent()
+    public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
     {
-        return $this->container['current'];
+        return $this->current;
     }
 
     /**
-     * Sets current
-     *
-     * @param \Upsun\Model\ProfileCurrentTrialCurrent|null $current current
-     *
-     * @return self
-     */
-    public function setCurrent($current)
-    {
-        if (is_null($current)) {
-            throw new \InvalidArgumentException('non-nullable current cannot be null');
-        }
-        $this->container['current'] = $current;
-
-        return $this;
-    }
-
-    /**
-     * Gets spend
-     *
      * @return \Upsun\Model\ProfileCurrentTrialSpend|null
      */
-    public function getSpend()
+    public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
     {
-        return $this->container['spend'];
+        return $this->spend;
     }
 
     /**
-     * Sets spend
-     *
-     * @param \Upsun\Model\ProfileCurrentTrialSpend|null $spend spend
-     *
-     * @return self
-     */
-    public function setSpend($spend)
-    {
-        if (is_null($spend)) {
-            throw new \InvalidArgumentException('non-nullable spend cannot be null');
-        }
-        $this->container['spend'] = $spend;
-
-        return $this;
-    }
-
-    /**
-     * Gets spend_remaining
-     *
      * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
      */
-    public function getSpendRemaining()
+    public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
     {
-        return $this->container['spend_remaining'];
+        return $this->spendRemaining;
     }
 
     /**
-     * Sets spend_remaining
-     *
-     * @param \Upsun\Model\ProfileCurrentTrialSpendRemaining|null $spend_remaining spend_remaining
-     *
-     * @return self
-     */
-    public function setSpendRemaining($spend_remaining)
-    {
-        if (is_null($spend_remaining)) {
-            throw new \InvalidArgumentException('non-nullable spend_remaining cannot be null');
-        }
-        $this->container['spend_remaining'] = $spend_remaining;
-
-        return $this;
-    }
-
-    /**
-     * Gets projects
-     *
      * @return \Upsun\Model\ProfileCurrentTrialProjects|null
      */
-    public function getProjects()
+    public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
     {
-        return $this->container['projects'];
+        return $this->projects;
     }
 
     /**
-     * Sets projects
-     *
-     * @param \Upsun\Model\ProfileCurrentTrialProjects|null $projects projects
-     *
-     * @return self
-     */
-    public function setProjects($projects)
-    {
-        if (is_null($projects)) {
-            throw new \InvalidArgumentException('non-nullable projects cannot be null');
-        }
-        $this->container['projects'] = $projects;
-
-        return $this;
-    }
-
-    /**
-     * Gets pending_verification
-     *
-     * @return string|null
-     * @deprecated
-     */
-    public function getPendingVerification()
-    {
-        return $this->container['pending_verification'];
-    }
-
-    /**
-     * Sets pending_verification
-     *
-     * @param string|null $pending_verification Required verification method (if applicable).
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setPendingVerification($pending_verification)
-    {
-        if (is_null($pending_verification)) {
-            array_push($this->openAPINullablesSetToNull, 'pending_verification');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pending_verification', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $allowedValues = $this->getPendingVerificationAllowableValues();
-        if (!is_null($pending_verification) && !in_array($pending_verification, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'pending_verification', must be one of '%s'",
-                    $pending_verification,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['pending_verification'] = $pending_verification;
-
-        return $this;
-    }
-
-    /**
-     * Gets model
+     * Required verification method (if applicable).
      *
      * @return string|null
      */
-    public function getModel()
+    public function getPendingVerification(): ?string
     {
-        return $this->container['model'];
+        return $this->pendingVerification;
     }
 
     /**
-     * Sets model
+     * The trial trial model.
      *
-     * @param string|null $model The trial trial model.
-     *
-     * @return self
+     * @return string|null
      */
-    public function setModel($model)
+    public function getModel(): ?string
     {
-        if (is_null($model)) {
-            throw new \InvalidArgumentException('non-nullable model cannot be null');
-        }
-        $this->container['model'] = $model;
-
-        return $this;
+        return $this->model;
     }
 
     /**
-     * Gets days_remaining
+     * The amount of days until the trial expires.
      *
      * @return int|null
      */
-    public function getDaysRemaining()
+    public function getDaysRemaining(): ?int
     {
-        return $this->container['days_remaining'];
-    }
-
-    /**
-     * Sets days_remaining
-     *
-     * @param int|null $days_remaining The amount of days until the trial expires.
-     *
-     * @return self
-     */
-    public function setDaysRemaining($days_remaining)
-    {
-        if (is_null($days_remaining)) {
-            throw new \InvalidArgumentException('non-nullable days_remaining cannot be null');
-        }
-        $this->container['days_remaining'] = $days_remaining;
-
-        return $this;
-    }
-    /**
-     * Returns true if offset exists. False otherwise.
-     *
-     * @param integer $offset Offset
-     *
-     * @return boolean
-     */
-    public function offsetExists($offset): bool
-    {
-        return isset($this->container[$offset]);
-    }
-
-    /**
-     * Gets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return mixed|null
-     */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
-    {
-        return $this->container[$offset] ?? null;
-    }
-
-    /**
-     * Sets value based on offset.
-     *
-     * @param int|null $offset Offset
-     * @param mixed    $value  Value to be set
-     *
-     * @return void
-     */
-    public function offsetSet($offset, $value): void
-    {
-        if (is_null($offset)) {
-            $this->container[] = $value;
-        } else {
-            $this->container[$offset] = $value;
-        }
-    }
-
-    /**
-     * Unsets offset.
-     *
-     * @param integer $offset Offset
-     *
-     * @return void
-     */
-    public function offsetUnset($offset): void
-    {
-        unset($this->container[$offset]);
-    }
-
-    /**
-     * Serializes the object to a value that can be serialized natively by json_encode().
-     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
-     *
-     * @return mixed Returns data which can be serialized by json_encode(), which is a value
-     * of any type other than a resource.
-     */
-    #[\ReturnTypeWillChange]
-    public function jsonSerialize()
-    {
-       return ObjectSerializer::sanitizeForSerialization($this);
-    }
-
-    /**
-     * Gets the string presentation of the object
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return json_encode(
-            ObjectSerializer::sanitizeForSerialization($this),
-            JSON_PRETTY_PRINT
-        );
-    }
-
-    /**
-     * Gets a header-safe presentation of the object
-     *
-     * @return string
-     */
-    public function toHeaderValue()
-    {
-        return json_encode(ObjectSerializer::sanitizeForSerialization($this));
+        return $this->daysRemaining;
     }
 }
-
 

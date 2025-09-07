@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `cancelProjectInvite()`
 
 ```php
-cancelProjectInvite($project_id, $invitation_id)
+cancelProjectInvite($projectId, $invitationId)
 ```
 
 Cancel a pending invitation to a project
@@ -26,21 +26,17 @@ Cancels the specified invitation.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProjectInvitationsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$invitation_id = 'invitation_id_example'; // string | The ID of the invitation.
+$projectId = 'projectId_example'; // string | The ID of the project.
+$invitationId = 'invitationId_example'; // string | The ID of the invitation.
 
 try {
-    $apiInstance->cancelProjectInvite($project_id, $invitation_id);
+    $apiInstance->cancelProjectInvite($projectId, $invitationId);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectInvitationsApi->cancelProjectInvite: ', $e->getMessage(), PHP_EOL;
 }
@@ -50,8 +46,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **invitation_id** | **string**| The ID of the invitation. |
+ **projectId** | **string**| The ID of the project. |
+ **invitationId** | **string**| The ID of the invitation. |
 
 ### Return type
 
@@ -59,7 +55,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -73,7 +69,7 @@ void (empty response body)
 ## `createProjectInvite()`
 
 ```php
-createProjectInvite($project_id, $create_project_invite_request): \Upsun\Model\ProjectInvitation
+createProjectInvite($projectId, $createProjectInviteRequest): \Upsun\Model\ProjectInvitation
 ```
 
 Invite user to a project by email
@@ -87,21 +83,17 @@ Creates an invitation to a project for a user with the specified email address.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProjectInvitationsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$create_project_invite_request = new \Upsun\Model\CreateProjectInviteRequest(); // \Upsun\Model\CreateProjectInviteRequest
+$projectId = 'projectId_example'; // string | The ID of the project.
+$createProjectInviteRequest = new \Upsun\Model\CreateProjectInviteRequest(); // \Upsun\Model\CreateProjectInviteRequest
 
 try {
-    $result = $apiInstance->createProjectInvite($project_id, $create_project_invite_request);
+    $result = $apiInstance->createProjectInvite($projectId, $createProjectInviteRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectInvitationsApi->createProjectInvite: ', $e->getMessage(), PHP_EOL;
@@ -112,8 +104,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **create_project_invite_request** | [**\Upsun\Model\CreateProjectInviteRequest**](../Model/CreateProjectInviteRequest.md)|  | [optional]
+ **projectId** | **string**| The ID of the project. |
+ **createProjectInviteRequest** | [**\Upsun\Model\CreateProjectInviteRequest**](../Model/CreateProjectInviteRequest.md)|  | [optional]
 
 ### Return type
 
@@ -121,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -135,7 +127,7 @@ Name | Type | Description  | Notes
 ## `listProjectInvites()`
 
 ```php
-listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort): \Upsun\Model\ProjectInvitation[]
+listProjectInvites($projectId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort): \Upsun\Model\ProjectInvitation[]
 ```
 
 List invitations to a project
@@ -149,25 +141,21 @@ Returns a list of invitations to a project.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProjectInvitationsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string | The ID of the project.
-$filter_state = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\".
-$page_size = 56; // int | Determines the number of items to show.
-$page_before = 'page_before_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
-$page_after = 'page_after_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$projectId = 'projectId_example'; // string | The ID of the project.
+$filterState = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `state` of the invtations: \"pending\" (default), \"error\".
+$pageSize = 56; // int | Determines the number of items to show.
+$pageBefore = 'pageBefore_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
+$pageAfter = 'pageAfter_example'; // string | Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally.
 $sort = 'sort_example'; // string | Allows sorting by a single field.<br> Use a dash (\"-\") to sort descending.
 
 try {
-    $result = $apiInstance->listProjectInvites($project_id, $filter_state, $page_size, $page_before, $page_after, $sort);
+    $result = $apiInstance->listProjectInvites($projectId, $filterState, $pageSize, $pageBefore, $pageAfter, $sort);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectInvitationsApi->listProjectInvites: ', $e->getMessage(), PHP_EOL;
@@ -178,11 +166,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**| The ID of the project. |
- **filter_state** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. | [optional]
- **page_size** | **int**| Determines the number of items to show. | [optional]
- **page_before** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **page_after** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **projectId** | **string**| The ID of the project. |
+ **filterState** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;state&#x60; of the invtations: \&quot;pending\&quot; (default), \&quot;error\&quot;. | [optional]
+ **pageSize** | **int**| Determines the number of items to show. | [optional]
+ **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
+ **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
  **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional]
 
 ### Return type
@@ -191,7 +179,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

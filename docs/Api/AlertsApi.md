@@ -13,7 +13,7 @@ Method | HTTP request | Description
 ## `createUsageAlert()`
 
 ```php
-createUsageAlert($subscription_id, $create_usage_alert_request): \Upsun\Model\Alert
+createUsageAlert($subscriptionId, $createUsageAlertRequest): \Upsun\Model\Alert
 ```
 
 Create a usage alert.
@@ -25,21 +25,17 @@ Create a usage alert.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\AlertsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription
-$create_usage_alert_request = new \Upsun\Model\CreateUsageAlertRequest(); // \Upsun\Model\CreateUsageAlertRequest
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription
+$createUsageAlertRequest = new \Upsun\Model\CreateUsageAlertRequest(); // \Upsun\Model\CreateUsageAlertRequest
 
 try {
-    $result = $apiInstance->createUsageAlert($subscription_id, $create_usage_alert_request);
+    $result = $apiInstance->createUsageAlert($subscriptionId, $createUsageAlertRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AlertsApi->createUsageAlert: ', $e->getMessage(), PHP_EOL;
@@ -50,8 +46,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **string**| The ID of the subscription |
- **create_usage_alert_request** | [**\Upsun\Model\CreateUsageAlertRequest**](../Model/CreateUsageAlertRequest.md)|  | [optional]
+ **subscriptionId** | **string**| The ID of the subscription |
+ **createUsageAlertRequest** | [**\Upsun\Model\CreateUsageAlertRequest**](../Model/CreateUsageAlertRequest.md)|  | [optional]
 
 ### Return type
 
@@ -59,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -73,7 +69,7 @@ Name | Type | Description  | Notes
 ## `deleteUsageAlert()`
 
 ```php
-deleteUsageAlert($subscription_id, $usage_id)
+deleteUsageAlert($subscriptionId, $usageId)
 ```
 
 Delete a usage alert.
@@ -85,21 +81,17 @@ Delete a usage alert.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\AlertsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription
-$usage_id = 'usage_id_example'; // string | The usage id of the alert.
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription
+$usageId = 'usageId_example'; // string | The usage id of the alert.
 
 try {
-    $apiInstance->deleteUsageAlert($subscription_id, $usage_id);
+    $apiInstance->deleteUsageAlert($subscriptionId, $usageId);
 } catch (Exception $e) {
     echo 'Exception when calling AlertsApi->deleteUsageAlert: ', $e->getMessage(), PHP_EOL;
 }
@@ -109,8 +101,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **string**| The ID of the subscription |
- **usage_id** | **string**| The usage id of the alert. |
+ **subscriptionId** | **string**| The ID of the subscription |
+ **usageId** | **string**| The usage id of the alert. |
 
 ### Return type
 
@@ -118,7 +110,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -132,7 +124,7 @@ void (empty response body)
 ## `getUsageAlerts()`
 
 ```php
-getUsageAlerts($subscription_id): \Upsun\Model\GetUsageAlerts200Response
+getUsageAlerts($subscriptionId): \Upsun\Model\GetUsageAlerts200Response
 ```
 
 Get usage alerts for a subscription
@@ -144,20 +136,16 @@ Get usage alerts for a subscription
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\AlertsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription
 
 try {
-    $result = $apiInstance->getUsageAlerts($subscription_id);
+    $result = $apiInstance->getUsageAlerts($subscriptionId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AlertsApi->getUsageAlerts: ', $e->getMessage(), PHP_EOL;
@@ -168,7 +156,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **string**| The ID of the subscription |
+ **subscriptionId** | **string**| The ID of the subscription |
 
 ### Return type
 
@@ -176,7 +164,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -190,7 +178,7 @@ Name | Type | Description  | Notes
 ## `updateUsageAlert()`
 
 ```php
-updateUsageAlert($subscription_id, $usage_id, $update_usage_alert_request): \Upsun\Model\Alert
+updateUsageAlert($subscriptionId, $usageId, $updateUsageAlertRequest): \Upsun\Model\Alert
 ```
 
 Update a usage alert.
@@ -202,22 +190,18 @@ Update a usage alert.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\AlertsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$subscription_id = 'subscription_id_example'; // string | The ID of the subscription
-$usage_id = 'usage_id_example'; // string | The usage id of the alert.
-$update_usage_alert_request = new \Upsun\Model\UpdateUsageAlertRequest(); // \Upsun\Model\UpdateUsageAlertRequest
+$subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription
+$usageId = 'usageId_example'; // string | The usage id of the alert.
+$updateUsageAlertRequest = new \Upsun\Model\UpdateUsageAlertRequest(); // \Upsun\Model\UpdateUsageAlertRequest
 
 try {
-    $result = $apiInstance->updateUsageAlert($subscription_id, $usage_id, $update_usage_alert_request);
+    $result = $apiInstance->updateUsageAlert($subscriptionId, $usageId, $updateUsageAlertRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AlertsApi->updateUsageAlert: ', $e->getMessage(), PHP_EOL;
@@ -228,9 +212,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **subscription_id** | **string**| The ID of the subscription |
- **usage_id** | **string**| The usage id of the alert. |
- **update_usage_alert_request** | [**\Upsun\Model\UpdateUsageAlertRequest**](../Model/UpdateUsageAlertRequest.md)|  | [optional]
+ **subscriptionId** | **string**| The ID of the subscription |
+ **usageId** | **string**| The usage id of the alert. |
+ **updateUsageAlertRequest** | [**\Upsun\Model\UpdateUsageAlertRequest**](../Model/UpdateUsageAlertRequest.md)|  | [optional]
 
 ### Return type
 
@@ -238,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DomainManagementApi;
 use Upsun\Model\AcceptedResponse;
@@ -10,6 +11,13 @@ use Upsun\Model\DomainCreateInput;
 use Upsun\Model\DomainPatch;
 use Upsun\UpsunClient;
 
+/**
+ * DomainTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class DomainTask extends TaskBase
 {
     public function __construct(
@@ -22,15 +30,21 @@ class DomainTask extends TaskBase
     /**
      * Adds a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     name: string,
+     *     attributes?: array,
+     *     isDefault?: bool,
+     *     replacementFor?: string,
+     * } $data
      */
     public function create(
         string $projectId,
-        array $domainCreateInput,
+        array $data = [],
         ?string $environmentId = null
     ): AcceptedResponse {
-        $this->refreshToken();
-        $domainCreateInput = new DomainCreateInput($domainCreateInput);
+        $domainCreateInput = new DomainCreateInput(...$data);
         if (!$environmentId) {
             return $this->api->createProjectsDomains($projectId, $domainCreateInput);
         } else {
@@ -45,11 +59,10 @@ class DomainTask extends TaskBase
     /**
      * Deletes a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function delete(string $projectId, string $domainId, ?string $environmentId = null): AcceptedResponse
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->api->deleteProjectsDomains($projectId, $domainId);
         } else {
@@ -60,11 +73,10 @@ class DomainTask extends TaskBase
     /**
      * Gets a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function get(string $projectId, string $domainId, ?string $environmentId = null): Domain
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->api->getProjectsDomains($projectId, $domainId);
         } else {
@@ -75,11 +87,12 @@ class DomainTask extends TaskBase
     /**
      * Gets list of project (or environment) domains
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Domain[]
      */
     public function list(string $projectId, ?string $environmentId = null): array
     {
-        $this->refreshToken();
         if (!$environmentId) {
             return $this->api->listProjectsDomains($projectId);
         } else {
@@ -90,16 +103,20 @@ class DomainTask extends TaskBase
     /**
      * Updates a project (or environment) domain
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     attributes?: array,
+     *     isDefault?: bool,
+     * } $data
      */
     public function update(
         string $projectId,
         string $domainId,
-        array $domainPatch,
+        array $data,
         ?string $environmentId = null
     ): AcceptedResponse {
-        $this->refreshToken();
-        $domainPatch = new DomainPatch($domainPatch);
+        $domainPatch = new DomainPatch(...$data);
         if (!$environmentId) {
             return $this->api->updateProjectsDomains($projectId, $domainId, $domainPatch);
         } else {

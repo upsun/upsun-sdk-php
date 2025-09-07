@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `actionProjectsActivitiesCancel()`
 
 ```php
-actionProjectsActivitiesCancel($project_id, $activity_id): \Upsun\Model\AcceptedResponse
+actionProjectsActivitiesCancel($projectId, $activityId): \Upsun\Model\AcceptedResponse
 ```
 
 Cancel a project activity
@@ -26,21 +26,17 @@ Cancel a single activity as specified by an `id` returned by the [Get project ac
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->actionProjectsActivitiesCancel($project_id, $activity_id);
+    $result = $apiInstance->actionProjectsActivitiesCancel($projectId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectActivityApi->actionProjectsActivitiesCancel: ', $e->getMessage(), PHP_EOL;
@@ -51,8 +47,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -60,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -74,7 +70,7 @@ Name | Type | Description  | Notes
 ## `getProjectsActivities()`
 
 ```php
-getProjectsActivities($project_id, $activity_id): \Upsun\Model\Activity
+getProjectsActivities($projectId, $activityId): \Upsun\Model\Activity
 ```
 
 Get a project activity log entry
@@ -88,21 +84,17 @@ Retrieve a single activity log entry as specified by an `id` returned by the [Ge
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsActivities($project_id, $activity_id);
+    $result = $apiInstance->getProjectsActivities($projectId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectActivityApi->getProjectsActivities: ', $e->getMessage(), PHP_EOL;
@@ -113,8 +105,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -122,7 +114,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -136,7 +128,7 @@ Name | Type | Description  | Notes
 ## `listProjectsActivities()`
 
 ```php
-listProjectsActivities($project_id): \Upsun\Model\Activity[]
+listProjectsActivities($projectId): \Upsun\Model\Activity[]
 ```
 
 Get project activity log
@@ -150,20 +142,16 @@ Retrieve a project's activity log including logging actions in all environments 
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\ProjectActivityApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
+$projectId = 'projectId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsActivities($project_id);
+    $result = $apiInstance->listProjectsActivities($projectId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ProjectActivityApi->listProjectsActivities: ', $e->getMessage(), PHP_EOL;
@@ -174,7 +162,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
+ **projectId** | **string**|  |
 
 ### Return type
 
@@ -182,7 +170,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

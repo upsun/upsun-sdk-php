@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `actionProjectsEnvironmentsActivitiesCancel()`
 
 ```php
-actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id): \Upsun\Model\AcceptedResponse
+actionProjectsEnvironmentsActivitiesCancel($projectId, $environmentId, $activityId): \Upsun\Model\AcceptedResponse
 ```
 
 Cancel an environment activity
@@ -26,22 +26,18 @@ Cancel a single activity as specified by an `id` returned by the [Get environmen
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->actionProjectsEnvironmentsActivitiesCancel($project_id, $environment_id, $activity_id);
+    $result = $apiInstance->actionProjectsEnvironmentsActivitiesCancel($projectId, $environmentId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentActivityApi->actionProjectsEnvironmentsActivitiesCancel: ', $e->getMessage(), PHP_EOL;
@@ -52,9 +48,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -62,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -76,7 +72,7 @@ Name | Type | Description  | Notes
 ## `getProjectsEnvironmentsActivities()`
 
 ```php
-getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id): \Upsun\Model\Activity
+getProjectsEnvironmentsActivities($projectId, $environmentId, $activityId): \Upsun\Model\Activity
 ```
 
 Get an environment activity log entry
@@ -90,22 +86,18 @@ Retrieve a single environment activity entry as specified by an `id` returned by
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$activity_id = 'activity_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$activityId = 'activityId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsActivities($project_id, $environment_id, $activity_id);
+    $result = $apiInstance->getProjectsEnvironmentsActivities($projectId, $environmentId, $activityId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentActivityApi->getProjectsEnvironmentsActivities: ', $e->getMessage(), PHP_EOL;
@@ -116,9 +108,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **activity_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **activityId** | **string**|  |
 
 ### Return type
 
@@ -126,7 +118,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -140,7 +132,7 @@ Name | Type | Description  | Notes
 ## `listProjectsEnvironmentsActivities()`
 
 ```php
-listProjectsEnvironmentsActivities($project_id, $environment_id): \Upsun\Model\Activity[]
+listProjectsEnvironmentsActivities($projectId, $environmentId): \Upsun\Model\Activity[]
 ```
 
 Get environment activity log
@@ -154,21 +146,17 @@ Retrieve an environment's activity log. This returns a list of object with recor
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsActivities($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsActivities($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentActivityApi->listProjectsEnvironmentsActivities: ', $e->getMessage(), PHP_EOL;
@@ -179,8 +167,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -188,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

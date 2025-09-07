@@ -2,17 +2,25 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use InvalidArgumentException;
 use Upsun\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Model\CreateOrgInviteRequest;
 use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\Error;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
+use Upsun\Model\StringFilter;
 use Upsun\UpsunClient;
 
+/**
+ * InvitationTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class InvitationTask extends TaskBase
 {
     public function __construct(
@@ -27,39 +35,38 @@ class InvitationTask extends TaskBase
      * Cancels a pending invitation to an organization
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancelOrgInvite(string $organizationId, string $invitationId): void
     {
-        $this->refreshToken();
         $this->orgInvApi->cancelOrgInvite($organizationId, $invitationId);
     }
 
     /**
      * Invites user to an organization by email
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
      */
     public function createOrgInvite(
         string $organizationId,
         string $email,
         array $permissions,
         ?bool $force = true
-    ): Error|OrganizationInvitation {
-        $this->refreshToken();
-
-        $inviteRequest = new CreateOrgInviteRequest([
-            'email' => $email,
-            'permissions' => $permissions,
-            'force' => $force
-        ]);
+    ): OrganizationInvitation {
+        $inviteRequest = new CreateOrgInviteRequest(
+            email: $email,
+            permissions: $permissions,
+            force: $force,
+        );
         return $this->orgInvApi->createOrgInvite($organizationId, $inviteRequest);
     }
 
     /**
      * Lists invitations to an organization
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return OrganizationInvitation[]
      */
     public function listOrgInvites(
         string $organizationId,
@@ -68,11 +75,10 @@ class InvitationTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array {
-        $this->refreshToken();
+    ): array {
         return $this->orgInvApi->listOrgInvites(
             $organizationId,
-            $filterState,
+            new StringFilter(...$this->normalizeFilter($filterState)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -84,11 +90,10 @@ class InvitationTask extends TaskBase
      * Cancels a pending invitation to a project
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function cancelProjectInvite(string $projectId, string $invitationId): void
     {
-        $this->refreshToken();
         $this->prjInvApi->cancelProjectInvite($projectId, $invitationId);
     }
 
@@ -96,21 +101,29 @@ class InvitationTask extends TaskBase
      * Invites user to a project by email
      *
      * @throws InvalidArgumentException
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     * @param array{
+     *     email: string,
+     *     role?: string,
+     *     permissions?: array,
+     *     environments?: bool,
+     *     force?: bool
+     * } $data
      */
     public function createProjectInvite(
         string $projectId,
-        ?array $createProjectInviteRequest = null
-    ): ProjectInvitation|Error {
-        $this->refreshToken();
-        $createProjectInviteRequest = new CreateProjectInviteRequest($createProjectInviteRequest);
+        array $data
+    ): ProjectInvitation {
+        $createProjectInviteRequest = new CreateProjectInviteRequest(...$data);
         return $this->prjInvApi->createProjectInvite($projectId, $createProjectInviteRequest);
     }
 
     /**
      * Lists invitations to a project
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return ProjectInvitation[]
      */
     public function listProjectInvites(
         string $projectId,
@@ -119,11 +132,10 @@ class InvitationTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): Error|array {
-        $this->refreshToken();
+    ): array {
         return $this->prjInvApi->listProjectInvites(
             $projectId,
-            $filterState,
+            new StringFilter(...$this->normalizeFilter($filterState)),
             $pageSize,
             $pageBefore,
             $pageAfter,

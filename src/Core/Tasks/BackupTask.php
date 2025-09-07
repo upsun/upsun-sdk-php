@@ -2,14 +2,23 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
 use Upsun\Model\EnvironmentBackupInput;
 use Upsun\Model\EnvironmentRestoreInput;
+use Upsun\Model\Resources5;
 use Upsun\UpsunClient;
 
+/**
+ * BackupTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class BackupTask extends TaskBase
 {
     public function __construct(
@@ -22,15 +31,14 @@ class BackupTask extends TaskBase
     /**
      * Creates snapshot of environment
      *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function backup(
         string $projectId,
         string $environmentId,
-        array $environmentBackupInput
+        bool $safe
     ): AcceptedResponse {
-        $this->refreshToken();
-        $environmentBackupInput = new EnvironmentBackupInput($environmentBackupInput);
+        $environmentBackupInput = new EnvironmentBackupInput($safe);
         return $this->api->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
     }
 
@@ -38,10 +46,10 @@ class BackupTask extends TaskBase
      * Deletes an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws Exception
      */
     public function delete(string $projectId, string $environmentId, string $backupId): AcceptedResponse
     {
-        $this->refreshToken();
         return $this->api->deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
@@ -49,10 +57,10 @@ class BackupTask extends TaskBase
      * Gets an environment snapshot's info
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws Exception
      */
     public function get(string $projectId, string $environmentId, string $backupId): Backup
     {
-        $this->refreshToken();
         return $this->api->getProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     }
 
@@ -60,10 +68,12 @@ class BackupTask extends TaskBase
      * Gets an environment's snapshot list
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws Exception
+     *
+     * @return Backup[]
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         return $this->api->listProjectsEnvironmentsBackups($projectId, $environmentId);
     }
 
@@ -71,15 +81,31 @@ class BackupTask extends TaskBase
      * Restores an environment snapshot
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws Exception
+     *
+     * @param array{
+     *     restoreCode: bool,
+     *     restoreResources: bool,
+     *     environmentName?: string,
+     *     branchFrom?: string,
+     *     init?: string
+     * } $options Configuration options for environment restoration
+     *
+     * @see EnvironmentRestoreInput For detailed parameter descriptions
      */
     public function restore(
         string $projectId,
         string $environmentId,
         string $backupId,
-        array $environmentRestoreInput
+        array $options
     ): AcceptedResponse {
-        $this->refreshToken();
-        $environmentRestoreInput = new EnvironmentRestoreInput($environmentRestoreInput);
+        $environmentRestoreInput = new EnvironmentRestoreInput(
+            restoreCode: $options['restoreCode'],
+            restoreResources: $options['restoreResources'],
+            environmentName: $options['environmentName'] ?? null,
+            branchFrom: $options['branchFrom'] ?? null,
+            resources: new Resources5(init: $options['init'] ?? null),
+        );
         return $this->api->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
     }
 }

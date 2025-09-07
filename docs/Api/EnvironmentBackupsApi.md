@@ -14,7 +14,7 @@ Method | HTTP request | Description
 ## `backupEnvironment()`
 
 ```php
-backupEnvironment($project_id, $environment_id, $environment_backup_input): \Upsun\Model\AcceptedResponse
+backupEnvironment($projectId, $environmentId, $environmentBackupInput): \Upsun\Model\AcceptedResponse
 ```
 
 Create snapshot of environment
@@ -28,22 +28,18 @@ Trigger a new snapshot of an environment to be created. See the [Snapshot and Re
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$environment_backup_input = new \Upsun\Model\EnvironmentBackupInput(); // \Upsun\Model\EnvironmentBackupInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$environmentBackupInput = new \Upsun\Model\EnvironmentBackupInput(); // \Upsun\Model\EnvironmentBackupInput | 
 
 try {
-    $result = $apiInstance->backupEnvironment($project_id, $environment_id, $environment_backup_input);
+    $result = $apiInstance->backupEnvironment($projectId, $environmentId, $environmentBackupInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentBackupsApi->backupEnvironment: ', $e->getMessage(), PHP_EOL;
@@ -54,9 +50,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **environment_backup_input** | [**\Upsun\Model\EnvironmentBackupInput**](../Model/EnvironmentBackupInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **environmentBackupInput** | [**\Upsun\Model\EnvironmentBackupInput**](../Model/EnvironmentBackupInput.md)|  |
 
 ### Return type
 
@@ -64,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -78,7 +74,7 @@ Name | Type | Description  | Notes
 ## `deleteProjectsEnvironmentsBackups()`
 
 ```php
-deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id): \Upsun\Model\AcceptedResponse
+deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId): \Upsun\Model\AcceptedResponse
 ```
 
 Delete an environment snapshot
@@ -92,22 +88,18 @@ Delete a specific backup from an environment using the `id` of the entry retriev
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$backup_id = 'backup_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$backupId = 'backupId_example'; // string
 
 try {
-    $result = $apiInstance->deleteProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+    $result = $apiInstance->deleteProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentBackupsApi->deleteProjectsEnvironmentsBackups: ', $e->getMessage(), PHP_EOL;
@@ -118,9 +110,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **backup_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **backupId** | **string**|  |
 
 ### Return type
 
@@ -128,7 +120,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -142,7 +134,7 @@ Name | Type | Description  | Notes
 ## `getProjectsEnvironmentsBackups()`
 
 ```php
-getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id): \Upsun\Model\Backup
+getProjectsEnvironmentsBackups($projectId, $environmentId, $backupId): \Upsun\Model\Backup
 ```
 
 Get an environment snapshot's info
@@ -156,22 +148,18 @@ Get the details of a specific backup from an environment using the `id` of the e
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$backup_id = 'backup_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$backupId = 'backupId_example'; // string
 
 try {
-    $result = $apiInstance->getProjectsEnvironmentsBackups($project_id, $environment_id, $backup_id);
+    $result = $apiInstance->getProjectsEnvironmentsBackups($projectId, $environmentId, $backupId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentBackupsApi->getProjectsEnvironmentsBackups: ', $e->getMessage(), PHP_EOL;
@@ -182,9 +170,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **backup_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **backupId** | **string**|  |
 
 ### Return type
 
@@ -192,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -206,7 +194,7 @@ Name | Type | Description  | Notes
 ## `listProjectsEnvironmentsBackups()`
 
 ```php
-listProjectsEnvironmentsBackups($project_id, $environment_id): \Upsun\Model\Backup[]
+listProjectsEnvironmentsBackups($projectId, $environmentId): \Upsun\Model\Backup[]
 ```
 
 Get an environment's snapshot list
@@ -220,21 +208,17 @@ Retrieve a list of objects representing backups of this environment.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
 
 try {
-    $result = $apiInstance->listProjectsEnvironmentsBackups($project_id, $environment_id);
+    $result = $apiInstance->listProjectsEnvironmentsBackups($projectId, $environmentId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentBackupsApi->listProjectsEnvironmentsBackups: ', $e->getMessage(), PHP_EOL;
@@ -245,8 +229,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
 
 ### Return type
 
@@ -254,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -268,7 +252,7 @@ Name | Type | Description  | Notes
 ## `restoreBackup()`
 
 ```php
-restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input): \Upsun\Model\AcceptedResponse
+restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput): \Upsun\Model\AcceptedResponse
 ```
 
 Restore an environment snapshot
@@ -282,23 +266,19 @@ Restore a specific backup from an environment using the `id` of the entry retrie
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\EnvironmentBackupsApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$project_id = 'project_id_example'; // string
-$environment_id = 'environment_id_example'; // string
-$backup_id = 'backup_id_example'; // string
-$environment_restore_input = new \Upsun\Model\EnvironmentRestoreInput(); // \Upsun\Model\EnvironmentRestoreInput | 
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$backupId = 'backupId_example'; // string
+$environmentRestoreInput = new \Upsun\Model\EnvironmentRestoreInput(); // \Upsun\Model\EnvironmentRestoreInput | 
 
 try {
-    $result = $apiInstance->restoreBackup($project_id, $environment_id, $backup_id, $environment_restore_input);
+    $result = $apiInstance->restoreBackup($projectId, $environmentId, $backupId, $environmentRestoreInput);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EnvironmentBackupsApi->restoreBackup: ', $e->getMessage(), PHP_EOL;
@@ -309,10 +289,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **string**|  |
- **environment_id** | **string**|  |
- **backup_id** | **string**|  |
- **environment_restore_input** | [**\Upsun\Model\EnvironmentRestoreInput**](../Model/EnvironmentRestoreInput.md)|  |
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **backupId** | **string**|  |
+ **environmentRestoreInput** | [**\Upsun\Model\EnvironmentRestoreInput**](../Model/EnvironmentRestoreInput.md)|  |
 
 ### Return type
 
@@ -320,7 +300,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

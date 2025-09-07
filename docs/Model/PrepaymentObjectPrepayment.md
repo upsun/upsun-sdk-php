@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**organization_id** | **string** | Organization ID | [optional]
+**organizationId** | **string** | Organization ID | [optional]
 **balance** | [**\Upsun\Model\PrepaymentObjectPrepaymentBalance**](PrepaymentObjectPrepaymentBalance.md) |  | [optional]
-**last_updated_at** | **string** | The date the prepayment balance was last updated. | [optional]
+**lastUpdatedAt** | **string** | The date the prepayment balance was last updated. | [optional]
 **sufficient** | **bool** | Whether the prepayment balance is enough to cover the upcoming order. | [optional]
 **fallback** | **string** | The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order. | [optional]
 

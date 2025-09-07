@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **port** | **int** |  | [optional]
 **protocol** | **string** |  | [optional]
 **facility** | **int** |  | [optional]
-**message_format** | **string** |  | [optional]
-**auth_token** | **string** |  | [optional]
-**auth_mode** | **string** |  | [optional]
-**tls_verify** | **bool** |  | [optional]
+**messageFormat** | **string** |  | [optional]
+**authToken** | **string** |  | [optional]
+**authMode** | **string** |  | [optional]
+**tlsVerify** | **bool** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

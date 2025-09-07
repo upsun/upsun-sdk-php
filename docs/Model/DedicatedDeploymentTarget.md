@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
 **name** | **string** |  |
-**deploy_host** | **string** |  |
-**deploy_port** | **int** |  |
-**ssh_host** | **string** |  |
+**deployHost** | **string** |  |
+**deployPort** | **int** |  |
+**sshHost** | **string** |  |
 **hosts** | [**\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]**](TheHostsOfTheDeploymentTargetInner.md) |  |
-**auto_mounts** | **bool** |  |
-**excluded_mounts** | **string[]** |  |
-**enforced_mounts** | **object** |  |
-**auto_crons** | **bool** |  |
-**auto_nginx** | **bool** |  |
-**maintenance_mode** | **bool** |  |
-**guardrails_phase** | **int** |  |
+**autoMounts** | **bool** |  |
+**excludedMounts** | **string[]** |  |
+**enforcedMounts** | **object** |  |
+**autoCrons** | **bool** |  |
+**autoNginx** | **bool** |  |
+**maintenanceMode** | **bool** |  |
+**guardrailsPhase** | **int** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

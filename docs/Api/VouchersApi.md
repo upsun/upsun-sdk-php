@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ## `applyOrgVoucher()`
 
 ```php
-applyOrgVoucher($organization_id, $apply_org_voucher_request)
+applyOrgVoucher($organizationId, $applyOrgVoucherRequest)
 ```
 
 Apply voucher
@@ -25,21 +25,17 @@ Applies a voucher for the specified organization, and refreshes the currently op
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\VouchersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.
-$apply_org_voucher_request = new \Upsun\Model\ApplyOrgVoucherRequest(); // \Upsun\Model\ApplyOrgVoucherRequest
+$organizationId = 'organizationId_example'; // string | The ID of the organization.
+$applyOrgVoucherRequest = new \Upsun\Model\ApplyOrgVoucherRequest(); // \Upsun\Model\ApplyOrgVoucherRequest
 
 try {
-    $apiInstance->applyOrgVoucher($organization_id, $apply_org_voucher_request);
+    $apiInstance->applyOrgVoucher($organizationId, $applyOrgVoucherRequest);
 } catch (Exception $e) {
     echo 'Exception when calling VouchersApi->applyOrgVoucher: ', $e->getMessage(), PHP_EOL;
 }
@@ -49,8 +45,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization. |
- **apply_org_voucher_request** | [**\Upsun\Model\ApplyOrgVoucherRequest**](../Model/ApplyOrgVoucherRequest.md)|  |
+ **organizationId** | **string**| The ID of the organization. |
+ **applyOrgVoucherRequest** | [**\Upsun\Model\ApplyOrgVoucherRequest**](../Model/ApplyOrgVoucherRequest.md)|  |
 
 ### Return type
 
@@ -58,7 +54,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -72,7 +68,7 @@ void (empty response body)
 ## `listOrgVouchers()`
 
 ```php
-listOrgVouchers($organization_id): \Upsun\Model\Vouchers
+listOrgVouchers($organizationId): \Upsun\Model\Vouchers
 ```
 
 List vouchers
@@ -86,20 +82,16 @@ Retrieves vouchers for the specified organization.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\VouchersApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$organization_id = 'organization_id_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
+$organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
 
 try {
-    $result = $apiInstance->listOrgVouchers($organization_id);
+    $result = $apiInstance->listOrgVouchers($organizationId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling VouchersApi->listOrgVouchers: ', $e->getMessage(), PHP_EOL;
@@ -110,7 +102,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **organization_id** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+ **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
 
 ### Return type
 
@@ -118,7 +110,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **\DateTime** |  |
-**updated_at** | **\DateTime** |  |
+**createdAt** | **\DateTime** |  |
+**updatedAt** | **\DateTime** |  |
 **certificate** | **string** |  |
 **chain** | **string[]** |  |
-**is_provisioned** | **bool** |  |
-**is_invalid** | **bool** |  |
-**is_root** | **bool** |  |
+**isProvisioned** | **bool** |  |
+**isInvalid** | **bool** |  |
+**isRoot** | **bool** |  |
 **domains** | **string[]** |  |
-**auth_type** | **string[]** |  |
+**authType** | **string[]** |  |
 **issuer** | [**\Upsun\Model\TheIssuerOfTheCertificateInner[]**](TheIssuerOfTheCertificateInner.md) |  |
-**expires_at** | **\DateTime** |  |
+**expiresAt** | **\DateTime** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

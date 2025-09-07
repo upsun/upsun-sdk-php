@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**license_id** | **string** | The id of the subscription. | [optional]
-**project_title** | **string** | The name of the project. | [optional]
+**licenseId** | **string** | The id of the subscription. | [optional]
+**projectTitle** | **string** | The name of the project. | [optional]
 **total** | **string** | The total price for the subscription. | [optional]
 **usage** | [**\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage**](OrganizationEstimationObjectSubscriptionsListInnerUsage.md) |  | [optional]
 

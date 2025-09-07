@@ -5,50 +5,50 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  |
-**fetch_branches** | **bool** |  | [optional]
-**prune_branches** | **bool** |  | [optional]
-**environment_init_resources** | **string** |  | [optional]
-**app_credentials** | [**\Upsun\Model\TheOAuth2ConsumerInformationOptional1**](TheOAuth2ConsumerInformationOptional1.md) |  | [optional]
-**addon_credentials** | [**\Upsun\Model\TheAddonCredentialInformationOptional1**](TheAddonCredentialInformationOptional1.md) |  | [optional]
 **repository** | **string** |  |
-**build_pull_requests** | **bool** |  | [optional]
-**pull_requests_clone_parent_data** | **bool** |  | [optional]
-**resync_pull_requests** | **bool** |  | [optional]
 **url** | **string** |  |
 **username** | **string** |  |
 **token** | **string** |  |
 **project** | **string** |  |
-**events** | **string[]** |  | [optional]
-**environments** | **string[]** |  | [optional]
-**excluded_environments** | **string[]** |  | [optional]
-**states** | **string[]** |  | [optional]
-**result** | **string** |  | [optional]
-**service_id** | **string** |  |
-**base_url** | **string** |  | [optional]
-**build_draft_pull_requests** | **bool** |  | [optional]
-**build_pull_requests_post_merge** | **bool** |  | [optional]
-**build_merge_requests** | **bool** |  | [optional]
-**build_wip_merge_requests** | **bool** |  | [optional]
-**merge_requests_clone_parent_data** | **bool** |  | [optional]
-**from_address** | **string** |  | [optional]
+**serviceId** | **string** |  |
 **recipients** | **string[]** |  |
-**routing_key** | **string** |  |
+**routingKey** | **string** |  |
 **channel** | **string** |  |
-**shared_key** | **string** |  | [optional]
-**extra** | **array<string,string>** |  | [optional]
-**headers** | **array<string,string>** |  | [optional]
-**tls_verify** | **bool** |  | [optional]
-**license_key** | **string** |  |
+**licenseKey** | **string** |  |
 **script** | **string** |  |
 **index** | **string** |  |
+**fetchBranches** | **bool** |  | [optional]
+**pruneBranches** | **bool** |  | [optional]
+**environmentInitResources** | **string** |  | [optional]
+**appCredentials** | [**\Upsun\Model\TheOAuth2ConsumerInformationOptional1**](TheOAuth2ConsumerInformationOptional1.md) |  | [optional]
+**addonCredentials** | [**\Upsun\Model\TheAddonCredentialInformationOptional1**](TheAddonCredentialInformationOptional1.md) |  | [optional]
+**buildPullRequests** | **bool** |  | [optional]
+**pullRequestsCloneParentData** | **bool** |  | [optional]
+**resyncPullRequests** | **bool** |  | [optional]
+**events** | **string[]** |  | [optional]
+**environments** | **string[]** |  | [optional]
+**excludedEnvironments** | **string[]** |  | [optional]
+**states** | **string[]** |  | [optional]
+**result** | **string** |  | [optional]
+**baseUrl** | **string** |  | [optional]
+**buildDraftPullRequests** | **bool** |  | [optional]
+**buildPullRequestsPostMerge** | **bool** |  | [optional]
+**buildMergeRequests** | **bool** |  | [optional]
+**buildWipMergeRequests** | **bool** |  | [optional]
+**mergeRequestsCloneParentData** | **bool** |  | [optional]
+**fromAddress** | **string** |  | [optional]
+**sharedKey** | **string** |  | [optional]
+**extra** | **array<string,string>** |  | [optional]
+**headers** | **array<string,string>** |  | [optional]
+**tlsVerify** | **bool** |  | [optional]
 **sourcetype** | **string** |  | [optional]
 **category** | **string** |  | [optional]
 **host** | **string** |  | [optional]
 **port** | **int** |  | [optional]
 **protocol** | **string** |  | [optional]
 **facility** | **int** |  | [optional]
-**message_format** | **string** |  | [optional]
-**auth_token** | **string** |  | [optional]
-**auth_mode** | **string** |  | [optional]
+**messageFormat** | **string** |  | [optional]
+**authToken** | **string** |  | [optional]
+**authMode** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

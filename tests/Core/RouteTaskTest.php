@@ -19,7 +19,7 @@ class RouteTaskTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->apiMock = $this->createMock(RoutingApi::class);
+        $this->apiMock = $this->createMock(RoutingApiI::class);
         
         $this->clientMock = new class() extends UpsunClient {
             public HttplugClient $apiClient;

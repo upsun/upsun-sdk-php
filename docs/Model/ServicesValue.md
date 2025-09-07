@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **relationships** | **array<string,string>** |  |
 **firewall** | [**\Upsun\Model\Firewall**](Firewall.md) |  |
 **resources** | [**\Upsun\Model\Resources**](Resources.md) |  |
-**container_profile** | **string** |  |
+**containerProfile** | **string** |  |
 **endpoints** | **object** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key_id** | **int** | The ID of the public key. | [optional]
+**keyId** | **int** | The ID of the public key. | [optional]
 **uid** | **int** | The internal user ID. | [optional]
 **fingerprint** | **string** | The fingerprint of the public key. | [optional]
 **title** | **string** | The title of the public key. | [optional]

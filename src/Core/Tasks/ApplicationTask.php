@@ -2,12 +2,20 @@
 
 namespace Upsun\Core\Tasks;
 
+use Exception;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentApi;
 use Upsun\Model\Deployment;
 use Upsun\Model\WebApplicationsValue;
 use Upsun\UpsunClient;
 
+/**
+ * ApplicationTask class.
+ *
+ * @author    Upsun SDK Team
+ * @license   Apache-2.0
+ * @see       https://docs.upsun.com
+ */
 class ApplicationTask extends TaskBase
 {
     public function __construct(
@@ -20,11 +28,11 @@ class ApplicationTask extends TaskBase
     /**
      * Lists applications of an environment
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
+     * @return Deployment[]
      */
     public function list(string $projectId, string $environmentId): array
     {
-        $this->refreshToken();
         $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
         $deployments = reset($deployments);
 
@@ -34,11 +42,10 @@ class ApplicationTask extends TaskBase
     /**
      * Gets an environment's application
      *
-     * @throws ApiException
+     * @throws ApiException|Exception
      */
-    public function get(string $projectId, string $environmentId, string $app_id): WebApplicationsValue|null
+    public function get(string $projectId, string $environmentId, string $app_id): ?WebApplicationsValue
     {
-        $this->refreshToken();
         $environment = $this->client->environment->get($projectId, $environmentId);
         if ($environment->getDeploymentState() && $environment->getDeploymentState()->getLastDeploymentSuccessful()) {
             $deployment = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);

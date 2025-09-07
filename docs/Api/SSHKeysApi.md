@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## `createSshKey()`
 
 ```php
-createSshKey($create_ssh_key_request): \Upsun\Model\SSHKey
+createSshKey($createSshKeyRequest): \Upsun\Model\SSHKey
 ```
 
 Add a new public SSH key to a user
@@ -24,20 +24,16 @@ Add a new public SSH key to a user
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SSHKeysApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$create_ssh_key_request = new \Upsun\Model\CreateSshKeyRequest(); // \Upsun\Model\CreateSshKeyRequest
+$createSshKeyRequest = new \Upsun\Model\CreateSshKeyRequest(); // \Upsun\Model\CreateSshKeyRequest
 
 try {
-    $result = $apiInstance->createSshKey($create_ssh_key_request);
+    $result = $apiInstance->createSshKey($createSshKeyRequest);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHKeysApi->createSshKey: ', $e->getMessage(), PHP_EOL;
@@ -48,7 +44,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_ssh_key_request** | [**\Upsun\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional]
+ **createSshKeyRequest** | [**\Upsun\Model\CreateSshKeyRequest**](../Model/CreateSshKeyRequest.md)|  | [optional]
 
 ### Return type
 
@@ -56,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -70,7 +66,7 @@ Name | Type | Description  | Notes
 ## `deleteSshKey()`
 
 ```php
-deleteSshKey($key_id)
+deleteSshKey($keyId)
 ```
 
 Delete an SSH key
@@ -82,20 +78,16 @@ Delete an SSH key
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SSHKeysApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$key_id = 56; // int | The ID of the ssh key.
+$keyId = 56; // int | The ID of the ssh key.
 
 try {
-    $apiInstance->deleteSshKey($key_id);
+    $apiInstance->deleteSshKey($keyId);
 } catch (Exception $e) {
     echo 'Exception when calling SSHKeysApi->deleteSshKey: ', $e->getMessage(), PHP_EOL;
 }
@@ -105,7 +97,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key_id** | **int**| The ID of the ssh key. |
+ **keyId** | **int**| The ID of the ssh key. |
 
 ### Return type
 
@@ -113,7 +105,7 @@ void (empty response body)
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
@@ -127,7 +119,7 @@ void (empty response body)
 ## `getSshKey()`
 
 ```php
-getSshKey($key_id): \Upsun\Model\SSHKey
+getSshKey($keyId): \Upsun\Model\SSHKey
 ```
 
 Get an SSH key
@@ -139,20 +131,16 @@ Get an SSH key
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure OAuth2 access token for authorization: OAuth2
-$config = Upsun\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
 
 $apiInstance = new Upsun\Api\SSHKeysApi(
     // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
     // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
-    new GuzzleHttp\Client(),
-    $config
+    new GuzzleHttp\Client()
 );
-$key_id = 56; // int | The ID of the ssh key.
+$keyId = 56; // int | The ID of the ssh key.
 
 try {
-    $result = $apiInstance->getSshKey($key_id);
+    $result = $apiInstance->getSshKey($keyId);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SSHKeysApi->getSshKey: ', $e->getMessage(), PHP_EOL;
@@ -163,7 +151,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **key_id** | **int**| The ID of the ssh key. |
+ **keyId** | **int**| The ID of the ssh key. |
 
 ### Return type
 
@@ -171,7 +159,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[OAuth2](../../README.md#OAuth2)
+No authorization required
 
 ### HTTP request headers
 
