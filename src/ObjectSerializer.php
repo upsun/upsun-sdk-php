@@ -48,9 +48,9 @@ class ObjectSerializer
         if (is_object($data)) {
             $values = [];
             if ($data instanceof ModelInterface) {
-                $formats = ObjectMapper::openAPIFormats($data->getModelName());
+                $formats = ObjectOpenApiFormatsMapper::openAPIFormats($data->getModelName());
 
-                foreach (ObjectMapper::openAPITypes($data->getModelName()) as $property => $openAPIType) {
+                foreach (ObjectOpenApiTypesMapper::openAPITypes($data->getModelName()) as $property => $openAPIType) {
                     $getterMethod = 'get' . ucfirst($property);
                     if (method_exists($data, $getterMethod)) {
                         $value = $data->$getterMethod();
@@ -80,7 +80,7 @@ class ObjectSerializer
                         }
                     }
                     if (($data::isNullable($property) && $data->isNullableSetToNull($property)) || $value !== null) {
-                        $values[ObjectMapper::attributeMap($data->getModelName())[$property]]
+                        $values[ObjectAttributesMapper::attributeMap($data->getModelName())[$property]]
                             = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
                     }
                 }
@@ -175,7 +175,7 @@ class ObjectSerializer
 
             $jsonKey = $paramName; // fallback
 
-            $attributeMap = ObjectMapper::attributeMap($fullClass);
+            $attributeMap = ObjectAttributesMapper::attributeMap($fullClass);
             $jsonKey = $attributeMap[$paramName] ?? $paramName;
 
             $value = null;
@@ -206,7 +206,7 @@ class ObjectSerializer
                 $typeName = $paramType->getName();
 
                 if ($paramType->getName() === 'array' && $value !== null && is_array($value)) {
-                    $types = ObjectMapper::openAPITypes($fullClass);
+                    $types = ObjectOpenApiTypesMapper::openAPITypes($fullClass);
 
                     if (isset($types[$paramName]) && str_ends_with($types[$paramName], '[]')) {
                         $itemClass = substr($types[$paramName], 0, -2); // remove []
@@ -272,7 +272,7 @@ class ObjectSerializer
             }
 
             if ($args[count($args) - 1] === null && !$allowsNull) {
-                $types = ObjectMapper::openAPITypes($fullClass);
+                $types = ObjectOpenApiTypesMapper::openAPITypes($fullClass);
                 if (isset($types[$jsonKey]) && str_contains($types[$jsonKey], 'null')) {
                     continue;
                 }
@@ -296,7 +296,7 @@ class ObjectSerializer
 
         // Handle ActivityCollection (or any Collection schema with only "items")
         if (class_exists($class) && is_subclass_of($class, ModelInterface::class)) {
-            $types = ObjectMapper::openAPITypes($class);
+            $types = ObjectOpenApiTypesMapper::openAPITypes($class);
             if (isset($types['items']) && str_ends_with($types['items'], '[]')) {
                 $subClass = substr($types['items'], 0, -2);
                 $values = [];

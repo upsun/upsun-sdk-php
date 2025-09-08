@@ -43,7 +43,15 @@ files:
     templateType: SupportingFiles
     destinationFilename: OAuthProvider.php
     folder: src/Core
-  ObjectMapper.mustache:
+  ObjectAttributesMapper.mustache:
     templateType: SupportingFiles
-    destinationFilename: ObjectMapper.php
+    destinationFilename: ObjectAttributesMapper.php
+    folder: src/
+  ObjectOpenApiFormatsMapper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectOpenApiFormatsMapper.php
+    folder: src/
+  ObjectOpenApiTypesMapper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectOpenApiTypesMapper.php
     folder: src/
