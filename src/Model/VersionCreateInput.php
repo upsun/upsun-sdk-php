@@ -18,28 +18,14 @@ use JsonSerializable;
 final class VersionCreateInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'routing' => 'routing'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'routing' => '?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

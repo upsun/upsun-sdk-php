@@ -18,31 +18,15 @@ use JsonSerializable;
 final class OrganizationAddonsObjectCurrent implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'userManagement' => 'user_management',
-        'supportLevel' => 'support_level'
-    ];
-
     public function __construct(
         private readonly ?array $userManagement = [],
         private readonly ?array $supportLevel = [],
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_management' => 'float[]',
-            'support_level' => 'float[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

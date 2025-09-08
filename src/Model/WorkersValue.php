@@ -29,33 +29,6 @@ final class WorkersValue implements JsonSerializable
     public const ACCESS_CONTRIBUTOR = 'contributor';
     public const ACCESS_VIEWER = 'viewer';
 
-    private static array $attributeMap = [
-        'resources' => 'resources',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'relationships' => 'relationships',
-        'additionalHosts' => 'additional_hosts',
-        'mounts' => 'mounts',
-        'timezone' => 'timezone',
-        'variables' => 'variables',
-        'firewall' => 'firewall',
-        'containerProfile' => 'container_profile',
-        'operations' => 'operations',
-        'name' => 'name',
-        'type' => 'type',
-        'preflight' => 'preflight',
-        'treeId' => 'tree_id',
-        'appDir' => 'app_dir',
-        'endpoints' => 'endpoints',
-        'runtime' => 'runtime',
-        'worker' => 'worker',
-        'app' => 'app',
-        'stack' => 'stack',
-        'instanceCount' => 'instance_count',
-        'slugId' => 'slug_id'
-    ];
-
     public function __construct(
         private readonly string $size,
         private readonly array $access,
@@ -84,42 +57,9 @@ final class WorkersValue implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'resources' => '?\Upsun\Model\Resources',
-            'size' => 'string',
-            'disk' => '?int',
-            'access' => 'string[]',
-            'relationships' => '\Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue[]',
-            'additional_hosts' => 'string[]',
-            'mounts' => '\Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue[]',
-            'timezone' => '?string',
-            'variables' => 'array&lt;string,mixed&gt;[]',
-            'firewall' => '?\Upsun\Model\Firewall',
-            'container_profile' => '?string',
-            'operations' => '\Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue[]',
-            'name' => 'string',
-            'type' => 'string',
-            'preflight' => '\Upsun\Model\ConfigurationForPreFlightChecks',
-            'tree_id' => 'string',
-            'app_dir' => 'string',
-            'endpoints' => '?object',
-            'runtime' => 'object',
-            'worker' => '\Upsun\Model\ConfigurationOfAWorkerContainerInstance',
-            'app' => 'string',
-            'stack' => 'object[]',
-            'instance_count' => '?int',
-            'slug_id' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

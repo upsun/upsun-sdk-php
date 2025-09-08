@@ -21,16 +21,6 @@ final class ProxyRouteCreateInput implements JsonSerializable
     public const TYPE_REDIRECT = 'redirect';
     public const TYPE_UPSTREAM = 'upstream';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'to' => 'to',
-        'primary' => 'primary',
-        'id' => 'id',
-        'productionUrl' => 'production_url',
-        'attributes' => 'attributes',
-        'tls' => 'tls'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $to,
@@ -42,25 +32,9 @@ final class ProxyRouteCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'to' => 'string',
-            'primary' => '?bool',
-            'id' => '?string',
-            'production_url' => '?string',
-            'attributes' => 'string[]',
-            'tls' => '?\Upsun\Model\TLSSettingsForTheRoute1',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -24,12 +24,6 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     public const SOURCE_TEMPORARY = 'temporary';
     public const SOURCE_TMP = 'tmp';
 
-    private static array $attributeMap = [
-        'source' => 'source',
-        'sourcePath' => 'source_path',
-        'service' => 'service'
-    ];
-
     public function __construct(
         private readonly string $source,
         private readonly string $sourcePath,
@@ -37,21 +31,9 @@ final class FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHav
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'source' => 'string',
-            'source_path' => 'string',
-            'service' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

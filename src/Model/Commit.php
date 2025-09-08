@@ -18,15 +18,6 @@ use JsonSerializable;
 final class Commit implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'sha' => 'sha',
-        'author' => 'author',
-        'committer' => 'committer',
-        'message' => 'message',
-        'tree' => 'tree',
-        'parents' => 'parents'
-    ];
-
     public function __construct(
         private readonly string $sha,
         private readonly \Upsun\Model\TheInformationAboutTheAuthor $author,
@@ -37,24 +28,9 @@ final class Commit implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'sha' => 'string',
-            'author' => '\Upsun\Model\TheInformationAboutTheAuthor',
-            'committer' => '\Upsun\Model\TheInformationAboutTheCommitter',
-            'message' => 'string',
-            'tree' => 'string',
-            'parents' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,12 +18,6 @@ use JsonSerializable;
 final class ListLinks implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'self' => 'self',
-        'previous' => 'previous',
-        'next' => 'next'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\LinkSelf $self = null,
         private readonly ?\Upsun\Model\LinkPrevious $previous = null,
@@ -31,21 +25,9 @@ final class ListLinks implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\LinkSelf',
-            'previous' => '?\Upsun\Model\LinkPrevious',
-            'next' => '?\Upsun\Model\LinkNext',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

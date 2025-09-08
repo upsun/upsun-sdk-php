@@ -22,20 +22,6 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
     public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
     public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'url' => 'url',
-        'username' => 'username',
-        'token' => 'token',
-        'project' => 'project',
-        'repository' => 'repository',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'buildPullRequests' => 'build_pull_requests',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -51,29 +37,9 @@ final class BitbucketServerIntegrationPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'url' => 'string',
-            'username' => 'string',
-            'token' => 'string',
-            'project' => 'string',
-            'repository' => 'string',
-            'fetch_branches' => '?bool',
-            'prune_branches' => '?bool',
-            'environment_init_resources' => '?string',
-            'build_pull_requests' => '?bool',
-            'pull_requests_clone_parent_data' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

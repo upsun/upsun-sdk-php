@@ -18,12 +18,6 @@ use JsonSerializable;
 final class EnvironmentSourceOperation implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'app' => 'app',
-        'operation' => 'operation',
-        'command' => 'command'
-    ];
-
     public function __construct(
         private readonly string $app,
         private readonly string $operation,
@@ -31,21 +25,9 @@ final class EnvironmentSourceOperation implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'app' => 'string',
-            'operation' => 'string',
-            'command' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

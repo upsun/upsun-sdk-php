@@ -29,16 +29,6 @@ final class TeamReference implements JsonSerializable
     public const PROJECT_PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
     public const PROJECT_PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'label' => 'label',
-        'projectPermissions' => 'project_permissions',
-        'counts' => 'counts',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
@@ -50,25 +40,9 @@ final class TeamReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'organization_id' => '?string',
-            'label' => '?string',
-            'project_permissions' => 'string[]',
-            'counts' => '?\Upsun\Model\TeamCounts',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

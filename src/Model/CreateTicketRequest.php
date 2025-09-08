@@ -33,20 +33,6 @@ final class CreateTicketRequest implements JsonSerializable
     public const CATEGORY_ONBOARDING = 'onboarding';
     public const CATEGORY_CLOSE_MY_ACCOUNT = 'close_my_account';
 
-    private static array $attributeMap = [
-        'subject' => 'subject',
-        'description' => 'description',
-        'requesterId' => 'requester_id',
-        'priority' => 'priority',
-        'subscriptionId' => 'subscription_id',
-        'organizationId' => 'organization_id',
-        'affectedUrl' => 'affected_url',
-        'followupTid' => 'followup_tid',
-        'category' => 'category',
-        'attachments' => 'attachments',
-        'collaboratorIds' => 'collaborator_ids'
-    ];
-
     public function __construct(
         private readonly string $subject,
         private readonly string $description,
@@ -62,29 +48,9 @@ final class CreateTicketRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'subject' => 'string',
-            'description' => 'string',
-            'requester_id' => '?string',
-            'priority' => '?string',
-            'subscription_id' => '?string',
-            'organization_id' => '?string',
-            'affected_url' => '?string',
-            'followup_tid' => '?string',
-            'category' => '?string',
-            'attachments' => '\Upsun\Model\CreateTicketRequestAttachmentsInner[]',
-            'collaborator_ids' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

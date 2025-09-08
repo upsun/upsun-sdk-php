@@ -18,14 +18,6 @@ use JsonSerializable;
 final class Error implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'status' => 'status',
-        'message' => 'message',
-        'code' => 'code',
-        'detail' => 'detail',
-        'title' => 'title'
-    ];
-
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?string $message = null,
@@ -35,23 +27,9 @@ final class Error implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'status' => '?string',
-            'message' => '?string',
-            'code' => '?float',
-            'detail' => '?object',
-            'title' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

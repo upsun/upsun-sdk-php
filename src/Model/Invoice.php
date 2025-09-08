@@ -26,25 +26,6 @@ final class Invoice implements JsonSerializable
     public const STATUS_CANCELED = 'canceled';
     public const STATUS_REFUND_PENDING = 'refund_pending';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'invoiceNumber' => 'invoice_number',
-        'type' => 'type',
-        'orderId' => 'order_id',
-        'relatedInvoiceId' => 'related_invoice_id',
-        'status' => 'status',
-        'owner' => 'owner',
-        'invoiceDate' => 'invoice_date',
-        'invoiceDue' => 'invoice_due',
-        'created' => 'created',
-        'changed' => 'changed',
-        'company' => 'company',
-        'total' => 'total',
-        'address' => 'address',
-        'notes' => 'notes',
-        'invoicePdf' => 'invoice_pdf'
-    ];
-
     public function __construct(
         private readonly ?string $relatedInvoiceId = null,
         private readonly ?\DateTime $invoiceDate = null,
@@ -65,34 +46,9 @@ final class Invoice implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'invoice_number' => '?string',
-            'type' => '?string',
-            'order_id' => '?string',
-            'related_invoice_id' => '?string',
-            'status' => '?string',
-            'owner' => '?string',
-            'invoice_date' => '?\DateTime',
-            'invoice_due' => '?\DateTime',
-            'created' => '?\DateTime',
-            'changed' => '?\DateTime',
-            'company' => '?string',
-            'total' => '?float',
-            'address' => '?\Upsun\Model\Address',
-            'notes' => '?string',
-            'invoice_pdf' => '?\Upsun\Model\InvoicePDF',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

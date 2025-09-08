@@ -18,12 +18,6 @@ use JsonSerializable;
 final class TheEnvironmentDeploymentState implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'lastDeploymentSuccessful' => 'last_deployment_successful',
-        'lastDeploymentAt' => 'last_deployment_at',
-        'crons' => 'crons'
-    ];
-
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
         private readonly \Upsun\Model\TheCronsDeploymentState $crons,
@@ -31,21 +25,9 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'last_deployment_successful' => 'bool',
-            'last_deployment_at' => '?\DateTime',
-            'crons' => '\Upsun\Model\TheCronsDeploymentState',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

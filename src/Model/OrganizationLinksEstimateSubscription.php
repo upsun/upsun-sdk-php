@@ -18,28 +18,14 @@ use JsonSerializable;
 final class OrganizationLinksEstimateSubscription implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'href' => 'href'
-    ];
-
     public function __construct(
         private readonly ?string $href = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'href' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,28 +18,14 @@ use JsonSerializable;
 final class PrepaymentObject implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'prepayment' => 'prepayment'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\PrepaymentObjectPrepayment $prepayment = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'prepayment' => '?\Upsun\Model\PrepaymentObjectPrepayment',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

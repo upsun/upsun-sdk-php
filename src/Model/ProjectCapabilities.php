@@ -18,20 +18,6 @@ use JsonSerializable;
 final class ProjectCapabilities implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'metrics' => 'metrics',
-        'logsForwarding' => 'logs_forwarding',
-        'images' => 'images',
-        'instanceLimit' => 'instance_limit',
-        'buildResources' => 'build_resources',
-        'dataRetention' => 'data_retention',
-        'customDomains' => 'custom_domains',
-        'sourceOperations' => 'source_operations',
-        'runtimeOperations' => 'runtime_operations',
-        'outboundFirewall' => 'outbound_firewall',
-        'integrations' => 'integrations'
-    ];
-
     public function __construct(
         private readonly \Upsun\Model\Metrics $metrics,
         private readonly \Upsun\Model\LogsForwarding $logsForwarding,
@@ -47,29 +33,9 @@ final class ProjectCapabilities implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'metrics' => '\Upsun\Model\Metrics',
-            'logs_forwarding' => '\Upsun\Model\LogsForwarding',
-            'images' => 'array&lt;string,\Upsun\Model\ImagesValueValue&gt;[]',
-            'instance_limit' => 'int',
-            'build_resources' => '\Upsun\Model\BuildResources',
-            'data_retention' => '\Upsun\Model\DataRetention',
-            'custom_domains' => '?\Upsun\Model\CustomDomains',
-            'source_operations' => '?\Upsun\Model\SourceOperations',
-            'runtime_operations' => '?\Upsun\Model\RuntimeOperations',
-            'outbound_firewall' => '?\Upsun\Model\OutboundFirewall',
-            'integrations' => '?\Upsun\Model\Integrations',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

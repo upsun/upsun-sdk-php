@@ -21,13 +21,6 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     public const ROLE_VIEWER = 'viewer';
     public const ROLE_CONTRIBUTOR = 'contributor';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'type' => 'type',
-        'role' => 'role',
-        'title' => 'title'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $type = null,
@@ -36,22 +29,9 @@ final class ProjectInvitationEnvironmentsInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'type' => '?string',
-            'role' => '?string',
-            'title' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

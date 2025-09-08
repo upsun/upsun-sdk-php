@@ -19,20 +19,6 @@ final class ProfileCurrentTrial implements JsonSerializable
 {
     public const PENDING_VERIFICATION_CREDIT_CARD = 'credit-card';
 
-    private static array $attributeMap = [
-        'active' => 'active',
-        'created' => 'created',
-        'description' => 'description',
-        'expiration' => 'expiration',
-        'current' => 'current',
-        'spend' => 'spend',
-        'spendRemaining' => 'spend_remaining',
-        'projects' => 'projects',
-        'pendingVerification' => 'pending_verification',
-        'model' => 'model',
-        'daysRemaining' => 'days_remaining'
-    ];
-
     public function __construct(
         private readonly ?string $pendingVerification = null,
         private readonly ?bool $active = null,
@@ -48,29 +34,9 @@ final class ProfileCurrentTrial implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'active' => '?bool',
-            'created' => '?\DateTime',
-            'description' => '?string',
-            'expiration' => '?\DateTime',
-            'current' => '?\Upsun\Model\ProfileCurrentTrialCurrent',
-            'spend' => '?\Upsun\Model\ProfileCurrentTrialSpend',
-            'spend_remaining' => '?\Upsun\Model\ProfileCurrentTrialSpendRemaining',
-            'projects' => '?\Upsun\Model\ProfileCurrentTrialProjects',
-            'pending_verification' => '?string',
-            'model' => '?string',
-            'days_remaining' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

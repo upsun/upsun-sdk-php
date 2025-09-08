@@ -18,21 +18,6 @@ use JsonSerializable;
 final class Region implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'label' => 'label',
-        'zone' => 'zone',
-        'selectionLabel' => 'selection_label',
-        'projectLabel' => 'project_label',
-        'timezone' => 'timezone',
-        'available' => 'available',
-        'private' => 'private',
-        'endpoint' => 'endpoint',
-        'provider' => 'provider',
-        'datacenter' => 'datacenter',
-        'environmentalImpact' => 'environmental_impact'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -49,30 +34,9 @@ final class Region implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'label' => '?string',
-            'zone' => '?string',
-            'selection_label' => '?string',
-            'project_label' => '?string',
-            'timezone' => '?string',
-            'available' => '?bool',
-            'private' => '?bool',
-            'endpoint' => '?string',
-            'provider' => '?\Upsun\Model\RegionProvider',
-            'datacenter' => '?\Upsun\Model\RegionDatacenter',
-            'environmental_impact' => '?\Upsun\Model\RegionEnvironmentalImpact',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

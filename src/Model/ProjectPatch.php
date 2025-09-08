@@ -18,16 +18,6 @@ use JsonSerializable;
 final class ProjectPatch implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'attributes' => 'attributes',
-        'title' => 'title',
-        'description' => 'description',
-        'defaultBranch' => 'default_branch',
-        'timezone' => 'timezone',
-        'region' => 'region',
-        'defaultDomain' => 'default_domain'
-    ];
-
     public function __construct(
         private readonly ?string $defaultBranch = null,
         private readonly ?string $defaultDomain = null,
@@ -39,25 +29,9 @@ final class ProjectPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'attributes' => 'string[]',
-            'title' => '?string',
-            'description' => '?string',
-            'default_branch' => '?string',
-            'timezone' => '?string',
-            'region' => '?string',
-            'default_domain' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

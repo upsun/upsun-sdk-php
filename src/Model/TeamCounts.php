@@ -18,31 +18,15 @@ use JsonSerializable;
 final class TeamCounts implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'memberCount' => 'member_count',
-        'projectCount' => 'project_count'
-    ];
-
     public function __construct(
         private readonly ?int $memberCount = null,
         private readonly ?int $projectCount = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'member_count' => '?int',
-            'project_count' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

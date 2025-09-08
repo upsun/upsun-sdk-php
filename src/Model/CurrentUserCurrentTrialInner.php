@@ -18,13 +18,6 @@ use JsonSerializable;
 final class CurrentUserCurrentTrialInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'created' => 'created',
-        'description' => 'description',
-        'spendRemaining' => 'spend_remaining',
-        'expiration' => 'expiration'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $created = null,
         private readonly ?string $description = null,
@@ -33,22 +26,9 @@ final class CurrentUserCurrentTrialInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created' => '?\DateTime',
-            'description' => '?string',
-            'spend_remaining' => '?string',
-            'expiration' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

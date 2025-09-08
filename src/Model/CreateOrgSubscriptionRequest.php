@@ -18,16 +18,6 @@ use JsonSerializable;
 final class CreateOrgSubscriptionRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'projectRegion' => 'project_region',
-        'plan' => 'plan',
-        'projectTitle' => 'project_title',
-        'optionsUrl' => 'options_url',
-        'defaultBranch' => 'default_branch',
-        'environments' => 'environments',
-        'storage' => 'storage'
-    ];
-
     public function __construct(
         private readonly string $projectRegion,
         private readonly ?string $plan = null,
@@ -39,25 +29,9 @@ final class CreateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'project_region' => 'string',
-            'plan' => '?string',
-            'project_title' => '?string',
-            'options_url' => '?string',
-            'default_branch' => '?string',
-            'environments' => '?int',
-            'storage' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

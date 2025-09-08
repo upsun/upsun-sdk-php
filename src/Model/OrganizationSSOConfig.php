@@ -19,15 +19,6 @@ final class OrganizationSSOConfig implements JsonSerializable
 {
     public const PROVIDER_TYPE_GOOGLE = 'google';
 
-    private static array $attributeMap = [
-        'providerType' => 'provider_type',
-        'domain' => 'domain',
-        'organizationId' => 'organization_id',
-        'enforced' => 'enforced',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
@@ -38,24 +29,9 @@ final class OrganizationSSOConfig implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'provider_type' => '?string',
-            'domain' => '?string',
-            'organization_id' => '?string',
-            'enforced' => '?bool',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

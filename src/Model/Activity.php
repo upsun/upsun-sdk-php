@@ -25,28 +25,6 @@ final class Activity implements JsonSerializable
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'parameters' => 'parameters',
-        'project' => 'project',
-        'state' => 'state',
-        'result' => 'result',
-        'startedAt' => 'started_at',
-        'completedAt' => 'completed_at',
-        'completionPercent' => 'completion_percent',
-        'cancelledAt' => 'cancelled_at',
-        'timings' => 'timings',
-        'log' => 'log',
-        'payload' => 'payload',
-        'description' => 'description',
-        'text' => 'text',
-        'expiresAt' => 'expires_at',
-        'integration' => 'integration',
-        'environments' => 'environments'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly object $parameters,
@@ -70,37 +48,9 @@ final class Activity implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'parameters' => 'object',
-            'project' => 'string',
-            'state' => 'string',
-            'result' => '?string',
-            'started_at' => '?\DateTime',
-            'completed_at' => '?\DateTime',
-            'completion_percent' => 'int',
-            'cancelled_at' => '?\DateTime',
-            'timings' => 'float[]',
-            'log' => 'string',
-            'payload' => 'object',
-            'description' => '?string',
-            'text' => '?string',
-            'expires_at' => '?\DateTime',
-            'integration' => '?string',
-            'environments' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

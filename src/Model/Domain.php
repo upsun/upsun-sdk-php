@@ -18,18 +18,6 @@ use JsonSerializable;
 final class Domain implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'project' => 'project',
-        'registeredName' => 'registered_name',
-        'isDefault' => 'is_default',
-        'replacementFor' => 'replacement_for'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -43,27 +31,9 @@ final class Domain implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'name' => 'string',
-            'attributes' => 'string[]',
-            'project' => '?string',
-            'registered_name' => '?string',
-            'is_default' => '?bool',
-            'replacement_for' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

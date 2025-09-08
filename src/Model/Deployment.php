@@ -18,28 +18,6 @@ use JsonSerializable;
 final class Deployment implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'clusterName' => 'cluster_name',
-        'projectInfo' => 'project_info',
-        'environmentInfo' => 'environment_info',
-        'deploymentTarget' => 'deployment_target',
-        'vpn' => 'vpn',
-        'httpAccess' => 'http_access',
-        'enableSmtp' => 'enable_smtp',
-        'restrictRobots' => 'restrict_robots',
-        'variables' => 'variables',
-        'access' => 'access',
-        'subscription' => 'subscription',
-        'services' => 'services',
-        'routes' => 'routes',
-        'webapps' => 'webapps',
-        'workers' => 'workers',
-        'containerProfiles' => 'container_profiles',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'fingerprint' => 'fingerprint'
-    ];
-
     public function __construct(
         private readonly string $clusterName,
         private readonly \Upsun\Model\ProjectInfo $projectInfo,
@@ -63,37 +41,9 @@ final class Deployment implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cluster_name' => 'string',
-            'project_info' => '\Upsun\Model\ProjectInfo',
-            'environment_info' => '\Upsun\Model\EnvironmentInfo',
-            'deployment_target' => 'string',
-            'vpn' => '?\Upsun\Model\VPNConfiguration',
-            'http_access' => '\Upsun\Model\HttpAccessPermissions',
-            'enable_smtp' => 'bool',
-            'restrict_robots' => 'bool',
-            'variables' => '\Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]',
-            'access' => '\Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]',
-            'subscription' => '\Upsun\Model\Subscription1',
-            'services' => '\Upsun\Model\ServicesValue[]',
-            'routes' => '\Upsun\Model\RoutesValue[]',
-            'webapps' => '\Upsun\Model\WebApplicationsValue[]',
-            'workers' => '\Upsun\Model\WorkersValue[]',
-            'container_profiles' => 'array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;[]',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'fingerprint' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

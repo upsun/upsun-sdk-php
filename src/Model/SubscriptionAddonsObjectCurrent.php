@@ -18,31 +18,15 @@ use JsonSerializable;
 final class SubscriptionAddonsObjectCurrent implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'continuousProfiling' => 'continuous_profiling',
-        'projectSupportLevel' => 'project_support_level'
-    ];
-
     public function __construct(
         private readonly ?array $continuousProfiling = [],
         private readonly ?array $projectSupportLevel = [],
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'continuous_profiling' => 'float[]',
-            'project_support_level' => 'float[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

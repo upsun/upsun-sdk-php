@@ -26,41 +26,6 @@ final class Environment implements JsonSerializable
     public const STATUS_INACTIVE = 'inactive';
     public const STATUS_PAUSED = 'paused';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'name' => 'name',
-        'machineName' => 'machine_name',
-        'title' => 'title',
-        'attributes' => 'attributes',
-        'type' => 'type',
-        'parent' => 'parent',
-        'hasDomains' => 'has_domains',
-        'cloneParentOnCreate' => 'clone_parent_on_create',
-        'deploymentTarget' => 'deployment_target',
-        'isPr' => 'is_pr',
-        'hasRemote' => 'has_remote',
-        'status' => 'status',
-        'httpAccess' => 'http_access',
-        'enableSmtp' => 'enable_smtp',
-        'restrictRobots' => 'restrict_robots',
-        'edgeHostname' => 'edge_hostname',
-        'deploymentState' => 'deployment_state',
-        'resourcesOverrides' => 'resources_overrides',
-        'maxInstanceCount' => 'max_instance_count',
-        'lastActiveAt' => 'last_active_at',
-        'lastBackupAt' => 'last_backup_at',
-        'project' => 'project',
-        'isMain' => 'is_main',
-        'isDirty' => 'is_dirty',
-        'hasCode' => 'has_code',
-        'headCommit' => 'head_commit',
-        'mergeInfo' => 'merge_info',
-        'hasDeployment' => 'has_deployment',
-        'supportsRestrictRobots' => 'supports_restrict_robots',
-        'defaultDomain' => 'default_domain'
-    ];
-
     public function __construct(
         private readonly string $name,
         private readonly string $machineName,
@@ -97,50 +62,9 @@ final class Environment implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'name' => 'string',
-            'machine_name' => 'string',
-            'title' => 'string',
-            'attributes' => 'string[]',
-            'type' => 'string',
-            'parent' => '?string',
-            'has_domains' => 'bool',
-            'clone_parent_on_create' => 'bool',
-            'deployment_target' => '?string',
-            'is_pr' => 'bool',
-            'has_remote' => 'bool',
-            'status' => 'string',
-            'http_access' => '\Upsun\Model\HttpAccessPermissions',
-            'enable_smtp' => 'bool',
-            'restrict_robots' => 'bool',
-            'edge_hostname' => 'string',
-            'deployment_state' => '?\Upsun\Model\TheEnvironmentDeploymentState',
-            'resources_overrides' => '\Upsun\Model\ResourcesOverridesValue[]',
-            'max_instance_count' => '?int',
-            'last_active_at' => '?\DateTime',
-            'last_backup_at' => '?\DateTime',
-            'project' => 'string',
-            'is_main' => 'bool',
-            'is_dirty' => 'bool',
-            'has_code' => 'bool',
-            'head_commit' => '?string',
-            'merge_info' => '\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments',
-            'has_deployment' => 'bool',
-            'supports_restrict_robots' => 'bool',
-            'default_domain' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

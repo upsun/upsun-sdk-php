@@ -27,18 +27,6 @@ final class OrganizationInvitation implements JsonSerializable
     public const PERMISSIONS_MEMBERS = 'members';
     public const PERMISSIONS_PROJECT_CREATE = 'project:create';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'state' => 'state',
-        'organizationId' => 'organization_id',
-        'email' => 'email',
-        'owner' => 'owner',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'finishedAt' => 'finished_at',
-        'permissions' => 'permissions'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
@@ -52,27 +40,9 @@ final class OrganizationInvitation implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'state' => '?string',
-            'organization_id' => '?string',
-            'email' => '?string',
-            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'finished_at' => '?\DateTime',
-            'permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,15 +18,6 @@ use JsonSerializable;
 final class EstimationObject implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'plan' => 'plan',
-        'userLicenses' => 'user_licenses',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'total' => 'total',
-        'options' => 'options'
-    ];
-
     public function __construct(
         private readonly ?string $plan = null,
         private readonly ?string $userLicenses = null,
@@ -37,24 +28,9 @@ final class EstimationObject implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'plan' => '?string',
-            'user_licenses' => '?string',
-            'environments' => '?string',
-            'storage' => '?string',
-            'total' => '?string',
-            'options' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

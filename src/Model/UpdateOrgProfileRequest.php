@@ -18,15 +18,6 @@ use JsonSerializable;
 final class UpdateOrgProfileRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'defaultCatalog' => 'default_catalog',
-        'projectOptionsUrl' => 'project_options_url',
-        'securityContact' => 'security_contact',
-        'companyName' => 'company_name',
-        'vatNumber' => 'vat_number',
-        'billingContact' => 'billing_contact'
-    ];
-
     public function __construct(
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
@@ -37,24 +28,9 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'default_catalog' => '?string',
-            'project_options_url' => '?string',
-            'security_contact' => '?string',
-            'company_name' => '?string',
-            'vat_number' => '?string',
-            'billing_contact' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

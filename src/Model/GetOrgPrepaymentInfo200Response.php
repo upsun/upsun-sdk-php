@@ -18,31 +18,15 @@ use JsonSerializable;
 final class GetOrgPrepaymentInfo200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'prepayment' => 'prepayment',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\PrepaymentObject $prepayment = null,
         private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'prepayment' => '?\Upsun\Model\PrepaymentObject',
-            '_links' => '?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

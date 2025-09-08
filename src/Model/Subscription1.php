@@ -26,21 +26,6 @@ final class Subscription1 implements JsonSerializable
     public const PLAN_STANDARD = 'standard';
     public const PLAN_XLARGE = 'xlarge';
 
-    private static array $attributeMap = [
-        'licenseUri' => 'license_uri',
-        'storage' => 'storage',
-        'includedUsers' => 'included_users',
-        'subscriptionManagementUri' => 'subscription_management_uri',
-        'restricted' => 'restricted',
-        'suspended' => 'suspended',
-        'userLicenses' => 'user_licenses',
-        'plan' => 'plan',
-        'environments' => 'environments',
-        'resources' => 'resources',
-        'resourceValidationUrl' => 'resource_validation_url',
-        'imageTypes' => 'image_types'
-    ];
-
     public function __construct(
         private readonly string $licenseUri,
         private readonly int $storage,
@@ -57,30 +42,9 @@ final class Subscription1 implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'license_uri' => 'string',
-            'storage' => 'int',
-            'included_users' => 'int',
-            'subscription_management_uri' => 'string',
-            'restricted' => 'bool',
-            'suspended' => 'bool',
-            'user_licenses' => 'int',
-            'plan' => '?string',
-            'environments' => '?int',
-            'resources' => '?\Upsun\Model\ResourcesLimits',
-            'resource_validation_url' => '?string',
-            'image_types' => '?\Upsun\Model\RestrictedAndDeniedImageTypes',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

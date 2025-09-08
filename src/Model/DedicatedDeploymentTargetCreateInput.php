@@ -21,12 +21,6 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_LOCAL = 'local';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'enforcedMounts' => 'enforced_mounts'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -34,21 +28,9 @@ final class DedicatedDeploymentTargetCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'name' => 'string',
-            'enforced_mounts' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

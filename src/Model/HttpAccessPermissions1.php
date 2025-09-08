@@ -18,12 +18,6 @@ use JsonSerializable;
 final class HttpAccessPermissions1 implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'isEnabled' => 'is_enabled',
-        'addresses' => 'addresses',
-        'basicAuth' => 'basic_auth'
-    ];
-
     public function __construct(
         private readonly ?bool $isEnabled = null,
         private readonly ?array $addresses = [],
@@ -31,21 +25,9 @@ final class HttpAccessPermissions1 implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'is_enabled' => '?bool',
-            'addresses' => '\Upsun\Model\AddressGrantsInner[]',
-            'basic_auth' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

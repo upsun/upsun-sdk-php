@@ -18,12 +18,6 @@ use JsonSerializable;
 final class SystemInformation implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'version' => 'version',
-        'image' => 'image',
-        'startedAt' => 'started_at'
-    ];
-
     public function __construct(
         private readonly string $version,
         private readonly string $image,
@@ -31,21 +25,9 @@ final class SystemInformation implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'version' => 'string',
-            'image' => 'string',
-            'started_at' => '\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

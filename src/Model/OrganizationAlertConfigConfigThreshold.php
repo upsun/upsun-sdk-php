@@ -18,13 +18,6 @@ use JsonSerializable;
 final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'formatted' => 'formatted',
-        'amount' => 'amount',
-        'currencyCode' => 'currency_code',
-        'currencySymbol' => 'currency_symbol'
-    ];
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?float $amount = null,
@@ -33,22 +26,9 @@ final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'formatted' => '?string',
-            'amount' => '?float',
-            'currency_code' => '?string',
-            'currency_symbol' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

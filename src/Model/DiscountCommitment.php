@@ -18,12 +18,6 @@ use JsonSerializable;
 final class DiscountCommitment implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'months' => 'months',
-        'amount' => 'amount',
-        'net' => 'net'
-    ];
-
     public function __construct(
         private readonly ?int $months = null,
         private readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
@@ -31,21 +25,9 @@ final class DiscountCommitment implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'months' => '?int',
-            'amount' => '?\Upsun\Model\DiscountCommitmentAmount',
-            'net' => '?\Upsun\Model\DiscountCommitmentNet',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

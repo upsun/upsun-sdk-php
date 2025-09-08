@@ -21,17 +21,6 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_LOCAL = 'local';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'deployHost' => 'deploy_host',
-        'docroots' => 'docroots',
-        'siteUrls' => 'site_urls',
-        'sshHosts' => 'ssh_hosts',
-        'maintenanceMode' => 'maintenance_mode',
-        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -44,26 +33,9 @@ final class EnterpriseDeploymentTarget implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'name' => 'string',
-            'deploy_host' => '?string',
-            'docroots' => '\Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]',
-            'site_urls' => 'object',
-            'ssh_hosts' => 'string[]',
-            'maintenance_mode' => 'bool',
-            'enterprise_environments_mapping' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

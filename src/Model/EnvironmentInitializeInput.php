@@ -18,14 +18,6 @@ use JsonSerializable;
 final class EnvironmentInitializeInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'profile' => 'profile',
-        'repository' => 'repository',
-        'config' => 'config',
-        'files' => 'files',
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly string $profile,
         private readonly string $repository,
@@ -35,23 +27,9 @@ final class EnvironmentInitializeInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'profile' => 'string',
-            'repository' => 'string',
-            'config' => '?string',
-            'files' => '\Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner[]',
-            'resources' => '?\Upsun\Model\Resources3',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

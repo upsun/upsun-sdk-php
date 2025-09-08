@@ -18,13 +18,6 @@ use JsonSerializable;
 final class GetTotpEnrollment200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'issuer' => 'issuer',
-        'accountName' => 'account_name',
-        'secret' => 'secret',
-        'qrCode' => 'qr_code'
-    ];
-
     public function __construct(
         private readonly ?string $issuer = null,
         private readonly ?string $accountName = null,
@@ -33,22 +26,9 @@ final class GetTotpEnrollment200Response implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'issuer' => '?string',
-            'account_name' => '?string',
-            'secret' => '?string',
-            'qr_code' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

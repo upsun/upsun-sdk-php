@@ -18,14 +18,6 @@ use JsonSerializable;
 final class ProjectOptions implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'defaults' => 'defaults',
-        'enforced' => 'enforced',
-        'regions' => 'regions',
-        'plans' => 'plans',
-        'billing' => 'billing'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\ProjectOptionsDefaults $defaults = null,
         private readonly ?\Upsun\Model\ProjectOptionsEnforced $enforced = null,
@@ -35,23 +27,9 @@ final class ProjectOptions implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'defaults' => '?\Upsun\Model\ProjectOptionsDefaults',
-            'enforced' => '?\Upsun\Model\ProjectOptionsEnforced',
-            'regions' => 'string[]',
-            'plans' => 'string[]',
-            'billing' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

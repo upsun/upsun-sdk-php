@@ -43,3 +43,7 @@ files:
     templateType: SupportingFiles
     destinationFilename: OAuthProvider.php
     folder: src/Core
+  ObjectMapper.mustache:
+    templateType: SupportingFiles
+    destinationFilename: ObjectMapper.php
+    folder: src/

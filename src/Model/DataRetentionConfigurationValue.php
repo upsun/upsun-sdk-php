@@ -18,31 +18,15 @@ use JsonSerializable;
 final class DataRetentionConfigurationValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'maxBackups' => 'max_backups',
-        'defaultConfig' => 'default_config'
-    ];
-
     public function __construct(
         private readonly int $maxBackups,
         private readonly \Upsun\Model\DefaultConfig $defaultConfig,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'max_backups' => 'int',
-            'default_config' => '\Upsun\Model\DefaultConfig',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -21,22 +21,6 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_LOCAL = 'local';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'deployHost' => 'deploy_host',
-        'deployPort' => 'deploy_port',
-        'sshHost' => 'ssh_host',
-        'hosts' => 'hosts',
-        'autoMounts' => 'auto_mounts',
-        'excludedMounts' => 'excluded_mounts',
-        'enforcedMounts' => 'enforced_mounts',
-        'autoCrons' => 'auto_crons',
-        'autoNginx' => 'auto_nginx',
-        'maintenanceMode' => 'maintenance_mode',
-        'guardrailsPhase' => 'guardrails_phase'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -54,31 +38,9 @@ final class DedicatedDeploymentTarget implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'name' => 'string',
-            'deploy_host' => '?string',
-            'deploy_port' => '?int',
-            'ssh_host' => '?string',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner[]',
-            'auto_mounts' => 'bool',
-            'excluded_mounts' => 'string[]',
-            'enforced_mounts' => 'object',
-            'auto_crons' => 'bool',
-            'auto_nginx' => 'bool',
-            'maintenance_mode' => 'bool',
-            'guardrails_phase' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

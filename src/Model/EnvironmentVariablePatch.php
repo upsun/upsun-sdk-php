@@ -18,18 +18,6 @@ use JsonSerializable;
 final class EnvironmentVariablePatch implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'value' => 'value',
-        'isJson' => 'is_json',
-        'isSensitive' => 'is_sensitive',
-        'visibleBuild' => 'visible_build',
-        'visibleRuntime' => 'visible_runtime',
-        'isEnabled' => 'is_enabled',
-        'isInheritable' => 'is_inheritable'
-    ];
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?array $attributes = [],
@@ -43,27 +31,9 @@ final class EnvironmentVariablePatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => '?string',
-            'attributes' => 'string[]',
-            'value' => '?string',
-            'is_json' => '?bool',
-            'is_sensitive' => '?bool',
-            'visible_build' => '?bool',
-            'visible_runtime' => '?bool',
-            'is_enabled' => '?bool',
-            'is_inheritable' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

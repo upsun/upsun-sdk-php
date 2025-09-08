@@ -21,22 +21,6 @@ final class OrganizationProject implements JsonSerializable
     public const ACCESS_MIGRATION_STATUS_IN_PROGRESS = 'in_progress';
     public const ACCESS_MIGRATION_STATUS_COMPLETED = 'completed';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'subscriptionId' => 'subscription_id',
-        'region' => 'region',
-        'title' => 'title',
-        'type' => 'type',
-        'plan' => 'plan',
-        'accessMigrationStatus' => 'access_migration_status',
-        'status' => 'status',
-        'vendor' => 'vendor',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
@@ -54,31 +38,9 @@ final class OrganizationProject implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'organization_id' => '?string',
-            'subscription_id' => '?string',
-            'region' => '?string',
-            'title' => '?string',
-            'type' => '?\Upsun\Model\OrganizationProjectType',
-            'plan' => '?\Upsun\Model\OrganizationProjectPlan',
-            'access_migration_status' => '?string',
-            'status' => '?\Upsun\Model\OrganizationProjectStatus',
-            'vendor' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\OrganizationProjectLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

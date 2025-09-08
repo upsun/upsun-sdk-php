@@ -18,31 +18,15 @@ use JsonSerializable;
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'activeDocroot' => 'active_docroot',
-        'docrootVersions' => 'docroot_versions'
-    ];
-
     public function __construct(
         private readonly ?string $activeDocroot = null,
         private readonly ?array $docrootVersions = [],
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'active_docroot' => '?string',
-            'docroot_versions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

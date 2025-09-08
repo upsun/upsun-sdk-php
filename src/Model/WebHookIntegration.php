@@ -21,19 +21,6 @@ final class WebHookIntegration implements JsonSerializable
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result',
-        'sharedKey' => 'shared_key',
-        'url' => 'url'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $events,
@@ -48,28 +35,9 @@ final class WebHookIntegration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
-            'shared_key' => '?string',
-            'url' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

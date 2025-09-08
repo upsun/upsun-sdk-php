@@ -18,14 +18,6 @@ use JsonSerializable;
 final class OrganizationProjectLinks implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'self' => 'self',
-        'update' => 'update',
-        'delete' => 'delete',
-        'subscription' => 'subscription',
-        'api' => 'api'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\OrganizationProjectLinksSelf $self = null,
         private readonly ?\Upsun\Model\OrganizationProjectLinksUpdate $update = null,
@@ -35,23 +27,9 @@ final class OrganizationProjectLinks implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\OrganizationProjectLinksSelf',
-            'update' => '?\Upsun\Model\OrganizationProjectLinksUpdate',
-            'delete' => '?\Upsun\Model\OrganizationProjectLinksDelete',
-            'subscription' => '?\Upsun\Model\OrganizationProjectLinksSubscription',
-            'api' => '?\Upsun\Model\OrganizationProjectLinksApi',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

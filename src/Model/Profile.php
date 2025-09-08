@@ -20,32 +20,6 @@ final class Profile implements JsonSerializable
     public const TYPE_USER = 'user';
     public const TYPE_ORGANIZATION = 'organization';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'displayName' => 'display_name',
-        'email' => 'email',
-        'username' => 'username',
-        'type' => 'type',
-        'picture' => 'picture',
-        'companyType' => 'company_type',
-        'companyName' => 'company_name',
-        'currency' => 'currency',
-        'vatNumber' => 'vat_number',
-        'companyRole' => 'company_role',
-        'websiteUrl' => 'website_url',
-        'newUi' => 'new_ui',
-        'uiColorscheme' => 'ui_colorscheme',
-        'defaultCatalog' => 'default_catalog',
-        'projectOptionsUrl' => 'project_options_url',
-        'marketing' => 'marketing',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'billingContact' => 'billing_contact',
-        'securityContact' => 'security_contact',
-        'currentTrial' => 'current_trial',
-        'invoiced' => 'invoiced'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
@@ -73,41 +47,9 @@ final class Profile implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'display_name' => '?string',
-            'email' => '?string',
-            'username' => '?string',
-            'type' => '?string',
-            'picture' => '?string',
-            'company_type' => '?string',
-            'company_name' => '?string',
-            'currency' => '?string',
-            'vat_number' => '?string',
-            'company_role' => '?string',
-            'website_url' => '?string',
-            'new_ui' => '?bool',
-            'ui_colorscheme' => '?string',
-            'default_catalog' => '?string',
-            'project_options_url' => '?string',
-            'marketing' => '?bool',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'billing_contact' => '?string',
-            'security_contact' => '?string',
-            'current_trial' => '?\Upsun\Model\ProfileCurrentTrial',
-            'invoiced' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

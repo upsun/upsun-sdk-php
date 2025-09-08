@@ -24,29 +24,6 @@ final class Order implements JsonSerializable
     public const STATUS_PAYMENT_FAILED_SOFT_DECLINE = 'payment_failed_soft_decline';
     public const STATUS_PAYMENT_FAILED_HARD_DECLINE = 'payment_failed_hard_decline';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'owner' => 'owner',
-        'address' => 'address',
-        'company' => 'company',
-        'vatNumber' => 'vat_number',
-        'billingPeriodStart' => 'billing_period_start',
-        'billingPeriodEnd' => 'billing_period_end',
-        'billingPeriodLabel' => 'billing_period_label',
-        'billingPeriodDuration' => 'billing_period_duration',
-        'paidOn' => 'paid_on',
-        'total' => 'total',
-        'totalFormatted' => 'total_formatted',
-        'components' => 'components',
-        'currency' => 'currency',
-        'invoiceUrl' => 'invoice_url',
-        'lastRefreshed' => 'last_refreshed',
-        'invoiced' => 'invoiced',
-        'lineItems' => 'line_items',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $paidOn = null,
         private readonly ?string $id = null,
@@ -71,38 +48,9 @@ final class Order implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'status' => '?string',
-            'owner' => '?string',
-            'address' => '?\Upsun\Model\Address',
-            'company' => '?string',
-            'vat_number' => '?string',
-            'billing_period_start' => '?\DateTime',
-            'billing_period_end' => '?\DateTime',
-            'billing_period_label' => '?\Upsun\Model\OrderBillingPeriodLabel',
-            'billing_period_duration' => '?int',
-            'paid_on' => '?\DateTime',
-            'total' => '?int',
-            'total_formatted' => '?int',
-            'components' => '?\Upsun\Model\Components',
-            'currency' => '?string',
-            'invoice_url' => '?string',
-            'last_refreshed' => '?\DateTime',
-            'invoiced' => '?bool',
-            'line_items' => '\Upsun\Model\LineItem[]',
-            '_links' => '?\Upsun\Model\OrderLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

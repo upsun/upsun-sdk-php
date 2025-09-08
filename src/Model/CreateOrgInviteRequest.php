@@ -24,12 +24,6 @@ final class CreateOrgInviteRequest implements JsonSerializable
     public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
     public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
 
-    private static array $attributeMap = [
-        'email' => 'email',
-        'permissions' => 'permissions',
-        'force' => 'force'
-    ];
-
     public function __construct(
         private readonly string $email,
         private readonly array $permissions,
@@ -37,21 +31,9 @@ final class CreateOrgInviteRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'email' => 'string',
-            'permissions' => 'string[]',
-            'force' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

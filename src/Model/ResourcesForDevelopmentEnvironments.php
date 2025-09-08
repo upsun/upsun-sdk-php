@@ -18,13 +18,6 @@ use JsonSerializable;
 final class ResourcesForDevelopmentEnvironments implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'legacyDevelopment' => 'legacy_development',
-        'maxCpu' => 'max_cpu',
-        'maxMemory' => 'max_memory',
-        'maxEnvironments' => 'max_environments'
-    ];
-
     public function __construct(
         private readonly bool $legacyDevelopment,
         private readonly ?float $maxCpu = null,
@@ -33,22 +26,9 @@ final class ResourcesForDevelopmentEnvironments implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'legacy_development' => 'bool',
-            'max_cpu' => '?float',
-            'max_memory' => '?int',
-            'max_environments' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

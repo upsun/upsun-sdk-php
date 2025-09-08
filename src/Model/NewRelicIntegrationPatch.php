@@ -18,14 +18,6 @@ use JsonSerializable;
 final class NewRelicIntegrationPatch implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'url' => 'url',
-        'licenseKey' => 'license_key',
-        'extra' => 'extra',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -35,23 +27,9 @@ final class NewRelicIntegrationPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'url' => 'string',
-            'license_key' => 'string',
-            'extra' => 'string[]',
-            'tls_verify' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

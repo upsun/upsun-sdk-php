@@ -22,15 +22,6 @@ final class ThePathsToRedirectValue implements JsonSerializable
     public const CODE_NUMBER_307 = 307;
     public const CODE_NUMBER_308 = 308;
 
-    private static array $attributeMap = [
-        'regexp' => 'regexp',
-        'to' => 'to',
-        'prefix' => 'prefix',
-        'appendSuffix' => 'append_suffix',
-        'code' => 'code',
-        'expires' => 'expires'
-    ];
-
     public function __construct(
         private readonly bool $regexp,
         private readonly string $to,
@@ -41,24 +32,9 @@ final class ThePathsToRedirectValue implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'regexp' => 'bool',
-            'to' => 'string',
-            'prefix' => '?bool',
-            'append_suffix' => '?bool',
-            'code' => 'int',
-            'expires' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

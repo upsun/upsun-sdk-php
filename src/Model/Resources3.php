@@ -20,28 +20,14 @@ final class Resources3 implements JsonSerializable
     public const INIT__DEFAULT = 'default';
     public const INIT_MINIMUM = 'minimum';
 
-    private static array $attributeMap = [
-        'init' => 'init'
-    ];
-
     public function __construct(
         private readonly ?string $init = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'init' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

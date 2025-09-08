@@ -22,21 +22,6 @@ final class BitbucketIntegration implements JsonSerializable
     public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
     public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'repository' => 'repository',
-        'buildPullRequests' => 'build_pull_requests',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'resyncPullRequests' => 'resync_pull_requests',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -53,30 +38,9 @@ final class BitbucketIntegration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
-            'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
-            'resync_pull_requests' => 'bool',
-            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
-            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,12 +18,6 @@ use JsonSerializable;
 final class Integrations implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'config' => 'config',
-        'allowedIntegrations' => 'allowed_integrations'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly ?\Upsun\Model\Config $config = null,
@@ -31,21 +25,9 @@ final class Integrations implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'config' => '?\Upsun\Model\Config',
-            'allowed_integrations' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

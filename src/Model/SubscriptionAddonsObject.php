@@ -18,12 +18,6 @@ use JsonSerializable;
 final class SubscriptionAddonsObject implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'available' => 'available',
-        'current' => 'current',
-        'upgradesAvailable' => 'upgrades_available'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\SubscriptionAddonsObjectAvailable $available = null,
         private readonly ?\Upsun\Model\SubscriptionAddonsObjectCurrent $current = null,
@@ -31,21 +25,9 @@ final class SubscriptionAddonsObject implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'available' => '?\Upsun\Model\SubscriptionAddonsObjectAvailable',
-            'current' => '?\Upsun\Model\SubscriptionAddonsObjectCurrent',
-            'upgrades_available' => '?\Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -19,13 +19,6 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
 {
     public const PROTOCOL_TCP = 'tcp';
 
-    private static array $attributeMap = [
-        'protocol' => 'protocol',
-        'ips' => 'ips',
-        'domains' => 'domains',
-        'ports' => 'ports'
-    ];
-
     public function __construct(
         private readonly string $protocol,
         private readonly array $ips,
@@ -34,22 +27,9 @@ final class OutboundFirewallRestrictionsInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'protocol' => 'string',
-            'ips' => 'string[]',
-            'domains' => 'string[]',
-            'ports' => 'int[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

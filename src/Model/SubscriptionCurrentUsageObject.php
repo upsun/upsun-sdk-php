@@ -18,22 +18,6 @@ use JsonSerializable;
 final class SubscriptionCurrentUsageObject implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'cpuApp' => 'cpu_app',
-        'storageAppServices' => 'storage_app_services',
-        'memoryApp' => 'memory_app',
-        'cpuServices' => 'cpu_services',
-        'memoryServices' => 'memory_services',
-        'backupStorage' => 'backup_storage',
-        'buildCpu' => 'build_cpu',
-        'buildMemory' => 'build_memory',
-        'egressBandwidth' => 'egress_bandwidth',
-        'ingressRequests' => 'ingress_requests',
-        'logsFwdContentSize' => 'logs_fwd_content_size',
-        'fastlyBandwidth' => 'fastly_bandwidth',
-        'fastlyRequests' => 'fastly_requests'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $cpuApp = null,
         private readonly ?\Upsun\Model\UsageGroupCurrentUsageProperties $storageAppServices = null,
@@ -51,31 +35,9 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu_app' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'storage_app_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'memory_app' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'cpu_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'memory_services' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'backup_storage' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'build_cpu' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'build_memory' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'egress_bandwidth' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'ingress_requests' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'logs_fwd_content_size' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'fastly_bandwidth' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-            'fastly_requests' => '?\Upsun\Model\UsageGroupCurrentUsageProperties',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

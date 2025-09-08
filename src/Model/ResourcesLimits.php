@@ -18,12 +18,6 @@ use JsonSerializable;
 final class ResourcesLimits implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'containerProfiles' => 'container_profiles',
-        'production' => 'production',
-        'development' => 'development'
-    ];
-
     public function __construct(
         private readonly bool $containerProfiles,
         private readonly \Upsun\Model\ResourcesForProductionEnvironments $production,
@@ -31,21 +25,9 @@ final class ResourcesLimits implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'container_profiles' => 'bool',
-            'production' => '\Upsun\Model\ResourcesForProductionEnvironments',
-            'development' => '\Upsun\Model\ResourcesForDevelopmentEnvironments',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

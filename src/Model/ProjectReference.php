@@ -18,19 +18,6 @@ use JsonSerializable;
 final class ProjectReference implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'subscriptionId' => 'subscription_id',
-        'region' => 'region',
-        'title' => 'title',
-        'type' => 'type',
-        'plan' => 'plan',
-        'status' => 'status',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly string $organizationId,
@@ -45,28 +32,9 @@ final class ProjectReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => 'string',
-            'organization_id' => 'string',
-            'subscription_id' => 'string',
-            'region' => 'string',
-            'title' => 'string',
-            'type' => '\Upsun\Model\OrganizationProjectType',
-            'plan' => '\Upsun\Model\OrganizationProjectPlan',
-            'status' => '\Upsun\Model\OrganizationProjectStatus',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

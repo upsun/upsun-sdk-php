@@ -18,13 +18,6 @@ use JsonSerializable;
 final class VouchersVouchersInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'code' => 'code',
-        'amount' => 'amount',
-        'currency' => 'currency',
-        'orders' => 'orders'
-    ];
-
     public function __construct(
         private readonly ?string $code = null,
         private readonly ?string $amount = null,
@@ -33,22 +26,9 @@ final class VouchersVouchersInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'code' => '?string',
-            'amount' => '?string',
-            'currency' => '?string',
-            'orders' => '\Upsun\Model\VouchersVouchersInnerOrdersInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

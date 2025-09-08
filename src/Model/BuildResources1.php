@@ -18,31 +18,15 @@ use JsonSerializable;
 final class BuildResources1 implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'cpu' => 'cpu',
-        'memory' => 'memory'
-    ];
-
     public function __construct(
         private readonly float $cpu,
         private readonly int $memory,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu' => 'float',
-            'memory' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

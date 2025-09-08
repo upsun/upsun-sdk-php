@@ -18,12 +18,6 @@ use JsonSerializable;
 final class Ref implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'ref' => 'ref',
-        'object' => 'object',
-        'sha' => 'sha'
-    ];
-
     public function __construct(
         private readonly string $ref,
         private readonly \Upsun\Model\TheObjectTheReferencePointsTo $object,
@@ -31,21 +25,9 @@ final class Ref implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'ref' => 'string',
-            'object' => '\Upsun\Model\TheObjectTheReferencePointsTo',
-            'sha' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

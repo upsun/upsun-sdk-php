@@ -20,25 +20,6 @@ final class User implements JsonSerializable
     public const CONSENT_METHOD_OPT_IN = 'opt-in';
     public const CONSENT_METHOD_TEXT_REF = 'text-ref';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'deactivated' => 'deactivated',
-        'namespace' => 'namespace',
-        'username' => 'username',
-        'email' => 'email',
-        'emailVerified' => 'email_verified',
-        'firstName' => 'first_name',
-        'lastName' => 'last_name',
-        'picture' => 'picture',
-        'company' => 'company',
-        'website' => 'website',
-        'country' => 'country',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'consentedAt' => 'consented_at',
-        'consentMethod' => 'consent_method'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly bool $deactivated,
@@ -59,34 +40,9 @@ final class User implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => 'string',
-            'deactivated' => 'bool',
-            'namespace' => 'string',
-            'username' => 'string',
-            'email' => 'string',
-            'email_verified' => 'bool',
-            'first_name' => 'string',
-            'last_name' => 'string',
-            'picture' => 'string',
-            'company' => 'string',
-            'website' => 'string',
-            'country' => 'string',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'consented_at' => '?\DateTime',
-            'consent_method' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

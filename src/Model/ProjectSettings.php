@@ -36,69 +36,6 @@ final class ProjectSettings implements JsonSerializable
     public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW = 'allow';
     public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_DENY = 'deny';
 
-    private static array $attributeMap = [
-        'initialize' => 'initialize',
-        'productName' => 'product_name',
-        'productCode' => 'product_code',
-        'uiUriTemplate' => 'ui_uri_template',
-        'variablesPrefix' => 'variables_prefix',
-        'botEmail' => 'bot_email',
-        'applicationConfigFile' => 'application_config_file',
-        'projectConfigDir' => 'project_config_dir',
-        'useDrupalDefaults' => 'use_drupal_defaults',
-        'useLegacySubdomains' => 'use_legacy_subdomains',
-        'developmentServiceSize' => 'development_service_size',
-        'developmentApplicationSize' => 'development_application_size',
-        'enableCertificateProvisioning' => 'enable_certificate_provisioning',
-        'certificateStyle' => 'certificate_style',
-        'certificateRenewalActivity' => 'certificate_renewal_activity',
-        'developmentDomainTemplate' => 'development_domain_template',
-        'enableStateApiDeployments' => 'enable_state_api_deployments',
-        'temporaryDiskSize' => 'temporary_disk_size',
-        'localDiskSize' => 'local_disk_size',
-        'cronMinimumInterval' => 'cron_minimum_interval',
-        'cronMaximumJitter' => 'cron_maximum_jitter',
-        'concurrencyLimits' => 'concurrency_limits',
-        'flexibleBuildCache' => 'flexible_build_cache',
-        'strictConfiguration' => 'strict_configuration',
-        'hasSleepyCrons' => 'has_sleepy_crons',
-        'cronsInGit' => 'crons_in_git',
-        'customErrorTemplate' => 'custom_error_template',
-        'appErrorPageTemplate' => 'app_error_page_template',
-        'environmentNameStrategy' => 'environment_name_strategy',
-        'dataRetention' => 'data_retention',
-        'enableCodesourceIntegrationPush' => 'enable_codesource_integration_push',
-        'enforceMfa' => 'enforce_mfa',
-        'systemd' => 'systemd',
-        'routerGen2' => 'router_gen2',
-        'buildResources' => 'build_resources',
-        'outboundRestrictionsDefaultPolicy' => 'outbound_restrictions_default_policy',
-        'selfUpgrade' => 'self_upgrade',
-        'additionalHosts' => 'additional_hosts',
-        'maxAllowedRoutes' => 'max_allowed_routes',
-        'maxAllowedRedirectsPaths' => 'max_allowed_redirects_paths',
-        'enableIncrementalBackups' => 'enable_incremental_backups',
-        'sizingApiEnabled' => 'sizing_api_enabled',
-        'enableCacheGracePeriod' => 'enable_cache_grace_period',
-        'enableZeroDowntimeDeployments' => 'enable_zero_downtime_deployments',
-        'enableAdminAgent' => 'enable_admin_agent',
-        'certifierUrl' => 'certifier_url',
-        'centralizedPermissions' => 'centralized_permissions',
-        'glueServerMaxRequestSize' => 'glue_server_max_request_size',
-        'persistentEndpointsSsh' => 'persistent_endpoints_ssh',
-        'persistentEndpointsSslCertificates' => 'persistent_endpoints_ssl_certificates',
-        'enableDiskHealthMonitoring' => 'enable_disk_health_monitoring',
-        'enablePausedEnvironments' => 'enable_paused_environments',
-        'enableUnifiedConfiguration' => 'enable_unified_configuration',
-        'enableRoutesTracing' => 'enable_routes_tracing',
-        'imageDeploymentValidation' => 'image_deployment_validation',
-        'supportGenericImages' => 'support_generic_images',
-        'enableGithubAppTokenExchange' => 'enable_github_app_token_exchange',
-        'continuousProfiling' => 'continuous_profiling',
-        'disableAgentErrorReporter' => 'disable_agent_error_reporter',
-        'requiresDomainOwnership' => 'requires_domain_ownership'
-    ];
-
     public function __construct(
         private readonly object $initialize,
         private readonly string $productName,
@@ -163,78 +100,9 @@ final class ProjectSettings implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'initialize' => 'object',
-            'product_name' => 'string',
-            'product_code' => 'string',
-            'ui_uri_template' => 'string',
-            'variables_prefix' => 'string',
-            'bot_email' => 'string',
-            'application_config_file' => 'string',
-            'project_config_dir' => 'string',
-            'use_drupal_defaults' => 'bool',
-            'use_legacy_subdomains' => 'bool',
-            'development_service_size' => 'string',
-            'development_application_size' => 'string',
-            'enable_certificate_provisioning' => 'bool',
-            'certificate_style' => 'string',
-            'certificate_renewal_activity' => 'bool',
-            'development_domain_template' => '?string',
-            'enable_state_api_deployments' => 'bool',
-            'temporary_disk_size' => '?int',
-            'local_disk_size' => '?int',
-            'cron_minimum_interval' => 'int',
-            'cron_maximum_jitter' => 'int',
-            'concurrency_limits' => 'int[]',
-            'flexible_build_cache' => 'bool',
-            'strict_configuration' => 'bool',
-            'has_sleepy_crons' => 'bool',
-            'crons_in_git' => 'bool',
-            'custom_error_template' => '?string',
-            'app_error_page_template' => '?string',
-            'environment_name_strategy' => 'string',
-            'data_retention' => '\Upsun\Model\DataRetentionConfigurationValue[]',
-            'enable_codesource_integration_push' => 'bool',
-            'enforce_mfa' => 'bool',
-            'systemd' => 'bool',
-            'router_gen2' => 'bool',
-            'build_resources' => '\Upsun\Model\BuildResources1',
-            'outbound_restrictions_default_policy' => 'string',
-            'self_upgrade' => 'bool',
-            'additional_hosts' => 'string[]',
-            'max_allowed_routes' => 'int',
-            'max_allowed_redirects_paths' => 'int',
-            'enable_incremental_backups' => 'bool',
-            'sizing_api_enabled' => 'bool',
-            'enable_cache_grace_period' => 'bool',
-            'enable_zero_downtime_deployments' => 'bool',
-            'enable_admin_agent' => 'bool',
-            'certifier_url' => 'string',
-            'centralized_permissions' => 'bool',
-            'glue_server_max_request_size' => 'int',
-            'persistent_endpoints_ssh' => 'bool',
-            'persistent_endpoints_ssl_certificates' => 'bool',
-            'enable_disk_health_monitoring' => 'bool',
-            'enable_paused_environments' => 'bool',
-            'enable_unified_configuration' => 'bool',
-            'enable_routes_tracing' => 'bool',
-            'image_deployment_validation' => 'bool',
-            'support_generic_images' => 'bool',
-            'enable_github_app_token_exchange' => 'bool',
-            'continuous_profiling' => '\Upsun\Model\TheContinuousProfilingConfiguration',
-            'disable_agent_error_reporter' => 'bool',
-            'requires_domain_ownership' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

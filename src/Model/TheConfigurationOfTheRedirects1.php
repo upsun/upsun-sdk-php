@@ -18,31 +18,15 @@ use JsonSerializable;
 final class TheConfigurationOfTheRedirects1 implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'paths' => 'paths',
-        'expires' => 'expires'
-    ];
-
     public function __construct(
         private readonly array $paths,
         private readonly ?string $expires = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'paths' => '\Upsun\Model\ThePathsToRedirectValue1[]',
-            'expires' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

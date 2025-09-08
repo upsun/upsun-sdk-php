@@ -18,16 +18,6 @@ use JsonSerializable;
 final class TeamProjectAccess implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'teamId' => 'team_id',
-        'organizationId' => 'organization_id',
-        'projectId' => 'project_id',
-        'projectTitle' => 'project_title',
-        'grantedAt' => 'granted_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $organizationId = null,
@@ -39,25 +29,9 @@ final class TeamProjectAccess implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'team_id' => '?string',
-            'organization_id' => '?string',
-            'project_id' => '?string',
-            'project_title' => '?string',
-            'granted_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

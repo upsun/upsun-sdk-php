@@ -18,15 +18,6 @@ use JsonSerializable;
 final class Resources implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'baseMemory' => 'base_memory',
-        'memoryRatio' => 'memory_ratio',
-        'profileSize' => 'profile_size',
-        'minimum' => 'minimum',
-        'default' => 'default',
-        'disk' => 'disk'
-    ];
-
     public function __construct(
         private readonly ?int $baseMemory = null,
         private readonly ?int $memoryRatio = null,
@@ -37,24 +28,9 @@ final class Resources implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'base_memory' => '?int',
-            'memory_ratio' => '?int',
-            'profile_size' => '?string',
-            'minimum' => '?\Upsun\Model\TheMinimumResourcesForThisService',
-            'default' => '?\Upsun\Model\TheDefaultResourcesForThisService',
-            'disk' => '?\Upsun\Model\TheDisksResources',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

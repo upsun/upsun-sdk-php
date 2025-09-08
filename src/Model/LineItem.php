@@ -24,18 +24,6 @@ final class LineItem implements JsonSerializable
     public const TYPE_ORGANIZATION_FEATURE = 'organization_feature';
     public const TYPE_ORGANIZATION_SUBTOTAL = 'organization_subtotal';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'licenseId' => 'license_id',
-        'projectId' => 'project_id',
-        'product' => 'product',
-        'sku' => 'sku',
-        'total' => 'total',
-        'totalFormatted' => 'total_formatted',
-        'components' => 'components',
-        'excludeFromInvoice' => 'exclude_from_invoice'
-    ];
-
     public function __construct(
         private readonly ?float $licenseId = null,
         private readonly ?string $projectId = null,
@@ -49,27 +37,9 @@ final class LineItem implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => '?string',
-            'license_id' => '?float',
-            'project_id' => '?string',
-            'product' => '?string',
-            'sku' => '?string',
-            'total' => '?float',
-            'total_formatted' => '?string',
-            'components' => '\Upsun\Model\LineItemComponent[]',
-            'exclude_from_invoice' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

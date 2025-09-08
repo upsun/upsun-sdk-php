@@ -25,19 +25,6 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
     public const AUTH_MODE_PREFIX = 'prefix';
     public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'extra' => 'extra',
-        'host' => 'host',
-        'port' => 'port',
-        'protocol' => 'protocol',
-        'facility' => 'facility',
-        'messageFormat' => 'message_format',
-        'authToken' => 'auth_token',
-        'authMode' => 'auth_mode',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly ?array $extra = [],
@@ -52,28 +39,9 @@ final class SyslogIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'extra' => 'string[]',
-            'host' => '?string',
-            'port' => '?int',
-            'protocol' => '?string',
-            'facility' => '?int',
-            'message_format' => '?string',
-            'auth_token' => '?string',
-            'auth_mode' => '?string',
-            'tls_verify' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

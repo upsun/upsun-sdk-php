@@ -21,31 +21,15 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     public const ROLE_CONTRIBUTOR = 'contributor';
     public const ROLE_VIEWER = 'viewer';
 
-    private static array $attributeMap = [
-        'entityId' => 'entity_id',
-        'role' => 'role'
-    ];
-
     public function __construct(
         private readonly string $entityId,
         private readonly string $role,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'entity_id' => 'string',
-            'role' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

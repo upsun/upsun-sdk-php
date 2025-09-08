@@ -18,12 +18,6 @@ use JsonSerializable;
 final class ProjectSettingsPatch implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'initialize' => 'initialize',
-        'dataRetention' => 'data_retention',
-        'buildResources' => 'build_resources'
-    ];
-
     public function __construct(
         private readonly ?array $dataRetention = [],
         private readonly ?object $initialize = null,
@@ -31,21 +25,9 @@ final class ProjectSettingsPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'initialize' => '?object',
-            'data_retention' => '\Upsun\Model\DataRetentionConfigurationValue1[]',
-            'build_resources' => '?\Upsun\Model\BuildResources2',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

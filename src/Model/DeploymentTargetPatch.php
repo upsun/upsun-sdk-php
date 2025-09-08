@@ -21,17 +21,6 @@ final class DeploymentTargetPatch implements JsonSerializable
     public const TYPE_ENTERPRISE = 'enterprise';
     public const TYPE_LOCAL = 'local';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'name' => 'name',
-        'enforcedMounts' => 'enforced_mounts',
-        'siteUrls' => 'site_urls',
-        'sshHosts' => 'ssh_hosts',
-        'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping',
-        'hosts' => 'hosts',
-        'useDedicatedGrid' => 'use_dedicated_grid'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -44,26 +33,9 @@ final class DeploymentTargetPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'name' => 'string',
-            'enforced_mounts' => '?object',
-            'site_urls' => '?object',
-            'ssh_hosts' => 'string[]',
-            'enterprise_environments_mapping' => '?object',
-            'hosts' => '\Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]',
-            'use_dedicated_grid' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

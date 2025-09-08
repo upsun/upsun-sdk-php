@@ -18,22 +18,6 @@ use JsonSerializable;
 final class UpdateProfileRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'displayName' => 'display_name',
-        'username' => 'username',
-        'currentPassword' => 'current_password',
-        'password' => 'password',
-        'companyType' => 'company_type',
-        'companyName' => 'company_name',
-        'vatNumber' => 'vat_number',
-        'companyRole' => 'company_role',
-        'marketing' => 'marketing',
-        'uiColorscheme' => 'ui_colorscheme',
-        'defaultCatalog' => 'default_catalog',
-        'projectOptionsUrl' => 'project_options_url',
-        'picture' => 'picture'
-    ];
-
     public function __construct(
         private readonly ?string $displayName = null,
         private readonly ?string $username = null,
@@ -51,31 +35,9 @@ final class UpdateProfileRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'display_name' => '?string',
-            'username' => '?string',
-            'current_password' => '?string',
-            'password' => '?string',
-            'company_type' => '?string',
-            'company_name' => '?string',
-            'vat_number' => '?string',
-            'company_role' => '?string',
-            'marketing' => '?bool',
-            'ui_colorscheme' => '?string',
-            'default_catalog' => '?string',
-            'project_options_url' => '?string',
-            'picture' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

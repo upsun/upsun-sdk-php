@@ -18,28 +18,14 @@ use JsonSerializable;
 final class TheContinuousProfilingConfiguration implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'supportedRuntimes' => 'supported_runtimes'
-    ];
-
     public function __construct(
         private readonly array $supportedRuntimes,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'supported_runtimes' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

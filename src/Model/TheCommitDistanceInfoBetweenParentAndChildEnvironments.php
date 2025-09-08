@@ -18,12 +18,6 @@ use JsonSerializable;
 final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'commitsAhead' => 'commits_ahead',
-        'commitsBehind' => 'commits_behind',
-        'parentRef' => 'parent_ref'
-    ];
-
     public function __construct(
         private readonly ?int $commitsAhead = null,
         private readonly ?int $commitsBehind = null,
@@ -31,21 +25,9 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commits_ahead' => '?int',
-            'commits_behind' => '?int',
-            'parent_ref' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

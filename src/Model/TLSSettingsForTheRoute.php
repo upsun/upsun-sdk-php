@@ -24,13 +24,6 @@ final class TLSSettingsForTheRoute implements JsonSerializable
     public const CLIENT_AUTHENTICATION_REQUEST = 'request';
     public const CLIENT_AUTHENTICATION__REQUIRE = 'require';
 
-    private static array $attributeMap = [
-        'strictTransportSecurity' => 'strict_transport_security',
-        'minVersion' => 'min_version',
-        'clientAuthentication' => 'client_authentication',
-        'clientCertificateAuthorities' => 'client_certificate_authorities'
-    ];
-
     public function __construct(
         private readonly \Upsun\Model\StrictTransportSecurityOptions $strictTransportSecurity,
         private readonly array $clientCertificateAuthorities,
@@ -39,22 +32,9 @@ final class TLSSettingsForTheRoute implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'strict_transport_security' => '\Upsun\Model\StrictTransportSecurityOptions',
-            'min_version' => '?string',
-            'client_authentication' => '?string',
-            'client_certificate_authorities' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

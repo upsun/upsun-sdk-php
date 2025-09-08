@@ -18,13 +18,6 @@ use JsonSerializable;
 final class OrderBillingPeriodLabel implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'formatted' => 'formatted',
-        'month' => 'month',
-        'year' => 'year',
-        'nextMonth' => 'next_month'
-    ];
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?string $month = null,
@@ -33,22 +26,9 @@ final class OrderBillingPeriodLabel implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'formatted' => '?string',
-            'month' => '?string',
-            'year' => '?string',
-            'next_month' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

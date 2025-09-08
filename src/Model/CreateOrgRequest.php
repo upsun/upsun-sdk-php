@@ -20,14 +20,6 @@ final class CreateOrgRequest implements JsonSerializable
     public const TYPE_FIXED = 'fixed';
     public const TYPE_FLEXIBLE = 'flexible';
 
-    private static array $attributeMap = [
-        'label' => 'label',
-        'type' => 'type',
-        'ownerId' => 'owner_id',
-        'name' => 'name',
-        'country' => 'country'
-    ];
-
     public function __construct(
         private readonly string $label,
         private readonly ?string $type = null,
@@ -37,23 +29,9 @@ final class CreateOrgRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'label' => 'string',
-            'type' => '?string',
-            'owner_id' => '?string',
-            'name' => '?string',
-            'country' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

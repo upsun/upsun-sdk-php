@@ -18,19 +18,6 @@ use JsonSerializable;
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'locations' => 'locations',
-        'moveToRoot' => 'move_to_root',
-        'commands' => 'commands',
-        'upstream' => 'upstream',
-        'documentRoot' => 'document_root',
-        'passthru' => 'passthru',
-        'indexFiles' => 'index_files',
-        'whitelist' => 'whitelist',
-        'blacklist' => 'blacklist',
-        'expires' => 'expires'
-    ];
-
     public function __construct(
         private readonly array $locations,
         private readonly bool $moveToRoot,
@@ -45,28 +32,9 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'locations' => '\Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]',
-            'move_to_root' => 'bool',
-            'commands' => '?\Upsun\Model\CommandsToManageTheApplicationSLifecycle',
-            'upstream' => '?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication',
-            'document_root' => '?string',
-            'passthru' => '?string',
-            'index_files' => 'string[]',
-            'whitelist' => 'string[]',
-            'blacklist' => 'string[]',
-            'expires' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

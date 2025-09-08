@@ -24,22 +24,6 @@ final class GithubIntegration implements JsonSerializable
     public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
     public const TOKEN_TYPE_GITHUB_APP = 'github_app';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'baseUrl' => 'base_url',
-        'repository' => 'repository',
-        'buildPullRequests' => 'build_pull_requests',
-        'buildDraftPullRequests' => 'build_draft_pull_requests',
-        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'tokenType' => 'token_type'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -57,31 +41,9 @@ final class GithubIntegration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
-            'base_url' => '?string',
-            'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'build_draft_pull_requests' => 'bool',
-            'build_pull_requests_post_merge' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
-            'token_type' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

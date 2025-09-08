@@ -25,19 +25,6 @@ final class ServicesValue implements JsonSerializable
     public const SIZE_S = 'S';
     public const SIZE_XL = 'XL';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'size' => 'size',
-        'disk' => 'disk',
-        'access' => 'access',
-        'configuration' => 'configuration',
-        'relationships' => 'relationships',
-        'firewall' => 'firewall',
-        'resources' => 'resources',
-        'containerProfile' => 'container_profile',
-        'endpoints' => 'endpoints'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $size,
@@ -52,28 +39,9 @@ final class ServicesValue implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'size' => 'string',
-            'disk' => '?int',
-            'access' => 'object',
-            'configuration' => 'object',
-            'relationships' => 'string[]',
-            'firewall' => '?\Upsun\Model\Firewall',
-            'resources' => '?\Upsun\Model\Resources',
-            'container_profile' => '?string',
-            'endpoints' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

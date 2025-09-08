@@ -29,17 +29,6 @@ final class UserProjectAccess implements JsonSerializable
     public const PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
     public const PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
 
-    private static array $attributeMap = [
-        'userId' => 'user_id',
-        'organizationId' => 'organization_id',
-        'projectId' => 'project_id',
-        'projectTitle' => 'project_title',
-        'permissions' => 'permissions',
-        'grantedAt' => 'granted_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $userId = null,
         private readonly ?string $organizationId = null,
@@ -52,26 +41,9 @@ final class UserProjectAccess implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => '?string',
-            'organization_id' => '?string',
-            'project_id' => '?string',
-            'project_title' => '?string',
-            'permissions' => 'string[]',
-            'granted_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\TeamProjectAccessLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

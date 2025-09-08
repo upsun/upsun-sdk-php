@@ -25,19 +25,6 @@ final class ProjectInvitation implements JsonSerializable
     public const ROLE_ADMIN = 'admin';
     public const ROLE_VIEWER = 'viewer';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'state' => 'state',
-        'projectId' => 'project_id',
-        'role' => 'role',
-        'email' => 'email',
-        'owner' => 'owner',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'finishedAt' => 'finished_at',
-        'environments' => 'environments'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
@@ -52,28 +39,9 @@ final class ProjectInvitation implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'state' => '?string',
-            'project_id' => '?string',
-            'role' => '?string',
-            'email' => '?string',
-            'owner' => '?\Upsun\Model\OrganizationInvitationOwner',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'finished_at' => '?\DateTime',
-            'environments' => '\Upsun\Model\ProjectInvitationEnvironmentsInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,16 +18,6 @@ use JsonSerializable;
 final class PrepaymentTransactionObject implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'orderId' => 'order_id',
-        'message' => 'message',
-        'status' => 'status',
-        'amount' => 'amount',
-        'created' => 'created',
-        'updated' => 'updated',
-        'expireDate' => 'expire_date'
-    ];
-
     public function __construct(
         private readonly ?string $updated = null,
         private readonly ?string $expireDate = null,
@@ -39,25 +29,9 @@ final class PrepaymentTransactionObject implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'order_id' => '?string',
-            'message' => '?string',
-            'status' => '?string',
-            'amount' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
-            'created' => '?string',
-            'updated' => '?string',
-            'expire_date' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,31 +18,15 @@ use JsonSerializable;
 final class TheAddonCredentialInformationOptional implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'addonKey' => 'addon_key',
-        'clientKey' => 'client_key'
-    ];
-
     public function __construct(
         private readonly string $addonKey,
         private readonly string $clientKey,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'addon_key' => 'string',
-            'client_key' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

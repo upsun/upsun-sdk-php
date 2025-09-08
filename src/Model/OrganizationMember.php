@@ -26,18 +26,6 @@ final class OrganizationMember implements JsonSerializable
     public const LEVEL_ADMIN = 'admin';
     public const LEVEL_VIEWER = 'viewer';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'userId' => 'user_id',
-        'permissions' => 'permissions',
-        'level' => 'level',
-        'owner' => 'owner',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
@@ -51,27 +39,9 @@ final class OrganizationMember implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'organization_id' => '?string',
-            'user_id' => '?string',
-            'permissions' => 'string[]',
-            'level' => '?string',
-            'owner' => '?bool',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\OrganizationMemberLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,31 +18,15 @@ use JsonSerializable;
 final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'key' => 'key',
-        'secret' => 'secret'
-    ];
-
     public function __construct(
         private readonly string $key,
         private readonly string $secret,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'key' => 'string',
-            'secret' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

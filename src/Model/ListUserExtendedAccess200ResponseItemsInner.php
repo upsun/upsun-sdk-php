@@ -20,16 +20,6 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     public const RESOURCE_TYPE_PROJECT = 'project';
     public const RESOURCE_TYPE_ORGANIZATION = 'organization';
 
-    private static array $attributeMap = [
-        'userId' => 'user_id',
-        'resourceId' => 'resource_id',
-        'resourceType' => 'resource_type',
-        'organizationId' => 'organization_id',
-        'permissions' => 'permissions',
-        'grantedAt' => 'granted_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $userId = null,
         private readonly ?string $resourceId = null,
@@ -41,25 +31,9 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => '?string',
-            'resource_id' => '?string',
-            'resource_type' => '?string',
-            'organization_id' => '?string',
-            'permissions' => 'string[]',
-            'granted_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

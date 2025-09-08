@@ -18,31 +18,15 @@ use JsonSerializable;
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'filename' => 'filename',
-        'data' => 'data'
-    ];
-
     public function __construct(
         private readonly ?string $filename = null,
         private readonly ?string $data = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'filename' => '?string',
-            'data' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

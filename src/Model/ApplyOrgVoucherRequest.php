@@ -18,28 +18,14 @@ use JsonSerializable;
 final class ApplyOrgVoucherRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'code' => 'code'
-    ];
-
     public function __construct(
         private readonly string $code,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'code' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

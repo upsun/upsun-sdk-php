@@ -18,13 +18,6 @@ use JsonSerializable;
 final class LineItemComponent implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'amount' => 'amount',
-        'amountFormatted' => 'amount_formatted',
-        'displayTitle' => 'display_title',
-        'currency' => 'currency'
-    ];
-
     public function __construct(
         private readonly ?float $amount = null,
         private readonly ?string $amountFormatted = null,
@@ -33,22 +26,9 @@ final class LineItemComponent implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'amount' => '?float',
-            'amount_formatted' => '?string',
-            'display_title' => '?string',
-            'currency' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

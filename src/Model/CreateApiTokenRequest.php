@@ -18,28 +18,14 @@ use JsonSerializable;
 final class CreateApiTokenRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'name' => 'name'
-    ];
-
     public function __construct(
         private readonly string $name,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

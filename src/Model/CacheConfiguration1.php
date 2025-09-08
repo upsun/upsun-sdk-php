@@ -18,13 +18,6 @@ use JsonSerializable;
 final class CacheConfiguration1 implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'defaultTtl' => 'default_ttl',
-        'cookies' => 'cookies',
-        'headers' => 'headers'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly ?int $defaultTtl = null,
@@ -33,22 +26,9 @@ final class CacheConfiguration1 implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'default_ttl' => '?int',
-            'cookies' => 'string[]',
-            'headers' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,13 +18,6 @@ use JsonSerializable;
 final class ArrayFilter implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'eq' => 'eq',
-        'ne' => 'ne',
-        'in' => 'in',
-        'nin' => 'nin'
-    ];
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -33,22 +26,9 @@ final class ArrayFilter implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'eq' => '?string',
-            'ne' => '?string',
-            'in' => '?string',
-            'nin' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

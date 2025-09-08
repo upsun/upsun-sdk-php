@@ -18,13 +18,6 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'cpu' => 'cpu',
-        'memory' => 'memory',
-        'storage' => 'storage',
-        'environments' => 'environments'
-    ];
-
     public function __construct(
         private readonly ?float $cpu = null,
         private readonly ?float $memory = null,
@@ -33,22 +26,9 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu' => '?float',
-            'memory' => '?float',
-            'storage' => '?float',
-            'environments' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

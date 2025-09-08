@@ -18,31 +18,15 @@ use JsonSerializable;
 final class OrganizationEstimationObjectUserLicensesUserManagementList implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'standardManagementUser' => 'standard_management_user',
-        'advancedManagementUser' => 'advanced_management_user'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
         private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'standard_management_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser',
-            'advanced_management_user' => '?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

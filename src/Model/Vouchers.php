@@ -18,16 +18,6 @@ use JsonSerializable;
 final class Vouchers implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'uuid' => 'uuid',
-        'vouchersTotal' => 'vouchers_total',
-        'vouchersApplied' => 'vouchers_applied',
-        'vouchersRemainingBalance' => 'vouchers_remaining_balance',
-        'currency' => 'currency',
-        'vouchers' => 'vouchers',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $vouchersTotal = null,
@@ -39,25 +29,9 @@ final class Vouchers implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'uuid' => '?string',
-            'vouchers_total' => '?string',
-            'vouchers_applied' => '?string',
-            'vouchers_remaining_balance' => '?string',
-            'currency' => '?string',
-            'vouchers' => '\Upsun\Model\VouchersVouchersInner[]',
-            '_links' => '?\Upsun\Model\VouchersLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

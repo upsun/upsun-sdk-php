@@ -24,23 +24,6 @@ final class VPNConfiguration implements JsonSerializable
     public const MODECONFIG_PULL = 'pull';
     public const MODECONFIG_PUSH = 'push';
 
-    private static array $attributeMap = [
-        'version' => 'version',
-        'aggressive' => 'aggressive',
-        'modeconfig' => 'modeconfig',
-        'authentication' => 'authentication',
-        'gatewayIp' => 'gateway_ip',
-        'identity' => 'identity',
-        'secondIdentity' => 'second_identity',
-        'remoteIdentity' => 'remote_identity',
-        'remoteSubnets' => 'remote_subnets',
-        'ike' => 'ike',
-        'esp' => 'esp',
-        'ikelifetime' => 'ikelifetime',
-        'lifetime' => 'lifetime',
-        'margintime' => 'margintime'
-    ];
-
     public function __construct(
         private readonly int $version,
         private readonly string $aggressive,
@@ -59,32 +42,9 @@ final class VPNConfiguration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'version' => 'int',
-            'aggressive' => 'string',
-            'modeconfig' => 'string',
-            'authentication' => 'string',
-            'gateway_ip' => 'string',
-            'identity' => '?string',
-            'second_identity' => '?string',
-            'remote_identity' => '?string',
-            'remote_subnets' => 'string[]',
-            'ike' => 'string',
-            'esp' => 'string',
-            'ikelifetime' => 'string',
-            'lifetime' => 'string',
-            'margintime' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

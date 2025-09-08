@@ -20,14 +20,6 @@ final class EnvironmentBranchInput implements JsonSerializable
     public const TYPE_DEVELOPMENT = 'development';
     public const TYPE_STAGING = 'staging';
 
-    private static array $attributeMap = [
-        'title' => 'title',
-        'name' => 'name',
-        'cloneParent' => 'clone_parent',
-        'type' => 'type',
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly string $title,
         private readonly string $name,
@@ -37,23 +29,9 @@ final class EnvironmentBranchInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'title' => 'string',
-            'name' => 'string',
-            'clone_parent' => 'bool',
-            'type' => 'string',
-            'resources' => '?\Upsun\Model\Resources2',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

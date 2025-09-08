@@ -18,28 +18,14 @@ use JsonSerializable;
 final class Components implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'voucherVatBaseprice' => 'voucher/vat/baseprice'
-    ];
-
     public function __construct(
         private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'voucher/vat/baseprice' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

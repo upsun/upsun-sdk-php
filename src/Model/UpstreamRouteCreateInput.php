@@ -21,19 +21,6 @@ final class UpstreamRouteCreateInput implements JsonSerializable
     public const TYPE_REDIRECT = 'redirect';
     public const TYPE_UPSTREAM = 'upstream';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'upstream' => 'upstream',
-        'primary' => 'primary',
-        'id' => 'id',
-        'productionUrl' => 'production_url',
-        'attributes' => 'attributes',
-        'tls' => 'tls',
-        'cache' => 'cache',
-        'ssi' => 'ssi',
-        'redirects' => 'redirects'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $upstream,
@@ -48,28 +35,9 @@ final class UpstreamRouteCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'upstream' => 'string',
-            'primary' => '?bool',
-            'id' => '?string',
-            'production_url' => '?string',
-            'attributes' => 'string[]',
-            'tls' => '?\Upsun\Model\TLSSettingsForTheRoute1',
-            'cache' => '?\Upsun\Model\CacheConfiguration1',
-            'ssi' => '?\Upsun\Model\ServerSideIncludeConfiguration',
-            'redirects' => '?\Upsun\Model\TheConfigurationOfTheRedirects1',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,31 +18,15 @@ use JsonSerializable;
 final class RepositoryInformation implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'url' => 'url',
-        'clientSshKey' => 'client_ssh_key'
-    ];
-
     public function __construct(
         private readonly string $url,
         private readonly ?string $clientSshKey = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'url' => 'string',
-            'client_ssh_key' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

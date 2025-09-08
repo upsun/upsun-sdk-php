@@ -18,12 +18,6 @@ use JsonSerializable;
 final class CreateTeamRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'organizationId' => 'organization_id',
-        'label' => 'label',
-        'projectPermissions' => 'project_permissions'
-    ];
-
     public function __construct(
         private readonly string $organizationId,
         private readonly string $label,
@@ -31,21 +25,9 @@ final class CreateTeamRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'organization_id' => 'string',
-            'label' => 'string',
-            'project_permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

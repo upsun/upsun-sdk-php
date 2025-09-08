@@ -18,14 +18,6 @@ use JsonSerializable;
 final class BlackfireIntegration implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'environmentsCredentials' => 'environments_credentials',
-        'continuousProfiling' => 'continuous_profiling'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $environmentsCredentials,
@@ -35,23 +27,9 @@ final class BlackfireIntegration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'environments_credentials' => '\Upsun\Model\BlackfireEnvironmentsCredentialsValue[]',
-            'continuous_profiling' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,16 +18,6 @@ use JsonSerializable;
 final class SplunkIntegrationCreateInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'url' => 'url',
-        'index' => 'index',
-        'token' => 'token',
-        'extra' => 'extra',
-        'sourcetype' => 'sourcetype',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -39,25 +29,9 @@ final class SplunkIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'url' => 'string',
-            'index' => 'string',
-            'token' => 'string',
-            'extra' => 'string[]',
-            'sourcetype' => '?string',
-            'tls_verify' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

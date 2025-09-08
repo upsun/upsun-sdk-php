@@ -21,31 +21,15 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
     public const CHANNEL_WHATSAPP = 'whatsapp';
     public const CHANNEL_CALL = 'call';
 
-    private static array $attributeMap = [
-        'channel' => 'channel',
-        'phoneNumber' => 'phone_number'
-    ];
-
     public function __construct(
         private readonly string $channel,
         private readonly string $phoneNumber,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'channel' => 'string',
-            'phone_number' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

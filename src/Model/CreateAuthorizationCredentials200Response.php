@@ -18,31 +18,15 @@ use JsonSerializable;
 final class CreateAuthorizationCredentials200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'redirectToUrl' => 'redirect_to_url',
-        'type' => 'type'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
         private readonly ?string $type = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'redirect_to_url' => '?\Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl',
-            'type' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

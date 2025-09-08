@@ -10,11 +10,6 @@ final class {{classname}} implements JsonSerializable
     {{/isEnum}}
     {{/vars}}
 
-    private static array $attributeMap = [
-        {{#vars}}'{{name}}' => '{{baseName}}'{{^-last}},
-        {{/-last}}{{/vars}}
-    ];
-
     public function __construct(
     {{#vars}}
       {{#required}}
@@ -53,21 +48,9 @@ final class {{classname}} implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-    {{#vars}}
-            '{{baseName}}' => '{{#isContainer}}{{#items}}{{dataType}}[]{{/items}}{{^items}}array{{/items}}{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{dataType}}{{/isContainer}}',
-    {{/vars}}
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

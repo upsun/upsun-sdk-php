@@ -18,31 +18,15 @@ use JsonSerializable;
 final class OrganizationInvitationOwner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'displayName' => 'display_name'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'display_name' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

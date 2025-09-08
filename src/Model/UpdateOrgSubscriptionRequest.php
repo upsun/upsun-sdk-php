@@ -18,21 +18,6 @@ use JsonSerializable;
 final class UpdateOrgSubscriptionRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'projectTitle' => 'project_title',
-        'plan' => 'plan',
-        'timezone' => 'timezone',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'bigDev' => 'big_dev',
-        'bigDevService' => 'big_dev_service',
-        'backups' => 'backups',
-        'observabilitySuite' => 'observability_suite',
-        'blackfire' => 'blackfire',
-        'continuousProfiling' => 'continuous_profiling',
-        'projectSupportLevel' => 'project_support_level'
-    ];
-
     public function __construct(
         private readonly ?string $projectTitle = null,
         private readonly ?string $plan = null,
@@ -49,30 +34,9 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'project_title' => '?string',
-            'plan' => '?string',
-            'timezone' => '?string',
-            'environments' => '?int',
-            'storage' => '?int',
-            'big_dev' => '?string',
-            'big_dev_service' => '?string',
-            'backups' => '?string',
-            'observability_suite' => '?string',
-            'blackfire' => '?string',
-            'continuous_profiling' => '?string',
-            'project_support_level' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

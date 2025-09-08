@@ -18,26 +18,6 @@ use JsonSerializable;
 final class Config implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'newrelic' => 'newrelic',
-        'sumologic' => 'sumologic',
-        'splunk' => 'splunk',
-        'httplog' => 'httplog',
-        'syslog' => 'syslog',
-        'webhook' => 'webhook',
-        'script' => 'script',
-        'github' => 'github',
-        'gitlab' => 'gitlab',
-        'bitbucket' => 'bitbucket',
-        'bitbucketServer' => 'bitbucket_server',
-        'healthEmail' => 'health.email',
-        'healthWebhook' => 'health.webhook',
-        'healthPagerduty' => 'health.pagerduty',
-        'healthSlack' => 'health.slack',
-        'cdnFastly' => 'cdn.fastly',
-        'blackfire' => 'blackfire'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
         private readonly ?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations $sumologic = null,
@@ -59,35 +39,9 @@ final class Config implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'newrelic' => '?\Upsun\Model\NewRelicLogForwardingIntegrationConfigurations',
-            'sumologic' => '?\Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations',
-            'splunk' => '?\Upsun\Model\SplunkLogForwardingIntegrationConfigurations',
-            'httplog' => '?\Upsun\Model\HTTPLogForwardingIntegrationConfigurations',
-            'syslog' => '?\Upsun\Model\SyslogLogForwardingIntegrationConfigurations',
-            'webhook' => '?\Upsun\Model\WebhookIntegrationConfigurations',
-            'script' => '?\Upsun\Model\ScriptIntegrationConfigurations',
-            'github' => '?\Upsun\Model\GitHubIntegrationConfigurations',
-            'gitlab' => '?\Upsun\Model\GitLabIntegrationConfigurations',
-            'bitbucket' => '?\Upsun\Model\BitbucketIntegrationConfigurations',
-            'bitbucket_server' => '?\Upsun\Model\BitbucketServerIntegrationConfigurations',
-            'health.email' => '?\Upsun\Model\HealthEmailNotificationIntegrationConfigurations',
-            'health.webhook' => '?\Upsun\Model\HealthWebhookNotificationIntegrationConfigurations',
-            'health.pagerduty' => '?\Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations',
-            'health.slack' => '?\Upsun\Model\HealthSlackNotificationIntegrationConfigurations',
-            'cdn.fastly' => '?\Upsun\Model\FastlyCDNIntegrationConfigurations',
-            'blackfire' => '?\Upsun\Model\BlackfireIntegrationConfigurations',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

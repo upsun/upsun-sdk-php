@@ -18,18 +18,6 @@ use JsonSerializable;
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'title' => 'title',
-        'type' => 'type',
-        'currentUsage' => 'current_usage',
-        'currentUsageFormatted' => 'current_usage_formatted',
-        'notCharged' => 'not_charged',
-        'freeQuantity' => 'free_quantity',
-        'freeQuantityFormatted' => 'free_quantity_formatted',
-        'dailyAverage' => 'daily_average',
-        'dailyAverageFormatted' => 'daily_average_formatted'
-    ];
-
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?bool $type = null,
@@ -43,27 +31,9 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'title' => '?string',
-            'type' => '?bool',
-            'current_usage' => '?float',
-            'current_usage_formatted' => '?string',
-            'not_charged' => '?bool',
-            'free_quantity' => '?float',
-            'free_quantity_formatted' => '?string',
-            'daily_average' => '?float',
-            'daily_average_formatted' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

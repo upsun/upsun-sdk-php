@@ -25,20 +25,6 @@ final class Discount implements JsonSerializable
     public const STATUS_EXPIRED = 'expired';
     public const STATUS_DEACTIVATED = 'deactivated';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'organizationId' => 'organization_id',
-        'type' => 'type',
-        'typeLabel' => 'type_label',
-        'status' => 'status',
-        'commitment' => 'commitment',
-        'totalMonths' => 'total_months',
-        'discount' => 'discount',
-        'config' => 'config',
-        'startAt' => 'start_at',
-        'endAt' => 'end_at'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\DiscountCommitment $commitment = null,
         private readonly ?int $totalMonths = null,
@@ -54,29 +40,9 @@ final class Discount implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?int',
-            'organization_id' => '?string',
-            'type' => '?string',
-            'type_label' => '?string',
-            'status' => '?string',
-            'commitment' => '?\Upsun\Model\DiscountCommitment',
-            'total_months' => '?int',
-            'discount' => '?\Upsun\Model\DiscountDiscount',
-            'config' => '?object',
-            'start_at' => '?\DateTime',
-            'end_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

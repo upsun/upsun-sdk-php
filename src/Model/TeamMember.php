@@ -18,13 +18,6 @@ use JsonSerializable;
 final class TeamMember implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'teamId' => 'team_id',
-        'userId' => 'user_id',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $userId = null,
@@ -33,22 +26,9 @@ final class TeamMember implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'team_id' => '?string',
-            'user_id' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

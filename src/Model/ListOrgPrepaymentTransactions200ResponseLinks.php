@@ -18,13 +18,6 @@ use JsonSerializable;
 final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'self' => 'self',
-        'previous' => 'previous',
-        'next' => 'next',
-        'prepayment' => 'prepayment'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
         private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
@@ -33,22 +26,9 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf',
-            'previous' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious',
-            'next' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext',
-            'prepayment' => '?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,16 +18,6 @@ use JsonSerializable;
 final class OrganizationReference implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'ownerId' => 'owner_id',
-        'name' => 'name',
-        'label' => 'label',
-        'vendor' => 'vendor',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $ownerId = null,
@@ -39,25 +29,9 @@ final class OrganizationReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'owner_id' => '?string',
-            'name' => '?string',
-            'label' => '?string',
-            'vendor' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

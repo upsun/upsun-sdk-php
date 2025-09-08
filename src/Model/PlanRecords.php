@@ -18,18 +18,6 @@ use JsonSerializable;
 final class PlanRecords implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'owner' => 'owner',
-        'subscriptionId' => 'subscription_id',
-        'sku' => 'sku',
-        'plan' => 'plan',
-        'options' => 'options',
-        'start' => 'start',
-        'end' => 'end',
-        'status' => 'status'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $end = null,
         private readonly ?string $id = null,
@@ -43,27 +31,9 @@ final class PlanRecords implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'owner' => '?string',
-            'subscription_id' => '?string',
-            'sku' => '?string',
-            'plan' => '?string',
-            'options' => 'string[]',
-            'start' => '?\DateTime',
-            'end' => '?\DateTime',
-            'status' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

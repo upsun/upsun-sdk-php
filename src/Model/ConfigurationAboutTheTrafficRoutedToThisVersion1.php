@@ -18,28 +18,14 @@ use JsonSerializable;
 final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'percentage' => 'percentage'
-    ];
-
     public function __construct(
         private readonly ?int $percentage = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'percentage' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

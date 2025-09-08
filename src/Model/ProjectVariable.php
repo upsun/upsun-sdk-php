@@ -18,18 +18,6 @@ use JsonSerializable;
 final class ProjectVariable implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'name' => 'name',
-        'attributes' => 'attributes',
-        'isJson' => 'is_json',
-        'isSensitive' => 'is_sensitive',
-        'visibleBuild' => 'visible_build',
-        'visibleRuntime' => 'visible_runtime',
-        'value' => 'value'
-    ];
-
     public function __construct(
         private readonly string $name,
         private readonly array $attributes,
@@ -43,27 +31,9 @@ final class ProjectVariable implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'name' => 'string',
-            'attributes' => 'string[]',
-            'is_json' => 'bool',
-            'is_sensitive' => 'bool',
-            'visible_build' => 'bool',
-            'visible_runtime' => 'bool',
-            'value' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

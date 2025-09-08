@@ -23,19 +23,6 @@ final class SyslogIntegration implements JsonSerializable
     public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
     public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'extra' => 'extra',
-        'host' => 'host',
-        'port' => 'port',
-        'protocol' => 'protocol',
-        'facility' => 'facility',
-        'messageFormat' => 'message_format',
-        'tlsVerify' => 'tls_verify'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $extra,
@@ -50,28 +37,9 @@ final class SyslogIntegration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'extra' => 'string[]',
-            'host' => 'string',
-            'port' => 'int',
-            'protocol' => 'string',
-            'facility' => 'int',
-            'message_format' => 'string',
-            'tls_verify' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

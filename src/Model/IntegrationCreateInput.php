@@ -32,55 +32,6 @@ final class IntegrationCreateInput implements JsonSerializable
     public const AUTH_MODE_PREFIX = 'prefix';
     public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'repository' => 'repository',
-        'url' => 'url',
-        'username' => 'username',
-        'token' => 'token',
-        'project' => 'project',
-        'serviceId' => 'service_id',
-        'recipients' => 'recipients',
-        'routingKey' => 'routing_key',
-        'channel' => 'channel',
-        'licenseKey' => 'license_key',
-        'script' => 'script',
-        'index' => 'index',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials',
-        'buildPullRequests' => 'build_pull_requests',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'resyncPullRequests' => 'resync_pull_requests',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result',
-        'baseUrl' => 'base_url',
-        'buildDraftPullRequests' => 'build_draft_pull_requests',
-        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
-        'buildMergeRequests' => 'build_merge_requests',
-        'buildWipMergeRequests' => 'build_wip_merge_requests',
-        'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
-        'fromAddress' => 'from_address',
-        'sharedKey' => 'shared_key',
-        'extra' => 'extra',
-        'headers' => 'headers',
-        'tlsVerify' => 'tls_verify',
-        'sourcetype' => 'sourcetype',
-        'category' => 'category',
-        'host' => 'host',
-        'port' => 'port',
-        'protocol' => 'protocol',
-        'facility' => 'facility',
-        'messageFormat' => 'message_format',
-        'authToken' => 'auth_token',
-        'authMode' => 'auth_mode'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $repository,
@@ -131,64 +82,9 @@ final class IntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'repository' => 'string',
-            'url' => 'string',
-            'username' => 'string',
-            'token' => 'string',
-            'project' => 'string',
-            'service_id' => 'string',
-            'recipients' => 'string[]',
-            'routing_key' => 'string',
-            'channel' => 'string',
-            'license_key' => 'string',
-            'script' => 'string',
-            'index' => 'string',
-            'fetch_branches' => '?bool',
-            'prune_branches' => '?bool',
-            'environment_init_resources' => '?string',
-            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional1',
-            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional1',
-            'build_pull_requests' => '?bool',
-            'pull_requests_clone_parent_data' => '?bool',
-            'resync_pull_requests' => '?bool',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => '?string',
-            'base_url' => '?string',
-            'build_draft_pull_requests' => '?bool',
-            'build_pull_requests_post_merge' => '?bool',
-            'build_merge_requests' => '?bool',
-            'build_wip_merge_requests' => '?bool',
-            'merge_requests_clone_parent_data' => '?bool',
-            'from_address' => '?string',
-            'shared_key' => '?string',
-            'extra' => 'string[]',
-            'headers' => 'string[]',
-            'tls_verify' => '?bool',
-            'sourcetype' => '?string',
-            'category' => '?string',
-            'host' => '?string',
-            'port' => '?int',
-            'protocol' => '?string',
-            'facility' => '?int',
-            'message_format' => '?string',
-            'auth_token' => '?string',
-            'auth_mode' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

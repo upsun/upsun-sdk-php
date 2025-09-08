@@ -18,15 +18,6 @@ use JsonSerializable;
 final class SSHKey implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'keyId' => 'key_id',
-        'uid' => 'uid',
-        'fingerprint' => 'fingerprint',
-        'title' => 'title',
-        'value' => 'value',
-        'changed' => 'changed'
-    ];
-
     public function __construct(
         private readonly ?int $keyId = null,
         private readonly ?int $uid = null,
@@ -37,24 +28,9 @@ final class SSHKey implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'key_id' => '?int',
-            'uid' => '?int',
-            'fingerprint' => '?string',
-            'title' => '?string',
-            'value' => '?string',
-            'changed' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

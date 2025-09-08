@@ -18,13 +18,6 @@ use JsonSerializable;
 final class EnvironmentSynchronizeInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'synchronizeCode' => 'synchronize_code',
-        'rebase' => 'rebase',
-        'synchronizeData' => 'synchronize_data',
-        'synchronizeResources' => 'synchronize_resources'
-    ];
-
     public function __construct(
         private readonly bool $synchronizeCode,
         private readonly bool $rebase,
@@ -33,22 +26,9 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'synchronize_code' => 'bool',
-            'rebase' => 'bool',
-            'synchronize_data' => 'bool',
-            'synchronize_resources' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

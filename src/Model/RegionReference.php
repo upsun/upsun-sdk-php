@@ -18,25 +18,6 @@ use JsonSerializable;
 final class RegionReference implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'label' => 'label',
-        'zone' => 'zone',
-        'selectionLabel' => 'selection_label',
-        'projectLabel' => 'project_label',
-        'timezone' => 'timezone',
-        'available' => 'available',
-        'endpoint' => 'endpoint',
-        'provider' => 'provider',
-        'datacenter' => 'datacenter',
-        'compliance' => 'compliance',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'private' => 'private',
-        'code' => 'code',
-        'envimpact' => 'envimpact'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly string $label,
@@ -57,34 +38,9 @@ final class RegionReference implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => 'string',
-            'label' => 'string',
-            'zone' => 'string',
-            'selection_label' => 'string',
-            'project_label' => 'string',
-            'timezone' => 'string',
-            'available' => 'bool',
-            'endpoint' => 'string',
-            'provider' => 'object',
-            'datacenter' => 'object',
-            'compliance' => 'object',
-            'created_at' => '\DateTime',
-            'updated_at' => '\DateTime',
-            'private' => '?bool',
-            'code' => '?string',
-            'envimpact' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

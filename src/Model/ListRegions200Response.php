@@ -18,31 +18,15 @@ use JsonSerializable;
 final class ListRegions200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'regions' => 'regions',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?array $regions = [],
         private readonly ?\Upsun\Model\ListLinks $links = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'regions' => '\Upsun\Model\Region[]',
-            '_links' => '?\Upsun\Model\ListLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

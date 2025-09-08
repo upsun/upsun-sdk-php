@@ -18,31 +18,15 @@ use JsonSerializable;
 final class DefaultConfig implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'manualCount' => 'manual_count',
-        'schedule' => 'schedule'
-    ];
-
     public function __construct(
         private readonly int $manualCount,
         private readonly array $schedule,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'manual_count' => 'int',
-            'schedule' => '\Upsun\Model\TheBackupScheduleSpecificationInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

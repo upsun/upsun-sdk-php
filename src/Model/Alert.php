@@ -18,15 +18,6 @@ use JsonSerializable;
 final class Alert implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'active' => 'active',
-        'alertsSent' => 'alerts_sent',
-        'lastAlertAt' => 'last_alert_at',
-        'updatedAt' => 'updated_at',
-        'config' => 'config'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
@@ -37,24 +28,9 @@ final class Alert implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'active' => '?bool',
-            'alerts_sent' => '?int',
-            'last_alert_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'config' => '?object',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

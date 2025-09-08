@@ -32,56 +32,6 @@ final class Integration implements JsonSerializable
     public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
     public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'type' => 'type',
-        'fetchBranches' => 'fetch_branches',
-        'pruneBranches' => 'prune_branches',
-        'environmentInitResources' => 'environment_init_resources',
-        'repository' => 'repository',
-        'buildPullRequests' => 'build_pull_requests',
-        'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-        'resyncPullRequests' => 'resync_pull_requests',
-        'url' => 'url',
-        'username' => 'username',
-        'project' => 'project',
-        'environmentsCredentials' => 'environments_credentials',
-        'continuousProfiling' => 'continuous_profiling',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result',
-        'serviceId' => 'service_id',
-        'baseUrl' => 'base_url',
-        'buildDraftPullRequests' => 'build_draft_pull_requests',
-        'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
-        'tokenType' => 'token_type',
-        'buildMergeRequests' => 'build_merge_requests',
-        'buildWipMergeRequests' => 'build_wip_merge_requests',
-        'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
-        'fromAddress' => 'from_address',
-        'recipients' => 'recipients',
-        'routingKey' => 'routing_key',
-        'channel' => 'channel',
-        'extra' => 'extra',
-        'headers' => 'headers',
-        'tlsVerify' => 'tls_verify',
-        'script' => 'script',
-        'index' => 'index',
-        'sourcetype' => 'sourcetype',
-        'category' => 'category',
-        'host' => 'host',
-        'port' => 'port',
-        'protocol' => 'protocol',
-        'facility' => 'facility',
-        'messageFormat' => 'message_format',
-        'sharedKey' => 'shared_key',
-        'appCredentials' => 'app_credentials',
-        'addonCredentials' => 'addon_credentials'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -133,65 +83,9 @@ final class Integration implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'type' => 'string',
-            'fetch_branches' => 'bool',
-            'prune_branches' => 'bool',
-            'environment_init_resources' => 'string',
-            'repository' => 'string',
-            'build_pull_requests' => 'bool',
-            'pull_requests_clone_parent_data' => 'bool',
-            'resync_pull_requests' => 'bool',
-            'url' => 'string',
-            'username' => 'string',
-            'project' => 'string',
-            'environments_credentials' => '\Upsun\Model\BlackfireEnvironmentsCredentialsValue[]',
-            'continuous_profiling' => 'bool',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => 'string',
-            'service_id' => 'string',
-            'base_url' => 'string',
-            'build_draft_pull_requests' => 'bool',
-            'build_pull_requests_post_merge' => 'bool',
-            'token_type' => 'string',
-            'build_merge_requests' => 'bool',
-            'build_wip_merge_requests' => 'bool',
-            'merge_requests_clone_parent_data' => 'bool',
-            'from_address' => '?string',
-            'recipients' => 'string[]',
-            'routing_key' => 'string',
-            'channel' => 'string',
-            'extra' => 'string[]',
-            'headers' => 'string[]',
-            'tls_verify' => 'bool',
-            'script' => 'string',
-            'index' => 'string',
-            'sourcetype' => 'string',
-            'category' => 'string',
-            'host' => 'string',
-            'port' => 'int',
-            'protocol' => 'string',
-            'facility' => 'int',
-            'message_format' => 'string',
-            'shared_key' => '?string',
-            'app_credentials' => '?\Upsun\Model\TheOAuth2ConsumerInformationOptional',
-            'addon_credentials' => '?\Upsun\Model\TheAddonCredentialInformationOptional',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

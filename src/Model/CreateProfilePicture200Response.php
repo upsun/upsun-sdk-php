@@ -18,28 +18,14 @@ use JsonSerializable;
 final class CreateProfilePicture200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'url' => 'url'
-    ];
-
     public function __construct(
         private readonly ?string $url = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'url' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

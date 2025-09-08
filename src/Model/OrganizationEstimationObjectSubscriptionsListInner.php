@@ -18,13 +18,6 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'licenseId' => 'license_id',
-        'projectTitle' => 'project_title',
-        'total' => 'total',
-        'usage' => 'usage'
-    ];
-
     public function __construct(
         private readonly ?string $licenseId = null,
         private readonly ?string $projectTitle = null,
@@ -33,22 +26,9 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'license_id' => '?string',
-            'project_title' => '?string',
-            'total' => '?string',
-            'usage' => '?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

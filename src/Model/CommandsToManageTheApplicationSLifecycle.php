@@ -18,31 +18,15 @@ use JsonSerializable;
 final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'preStart' => 'pre_start',
-        'start' => 'start'
-    ];
-
     public function __construct(
         private readonly ?string $preStart = null,
         private readonly ?string $start = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'pre_start' => '?string',
-            'start' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,16 +18,6 @@ use JsonSerializable;
 final class DateTimeFilter implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'eq' => 'eq',
-        'ne' => 'ne',
-        'between' => 'between',
-        'gt' => 'gt',
-        'gte' => 'gte',
-        'lt' => 'lt',
-        'lte' => 'lte'
-    ];
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -39,25 +29,9 @@ final class DateTimeFilter implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'eq' => '?string',
-            'ne' => '?string',
-            'between' => '?string',
-            'gt' => '?string',
-            'gte' => '?string',
-            'lt' => '?string',
-            'lte' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

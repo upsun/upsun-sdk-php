@@ -18,31 +18,15 @@ use JsonSerializable;
 final class OrganizationAlertConfigConfig implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'threshold' => 'threshold',
-        'mode' => 'mode'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
         private readonly ?string $mode = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'threshold' => '?\Upsun\Model\OrganizationAlertConfigConfigThreshold',
-            'mode' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,15 +18,6 @@ use JsonSerializable;
 final class TicketJiraInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'ticketId' => 'ticket_id',
-        'issueId' => 'issue_id',
-        'issueKey' => 'issue_key',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at'
-    ];
-
     public function __construct(
         private readonly ?int $id = null,
         private readonly ?int $ticketId = null,
@@ -37,24 +28,9 @@ final class TicketJiraInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?int',
-            'ticket_id' => '?int',
-            'issue_id' => '?int',
-            'issue_key' => '?string',
-            'created_at' => '?float',
-            'updated_at' => '?float',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

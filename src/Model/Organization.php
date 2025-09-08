@@ -24,22 +24,6 @@ final class Organization implements JsonSerializable
     public const STATUS_SUSPENDED = 'suspended';
     public const STATUS_DELETED = 'deleted';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'type' => 'type',
-        'ownerId' => 'owner_id',
-        'namespace' => 'namespace',
-        'name' => 'name',
-        'label' => 'label',
-        'country' => 'country',
-        'capabilities' => 'capabilities',
-        'vendor' => 'vendor',
-        'status' => 'status',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $type = null,
@@ -57,31 +41,9 @@ final class Organization implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'type' => '?string',
-            'owner_id' => '?string',
-            'namespace' => '?string',
-            'name' => '?string',
-            'label' => '?string',
-            'country' => '?string',
-            'capabilities' => 'string[]',
-            'vendor' => '?string',
-            'status' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            '_links' => '?\Upsun\Model\OrganizationLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

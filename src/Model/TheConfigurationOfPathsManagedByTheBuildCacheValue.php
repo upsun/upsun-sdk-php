@@ -18,13 +18,6 @@ use JsonSerializable;
 final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'directory' => 'directory',
-        'watch' => 'watch',
-        'allowStale' => 'allow_stale',
-        'shareBetweenApps' => 'share_between_apps'
-    ];
-
     public function __construct(
         private readonly array $watch,
         private readonly bool $allowStale,
@@ -33,22 +26,9 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'directory' => '?string',
-            'watch' => 'string[]',
-            'allow_stale' => 'bool',
-            'share_between_apps' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

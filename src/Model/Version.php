@@ -18,12 +18,6 @@ use JsonSerializable;
 final class Version implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'commit' => 'commit',
-        'locked' => 'locked',
-        'routing' => 'routing'
-    ];
-
     public function __construct(
         private readonly bool $locked,
         private readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
@@ -31,21 +25,9 @@ final class Version implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commit' => '?string',
-            'locked' => 'bool',
-            'routing' => '\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

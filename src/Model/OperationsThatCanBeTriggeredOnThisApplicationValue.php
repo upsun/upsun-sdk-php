@@ -21,12 +21,6 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     public const ROLE_CONTRIBUTOR = 'contributor';
     public const ROLE_VIEWER = 'viewer';
 
-    private static array $attributeMap = [
-        'commands' => 'commands',
-        'timeout' => 'timeout',
-        'role' => 'role'
-    ];
-
     public function __construct(
         private readonly \Upsun\Model\TheCommandsDefinition $commands,
         private readonly string $role,
@@ -34,21 +28,9 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'commands' => '\Upsun\Model\TheCommandsDefinition',
-            'timeout' => '?int',
-            'role' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

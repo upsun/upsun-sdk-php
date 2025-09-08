@@ -18,31 +18,15 @@ use JsonSerializable;
 final class Tree implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'sha' => 'sha',
-        'tree' => 'tree'
-    ];
-
     public function __construct(
         private readonly string $sha,
         private readonly array $tree,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'sha' => 'string',
-            'tree' => '\Upsun\Model\TheTreeItemsInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

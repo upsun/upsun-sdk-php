@@ -20,12 +20,6 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
     public const TYPE_CORE = 'core';
     public const TYPE_SATELLITE = 'satellite';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'type' => 'type',
-        'services' => 'services'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly ?string $id = null,
@@ -33,21 +27,9 @@ final class TheHostsOfTheDeploymentTargetInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'type' => 'string',
-            'services' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

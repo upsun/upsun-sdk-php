@@ -18,31 +18,15 @@ use JsonSerializable;
 final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'maxRequestSize' => 'max_request_size'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly ?string $maxRequestSize = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'max_request_size' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

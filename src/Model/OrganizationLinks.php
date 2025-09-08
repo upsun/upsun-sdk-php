@@ -18,24 +18,6 @@ use JsonSerializable;
 final class OrganizationLinks implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'self' => 'self',
-        'update' => 'update',
-        'delete' => 'delete',
-        'members' => 'members',
-        'createMember' => 'create-member',
-        'address' => 'address',
-        'profile' => 'profile',
-        'paymentSource' => 'payment-source',
-        'orders' => 'orders',
-        'vouchers' => 'vouchers',
-        'applyVoucher' => 'apply-voucher',
-        'subscriptions' => 'subscriptions',
-        'createSubscription' => 'create-subscription',
-        'estimateSubscription' => 'estimate-subscription',
-        'mfaEnforcement' => 'mfa-enforcement'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\OrganizationLinksSelf $self = null,
         private readonly ?\Upsun\Model\OrganizationLinksUpdate $update = null,
@@ -55,33 +37,9 @@ final class OrganizationLinks implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'self' => '?\Upsun\Model\OrganizationLinksSelf',
-            'update' => '?\Upsun\Model\OrganizationLinksUpdate',
-            'delete' => '?\Upsun\Model\OrganizationLinksDelete',
-            'members' => '?\Upsun\Model\OrganizationLinksMembers',
-            'create-member' => '?\Upsun\Model\OrganizationLinksCreateMember',
-            'address' => '?\Upsun\Model\OrganizationLinksAddress',
-            'profile' => '?\Upsun\Model\OrganizationLinksProfile',
-            'payment-source' => '?\Upsun\Model\OrganizationLinksPaymentSource',
-            'orders' => '?\Upsun\Model\OrganizationLinksOrders',
-            'vouchers' => '?\Upsun\Model\OrganizationLinksVouchers',
-            'apply-voucher' => '?\Upsun\Model\OrganizationLinksApplyVoucher',
-            'subscriptions' => '?\Upsun\Model\OrganizationLinksSubscriptions',
-            'create-subscription' => '?\Upsun\Model\OrganizationLinksCreateSubscription',
-            'estimate-subscription' => '?\Upsun\Model\OrganizationLinksEstimateSubscription',
-            'mfa-enforcement' => '?\Upsun\Model\OrganizationLinksMfaEnforcement',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

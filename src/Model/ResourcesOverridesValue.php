@@ -18,14 +18,6 @@ use JsonSerializable;
 final class ResourcesOverridesValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'services' => 'services',
-        'startsAt' => 'starts_at',
-        'endsAt' => 'ends_at',
-        'redeployedStart' => 'redeployed_start',
-        'redeployedEnd' => 'redeployed_end'
-    ];
-
     public function __construct(
         private readonly array $services,
         private readonly bool $redeployedStart,
@@ -35,23 +27,9 @@ final class ResourcesOverridesValue implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'services' => '\Upsun\Model\PerServiceResourcesOverridesValue[]',
-            'starts_at' => '?\DateTime',
-            'ends_at' => '?\DateTime',
-            'redeployed_start' => 'bool',
-            'redeployed_end' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

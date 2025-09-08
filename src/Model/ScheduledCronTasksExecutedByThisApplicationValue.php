@@ -18,14 +18,6 @@ use JsonSerializable;
 final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'spec' => 'spec',
-        'commands' => 'commands',
-        'timeout' => 'timeout',
-        'shutdownTimeout' => 'shutdown_timeout',
-        'cmd' => 'cmd'
-    ];
-
     public function __construct(
         private readonly string $spec,
         private readonly \Upsun\Model\TheCommandsDefinition $commands,
@@ -35,23 +27,9 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'spec' => 'string',
-            'commands' => '\Upsun\Model\TheCommandsDefinition',
-            'timeout' => 'int',
-            'shutdown_timeout' => '?int',
-            'cmd' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

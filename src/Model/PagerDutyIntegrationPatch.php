@@ -18,31 +18,15 @@ use JsonSerializable;
 final class PagerDutyIntegrationPatch implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'routingKey' => 'routing_key'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'routing_key' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

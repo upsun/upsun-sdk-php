@@ -18,31 +18,15 @@ use JsonSerializable;
 final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'secret' => 'secret',
-        'passcode' => 'passcode'
-    ];
-
     public function __construct(
         private readonly string $secret,
         private readonly string $passcode,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'secret' => 'string',
-            'passcode' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

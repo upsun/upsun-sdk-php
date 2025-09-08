@@ -18,12 +18,6 @@ use JsonSerializable;
 final class EmailIntegrationCreateInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'recipients' => 'recipients',
-        'fromAddress' => 'from_address'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
@@ -31,21 +25,9 @@ final class EmailIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'recipients' => 'string[]',
-            'from_address' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

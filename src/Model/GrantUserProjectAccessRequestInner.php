@@ -29,31 +29,15 @@ final class GrantUserProjectAccessRequestInner implements JsonSerializable
     public const PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
     public const PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
 
-    private static array $attributeMap = [
-        'projectId' => 'project_id',
-        'permissions' => 'permissions'
-    ];
-
     public function __construct(
         private readonly string $projectId,
         private readonly array $permissions,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'project_id' => 'string',
-            'permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

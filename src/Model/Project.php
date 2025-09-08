@@ -18,24 +18,6 @@ use JsonSerializable;
 final class Project implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'attributes' => 'attributes',
-        'title' => 'title',
-        'description' => 'description',
-        'owner' => 'owner',
-        'namespace' => 'namespace',
-        'organization' => 'organization',
-        'defaultBranch' => 'default_branch',
-        'status' => 'status',
-        'timezone' => 'timezone',
-        'region' => 'region',
-        'repository' => 'repository',
-        'subscription' => 'subscription',
-        'defaultDomain' => 'default_domain'
-    ];
-
     public function __construct(
         private readonly array $attributes,
         private readonly string $title,
@@ -55,33 +37,9 @@ final class Project implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'attributes' => 'string[]',
-            'title' => 'string',
-            'description' => 'string',
-            'owner' => 'string',
-            'namespace' => '?string',
-            'organization' => '?string',
-            'default_branch' => '?string',
-            'status' => '\Upsun\Model\Status',
-            'timezone' => 'string',
-            'region' => 'string',
-            'repository' => '\Upsun\Model\RepositoryInformation',
-            'subscription' => '\Upsun\Model\SubscriptionInformation',
-            'default_domain' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

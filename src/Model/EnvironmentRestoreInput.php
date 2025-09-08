@@ -18,14 +18,6 @@ use JsonSerializable;
 final class EnvironmentRestoreInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'environmentName' => 'environment_name',
-        'branchFrom' => 'branch_from',
-        'restoreCode' => 'restore_code',
-        'restoreResources' => 'restore_resources',
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly bool $restoreCode,
         private readonly bool $restoreResources,
@@ -35,23 +27,9 @@ final class EnvironmentRestoreInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'environment_name' => '?string',
-            'branch_from' => '?string',
-            'restore_code' => 'bool',
-            'restore_resources' => 'bool',
-            'resources' => '?\Upsun\Model\Resources5',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

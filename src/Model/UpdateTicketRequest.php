@@ -20,12 +20,6 @@ final class UpdateTicketRequest implements JsonSerializable
     public const STATUS_OPEN = 'open';
     public const STATUS_SOLVED = 'solved';
 
-    private static array $attributeMap = [
-        'status' => 'status',
-        'collaboratorIds' => 'collaborator_ids',
-        'collaboratorsReplace' => 'collaborators_replace'
-    ];
-
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?array $collaboratorIds = [],
@@ -33,21 +27,9 @@ final class UpdateTicketRequest implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'status' => '?string',
-            'collaborator_ids' => 'string[]',
-            'collaborators_replace' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

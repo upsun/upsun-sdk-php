@@ -18,18 +18,6 @@ use JsonSerializable;
 final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'root' => 'root',
-        'expires' => 'expires',
-        'passthru' => 'passthru',
-        'scripts' => 'scripts',
-        'allow' => 'allow',
-        'headers' => 'headers',
-        'rules' => 'rules',
-        'index' => 'index',
-        'requestBuffering' => 'request_buffering'
-    ];
-
     public function __construct(
         private readonly string $expires,
         private readonly string $passthru,
@@ -43,27 +31,9 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'root' => '?string',
-            'expires' => 'string',
-            'passthru' => 'string',
-            'scripts' => 'bool',
-            'allow' => 'bool',
-            'headers' => 'string[]',
-            'rules' => '\Upsun\Model\SpecificOverridesValue[]',
-            'index' => 'string[]',
-            'request_buffering' => '?\Upsun\Model\ConfigurationForSupportingRequestBuffering',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

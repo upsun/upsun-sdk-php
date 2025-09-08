@@ -18,31 +18,15 @@ use JsonSerializable;
 final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'root' => 'root',
-        'operations' => 'operations'
-    ];
-
     public function __construct(
         private readonly array $operations,
         private readonly ?string $root = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'root' => '?string',
-            'operations' => '\Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

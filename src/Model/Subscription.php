@@ -24,33 +24,6 @@ final class Subscription implements JsonSerializable
     public const STATUS_SUSPENDED = 'suspended';
     public const STATUS_DELETED = 'deleted';
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'status' => 'status',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'owner' => 'owner',
-        'ownerInfo' => 'owner_info',
-        'vendor' => 'vendor',
-        'plan' => 'plan',
-        'environments' => 'environments',
-        'storage' => 'storage',
-        'userLicenses' => 'user_licenses',
-        'projectId' => 'project_id',
-        'projectEndpoint' => 'project_endpoint',
-        'projectTitle' => 'project_title',
-        'projectRegion' => 'project_region',
-        'projectRegionLabel' => 'project_region_label',
-        'projectUi' => 'project_ui',
-        'projectOptions' => 'project_options',
-        'agencySite' => 'agency_site',
-        'invoiced' => 'invoiced',
-        'hipaa' => 'hipaa',
-        'isTrialPlan' => 'is_trial_plan',
-        'services' => 'services',
-        'green' => 'green'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
@@ -79,42 +52,9 @@ final class Subscription implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'status' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'owner' => '?string',
-            'owner_info' => '?\Upsun\Model\OwnerInfo',
-            'vendor' => '?string',
-            'plan' => '?string',
-            'environments' => '?int',
-            'storage' => '?int',
-            'user_licenses' => '?int',
-            'project_id' => '?string',
-            'project_endpoint' => '?string',
-            'project_title' => '?string',
-            'project_region' => '?string',
-            'project_region_label' => '?string',
-            'project_ui' => '?string',
-            'project_options' => '?\Upsun\Model\ProjectOptions',
-            'agency_site' => '?bool',
-            'invoiced' => '?bool',
-            'hipaa' => '?bool',
-            'is_trial_plan' => '?bool',
-            'services' => 'object[]',
-            'green' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

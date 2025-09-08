@@ -20,24 +20,6 @@ final class Backup implements JsonSerializable
     public const STATUS_CREATED = 'CREATED';
     public const STATUS_DELETING = 'DELETING';
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'id' => 'id',
-        'attributes' => 'attributes',
-        'status' => 'status',
-        'expiresAt' => 'expires_at',
-        'index' => 'index',
-        'commitId' => 'commit_id',
-        'environment' => 'environment',
-        'safe' => 'safe',
-        'sizeOfVolumes' => 'size_of_volumes',
-        'sizeUsed' => 'size_used',
-        'deployment' => 'deployment',
-        'restorable' => 'restorable',
-        'automated' => 'automated'
-    ];
-
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
@@ -57,33 +39,9 @@ final class Backup implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'id' => 'string',
-            'attributes' => 'string[]',
-            'status' => 'string',
-            'expires_at' => '?\DateTime',
-            'index' => '?int',
-            'commit_id' => 'string',
-            'environment' => 'string',
-            'safe' => 'bool',
-            'size_of_volumes' => '?int',
-            'size_used' => '?int',
-            'deployment' => '?string',
-            'restorable' => 'bool',
-            'automated' => 'bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

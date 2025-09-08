@@ -18,31 +18,15 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptions implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'total' => 'total',
-        'list' => 'list'
-    ];
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?array $list = [],
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'total' => '?string',
-            'list' => '\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

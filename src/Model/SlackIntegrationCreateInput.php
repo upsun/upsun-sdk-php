@@ -18,12 +18,6 @@ use JsonSerializable;
 final class SlackIntegrationCreateInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'token' => 'token',
-        'channel' => 'channel'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -31,21 +25,9 @@ final class SlackIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'token' => 'string',
-            'channel' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

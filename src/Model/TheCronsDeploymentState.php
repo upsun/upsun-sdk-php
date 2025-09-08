@@ -21,31 +21,15 @@ final class TheCronsDeploymentState implements JsonSerializable
     public const STATUS_RUNNING = 'running';
     public const STATUS_SLEEPING = 'sleeping';
 
-    private static array $attributeMap = [
-        'enabled' => 'enabled',
-        'status' => 'status'
-    ];
-
     public function __construct(
         private readonly bool $enabled,
         private readonly string $status,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enabled' => 'bool',
-            'status' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

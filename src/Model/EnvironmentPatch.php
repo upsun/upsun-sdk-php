@@ -21,18 +21,6 @@ final class EnvironmentPatch implements JsonSerializable
     public const TYPE_PRODUCTION = 'production';
     public const TYPE_STAGING = 'staging';
 
-    private static array $attributeMap = [
-        'name' => 'name',
-        'title' => 'title',
-        'attributes' => 'attributes',
-        'type' => 'type',
-        'parent' => 'parent',
-        'cloneParentOnCreate' => 'clone_parent_on_create',
-        'httpAccess' => 'http_access',
-        'enableSmtp' => 'enable_smtp',
-        'restrictRobots' => 'restrict_robots'
-    ];
-
     public function __construct(
         private readonly ?string $parent = null,
         private readonly ?string $name = null,
@@ -46,27 +34,9 @@ final class EnvironmentPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'name' => '?string',
-            'title' => '?string',
-            'attributes' => 'string[]',
-            'type' => '?string',
-            'parent' => '?string',
-            'clone_parent_on_create' => '?bool',
-            'http_access' => '?\Upsun\Model\HttpAccessPermissions1',
-            'enable_smtp' => '?bool',
-            'restrict_robots' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

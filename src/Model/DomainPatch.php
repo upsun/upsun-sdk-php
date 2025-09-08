@@ -18,31 +18,15 @@ use JsonSerializable;
 final class DomainPatch implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'attributes' => 'attributes',
-        'isDefault' => 'is_default'
-    ];
-
     public function __construct(
         private readonly ?array $attributes = [],
         private readonly ?bool $isDefault = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'attributes' => 'string[]',
-            'is_default' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

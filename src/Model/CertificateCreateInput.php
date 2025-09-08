@@ -18,13 +18,6 @@ use JsonSerializable;
 final class CertificateCreateInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'certificate' => 'certificate',
-        'key' => 'key',
-        'chain' => 'chain',
-        'isInvalid' => 'is_invalid'
-    ];
-
     public function __construct(
         private readonly string $certificate,
         private readonly string $key,
@@ -33,22 +26,9 @@ final class CertificateCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'certificate' => 'string',
-            'key' => 'string',
-            'chain' => 'string[]',
-            'is_invalid' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

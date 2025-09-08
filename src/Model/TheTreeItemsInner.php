@@ -23,13 +23,6 @@ final class TheTreeItemsInner implements JsonSerializable
     public const MODE__120000 = '120000';
     public const MODE__160000 = '160000';
 
-    private static array $attributeMap = [
-        'path' => 'path',
-        'mode' => 'mode',
-        'type' => 'type',
-        'sha' => 'sha'
-    ];
-
     public function __construct(
         private readonly string $path,
         private readonly string $mode,
@@ -38,22 +31,9 @@ final class TheTreeItemsInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'path' => 'string',
-            'mode' => 'string',
-            'type' => 'string',
-            'sha' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

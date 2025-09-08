@@ -18,31 +18,15 @@ use JsonSerializable;
 final class RestrictedAndDeniedImageTypes implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'only' => 'only',
-        'exclude' => 'exclude'
-    ];
-
     public function __construct(
         private readonly ?array $only = [],
         private readonly ?array $exclude = [],
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'only' => 'string[]',
-            'exclude' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

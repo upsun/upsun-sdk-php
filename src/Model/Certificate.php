@@ -18,20 +18,6 @@ use JsonSerializable;
 final class Certificate implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'certificate' => 'certificate',
-        'chain' => 'chain',
-        'isProvisioned' => 'is_provisioned',
-        'isInvalid' => 'is_invalid',
-        'isRoot' => 'is_root',
-        'domains' => 'domains',
-        'authType' => 'auth_type',
-        'issuer' => 'issuer',
-        'expiresAt' => 'expires_at'
-    ];
-
     public function __construct(
         private readonly string $certificate,
         private readonly array $chain,
@@ -47,29 +33,9 @@ final class Certificate implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'certificate' => 'string',
-            'chain' => 'string[]',
-            'is_provisioned' => 'bool',
-            'is_invalid' => 'bool',
-            'is_root' => 'bool',
-            'domains' => 'string[]',
-            'auth_type' => 'string[]',
-            'issuer' => '\Upsun\Model\TheIssuerOfTheCertificateInner[]',
-            'expires_at' => '\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

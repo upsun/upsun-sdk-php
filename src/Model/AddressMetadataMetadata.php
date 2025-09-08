@@ -18,12 +18,6 @@ use JsonSerializable;
 final class AddressMetadataMetadata implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'requiredFields' => 'required_fields',
-        'fieldLabels' => 'field_labels',
-        'showVat' => 'show_vat'
-    ];
-
     public function __construct(
         private readonly ?array $requiredFields = [],
         private readonly ?object $fieldLabels = null,
@@ -31,21 +25,9 @@ final class AddressMetadataMetadata implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'required_fields' => 'string[]',
-            'field_labels' => '?object',
-            'show_vat' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

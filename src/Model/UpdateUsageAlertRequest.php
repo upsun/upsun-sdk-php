@@ -18,28 +18,14 @@ use JsonSerializable;
 final class UpdateUsageAlertRequest implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'config' => 'config'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'config' => '?\Upsun\Model\CreateUsageAlertRequestConfig',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

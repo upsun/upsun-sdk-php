@@ -18,28 +18,14 @@ use JsonSerializable;
 final class OrganizationMFAEnforcement implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'enforceMfa' => 'enforce_mfa'
-    ];
-
     public function __construct(
         private readonly ?bool $enforceMfa = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'enforce_mfa' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,28 +18,14 @@ use JsonSerializable;
 final class GrantProjectTeamAccessRequestInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'teamId' => 'team_id'
-    ];
-
     public function __construct(
         private readonly string $teamId,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'team_id' => 'string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

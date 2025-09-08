@@ -18,12 +18,6 @@ use JsonSerializable;
 final class PerServiceResourcesOverridesValue implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'cpu' => 'cpu',
-        'memory' => 'memory',
-        'disk' => 'disk'
-    ];
-
     public function __construct(
         private readonly ?float $cpu = null,
         private readonly ?int $memory = null,
@@ -31,21 +25,9 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'cpu' => '?float',
-            'memory' => '?int',
-            'disk' => '?int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

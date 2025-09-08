@@ -18,14 +18,6 @@ use JsonSerializable;
 final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'formatted' => 'formatted',
-        'amount' => 'amount',
-        'currency' => 'currency',
-        'currencySymbol' => 'currency_symbol',
-        'unlimited' => 'unlimited'
-    ];
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?string $amount = null,
@@ -35,23 +27,9 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'formatted' => '?string',
-            'amount' => '?string',
-            'currency' => '?string',
-            'currency_symbol' => '?string',
-            'unlimited' => '?bool',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

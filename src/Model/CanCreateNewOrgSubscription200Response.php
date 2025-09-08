@@ -18,12 +18,6 @@ use JsonSerializable;
 final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'canCreate' => 'can_create',
-        'message' => 'message',
-        'requiredAction' => 'required_action'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
         private readonly ?bool $canCreate = null,
@@ -31,21 +25,9 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'can_create' => '?bool',
-            'message' => '?string',
-            'required_action' => '?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

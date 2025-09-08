@@ -18,20 +18,6 @@ use JsonSerializable;
 final class GetAddress200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'country' => 'country',
-        'nameLine' => 'name_line',
-        'premise' => 'premise',
-        'subPremise' => 'sub_premise',
-        'thoroughfare' => 'thoroughfare',
-        'administrativeArea' => 'administrative_area',
-        'subAdministrativeArea' => 'sub_administrative_area',
-        'locality' => 'locality',
-        'dependentLocality' => 'dependent_locality',
-        'postalCode' => 'postal_code',
-        'metadata' => 'metadata'
-    ];
-
     public function __construct(
         private readonly ?string $country = null,
         private readonly ?string $nameLine = null,
@@ -47,29 +33,9 @@ final class GetAddress200Response implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'country' => '?string',
-            'name_line' => '?string',
-            'premise' => '?string',
-            'sub_premise' => '?string',
-            'thoroughfare' => '?string',
-            'administrative_area' => '?string',
-            'sub_administrative_area' => '?string',
-            'locality' => '?string',
-            'dependent_locality' => '?string',
-            'postal_code' => '?string',
-            'metadata' => '?\Upsun\Model\AddressMetadataMetadata',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -24,31 +24,15 @@ final class CreateOrgMemberRequest implements JsonSerializable
     public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
     public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
 
-    private static array $attributeMap = [
-        'userId' => 'user_id',
-        'permissions' => 'permissions'
-    ];
-
     public function __construct(
         private readonly string $userId,
         private readonly ?array $permissions = [],
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'user_id' => 'string',
-            'permissions' => 'string[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

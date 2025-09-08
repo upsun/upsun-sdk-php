@@ -20,31 +20,15 @@ final class InvoicePDF implements JsonSerializable
     public const STATUS_READY = 'ready';
     public const STATUS_PENDING = 'pending';
 
-    private static array $attributeMap = [
-        'url' => 'url',
-        'status' => 'status'
-    ];
-
     public function __construct(
         private readonly ?string $url = null,
         private readonly ?string $status = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'url' => '?string',
-            'status' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

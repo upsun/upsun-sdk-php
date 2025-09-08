@@ -18,29 +18,6 @@ use JsonSerializable;
 final class CurrentUserProjectsInner implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'title' => 'title',
-        'cluster' => 'cluster',
-        'clusterLabel' => 'cluster_label',
-        'region' => 'region',
-        'regionLabel' => 'region_label',
-        'uri' => 'uri',
-        'endpoint' => 'endpoint',
-        'licenseId' => 'license_id',
-        'owner' => 'owner',
-        'ownerInfo' => 'owner_info',
-        'plan' => 'plan',
-        'subscriptionId' => 'subscription_id',
-        'status' => 'status',
-        'vendor' => 'vendor',
-        'vendorLabel' => 'vendor_label',
-        'vendorWebsite' => 'vendor_website',
-        'vendorResources' => 'vendor_resources',
-        'createdAt' => 'created_at'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $name = null,
@@ -65,38 +42,9 @@ final class CurrentUserProjectsInner implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'name' => '?string',
-            'title' => '?string',
-            'cluster' => '?string',
-            'cluster_label' => '?string',
-            'region' => '?string',
-            'region_label' => '?string',
-            'uri' => '?string',
-            'endpoint' => '?string',
-            'license_id' => '?int',
-            'owner' => '?string',
-            'owner_info' => '?\Upsun\Model\OwnerInfo',
-            'plan' => '?string',
-            'subscription_id' => '?int',
-            'status' => '?string',
-            'vendor' => '?string',
-            'vendor_label' => '?string',
-            'vendor_website' => '?string',
-            'vendor_resources' => '?string',
-            'created_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

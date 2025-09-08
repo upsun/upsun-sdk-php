@@ -18,28 +18,14 @@ use JsonSerializable;
 final class EnvironmentMergeInput implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'resources' => 'resources'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\Resources4 $resources = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'resources' => '?\Upsun\Model\Resources4',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

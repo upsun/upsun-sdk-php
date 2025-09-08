@@ -18,12 +18,6 @@ use JsonSerializable;
 final class ListTickets200Response implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'count' => 'count',
-        'tickets' => 'tickets',
-        'links' => '_links'
-    ];
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $tickets = [],
@@ -31,21 +25,9 @@ final class ListTickets200Response implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'count' => '?int',
-            'tickets' => '\Upsun\Model\Ticket[]',
-            '_links' => '?\Upsun\Model\HalLinks',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

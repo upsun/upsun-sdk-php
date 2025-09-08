@@ -18,24 +18,6 @@ use JsonSerializable;
 final class CurrentUser implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'uuid' => 'uuid',
-        'username' => 'username',
-        'displayName' => 'display_name',
-        'status' => 'status',
-        'mail' => 'mail',
-        'sshKeys' => 'ssh_keys',
-        'hasKey' => 'has_key',
-        'projects' => 'projects',
-        'sequence' => 'sequence',
-        'roles' => 'roles',
-        'picture' => 'picture',
-        'tickets' => 'tickets',
-        'trial' => 'trial',
-        'currentTrial' => 'current_trial'
-    ];
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $uuid = null,
@@ -55,33 +37,9 @@ final class CurrentUser implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'uuid' => '?string',
-            'username' => '?string',
-            'display_name' => '?string',
-            'status' => '?int',
-            'mail' => '?string',
-            'ssh_keys' => '\Upsun\Model\SSHKey[]',
-            'has_key' => '?bool',
-            'projects' => '\Upsun\Model\CurrentUserProjectsInner[]',
-            'sequence' => '?int',
-            'roles' => 'string[]',
-            'picture' => '?string',
-            'tickets' => '?object',
-            'trial' => '?bool',
-            'current_trial' => '\Upsun\Model\CurrentUserCurrentTrialInner[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,14 +18,6 @@ use JsonSerializable;
 final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'eUR' => 'EUR',
-        'uSD' => 'USD',
-        'gBP' => 'GBP',
-        'aUD' => 'AUD',
-        'cAD' => 'CAD'
-    ];
-
     public function __construct(
         private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR $eUR = null,
         private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD $uSD = null,
@@ -35,23 +27,9 @@ final class GetTypeAllowance200ResponseCurrencies implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'EUR' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR',
-            'USD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD',
-            'GBP' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP',
-            'AUD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD',
-            'CAD' => '?\Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

@@ -18,31 +18,15 @@ use JsonSerializable;
 final class AcceptedResponse implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'status' => 'status',
-        'code' => 'code'
-    ];
-
     public function __construct(
         private readonly string $status,
         private readonly int $code,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'status' => 'string',
-            'code' => 'int',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

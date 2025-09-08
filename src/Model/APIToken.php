@@ -18,16 +18,6 @@ use JsonSerializable;
 final class APIToken implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'mfaOnCreation' => 'mfa_on_creation',
-        'token' => 'token',
-        'createdAt' => 'created_at',
-        'updatedAt' => 'updated_at',
-        'lastUsedAt' => 'last_used_at'
-    ];
-
     public function __construct(
         private readonly ?\DateTime $lastUsedAt = null,
         private readonly ?string $id = null,
@@ -39,25 +29,9 @@ final class APIToken implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'id' => '?string',
-            'name' => '?string',
-            'mfa_on_creation' => '?bool',
-            'token' => '?string',
-            'created_at' => '?\DateTime',
-            'updated_at' => '?\DateTime',
-            'last_used_at' => '?\DateTime',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

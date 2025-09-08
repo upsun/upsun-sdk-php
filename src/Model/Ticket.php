@@ -52,44 +52,6 @@ final class Ticket implements JsonSerializable
     public const TICKET_SHARING_STATUS_TS_SOLVED_BY_PLATFORM = 'ts_solved_by_platform';
     public const TICKET_SHARING_STATUS_TS_REJECTED_BY_PLATFORM = 'ts_rejected_by_platform';
 
-    private static array $attributeMap = [
-        'ticketId' => 'ticket_id',
-        'created' => 'created',
-        'updated' => 'updated',
-        'type' => 'type',
-        'subject' => 'subject',
-        'description' => 'description',
-        'priority' => 'priority',
-        'followupTid' => 'followup_tid',
-        'status' => 'status',
-        'recipient' => 'recipient',
-        'requesterId' => 'requester_id',
-        'submitterId' => 'submitter_id',
-        'assigneeId' => 'assignee_id',
-        'organizationId' => 'organization_id',
-        'collaboratorIds' => 'collaborator_ids',
-        'hasIncidents' => 'has_incidents',
-        'due' => 'due',
-        'tags' => 'tags',
-        'subscriptionId' => 'subscription_id',
-        'ticketGroup' => 'ticket_group',
-        'supportPlan' => 'support_plan',
-        'affectedUrl' => 'affected_url',
-        'queue' => 'queue',
-        'issueType' => 'issue_type',
-        'resolutionTime' => 'resolution_time',
-        'responseTime' => 'response_time',
-        'projectUrl' => 'project_url',
-        'region' => 'region',
-        'category' => 'category',
-        'environment' => 'environment',
-        'ticketSharingStatus' => 'ticket_sharing_status',
-        'applicationTicketUrl' => 'application_ticket_url',
-        'infrastructureTicketUrl' => 'infrastructure_ticket_url',
-        'jira' => 'jira',
-        'zdTicketUrl' => 'zd_ticket_url'
-    ];
-
     public function __construct(
         private readonly ?int $ticketId = null,
         private readonly ?\DateTime $created = null,
@@ -129,53 +91,9 @@ final class Ticket implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'ticket_id' => '?int',
-            'created' => '?\DateTime',
-            'updated' => '?\DateTime',
-            'type' => '?string',
-            'subject' => '?string',
-            'description' => '?string',
-            'priority' => '?string',
-            'followup_tid' => '?string',
-            'status' => '?string',
-            'recipient' => '?string',
-            'requester_id' => '?string',
-            'submitter_id' => '?string',
-            'assignee_id' => '?string',
-            'organization_id' => '?string',
-            'collaborator_ids' => 'string[]',
-            'has_incidents' => '?bool',
-            'due' => '?\DateTime',
-            'tags' => 'string[]',
-            'subscription_id' => '?string',
-            'ticket_group' => '?string',
-            'support_plan' => '?string',
-            'affected_url' => '?string',
-            'queue' => '?string',
-            'issue_type' => '?string',
-            'resolution_time' => '?\DateTime',
-            'response_time' => '?\DateTime',
-            'project_url' => '?string',
-            'region' => '?string',
-            'category' => '?string',
-            'environment' => '?string',
-            'ticket_sharing_status' => '?string',
-            'application_ticket_url' => '?string',
-            'infrastructure_ticket_url' => '?string',
-            'jira' => '\Upsun\Model\TicketJiraInner[]',
-            'zd_ticket_url' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

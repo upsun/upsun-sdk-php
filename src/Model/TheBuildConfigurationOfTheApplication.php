@@ -18,31 +18,15 @@ use JsonSerializable;
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
 
-    private static array $attributeMap = [
-        'flavor' => 'flavor',
-        'caches' => 'caches'
-    ];
-
     public function __construct(
         private readonly array $caches,
         private readonly ?string $flavor = null,
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'flavor' => '?string',
-            'caches' => '\Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array

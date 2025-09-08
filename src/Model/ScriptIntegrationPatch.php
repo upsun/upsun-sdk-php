@@ -21,16 +21,6 @@ final class ScriptIntegrationPatch implements JsonSerializable
     public const RESULT_FAILURE = 'failure';
     public const RESULT_SUCCESS = 'success';
 
-    private static array $attributeMap = [
-        'type' => 'type',
-        'script' => 'script',
-        'events' => 'events',
-        'environments' => 'environments',
-        'excludedEnvironments' => 'excluded_environments',
-        'states' => 'states',
-        'result' => 'result'
-    ];
-
     public function __construct(
         private readonly string $type,
         private readonly string $script,
@@ -42,25 +32,9 @@ final class ScriptIntegrationPatch implements JsonSerializable
     ) {
     }
 
-    public static function attributeMap()
+    public static function getModelName(): string
     {
-        return self::$attributeMap;
-    }
-
-    /**
-     * Array of property to type mappings. Used for (de)serialization (ObjectSerializer)
-     */
-    public static function openAPITypes(): array
-    {
-        return [
-            'type' => 'string',
-            'script' => 'string',
-            'events' => 'string[]',
-            'environments' => 'string[]',
-            'excluded_environments' => 'string[]',
-            'states' => 'string[]',
-            'result' => '?string',
-        ];
+        return self::class;
     }
 
     public function jsonSerialize(): array
