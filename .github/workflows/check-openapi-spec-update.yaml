@@ -30,6 +30,11 @@ jobs:
                     echo "Patch OpenAPI spec..."
                     sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
 
+            -   name: Remove existing Api and Model Classes
+                run: |
+                    rm -Rf src/Api/*
+                    rm -Rf src/Model/*
+
             -   name: Patch openapispec-platformsh.yaml (add x-<info> for better generation)
                 run: |
                     php templates/pre-processing/preprocess_openapi.php
