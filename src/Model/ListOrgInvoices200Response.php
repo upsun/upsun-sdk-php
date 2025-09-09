@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListOrgInvoices200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $items = [],
     ) {
@@ -41,11 +39,10 @@ final class ListOrgInvoices200Response implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Invoice[]|null
+     * @return Invoice[]|null
      */
     public function getItems(): ?array
     {
         return $this->items;
     }
 }
-

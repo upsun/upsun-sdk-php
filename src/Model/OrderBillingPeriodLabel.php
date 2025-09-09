@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrderBillingPeriodLabel implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $formatted = null,
         private readonly ?string $month = null,
@@ -46,44 +44,23 @@ final class OrderBillingPeriodLabel implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The renderable label for the billing cycle.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The month of the billing cycle.
-     *
-     * @return string|null
-     */
     public function getMonth(): ?string
     {
         return $this->month;
     }
 
-    /**
-     * The year of the billing cycle.
-     *
-     * @return string|null
-     */
     public function getYear(): ?string
     {
         return $this->year;
     }
 
-    /**
-     * The name of the next month following this billing cycle.
-     *
-     * @return string|null
-     */
     public function getNextMonth(): ?string
     {
         return $this->nextMonth;
     }
 }
-

@@ -13,6 +13,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use InvalidArgumentException;
 
 final class OrganizationProjectType implements JsonSerializable
 {
@@ -20,30 +21,24 @@ final class OrganizationProjectType implements JsonSerializable
      * Possible values of this enum
      */
     public const GRID = 'grid';
-
     public const DEDICATED = 'dedicated';
-
-
     private string $value;
 
     /**
      * Constructor
      *
-     * @param string $value one of the allowable enum values
-     * @throws \InvalidArgumentException if value is not allowed
+     * @throws InvalidArgumentException if value is not allowed
      */
     public function __construct(string $value)
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
-            throw new \InvalidArgumentException("Invalid value '{$value}' for enum OrganizationProjectType");
+            throw new InvalidArgumentException("Invalid value '{$value}' for enum OrganizationProjectType");
         }
         $this->value = $value;
     }
 
     /**
      * Get the enum value
-     *
-     * @return string
      */
     public function getValue(): string
     {
@@ -73,4 +68,3 @@ final class OrganizationProjectType implements JsonSerializable
         return $this->value;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EmailIntegrationCreateInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
@@ -44,28 +42,18 @@ final class EmailIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string[]
-     */
     public function getRecipients(): array
     {
         return $this->recipients;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 }
-

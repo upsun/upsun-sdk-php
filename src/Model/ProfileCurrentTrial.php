@@ -12,23 +12,20 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProfileCurrentTrial implements JsonSerializable
 {
-    public const PENDING_VERIFICATION_CREDIT_CARD = 'credit-card';
-
     public function __construct(
         private readonly ?string $pendingVerification = null,
         private readonly ?bool $active = null,
-        private readonly ?\DateTime $created = null,
+        private readonly ?string $created = null,
         private readonly ?string $description = null,
-        private readonly ?\DateTime $expiration = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialCurrent $current = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialSpend $spend = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialSpendRemaining $spendRemaining = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialProjects $projects = null,
+        private readonly ?string $expiration = null,
+        private readonly ?ProfileCurrentTrialCurrent $current = null,
+        private readonly ?ProfileCurrentTrialSpend $spend = null,
+        private readonly ?ProfileCurrentTrialSpendRemaining $spendRemaining = null,
+        private readonly ?ProfileCurrentTrialProjects $projects = null,
         private readonly ?string $model = null,
         private readonly ?int $daysRemaining = null,
     ) {
@@ -61,106 +58,58 @@ final class ProfileCurrentTrial implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The trial active status.
-     *
-     * @return bool|null
-     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * The trial creation date.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreated(): ?\DateTime
+    public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    /**
-     * The trial description.
-     *
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * The trial expiration-date.
-     *
-     * @return \DateTime|null
-     */
-    public function getExpiration(): ?\DateTime
+    public function getExpiration(): ?string
     {
         return $this->expiration;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrialCurrent|null
-     */
-    public function getCurrent(): ?\Upsun\Model\ProfileCurrentTrialCurrent
+    public function getCurrent(): ?ProfileCurrentTrialCurrent
     {
         return $this->current;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrialSpend|null
-     */
-    public function getSpend(): ?\Upsun\Model\ProfileCurrentTrialSpend
+    public function getSpend(): ?ProfileCurrentTrialSpend
     {
         return $this->spend;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrialSpendRemaining|null
-     */
-    public function getSpendRemaining(): ?\Upsun\Model\ProfileCurrentTrialSpendRemaining
+    public function getSpendRemaining(): ?ProfileCurrentTrialSpendRemaining
     {
         return $this->spendRemaining;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrialProjects|null
-     */
-    public function getProjects(): ?\Upsun\Model\ProfileCurrentTrialProjects
+    public function getProjects(): ?ProfileCurrentTrialProjects
     {
         return $this->projects;
     }
 
-    /**
-     * Required verification method (if applicable).
-     *
-     * @return string|null
-     */
     public function getPendingVerification(): ?string
     {
         return $this->pendingVerification;
     }
 
-    /**
-     * The trial trial model.
-     *
-     * @return string|null
-     */
     public function getModel(): ?string
     {
         return $this->model;
     }
 
-    /**
-     * The amount of days until the trial expires.
-     *
-     * @return int|null
-     */
     public function getDaysRemaining(): ?int
     {
         return $this->daysRemaining;
     }
 }
-

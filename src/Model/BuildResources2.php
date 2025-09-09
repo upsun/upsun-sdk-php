@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class BuildResources2 implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?float $cpu = null,
+        private readonly ?number $cpu = null,
         private readonly ?int $memory = null,
     ) {
     }
@@ -42,20 +40,13 @@ final class BuildResources2 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return float|null
-     */
-    public function getCpu(): ?float
+    public function getCpu(): ?number
     {
         return $this->cpu;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMemory(): ?int
     {
         return $this->memory;
     }
 }
-

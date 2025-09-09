@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Firewall implements JsonSerializable
 {
-
     public function __construct(
         private readonly array $outbound,
     ) {
@@ -41,11 +39,10 @@ final class Firewall implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\OutboundFirewallRestrictionsInner[]
+     * @return OutboundFirewallRestrictionsInner[]
      */
     public function getOutbound(): array
     {
         return $this->outbound;
     }
 }
-

@@ -19,7 +19,6 @@ foreach ($spec['paths'] as $path => &$methods) {
     preg_match_all('/\{([^\}]+)\}/', $path, $matches);
     $pathParams = $matches[1] ?? [];
 
-    //var_dump($path);
     foreach ($methods as $httpMethod => &$operation) {
         if (!is_array($operation) || $httpMethod == "parameters") {
             continue;
@@ -72,29 +71,13 @@ foreach ($spec['paths'] as $path => &$methods) {
                     ) {
                         $itemsSchema = $schema['properties']['items'];
                         $refs = collectMainRefs($itemsSchema, $spec);
-                        
-//                        if($path == "/organizations") {
-//                            var_dump($itemsSchema, $refs);die();
-//                        }
-                        //$returnTypes = array_merge($returnTypes, []);
-                        $phpDoc = $refs['phpdoc'] ?? null;
                     } else {
-                        // Sinon traitement normal
                         $refs = collectMainRefs($schema, $spec);
-                        //var_dump($refs);
                         $returnTypes = array_merge($returnTypes, $refs['refs'] ?? []);
-                        $phpDoc = $refs['phpdoc'] ?? null;
                     }
-                    
-                    
-                    //if(isset($refs['phpDoc'])){
-                    //    var_dump($refs);die();
-                    //}
-//                    foreach ($refs as $ref) {
-//                        $returnTypes[] = $ref;
-//                    }
+                    $phpDoc = $refs['phpdoc'] ?? null;
                 } else {
-                    // Si pas de schema, déterminer type via content-type
+                    // If no schema, guess type via content-type
                     $contentTypes = array_keys($resp['content'] ?? []);
                     if (in_array('application/pdf', $contentTypes)) {
                         $returnTypes[] = 'string';

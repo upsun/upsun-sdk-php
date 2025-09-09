@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializable
 {
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_VIEWER = 'viewer';
-    public const ROLE_CONTRIBUTOR = 'contributor';
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $role = null,
@@ -45,24 +40,13 @@ final class CreateProjectInviteRequestEnvironmentsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the environment.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The role the invitee should be given on the environment.
-     *
-     * @return string|null
-     */
     public function getRole(): ?string
     {
         return $this->role;
     }
 }
-

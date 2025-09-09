@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $threshold = null,
         private readonly ?string $mode = null,
@@ -42,24 +40,13 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The amount after which a billing alert should be triggered.
-     *
-     * @return int|null
-     */
     public function getThreshold(): ?int
     {
         return $this->threshold;
     }
 
-    /**
-     * The mode in which the alert is triggered.
-     *
-     * @return string|null
-     */
     public function getMode(): ?string
     {
         return $this->mode;
     }
 }
-

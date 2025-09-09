@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?float $cpu = null,
-        private readonly ?float $memory = null,
-        private readonly ?float $storage = null,
+        private readonly ?number $cpu = null,
+        private readonly ?number $memory = null,
+        private readonly ?number $storage = null,
         private readonly ?int $environments = null,
     ) {
     }
@@ -46,44 +44,23 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total cpu for this subsciption.
-     *
-     * @return float|null
-     */
-    public function getCpu(): ?float
+    public function getCpu(): ?number
     {
         return $this->cpu;
     }
 
-    /**
-     * The total memory for this subsciption.
-     *
-     * @return float|null
-     */
-    public function getMemory(): ?float
+    public function getMemory(): ?number
     {
         return $this->memory;
     }
 
-    /**
-     * The total storage for this subsciption.
-     *
-     * @return float|null
-     */
-    public function getStorage(): ?float
+    public function getStorage(): ?number
     {
         return $this->storage;
     }
 
-    /**
-     * The total environments for this subsciption.
-     *
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 }
-

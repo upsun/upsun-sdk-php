@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Address implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $country = null,
         private readonly ?string $nameLine = null,
@@ -58,104 +56,53 @@ final class Address implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Two-letter country codes are used to represent countries and states
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    /**
-     * The full name of the user
-     *
-     * @return string|null
-     */
     public function getNameLine(): ?string
     {
         return $this->nameLine;
     }
 
-    /**
-     * Premise (i.e. Apt, Suite, Bldg.)
-     *
-     * @return string|null
-     */
     public function getPremise(): ?string
     {
         return $this->premise;
     }
 
-    /**
-     * Sub Premise (i.e. Suite, Apartment, Floor, Unknown.
-     *
-     * @return string|null
-     */
     public function getSubPremise(): ?string
     {
         return $this->subPremise;
     }
 
-    /**
-     * The address of the user
-     *
-     * @return string|null
-     */
     public function getThoroughfare(): ?string
     {
         return $this->thoroughfare;
     }
 
-    /**
-     * The administrative area of the user address
-     *
-     * @return string|null
-     */
     public function getAdministrativeArea(): ?string
     {
         return $this->administrativeArea;
     }
 
-    /**
-     * The sub-administrative area of the user address
-     *
-     * @return string|null
-     */
     public function getSubAdministrativeArea(): ?string
     {
         return $this->subAdministrativeArea;
     }
 
-    /**
-     * The locality of the user address
-     *
-     * @return string|null
-     */
     public function getLocality(): ?string
     {
         return $this->locality;
     }
 
-    /**
-     * The dependant_locality area of the user address
-     *
-     * @return string|null
-     */
     public function getDependentLocality(): ?string
     {
         return $this->dependentLocality;
     }
 
-    /**
-     * The postal code area of the user address
-     *
-     * @return string|null
-     */
     public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 }
-

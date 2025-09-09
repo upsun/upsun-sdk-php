@@ -12,31 +12,29 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Deployment implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $clusterName,
-        private readonly \Upsun\Model\ProjectInfo $projectInfo,
-        private readonly \Upsun\Model\EnvironmentInfo $environmentInfo,
+        private readonly ProjectInfo $projectInfo,
+        private readonly EnvironmentInfo $environmentInfo,
         private readonly string $deploymentTarget,
-        private readonly \Upsun\Model\HttpAccessPermissions $httpAccess,
+        private readonly HttpAccessPermissions $httpAccess,
         private readonly bool $enableSmtp,
         private readonly bool $restrictRobots,
         private readonly array $variables,
         private readonly array $access,
-        private readonly \Upsun\Model\Subscription1 $subscription,
+        private readonly Subscription1 $subscription,
         private readonly array $services,
         private readonly array $routes,
         private readonly array $webapps,
         private readonly array $workers,
         private readonly array $containerProfiles,
-        private readonly ?\Upsun\Model\VPNConfiguration $vpn = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?VPNConfiguration $vpn = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $fingerprint = null,
     ) {
     }
@@ -76,72 +74,48 @@ final class Deployment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getClusterName(): string
     {
         return $this->clusterName;
     }
 
-    /**
-     * @return \Upsun\Model\ProjectInfo
-     */
-    public function getProjectInfo(): \Upsun\Model\ProjectInfo
+    public function getProjectInfo(): ProjectInfo
     {
         return $this->projectInfo;
     }
 
-    /**
-     * @return \Upsun\Model\EnvironmentInfo
-     */
-    public function getEnvironmentInfo(): \Upsun\Model\EnvironmentInfo
+    public function getEnvironmentInfo(): EnvironmentInfo
     {
         return $this->environmentInfo;
     }
 
-    /**
-     * @return string
-     */
     public function getDeploymentTarget(): string
     {
         return $this->deploymentTarget;
     }
 
-    /**
-     * @return \Upsun\Model\VPNConfiguration|null
-     */
-    public function getVpn(): ?\Upsun\Model\VPNConfiguration
+    public function getVpn(): ?VPNConfiguration
     {
         return $this->vpn;
     }
 
-    /**
-     * @return \Upsun\Model\HttpAccessPermissions
-     */
-    public function getHttpAccess(): \Upsun\Model\HttpAccessPermissions
+    public function getHttpAccess(): HttpAccessPermissions
     {
         return $this->httpAccess;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableSmtp(): bool
     {
         return $this->enableSmtp;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestrictRobots(): bool
     {
         return $this->restrictRobots;
     }
 
     /**
-     * @return \Upsun\Model\TheVariablesApplyingToThisEnvironmentInner[]
+     * @return TheVariablesApplyingToThisEnvironmentInner[]
      */
     public function getVariables(): array
     {
@@ -149,23 +123,20 @@ final class Deployment implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\AccessControlDefinitionForThisEnviromentInner[]
+     * @return AccessControlDefinitionForThisEnviromentInner[]
      */
     public function getAccess(): array
     {
         return $this->access;
     }
 
-    /**
-     * @return \Upsun\Model\Subscription1
-     */
-    public function getSubscription(): \Upsun\Model\Subscription1
+    public function getSubscription(): Subscription1
     {
         return $this->subscription;
     }
 
     /**
-     * @return \Upsun\Model\ServicesValue[]
+     * @return ServicesValue[]
      */
     public function getServices(): array
     {
@@ -173,7 +144,7 @@ final class Deployment implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\RoutesValue[]
+     * @return RoutesValue[]
      */
     public function getRoutes(): array
     {
@@ -181,7 +152,7 @@ final class Deployment implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\WebApplicationsValue[]
+     * @return WebApplicationsValue[]
      */
     public function getWebapps(): array
     {
@@ -189,43 +160,30 @@ final class Deployment implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\WorkersValue[]
+     * @return WorkersValue[]
      */
     public function getWorkers(): array
     {
         return $this->workers;
     }
 
-    /**
-     * @return array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>
-     */
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFingerprint(): ?string
     {
         return $this->fingerprint;
     }
 }
-

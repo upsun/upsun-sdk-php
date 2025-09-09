@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GetTotpEnrollment200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $issuer = null,
         private readonly ?string $accountName = null,
@@ -46,44 +44,23 @@ final class GetTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * 
-     *
-     * @return string|null
-     */
     public function getIssuer(): ?string
     {
         return $this->issuer;
     }
 
-    /**
-     * Account name for the enrollment.
-     *
-     * @return string|null
-     */
     public function getAccountName(): ?string
     {
         return $this->accountName;
     }
 
-    /**
-     * The secret seed for the enrollment
-     *
-     * @return string|null
-     */
     public function getSecret(): ?string
     {
         return $this->secret;
     }
 
-    /**
-     * Data URI of a PNG QR code image for the enrollment.
-     *
-     * @return string|null
-     */
     public function getQrCode(): ?string
     {
         return $this->qrCode;
     }
 }
-

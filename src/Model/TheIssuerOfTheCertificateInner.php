@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheIssuerOfTheCertificateInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $oid,
         private readonly string $value,
@@ -44,28 +42,18 @@ final class TheIssuerOfTheCertificateInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getOid(): string
     {
         return $this->oid;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAlias(): ?string
     {
         return $this->alias;
     }
 
-    /**
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 }
-

@@ -1,3 +1,5 @@
+use InvalidArgumentException;
+
 final class {{classname}} implements JsonSerializable
 {
     /**
@@ -11,30 +13,25 @@ final class {{classname}} implements JsonSerializable
      */
     {{/enumDescription}}
     public const {{{name}}} = {{{value}}};
-
     {{/enumVars}}
     {{/allowableValues}}
-
     private string $value;
 
     /**
      * Constructor
      *
-     * @param string $value one of the allowable enum values
-     * @throws \InvalidArgumentException if value is not allowed
+     * @throws InvalidArgumentException if value is not allowed
      */
     public function __construct(string $value)
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
-            throw new \InvalidArgumentException("Invalid value '{$value}' for enum {{classname}}");
+            throw new InvalidArgumentException("Invalid value '{$value}' for enum {{classname}}");
         }
         $this->value = $value;
     }
 
     /**
      * Get the enum value
-     *
-     * @return string
      */
     public function getValue(): string
     {

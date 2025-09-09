@@ -5,13 +5,14 @@ packageName: upsun-client
 templateDir: ./templates/php
 library: psr-18
 generateSupportingFiles: true
+filesToSkip: ["FormDataProcessor.php"]
 
 additionalProperties:
   invokerPackage: Upsun
   apiPackage: Api
   modelPackage: Model
   srcBasePath: src
-  testBasePath: tests
+  testsBasePath: tests
   composerVendor: upsun
   composerProject: upsun-sdk-php
   licenseName: Apache-2.0

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Tree implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $sha,
         private readonly array $tree,
@@ -42,20 +40,16 @@ final class Tree implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSha(): string
     {
         return $this->sha;
     }
 
     /**
-     * @return \Upsun\Model\TheTreeItemsInner[]
+     * @return TheTreeItemsInner[]
      */
     public function getTree(): array
     {
         return $this->tree;
     }
 }
-

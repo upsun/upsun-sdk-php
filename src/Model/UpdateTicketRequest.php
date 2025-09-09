@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class UpdateTicketRequest implements JsonSerializable
 {
-    public const STATUS_OPEN = 'open';
-    public const STATUS_SOLVED = 'solved';
-
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?array $collaboratorIds = [],
@@ -46,34 +42,18 @@ final class UpdateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The status of the support ticket.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * A list of collaborators uuids for the ticket.
-     *
-     * @return string[]|null
-     */
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
 
-    /**
-     * Whether or not should replace ticket collaborators with the provided values. If false, the collaborators will be appended.
-     *
-     * @return bool|null
-     */
     public function getCollaboratorsReplace(): ?bool
     {
         return $this->collaboratorsReplace;
     }
 }
-

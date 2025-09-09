@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SystemInformation implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $version,
         private readonly string $image,
-        private readonly \DateTime $startedAt,
+        private readonly string $startedAt,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class SystemInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getVersion(): string
     {
         return $this->version;
     }
 
-    /**
-     * @return string
-     */
     public function getImage(): string
     {
         return $this->image;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getStartedAt(): \DateTime
+    public function getStartedAt(): string
     {
         return $this->startedAt;
     }
 }
-

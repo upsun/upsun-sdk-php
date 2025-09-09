@@ -236,27 +236,8 @@ class UpsunClient
         );
     }
 
-    public function getUserId()
-    {
-        if (!$this->userId) {
-            $this->userId = $this->user->me()->getId();
-        }
-
-        return $this->userId;
-    }
-
-    public function getToken()
+    public function getToken(): string
     {
         return $this->upsunConfig->apiToken;
-    }
-
-    public function getApiClient(): HttplugClient
-    {
-        return $this->apiClient;
-    }
-
-    public function getApiConfig(): Configuration
-    {
-        return $this->apiConfig;
     }
 }

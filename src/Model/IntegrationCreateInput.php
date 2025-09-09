@@ -12,26 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class IntegrationCreateInput implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-    public const PROTOCOL_TCP = 'tcp';
-    public const PROTOCOL_TLS = 'tls';
-    public const PROTOCOL_UDP = 'udp';
-    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
-    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
-    public const AUTH_MODE_PREFIX = 'prefix';
-    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
-
     public function __construct(
         private readonly string $type,
         private readonly string $repository,
@@ -46,8 +30,8 @@ final class IntegrationCreateInput implements JsonSerializable
         private readonly string $licenseKey,
         private readonly string $script,
         private readonly string $index,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional1 $addonCredentials = null,
+        private readonly ?TheOAuth2ConsumerInformationOptional1 $appCredentials = null,
+        private readonly ?TheAddonCredentialInformationOptional1 $addonCredentials = null,
         private readonly ?string $fromAddress = null,
         private readonly ?string $sharedKey = null,
         private readonly ?bool $fetchBranches = null,
@@ -144,372 +128,233 @@ final class IntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return string
-     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
 
-    /**
-     * @return string[]
-     */
     public function getRecipients(): array
     {
         return $this->recipients;
     }
 
-    /**
-     * @return string
-     */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 
-    /**
-     * @return string
-     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 
-    /**
-     * @return string
-     */
     public function getLicenseKey(): string
     {
         return $this->licenseKey;
     }
 
-    /**
-     * @return string
-     */
     public function getScript(): string
     {
         return $this->script;
     }
 
-    /**
-     * @return string
-     */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional1|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional1
+    public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional1
     {
         return $this->appCredentials;
     }
 
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional1|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional1
+    public function getAddonCredentials(): ?TheAddonCredentialInformationOptional1
     {
         return $this->addonCredentials;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getResyncPullRequests(): ?bool
     {
         return $this->resyncPullRequests;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getStates(): ?array
     {
         return $this->states;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildDraftPullRequests(): ?bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequestsPostMerge(): ?bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSourcetype(): ?string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    /**
-     * @return string|null
-     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthMode(): ?string
     {
         return $this->authMode;
     }
 }
-

@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DiscountCommitment implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $months = null,
-        private readonly ?\Upsun\Model\DiscountCommitmentAmount $amount = null,
-        private readonly ?\Upsun\Model\DiscountCommitmentNet $net = null,
+        private readonly ?DiscountCommitmentAmount $amount = null,
+        private readonly ?DiscountCommitmentNet $net = null,
     ) {
     }
 
@@ -44,30 +42,18 @@ final class DiscountCommitment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Commitment period length in months.
-     *
-     * @return int|null
-     */
     public function getMonths(): ?int
     {
         return $this->months;
     }
 
-    /**
-     * @return \Upsun\Model\DiscountCommitmentAmount|null
-     */
-    public function getAmount(): ?\Upsun\Model\DiscountCommitmentAmount
+    public function getAmount(): ?DiscountCommitmentAmount
     {
         return $this->amount;
     }
 
-    /**
-     * @return \Upsun\Model\DiscountCommitmentNet|null
-     */
-    public function getNet(): ?\Upsun\Model\DiscountCommitmentNet
+    public function getNet(): ?DiscountCommitmentNet
     {
         return $this->net;
     }
 }
-

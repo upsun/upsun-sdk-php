@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationAddonsObjectCurrent implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $userManagement = [],
         private readonly ?array $supportLevel = [],
@@ -42,24 +40,13 @@ final class OrganizationAddonsObjectCurrent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Information about the type of user management currently selected.
-     *
-     * @return array<string,float>|null
-     */
     public function getUserManagement(): ?array
     {
         return $this->userManagement;
     }
 
-    /**
-     * Information about the level of support currently selected.
-     *
-     * @return array<string,float>|null
-     */
     public function getSupportLevel(): ?array
     {
         return $this->supportLevel;
     }
 }
-

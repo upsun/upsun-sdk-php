@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $spec,
-        private readonly \Upsun\Model\TheCommandsDefinition $commands,
+        private readonly TheCommandsDefinition $commands,
         private readonly int $timeout,
         private readonly ?int $shutdownTimeout = null,
         private readonly ?string $cmd = null,
@@ -48,44 +46,28 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSpec(): string
     {
         return $this->spec;
     }
 
-    /**
-     * @return \Upsun\Model\TheCommandsDefinition
-     */
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    public function getCommands(): TheCommandsDefinition
     {
         return $this->commands;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeout(): int
     {
         return $this->timeout;
     }
 
-    /**
-     * @return int|null
-     */
     public function getShutdownTimeout(): ?int
     {
         return $this->shutdownTimeout;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCmd(): ?string
     {
         return $this->cmd;
     }
 }
-

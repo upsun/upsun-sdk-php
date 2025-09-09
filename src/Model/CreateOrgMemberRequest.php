@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateOrgMemberRequest implements JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
-    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
-
     public function __construct(
         private readonly string $userId,
         private readonly ?array $permissions = [],
@@ -48,24 +40,13 @@ final class CreateOrgMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the user.
-     *
-     * @return string
-     */
     public function getUserId(): string
     {
         return $this->userId;
     }
 
-    /**
-     * The organization member permissions.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 }
-

@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $formatted = null,
-        private readonly ?float $amount = null,
+        private readonly ?number $amount = null,
         private readonly ?string $currencyCode = null,
         private readonly ?string $currencySymbol = null,
     ) {
@@ -46,44 +44,23 @@ final class PrepaymentObjectPrepaymentBalance implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Formatted balance.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The balance amount.
-     *
-     * @return float|null
-     */
-    public function getAmount(): ?float
+    public function getAmount(): ?number
     {
         return $this->amount;
     }
 
-    /**
-     * The balance currency code.
-     *
-     * @return string|null
-     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * The balance currency symbol.
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 }
-

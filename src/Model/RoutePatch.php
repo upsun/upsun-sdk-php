@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class RoutePatch implements JsonSerializable
 {
-    public const TYPE_PROXY = 'proxy';
-    public const TYPE_REDIRECT = 'redirect';
-    public const TYPE_UPSTREAM = 'upstream';
-
     public function __construct(
         private readonly string $type,
         private readonly string $to,
@@ -29,10 +24,10 @@ final class RoutePatch implements JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?array $attributes = [],
-        private readonly ?\Upsun\Model\TLSSettingsForTheRoute1 $tls = null,
-        private readonly ?\Upsun\Model\TheConfigurationOfTheRedirects1 $redirects = null,
-        private readonly ?\Upsun\Model\CacheConfiguration1 $cache = null,
-        private readonly ?\Upsun\Model\ServerSideIncludeConfiguration $ssi = null,
+        private readonly ?TLSSettingsForTheRoute1 $tls = null,
+        private readonly ?TheConfigurationOfTheRedirects1 $redirects = null,
+        private readonly ?CacheConfiguration1 $cache = null,
+        private readonly ?ServerSideIncludeConfiguration $ssi = null,
     ) {
     }
 
@@ -63,92 +58,58 @@ final class RoutePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getTo(): string
     {
         return $this->to;
     }
 
-    /**
-     * @return string
-     */
     public function getUpstream(): string
     {
         return $this->upstream;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPrimary(): ?bool
     {
         return $this->primary;
     }
 
-    /**
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return \Upsun\Model\TLSSettingsForTheRoute1|null
-     */
-    public function getTls(): ?\Upsun\Model\TLSSettingsForTheRoute1
+    public function getTls(): ?TLSSettingsForTheRoute1
     {
         return $this->tls;
     }
 
-    /**
-     * @return \Upsun\Model\TheConfigurationOfTheRedirects1|null
-     */
-    public function getRedirects(): ?\Upsun\Model\TheConfigurationOfTheRedirects1
+    public function getRedirects(): ?TheConfigurationOfTheRedirects1
     {
         return $this->redirects;
     }
 
-    /**
-     * @return \Upsun\Model\CacheConfiguration1|null
-     */
-    public function getCache(): ?\Upsun\Model\CacheConfiguration1
+    public function getCache(): ?CacheConfiguration1
     {
         return $this->cache;
     }
 
-    /**
-     * @return \Upsun\Model\ServerSideIncludeConfiguration|null
-     */
-    public function getSsi(): ?\Upsun\Model\ServerSideIncludeConfiguration
+    public function getSsi(): ?ServerSideIncludeConfiguration
     {
         return $this->ssi;
     }
 }
-

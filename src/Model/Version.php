@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Version implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $locked,
-        private readonly \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
+        private readonly ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
         private readonly ?string $commit = null,
     ) {
     }
@@ -44,28 +42,18 @@ final class Version implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getCommit(): ?string
     {
         return $this->commit;
     }
 
-    /**
-     * @return bool
-     */
     public function getLocked(): bool
     {
         return $this->locked;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
-     */
-    public function getRouting(): \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion
+    public function getRouting(): ConfigurationAboutTheTrafficRoutedToThisVersion
     {
         return $this->routing;
     }
 }
-

@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class User implements JsonSerializable
 {
-    public const CONSENT_METHOD_OPT_IN = 'opt-in';
-    public const CONSENT_METHOD_TEXT_REF = 'text-ref';
-
     public function __construct(
         private readonly string $id,
         private readonly bool $deactivated,
@@ -33,9 +29,9 @@ final class User implements JsonSerializable
         private readonly string $company,
         private readonly string $website,
         private readonly string $country,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
-        private readonly ?\DateTime $consentedAt = null,
+        private readonly string $createdAt,
+        private readonly string $updatedAt,
+        private readonly ?string $consentedAt = null,
         private readonly ?string $consentMethod = null,
     ) {
     }
@@ -72,164 +68,83 @@ final class User implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * Whether the user has been deactivated.
-     *
-     * @return bool
-     */
     public function getDeactivated(): bool
     {
         return $this->deactivated;
     }
 
-    /**
-     * The namespace in which the user's username is unique.
-     *
-     * @return string
-     */
     public function getNamespace(): string
     {
         return $this->namespace;
     }
 
-    /**
-     * The user's username.
-     *
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * The user's email address.
-     *
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * Whether the user's email address has been verified.
-     *
-     * @return bool
-     */
     public function getEmailVerified(): bool
     {
         return $this->emailVerified;
     }
 
-    /**
-     * The user's first name.
-     *
-     * @return string
-     */
     public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * The user's last name.
-     *
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * The user's picture.
-     *
-     * @return string
-     */
     public function getPicture(): string
     {
         return $this->picture;
     }
 
-    /**
-     * The user's company.
-     *
-     * @return string
-     */
     public function getCompany(): string
     {
         return $this->company;
     }
 
-    /**
-     * The user's website.
-     *
-     * @return string
-     */
     public function getWebsite(): string
     {
         return $this->website;
     }
 
-    /**
-     * The user's ISO 3166-1 alpha-2 country code.
-     *
-     * @return string
-     */
     public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * The date and time when the user was created.
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the user was last updated.
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The date and time when the user consented to the Terms of Service.
-     *
-     * @return \DateTime|null
-     */
-    public function getConsentedAt(): ?\DateTime
+    public function getConsentedAt(): ?string
     {
         return $this->consentedAt;
     }
 
-    /**
-     * The method by which the user consented to the Terms of Service.
-     *
-     * @return string|null
-     */
     public function getConsentMethod(): ?string
     {
         return $this->consentMethod;
     }
 }
-

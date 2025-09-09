@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $code = null,
         private readonly ?string $message = null,
@@ -42,24 +40,13 @@ final class SendOrgMfaReminders200ResponseValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * An HTTP-like status code referring to the result of the operation for the specific user.
-     *
-     * @return int|null
-     */
     public function getCode(): ?int
     {
         return $this->code;
     }
 
-    /**
-     * A human-readable message describing the result of the operation for the specific user
-     *
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 }
-

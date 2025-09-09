@@ -12,17 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
 {
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_CONTRIBUTOR = 'contributor';
-    public const ROLE_VIEWER = 'viewer';
-
     public function __construct(
-        private readonly \Upsun\Model\TheCommandsDefinition $commands,
+        private readonly TheCommandsDefinition $commands,
         private readonly string $role,
         private readonly ?int $timeout = null,
     ) {
@@ -47,28 +42,18 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\TheCommandsDefinition
-     */
-    public function getCommands(): \Upsun\Model\TheCommandsDefinition
+    public function getCommands(): TheCommandsDefinition
     {
         return $this->commands;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTimeout(): ?int
     {
         return $this->timeout;
     }
 
-    /**
-     * @return string
-     */
     public function getRole(): string
     {
         return $this->role;
     }
 }
-

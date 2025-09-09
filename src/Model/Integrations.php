@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Integrations implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $enabled,
-        private readonly ?\Upsun\Model\Config $config = null,
+        private readonly ?Config $config = null,
         private readonly ?array $allowedIntegrations = [],
     ) {
     }
@@ -44,28 +42,18 @@ final class Integrations implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return \Upsun\Model\Config|null
-     */
-    public function getConfig(): ?\Upsun\Model\Config
+    public function getConfig(): ?Config
     {
         return $this->config;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getAllowedIntegrations(): ?array
     {
         return $this->allowedIntegrations;
     }
 }
-

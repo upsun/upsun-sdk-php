@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class RegionEnvironmentalImpact implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $zone = null,
         private readonly ?string $carbonIntensity = null,
@@ -44,28 +42,18 @@ final class RegionEnvironmentalImpact implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getZone(): ?string
     {
         return $this->zone;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCarbonIntensity(): ?string
     {
         return $this->carbonIntensity;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getGreen(): ?bool
     {
         return $this->green;
     }
 }
-

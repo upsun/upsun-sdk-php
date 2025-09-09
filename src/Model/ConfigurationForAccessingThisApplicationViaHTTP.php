@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSerializable
 {
-
     public function __construct(
         private readonly array $locations,
         private readonly bool $moveToRoot,
@@ -27,8 +25,8 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
         private readonly ?array $whitelist = [],
         private readonly ?array $blacklist = [],
         private readonly ?string $expires = null,
-        private readonly ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle $commands = null,
-        private readonly ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
+        private readonly ?CommandsToManageTheApplicationSLifecycle $commands = null,
+        private readonly ?ConfigurationOnHowTheWebServerCommunicatesWithTheApplication $upstream = null,
     ) {
     }
 
@@ -59,83 +57,55 @@ final class ConfigurationForAccessingThisApplicationViaHTTP implements JsonSeria
     }
 
     /**
-     * @return \Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]
+     * @return TheSpecificationOfTheWebLocationsServedByThisApplicationValue[]
      */
     public function getLocations(): array
     {
         return $this->locations;
     }
 
-    /**
-     * @return bool
-     */
     public function getMoveToRoot(): bool
     {
         return $this->moveToRoot;
     }
 
-    /**
-     * @return \Upsun\Model\CommandsToManageTheApplicationSLifecycle|null
-     */
-    public function getCommands(): ?\Upsun\Model\CommandsToManageTheApplicationSLifecycle
+    public function getCommands(): ?CommandsToManageTheApplicationSLifecycle
     {
         return $this->commands;
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication|null
-     */
-    public function getUpstream(): ?\Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
+    public function getUpstream(): ?ConfigurationOnHowTheWebServerCommunicatesWithTheApplication
     {
         return $this->upstream;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDocumentRoot(): ?string
     {
         return $this->documentRoot;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getIndexFiles(): ?array
     {
         return $this->indexFiles;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getWhitelist(): ?array
     {
         return $this->whitelist;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getBlacklist(): ?array
     {
         return $this->blacklist;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
 }
-

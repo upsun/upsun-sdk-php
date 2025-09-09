@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $transactions = [],
-        private readonly ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks $links = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinks $links = null,
     ) {
     }
 
@@ -44,30 +42,21 @@ final class ListOrgPrepaymentTransactions200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of items across pages.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * @return \Upsun\Model\PrepaymentTransactionObject[]|null
+     * @return PrepaymentTransactionObject[]|null
      */
     public function getTransactions(): ?array
     {
         return $this->transactions;
     }
 
-    /**
-     * @return \Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks
+    public function getLinks(): ?ListOrgPrepaymentTransactions200ResponseLinks
     {
         return $this->links;
     }
 }
-

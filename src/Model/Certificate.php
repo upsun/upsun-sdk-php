@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Certificate implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $certificate,
         private readonly array $chain,
@@ -27,9 +25,9 @@ final class Certificate implements JsonSerializable
         private readonly array $domains,
         private readonly array $authType,
         private readonly array $issuer,
-        private readonly \DateTime $expiresAt,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly string $expiresAt,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -60,92 +58,61 @@ final class Certificate implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
 
-    /**
-     * @return string[]
-     */
     public function getChain(): array
     {
         return $this->chain;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsProvisioned(): bool
     {
         return $this->isProvisioned;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsInvalid(): bool
     {
         return $this->isInvalid;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsRoot(): bool
     {
         return $this->isRoot;
     }
 
-    /**
-     * @return string[]
-     */
     public function getDomains(): array
     {
         return $this->domains;
     }
 
-    /**
-     * @return string[]
-     */
     public function getAuthType(): array
     {
         return $this->authType;
     }
 
     /**
-     * @return \Upsun\Model\TheIssuerOfTheCertificateInner[]
+     * @return TheIssuerOfTheCertificateInner[]
      */
     public function getIssuer(): array
     {
         return $this->issuer;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getExpiresAt(): \DateTime
+    public function getExpiresAt(): string
     {
         return $this->expiresAt;
     }
 }
-

@@ -12,30 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectSettings implements JsonSerializable
 {
-    public const DEVELOPMENT_SERVICE_SIZE__2_XL = '2XL';
-    public const DEVELOPMENT_SERVICE_SIZE__4_XL = '4XL';
-    public const DEVELOPMENT_SERVICE_SIZE_L = 'L';
-    public const DEVELOPMENT_SERVICE_SIZE_M = 'M';
-    public const DEVELOPMENT_SERVICE_SIZE_S = 'S';
-    public const DEVELOPMENT_SERVICE_SIZE_XL = 'XL';
-    public const DEVELOPMENT_APPLICATION_SIZE__2_XL = '2XL';
-    public const DEVELOPMENT_APPLICATION_SIZE__4_XL = '4XL';
-    public const DEVELOPMENT_APPLICATION_SIZE_L = 'L';
-    public const DEVELOPMENT_APPLICATION_SIZE_M = 'M';
-    public const DEVELOPMENT_APPLICATION_SIZE_S = 'S';
-    public const DEVELOPMENT_APPLICATION_SIZE_XL = 'XL';
-    public const CERTIFICATE_STYLE_ECDSA = 'ecdsa';
-    public const CERTIFICATE_STYLE_RSA = 'rsa';
-    public const ENVIRONMENT_NAME_STRATEGY_HASH = 'hash';
-    public const ENVIRONMENT_NAME_STRATEGY_NAME_AND_HASH = 'name-and-hash';
-    public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_ALLOW = 'allow';
-    public const OUTBOUND_RESTRICTIONS_DEFAULT_POLICY_DENY = 'deny';
-
     public function __construct(
         private readonly object $initialize,
         private readonly string $productName,
@@ -65,7 +45,7 @@ final class ProjectSettings implements JsonSerializable
         private readonly bool $enforceMfa,
         private readonly bool $systemd,
         private readonly bool $routerGen2,
-        private readonly \Upsun\Model\BuildResources1 $buildResources,
+        private readonly BuildResources1 $buildResources,
         private readonly string $outboundRestrictionsDefaultPolicy,
         private readonly bool $selfUpgrade,
         private readonly array $additionalHosts,
@@ -88,7 +68,7 @@ final class ProjectSettings implements JsonSerializable
         private readonly bool $imageDeploymentValidation,
         private readonly bool $supportGenericImages,
         private readonly bool $enableGithubAppTokenExchange,
-        private readonly \Upsun\Model\TheContinuousProfilingConfiguration $continuousProfiling,
+        private readonly TheContinuousProfilingConfiguration $continuousProfiling,
         private readonly bool $disableAgentErrorReporter,
         private readonly bool $requiresDomainOwnership,
         private readonly ?string $developmentDomainTemplate = null,
@@ -176,484 +156,306 @@ final class ProjectSettings implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return object
-     */
     public function getInitialize(): object
     {
         return $this->initialize;
     }
 
-    /**
-     * @return string
-     */
     public function getProductName(): string
     {
         return $this->productName;
     }
 
-    /**
-     * @return string
-     */
     public function getProductCode(): string
     {
         return $this->productCode;
     }
 
-    /**
-     * @return string
-     */
     public function getUiUriTemplate(): string
     {
         return $this->uiUriTemplate;
     }
 
-    /**
-     * @return string
-     */
     public function getVariablesPrefix(): string
     {
         return $this->variablesPrefix;
     }
 
-    /**
-     * @return string
-     */
     public function getBotEmail(): string
     {
         return $this->botEmail;
     }
 
-    /**
-     * @return string
-     */
     public function getApplicationConfigFile(): string
     {
         return $this->applicationConfigFile;
     }
 
-    /**
-     * @return string
-     */
     public function getProjectConfigDir(): string
     {
         return $this->projectConfigDir;
     }
 
-    /**
-     * @return bool
-     */
     public function getUseDrupalDefaults(): bool
     {
         return $this->useDrupalDefaults;
     }
 
-    /**
-     * @return bool
-     */
     public function getUseLegacySubdomains(): bool
     {
         return $this->useLegacySubdomains;
     }
 
-    /**
-     * @return string
-     */
     public function getDevelopmentServiceSize(): string
     {
         return $this->developmentServiceSize;
     }
 
-    /**
-     * @return string
-     */
     public function getDevelopmentApplicationSize(): string
     {
         return $this->developmentApplicationSize;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableCertificateProvisioning(): bool
     {
         return $this->enableCertificateProvisioning;
     }
 
-    /**
-     * @return string
-     */
     public function getCertificateStyle(): string
     {
         return $this->certificateStyle;
     }
 
-    /**
-     * @return bool
-     */
     public function getCertificateRenewalActivity(): bool
     {
         return $this->certificateRenewalActivity;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDevelopmentDomainTemplate(): ?string
     {
         return $this->developmentDomainTemplate;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableStateApiDeployments(): bool
     {
         return $this->enableStateApiDeployments;
     }
 
-    /**
-     * @return int|null
-     */
     public function getTemporaryDiskSize(): ?int
     {
         return $this->temporaryDiskSize;
     }
 
-    /**
-     * @return int|null
-     */
     public function getLocalDiskSize(): ?int
     {
         return $this->localDiskSize;
     }
 
-    /**
-     * @return int
-     */
     public function getCronMinimumInterval(): int
     {
         return $this->cronMinimumInterval;
     }
 
-    /**
-     * @return int
-     */
     public function getCronMaximumJitter(): int
     {
         return $this->cronMaximumJitter;
     }
 
-    /**
-     * @return array<string,int>
-     */
     public function getConcurrencyLimits(): array
     {
         return $this->concurrencyLimits;
     }
 
-    /**
-     * @return bool
-     */
     public function getFlexibleBuildCache(): bool
     {
         return $this->flexibleBuildCache;
     }
 
-    /**
-     * @return bool
-     */
     public function getStrictConfiguration(): bool
     {
         return $this->strictConfiguration;
     }
 
-    /**
-     * @return bool
-     */
     public function getHasSleepyCrons(): bool
     {
         return $this->hasSleepyCrons;
     }
 
-    /**
-     * @return bool
-     */
     public function getCronsInGit(): bool
     {
         return $this->cronsInGit;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCustomErrorTemplate(): ?string
     {
         return $this->customErrorTemplate;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAppErrorPageTemplate(): ?string
     {
         return $this->appErrorPageTemplate;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentNameStrategy(): string
     {
         return $this->environmentNameStrategy;
     }
 
     /**
-     * @return \Upsun\Model\DataRetentionConfigurationValue[]|null
+     * @return DataRetentionConfigurationValue[]|null
      */
     public function getDataRetention(): ?array
     {
         return $this->dataRetention;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableCodesourceIntegrationPush(): bool
     {
         return $this->enableCodesourceIntegrationPush;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnforceMfa(): bool
     {
         return $this->enforceMfa;
     }
 
-    /**
-     * @return bool
-     */
     public function getSystemd(): bool
     {
         return $this->systemd;
     }
 
-    /**
-     * @return bool
-     */
     public function getRouterGen2(): bool
     {
         return $this->routerGen2;
     }
 
-    /**
-     * @return \Upsun\Model\BuildResources1
-     */
-    public function getBuildResources(): \Upsun\Model\BuildResources1
+    public function getBuildResources(): BuildResources1
     {
         return $this->buildResources;
     }
 
-    /**
-     * @return string
-     */
     public function getOutboundRestrictionsDefaultPolicy(): string
     {
         return $this->outboundRestrictionsDefaultPolicy;
     }
 
-    /**
-     * @return bool
-     */
     public function getSelfUpgrade(): bool
     {
         return $this->selfUpgrade;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAdditionalHosts(): array
     {
         return $this->additionalHosts;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxAllowedRoutes(): int
     {
         return $this->maxAllowedRoutes;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxAllowedRedirectsPaths(): int
     {
         return $this->maxAllowedRedirectsPaths;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableIncrementalBackups(): bool
     {
         return $this->enableIncrementalBackups;
     }
 
-    /**
-     * @return bool
-     */
     public function getSizingApiEnabled(): bool
     {
         return $this->sizingApiEnabled;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableCacheGracePeriod(): bool
     {
         return $this->enableCacheGracePeriod;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableZeroDowntimeDeployments(): bool
     {
         return $this->enableZeroDowntimeDeployments;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableAdminAgent(): bool
     {
         return $this->enableAdminAgent;
     }
 
-    /**
-     * @return string
-     */
     public function getCertifierUrl(): string
     {
         return $this->certifierUrl;
     }
 
-    /**
-     * @return bool
-     */
     public function getCentralizedPermissions(): bool
     {
         return $this->centralizedPermissions;
     }
 
-    /**
-     * @return int
-     */
     public function getGlueServerMaxRequestSize(): int
     {
         return $this->glueServerMaxRequestSize;
     }
 
-    /**
-     * @return bool
-     */
     public function getPersistentEndpointsSsh(): bool
     {
         return $this->persistentEndpointsSsh;
     }
 
-    /**
-     * @return bool
-     */
     public function getPersistentEndpointsSslCertificates(): bool
     {
         return $this->persistentEndpointsSslCertificates;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableDiskHealthMonitoring(): bool
     {
         return $this->enableDiskHealthMonitoring;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnablePausedEnvironments(): bool
     {
         return $this->enablePausedEnvironments;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableUnifiedConfiguration(): bool
     {
         return $this->enableUnifiedConfiguration;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableRoutesTracing(): bool
     {
         return $this->enableRoutesTracing;
     }
 
-    /**
-     * @return bool
-     */
     public function getImageDeploymentValidation(): bool
     {
         return $this->imageDeploymentValidation;
     }
 
-    /**
-     * @return bool
-     */
     public function getSupportGenericImages(): bool
     {
         return $this->supportGenericImages;
     }
 
-    /**
-     * @return bool
-     */
     public function getEnableGithubAppTokenExchange(): bool
     {
         return $this->enableGithubAppTokenExchange;
     }
 
-    /**
-     * @return \Upsun\Model\TheContinuousProfilingConfiguration
-     */
-    public function getContinuousProfiling(): \Upsun\Model\TheContinuousProfilingConfiguration
+    public function getContinuousProfiling(): TheContinuousProfilingConfiguration
     {
         return $this->continuousProfiling;
     }
 
-    /**
-     * @return bool
-     */
     public function getDisableAgentErrorReporter(): bool
     {
         return $this->disableAgentErrorReporter;
     }
 
-    /**
-     * @return bool
-     */
     public function getRequiresDomainOwnership(): bool
     {
         return $this->requiresDomainOwnership;
     }
 }
-

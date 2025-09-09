@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $commitsAhead = null,
         private readonly ?int $commitsBehind = null,
@@ -44,28 +42,18 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int|null
-     */
     public function getCommitsAhead(): ?int
     {
         return $this->commitsAhead;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCommitsBehind(): ?int
     {
         return $this->commitsBehind;
     }
 
-    /**
-     * @return string|null
-     */
     public function getParentRef(): ?string
     {
         return $this->parentRef;
     }
 }
-

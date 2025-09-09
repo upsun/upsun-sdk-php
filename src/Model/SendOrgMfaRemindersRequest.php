@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SendOrgMfaRemindersRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $userIds = [],
     ) {
@@ -40,14 +38,8 @@ final class SendOrgMfaRemindersRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The organization members.
-     *
-     * @return string[]|null
-     */
     public function getUserIds(): ?array
     {
         return $this->userIds;
     }
 }
-

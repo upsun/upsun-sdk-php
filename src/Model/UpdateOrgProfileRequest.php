@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class UpdateOrgProfileRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
@@ -50,64 +48,33 @@ final class UpdateOrgProfileRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The URL of a catalog file which overrides the default.
-     *
-     * @return string|null
-     */
     public function getDefaultCatalog(): ?string
     {
         return $this->defaultCatalog;
     }
 
-    /**
-     * The URL of an organization-wide project options file.
-     *
-     * @return string|null
-     */
     public function getProjectOptionsUrl(): ?string
     {
         return $this->projectOptionsUrl;
     }
 
-    /**
-     * The e-mail address of a contact to whom security notices will be sent.
-     *
-     * @return string|null
-     */
     public function getSecurityContact(): ?string
     {
         return $this->securityContact;
     }
 
-    /**
-     * The company name.
-     *
-     * @return string|null
-     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
-    /**
-     * The VAT number of the company.
-     *
-     * @return string|null
-     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-     * The e-mail address of a contact to whom billing notices will be sent.
-     *
-     * @return string|null
-     */
     public function getBillingContact(): ?string
     {
         return $this->billingContact;
     }
 }
-

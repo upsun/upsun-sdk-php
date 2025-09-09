@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheObjectTheReferencePointsTo implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly string $sha,
@@ -42,20 +40,13 @@ final class TheObjectTheReferencePointsTo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getSha(): string
     {
         return $this->sha;
     }
 }
-

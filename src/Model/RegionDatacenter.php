@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class RegionDatacenter implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -44,28 +42,18 @@ final class RegionDatacenter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLocation(): ?string
     {
         return $this->location;
     }
 }
-

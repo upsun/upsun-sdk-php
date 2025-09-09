@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $returnUrl = null,
         private readonly ?string $url = null,
@@ -42,24 +40,13 @@ final class CreateAuthorizationCredentials200ResponseRedirectToUrl implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Return URL after payment completion.
-     *
-     * @return string|null
-     */
     public function getReturnUrl(): ?string
     {
         return $this->returnUrl;
     }
 
-    /**
-     * URL for payment finalization.
-     *
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 }
-

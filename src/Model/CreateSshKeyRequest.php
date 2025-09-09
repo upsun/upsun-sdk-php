@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateSshKeyRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $value,
         private readonly ?string $title = null,
@@ -44,34 +42,18 @@ final class CreateSshKeyRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The value of the ssh key.
-     *
-     * @return string
-     */
     public function getValue(): string
     {
         return $this->value;
     }
 
-    /**
-     * The title of the ssh key.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The uuid of the user.
-     *
-     * @return string|null
-     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 }
-

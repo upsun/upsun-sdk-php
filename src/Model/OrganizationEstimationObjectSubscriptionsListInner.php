@@ -12,17 +12,15 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $licenseId = null,
         private readonly ?string $projectTitle = null,
         private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
+        private readonly ?OrganizationEstimationObjectSubscriptionsListInnerUsage $usage = null,
     ) {
     }
 
@@ -46,42 +44,23 @@ final class OrganizationEstimationObjectSubscriptionsListInner implements JsonSe
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The id of the subscription.
-     *
-     * @return string|null
-     */
     public function getLicenseId(): ?string
     {
         return $this->licenseId;
     }
 
-    /**
-     * The name of the project.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The total price for the subscription.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage|null
-     */
-    public function getUsage(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage
+    public function getUsage(): ?OrganizationEstimationObjectSubscriptionsListInnerUsage
     {
         return $this->usage;
     }
 }
-

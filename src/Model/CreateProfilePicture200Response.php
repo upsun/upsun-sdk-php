@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateProfilePicture200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $url = null,
     ) {
@@ -40,14 +38,8 @@ final class CreateProfilePicture200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The relative url of the picture.
-     *
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 }
-

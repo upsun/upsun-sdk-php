@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesUserManagement implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesUserManagementList $list = null,
     ) {
     }
 
@@ -44,32 +42,18 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The number of user_management licenses.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * The total price for user_management licenses.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList|null
-     */
-    public function getList(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList
+    public function getList(): ?OrganizationEstimationObjectUserLicensesUserManagementList
     {
         return $this->list;
     }
 }
-

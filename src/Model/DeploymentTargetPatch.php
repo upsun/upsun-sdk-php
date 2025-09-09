@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DeploymentTargetPatch implements JsonSerializable
 {
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -57,68 +52,46 @@ final class DeploymentTargetPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return object|null
-     */
     public function getEnforcedMounts(): ?object
     {
         return $this->enforcedMounts;
     }
 
-    /**
-     * @return object|null
-     */
     public function getSiteUrls(): ?object
     {
         return $this->siteUrls;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getSshHosts(): ?array
     {
         return $this->sshHosts;
     }
 
-    /**
-     * @return object|null
-     */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner1[]|null
+     * @return TheHostsOfTheDeploymentTargetInner1[]|null
      */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getUseDedicatedGrid(): ?bool
     {
         return $this->useDedicatedGrid;
     }
 }
-

@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListPlans200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $plans = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private readonly ?HalLinks $links = null,
     ) {
     }
 
@@ -44,32 +42,21 @@ final class ListPlans200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of plans.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * Array of plans.
-     *
-     * @return \Upsun\Model\Plan[]|null
+     * @return Plan[]|null
      */
     public function getPlans(): ?array
     {
         return $this->plans;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\HalLinks
+    public function getLinks(): ?HalLinks
     {
         return $this->links;
     }
 }
-

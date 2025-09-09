@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class VersionPatch implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
+        private readonly ?ConfigurationAboutTheTrafficRoutedToThisVersion1 $routing = null,
     ) {
     }
 
@@ -40,12 +38,8 @@ final class VersionPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1|null
-     */
-    public function getRouting(): ?\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1
+    public function getRouting(): ?ConfigurationAboutTheTrafficRoutedToThisVersion1
     {
         return $this->routing;
     }
 }
-

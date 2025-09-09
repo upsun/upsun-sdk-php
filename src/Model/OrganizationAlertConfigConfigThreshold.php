@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $formatted = null,
-        private readonly ?float $amount = null,
+        private readonly ?number $amount = null,
         private readonly ?string $currencyCode = null,
         private readonly ?string $currencySymbol = null,
     ) {
@@ -46,44 +44,23 @@ final class OrganizationAlertConfigConfigThreshold implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Formatted threshold value.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * Threshold value.
-     *
-     * @return float|null
-     */
-    public function getAmount(): ?float
+    public function getAmount(): ?number
     {
         return $this->amount;
     }
 
-    /**
-     * Threshold currency code.
-     *
-     * @return string|null
-     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * Threshold currency symbol.
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 }
-

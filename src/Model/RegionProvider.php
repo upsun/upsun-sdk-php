@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class RegionProvider implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $logo = null,
@@ -42,20 +40,13 @@ final class RegionProvider implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLogo(): ?string
     {
         return $this->logo;
     }
 }
-

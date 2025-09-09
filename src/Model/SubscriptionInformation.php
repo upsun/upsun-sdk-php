@@ -12,20 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SubscriptionInformation implements JsonSerializable
 {
-    public const PLAN__2XLARGE = '2xlarge';
-    public const PLAN__4XLARGE = '4xlarge';
-    public const PLAN__8XLARGE = '8xlarge';
-    public const PLAN_DEVELOPMENT = 'development';
-    public const PLAN_LARGE = 'large';
-    public const PLAN_MEDIUM = 'medium';
-    public const PLAN_STANDARD = 'standard';
-    public const PLAN_XLARGE = 'xlarge';
-
     public function __construct(
         private readonly string $licenseUri,
         private readonly int $storage,
@@ -36,9 +26,9 @@ final class SubscriptionInformation implements JsonSerializable
         private readonly int $userLicenses,
         private readonly ?string $plan = null,
         private readonly ?int $environments = null,
-        private readonly ?\Upsun\Model\ResourcesLimits $resources = null,
+        private readonly ?ResourcesLimits $resources = null,
         private readonly ?string $resourceValidationUrl = null,
-        private readonly ?\Upsun\Model\RestrictedAndDeniedImageTypes $imageTypes = null,
+        private readonly ?RestrictedAndDeniedImageTypes $imageTypes = null,
     ) {
     }
 
@@ -70,100 +60,63 @@ final class SubscriptionInformation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getLicenseUri(): string
     {
         return $this->licenseUri;
     }
 
-    /**
-     * @return int
-     */
     public function getStorage(): int
     {
         return $this->storage;
     }
 
-    /**
-     * @return int
-     */
     public function getIncludedUsers(): int
     {
         return $this->includedUsers;
     }
 
-    /**
-     * @return string
-     */
     public function getSubscriptionManagementUri(): string
     {
         return $this->subscriptionManagementUri;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestricted(): bool
     {
         return $this->restricted;
     }
 
-    /**
-     * @return bool
-     */
     public function getSuspended(): bool
     {
         return $this->suspended;
     }
 
-    /**
-     * @return int
-     */
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * @return \Upsun\Model\ResourcesLimits|null
-     */
-    public function getResources(): ?\Upsun\Model\ResourcesLimits
+    public function getResources(): ?ResourcesLimits
     {
         return $this->resources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResourceValidationUrl(): ?string
     {
         return $this->resourceValidationUrl;
     }
 
-    /**
-     * @return \Upsun\Model\RestrictedAndDeniedImageTypes|null
-     */
-    public function getImageTypes(): ?\Upsun\Model\RestrictedAndDeniedImageTypes
+    public function getImageTypes(): ?RestrictedAndDeniedImageTypes
     {
         return $this->imageTypes;
     }
 }
-

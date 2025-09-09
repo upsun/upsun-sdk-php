@@ -12,20 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TLSSettingsForTheRoute implements JsonSerializable
 {
-    public const MIN_VERSION_TLSV1_0 = 'TLSv1.0';
-    public const MIN_VERSION_TLSV1_1 = 'TLSv1.1';
-    public const MIN_VERSION_TLSV1_2 = 'TLSv1.2';
-    public const MIN_VERSION_TLSV1_3 = 'TLSv1.3';
-    public const CLIENT_AUTHENTICATION_REQUEST = 'request';
-    public const CLIENT_AUTHENTICATION__REQUIRE = 'require';
-
     public function __construct(
-        private readonly \Upsun\Model\StrictTransportSecurityOptions $strictTransportSecurity,
+        private readonly StrictTransportSecurityOptions $strictTransportSecurity,
         private readonly array $clientCertificateAuthorities,
         private readonly ?string $minVersion = null,
         private readonly ?string $clientAuthentication = null,
@@ -52,36 +44,23 @@ final class TLSSettingsForTheRoute implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\StrictTransportSecurityOptions
-     */
-    public function getStrictTransportSecurity(): \Upsun\Model\StrictTransportSecurityOptions
+    public function getStrictTransportSecurity(): StrictTransportSecurityOptions
     {
         return $this->strictTransportSecurity;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMinVersion(): ?string
     {
         return $this->minVersion;
     }
 
-    /**
-     * @return string|null
-     */
     public function getClientAuthentication(): ?string
     {
         return $this->clientAuthentication;
     }
 
-    /**
-     * @return string[]
-     */
     public function getClientCertificateAuthorities(): array
     {
         return $this->clientCertificateAuthorities;
     }
 }
-

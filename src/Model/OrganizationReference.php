@@ -12,20 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationReference implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $ownerId = null,
         private readonly ?string $name = null,
         private readonly ?string $label = null,
         private readonly ?string $vendor = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -52,74 +50,38 @@ final class OrganizationReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwnerId(): ?string
     {
         return $this->ownerId;
     }
 
-    /**
-     * A unique machine name representing the organization.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The vendor.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The date and time when the organization was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the organization was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 }
-

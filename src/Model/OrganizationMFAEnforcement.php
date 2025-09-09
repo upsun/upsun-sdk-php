@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationMFAEnforcement implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?bool $enforceMfa = null,
     ) {
@@ -40,14 +38,8 @@ final class OrganizationMFAEnforcement implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Whether the MFA enforcement is enabled.
-     *
-     * @return bool|null
-     */
     public function getEnforceMfa(): ?bool
     {
         return $this->enforceMfa;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonSerializable
 {
-
     public function __construct(
         private readonly array $operations,
         private readonly ?string $root = null,
@@ -42,20 +40,16 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements JsonS
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getRoot(): ?string
     {
         return $this->root;
     }
 
     /**
-     * @return \Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue[]
+     * @return OperationsThatCanBeAppliedToTheSourceCodeValue[]
      */
     public function getOperations(): array
     {
         return $this->operations;
     }
 }
-

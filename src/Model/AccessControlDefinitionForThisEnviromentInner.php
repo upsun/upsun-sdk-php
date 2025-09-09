@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
 {
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_CONTRIBUTOR = 'contributor';
-    public const ROLE_VIEWER = 'viewer';
-
     public function __construct(
         private readonly string $entityId,
         private readonly string $role,
@@ -45,20 +40,13 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getEntityId(): string
     {
         return $this->entityId;
     }
 
-    /**
-     * @return string
-     */
     public function getRole(): string
     {
         return $this->role;
     }
 }
-

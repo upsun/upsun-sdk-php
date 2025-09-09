@@ -12,21 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class UsageGroupCurrentUsageProperties implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?bool $type = null,
-        private readonly ?float $currentUsage = null,
+        private readonly ?number $currentUsage = null,
         private readonly ?string $currentUsageFormatted = null,
         private readonly ?bool $notCharged = null,
-        private readonly ?float $freeQuantity = null,
+        private readonly ?number $freeQuantity = null,
         private readonly ?string $freeQuantityFormatted = null,
-        private readonly ?float $dailyAverage = null,
+        private readonly ?number $dailyAverage = null,
         private readonly ?string $dailyAverageFormatted = null,
     ) {
     }
@@ -56,94 +54,48 @@ final class UsageGroupCurrentUsageProperties implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The title of the usage group.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * The usage group type.
-     *
-     * @return bool|null
-     */
     public function getType(): ?bool
     {
         return $this->type;
     }
 
-    /**
-     * The value of current usage for the group.
-     *
-     * @return float|null
-     */
-    public function getCurrentUsage(): ?float
+    public function getCurrentUsage(): ?number
     {
         return $this->currentUsage;
     }
 
-    /**
-     * The formatted value of current usage for the group.
-     *
-     * @return string|null
-     */
     public function getCurrentUsageFormatted(): ?string
     {
         return $this->currentUsageFormatted;
     }
 
-    /**
-     * Whether the group is not charged for the subscription.
-     *
-     * @return bool|null
-     */
     public function getNotCharged(): ?bool
     {
         return $this->notCharged;
     }
 
-    /**
-     * The amount of free usage for the group.
-     *
-     * @return float|null
-     */
-    public function getFreeQuantity(): ?float
+    public function getFreeQuantity(): ?number
     {
         return $this->freeQuantity;
     }
 
-    /**
-     * The formatted amount of free usage for the group.
-     *
-     * @return string|null
-     */
     public function getFreeQuantityFormatted(): ?string
     {
         return $this->freeQuantityFormatted;
     }
 
-    /**
-     * The daily average usage calculated for the group.
-     *
-     * @return float|null
-     */
-    public function getDailyAverage(): ?float
+    public function getDailyAverage(): ?number
     {
         return $this->dailyAverage;
     }
 
-    /**
-     * The formatted daily average usage calculated for the group.
-     *
-     * @return string|null
-     */
     public function getDailyAverageFormatted(): ?string
     {
         return $this->dailyAverageFormatted;
     }
 }
-

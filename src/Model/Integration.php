@@ -12,26 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Integration implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-    public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
-    public const TOKEN_TYPE_GITHUB_APP = 'github_app';
-    public const PROTOCOL_TCP = 'tcp';
-    public const PROTOCOL_TLS = 'tls';
-    public const PROTOCOL_UDP = 'udp';
-    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
-    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -74,12 +58,12 @@ final class Integration implements JsonSerializable
         private readonly string $protocol,
         private readonly int $facility,
         private readonly string $messageFormat,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $fromAddress = null,
         private readonly ?string $sharedKey = null,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
+        private readonly ?TheOAuth2ConsumerInformationOptional $appCredentials = null,
+        private readonly ?TheAddonCredentialInformationOptional $addonCredentials = null,
     ) {
     }
 
@@ -146,380 +130,241 @@ final class Integration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool
-     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return bool
-     */
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
     /**
-     * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]
+     * @return BlackfireEnvironmentsCredentialsValue[]
      */
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
 
-    /**
-     * @return bool
-     */
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
     }
 
-    /**
-     * @return string[]
-     */
     public function getEvents(): array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]
-     */
     public function getEnvironments(): array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]
-     */
     public function getExcludedEnvironments(): array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]
-     */
     public function getStates(): array
     {
         return $this->states;
     }
 
-    /**
-     * @return string
-     */
     public function getResult(): string
     {
         return $this->result;
     }
 
-    /**
-     * @return string
-     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
 
-    /**
-     * @return string
-     */
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildDraftPullRequests(): bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * @return string
-     */
     public function getTokenType(): string
     {
         return $this->tokenType;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildMergeRequests(): bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildWipMergeRequests(): bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getMergeRequestsCloneParentData(): bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 
-    /**
-     * @return string|null
-     */
     public function getFromAddress(): ?string
     {
         return $this->fromAddress;
     }
 
-    /**
-     * @return string[]
-     */
     public function getRecipients(): array
     {
         return $this->recipients;
     }
 
-    /**
-     * @return string
-     */
     public function getRoutingKey(): string
     {
         return $this->routingKey;
     }
 
-    /**
-     * @return string
-     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getExtra(): array
     {
         return $this->extra;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
 
-    /**
-     * @return bool
-     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
     }
 
-    /**
-     * @return string
-     */
     public function getScript(): string
     {
         return $this->script;
     }
 
-    /**
-     * @return string
-     */
     public function getIndex(): string
     {
         return $this->index;
     }
 
-    /**
-     * @return string
-     */
     public function getSourcetype(): string
     {
         return $this->sourcetype;
     }
 
-    /**
-     * @return string
-     */
     public function getCategory(): string
     {
         return $this->category;
     }
 
-    /**
-     * @return string
-     */
     public function getHost(): string
     {
         return $this->host;
     }
 
-    /**
-     * @return int
-     */
     public function getPort(): int
     {
         return $this->port;
     }
 
-    /**
-     * @return string
-     */
     public function getProtocol(): string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return int
-     */
     public function getFacility(): int
     {
         return $this->facility;
     }
 
-    /**
-     * @return string
-     */
     public function getMessageFormat(): string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 
-    /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
+    public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional
     {
         return $this->appCredentials;
     }
 
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
+    public function getAddonCredentials(): ?TheAddonCredentialInformationOptional
     {
         return $this->addonCredentials;
     }
 }
-

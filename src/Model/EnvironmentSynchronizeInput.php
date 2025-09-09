@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentSynchronizeInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $synchronizeCode,
         private readonly bool $rebase,
@@ -46,36 +44,23 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getSynchronizeCode(): bool
     {
         return $this->synchronizeCode;
     }
 
-    /**
-     * @return bool
-     */
     public function getRebase(): bool
     {
         return $this->rebase;
     }
 
-    /**
-     * @return bool
-     */
     public function getSynchronizeData(): bool
     {
         return $this->synchronizeData;
     }
 
-    /**
-     * @return bool
-     */
     public function getSynchronizeResources(): bool
     {
         return $this->synchronizeResources;
     }
 }
-

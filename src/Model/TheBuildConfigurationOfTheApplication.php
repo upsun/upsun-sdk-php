@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheBuildConfigurationOfTheApplication implements JsonSerializable
 {
-
     public function __construct(
         private readonly array $caches,
         private readonly ?string $flavor = null,
@@ -42,20 +40,16 @@ final class TheBuildConfigurationOfTheApplication implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getFlavor(): ?string
     {
         return $this->flavor;
     }
 
     /**
-     * @return \Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue[]
+     * @return TheConfigurationOfPathsManagedByTheBuildCacheValue[]
      */
     public function getCaches(): array
     {
         return $this->caches;
     }
 }
-

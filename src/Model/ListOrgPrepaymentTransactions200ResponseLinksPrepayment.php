@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $href = null,
     ) {
@@ -40,14 +38,8 @@ final class ListOrgPrepaymentTransactions200ResponseLinksPrepayment implements J
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * URL of the link.
-     *
-     * @return string|null
-     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 }
-

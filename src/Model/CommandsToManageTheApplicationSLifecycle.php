@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $preStart = null,
         private readonly ?string $start = null,
@@ -42,20 +40,13 @@ final class CommandsToManageTheApplicationSLifecycle implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getPreStart(): ?string
     {
         return $this->preStart;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStart(): ?string
     {
         return $this->start;
     }
 }
-

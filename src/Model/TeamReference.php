@@ -12,31 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TeamReference implements JsonSerializable
 {
-    public const PROJECT_PERMISSIONS_ADMIN = 'admin';
-    public const PROJECT_PERMISSIONS_VIEWER = 'viewer';
-    public const PROJECT_PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
-    public const PROJECT_PERMISSIONS_DEVELOPMENT_CONTRIBUTOR = 'development:contributor';
-    public const PROJECT_PERMISSIONS_DEVELOPMENT_VIEWER = 'development:viewer';
-    public const PROJECT_PERMISSIONS_STAGING_ADMIN = 'staging:admin';
-    public const PROJECT_PERMISSIONS_STAGING_CONTRIBUTOR = 'staging:contributor';
-    public const PROJECT_PERMISSIONS_STAGING_VIEWER = 'staging:viewer';
-    public const PROJECT_PERMISSIONS_PRODUCTION_ADMIN = 'production:admin';
-    public const PROJECT_PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
-    public const PROJECT_PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
-        private readonly ?\Upsun\Model\TeamCounts $counts = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?TeamCounts $counts = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -63,72 +50,38 @@ final class TeamReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the parent organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The human-readable label of the team.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * Project permissions that are granted to the team.
-     *
-     * @return string[]|null
-     */
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;
     }
 
-    /**
-     * @return \Upsun\Model\TeamCounts|null
-     */
-    public function getCounts(): ?\Upsun\Model\TeamCounts
+    public function getCounts(): ?TeamCounts
     {
         return $this->counts;
     }
 
-    /**
-     * The date and time when the team was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the team was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 }
-

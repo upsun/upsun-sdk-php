@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class VerifyPhoneNumber200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $sid = null,
     ) {
@@ -40,14 +38,8 @@ final class VerifyPhoneNumber200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Session ID of the verification.
-     *
-     * @return string|null
-     */
     public function getSid(): ?string
     {
         return $this->sid;
     }
 }
-

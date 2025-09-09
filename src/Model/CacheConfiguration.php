@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CacheConfiguration implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $enabled,
         private readonly int $defaultTtl,
@@ -46,36 +44,23 @@ final class CacheConfiguration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return int
-     */
     public function getDefaultTtl(): int
     {
         return $this->defaultTtl;
     }
 
-    /**
-     * @return string[]
-     */
     public function getCookies(): array
     {
         return $this->cookies;
     }
 
-    /**
-     * @return string[]
-     */
     public function getHeaders(): array
     {
         return $this->headers;
     }
 }
-

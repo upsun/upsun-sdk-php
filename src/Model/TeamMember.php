@@ -12,17 +12,15 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TeamMember implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $userId = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -46,44 +44,23 @@ final class TeamMember implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     *
-     * @return string|null
-     */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    /**
-     * The date and time when the team member was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the team member was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 }
-

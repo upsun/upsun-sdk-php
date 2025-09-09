@@ -1,15 +1,6 @@
+
 final class {{classname}} implements JsonSerializable
 {
-    {{#vars}}
-    {{#isEnum}}
-    {{#allowableValues}}
-    {{#enumVars}}
-    public const {{enumName}}_{{{name}}} = {{{value}}};
-    {{/enumVars}}
-    {{/allowableValues}}
-    {{/isEnum}}
-    {{/vars}}
-
     public function __construct(
     {{#vars}}
       {{#required}}
@@ -18,7 +9,7 @@ final class {{classname}} implements JsonSerializable
         private readonly array ${{name}},
       {{/isContainer}}
       {{^isContainer}}
-        private readonly {{{dataType}}} ${{name}},
+        private readonly {{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}} ${{name}},
       {{/isContainer}}
       {{/isNullable}}
       {{/required}}      
@@ -29,7 +20,7 @@ final class {{classname}} implements JsonSerializable
         private readonly ?array ${{name}} = [],
       {{/isContainer}}
       {{^isContainer}}
-        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly ?{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
       {{/isContainer}}
       {{/isNullable}}      
     {{/vars}}
@@ -40,7 +31,7 @@ final class {{classname}} implements JsonSerializable
         private readonly ?array ${{name}} = [],
     {{/isContainer}}
     {{^isContainer}}
-        private readonly ?{{{dataType}}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly ?{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
     {{/isContainer}}
     {{/isNullable}}      
     {{/required}}      
@@ -68,24 +59,14 @@ final class {{classname}} implements JsonSerializable
     }
 {{#vars}}
 
-    /**
-{{#description}}
-     * {{{description}}}
-     *
-{{/description}}
 {{#isContainer}}
   {{#items.isModel}}
-     * @return {{{items.dataType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-  {{/items.isModel}}
-  {{^items.isModel}}
-     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-  {{/items.isModel}}
-{{/isContainer}}
-{{^isContainer}}
-     * @return {{{dataType}}}{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
-{{/isContainer}}
+    /**
+     * @return {{{items.openApiType}}}[]{{#isNullable}}|null{{/isNullable}}{{^isNullable}}{{^required}}|null{{/required}}{{/isNullable}}
      */
-    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}}
+  {{/items.isModel}}
+{{/isContainer}}
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

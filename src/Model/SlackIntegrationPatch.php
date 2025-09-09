@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SlackIntegrationPatch implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -44,28 +42,18 @@ final class SlackIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 }
-

@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnterpriseDeploymentTargetPatch implements JsonSerializable
 {
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -51,44 +46,28 @@ final class EnterpriseDeploymentTargetPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return object|null
-     */
     public function getSiteUrls(): ?object
     {
         return $this->siteUrls;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getSshHosts(): ?array
     {
         return $this->sshHosts;
     }
 
-    /**
-     * @return object|null
-     */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
-

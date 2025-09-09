@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Blob implements JsonSerializable
 {
-    public const ENCODING_BASE64 = 'base64';
-    public const ENCODING_UTF_8 = 'utf-8';
-
     public function __construct(
         private readonly string $sha,
         private readonly int $size,
@@ -48,36 +44,23 @@ final class Blob implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSha(): string
     {
         return $this->sha;
     }
 
-    /**
-     * @return int
-     */
     public function getSize(): int
     {
         return $this->size;
     }
 
-    /**
-     * @return string
-     */
     public function getEncoding(): string
     {
         return $this->encoding;
     }
 
-    /**
-     * @return string
-     */
     public function getContent(): string
     {
         return $this->content;
     }
 }
-

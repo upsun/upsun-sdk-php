@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListOrgs200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $items = [],
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?ListLinks $links = null,
     ) {
     }
 
@@ -44,30 +42,21 @@ final class ListOrgs200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of items across pages.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * @return \Upsun\Model\Organization[]|null
+     * @return Organization[]|null
      */
     public function getItems(): ?array
     {
         return $this->items;
     }
 
-    /**
-     * @return \Upsun\Model\ListLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListLinks
+    public function getLinks(): ?ListLinks
     {
         return $this->links;
     }
 }
-

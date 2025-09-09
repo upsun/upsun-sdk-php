@@ -12,17 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SyslogIntegration implements JsonSerializable
 {
-    public const PROTOCOL_TCP = 'tcp';
-    public const PROTOCOL_TLS = 'tls';
-    public const PROTOCOL_UDP = 'udp';
-    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
-    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
-
     public function __construct(
         private readonly string $type,
         private readonly array $extra,
@@ -32,8 +25,8 @@ final class SyslogIntegration implements JsonSerializable
         private readonly int $facility,
         private readonly string $messageFormat,
         private readonly bool $tlsVerify,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -63,84 +56,53 @@ final class SyslogIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getExtra(): array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string
-     */
     public function getHost(): string
     {
         return $this->host;
     }
 
-    /**
-     * @return int
-     */
     public function getPort(): int
     {
         return $this->port;
     }
 
-    /**
-     * @return string
-     */
     public function getProtocol(): string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return int
-     */
     public function getFacility(): int
     {
         return $this->facility;
     }
 
-    /**
-     * @return string
-     */
     public function getMessageFormat(): string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * @return bool
-     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
     }
 }
-

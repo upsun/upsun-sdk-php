@@ -12,20 +12,16 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentBranchInput implements JsonSerializable
 {
-    public const TYPE_DEVELOPMENT = 'development';
-    public const TYPE_STAGING = 'staging';
-
     public function __construct(
         private readonly string $title,
         private readonly string $name,
         private readonly bool $cloneParent,
         private readonly string $type,
-        private readonly ?\Upsun\Model\Resources2 $resources = null,
+        private readonly ?Resources2 $resources = null,
     ) {
     }
 
@@ -50,44 +46,28 @@ final class EnvironmentBranchInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return bool
-     */
     public function getCloneParent(): bool
     {
         return $this->cloneParent;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\Resources2|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources2
+    public function getResources(): ?Resources2
     {
         return $this->resources;
     }
 }
-

@@ -12,20 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationSSOConfig implements JsonSerializable
 {
-    public const PROVIDER_TYPE_GOOGLE = 'google';
-
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
         private readonly ?string $organizationId = null,
         private readonly ?bool $enforced = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -51,64 +48,33 @@ final class OrganizationSSOConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * SSO provider type.
-     *
-     * @return string|null
-     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Google hosted domain.
-     *
-     * @return string|null
-     */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 
-    /**
-     * Organization ID.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * Whether the configuration is enforced for all the organization members.
-     *
-     * @return bool|null
-     */
     public function getEnforced(): ?bool
     {
         return $this->enforced;
     }
 
-    /**
-     * The date and time when the SSO configuration was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the SSO configuration was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 }
-

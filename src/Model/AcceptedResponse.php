@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class AcceptedResponse implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $status,
         private readonly int $code,
@@ -42,20 +40,13 @@ final class AcceptedResponse implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return int
-     */
     public function getCode(): int
     {
         return $this->code;
     }
 }
-

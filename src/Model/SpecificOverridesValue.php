@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SpecificOverridesValue implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $expires = null,
         private readonly ?string $passthru = null,
@@ -48,44 +46,28 @@ final class SpecificOverridesValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPassthru(): ?string
     {
         return $this->passthru;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getScripts(): ?bool
     {
         return $this->scripts;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getAllow(): ?bool
     {
         return $this->allow;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getHeaders(): ?array
     {
         return $this->headers;
     }
 }
-

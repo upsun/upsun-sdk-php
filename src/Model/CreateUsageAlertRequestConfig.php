@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateUsageAlertRequestConfig implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $threshold = null,
     ) {
@@ -40,14 +38,8 @@ final class CreateUsageAlertRequestConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The amount after which a usage alert should be triggered.
-     *
-     * @return int|null
-     */
     public function getThreshold(): ?int
     {
         return $this->threshold;
     }
 }
-

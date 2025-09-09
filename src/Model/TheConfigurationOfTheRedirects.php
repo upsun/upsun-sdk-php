@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheConfigurationOfTheRedirects implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $expires,
         private readonly array $paths,
@@ -42,20 +40,16 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getExpires(): string
     {
         return $this->expires;
     }
 
     /**
-     * @return \Upsun\Model\ThePathsToRedirectValue[]
+     * @return ThePathsToRedirectValue[]
      */
     public function getPaths(): array
     {
         return $this->paths;
     }
 }
-

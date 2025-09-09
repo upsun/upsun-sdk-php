@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesBaseListAdminUser $adminUser = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesBaseListViewerUser $viewerUser = null,
     ) {
     }
 
@@ -42,20 +40,13 @@ final class OrganizationEstimationObjectUserLicensesBaseList implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser|null
-     */
-    public function getAdminUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser
+    public function getAdminUser(): ?OrganizationEstimationObjectUserLicensesBaseListAdminUser
     {
         return $this->adminUser;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser|null
-     */
-    public function getViewerUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser
+    public function getViewerUser(): ?OrganizationEstimationObjectUserLicensesBaseListViewerUser
     {
         return $this->viewerUser;
     }
 }
-

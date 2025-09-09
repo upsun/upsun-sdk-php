@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GetOrgPrepaymentInfo200Response implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\PrepaymentObject $prepayment = null,
-        private readonly ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks $links = null,
+        private readonly ?PrepaymentObject $prepayment = null,
+        private readonly ?GetOrgPrepaymentInfo200ResponseLinks $links = null,
     ) {
     }
 
@@ -42,20 +40,13 @@ final class GetOrgPrepaymentInfo200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\PrepaymentObject|null
-     */
-    public function getPrepayment(): ?\Upsun\Model\PrepaymentObject
+    public function getPrepayment(): ?PrepaymentObject
     {
         return $this->prepayment;
     }
 
-    /**
-     * @return \Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks
+    public function getLinks(): ?GetOrgPrepaymentInfo200ResponseLinks
     {
         return $this->links;
     }
 }
-

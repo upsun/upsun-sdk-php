@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectInfo implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $title,
         private readonly string $name,
@@ -50,52 +48,33 @@ final class ProjectInfo implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOrganization(): ?string
     {
         return $this->organization;
     }
 
-    /**
-     * @return object
-     */
     public function getCapabilities(): object
     {
         return $this->capabilities;
     }
 
-    /**
-     * @return object
-     */
     public function getSettings(): object
     {
         return $this->settings;
     }
 }
-

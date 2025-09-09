@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentVariable implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $name,
         private readonly array $attributes,
@@ -30,8 +28,8 @@ final class EnvironmentVariable implements JsonSerializable
         private readonly bool $inherited,
         private readonly bool $isEnabled,
         private readonly bool $isInheritable,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $value = null,
     ) {
     }
@@ -66,116 +64,73 @@ final class EnvironmentVariable implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsJson(): bool
     {
         return $this->isJson;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsSensitive(): bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * @return bool
-     */
     public function getVisibleBuild(): bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * @return bool
-     */
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironment(): string
     {
         return $this->environment;
     }
 
-    /**
-     * @return bool
-     */
     public function getInherited(): bool
     {
         return $this->inherited;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
 
-    /**
-     * @return bool
-     */
     public function getIsInheritable(): bool
     {
         return $this->isInheritable;
     }
 
-    /**
-     * @return string|null
-     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 }
-

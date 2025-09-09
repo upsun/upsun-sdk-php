@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?bool $state = null,
         private readonly ?string $type = null,
@@ -42,24 +40,13 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Does this user need verification for project creation.
-     *
-     * @return bool|null
-     */
     public function getState(): ?bool
     {
         return $this->state;
     }
 
-    /**
-     * What type of verification is needed (phone or ticket)
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 }
-

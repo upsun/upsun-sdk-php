@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Backup implements JsonSerializable
 {
-    public const STATUS_CREATED = 'CREATED';
-    public const STATUS_DELETING = 'DELETING';
-
     public function __construct(
         private readonly string $id,
         private readonly array $attributes,
@@ -29,9 +25,9 @@ final class Backup implements JsonSerializable
         private readonly bool $safe,
         private readonly bool $restorable,
         private readonly bool $automated,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\DateTime $expiresAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
+        private readonly ?string $expiresAt = null,
         private readonly ?int $index = null,
         private readonly ?int $sizeOfVolumes = null,
         private readonly ?int $sizeUsed = null,
@@ -70,124 +66,78 @@ final class Backup implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getExpiresAt(): ?\DateTime
+    public function getExpiresAt(): ?string
     {
         return $this->expiresAt;
     }
 
-    /**
-     * @return int|null
-     */
     public function getIndex(): ?int
     {
         return $this->index;
     }
 
-    /**
-     * @return string
-     */
     public function getCommitId(): string
     {
         return $this->commitId;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironment(): string
     {
         return $this->environment;
     }
 
-    /**
-     * @return bool
-     */
     public function getSafe(): bool
     {
         return $this->safe;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSizeOfVolumes(): ?int
     {
         return $this->sizeOfVolumes;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSizeUsed(): ?int
     {
         return $this->sizeUsed;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeployment(): ?string
     {
         return $this->deployment;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestorable(): bool
     {
         return $this->restorable;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutomated(): bool
     {
         return $this->automated;
     }
 }
-

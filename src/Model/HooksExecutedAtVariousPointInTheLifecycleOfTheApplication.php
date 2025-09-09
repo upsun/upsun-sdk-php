@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $build = null,
         private readonly ?string $deploy = null,
@@ -44,28 +42,18 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getBuild(): ?string
     {
         return $this->build;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeploy(): ?string
     {
         return $this->deploy;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPostDeploy(): ?string
     {
         return $this->postDeploy;
     }
 }
-

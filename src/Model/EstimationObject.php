@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EstimationObject implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $plan = null,
         private readonly ?string $userLicenses = null,
@@ -50,64 +48,33 @@ final class EstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The monthly price of the plan.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * The monthly price of the user licenses.
-     *
-     * @return string|null
-     */
     public function getUserLicenses(): ?string
     {
         return $this->userLicenses;
     }
 
-    /**
-     * The monthly price of the environments.
-     *
-     * @return string|null
-     */
     public function getEnvironments(): ?string
     {
         return $this->environments;
     }
 
-    /**
-     * The monthly price of the storage.
-     *
-     * @return string|null
-     */
     public function getStorage(): ?string
     {
         return $this->storage;
     }
 
-    /**
-     * The total monthly price.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * The unit prices of the options.
-     *
-     * @return object|null
-     */
     public function getOptions(): ?object
     {
         return $this->options;
     }
 }
-

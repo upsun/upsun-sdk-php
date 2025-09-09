@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class AddressGrantsInner implements JsonSerializable
 {
-    public const PERMISSION_ALLOW = 'allow';
-    public const PERMISSION_DENY = 'deny';
-
     public function __construct(
         private readonly string $permission,
         private readonly string $address,
@@ -44,20 +40,13 @@ final class AddressGrantsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getPermission(): string
     {
         return $this->permission;
     }
 
-    /**
-     * @return string
-     */
     public function getAddress(): string
     {
         return $this->address;
     }
 }
-

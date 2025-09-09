@@ -12,18 +12,16 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentRestoreInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $restoreCode,
         private readonly bool $restoreResources,
         private readonly ?string $environmentName = null,
         private readonly ?string $branchFrom = null,
-        private readonly ?\Upsun\Model\Resources5 $resources = null,
+        private readonly ?Resources5 $resources = null,
     ) {
     }
 
@@ -48,44 +46,28 @@ final class EnvironmentRestoreInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentName(): ?string
     {
         return $this->environmentName;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBranchFrom(): ?string
     {
         return $this->branchFrom;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestoreCode(): bool
     {
         return $this->restoreCode;
     }
 
-    /**
-     * @return bool
-     */
     public function getRestoreResources(): bool
     {
         return $this->restoreResources;
     }
 
-    /**
-     * @return \Upsun\Model\Resources5|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources5
+    public function getResources(): ?Resources5
     {
         return $this->resources;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $percentage = null,
     ) {
@@ -40,12 +38,8 @@ final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSeri
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int|null
-     */
     public function getPercentage(): ?int
     {
         return $this->percentage;
     }
 }
-

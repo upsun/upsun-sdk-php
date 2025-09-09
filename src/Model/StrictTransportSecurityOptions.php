@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class StrictTransportSecurityOptions implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?bool $includeSubdomains = null,
@@ -44,28 +42,18 @@ final class StrictTransportSecurityOptions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool|null
-     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIncludeSubdomains(): ?bool
     {
         return $this->includeSubdomains;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPreload(): ?bool
     {
         return $this->preload;
     }
 }
-

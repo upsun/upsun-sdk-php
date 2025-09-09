@@ -12,27 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateTicketRequest implements JsonSerializable
 {
-    public const PRIORITY_LOW = 'low';
-    public const PRIORITY_NORMAL = 'normal';
-    public const PRIORITY_HIGH = 'high';
-    public const PRIORITY_URGENT = 'urgent';
-    public const CATEGORY_ACCESS = 'access';
-    public const CATEGORY_BILLING_QUESTION = 'billing_question';
-    public const CATEGORY_COMPLAINT = 'complaint';
-    public const CATEGORY_COMPLIANCE_QUESTION = 'compliance_question';
-    public const CATEGORY_CONFIGURATION_CHANGE = 'configuration_change';
-    public const CATEGORY_GENERAL_QUESTION = 'general_question';
-    public const CATEGORY_INCIDENT_OUTAGE = 'incident_outage';
-    public const CATEGORY_BUG_REPORT = 'bug_report';
-    public const CATEGORY_REPORT_A_GUI_BUG = 'report_a_gui_bug';
-    public const CATEGORY_ONBOARDING = 'onboarding';
-    public const CATEGORY_CLOSE_MY_ACCOUNT = 'close_my_account';
-
     public function __construct(
         private readonly string $subject,
         private readonly string $description,
@@ -75,114 +58,61 @@ final class CreateTicketRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * A title of the ticket.
-     *
-     * @return string
-     */
     public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * The description body of the support ticket.
-     *
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * UUID of the ticket requester. Converted from the ZID value.
-     *
-     * @return string|null
-     */
     public function getRequesterId(): ?string
     {
         return $this->requesterId;
     }
 
-    /**
-     * A priority of the ticket.
-     *
-     * @return string|null
-     */
     public function getPriority(): ?string
     {
         return $this->priority;
     }
 
-    /**
-     * see create()
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * see create()
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * see create().
-     *
-     * @return string|null
-     */
     public function getAffectedUrl(): ?string
     {
         return $this->affectedUrl;
     }
 
-    /**
-     * The unique ID of the ticket which this ticket is a follow-up to.
-     *
-     * @return string|null
-     */
     public function getFollowupTid(): ?string
     {
         return $this->followupTid;
     }
 
-    /**
-     * The category of the support ticket.
-     *
-     * @return string|null
-     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
     /**
-     * A list of attachments for the ticket.
-     *
-     * @return \Upsun\Model\CreateTicketRequestAttachmentsInner[]|null
+     * @return CreateTicketRequestAttachmentsInner[]|null
      */
     public function getAttachments(): ?array
     {
         return $this->attachments;
     }
 
-    /**
-     * A list of collaborators uuids for the ticket.
-     *
-     * @return string[]|null
-     */
     public function getCollaboratorIds(): ?array
     {
         return $this->collaboratorIds;
     }
 }
-

@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class BuildResources implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $enabled,
-        private readonly float $maxCpu,
+        private readonly number $maxCpu,
         private readonly int $maxMemory,
     ) {
     }
@@ -44,28 +42,18 @@ final class BuildResources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return float
-     */
-    public function getMaxCpu(): float
+    public function getMaxCpu(): number
     {
         return $this->maxCpu;
     }
 
-    /**
-     * @return int
-     */
     public function getMaxMemory(): int
     {
         return $this->maxMemory;
     }
 }
-

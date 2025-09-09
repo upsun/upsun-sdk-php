@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class HalLinks implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\HalLinksSelf $self = null,
-        private readonly ?\Upsun\Model\HalLinksPrevious $previous = null,
-        private readonly ?\Upsun\Model\HalLinksNext $next = null,
+        private readonly ?HalLinksSelf $self = null,
+        private readonly ?HalLinksPrevious $previous = null,
+        private readonly ?HalLinksNext $next = null,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class HalLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\HalLinksSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\HalLinksSelf
+    public function getSelf(): ?HalLinksSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinksPrevious|null
-     */
-    public function getPrevious(): ?\Upsun\Model\HalLinksPrevious
+    public function getPrevious(): ?HalLinksPrevious
     {
         return $this->previous;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinksNext|null
-     */
-    public function getNext(): ?\Upsun\Model\HalLinksNext
+    public function getNext(): ?HalLinksNext
     {
         return $this->next;
     }
 }
-

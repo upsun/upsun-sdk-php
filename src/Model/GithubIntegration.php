@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GithubIntegration implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-    public const TOKEN_TYPE_CLASSIC_PERSONAL_TOKEN = 'classic_personal_token';
-    public const TOKEN_TYPE_GITHUB_APP = 'github_app';
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -35,8 +27,8 @@ final class GithubIntegration implements JsonSerializable
         private readonly bool $buildPullRequestsPostMerge,
         private readonly bool $pullRequestsCloneParentData,
         private readonly string $tokenType,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $baseUrl = null,
     ) {
     }
@@ -70,108 +62,68 @@ final class GithubIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool
-     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildDraftPullRequests(): bool
     {
         return $this->buildDraftPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequestsPostMerge(): bool
     {
         return $this->buildPullRequestsPostMerge;
     }
 
-    /**
-     * @return bool
-     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return string
-     */
     public function getTokenType(): string
     {
         return $this->tokenType;
     }
 }
-

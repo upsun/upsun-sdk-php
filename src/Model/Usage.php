@@ -12,18 +12,16 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Usage implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $usageGroup = null,
-        private readonly ?float $quantity = null,
-        private readonly ?\DateTime $start = null,
+        private readonly ?number $quantity = null,
+        private readonly ?string $start = null,
     ) {
     }
 
@@ -48,54 +46,28 @@ final class Usage implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID of the usage record.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The type of usage that this record represents.
-     *
-     * @return string|null
-     */
     public function getUsageGroup(): ?string
     {
         return $this->usageGroup;
     }
 
-    /**
-     * The quantity used.
-     *
-     * @return float|null
-     */
-    public function getQuantity(): ?float
+    public function getQuantity(): ?number
     {
         return $this->quantity;
     }
 
-    /**
-     * The start timestamp of this usage record (ISO 8601).
-     *
-     * @return \DateTime|null
-     */
-    public function getStart(): ?\DateTime
+    public function getStart(): ?string
     {
         return $this->start;
     }
 }
-

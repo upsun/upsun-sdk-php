@@ -12,23 +12,21 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectReference implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $id,
         private readonly string $organizationId,
         private readonly string $subscriptionId,
         private readonly string $region,
         private readonly string $title,
-        private readonly \Upsun\Model\OrganizationProjectType $type,
-        private readonly \Upsun\Model\OrganizationProjectPlan $plan,
-        private readonly \Upsun\Model\OrganizationProjectStatus $status,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private readonly OrganizationProjectType $type,
+        private readonly OrganizationProjectPlan $plan,
+        private readonly OrganizationProjectStatus $status,
+        private readonly string $createdAt,
+        private readonly string $updatedAt,
     ) {
     }
 
@@ -58,98 +56,53 @@ final class ProjectReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string
-     */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return string
-     */
     public function getSubscriptionId(): string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     *
-     * @return string
-     */
     public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectType
-     */
-    public function getType(): \Upsun\Model\OrganizationProjectType
+    public function getType(): OrganizationProjectType
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectPlan
-     */
-    public function getPlan(): \Upsun\Model\OrganizationProjectPlan
+    public function getPlan(): OrganizationProjectPlan
     {
         return $this->plan;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectStatus
-     */
-    public function getStatus(): \Upsun\Model\OrganizationProjectStatus
+    public function getStatus(): OrganizationProjectStatus
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the project was created.
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the project was last updated.
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
 }
-

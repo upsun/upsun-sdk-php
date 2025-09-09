@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $activeDocroot = null,
         private readonly ?array $docrootVersions = [],
@@ -42,20 +40,13 @@ final class MappingOfClustersToEnterpriseApplicationsValue implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getActiveDocroot(): ?string
     {
         return $this->activeDocroot;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getDocrootVersions(): ?array
     {
         return $this->docrootVersions;
     }
 }
-

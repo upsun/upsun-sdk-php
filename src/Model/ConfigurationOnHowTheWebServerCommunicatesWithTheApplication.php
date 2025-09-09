@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
 {
-    public const SOCKET_FAMILY_TCP = 'tcp';
-    public const SOCKET_FAMILY_UNIX = 'unix';
-    public const PROTOCOL_FASTCGI = 'fastcgi';
-    public const PROTOCOL_HTTP = 'http';
-
     public function __construct(
         private readonly string $socketFamily,
         private readonly ?string $protocol = null,
@@ -46,20 +40,13 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getSocketFamily(): string
     {
         return $this->socketFamily;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 }
-

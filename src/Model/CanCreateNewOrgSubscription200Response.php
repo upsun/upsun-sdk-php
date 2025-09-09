@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200Response implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
+        private readonly ?CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
         private readonly ?bool $canCreate = null,
         private readonly ?string $message = null,
     ) {
@@ -44,32 +42,18 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Boolean result of the check.
-     *
-     * @return bool|null
-     */
     public function getCanCreate(): ?bool
     {
         return $this->canCreate;
     }
 
-    /**
-     * Details in case of negative check result.
-     *
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * @return \Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction|null
-     */
-    public function getRequiredAction(): ?\Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction
+    public function getRequiredAction(): ?CanCreateNewOrgSubscription200ResponseRequiredAction
     {
         return $this->requiredAction;
     }
 }
-

@@ -12,18 +12,16 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Alert implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
         private readonly ?int $alertsSent = null,
-        private readonly ?\DateTime $lastAlertAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $lastAlertAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?object $config = null,
     ) {
     }
@@ -50,64 +48,33 @@ final class Alert implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The identification of the alert type.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Whether the alert is currently active.
-     *
-     * @return bool|null
-     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * The amount of alerts of this type that have been sent so far.
-     *
-     * @return int|null
-     */
     public function getAlertsSent(): ?int
     {
         return $this->alertsSent;
     }
 
-    /**
-     * The time the last alert has been sent.
-     *
-     * @return \DateTime|null
-     */
-    public function getLastAlertAt(): ?\DateTime
+    public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
 
-    /**
-     * The time the alert has last been updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The alert type specific configuration.
-     *
-     * @return object|null
-     */
     public function getConfig(): ?object
     {
         return $this->config;
     }
 }
-

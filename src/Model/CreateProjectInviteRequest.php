@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateProjectInviteRequest implements JsonSerializable
 {
-    public const ROLE_ADMIN = 'admin';
-    public const ROLE_VIEWER = 'viewer';
-
     public function __construct(
         private readonly string $email,
         private readonly ?string $role = null,
@@ -50,30 +46,18 @@ final class CreateProjectInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The email address of the invitee.
-     *
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * The role the invitee should be given on the project.
-     *
-     * @return string|null
-     */
     public function getRole(): ?string
     {
         return $this->role;
     }
 
     /**
-     * Specifying the role on each environment type.
-     *
-     * @return \Upsun\Model\CreateProjectInviteRequestPermissionsInner[]|null
+     * @return CreateProjectInviteRequestPermissionsInner[]|null
      */
     public function getPermissions(): ?array
     {
@@ -81,23 +65,15 @@ final class CreateProjectInviteRequest implements JsonSerializable
     }
 
     /**
-     * (Deprecated, use permissions instead) Specifying the role on each environment.
-     *
-     * @return \Upsun\Model\CreateProjectInviteRequestEnvironmentsInner[]|null
+     * @return CreateProjectInviteRequestEnvironmentsInner[]|null
      */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
-    /**
-     * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
-     *
-     * @return bool|null
-     */
     public function getForce(): ?bool
     {
         return $this->force;
     }
 }
-

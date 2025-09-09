@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListLinks implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\LinkSelf $self = null,
-        private readonly ?\Upsun\Model\LinkPrevious $previous = null,
-        private readonly ?\Upsun\Model\LinkNext $next = null,
+        private readonly ?LinkSelf $self = null,
+        private readonly ?LinkPrevious $previous = null,
+        private readonly ?LinkNext $next = null,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class ListLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\LinkSelf|null
-     */
-    public function getSelf(): ?\Upsun\Model\LinkSelf
+    public function getSelf(): ?LinkSelf
     {
         return $this->self;
     }
 
-    /**
-     * @return \Upsun\Model\LinkPrevious|null
-     */
-    public function getPrevious(): ?\Upsun\Model\LinkPrevious
+    public function getPrevious(): ?LinkPrevious
     {
         return $this->previous;
     }
 
-    /**
-     * @return \Upsun\Model\LinkNext|null
-     */
-    public function getNext(): ?\Upsun\Model\LinkNext
+    public function getNext(): ?LinkNext
     {
         return $this->next;
     }
 }
-

@@ -12,17 +12,15 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class PrepaymentObjectPrepayment implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $lastUpdatedAt = null,
         private readonly ?string $fallback = null,
         private readonly ?string $organizationId = null,
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $balance = null,
+        private readonly ?PrepaymentObjectPrepaymentBalance $balance = null,
         private readonly ?bool $sufficient = null,
     ) {
     }
@@ -48,52 +46,28 @@ final class PrepaymentObjectPrepayment implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Organization ID
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
-     */
-    public function getBalance(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    public function getBalance(): ?PrepaymentObjectPrepaymentBalance
     {
         return $this->balance;
     }
 
-    /**
-     * The date the prepayment balance was last updated.
-     *
-     * @return string|null
-     */
     public function getLastUpdatedAt(): ?string
     {
         return $this->lastUpdatedAt;
     }
 
-    /**
-     * Whether the prepayment balance is enough to cover the upcoming order.
-     *
-     * @return bool|null
-     */
     public function getSufficient(): ?bool
     {
         return $this->sufficient;
     }
 
-    /**
-     * The fallback payment method, if any, to be used in case prepayment balance is not enough to cover an order.
-     *
-     * @return string|null
-     */
     public function getFallback(): ?string
     {
         return $this->fallback;
     }
 }
-

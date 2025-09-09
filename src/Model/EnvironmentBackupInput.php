@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentBackupInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $safe,
     ) {
@@ -40,12 +38,8 @@ final class EnvironmentBackupInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getSafe(): bool
     {
         return $this->safe;
     }
 }
-

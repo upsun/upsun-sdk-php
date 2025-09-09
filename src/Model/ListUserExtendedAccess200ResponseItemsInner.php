@@ -12,22 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
 {
-    public const RESOURCE_TYPE_PROJECT = 'project';
-    public const RESOURCE_TYPE_ORGANIZATION = 'organization';
-
     public function __construct(
         private readonly ?string $userId = null,
         private readonly ?string $resourceId = null,
         private readonly ?string $resourceType = null,
         private readonly ?string $organizationId = null,
         private readonly ?array $permissions = [],
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $grantedAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -54,74 +50,38 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getUserId(): ?string
     {
         return $this->userId;
     }
 
-    /**
-     * The ID of the resource.
-     *
-     * @return string|null
-     */
     public function getResourceId(): ?string
     {
         return $this->resourceId;
     }
 
-    /**
-     * The type of the resource access to which is granted.
-     *
-     * @return string|null
-     */
     public function getResourceType(): ?string
     {
         return $this->resourceType;
     }
 
-    /**
-     * The ID of the organization owning the resource.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * List of project permissions.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 
-    /**
-     * The date and time when the access was granted.
-     *
-     * @return \DateTime|null
-     */
-    public function getGrantedAt(): ?\DateTime
+    public function getGrantedAt(): ?string
     {
         return $this->grantedAt;
     }
 
-    /**
-     * The date and time when the access was updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 }
-

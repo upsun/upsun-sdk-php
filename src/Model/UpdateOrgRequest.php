@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class UpdateOrgRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -44,34 +42,18 @@ final class UpdateOrgRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * A unique machine name representing the organization.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable label of the organization.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The organization country (2-letter country code).
-     *
-     * @return string|null
-     */
     public function getCountry(): ?string
     {
         return $this->country;
     }
 }
-

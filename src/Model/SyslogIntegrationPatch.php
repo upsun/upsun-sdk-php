@@ -12,19 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SyslogIntegrationPatch implements JsonSerializable
 {
-    public const PROTOCOL_TCP = 'tcp';
-    public const PROTOCOL_TLS = 'tls';
-    public const PROTOCOL_UDP = 'udp';
-    public const MESSAGE_FORMAT_RFC3164 = 'rfc3164';
-    public const MESSAGE_FORMAT_RFC5424 = 'rfc5424';
-    public const AUTH_MODE_PREFIX = 'prefix';
-    public const AUTH_MODE_STRUCTURED_DATA = 'structured_data';
-
     public function __construct(
         private readonly string $type,
         private readonly ?array $extra = [],
@@ -65,84 +56,53 @@ final class SyslogIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string|null
-     */
     public function getHost(): ?string
     {
         return $this->host;
     }
 
-    /**
-     * @return int|null
-     */
     public function getPort(): ?int
     {
         return $this->port;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    /**
-     * @return int|null
-     */
     public function getFacility(): ?int
     {
         return $this->facility;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessageFormat(): ?string
     {
         return $this->messageFormat;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthToken(): ?string
     {
         return $this->authToken;
     }
 
-    /**
-     * @return string|null
-     */
     public function getAuthMode(): ?string
     {
         return $this->authMode;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
 }
-

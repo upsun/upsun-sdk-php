@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateTicketRequestAttachmentsInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $filename = null,
         private readonly ?string $data = null,
@@ -42,24 +40,13 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The filename to be used in storage.
-     *
-     * @return string|null
-     */
     public function getFilename(): ?string
     {
         return $this->filename;
     }
 
-    /**
-     * the base64 encoded file.
-     *
-     * @return string|null
-     */
     public function getData(): ?string
     {
         return $this->data;
     }
 }
-

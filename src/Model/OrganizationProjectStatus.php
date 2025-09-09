@@ -13,6 +13,7 @@
 namespace Upsun\Model;
 
 use JsonSerializable;
+use InvalidArgumentException;
 
 final class OrganizationProjectStatus implements JsonSerializable
 {
@@ -20,32 +21,25 @@ final class OrganizationProjectStatus implements JsonSerializable
      * Possible values of this enum
      */
     public const PROVISIONING = 'provisioning';
-
     public const ACTIVE = 'active';
-
     public const SUSPENDED = 'suspended';
-
-
     private string $value;
 
     /**
      * Constructor
      *
-     * @param string $value one of the allowable enum values
-     * @throws \InvalidArgumentException if value is not allowed
+     * @throws InvalidArgumentException if value is not allowed
      */
     public function __construct(string $value)
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
-            throw new \InvalidArgumentException("Invalid value '{$value}' for enum OrganizationProjectStatus");
+            throw new InvalidArgumentException("Invalid value '{$value}' for enum OrganizationProjectStatus");
         }
         $this->value = $value;
     }
 
     /**
      * Get the enum value
-     *
-     * @return string
      */
     public function getValue(): string
     {
@@ -76,4 +70,3 @@ final class OrganizationProjectStatus implements JsonSerializable
         return $this->value;
     }
 }
-

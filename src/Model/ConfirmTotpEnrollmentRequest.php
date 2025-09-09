@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfirmTotpEnrollmentRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $secret,
         private readonly string $passcode,
@@ -42,24 +40,13 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The secret seed for the enrollment
-     *
-     * @return string
-     */
     public function getSecret(): string
     {
         return $this->secret;
     }
 
-    /**
-     * TOTP passcode for the enrollment
-     *
-     * @return string
-     */
     public function getPasscode(): string
     {
         return $this->passcode;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?string $total = null,
@@ -42,24 +40,13 @@ final class OrganizationEstimationObjectUserLicensesBaseListViewerUser implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The number of viewer user licenses.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * The total price for viewer user licenses.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 }
-

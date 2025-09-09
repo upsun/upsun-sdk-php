@@ -12,18 +12,16 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class BlackfireIntegration implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly array $environmentsCredentials,
         private readonly bool $continuousProfiling,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -48,44 +46,31 @@ final class BlackfireIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
     /**
-     * @return \Upsun\Model\BlackfireEnvironmentsCredentialsValue[]
+     * @return BlackfireEnvironmentsCredentialsValue[]
      */
     public function getEnvironmentsCredentials(): array
     {
         return $this->environmentsCredentials;
     }
 
-    /**
-     * @return bool
-     */
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
     }
 }
-

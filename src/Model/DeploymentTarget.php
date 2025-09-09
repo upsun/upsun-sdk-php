@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DeploymentTarget implements JsonSerializable
 {
-    public const TYPE_DEDICATED = 'dedicated';
-    public const TYPE_ENTERPRISE = 'enterprise';
-    public const TYPE_LOCAL = 'local';
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
@@ -79,156 +74,104 @@ final class DeploymentTarget implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDeployHost(): ?string
     {
         return $this->deployHost;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDeployPort(): ?int
     {
         return $this->deployPort;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSshHost(): ?string
     {
         return $this->sshHost;
     }
 
     /**
-     * @return \Upsun\Model\TheHostsOfTheDeploymentTargetInner[]|null
+     * @return TheHostsOfTheDeploymentTargetInner[]|null
      */
     public function getHosts(): ?array
     {
         return $this->hosts;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoMounts(): bool
     {
         return $this->autoMounts;
     }
 
-    /**
-     * @return string[]
-     */
     public function getExcludedMounts(): array
     {
         return $this->excludedMounts;
     }
 
-    /**
-     * @return object
-     */
     public function getEnforcedMounts(): object
     {
         return $this->enforcedMounts;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoCrons(): bool
     {
         return $this->autoCrons;
     }
 
-    /**
-     * @return bool
-     */
     public function getAutoNginx(): bool
     {
         return $this->autoNginx;
     }
 
-    /**
-     * @return bool
-     */
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
     }
 
-    /**
-     * @return int
-     */
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
     }
 
     /**
-     * @return \Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue[]
+     * @return MappingOfClustersToEnterpriseApplicationsValue[]
      */
     public function getDocroots(): array
     {
         return $this->docroots;
     }
 
-    /**
-     * @return object
-     */
     public function getSiteUrls(): object
     {
         return $this->siteUrls;
     }
 
-    /**
-     * @return string[]
-     */
     public function getSshHosts(): array
     {
         return $this->sshHosts;
     }
 
-    /**
-     * @return bool
-     */
     public function getUseDedicatedGrid(): bool
     {
         return $this->useDedicatedGrid;
     }
 
-    /**
-     * @return string|null
-     */
     public function getStorageType(): ?string
     {
         return $this->storageType;
     }
 
-    /**
-     * @return object|null
-     */
     public function getEnterpriseEnvironmentsMapping(): ?object
     {
         return $this->enterpriseEnvironmentsMapping;
     }
 }
-

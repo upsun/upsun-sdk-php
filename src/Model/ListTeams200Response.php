@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListTeams200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $items = [],
         private readonly ?int $count = null,
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?ListLinks $links = null,
     ) {
     }
 
@@ -45,29 +43,20 @@ final class ListTeams200Response implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Team[]|null
+     * @return Team[]|null
      */
     public function getItems(): ?array
     {
         return $this->items;
     }
 
-    /**
-     * Total count of all the teams.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
-    /**
-     * @return \Upsun\Model\ListLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListLinks
+    public function getLinks(): ?ListLinks
     {
         return $this->links;
     }
 }
-

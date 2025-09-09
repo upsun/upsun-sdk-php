@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListProfiles200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $profiles = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private readonly ?HalLinks $links = null,
     ) {
     }
 
@@ -44,32 +42,21 @@ final class ListProfiles200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of results.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * Array of user profiles.
-     *
-     * @return \Upsun\Model\Profile[]|null
+     * @return Profile[]|null
      */
     public function getProfiles(): ?array
     {
         return $this->profiles;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\HalLinks
+    public function getLinks(): ?HalLinks
     {
         return $this->links;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class RegionReference implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $id,
         private readonly string $label,
@@ -30,8 +28,8 @@ final class RegionReference implements JsonSerializable
         private readonly object $provider,
         private readonly object $datacenter,
         private readonly object $compliance,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private readonly string $createdAt,
+        private readonly string $updatedAt,
         private readonly ?bool $private = null,
         private readonly ?string $code = null,
         private readonly ?object $envimpact = null,
@@ -70,164 +68,83 @@ final class RegionReference implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     *
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable name of the region.
-     *
-     * @return string
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * The geographical zone of the region.
-     *
-     * @return string
-     */
     public function getZone(): string
     {
         return $this->zone;
     }
 
-    /**
-     * The label to display when choosing between regions for new projects.
-     *
-     * @return string
-     */
     public function getSelectionLabel(): string
     {
         return $this->selectionLabel;
     }
 
-    /**
-     * The label to display on existing projects.
-     *
-     * @return string
-     */
     public function getProjectLabel(): string
     {
         return $this->projectLabel;
     }
 
-    /**
-     * Default timezone of the region.
-     *
-     * @return string
-     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    /**
-     * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
-     *
-     * @return bool
-     */
     public function getAvailable(): bool
     {
         return $this->available;
     }
 
-    /**
-     * Link to the region API endpoint.
-     *
-     * @return string
-     */
     public function getEndpoint(): string
     {
         return $this->endpoint;
     }
 
-    /**
-     * Information about the region provider.
-     *
-     * @return object
-     */
     public function getProvider(): object
     {
         return $this->provider;
     }
 
-    /**
-     * Information about the region provider data center.
-     *
-     * @return object
-     */
     public function getDatacenter(): object
     {
         return $this->datacenter;
     }
 
-    /**
-     * Information about the region's compliance.
-     *
-     * @return object
-     */
     public function getCompliance(): object
     {
         return $this->compliance;
     }
 
-    /**
-     * The date and time when the resource was created.
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the resource was last updated.
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * Indicator whether or not this platform is for private use only.
-     *
-     * @return bool|null
-     */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
 
-    /**
-     * The code of the region
-     *
-     * @return string|null
-     */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
-    /**
-     * Information about the region provider's environmental impact.
-     *
-     * @return object|null
-     */
     public function getEnvimpact(): ?object
     {
         return $this->envimpact;
     }
 }
-

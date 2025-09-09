@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GitLabIntegrationCreateInput implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $token,
@@ -62,84 +56,53 @@ final class GitLabIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string|null
-     */
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildMergeRequests(): ?bool
     {
         return $this->buildMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildWipMergeRequests(): ?bool
     {
         return $this->buildWipMergeRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getMergeRequestsCloneParentData(): ?bool
     {
         return $this->mergeRequestsCloneParentData;
     }
 }
-

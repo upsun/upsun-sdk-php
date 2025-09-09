@@ -12,18 +12,16 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Domain implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
         private readonly ?bool $isDefault = null,
@@ -56,76 +54,48 @@ final class Domain implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProject(): ?string
     {
         return $this->project;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegisteredName(): ?string
     {
         return $this->registeredName;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
-

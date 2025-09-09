@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class BitbucketServerIntegrationCreateInput implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -64,92 +58,58 @@ final class BitbucketServerIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getToken(): string
     {
         return $this->token;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getFetchBranches(): ?bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPruneBranches(): ?bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEnvironmentInitResources(): ?string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getBuildPullRequests(): ?bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPullRequestsCloneParentData(): ?bool
     {
         return $this->pullRequestsCloneParentData;
     }
 }
-

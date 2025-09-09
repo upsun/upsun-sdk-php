@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheDefaultResourcesForThisService implements JsonSerializable
 {
-
     public function __construct(
-        private readonly float $cpu,
+        private readonly number $cpu,
         private readonly int $memory,
         private readonly ?int $disk = null,
         private readonly ?string $profileSize = null,
@@ -46,36 +44,23 @@ final class TheDefaultResourcesForThisService implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return float
-     */
-    public function getCpu(): float
+    public function getCpu(): number
     {
         return $this->cpu;
     }
 
-    /**
-     * @return int
-     */
     public function getMemory(): int
     {
         return $this->memory;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDisk(): ?int
     {
         return $this->disk;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProfileSize(): ?string
     {
         return $this->profileSize;
     }
 }
-

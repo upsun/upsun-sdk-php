@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SumologicIntegrationPatch implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -48,44 +46,28 @@ final class SumologicIntegrationPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getExtra(): ?array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string|null
-     */
     public function getCategory(): ?string
     {
         return $this->category;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
     }
 }
-

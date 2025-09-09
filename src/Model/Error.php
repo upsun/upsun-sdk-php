@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Error implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?string $message = null,
-        private readonly ?float $code = null,
+        private readonly ?number $code = null,
         private readonly ?object $detail = null,
         private readonly ?string $title = null,
     ) {
@@ -48,44 +46,28 @@ final class Error implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * @return float|null
-     */
-    public function getCode(): ?float
+    public function getCode(): ?number
     {
         return $this->code;
     }
 
-    /**
-     * @return object|null
-     */
     public function getDetail(): ?object
     {
         return $this->detail;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 }
-

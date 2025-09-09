@@ -12,20 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Connection implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $provider = null,
         private readonly ?string $providerType = null,
         private readonly ?bool $isMandatory = null,
         private readonly ?string $subject = null,
         private readonly ?string $emailAddress = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -52,74 +50,38 @@ final class Connection implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The name of the federation provider.
-     *
-     * @return string|null
-     */
     public function getProvider(): ?string
     {
         return $this->provider;
     }
 
-    /**
-     * The type of the federation provider.
-     *
-     * @return string|null
-     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Whether the federated login connection is mandatory.
-     *
-     * @return bool|null
-     */
     public function getIsMandatory(): ?bool
     {
         return $this->isMandatory;
     }
 
-    /**
-     * The identity on the federation provider.
-     *
-     * @return string|null
-     */
     public function getSubject(): ?string
     {
         return $this->subject;
     }
 
-    /**
-     * The email address presented on the federated login connection.
-     *
-     * @return string|null
-     */
     public function getEmailAddress(): ?string
     {
         return $this->emailAddress;
     }
 
-    /**
-     * The date and time when the connection was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the connection was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheAddonCredentialInformationOptional implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $addonKey,
         private readonly string $clientKey,
@@ -42,20 +40,13 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getAddonKey(): string
     {
         return $this->addonKey;
     }
 
-    /**
-     * @return string
-     */
     public function getClientKey(): string
     {
         return $this->clientKey;
     }
 }
-

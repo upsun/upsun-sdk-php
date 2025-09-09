@@ -12,20 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TeamProjectAccess implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\TeamProjectAccessLinks $links = null,
+        private readonly ?string $grantedAt = null,
+        private readonly ?string $updatedAt = null,
+        private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
 
@@ -52,72 +50,38 @@ final class TeamProjectAccess implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the team.
-     *
-     * @return string|null
-     */
     public function getTeamId(): ?string
     {
         return $this->teamId;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The date and time when the access was granted.
-     *
-     * @return \DateTime|null
-     */
-    public function getGrantedAt(): ?\DateTime
+    public function getGrantedAt(): ?string
     {
         return $this->grantedAt;
     }
 
-    /**
-     * The date and time when the access was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\TeamProjectAccessLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\TeamProjectAccessLinks
+    public function getLinks(): ?TeamProjectAccessLinks
     {
         return $this->links;
     }
 }
-

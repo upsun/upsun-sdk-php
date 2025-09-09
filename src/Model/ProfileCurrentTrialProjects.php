@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProfileCurrentTrialProjects implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $name = null,
-        private readonly ?\Upsun\Model\ProfileCurrentTrialProjectsTotal $total = null,
+        private readonly ?ProfileCurrentTrialProjectsTotal $total = null,
     ) {
     }
 
@@ -44,32 +42,18 @@ final class ProfileCurrentTrialProjects implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Trial project ID
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Trial project name
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return \Upsun\Model\ProfileCurrentTrialProjectsTotal|null
-     */
-    public function getTotal(): ?\Upsun\Model\ProfileCurrentTrialProjectsTotal
+    public function getTotal(): ?ProfileCurrentTrialProjectsTotal
     {
         return $this->total;
     }
 }
-

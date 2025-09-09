@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class RestrictedAndDeniedImageTypes implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $only = [],
         private readonly ?array $exclude = [],
@@ -42,20 +40,13 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getOnly(): ?array
     {
         return $this->only;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getExclude(): ?array
     {
         return $this->exclude;
     }
 }
-

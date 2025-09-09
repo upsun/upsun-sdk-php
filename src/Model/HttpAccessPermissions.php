@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class HttpAccessPermissions implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $isEnabled,
         private readonly array $addresses,
@@ -44,28 +42,21 @@ final class HttpAccessPermissions implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getIsEnabled(): bool
     {
         return $this->isEnabled;
     }
 
     /**
-     * @return \Upsun\Model\AddressGrantsInner[]
+     * @return AddressGrantsInner[]
      */
     public function getAddresses(): array
     {
         return $this->addresses;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getBasicAuth(): array
     {
         return $this->basicAuth;
     }
 }
-

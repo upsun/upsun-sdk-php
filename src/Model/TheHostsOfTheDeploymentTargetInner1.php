@@ -12,14 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
 {
-    public const TYPE_CORE = 'core';
-    public const TYPE_SATELLITE = 'satellite';
-
     public function __construct(
         private readonly string $type,
         private readonly ?string $id = null,
@@ -46,28 +42,18 @@ final class TheHostsOfTheDeploymentTargetInner1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getServices(): ?array
     {
         return $this->services;
     }
 }
-

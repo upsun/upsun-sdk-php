@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationAlertConfigConfig implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationAlertConfigConfigThreshold $threshold = null,
+        private readonly ?OrganizationAlertConfigConfigThreshold $threshold = null,
         private readonly ?string $mode = null,
     ) {
     }
@@ -42,22 +40,13 @@ final class OrganizationAlertConfigConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAlertConfigConfigThreshold|null
-     */
-    public function getThreshold(): ?\Upsun\Model\OrganizationAlertConfigConfigThreshold
+    public function getThreshold(): ?OrganizationAlertConfigConfigThreshold
     {
         return $this->threshold;
     }
 
-    /**
-     * The mode of alert.
-     *
-     * @return string|null
-     */
     public function getMode(): ?string
     {
         return $this->mode;
     }
 }
-

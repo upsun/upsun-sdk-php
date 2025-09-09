@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DataRetention implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $enabled,
     ) {
@@ -40,12 +38,8 @@ final class DataRetention implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 }
-

@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectUserLicensesUserManagementList implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser $standardManagementUser = null,
+        private readonly ?OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser $advancedManagementUser = null,
     ) {
     }
 
@@ -42,20 +40,13 @@ final class OrganizationEstimationObjectUserLicensesUserManagementList implement
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser|null
-     */
-    public function getStandardManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
+    public function getStandardManagementUser(): ?OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser
     {
         return $this->standardManagementUser;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser|null
-     */
-    public function getAdvancedManagementUser(): ?\Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
+    public function getAdvancedManagementUser(): ?OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser
     {
         return $this->advancedManagementUser;
     }
 }
-

@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ScriptIntegrationCreateInput implements JsonSerializable
 {
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
     public function __construct(
         private readonly string $type,
         private readonly string $script,
@@ -55,60 +50,38 @@ final class ScriptIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getScript(): string
     {
         return $this->script;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getStates(): ?array
     {
         return $this->states;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 }
-

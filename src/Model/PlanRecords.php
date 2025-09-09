@@ -12,21 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class PlanRecords implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\DateTime $end = null,
+        private readonly ?string $end = null,
         private readonly ?string $id = null,
         private readonly ?string $owner = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $sku = null,
         private readonly ?string $plan = null,
         private readonly ?array $options = [],
-        private readonly ?\DateTime $start = null,
+        private readonly ?string $start = null,
         private readonly ?string $status = null,
     ) {
     }
@@ -56,92 +54,48 @@ final class PlanRecords implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The unique ID of the plan record.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * The ID of the subscription this record pertains to.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The product SKU of the plan that this record represents.
-     *
-     * @return string|null
-     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-    /**
-     * The machine name of the plan that this record represents.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getOptions(): ?array
     {
         return $this->options;
     }
 
-    /**
-     * The start timestamp of this plan record (ISO 8601).
-     *
-     * @return \DateTime|null
-     */
-    public function getStart(): ?\DateTime
+    public function getStart(): ?string
     {
         return $this->start;
     }
 
-    /**
-     * The end timestamp of this plan record (ISO 8601).
-     *
-     * @return \DateTime|null
-     */
-    public function getEnd(): ?\DateTime
+    public function getEnd(): ?string
     {
         return $this->end;
     }
 
-    /**
-     * The status of the subscription during this record: active or suspended.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 }
-

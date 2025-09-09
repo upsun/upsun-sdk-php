@@ -2,141 +2,232 @@
 
 namespace Upsun\Test\Core;
 
-use GuzzleHttp\Client;
-use Upsun\ApiException;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
 use Upsun\Configuration;
-use Upsun\Model\AcceptedResponse;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\Activity;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
+use Nyholm\Psr7\Factory\Psr17Factory;
 
 class ActivityTaskTest extends TestCase
 {
     private ActivityTask $activityTask;
-    private ProjectActivityApi $projectActivityApiMock;
-    private EnvironmentActivityApi $environmentActivityApiMock;
-
-    private UpsunClient $clientMock;
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->projectActivityApiMock = $this->createMock(ProjectActivityApi::class);
-        $this->environmentActivityApiMock = $this->createMock(EnvironmentActivityApi::class);
+        $psr17Factory = new Psr17Factory();
 
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public UpsunConfig $upsunConfig;
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->activityTask = new class(
-            $this->clientMock,
-            $this->projectActivityApiMock,
-            $this->environmentActivityApiMock
+        $projectActivityApi = new ProjectActivityApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $environmentActivityApi = new EnvironmentActivityApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->activityTask = new class (
+            $upsunClient,
+            $projectActivityApi,
+            $environmentActivityApi
         ) extends ActivityTask {
-            public function refreshToken(): void {}
         };
     }
+
     public function testCancelProjectActivity()
     {
-        $expectedResponse = new AcceptedResponse();
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    "status" => "OK",
+                    "code" => 200,
+                    "_embedded" => (object) ['activities' => []],
+                ])
+            ));
 
-        $this->projectActivityApiMock->expects($this->once())
-            ->method('actionProjectsActivitiesCancel')
-            ->with('project-id', 'activity-id')
-            ->willReturn($expectedResponse);
-        
-        $result = $this->activityTask->cancel('project-id', 'activity-id');
+        /** @var Activity $activity */
+        $response = $this->activityTask->cancel("proj-id", "act-213");
 
-        $this->assertSame($expectedResponse, $result);
+        $this->assertNotEmpty($response);
+    }
+
+    public function testGetProjectActivity()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode(
+                    [
+                        'type' => 'build',
+                        'parameters' => (object)[],
+                        'project' => 'proj-id',
+                        'state' => 'complete',
+                        'completionPercent' => 100,
+                        'timings' => [],
+                        'log' => 'log content',
+                        'payload' => (object)[],
+                        'id' => '123',
+                    ]
+                )
+            ));
+
+        /** @var Activity $activity */
+        $activity = $this->activityTask->get("proj-id", "act-213");
+
+        $this->assertNotEmpty($activity);
+        $this->assertEquals("proj-id", $activity->getProject());
     }
 
     public function testCancelEnvironmentActivity()
     {
-        $expectedResponse = new AcceptedResponse();
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    "status" => "OK",
+                    "code" => 200,
+                    "_embedded" => (object) ['activities' => []],
+                ])
+            ));
 
-        $this->environmentActivityApiMock->expects($this->once())
-            ->method('actionProjectsEnvironmentsActivitiesCancel')
-            ->with('project-id', 'env-id', 'activity-id')
-            ->willReturn($expectedResponse);
+        /** @var Activity $activity */
+        $response = $this->activityTask->cancel("proj-id", "act-213", "env-123");
 
-        $result = $this->activityTask->cancel('project-id', 'activity-id', 'env-id');
-
-        $this->assertSame($expectedResponse, $result);
-    }
-    
-    public function testGetProjectActivity()
-    {
-        $projectId = 'test-project';
-        $activityId = 'activity-123';
-        $expectedActivity = new Activity();
-
-        $this->projectActivityApiMock->expects($this->once())
-            ->method('getProjectsActivities')
-            ->with($projectId, $activityId)
-            ->willReturn($expectedActivity);
-
-        $result = $this->activityTask->get($projectId, $activityId);
-
-        $this->assertSame($expectedActivity, $result);
+        $this->assertNotEmpty($response);
     }
 
     public function testGetEnvironmentActivity()
     {
-        $projectId = 'test-project';
-        $environmentId = 'env-123';
-        $activityId = 'activity-456';
-        $expectedActivity = new Activity();
-        
-        $this->environmentActivityApiMock->expects($this->once())
-            ->method('getProjectsEnvironmentsActivities')
-            ->with($projectId, $environmentId, $activityId)
-            ->willReturn($expectedActivity);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode(
+                    [
+                        'type' => 'build',
+                        'parameters' => (object)[],
+                        'project' => 'proj-id',
+                        'state' => 'complete',
+                        'completionPercent' => 100,
+                        'timings' => [],
+                        'log' => 'log content',
+                        'payload' => (object)[],
+                        'id' => '123',
+                    ]
+                )
+            ));
 
-        $result = $this->activityTask->get($projectId, $activityId, $environmentId);
+        /** @var Activity $activity */
+        $activity = $this->activityTask->get("proj-id", "act-213", "env-123");
 
-        $this->assertSame($expectedActivity, $result);
+        $this->assertNotEmpty($activity);
+        $this->assertEquals("proj-id", $activity->getProject());
     }
 
     public function testListProjectActivities()
     {
-        $projectId = 'test-project';
-        $expectedActivities = [new Activity(), new Activity()];
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'type' => 'build',
+                        'parameters' => (object)[],
+                        'project' => 'proj-id-1',
+                        'state' => 'complete',
+                        'completionPercent' => 100,
+                        'timings' => [],
+                        'log' => 'log content',
+                        'payload' => (object)[],
+                        'id' => '123',
+                    ],
+                    [
+                        'type' => 'build',
+                        'parameters' => (object)[],
+                        'project' => 'proj-id-2',
+                        'state' => 'complete',
+                        'completionPercent' => 100,
+                        'timings' => [],
+                        'log' => 'log content',
+                        'payload' => (object)[],
+                        'id' => '123',
+                    ]
+                ])
+            ));
 
-        $this->projectActivityApiMock->expects($this->once())
-            ->method('listProjectsActivities')
-            ->with($projectId)
-            ->willReturn($expectedActivities);
-        
+        /** @var Activity $activity */
+        $response = $this->activityTask->list("proj-id");
 
-        $result = $this->activityTask->list($projectId);
-
-        $this->assertSame($expectedActivities, $result);
+        $this->assertNotEmpty($response);
+        $this->assertEquals("proj-id-1", $response[0]->getProject());
+        $this->assertEquals("proj-id-2", $response[1]->getProject());
     }
 
     public function testListEnvironmentActivities()
     {
-        $projectId = 'test-project';
-        $environmentId = 'env-123';
-        $expectedActivities = [new Activity()];
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        'type' => 'build',
+                        'parameters' => (object)[],
+                        'project' => 'proj-id-1',
+                        'state' => 'complete',
+                        'completionPercent' => 100,
+                        'timings' => [],
+                        'log' => 'log content',
+                        'payload' => (object)[],
+                        'id' => '123',
+                    ],
+                    [
+                        'type' => 'build',
+                        'parameters' => (object)[],
+                        'project' => 'proj-id-2',
+                        'state' => 'complete',
+                        'completionPercent' => 100,
+                        'timings' => [],
+                        'log' => 'log content',
+                        'payload' => (object)[],
+                        'id' => '123',
+                    ]
+                ])
+            ));
 
-        $this->environmentActivityApiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsActivities')
-            ->with($projectId, $environmentId)
-            ->willReturn($expectedActivities);
-        
-        $result = $this->activityTask->list($projectId, $environmentId);
+        /** @var Activity $activity */
+        $response = $this->activityTask->list("proj-id", "env-id");
 
-        $this->assertSame($expectedActivities, $result);
+        $this->assertNotEmpty($response);
+        $this->assertEquals("proj-id-1", $response[0]->getProject());
+        $this->assertEquals("proj-id-2", $response[1]->getProject());
     }
 }

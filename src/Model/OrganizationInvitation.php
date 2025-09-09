@@ -12,30 +12,19 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationInvitation implements JsonSerializable
 {
-    public const STATE_PENDING = 'pending';
-    public const STATE_PROCESSING = 'processing';
-    public const STATE_ACCEPTED = 'accepted';
-    public const STATE_CANCELLED = 'cancelled';
-    public const STATE_ERROR = 'error';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PROJECT_CREATE = 'project:create';
-
     public function __construct(
-        private readonly ?\DateTime $finishedAt = null,
+        private readonly ?string $finishedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $state = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $email = null,
-        private readonly ?\Upsun\Model\OrganizationInvitationOwner $owner = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?OrganizationInvitationOwner $owner = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?array $permissions = [],
     ) {
     }
@@ -65,92 +54,48 @@ final class OrganizationInvitation implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the invitation.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The invitation state.
-     *
-     * @return string|null
-     */
     public function getState(): ?string
     {
         return $this->state;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The email address of the invitee.
-     *
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationInvitationOwner|null
-     */
-    public function getOwner(): ?\Upsun\Model\OrganizationInvitationOwner
+    public function getOwner(): ?OrganizationInvitationOwner
     {
         return $this->owner;
     }
 
-    /**
-     * The date and time when the invitation was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the invitation was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The date and time when the invitation was finished.
-     *
-     * @return \DateTime|null
-     */
-    public function getFinishedAt(): ?\DateTime
+    public function getFinishedAt(): ?string
     {
         return $this->finishedAt;
     }
 
-    /**
-     * The permissions the invitee should be given on the organization.
-     *
-     * @return string[]|null
-     */
     public function getPermissions(): ?array
     {
         return $this->permissions;
     }
 }
-

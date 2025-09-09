@@ -12,19 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationAlertConfig implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $lastAlertAt = null,
         private readonly ?string $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationAlertConfigConfig $config = null,
+        private readonly ?OrganizationAlertConfigConfig $config = null,
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
-        private readonly ?float $alertsSent = null,
+        private readonly ?number $alertsSent = null,
     ) {
     }
 
@@ -50,62 +48,33 @@ final class OrganizationAlertConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Type of alert (e.g. \"billing\")
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * Whether the billing alert should be active or not.
-     *
-     * @return bool|null
-     */
     public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * Number of alerts sent.
-     *
-     * @return float|null
-     */
-    public function getAlertsSent(): ?float
+    public function getAlertsSent(): ?number
     {
         return $this->alertsSent;
     }
 
-    /**
-     * The datetime the alert was last sent.
-     *
-     * @return string|null
-     */
     public function getLastAlertAt(): ?string
     {
         return $this->lastAlertAt;
     }
 
-    /**
-     * The datetime the alert was last updated.
-     *
-     * @return string|null
-     */
     public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAlertConfigConfig|null
-     */
-    public function getConfig(): ?\Upsun\Model\OrganizationAlertConfigConfig
+    public function getConfig(): ?OrganizationAlertConfigConfig
     {
         return $this->config;
     }
 }
-

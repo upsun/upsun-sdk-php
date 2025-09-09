@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class WebHookIntegrationCreateInput implements JsonSerializable
 {
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
     public function __construct(
         private readonly string $type,
         private readonly string $url,
@@ -57,68 +52,43 @@ final class WebHookIntegrationCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEvents(): ?array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getEnvironments(): ?array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getExcludedEnvironments(): ?array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getStates(): ?array
     {
         return $this->states;
     }
 
-    /**
-     * @return string|null
-     */
     public function getResult(): ?string
     {
         return $this->result;
     }
 
-    /**
-     * @return string|null
-     */
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
     }
 }
-

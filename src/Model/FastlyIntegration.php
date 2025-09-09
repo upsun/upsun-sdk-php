@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class FastlyIntegration implements JsonSerializable
 {
-    public const RESULT_STAR = '*';
-    public const RESULT_FAILURE = 'failure';
-    public const RESULT_SUCCESS = 'success';
-
     public function __construct(
         private readonly string $type,
         private readonly array $events,
@@ -29,8 +24,8 @@ final class FastlyIntegration implements JsonSerializable
         private readonly array $states,
         private readonly string $result,
         private readonly string $serviceId,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -59,76 +54,48 @@ final class FastlyIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return string[]
-     */
     public function getEvents(): array
     {
         return $this->events;
     }
 
-    /**
-     * @return string[]
-     */
     public function getEnvironments(): array
     {
         return $this->environments;
     }
 
-    /**
-     * @return string[]
-     */
     public function getExcludedEnvironments(): array
     {
         return $this->excludedEnvironments;
     }
 
-    /**
-     * @return string[]
-     */
     public function getStates(): array
     {
         return $this->states;
     }
 
-    /**
-     * @return string
-     */
     public function getResult(): string
     {
         return $this->result;
     }
 
-    /**
-     * @return string
-     */
     public function getServiceId(): string
     {
         return $this->serviceId;
     }
 }
-

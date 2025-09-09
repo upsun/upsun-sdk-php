@@ -12,24 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Project implements JsonSerializable
 {
-
     public function __construct(
         private readonly array $attributes,
         private readonly string $title,
         private readonly string $description,
         private readonly string $owner,
-        private readonly \Upsun\Model\Status $status,
+        private readonly Status $status,
         private readonly string $timezone,
         private readonly string $region,
-        private readonly \Upsun\Model\RepositoryInformation $repository,
-        private readonly \Upsun\Model\SubscriptionInformation $subscription,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly RepositoryInformation $repository,
+        private readonly SubscriptionInformation $subscription,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $namespace = null,
         private readonly ?string $organization = null,
         private readonly ?string $defaultBranch = null,
@@ -68,124 +66,78 @@ final class Project implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getAttributes(): array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @return string
-     */
     public function getOwner(): string
     {
         return $this->owner;
     }
 
-    /**
-     * @return string|null
-     */
     public function getNamespace(): ?string
     {
         return $this->namespace;
     }
 
-    /**
-     * @return string|null
-     */
     public function getOrganization(): ?string
     {
         return $this->organization;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * @return \Upsun\Model\Status
-     */
-    public function getStatus(): \Upsun\Model\Status
+    public function getStatus(): Status
     {
         return $this->status;
     }
 
-    /**
-     * @return string
-     */
     public function getTimezone(): string
     {
         return $this->timezone;
     }
 
-    /**
-     * @return string
-     */
     public function getRegion(): string
     {
         return $this->region;
     }
 
-    /**
-     * @return \Upsun\Model\RepositoryInformation
-     */
-    public function getRepository(): \Upsun\Model\RepositoryInformation
+    public function getRepository(): RepositoryInformation
     {
         return $this->repository;
     }
 
-    /**
-     * @return \Upsun\Model\SubscriptionInformation
-     */
-    public function getSubscription(): \Upsun\Model\SubscriptionInformation
+    public function getSubscription(): SubscriptionInformation
     {
         return $this->subscription;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Region implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -28,9 +26,9 @@ final class Region implements JsonSerializable
         private readonly ?bool $available = null,
         private readonly ?bool $private = null,
         private readonly ?string $endpoint = null,
-        private readonly ?\Upsun\Model\RegionProvider $provider = null,
-        private readonly ?\Upsun\Model\RegionDatacenter $datacenter = null,
-        private readonly ?\Upsun\Model\RegionEnvironmentalImpact $environmentalImpact = null,
+        private readonly ?RegionProvider $provider = null,
+        private readonly ?RegionDatacenter $datacenter = null,
+        private readonly ?RegionEnvironmentalImpact $environmentalImpact = null,
     ) {
     }
 
@@ -62,118 +60,63 @@ final class Region implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the region.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable name of the region.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * Geographical zone of the region
-     *
-     * @return string|null
-     */
     public function getZone(): ?string
     {
         return $this->zone;
     }
 
-    /**
-     * The label to display when choosing between regions for new projects.
-     *
-     * @return string|null
-     */
     public function getSelectionLabel(): ?string
     {
         return $this->selectionLabel;
     }
 
-    /**
-     * The label to display on existing projects.
-     *
-     * @return string|null
-     */
     public function getProjectLabel(): ?string
     {
         return $this->projectLabel;
     }
 
-    /**
-     * Default timezone of the region
-     *
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * Indicator whether or not this region is selectable during the checkout. Not available regions will never show up during checkout.
-     *
-     * @return bool|null
-     */
     public function getAvailable(): ?bool
     {
         return $this->available;
     }
 
-    /**
-     * Indicator whether or not this platform is for private use only.
-     *
-     * @return bool|null
-     */
     public function getPrivate(): ?bool
     {
         return $this->private;
     }
 
-    /**
-     * Link to the region API endpoint.
-     *
-     * @return string|null
-     */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 
-    /**
-     * @return \Upsun\Model\RegionProvider|null
-     */
-    public function getProvider(): ?\Upsun\Model\RegionProvider
+    public function getProvider(): ?RegionProvider
     {
         return $this->provider;
     }
 
-    /**
-     * @return \Upsun\Model\RegionDatacenter|null
-     */
-    public function getDatacenter(): ?\Upsun\Model\RegionDatacenter
+    public function getDatacenter(): ?RegionDatacenter
     {
         return $this->datacenter;
     }
 
-    /**
-     * @return \Upsun\Model\RegionEnvironmentalImpact|null
-     */
-    public function getEnvironmentalImpact(): ?\Upsun\Model\RegionEnvironmentalImpact
+    public function getEnvironmentalImpact(): ?RegionEnvironmentalImpact
     {
         return $this->environmentalImpact;
     }
 }
-

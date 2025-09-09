@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $path,
         private readonly int $mode,
@@ -44,28 +42,18 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getPath(): string
     {
         return $this->path;
     }
 
-    /**
-     * @return int
-     */
     public function getMode(): int
     {
         return $this->mode;
     }
 
-    /**
-     * @return string
-     */
     public function getContents(): string
     {
         return $this->contents;
     }
 }
-

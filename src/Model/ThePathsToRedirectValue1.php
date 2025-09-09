@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ThePathsToRedirectValue1 implements JsonSerializable
 {
-    public const CODE_NUMBER_301 = 301;
-    public const CODE_NUMBER_302 = 302;
-    public const CODE_NUMBER_307 = 307;
-    public const CODE_NUMBER_308 = 308;
-
     public function __construct(
         private readonly string $to,
         private readonly ?bool $prefix = null,
@@ -54,52 +48,33 @@ final class ThePathsToRedirectValue1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getTo(): string
     {
         return $this->to;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getRegexp(): ?bool
     {
         return $this->regexp;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getPrefix(): ?bool
     {
         return $this->prefix;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getAppendSuffix(): ?bool
     {
         return $this->appendSuffix;
     }
 
-    /**
-     * @return int|null
-     */
     public function getCode(): ?int
     {
         return $this->code;
     }
 
-    /**
-     * @return string|null
-     */
     public function getExpires(): ?string
     {
         return $this->expires;
     }
 }
-

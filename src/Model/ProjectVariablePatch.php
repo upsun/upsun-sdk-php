@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectVariablePatch implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?array $attributes = [],
@@ -52,60 +50,38 @@ final class ProjectVariablePatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
     public function getValue(): ?string
     {
         return $this->value;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsJson(): ?bool
     {
         return $this->isJson;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsSensitive(): ?bool
     {
         return $this->isSensitive;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getVisibleBuild(): ?bool
     {
         return $this->visibleBuild;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;
     }
 }
-

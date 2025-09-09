@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Vouchers implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $uuid = null,
         private readonly ?string $vouchersTotal = null,
@@ -25,7 +23,7 @@ final class Vouchers implements JsonSerializable
         private readonly ?string $vouchersRemainingBalance = null,
         private readonly ?string $currency = null,
         private readonly ?array $vouchers = [],
-        private readonly ?\Upsun\Model\VouchersLinks $links = null,
+        private readonly ?VouchersLinks $links = null,
     ) {
     }
 
@@ -52,72 +50,41 @@ final class Vouchers implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The uuid of the user.
-     *
-     * @return string|null
-     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
-    /**
-     * The total voucher credit given to the user.
-     *
-     * @return string|null
-     */
     public function getVouchersTotal(): ?string
     {
         return $this->vouchersTotal;
     }
 
-    /**
-     * The part of total voucher credit applied to orders.
-     *
-     * @return string|null
-     */
     public function getVouchersApplied(): ?string
     {
         return $this->vouchersApplied;
     }
 
-    /**
-     * The remaining voucher credit, available for future orders.
-     *
-     * @return string|null
-     */
     public function getVouchersRemainingBalance(): ?string
     {
         return $this->vouchersRemainingBalance;
     }
 
-    /**
-     * The currency of the vouchers.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
     /**
-     * Array of vouchers.
-     *
-     * @return \Upsun\Model\VouchersVouchersInner[]|null
+     * @return VouchersVouchersInner[]|null
      */
     public function getVouchers(): ?array
     {
         return $this->vouchers;
     }
 
-    /**
-     * @return \Upsun\Model\VouchersLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\VouchersLinks
+    public function getLinks(): ?VouchersLinks
     {
         return $this->links;
     }
 }
-

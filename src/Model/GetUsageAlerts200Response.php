@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GetUsageAlerts200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $available = [],
         private readonly ?array $current = [],
@@ -43,9 +41,7 @@ final class GetUsageAlerts200Response implements JsonSerializable
     }
 
     /**
-     * The list of available usage alerts.
-     *
-     * @return \Upsun\Model\Alert[]|null
+     * @return Alert[]|null
      */
     public function getAvailable(): ?array
     {
@@ -53,13 +49,10 @@ final class GetUsageAlerts200Response implements JsonSerializable
     }
 
     /**
-     * The list of the current usage alerts.
-     *
-     * @return \Upsun\Model\Alert[]|null
+     * @return Alert[]|null
      */
     public function getCurrent(): ?array
     {
         return $this->current;
     }
 }
-

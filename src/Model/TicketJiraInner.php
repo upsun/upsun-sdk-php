@@ -12,19 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TicketJiraInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $id = null,
         private readonly ?int $ticketId = null,
         private readonly ?int $issueId = null,
         private readonly ?string $issueKey = null,
-        private readonly ?float $createdAt = null,
-        private readonly ?float $updatedAt = null,
+        private readonly ?number $createdAt = null,
+        private readonly ?number $updatedAt = null,
     ) {
     }
 
@@ -50,64 +48,33 @@ final class TicketJiraInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The id of the query.
-     *
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * The id of the ticket.
-     *
-     * @return int|null
-     */
     public function getTicketId(): ?int
     {
         return $this->ticketId;
     }
 
-    /**
-     * The issue id number.
-     *
-     * @return int|null
-     */
     public function getIssueId(): ?int
     {
         return $this->issueId;
     }
 
-    /**
-     * The issue key.
-     *
-     * @return string|null
-     */
     public function getIssueKey(): ?string
     {
         return $this->issueKey;
     }
 
-    /**
-     * The created at timestamp.
-     *
-     * @return float|null
-     */
-    public function getCreatedAt(): ?float
+    public function getCreatedAt(): ?number
     {
         return $this->createdAt;
     }
 
-    /**
-     * The updated at timestamp.
-     *
-     * @return float|null
-     */
-    public function getUpdatedAt(): ?float
+    public function getUpdatedAt(): ?number
     {
         return $this->updatedAt;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $continuousProfiling = [],
         private readonly ?array $projectSupportLevel = [],
@@ -42,24 +40,13 @@ final class SubscriptionAddonsObjectUpgradesAvailable implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Available upgrade options for continuous profiling.
-     *
-     * @return string[]|null
-     */
     public function getContinuousProfiling(): ?array
     {
         return $this->continuousProfiling;
     }
 
-    /**
-     * Available upgrade options for project uptime.
-     *
-     * @return string[]|null
-     */
     public function getProjectSupportLevel(): ?array
     {
         return $this->projectSupportLevel;
     }
 }
-

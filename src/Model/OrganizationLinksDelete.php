@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationLinksDelete implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $href = null,
         private readonly ?string $method = null,
@@ -42,24 +40,13 @@ final class OrganizationLinksDelete implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * URL of the link.
-     *
-     * @return string|null
-     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 
-    /**
-     * The HTTP method to use.
-     *
-     * @return string|null
-     */
     public function getMethod(): ?string
     {
         return $this->method;
     }
 }
-

@@ -12,19 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class PrepaymentTransactionObject implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $updated = null,
         private readonly ?string $expireDate = null,
         private readonly ?string $orderId = null,
         private readonly ?string $message = null,
         private readonly ?string $status = null,
-        private readonly ?\Upsun\Model\PrepaymentObjectPrepaymentBalance $amount = null,
+        private readonly ?PrepaymentObjectPrepaymentBalance $amount = null,
         private readonly ?string $created = null,
     ) {
     }
@@ -52,72 +50,38 @@ final class PrepaymentTransactionObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Order ID
-     *
-     * @return string|null
-     */
     public function getOrderId(): ?string
     {
         return $this->orderId;
     }
 
-    /**
-     * The message associated with transaction.
-     *
-     * @return string|null
-     */
     public function getMessage(): ?string
     {
         return $this->message;
     }
 
-    /**
-     * Whether the transactions was successful or a failure.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * @return \Upsun\Model\PrepaymentObjectPrepaymentBalance|null
-     */
-    public function getAmount(): ?\Upsun\Model\PrepaymentObjectPrepaymentBalance
+    public function getAmount(): ?PrepaymentObjectPrepaymentBalance
     {
         return $this->amount;
     }
 
-    /**
-     * Time the transaction was created.
-     *
-     * @return string|null
-     */
     public function getCreated(): ?string
     {
         return $this->created;
     }
 
-    /**
-     * Time the transaction was last updated.
-     *
-     * @return string|null
-     */
     public function getUpdated(): ?string
     {
         return $this->updated;
     }
 
-    /**
-     * The expiration date of the transaction (deposits only).
-     *
-     * @return string|null
-     */
     public function getExpireDate(): ?string
     {
         return $this->expireDate;
     }
 }
-

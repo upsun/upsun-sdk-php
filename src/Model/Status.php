@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Status implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $code,
         private readonly string $message,
@@ -42,20 +40,13 @@ final class Status implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return $this->message;
     }
 }
-

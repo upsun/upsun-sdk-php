@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectOptionsEnforced implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?object $settings = null,
         private readonly ?object $capabilities = null,
@@ -42,24 +40,13 @@ final class ProjectOptionsEnforced implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The project settings.
-     *
-     * @return object|null
-     */
     public function getSettings(): ?object
     {
         return $this->settings;
     }
 
-    /**
-     * The project capabilities.
-     *
-     * @return object|null
-     */
     public function getCapabilities(): ?object
     {
         return $this->capabilities;
     }
 }
-

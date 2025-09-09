@@ -12,18 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateOrgInviteRequest implements JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_BILLING = 'billing';
-    public const PERMISSIONS_PLANS = 'plans';
-    public const PERMISSIONS_MEMBERS = 'members';
-    public const PERMISSIONS_PROJECTS_CREATE = 'projects:create';
-    public const PERMISSIONS_PROJECTS_LIST = 'projects:list';
-
     public function __construct(
         private readonly string $email,
         private readonly array $permissions,
@@ -50,34 +42,18 @@ final class CreateOrgInviteRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The email address of the invitee.
-     *
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * The permissions the invitee should be given on the organization.
-     *
-     * @return string[]
-     */
     public function getPermissions(): array
     {
         return $this->permissions;
     }
 
-    /**
-     * Whether to cancel any pending invitation for the specified invitee, and create a new invitation.
-     *
-     * @return bool|null
-     */
     public function getForce(): ?bool
     {
         return $this->force;
     }
 }
-

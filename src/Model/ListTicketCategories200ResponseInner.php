@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListTicketCategories200ResponseInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -42,24 +40,13 @@ final class ListTicketCategories200ResponseInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Machine name of the category as is listed in zendesk.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable label of the category.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 }
-

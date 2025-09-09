@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ResourcesLimits implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $containerProfiles,
-        private readonly \Upsun\Model\ResourcesForProductionEnvironments $production,
-        private readonly \Upsun\Model\ResourcesForDevelopmentEnvironments $development,
+        private readonly ResourcesForProductionEnvironments $production,
+        private readonly ResourcesForDevelopmentEnvironments $development,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class ResourcesLimits implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getContainerProfiles(): bool
     {
         return $this->containerProfiles;
     }
 
-    /**
-     * @return \Upsun\Model\ResourcesForProductionEnvironments
-     */
-    public function getProduction(): \Upsun\Model\ResourcesForProductionEnvironments
+    public function getProduction(): ResourcesForProductionEnvironments
     {
         return $this->production;
     }
 
-    /**
-     * @return \Upsun\Model\ResourcesForDevelopmentEnvironments
-     */
-    public function getDevelopment(): \Upsun\Model\ResourcesForDevelopmentEnvironments
+    public function getDevelopment(): ResourcesForDevelopmentEnvironments
     {
         return $this->development;
     }
 }
-

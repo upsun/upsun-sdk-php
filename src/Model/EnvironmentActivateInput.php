@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentActivateInput implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\Resources1 $resources = null,
+        private readonly ?Resources1 $resources = null,
     ) {
     }
 
@@ -40,12 +38,8 @@ final class EnvironmentActivateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\Resources1|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources1
+    public function getResources(): ?Resources1
     {
         return $this->resources;
     }
 }
-

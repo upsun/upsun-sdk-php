@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Resources4 implements JsonSerializable
 {
-    public const INIT_CHILD = 'child';
-    public const INIT__DEFAULT = 'default';
-    public const INIT_MANUAL = 'manual';
-    public const INIT_MINIMUM = 'minimum';
-
     public function __construct(
         private readonly ?string $init = null,
     ) {
@@ -44,12 +38,8 @@ final class Resources4 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getInit(): ?string
     {
         return $this->init;
     }
 }
-

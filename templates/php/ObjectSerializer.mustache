@@ -60,15 +60,7 @@ class ObjectSerializer
                         );
                     }
 
-                    if ($value !== null && !in_array(
-                        $openAPIType,
-                        [
-                    {{#primitives}}
-                            '{{.}}',
-                    {{/primitives}}
-                        ],
-                        true
-                    )) {
+                    if ($value !== null && !in_array($openAPIType, [{{&primitives}}], true)) {
                         $callable = [$openAPIType, 'getAllowableEnumValues'];
                         if (is_callable($callable)) {
                             /** array $callable */
@@ -142,6 +134,7 @@ class ObjectSerializer
 
     /**
      * Simple deserializer for new models with parameterized constructors
+     * @throws Exception
      */
     private static function deserializeSimplifiedModel($data, string $class)
     {
@@ -207,7 +200,7 @@ class ObjectSerializer
             if ($paramType) {
                 $typeName = $paramType->getName();
 
-                if ($paramType->getName() === 'array' && $value !== null && is_array($value)) {
+                if ($paramType->getName() === 'array' && is_array($value)) {
                     $types = ObjectOpenApiTypesMapper::openAPITypes($fullClass);
 
                     if (isset($types[$paramName]) && str_ends_with($types[$paramName], '[]')) {
@@ -224,7 +217,6 @@ class ObjectSerializer
                     // Fallback if no metadata
                     $args[] = [];
                 }
-
 
                 if (str_ends_with($typeName, '[]')) {
                     $subClass = substr($typeName, 0, -2);
@@ -290,23 +282,18 @@ class ObjectSerializer
     /**
      * @throws Exception
      */
-    public static function deserialize($data, string $class, $httpHeaders = null, $discriminator = null)
+    public static function deserialize($data, string $class, $httpHeaders = null)
     {
         if ($data === null) {
             return null;
         }
 
-        // Handle ActivityCollection (or any Collection schema with only "items")
+        // Handle any class with array properties
         if (class_exists($class) && is_subclass_of($class, ModelInterface::class)) {
-            $types = ObjectOpenApiTypesMapper::openAPITypes($class);
-            if (isset($types['items']) && str_ends_with($types['items'], '[]')) {
-                $subClass = substr($types['items'], 0, -2);
-                $values = [];
-                foreach ($data as $item) {
-                    $values[] = self::deserialize($item, $subClass, $httpHeaders, $discriminator);
-                }
-                return $values;
+            if (is_array($data)) {
+                $data = self::preprocessArrayProperties($data, $class);
             }
+            return self::deserializeSimplifiedModel($data, $class);
         }
 
         // Handle array of models
@@ -319,7 +306,7 @@ class ObjectSerializer
             }
 
             foreach ($data as $item) {
-                $values[] = self::deserialize($item, $subClass, $httpHeaders, $discriminator);
+                $values[] = self::deserialize($item, $subClass, $httpHeaders);
             }
 
             return $values;
@@ -342,6 +329,7 @@ class ObjectSerializer
             case 'mixed':
                 return $data;
             case 'array':
+                error_log("Warning: Deserializing generic 'array' type - should use specific model class");
                 return (array)$data;
             case 'DateTime':
                 return new DateTime($data);
@@ -379,6 +367,39 @@ class ObjectSerializer
                 // Nested model
                 return self::deserializeSimplifiedModel($data, $class);
         }
+    }
+
+    /**
+     * Preprocess array properties to deserialize models
+     */
+    private static function preprocessArrayProperties(array $data, string $class): array
+    {
+        if (!method_exists($class, 'openAPITypes')) {
+            return $data;
+        }
+
+        $types = $class::openAPITypes();
+
+        foreach ($types as $propertyName => $propertyType) {
+            // If it's an array of models (ends with [])
+            if (str_ends_with($propertyType, '[]')) {
+                $subClass = ltrim(substr($propertyType, 0, -2), '?'); // remove [] et ?
+
+                // If the data contains this property and it's an array
+                if (isset($data[$propertyName]) && is_array($data[$propertyName])) {
+                    // If it's a model class, deserialize each element
+                    if (class_exists($subClass)) {
+                        $values = [];
+                        foreach ($data[$propertyName] as $item) {
+                            $values[] = self::deserialize($item, $subClass);
+                        }
+                        $data[$propertyName] = $values;
+                    }
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -438,6 +459,6 @@ class ObjectSerializer
             }
         }
 
-        return $qs ? (string) substr($qs, 0, -1) : '';
+        return $qs ? substr($qs, 0, -1) : '';
     }
 }

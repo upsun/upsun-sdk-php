@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListRegions200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $regions = [],
-        private readonly ?\Upsun\Model\ListLinks $links = null,
+        private readonly ?ListLinks $links = null,
     ) {
     }
 
@@ -43,19 +41,15 @@ final class ListRegions200Response implements JsonSerializable
     }
 
     /**
-     * @return \Upsun\Model\Region[]|null
+     * @return Region[]|null
      */
     public function getRegions(): ?array
     {
         return $this->regions;
     }
 
-    /**
-     * @return \Upsun\Model\ListLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\ListLinks
+    public function getLinks(): ?ListLinks
     {
         return $this->links;
     }
 }
-

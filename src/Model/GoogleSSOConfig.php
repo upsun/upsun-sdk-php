@@ -12,13 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GoogleSSOConfig implements JsonSerializable
 {
-    public const PROVIDER_TYPE_GOOGLE = 'google';
-
     public function __construct(
         private readonly ?string $providerType = null,
         private readonly ?string $domain = null,
@@ -43,24 +40,13 @@ final class GoogleSSOConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * SSO provider type.
-     *
-     * @return string|null
-     */
     public function getProviderType(): ?string
     {
         return $this->providerType;
     }
 
-    /**
-     * Google hosted domain.
-     *
-     * @return string|null
-     */
     public function getDomain(): ?string
     {
         return $this->domain;
     }
 }
-

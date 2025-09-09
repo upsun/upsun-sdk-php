@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class HalLinksSelf implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?string $href = null,
@@ -42,24 +40,13 @@ final class HalLinksSelf implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Title of the link
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * URL of the link
-     *
-     * @return string|null
-     */
     public function getHref(): ?string
     {
         return $this->href;
     }
 }
-

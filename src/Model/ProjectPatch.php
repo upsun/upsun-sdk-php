@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectPatch implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $defaultBranch = null,
         private readonly ?string $defaultDomain = null,
@@ -52,60 +50,38 @@ final class ProjectPatch implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultBranch(): ?string
     {
         return $this->defaultBranch;
     }
 
-    /**
-     * @return string|null
-     */
     public function getTimezone(): ?string
     {
         return $this->timezone;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * @return string|null
-     */
     public function getDefaultDomain(): ?string
     {
         return $this->defaultDomain;
     }
 }
-

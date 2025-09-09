@@ -12,25 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Subscription implements JsonSerializable
 {
-    public const STATUS_REQUESTED = 'requested';
-    public const STATUS_PROVISIONING_FAILURE = 'provisioning failure';
-    public const STATUS_PROVISIONING = 'provisioning';
-    public const STATUS_ACTIVE = 'active';
-    public const STATUS_SUSPENDED = 'suspended';
-    public const STATUS_DELETED = 'deleted';
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
         private readonly ?string $owner = null,
-        private readonly ?\Upsun\Model\OwnerInfo $ownerInfo = null,
+        private readonly ?OwnerInfo $ownerInfo = null,
         private readonly ?string $vendor = null,
         private readonly ?string $plan = null,
         private readonly ?int $environments = null,
@@ -42,7 +34,7 @@ final class Subscription implements JsonSerializable
         private readonly ?string $projectRegion = null,
         private readonly ?string $projectRegionLabel = null,
         private readonly ?string $projectUi = null,
-        private readonly ?\Upsun\Model\ProjectOptions $projectOptions = null,
+        private readonly ?ProjectOptions $projectOptions = null,
         private readonly ?bool $agencySite = null,
         private readonly ?bool $invoiced = null,
         private readonly ?bool $hipaa = null,
@@ -92,240 +84,123 @@ final class Subscription implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The internal ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The status of the subscription.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The date and time when the subscription was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the subscription was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * @return \Upsun\Model\OwnerInfo|null
-     */
-    public function getOwnerInfo(): ?\Upsun\Model\OwnerInfo
+    public function getOwnerInfo(): ?OwnerInfo
     {
         return $this->ownerInfo;
     }
 
-    /**
-     * The machine name of the vendor the subscription belongs to.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The plan type of the subscription.
-     *
-     * @return string|null
-     */
     public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    /**
-     * The number of environments which can be provisioned on the project.
-     *
-     * @return int|null
-     */
     public function getEnvironments(): ?int
     {
         return $this->environments;
     }
 
-    /**
-     * The total storage available to each environment, in MiB. Only multiples of 1024 are accepted as legal values.
-     *
-     * @return int|null
-     */
     public function getStorage(): ?int
     {
         return $this->storage;
     }
 
-    /**
-     * The number of chargeable users who currently have access to the project. Manage this value by adding and removing users through the Platform project API. Staff and billing/administrative contacts can be added to a project for no charge. Contact support for questions about user licenses.
-     *
-     * @return int|null
-     */
     public function getUserLicenses(): ?int
     {
         return $this->userLicenses;
     }
 
-    /**
-     * The unique ID string of the project.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * The project API endpoint for the project.
-     *
-     * @return string|null
-     */
     public function getProjectEndpoint(): ?string
     {
         return $this->projectEndpoint;
     }
 
-    /**
-     * The name given to the project. Appears as the title in the UI.
-     *
-     * @return string|null
-     */
     public function getProjectTitle(): ?string
     {
         return $this->projectTitle;
     }
 
-    /**
-     * The machine name of the region where the project is located. Cannot be changed after project creation.
-     *
-     * @return string|null
-     */
     public function getProjectRegion(): ?string
     {
         return $this->projectRegion;
     }
 
-    /**
-     * The human-readable name of the region where the project is located.
-     *
-     * @return string|null
-     */
     public function getProjectRegionLabel(): ?string
     {
         return $this->projectRegionLabel;
     }
 
-    /**
-     * The URL for the project's user interface.
-     *
-     * @return string|null
-     */
     public function getProjectUi(): ?string
     {
         return $this->projectUi;
     }
 
-    /**
-     * @return \Upsun\Model\ProjectOptions|null
-     */
-    public function getProjectOptions(): ?\Upsun\Model\ProjectOptions
+    public function getProjectOptions(): ?ProjectOptions
     {
         return $this->projectOptions;
     }
 
-    /**
-     * True if the project is an agency site.
-     *
-     * @return bool|null
-     */
     public function getAgencySite(): ?bool
     {
         return $this->agencySite;
     }
 
-    /**
-     * Whether the subscription is invoiced.
-     *
-     * @return bool|null
-     */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 
-    /**
-     * Whether the project is marked as HIPAA.
-     *
-     * @return bool|null
-     */
     public function getHipaa(): ?bool
     {
         return $this->hipaa;
     }
 
-    /**
-     * Whether the project is currently on a trial plan.
-     *
-     * @return bool|null
-     */
     public function getIsTrialPlan(): ?bool
     {
         return $this->isTrialPlan;
     }
 
-    /**
-     * Details of the attached services.
-     *
-     * @return object[]|null
-     */
     public function getServices(): ?array
     {
         return $this->services;
     }
 
-    /**
-     * Whether the subscription is considered green (on a green region, belonging to a green vendor) for billing purposes.
-     *
-     * @return bool|null
-     */
     public function getGreen(): ?bool
     {
         return $this->green;
     }
 }
-

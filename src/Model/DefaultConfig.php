@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DefaultConfig implements JsonSerializable
 {
-
     public function __construct(
         private readonly int $manualCount,
         private readonly array $schedule,
@@ -42,20 +40,16 @@ final class DefaultConfig implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getManualCount(): int
     {
         return $this->manualCount;
     }
 
     /**
-     * @return \Upsun\Model\TheBackupScheduleSpecificationInner[]
+     * @return TheBackupScheduleSpecificationInner[]
      */
     public function getSchedule(): array
     {
         return $this->schedule;
     }
 }
-

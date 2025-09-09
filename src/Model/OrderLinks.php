@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrderLinks implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrderLinksInvoices $invoices = null,
+        private readonly ?OrderLinksInvoices $invoices = null,
     ) {
     }
 
@@ -40,12 +38,8 @@ final class OrderLinks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrderLinksInvoices|null
-     */
-    public function getInvoices(): ?\Upsun\Model\OrderLinksInvoices
+    public function getInvoices(): ?OrderLinksInvoices
     {
         return $this->invoices;
     }
 }
-

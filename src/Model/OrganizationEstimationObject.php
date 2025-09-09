@@ -12,20 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObject implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?string $subTotal = null,
         private readonly ?string $vouchers = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectUserLicenses $userLicenses = null,
+        private readonly ?OrganizationEstimationObjectUserLicenses $userLicenses = null,
         private readonly ?string $userManagement = null,
         private readonly ?string $supportLevel = null,
-        private readonly ?\Upsun\Model\OrganizationEstimationObjectSubscriptions $subscriptions = null,
+        private readonly ?OrganizationEstimationObjectSubscriptions $subscriptions = null,
     ) {
     }
 
@@ -52,70 +50,38 @@ final class OrganizationEstimationObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total estimated price for the organization.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    /**
-     * The sub total for all projects and sellables.
-     *
-     * @return string|null
-     */
     public function getSubTotal(): ?string
     {
         return $this->subTotal;
     }
 
-    /**
-     * The total amount of vouchers.
-     *
-     * @return string|null
-     */
     public function getVouchers(): ?string
     {
         return $this->vouchers;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectUserLicenses|null
-     */
-    public function getUserLicenses(): ?\Upsun\Model\OrganizationEstimationObjectUserLicenses
+    public function getUserLicenses(): ?OrganizationEstimationObjectUserLicenses
     {
         return $this->userLicenses;
     }
 
-    /**
-     * An estimation of the advanced user management sellable cost.
-     *
-     * @return string|null
-     */
     public function getUserManagement(): ?string
     {
         return $this->userManagement;
     }
 
-    /**
-     * The total monthly price for premium support.
-     *
-     * @return string|null
-     */
     public function getSupportLevel(): ?string
     {
         return $this->supportLevel;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptions|null
-     */
-    public function getSubscriptions(): ?\Upsun\Model\OrganizationEstimationObjectSubscriptions
+    public function getSubscriptions(): ?OrganizationEstimationObjectSubscriptions
     {
         return $this->subscriptions;
     }
 }
-

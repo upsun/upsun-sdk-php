@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheEnvironmentDeploymentState implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
-        private readonly \Upsun\Model\TheCronsDeploymentState $crons,
-        private readonly ?\DateTime $lastDeploymentAt = null,
+        private readonly TheCronsDeploymentState $crons,
+        private readonly ?string $lastDeploymentAt = null,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class TheEnvironmentDeploymentState implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getLastDeploymentSuccessful(): bool
     {
         return $this->lastDeploymentSuccessful;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getLastDeploymentAt(): ?\DateTime
+    public function getLastDeploymentAt(): ?string
     {
         return $this->lastDeploymentAt;
     }
 
-    /**
-     * @return \Upsun\Model\TheCronsDeploymentState
-     */
-    public function getCrons(): \Upsun\Model\TheCronsDeploymentState
+    public function getCrons(): TheCronsDeploymentState
     {
         return $this->crons;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class StringFilter implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $eq = null,
         private readonly ?string $ne = null,
@@ -54,84 +52,43 @@ final class StringFilter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Equal
-     *
-     * @return string|null
-     */
     public function getEq(): ?string
     {
         return $this->eq;
     }
 
-    /**
-     * Not equal
-     *
-     * @return string|null
-     */
     public function getNe(): ?string
     {
         return $this->ne;
     }
 
-    /**
-     * In (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getIn(): ?string
     {
         return $this->in;
     }
 
-    /**
-     * Not in (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getNin(): ?string
     {
         return $this->nin;
     }
 
-    /**
-     * Between (comma-separated list)
-     *
-     * @return string|null
-     */
     public function getBetween(): ?string
     {
         return $this->between;
     }
 
-    /**
-     * Contains
-     *
-     * @return string|null
-     */
     public function getContains(): ?string
     {
         return $this->contains;
     }
 
-    /**
-     * Starts with
-     *
-     * @return string|null
-     */
     public function getStarts(): ?string
     {
         return $this->starts;
     }
 
-    /**
-     * Ends with
-     *
-     * @return string|null
-     */
     public function getEnds(): ?string
     {
         return $this->ends;
     }
 }
-

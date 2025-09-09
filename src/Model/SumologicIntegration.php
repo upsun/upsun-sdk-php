@@ -12,20 +12,18 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class SumologicIntegration implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $type,
         private readonly array $extra,
         private readonly string $url,
         private readonly string $category,
         private readonly bool $tlsVerify,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -52,60 +50,38 @@ final class SumologicIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return array<string,string>
-     */
     public function getExtra(): array
     {
         return $this->extra;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getCategory(): string
     {
         return $this->category;
     }
 
-    /**
-     * @return bool
-     */
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
     }
 }
-

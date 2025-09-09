@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
 {
-
     public function __construct(
-        private readonly \Upsun\Model\TheCommandsToManageTheWorker $commands,
+        private readonly TheCommandsToManageTheWorker $commands,
         private readonly ?int $disk = null,
     ) {
     }
@@ -42,20 +40,13 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\TheCommandsToManageTheWorker
-     */
-    public function getCommands(): \Upsun\Model\TheCommandsToManageTheWorker
+    public function getCommands(): TheCommandsToManageTheWorker
     {
         return $this->commands;
     }
 
-    /**
-     * @return int|null
-     */
     public function getDisk(): ?int
     {
         return $this->disk;
     }
 }
-

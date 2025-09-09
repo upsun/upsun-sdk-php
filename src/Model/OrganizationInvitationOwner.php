@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationInvitationOwner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $displayName = null,
@@ -42,24 +40,13 @@ final class OrganizationInvitationOwner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the user.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The user's display name.
-     *
-     * @return string|null
-     */
     public function getDisplayName(): ?string
     {
         return $this->displayName;
     }
 }
-

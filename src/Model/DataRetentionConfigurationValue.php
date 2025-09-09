@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DataRetentionConfigurationValue implements JsonSerializable
 {
-
     public function __construct(
         private readonly int $maxBackups,
-        private readonly \Upsun\Model\DefaultConfig $defaultConfig,
+        private readonly DefaultConfig $defaultConfig,
     ) {
     }
 
@@ -42,20 +40,13 @@ final class DataRetentionConfigurationValue implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getMaxBackups(): int
     {
         return $this->maxBackups;
     }
 
-    /**
-     * @return \Upsun\Model\DefaultConfig
-     */
-    public function getDefaultConfig(): \Upsun\Model\DefaultConfig
+    public function getDefaultConfig(): DefaultConfig
     {
         return $this->defaultConfig;
     }
 }
-

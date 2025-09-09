@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Plan implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -42,24 +40,13 @@ final class Plan implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The machine name of the plan.
-     *
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * The human-readable name of the plan.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 }
-

@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class BitbucketIntegration implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -31,10 +25,10 @@ final class BitbucketIntegration implements JsonSerializable
         private readonly bool $buildPullRequests,
         private readonly bool $pullRequestsCloneParentData,
         private readonly bool $resyncPullRequests,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\TheOAuth2ConsumerInformationOptional $appCredentials = null,
-        private readonly ?\Upsun\Model\TheAddonCredentialInformationOptional $addonCredentials = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
+        private readonly ?TheOAuth2ConsumerInformationOptional $appCredentials = null,
+        private readonly ?TheAddonCredentialInformationOptional $addonCredentials = null,
     ) {
     }
 
@@ -66,100 +60,63 @@ final class BitbucketIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool
-     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 
-    /**
-     * @return bool
-     */
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
     }
 
-    /**
-     * @return \Upsun\Model\TheOAuth2ConsumerInformationOptional|null
-     */
-    public function getAppCredentials(): ?\Upsun\Model\TheOAuth2ConsumerInformationOptional
+    public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional
     {
         return $this->appCredentials;
     }
 
-    /**
-     * @return \Upsun\Model\TheAddonCredentialInformationOptional|null
-     */
-    public function getAddonCredentials(): ?\Upsun\Model\TheAddonCredentialInformationOptional
+    public function getAddonCredentials(): ?TheAddonCredentialInformationOptional
     {
         return $this->addonCredentials;
     }
 }
-

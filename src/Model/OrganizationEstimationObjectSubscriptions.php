@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationEstimationObjectSubscriptions implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $total = null,
         private readonly ?array $list = [],
@@ -42,24 +40,16 @@ final class OrganizationEstimationObjectSubscriptions implements JsonSerializabl
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The total price for subscriptions.
-     *
-     * @return string|null
-     */
     public function getTotal(): ?string
     {
         return $this->total;
     }
 
     /**
-     * The list of active subscriptions.
-     *
-     * @return \Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner[]|null
+     * @return OrganizationEstimationObjectSubscriptionsListInner[]|null
      */
     public function getList(): ?array
     {
         return $this->list;
     }
 }
-

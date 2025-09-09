@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CanCreateNewOrgSubscription200ResponseRequiredAction implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $action = null,
         private readonly ?string $type = null,
@@ -42,24 +40,13 @@ final class CanCreateNewOrgSubscription200ResponseRequiredAction implements Json
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Machine readable definition of requirement.
-     *
-     * @return string|null
-     */
     public function getAction(): ?string
     {
         return $this->action;
     }
 
-    /**
-     * Specification of the type of action.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 }
-

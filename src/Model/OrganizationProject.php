@@ -12,29 +12,24 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationProject implements JsonSerializable
 {
-    public const ACCESS_MIGRATION_STATUS_PENDING = 'pending';
-    public const ACCESS_MIGRATION_STATUS_IN_PROGRESS = 'in_progress';
-    public const ACCESS_MIGRATION_STATUS_COMPLETED = 'completed';
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $region = null,
         private readonly ?string $title = null,
-        private readonly ?\Upsun\Model\OrganizationProjectType $type = null,
-        private readonly ?\Upsun\Model\OrganizationProjectPlan $plan = null,
+        private readonly ?OrganizationProjectType $type = null,
+        private readonly ?OrganizationProjectPlan $plan = null,
         private readonly ?string $accessMigrationStatus = null,
-        private readonly ?\Upsun\Model\OrganizationProjectStatus $status = null,
+        private readonly ?OrganizationProjectStatus $status = null,
         private readonly ?string $vendor = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\Upsun\Model\OrganizationProjectLinks $links = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
+        private readonly ?OrganizationProjectLinks $links = null,
     ) {
     }
 
@@ -67,126 +62,68 @@ final class OrganizationProject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the project.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The ID of the organization.
-     *
-     * @return string|null
-     */
     public function getOrganizationId(): ?string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The ID of the subscription.
-     *
-     * @return string|null
-     */
     public function getSubscriptionId(): ?string
     {
         return $this->subscriptionId;
     }
 
-    /**
-     * The machine name of the region where the project is located.
-     *
-     * @return string|null
-     */
     public function getRegion(): ?string
     {
         return $this->region;
     }
 
-    /**
-     * The title of the project.
-     *
-     * @return string|null
-     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectType|null
-     */
-    public function getType(): ?\Upsun\Model\OrganizationProjectType
+    public function getType(): ?OrganizationProjectType
     {
         return $this->type;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectPlan|null
-     */
-    public function getPlan(): ?\Upsun\Model\OrganizationProjectPlan
+    public function getPlan(): ?OrganizationProjectPlan
     {
         return $this->plan;
     }
 
-    /**
-     * The access migration status of the project.
-     *
-     * @return string|null
-     */
     public function getAccessMigrationStatus(): ?string
     {
         return $this->accessMigrationStatus;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectStatus|null
-     */
-    public function getStatus(): ?\Upsun\Model\OrganizationProjectStatus
+    public function getStatus(): ?OrganizationProjectStatus
     {
         return $this->status;
     }
 
-    /**
-     * The vendor.
-     *
-     * @return string|null
-     */
     public function getVendor(): ?string
     {
         return $this->vendor;
     }
 
-    /**
-     * The date and time when the project was created.
-     *
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * The date and time when the project was last updated.
-     *
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationProjectLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\OrganizationProjectLinks
+    public function getLinks(): ?OrganizationProjectLinks
     {
         return $this->links;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class NewRelicLogForwardingIntegrationConfigurations implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?bool $enabled = null,
         private readonly ?string $role = null,
@@ -42,20 +40,13 @@ final class NewRelicLogForwardingIntegrationConfigurations implements JsonSerial
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool|null
-     */
     public function getEnabled(): ?bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return string|null
-     */
     public function getRole(): ?string
     {
         return $this->role;
     }
 }
-

@@ -12,23 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GrantProjectUserAccessRequestInner implements JsonSerializable
 {
-    public const PERMISSIONS_ADMIN = 'admin';
-    public const PERMISSIONS_VIEWER = 'viewer';
-    public const PERMISSIONS_DEVELOPMENT_ADMIN = 'development:admin';
-    public const PERMISSIONS_DEVELOPMENT_CONTRIBUTOR = 'development:contributor';
-    public const PERMISSIONS_DEVELOPMENT_VIEWER = 'development:viewer';
-    public const PERMISSIONS_STAGING_ADMIN = 'staging:admin';
-    public const PERMISSIONS_STAGING_CONTRIBUTOR = 'staging:contributor';
-    public const PERMISSIONS_STAGING_VIEWER = 'staging:viewer';
-    public const PERMISSIONS_PRODUCTION_ADMIN = 'production:admin';
-    public const PERMISSIONS_PRODUCTION_CONTRIBUTOR = 'production:contributor';
-    public const PERMISSIONS_PRODUCTION_VIEWER = 'production:viewer';
-
     public function __construct(
         private readonly string $userId,
         private readonly array $permissions,
@@ -55,34 +42,18 @@ final class GrantProjectUserAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the user.
-     *
-     * @return string
-     */
     public function getUserId(): string
     {
         return $this->userId;
     }
 
-    /**
-     * An array of project permissions.
-     *
-     * @return string[]
-     */
     public function getPermissions(): array
     {
         return $this->permissions;
     }
 
-    /**
-     * If the specified user is not a member of the project's organization, add it automatically.
-     *
-     * @return bool|null
-     */
     public function getAutoAddMember(): ?bool
     {
         return $this->autoAddMember;
     }
 }
-

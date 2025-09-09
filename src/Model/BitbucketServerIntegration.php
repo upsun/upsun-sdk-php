@@ -12,16 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class BitbucketServerIntegration implements JsonSerializable
 {
-    public const ENVIRONMENT_INIT_RESOURCES__DEFAULT = 'default';
-    public const ENVIRONMENT_INIT_RESOURCES_MANUAL = 'manual';
-    public const ENVIRONMENT_INIT_RESOURCES_MINIMUM = 'minimum';
-    public const ENVIRONMENT_INIT_RESOURCES_PARENT = 'parent';
-
     public function __construct(
         private readonly string $type,
         private readonly bool $fetchBranches,
@@ -33,8 +27,8 @@ final class BitbucketServerIntegration implements JsonSerializable
         private readonly string $repository,
         private readonly bool $buildPullRequests,
         private readonly bool $pullRequestsCloneParentData,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?string $createdAt = null,
+        private readonly ?string $updatedAt = null,
     ) {
     }
 
@@ -66,100 +60,63 @@ final class BitbucketServerIntegration implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
-    /**
-     * @return \DateTime|null
-     */
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?string
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
     }
 
-    /**
-     * @return bool
-     */
     public function getFetchBranches(): bool
     {
         return $this->fetchBranches;
     }
 
-    /**
-     * @return bool
-     */
     public function getPruneBranches(): bool
     {
         return $this->pruneBranches;
     }
 
-    /**
-     * @return string
-     */
     public function getEnvironmentInitResources(): string
     {
         return $this->environmentInitResources;
     }
 
-    /**
-     * @return string
-     */
     public function getUrl(): string
     {
         return $this->url;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getProject(): string
     {
         return $this->project;
     }
 
-    /**
-     * @return string
-     */
     public function getRepository(): string
     {
         return $this->repository;
     }
 
-    /**
-     * @return bool
-     */
     public function getBuildPullRequests(): bool
     {
         return $this->buildPullRequests;
     }
 
-    /**
-     * @return bool
-     */
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
     }
 }
-

@@ -12,24 +12,22 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProjectCapabilities implements JsonSerializable
 {
-
     public function __construct(
-        private readonly \Upsun\Model\Metrics $metrics,
-        private readonly \Upsun\Model\LogsForwarding $logsForwarding,
+        private readonly Metrics $metrics,
+        private readonly LogsForwarding $logsForwarding,
         private readonly array $images,
         private readonly int $instanceLimit,
-        private readonly \Upsun\Model\BuildResources $buildResources,
-        private readonly \Upsun\Model\DataRetention $dataRetention,
-        private readonly ?\Upsun\Model\CustomDomains $customDomains = null,
-        private readonly ?\Upsun\Model\SourceOperations $sourceOperations = null,
-        private readonly ?\Upsun\Model\RuntimeOperations $runtimeOperations = null,
-        private readonly ?\Upsun\Model\OutboundFirewall $outboundFirewall = null,
-        private readonly ?\Upsun\Model\Integrations $integrations = null,
+        private readonly BuildResources $buildResources,
+        private readonly DataRetention $dataRetention,
+        private readonly ?CustomDomains $customDomains = null,
+        private readonly ?SourceOperations $sourceOperations = null,
+        private readonly ?RuntimeOperations $runtimeOperations = null,
+        private readonly ?OutboundFirewall $outboundFirewall = null,
+        private readonly ?Integrations $integrations = null,
     ) {
     }
 
@@ -60,92 +58,58 @@ final class ProjectCapabilities implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\Metrics
-     */
-    public function getMetrics(): \Upsun\Model\Metrics
+    public function getMetrics(): Metrics
     {
         return $this->metrics;
     }
 
-    /**
-     * @return \Upsun\Model\LogsForwarding
-     */
-    public function getLogsForwarding(): \Upsun\Model\LogsForwarding
+    public function getLogsForwarding(): LogsForwarding
     {
         return $this->logsForwarding;
     }
 
-    /**
-     * @return array<string,array<string,\Upsun\Model\ImagesValueValue>>
-     */
     public function getImages(): array
     {
         return $this->images;
     }
 
-    /**
-     * @return int
-     */
     public function getInstanceLimit(): int
     {
         return $this->instanceLimit;
     }
 
-    /**
-     * @return \Upsun\Model\BuildResources
-     */
-    public function getBuildResources(): \Upsun\Model\BuildResources
+    public function getBuildResources(): BuildResources
     {
         return $this->buildResources;
     }
 
-    /**
-     * @return \Upsun\Model\DataRetention
-     */
-    public function getDataRetention(): \Upsun\Model\DataRetention
+    public function getDataRetention(): DataRetention
     {
         return $this->dataRetention;
     }
 
-    /**
-     * @return \Upsun\Model\CustomDomains|null
-     */
-    public function getCustomDomains(): ?\Upsun\Model\CustomDomains
+    public function getCustomDomains(): ?CustomDomains
     {
         return $this->customDomains;
     }
 
-    /**
-     * @return \Upsun\Model\SourceOperations|null
-     */
-    public function getSourceOperations(): ?\Upsun\Model\SourceOperations
+    public function getSourceOperations(): ?SourceOperations
     {
         return $this->sourceOperations;
     }
 
-    /**
-     * @return \Upsun\Model\RuntimeOperations|null
-     */
-    public function getRuntimeOperations(): ?\Upsun\Model\RuntimeOperations
+    public function getRuntimeOperations(): ?RuntimeOperations
     {
         return $this->runtimeOperations;
     }
 
-    /**
-     * @return \Upsun\Model\OutboundFirewall|null
-     */
-    public function getOutboundFirewall(): ?\Upsun\Model\OutboundFirewall
+    public function getOutboundFirewall(): ?OutboundFirewall
     {
         return $this->outboundFirewall;
     }
 
-    /**
-     * @return \Upsun\Model\Integrations|null
-     */
-    public function getIntegrations(): ?\Upsun\Model\Integrations
+    public function getIntegrations(): ?Integrations
     {
         return $this->integrations;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class VouchersVouchersInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $code = null,
         private readonly ?string $amount = null,
@@ -46,44 +44,26 @@ final class VouchersVouchersInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The voucher code.
-     *
-     * @return string|null
-     */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
-    /**
-     * The total voucher credit.
-     *
-     * @return string|null
-     */
     public function getAmount(): ?string
     {
         return $this->amount;
     }
 
-    /**
-     * The currency of the voucher.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
     /**
-     * Array of orders to which a voucher applied.
-     *
-     * @return \Upsun\Model\VouchersVouchersInnerOrdersInner[]|null
+     * @return VouchersVouchersInnerOrdersInner[]|null
      */
     public function getOrders(): ?array
     {
         return $this->orders;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateApiTokenRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $name,
     ) {
@@ -40,14 +38,8 @@ final class CreateApiTokenRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The token name.
-     *
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 }
-

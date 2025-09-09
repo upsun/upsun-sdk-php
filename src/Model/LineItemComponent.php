@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class LineItemComponent implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?float $amount = null,
+        private readonly ?number $amount = null,
         private readonly ?string $amountFormatted = null,
         private readonly ?string $displayTitle = null,
         private readonly ?string $currency = null,
@@ -46,44 +44,23 @@ final class LineItemComponent implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The price as a decimal.
-     *
-     * @return float|null
-     */
-    public function getAmount(): ?float
+    public function getAmount(): ?number
     {
         return $this->amount;
     }
 
-    /**
-     * The price formatted with currency.
-     *
-     * @return string|null
-     */
     public function getAmountFormatted(): ?string
     {
         return $this->amountFormatted;
     }
 
-    /**
-     * The display title for the component.
-     *
-     * @return string|null
-     */
     public function getDisplayTitle(): ?string
     {
         return $this->displayTitle;
     }
 
-    /**
-     * The currency code for the component.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 }
-

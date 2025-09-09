@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GrantProjectTeamAccessRequestInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $teamId,
     ) {
@@ -40,14 +38,8 @@ final class GrantProjectTeamAccessRequestInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the team.
-     *
-     * @return string
-     */
     public function getTeamId(): string
     {
         return $this->teamId;
     }
 }
-

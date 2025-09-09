@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateTeamRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $organizationId,
         private readonly string $label,
@@ -44,34 +42,18 @@ final class CreateTeamRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the parent organization.
-     *
-     * @return string
-     */
     public function getOrganizationId(): string
     {
         return $this->organizationId;
     }
 
-    /**
-     * The human-readable label of the team.
-     *
-     * @return string
-     */
     public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * Project permissions that are granted to the team.
-     *
-     * @return string[]|null
-     */
     public function getProjectPermissions(): ?array
     {
         return $this->projectPermissions;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $service = null,
         private readonly ?string $endpoint = null,
@@ -42,20 +40,13 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string|null
-     */
     public function getService(): ?string
     {
         return $this->service;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
 }
-

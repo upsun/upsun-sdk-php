@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $amount = null,
         private readonly ?string $currencyCode = null,
@@ -46,44 +44,23 @@ final class ProfileCurrentTrialProjectsTotal implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Trial project cost
-     *
-     * @return int|null
-     */
     public function getAmount(): ?int
     {
         return $this->amount;
     }
 
-    /**
-     * Currency code
-     *
-     * @return string|null
-     */
     public function getCurrencyCode(): ?string
     {
         return $this->currencyCode;
     }
 
-    /**
-     * Currency symbol
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 
-    /**
-     * Trial project cost formatted with currency sign
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 }
-

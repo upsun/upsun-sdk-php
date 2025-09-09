@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfigurationForPreFlightChecks implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $enabled,
         private readonly array $ignoredRules,
@@ -42,20 +40,13 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return string[]
-     */
     public function getIgnoredRules(): array
     {
         return $this->ignoredRules;
     }
 }
-

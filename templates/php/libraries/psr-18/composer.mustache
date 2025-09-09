@@ -58,7 +58,10 @@
         "psr-4": { "{{{escapedInvokerPackage}}}\\" : "{{{srcBasePath}}}/" }
     },
     "autoload-dev": {
-        "psr-4": { "{{{escapedInvokerPackage}}}\\Test\\" : "{{{testBasePath}}}/" }
+        "psr-4": { 
+            "{{{escapedInvokerPackage}}}\\Test\\" : "{{{testsBasePath}}}/", 
+            "{{{escapedInvokerPackage}}}\\Test\\Core\\" : "{{{testsBasePath}}}/Core/" 
+        }
     },
     "prefer-stable": true,
     "scripts": {

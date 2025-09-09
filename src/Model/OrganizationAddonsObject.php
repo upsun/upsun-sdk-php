@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class OrganizationAddonsObject implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectAvailable $available = null,
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectCurrent $current = null,
-        private readonly ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
+        private readonly ?OrganizationAddonsObjectAvailable $available = null,
+        private readonly ?OrganizationAddonsObjectCurrent $current = null,
+        private readonly ?OrganizationAddonsObjectUpgradesAvailable $upgradesAvailable = null,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class OrganizationAddonsObject implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAddonsObjectAvailable|null
-     */
-    public function getAvailable(): ?\Upsun\Model\OrganizationAddonsObjectAvailable
+    public function getAvailable(): ?OrganizationAddonsObjectAvailable
     {
         return $this->available;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAddonsObjectCurrent|null
-     */
-    public function getCurrent(): ?\Upsun\Model\OrganizationAddonsObjectCurrent
+    public function getCurrent(): ?OrganizationAddonsObjectCurrent
     {
         return $this->current;
     }
 
-    /**
-     * @return \Upsun\Model\OrganizationAddonsObjectUpgradesAvailable|null
-     */
-    public function getUpgradesAvailable(): ?\Upsun\Model\OrganizationAddonsObjectUpgradesAvailable
+    public function getUpgradesAvailable(): ?OrganizationAddonsObjectUpgradesAvailable
     {
         return $this->upgradesAvailable;
     }
 }
-

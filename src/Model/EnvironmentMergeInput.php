@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentMergeInput implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\Resources4 $resources = null,
+        private readonly ?Resources4 $resources = null,
     ) {
     }
 
@@ -40,12 +38,8 @@ final class EnvironmentMergeInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\Resources4|null
-     */
-    public function getResources(): ?\Upsun\Model\Resources4
+    public function getResources(): ?Resources4
     {
         return $this->resources;
     }
 }
-

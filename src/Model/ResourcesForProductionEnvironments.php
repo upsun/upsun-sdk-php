@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ResourcesForProductionEnvironments implements JsonSerializable
 {
-
     public function __construct(
         private readonly bool $legacyDevelopment,
-        private readonly ?float $maxCpu = null,
+        private readonly ?number $maxCpu = null,
         private readonly ?int $maxMemory = null,
         private readonly ?int $maxEnvironments = null,
     ) {
@@ -46,36 +44,23 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getLegacyDevelopment(): bool
     {
         return $this->legacyDevelopment;
     }
 
-    /**
-     * @return float|null
-     */
-    public function getMaxCpu(): ?float
+    public function getMaxCpu(): ?number
     {
         return $this->maxCpu;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMaxMemory(): ?int
     {
         return $this->maxMemory;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMaxEnvironments(): ?int
     {
         return $this->maxEnvironments;
     }
 }
-

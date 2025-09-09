@@ -12,15 +12,13 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $formatted = null,
-        private readonly ?float $amount = null,
+        private readonly ?number $amount = null,
         private readonly ?string $currency = null,
         private readonly ?string $currencySymbol = null,
     ) {
@@ -46,44 +44,23 @@ final class GetTypeAllowance200ResponseCurrenciesCAD implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The discount amount formatted.
-     *
-     * @return string|null
-     */
     public function getFormatted(): ?string
     {
         return $this->formatted;
     }
 
-    /**
-     * The discount amount.
-     *
-     * @return float|null
-     */
-    public function getAmount(): ?float
+    public function getAmount(): ?number
     {
         return $this->amount;
     }
 
-    /**
-     * The currency.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * Currency symbol.
-     *
-     * @return string|null
-     */
     public function getCurrencySymbol(): ?string
     {
         return $this->currencySymbol;
     }
 }
-

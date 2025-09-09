@@ -12,39 +12,31 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Order implements JsonSerializable
 {
-    public const STATUS_COMPLETED = 'completed';
-    public const STATUS_PAST_DUE = 'past_due';
-    public const STATUS_PENDING = 'pending';
-    public const STATUS_CANCELED = 'canceled';
-    public const STATUS_PAYMENT_FAILED_SOFT_DECLINE = 'payment_failed_soft_decline';
-    public const STATUS_PAYMENT_FAILED_HARD_DECLINE = 'payment_failed_hard_decline';
-
     public function __construct(
-        private readonly ?\DateTime $paidOn = null,
+        private readonly ?string $paidOn = null,
         private readonly ?string $id = null,
         private readonly ?string $status = null,
         private readonly ?string $owner = null,
-        private readonly ?\Upsun\Model\Address $address = null,
+        private readonly ?Address $address = null,
         private readonly ?string $company = null,
         private readonly ?string $vatNumber = null,
-        private readonly ?\DateTime $billingPeriodStart = null,
-        private readonly ?\DateTime $billingPeriodEnd = null,
-        private readonly ?\Upsun\Model\OrderBillingPeriodLabel $billingPeriodLabel = null,
+        private readonly ?string $billingPeriodStart = null,
+        private readonly ?string $billingPeriodEnd = null,
+        private readonly ?OrderBillingPeriodLabel $billingPeriodLabel = null,
         private readonly ?int $billingPeriodDuration = null,
         private readonly ?int $total = null,
         private readonly ?int $totalFormatted = null,
-        private readonly ?\Upsun\Model\Components $components = null,
+        private readonly ?Components $components = null,
         private readonly ?string $currency = null,
         private readonly ?string $invoiceUrl = null,
-        private readonly ?\DateTime $lastRefreshed = null,
+        private readonly ?string $lastRefreshed = null,
         private readonly ?bool $invoiced = null,
         private readonly ?array $lineItems = [],
-        private readonly ?\Upsun\Model\OrderLinks $links = null,
+        private readonly ?OrderLinks $links = null,
     ) {
     }
 
@@ -84,196 +76,106 @@ final class Order implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The ID of the order.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The status of the subscription.
-     *
-     * @return string|null
-     */
     public function getStatus(): ?string
     {
         return $this->status;
     }
 
-    /**
-     * The UUID of the owner.
-     *
-     * @return string|null
-     */
     public function getOwner(): ?string
     {
         return $this->owner;
     }
 
-    /**
-     * @return \Upsun\Model\Address|null
-     */
-    public function getAddress(): ?\Upsun\Model\Address
+    public function getAddress(): ?Address
     {
         return $this->address;
     }
 
-    /**
-     * The company name.
-     *
-     * @return string|null
-     */
     public function getCompany(): ?string
     {
         return $this->company;
     }
 
-    /**
-     * An identifier used in many countries for value added tax purposes.
-     *
-     * @return string|null
-     */
     public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
 
-    /**
-     * The time when the billing period of the order started.
-     *
-     * @return \DateTime|null
-     */
-    public function getBillingPeriodStart(): ?\DateTime
+    public function getBillingPeriodStart(): ?string
     {
         return $this->billingPeriodStart;
     }
 
-    /**
-     * The time when the billing period of the order ended.
-     *
-     * @return \DateTime|null
-     */
-    public function getBillingPeriodEnd(): ?\DateTime
+    public function getBillingPeriodEnd(): ?string
     {
         return $this->billingPeriodEnd;
     }
 
-    /**
-     * @return \Upsun\Model\OrderBillingPeriodLabel|null
-     */
-    public function getBillingPeriodLabel(): ?\Upsun\Model\OrderBillingPeriodLabel
+    public function getBillingPeriodLabel(): ?OrderBillingPeriodLabel
     {
         return $this->billingPeriodLabel;
     }
 
-    /**
-     * The duration of the billing period of the order in seconds.
-     *
-     * @return int|null
-     */
     public function getBillingPeriodDuration(): ?int
     {
         return $this->billingPeriodDuration;
     }
 
-    /**
-     * The time when the order was successfully charged.
-     *
-     * @return \DateTime|null
-     */
-    public function getPaidOn(): ?\DateTime
+    public function getPaidOn(): ?string
     {
         return $this->paidOn;
     }
 
-    /**
-     * The total of the order.
-     *
-     * @return int|null
-     */
     public function getTotal(): ?int
     {
         return $this->total;
     }
 
-    /**
-     * The total of the order, formatted with currency.
-     *
-     * @return int|null
-     */
     public function getTotalFormatted(): ?int
     {
         return $this->totalFormatted;
     }
 
-    /**
-     * @return \Upsun\Model\Components|null
-     */
-    public function getComponents(): ?\Upsun\Model\Components
+    public function getComponents(): ?Components
     {
         return $this->components;
     }
 
-    /**
-     * The order currency code.
-     *
-     * @return string|null
-     */
     public function getCurrency(): ?string
     {
         return $this->currency;
     }
 
-    /**
-     * A link to the PDF invoice.
-     *
-     * @return string|null
-     */
     public function getInvoiceUrl(): ?string
     {
         return $this->invoiceUrl;
     }
 
-    /**
-     * The time when the order was last refreshed.
-     *
-     * @return \DateTime|null
-     */
-    public function getLastRefreshed(): ?\DateTime
+    public function getLastRefreshed(): ?string
     {
         return $this->lastRefreshed;
     }
 
-    /**
-     * The customer is invoiced.
-     *
-     * @return bool|null
-     */
     public function getInvoiced(): ?bool
     {
         return $this->invoiced;
     }
 
     /**
-     * The line items that comprise the order.
-     *
-     * @return \Upsun\Model\LineItem[]|null
+     * @return LineItem[]|null
      */
     public function getLineItems(): ?array
     {
         return $this->lineItems;
     }
 
-    /**
-     * @return \Upsun\Model\OrderLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\OrderLinks
+    public function getLinks(): ?OrderLinks
     {
         return $this->links;
     }
 }
-

@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListTickets200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $count = null,
         private readonly ?array $tickets = [],
-        private readonly ?\Upsun\Model\HalLinks $links = null,
+        private readonly ?HalLinks $links = null,
     ) {
     }
 
@@ -44,32 +42,21 @@ final class ListTickets200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Total number of results.
-     *
-     * @return int|null
-     */
     public function getCount(): ?int
     {
         return $this->count;
     }
 
     /**
-     * Array of support tickets.
-     *
-     * @return \Upsun\Model\Ticket[]|null
+     * @return Ticket[]|null
      */
     public function getTickets(): ?array
     {
         return $this->tickets;
     }
 
-    /**
-     * @return \Upsun\Model\HalLinks|null
-     */
-    public function getLinks(): ?\Upsun\Model\HalLinks
+    public function getLinks(): ?HalLinks
     {
         return $this->links;
     }
 }
-

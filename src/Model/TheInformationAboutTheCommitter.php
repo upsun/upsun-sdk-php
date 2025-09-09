@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheInformationAboutTheCommitter implements JsonSerializable
 {
-
     public function __construct(
-        private readonly \DateTime $date,
+        private readonly string $date,
         private readonly string $name,
         private readonly string $email,
     ) {
@@ -44,28 +42,18 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getDate(): \DateTime
+    public function getDate(): string
     {
         return $this->date;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
     }
 }
-

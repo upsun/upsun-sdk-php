@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DomainCreateInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $name,
         private readonly ?array $attributes = [],
@@ -46,36 +44,23 @@ final class DomainCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return array<string,string>|null
-     */
     public function getAttributes(): ?array
     {
         return $this->attributes;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReplacementFor(): ?string
     {
         return $this->replacementFor;
     }
 }
-

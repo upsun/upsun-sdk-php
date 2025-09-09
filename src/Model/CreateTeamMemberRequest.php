@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CreateTeamMemberRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $userId,
     ) {
@@ -40,14 +38,8 @@ final class CreateTeamMemberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * ID of the user.
-     *
-     * @return string
-     */
     public function getUserId(): string
     {
         return $this->userId;
     }
 }
-

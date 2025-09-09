@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheCronsDeploymentState implements JsonSerializable
 {
-    public const STATUS_PAUSED = 'paused';
-    public const STATUS_RUNNING = 'running';
-    public const STATUS_SLEEPING = 'sleeping';
-
     public function __construct(
         private readonly bool $enabled,
         private readonly string $status,
@@ -45,20 +40,13 @@ final class TheCronsDeploymentState implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return bool
-     */
     public function getEnabled(): bool
     {
         return $this->enabled;
     }
 
-    /**
-     * @return string
-     */
     public function getStatus(): string
     {
         return $this->status;
     }
 }
-

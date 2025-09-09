@@ -12,19 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class Resources implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?int $baseMemory = null,
         private readonly ?int $memoryRatio = null,
         private readonly ?string $profileSize = null,
-        private readonly ?\Upsun\Model\TheMinimumResourcesForThisService $minimum = null,
-        private readonly ?\Upsun\Model\TheDefaultResourcesForThisService $default = null,
-        private readonly ?\Upsun\Model\TheDisksResources $disk = null,
+        private readonly ?TheMinimumResourcesForThisService $minimum = null,
+        private readonly ?TheDefaultResourcesForThisService $default = null,
+        private readonly ?TheDisksResources $disk = null,
     ) {
     }
 
@@ -50,52 +48,33 @@ final class Resources implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int|null
-     */
     public function getBaseMemory(): ?int
     {
         return $this->baseMemory;
     }
 
-    /**
-     * @return int|null
-     */
     public function getMemoryRatio(): ?int
     {
         return $this->memoryRatio;
     }
 
-    /**
-     * @return string|null
-     */
     public function getProfileSize(): ?string
     {
         return $this->profileSize;
     }
 
-    /**
-     * @return \Upsun\Model\TheMinimumResourcesForThisService|null
-     */
-    public function getMinimum(): ?\Upsun\Model\TheMinimumResourcesForThisService
+    public function getMinimum(): ?TheMinimumResourcesForThisService
     {
         return $this->minimum;
     }
 
-    /**
-     * @return \Upsun\Model\TheDefaultResourcesForThisService|null
-     */
-    public function getDefault(): ?\Upsun\Model\TheDefaultResourcesForThisService
+    public function getDefault(): ?TheDefaultResourcesForThisService
     {
         return $this->default;
     }
 
-    /**
-     * @return \Upsun\Model\TheDisksResources|null
-     */
-    public function getDisk(): ?\Upsun\Model\TheDisksResources
+    public function getDisk(): ?TheDisksResources
     {
         return $this->disk;
     }
 }
-

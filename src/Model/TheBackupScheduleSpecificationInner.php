@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheBackupScheduleSpecificationInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $interval,
         private readonly int $count,
@@ -42,20 +40,13 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getInterval(): string
     {
         return $this->interval;
     }
 
-    /**
-     * @return int
-     */
     public function getCount(): int
     {
         return $this->count;
     }
 }
-

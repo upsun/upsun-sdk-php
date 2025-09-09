@@ -1,43 +1,84 @@
 <?php
 
-namespace Tests\Unit\Core;
+namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Upsun\Api\DeploymentApi;
-use Upsun\Core\Tasks\ApplicationTask;
+use Upsun\Api\EnvironmentApi;
 use Upsun\Core\Tasks\EnvironmentTask;
 use Upsun\UpsunClient;
 use Upsun\Model\Deployment;
 use Upsun\Model\WebApplicationsValue;
 use Upsun\Model\Environment;
 use Upsun\Model\TheEnvironmentDeploymentState as DeploymentState;
+use Psr\Http\Client\ClientInterface;
+use Upsun\Api\EnvironmentActivityApi;
+use Upsun\Configuration;
+use Upsun\Core\OAuthProvider;
+use Nyholm\Psr7\Factory\Psr17Factory;
 
 class ApplicationTaskTest extends TestCase
 {
-    private DeploymentApi $deploymentApiMock;
     private UpsunClient $clientMock;
     private EnvironmentTask $environmentTaskMock;
-    private ApplicationTask $applicationTask;
-
     protected function setUp(): void
     {
-        $this->deploymentApiMock = $this->createMock(DeploymentApi::class);
-        $this->environmentTaskMock = $this->createMock(EnvironmentTask::class); 
+        $this->environmentTaskMock = $this->createMock(EnvironmentTask::class);
 
-        $this->clientMock = new class($this->environmentTaskMock) extends UpsunClient {
-            public EnvironmentTask $environment;
-            public function __construct($env) {
-                $this->environment = $env;
-            }
-        };
+        $psr17Factory = new Psr17Factory();
 
-        $this->applicationTask = new class($this->clientMock, $this->deploymentApiMock) extends ApplicationTask {
-            public function refreshToken(): void {}
+        $this->httpClient = $this->createMock(ClientInterface::class);
+
+        $oauthProvider = $this->createMock(OAuthProvider::class);
+
+        $deploymentApi = new DeploymentApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $environmentApi = new EnvironmentApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $environmentActivityApi = new EnvironmentActivityApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->environmentTaskMock = new class (
+            $upsunClient,
+            $environmentApi,
+            $environmentActivityApi,
+            $deploymentApi,
+        ) extends EnvironmentTask {
         };
     }
 
     public function testListReturnsWebappsArray(): void
     {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    "status" => "OK",
+                    "code" => 200,
+                    "_embedded" => (object) ['activities' => []],
+                ])
+            ));
+        
+        
         $projectId = 'proj-1';
         $envId = 'env-1';
 

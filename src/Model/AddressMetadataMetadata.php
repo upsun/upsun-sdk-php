@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class AddressMetadataMetadata implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $requiredFields = [],
         private readonly ?object $fieldLabels = null,
@@ -44,34 +42,18 @@ final class AddressMetadataMetadata implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Fields required to express the address.
-     *
-     * @return string[]|null
-     */
     public function getRequiredFields(): ?array
     {
         return $this->requiredFields;
     }
 
-    /**
-     * Localized labels for address fields.
-     *
-     * @return object|null
-     */
     public function getFieldLabels(): ?object
     {
         return $this->fieldLabels;
     }
 
-    /**
-     * Whether this country supports a VAT number.
-     *
-     * @return bool|null
-     */
     public function getShowVat(): ?bool
     {
         return $this->showVat;
     }
 }
-

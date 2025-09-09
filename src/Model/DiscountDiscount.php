@@ -12,16 +12,14 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class DiscountDiscount implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\CurrencyAmountNullable $commitmentPeriod = null,
-        private readonly ?\Upsun\Model\CurrencyAmountNullable $contractTotal = null,
-        private readonly ?\Upsun\Model\CurrencyAmount $monthly = null,
+        private readonly ?CurrencyAmountNullable $commitmentPeriod = null,
+        private readonly ?CurrencyAmountNullable $contractTotal = null,
+        private readonly ?CurrencyAmount $monthly = null,
     ) {
     }
 
@@ -44,28 +42,18 @@ final class DiscountDiscount implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\CurrencyAmount|null
-     */
-    public function getMonthly(): ?\Upsun\Model\CurrencyAmount
+    public function getMonthly(): ?CurrencyAmount
     {
         return $this->monthly;
     }
 
-    /**
-     * @return \Upsun\Model\CurrencyAmountNullable|null
-     */
-    public function getCommitmentPeriod(): ?\Upsun\Model\CurrencyAmountNullable
+    public function getCommitmentPeriod(): ?CurrencyAmountNullable
     {
         return $this->commitmentPeriod;
     }
 
-    /**
-     * @return \Upsun\Model\CurrencyAmountNullable|null
-     */
-    public function getContractTotal(): ?\Upsun\Model\CurrencyAmountNullable
+    public function getContractTotal(): ?CurrencyAmountNullable
     {
         return $this->contractTotal;
     }
 }
-

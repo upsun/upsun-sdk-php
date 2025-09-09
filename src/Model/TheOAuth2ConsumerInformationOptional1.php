@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $key,
         private readonly string $secret,
@@ -42,20 +40,13 @@ final class TheOAuth2ConsumerInformationOptional1 implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * @return string
-     */
     public function getSecret(): string
     {
         return $this->secret;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ApplyOrgVoucherRequest implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $code,
     ) {
@@ -40,14 +38,8 @@ final class ApplyOrgVoucherRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The voucher code.
-     *
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;
     }
 }
-

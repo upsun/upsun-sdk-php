@@ -12,15 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class VerifyPhoneNumberRequest implements JsonSerializable
 {
-    public const CHANNEL_SMS = 'sms';
-    public const CHANNEL_WHATSAPP = 'whatsapp';
-    public const CHANNEL_CALL = 'call';
-
     public function __construct(
         private readonly string $channel,
         private readonly string $phoneNumber,
@@ -45,24 +40,13 @@ final class VerifyPhoneNumberRequest implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The channel used to receive the verification code.
-     *
-     * @return string
-     */
     public function getChannel(): string
     {
         return $this->channel;
     }
 
-    /**
-     * The phone number used to receive the verification code.
-     *
-     * @return string
-     */
     public function getPhoneNumber(): string
     {
         return $this->phoneNumber;
     }
 }
-

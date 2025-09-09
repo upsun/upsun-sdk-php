@@ -12,25 +12,17 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class LineItem implements JsonSerializable
 {
-    public const TYPE_PROJECT_PLAN = 'project_plan';
-    public const TYPE_PROJECT_FEATURE = 'project_feature';
-    public const TYPE_PROJECT_SUBTOTAL = 'project_subtotal';
-    public const TYPE_ORGANIZATION_PLAN = 'organization_plan';
-    public const TYPE_ORGANIZATION_FEATURE = 'organization_feature';
-    public const TYPE_ORGANIZATION_SUBTOTAL = 'organization_subtotal';
-
     public function __construct(
-        private readonly ?float $licenseId = null,
+        private readonly ?number $licenseId = null,
         private readonly ?string $projectId = null,
         private readonly ?string $type = null,
         private readonly ?string $product = null,
         private readonly ?string $sku = null,
-        private readonly ?float $total = null,
+        private readonly ?number $total = null,
         private readonly ?string $totalFormatted = null,
         private readonly ?array $components = [],
         private readonly ?bool $excludeFromInvoice = null,
@@ -62,94 +54,51 @@ final class LineItem implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * The type of line item.
-     *
-     * @return string|null
-     */
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    /**
-     * The associated subscription identifier.
-     *
-     * @return float|null
-     */
-    public function getLicenseId(): ?float
+    public function getLicenseId(): ?number
     {
         return $this->licenseId;
     }
 
-    /**
-     * The associated project identifier.
-     *
-     * @return string|null
-     */
     public function getProjectId(): ?string
     {
         return $this->projectId;
     }
 
-    /**
-     * Display name of the line item product.
-     *
-     * @return string|null
-     */
     public function getProduct(): ?string
     {
         return $this->product;
     }
 
-    /**
-     * The line item product SKU.
-     *
-     * @return string|null
-     */
     public function getSku(): ?string
     {
         return $this->sku;
     }
 
-    /**
-     * Total price as a decimal.
-     *
-     * @return float|null
-     */
-    public function getTotal(): ?float
+    public function getTotal(): ?number
     {
         return $this->total;
     }
 
-    /**
-     * Total price, formatted with currency.
-     *
-     * @return string|null
-     */
     public function getTotalFormatted(): ?string
     {
         return $this->totalFormatted;
     }
 
     /**
-     * The price components for the line item, keyed by type.
-     *
-     * @return \Upsun\Model\LineItemComponent[]|null
+     * @return LineItemComponent[]|null
      */
     public function getComponents(): ?array
     {
         return $this->components;
     }
 
-    /**
-     * Line item should not be considered billable.
-     *
-     * @return bool|null
-     */
     public function getExcludeFromInvoice(): ?bool
     {
         return $this->excludeFromInvoice;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ConfirmTotpEnrollment200Response implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?array $recoveryCodes = [],
     ) {
@@ -40,14 +38,8 @@ final class ConfirmTotpEnrollment200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * A list of recovery codes for the MFA enrollment.
-     *
-     * @return string[]|null
-     */
     public function getRecoveryCodes(): ?array
     {
         return $this->recoveryCodes;
     }
 }
-

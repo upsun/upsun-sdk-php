@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class EnvironmentOperationInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $service,
         private readonly string $operation,
@@ -42,20 +40,13 @@ final class EnvironmentOperationInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getService(): string
     {
         return $this->service;
     }
 
-    /**
-     * @return string
-     */
     public function getOperation(): string
     {
         return $this->operation;
     }
 }
-

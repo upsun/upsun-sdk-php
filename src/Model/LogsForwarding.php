@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class LogsForwarding implements JsonSerializable
 {
-
     public function __construct(
         private readonly int $maxExtraPayloadSize,
     ) {
@@ -40,12 +38,8 @@ final class LogsForwarding implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return int
-     */
     public function getMaxExtraPayloadSize(): int
     {
         return $this->maxExtraPayloadSize;
     }
 }
-

@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class CertificateCreateInput implements JsonSerializable
 {
-
     public function __construct(
         private readonly string $certificate,
         private readonly string $key,
@@ -46,36 +44,23 @@ final class CertificateCreateInput implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return string
-     */
     public function getCertificate(): string
     {
         return $this->certificate;
     }
 
-    /**
-     * @return string
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * @return string[]|null
-     */
     public function getChain(): ?array
     {
         return $this->chain;
     }
 
-    /**
-     * @return bool|null
-     */
     public function getIsInvalid(): ?bool
     {
         return $this->isInvalid;
     }
 }
-

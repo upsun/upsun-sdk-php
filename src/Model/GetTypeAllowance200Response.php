@@ -12,14 +12,12 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class GetTypeAllowance200Response implements JsonSerializable
 {
-
     public function __construct(
-        private readonly ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies $currencies = null,
+        private readonly ?GetTypeAllowance200ResponseCurrencies $currencies = null,
     ) {
     }
 
@@ -40,12 +38,8 @@ final class GetTypeAllowance200Response implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * @return \Upsun\Model\GetTypeAllowance200ResponseCurrencies|null
-     */
-    public function getCurrencies(): ?\Upsun\Model\GetTypeAllowance200ResponseCurrencies
+    public function getCurrencies(): ?GetTypeAllowance200ResponseCurrencies
     {
         return $this->currencies;
     }
 }
-

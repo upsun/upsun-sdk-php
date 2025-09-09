@@ -12,12 +12,10 @@
 
 namespace Upsun\Model;
 
-use ArrayAccess;
 use JsonSerializable;
 
 final class ListTicketPriorities200ResponseInner implements JsonSerializable
 {
-
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $label = null,
@@ -46,44 +44,23 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    /**
-     * Machine name of the priority.
-     *
-     * @return string|null
-     */
     public function getId(): ?string
     {
         return $this->id;
     }
 
-    /**
-     * The human-readable label of the priority.
-     *
-     * @return string|null
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * The short description of the priority.
-     *
-     * @return string|null
-     */
     public function getShortDescription(): ?string
     {
         return $this->shortDescription;
     }
 
-    /**
-     * The long description of the priority.
-     *
-     * @return string|null
-     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 }
-
