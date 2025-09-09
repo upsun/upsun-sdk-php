@@ -34,6 +34,7 @@ final class Activity implements JsonSerializable
         private readonly ?string $description = null,
         private readonly ?string $text = null,
         private readonly ?string $expiresAt = null,
+        private readonly ?string $id = null,
         private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
@@ -64,6 +65,7 @@ final class Activity implements JsonSerializable
             'description' => $this->description,
             'text' => $this->text,
             'expiresAt' => $this->expiresAt,
+            'id' => $this->id,
             'integration' => $this->integration,
             'environments' => $this->environments,
         ];
@@ -157,6 +159,11 @@ final class Activity implements JsonSerializable
     public function getExpiresAt(): ?string
     {
         return $this->expiresAt;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getIntegration(): ?string

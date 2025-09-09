@@ -66,6 +66,7 @@ final class ObjectOpenApiTypesMapper
             'description' => '?string',
             'text' => '?string',
             'expires_at' => '?\DateTime',
+            'id' => '?string',
             'integration' => '?string',
             'environments' => 'string[]',
         ],
@@ -614,6 +615,7 @@ final class ObjectOpenApiTypesMapper
             'webapps' => '\Upsun\Model\WebApplicationsValue[]',
             'workers' => '\Upsun\Model\WorkersValue[]',
             'container_profiles' => 'array&lt;string,\Upsun\Model\ContainerProfilesValueValue&gt;[]',
+            'id' => 'string',
             'created_at' => '?\DateTime',
             'updated_at' => '?\DateTime',
             'fingerprint' => '?string',
@@ -2434,6 +2436,11 @@ final class ObjectOpenApiTypesMapper
         '\\Upsun\Model\\ResetEmailAddressRequest' => [
             'email_address' => 'string',
         ],
+        '\\Upsun\Model\\ResourceConfig' => [
+            'profile_size' => '?string',
+            'container_profile' => '?string',
+            'instance_count' => '?int',
+        ],
         '\\Upsun\Model\\Resources' => [
             'base_memory' => '?int',
             'memory_ratio' => '?int',
@@ -2597,6 +2604,9 @@ final class ObjectOpenApiTypesMapper
         ],
         '\\Upsun\Model\\ServerSideIncludeConfiguration' => [
             'enabled' => 'bool',
+        ],
+        '\\Upsun\Model\\ServicesUpdate' => [
+            'services' => '\Upsun\Model\WebappsUpdateWebappsValue[]',
         ],
         '\\Upsun\Model\\ServicesValue' => [
             'type' => 'string',
@@ -3174,6 +3184,15 @@ final class ObjectOpenApiTypesMapper
         '\\Upsun\Model\\UpdateProjectUserAccessRequest' => [
             'permissions' => 'string[]',
         ],
+        '\\Upsun\Model\\UpdateProjectsEnvironmentsDeployments200Response' => [
+            'status' => '?string',
+            'code' => '?int',
+        ],
+        '\\Upsun\Model\\UpdateProjectsEnvironmentsDeploymentsRequest' => [
+            'webapps' => '\Upsun\Model\WebappsUpdateWebappsValue[]',
+            'services' => '\Upsun\Model\WebappsUpdateWebappsValue[]',
+            'workers' => '\Upsun\Model\WebappsUpdateWebappsValue[]',
+        ],
         '\\Upsun\Model\\UpdateTeamRequest' => [
             'label' => '?string',
             'project_permissions' => 'string[]',
@@ -3412,9 +3431,18 @@ final class ObjectOpenApiTypesMapper
             'result' => '?string',
             'shared_key' => '?string',
         ],
+        '\\Upsun\Model\\WebappsUpdate' => [
+            'webapps' => '\Upsun\Model\WebappsUpdateWebappsValue[]',
+        ],
+        '\\Upsun\Model\\WebappsUpdateWebappsValue' => [
+            'resources' => '?\Upsun\Model\ResourceConfig',
+        ],
         '\\Upsun\Model\\WebhookIntegrationConfigurations' => [
             'enabled' => '?bool',
             'role' => '?string',
+        ],
+        '\\Upsun\Model\\WorkersUpdate' => [
+            'workers' => '\Upsun\Model\WebappsUpdateWebappsValue[]',
         ],
         '\\Upsun\Model\\WorkersValue' => [
             'resources' => '?\Upsun\Model\Resources',

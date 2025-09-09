@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment
 [**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information
+[**updateProjectsEnvironmentsDeployments()**](DeploymentApi.md#updateProjectsEnvironmentsDeployments) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Update a deployment
 
 
 ## `getProjectsEnvironmentsDeployments()`
@@ -120,6 +121,68 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `updateProjectsEnvironmentsDeployments()`
+
+```php
+updateProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId, $updateProjectsEnvironmentsDeploymentsRequest): \Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response
+```
+
+Update a deployment
+
+Update resources for either webapps, services, or workers.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Upsun\Api\DeploymentApi(
+    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
+    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    new GuzzleHttp\Client()
+);
+$projectId = 'projectId_example'; // string
+$environmentId = 'environmentId_example'; // string
+$deploymentId = 'deploymentId_example'; // string
+$updateProjectsEnvironmentsDeploymentsRequest = new \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest(); // \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest
+
+try {
+    $result = $apiInstance->updateProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId, $updateProjectsEnvironmentsDeploymentsRequest);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DeploymentApi->updateProjectsEnvironmentsDeployments: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectId** | **string**|  |
+ **environmentId** | **string**|  |
+ **deploymentId** | **string**|  |
+ **updateProjectsEnvironmentsDeploymentsRequest** | [**\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest**](../Model/UpdateProjectsEnvironmentsDeploymentsRequest.md)|  |
+
+### Return type
+
+[**\Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response**](../Model/UpdateProjectsEnvironmentsDeployments200Response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

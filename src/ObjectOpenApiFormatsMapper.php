@@ -68,6 +68,7 @@ final class ObjectOpenApiFormatsMapper
             'description' => null,
             'text' => null,
             'expiresAt' => 'date-time',
+            'id' => null,
             'integration' => null,
             'environments' => null
         ],
@@ -616,6 +617,7 @@ final class ObjectOpenApiFormatsMapper
             'webapps' => null,
             'workers' => null,
             'containerProfiles' => null,
+            'id' => null,
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'fingerprint' => null
@@ -2439,6 +2441,11 @@ final class ObjectOpenApiFormatsMapper
         '\\Upsun\Model\\ResetEmailAddressRequest' => [
             'emailAddress' => 'email'
         ],
+        '\\Upsun\Model\\ResourceConfig' => [
+            'profileSize' => null,
+            'containerProfile' => null,
+            'instanceCount' => null
+        ],
         '\\Upsun\Model\\Resources' => [
             'baseMemory' => null,
             'memoryRatio' => null,
@@ -2602,6 +2609,9 @@ final class ObjectOpenApiFormatsMapper
         ],
         '\\Upsun\Model\\ServerSideIncludeConfiguration' => [
             'enabled' => null
+        ],
+        '\\Upsun\Model\\ServicesUpdate' => [
+            'services' => null
         ],
         '\\Upsun\Model\\ServicesValue' => [
             'type' => null,
@@ -3179,6 +3189,15 @@ final class ObjectOpenApiFormatsMapper
         '\\Upsun\Model\\UpdateProjectUserAccessRequest' => [
             'permissions' => null
         ],
+        '\\Upsun\Model\\UpdateProjectsEnvironmentsDeployments200Response' => [
+            'status' => null,
+            'code' => null
+        ],
+        '\\Upsun\Model\\UpdateProjectsEnvironmentsDeploymentsRequest' => [
+            'webapps' => null,
+            'services' => null,
+            'workers' => null
+        ],
         '\\Upsun\Model\\UpdateTeamRequest' => [
             'label' => null,
             'projectPermissions' => null
@@ -3417,9 +3436,18 @@ final class ObjectOpenApiFormatsMapper
             'result' => null,
             'sharedKey' => null
         ],
+        '\\Upsun\Model\\WebappsUpdate' => [
+            'webapps' => null
+        ],
+        '\\Upsun\Model\\WebappsUpdateWebappsValue' => [
+            'resources' => null
+        ],
         '\\Upsun\Model\\WebhookIntegrationConfigurations' => [
             'enabled' => null,
             'role' => null
+        ],
+        '\\Upsun\Model\\WorkersUpdate' => [
+            'workers' => null
         ],
         '\\Upsun\Model\\WorkersValue' => [
             'resources' => null,

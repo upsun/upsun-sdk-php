@@ -66,6 +66,7 @@ final class ObjectAttributesMapper
             'description' => 'description',
             'text' => 'text',
             'expiresAt' => 'expires_at',
+            'id' => 'id',
             'integration' => 'integration',
             'environments' => 'environments'
         ],
@@ -614,6 +615,7 @@ final class ObjectAttributesMapper
             'webapps' => 'webapps',
             'workers' => 'workers',
             'containerProfiles' => 'container_profiles',
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'fingerprint' => 'fingerprint'
@@ -2437,6 +2439,11 @@ final class ObjectAttributesMapper
         '\\Upsun\Model\\ResetEmailAddressRequest' => [
             'emailAddress' => 'email_address'
         ],
+        '\\Upsun\Model\\ResourceConfig' => [
+            'profileSize' => 'profile_size',
+            'containerProfile' => 'container_profile',
+            'instanceCount' => 'instance_count'
+        ],
         '\\Upsun\Model\\Resources' => [
             'baseMemory' => 'base_memory',
             'memoryRatio' => 'memory_ratio',
@@ -2600,6 +2607,9 @@ final class ObjectAttributesMapper
         ],
         '\\Upsun\Model\\ServerSideIncludeConfiguration' => [
             'enabled' => 'enabled'
+        ],
+        '\\Upsun\Model\\ServicesUpdate' => [
+            'services' => 'services'
         ],
         '\\Upsun\Model\\ServicesValue' => [
             'type' => 'type',
@@ -3177,6 +3187,15 @@ final class ObjectAttributesMapper
         '\\Upsun\Model\\UpdateProjectUserAccessRequest' => [
             'permissions' => 'permissions'
         ],
+        '\\Upsun\Model\\UpdateProjectsEnvironmentsDeployments200Response' => [
+            'status' => 'status',
+            'code' => 'code'
+        ],
+        '\\Upsun\Model\\UpdateProjectsEnvironmentsDeploymentsRequest' => [
+            'webapps' => 'webapps',
+            'services' => 'services',
+            'workers' => 'workers'
+        ],
         '\\Upsun\Model\\UpdateTeamRequest' => [
             'label' => 'label',
             'projectPermissions' => 'project_permissions'
@@ -3415,9 +3434,18 @@ final class ObjectAttributesMapper
             'result' => 'result',
             'sharedKey' => 'shared_key'
         ],
+        '\\Upsun\Model\\WebappsUpdate' => [
+            'webapps' => 'webapps'
+        ],
+        '\\Upsun\Model\\WebappsUpdateWebappsValue' => [
+            'resources' => 'resources'
+        ],
         '\\Upsun\Model\\WebhookIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
+        ],
+        '\\Upsun\Model\\WorkersUpdate' => [
+            'workers' => 'workers'
         ],
         '\\Upsun\Model\\WorkersValue' => [
             'resources' => 'resources',

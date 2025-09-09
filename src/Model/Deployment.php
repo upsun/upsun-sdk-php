@@ -32,6 +32,7 @@ final class Deployment implements JsonSerializable
         private readonly array $webapps,
         private readonly array $workers,
         private readonly array $containerProfiles,
+        private readonly string $id,
         private readonly ?VPNConfiguration $vpn = null,
         private readonly ?string $createdAt = null,
         private readonly ?string $updatedAt = null,
@@ -63,6 +64,7 @@ final class Deployment implements JsonSerializable
             'webapps' => $this->webapps,
             'workers' => $this->workers,
             'containerProfiles' => $this->containerProfiles,
+            'id' => $this->id,
             'createdAt' => $this->createdAt,
             'updatedAt' => $this->updatedAt,
             'fingerprint' => $this->fingerprint,
@@ -170,6 +172,11 @@ final class Deployment implements JsonSerializable
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?string

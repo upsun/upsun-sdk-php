@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **description** | **string** |  |
 **text** | **string** |  |
 **expiresAt** | **\DateTime** |  |
+**id** | **string** |  | [optional]
 **integration** | **string** |  | [optional]
 **environments** | **string[]** |  | [optional]
 

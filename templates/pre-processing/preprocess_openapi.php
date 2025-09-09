@@ -1,6 +1,6 @@
 <?php
 
-$specFile = __DIR__ . '/../../schema/openapispec-platformsh.json';
+$specFile = __DIR__ . '/../../schema/openapispec-platformsh-with-resources.json';
 $outputFile = __DIR__ . '/../../schema/openapispec-platformsh-xreturn.json';
 
 $content = file_get_contents($specFile);
@@ -15,6 +15,27 @@ if (isset($spec['paths']['/projects/{projectId}']['delete'])) {
     unset($spec['paths']['/projects/{projectId}']['delete']);
 }
 
+// FIXME adding Activity.id field if not exist yet
+// check https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
+if (!isset($spec['components']['schemas']['Activity']['properties']['id'])) {
+    $spec['components']['schemas']['Activity']['properties']['id'] = [
+        'type' => 'string',
+        'title' => 'ID'
+    ];
+    $spec['components']['schemas']['Activity']['required'][] = "id";
+}
+
+// FIXME adding Deployment.id field if not exist yet
+// check https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
+if (!isset($spec['components']['schemas']['Deployment']['properties']['id'])) {
+    $spec['components']['schemas']['Deployment']['properties']['id'] = [
+        'type' => 'string',
+        'title' => 'ID'
+    ];
+    $spec['components']['schemas']['Deployment']['required'][] = "id";
+}
+
+// Adding x-return info for better processing in the mustache template
 foreach ($spec['paths'] as $path => &$methods) {
     preg_match_all('/\{([^\}]+)\}/', $path, $matches);
     $pathParams = $matches[1] ?? [];
