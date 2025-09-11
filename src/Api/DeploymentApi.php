@@ -87,7 +87,8 @@ final class DeploymentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Deployment',
@@ -258,7 +259,8 @@ final class DeploymentApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Deployment[]',
@@ -375,51 +377,48 @@ final class DeploymentApi extends AbstractApi
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
     /**
-     * Update a deployment
+     * Update the next deployment
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsEnvironmentsDeployments(
+    public function updateProjectsEnvironmentsDeploymentsNext(
         string $projectId,
         string $environmentId,
-        string $deploymentId,
-        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest $updateProjectsEnvironmentsDeploymentsRequest
-    ): \Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response {
-        return $this->updateProjectsEnvironmentsDeploymentsWithHttpInfo(
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): \Upsun\Model\AcceptedResponse {
+        return $this->updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
             $projectId,
             $environmentId,
-            $deploymentId,
-            $updateProjectsEnvironmentsDeploymentsRequest
+            $updateProjectsEnvironmentsDeploymentsNextRequest
         );
     }
 
     /**
-     * Update a deployment
+     * Update the next deployment
      *
      * @throws InvalidArgumentException|Exception
      */
-    public function updateProjectsEnvironmentsDeploymentsWithHttpInfo(
+    public function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
         string $projectId,
         string $environmentId,
-        string $deploymentId,
-        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest $updateProjectsEnvironmentsDeploymentsRequest
-    ): \Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response {
-        $request = $this->updateProjectsEnvironmentsDeploymentsRequest(
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+    ): \Upsun\Model\AcceptedResponse {
+        $request = $this->updateProjectsEnvironmentsDeploymentsNextRequest(
             $projectId,
             $environmentId,
-            $deploymentId,
-            $updateProjectsEnvironmentsDeploymentsRequest
+            $updateProjectsEnvironmentsDeploymentsNextRequest
         );
 
         try {
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response',
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
@@ -429,15 +428,14 @@ final class DeploymentApi extends AbstractApi
     }
 
     /**
-     * Create request for operation 'updateProjectsEnvironmentsDeployments'
+     * Create request for operation 'updateProjectsEnvironmentsDeploymentsNext'
      *
      * @throws InvalidArgumentException
      */
-    public function updateProjectsEnvironmentsDeploymentsRequest(
+    public function updateProjectsEnvironmentsDeploymentsNextRequest(
         string $projectId,
         string $environmentId,
-        string $deploymentId,
-        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest $updateProjectsEnvironmentsDeploymentsRequest
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
     ): RequestInterface {
         // verify the required parameter 'projectId' is set
         if (
@@ -446,7 +444,7 @@ final class DeploymentApi extends AbstractApi
             && count($projectId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $projectId when calling updateProjectsEnvironmentsDeployments'
+                'Missing the required parameter $projectId when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }
         // verify the required parameter 'environmentId' is set
@@ -456,31 +454,21 @@ final class DeploymentApi extends AbstractApi
             && count($environmentId) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsDeployments'
+                'Missing the required parameter $environmentId when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }
-        // verify the required parameter 'deploymentId' is set
+        // verify the required parameter 'updateProjectsEnvironmentsDeploymentsNextRequest' is set
         if (
-            $deploymentId === null
-            || (is_array($deploymentId)
-            && count($deploymentId) === 0)
+            $updateProjectsEnvironmentsDeploymentsNextRequest === null
+            || (is_array($updateProjectsEnvironmentsDeploymentsNextRequest)
+            && count($updateProjectsEnvironmentsDeploymentsNextRequest) === 0)
         ) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $deploymentId when calling updateProjectsEnvironmentsDeployments'
-            );
-        }
-        // verify the required parameter 'updateProjectsEnvironmentsDeploymentsRequest' is set
-        if (
-            $updateProjectsEnvironmentsDeploymentsRequest === null
-            || (is_array($updateProjectsEnvironmentsDeploymentsRequest)
-            && count($updateProjectsEnvironmentsDeploymentsRequest) === 0)
-        ) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $updateProjectsEnvironmentsDeploymentsRequest when calling updateProjectsEnvironmentsDeployments'
+                'Missing the required parameter $updateProjectsEnvironmentsDeploymentsNextRequest when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }
 
-        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}';
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/next';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -505,14 +493,6 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
-        // path params
-        if ($deploymentId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'deploymentId' . '}',
-                ObjectSerializer::toPathValue($deploymentId),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -522,11 +502,11 @@ final class DeploymentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (isset($updateProjectsEnvironmentsDeploymentsRequest)) {
+        if (isset($updateProjectsEnvironmentsDeploymentsNextRequest)) {
             if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
-                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateProjectsEnvironmentsDeploymentsRequest));
+                $httpBody = json_encode(ObjectSerializer::sanitizeForSerialization($updateProjectsEnvironmentsDeploymentsNextRequest));
             } else {
-                $httpBody = $updateProjectsEnvironmentsDeploymentsRequest;
+                $httpBody = $updateProjectsEnvironmentsDeploymentsNextRequest;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

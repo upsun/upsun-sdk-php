@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class DefaultConfig implements JsonSerializable
+final class DefaultConfig implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly int $manualCount,
@@ -22,7 +22,7 @@ final class DefaultConfig implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

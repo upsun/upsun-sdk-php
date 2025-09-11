@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class AccessControlDefinitionForThisEnviromentInner implements JsonSerializable
+final class AccessControlDefinitionForThisEnviromentInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $entityId,
@@ -22,7 +22,7 @@ final class AccessControlDefinitionForThisEnviromentInner implements JsonSeriali
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

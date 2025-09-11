@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Commit implements JsonSerializable
+final class Commit implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $sha,
@@ -26,7 +26,7 @@ final class Commit implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

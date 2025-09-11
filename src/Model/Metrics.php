@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Metrics implements JsonSerializable
+final class Metrics implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $maxRange,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

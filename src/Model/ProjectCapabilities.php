@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ProjectCapabilities implements JsonSerializable
+final class ProjectCapabilities implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly Metrics $metrics,
@@ -31,7 +31,7 @@ final class ProjectCapabilities implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

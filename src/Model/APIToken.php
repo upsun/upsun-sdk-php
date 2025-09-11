@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class APIToken implements JsonSerializable
+final class APIToken implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $lastUsedAt = null,
@@ -27,7 +27,7 @@ final class APIToken implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class PrepaymentObject implements JsonSerializable
+final class PrepaymentObject implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?PrepaymentObjectPrepayment $prepayment = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

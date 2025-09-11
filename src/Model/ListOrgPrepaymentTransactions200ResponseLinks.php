@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSerializable
+final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
@@ -24,7 +24,7 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements JsonSeriali
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

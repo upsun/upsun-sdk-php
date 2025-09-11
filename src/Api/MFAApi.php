@@ -83,7 +83,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ConfirmTotpEnrollment200Response',
@@ -217,7 +218,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
 
         } catch (ApiException $e) {
@@ -340,7 +342,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
 
         } catch (ApiException $e) {
@@ -463,7 +466,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\OrganizationMFAEnforcement',
@@ -590,7 +594,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\GetTotpEnrollment200Response',
@@ -717,7 +722,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             $this->handleResponseWithDataType(
                 '\Upsun\Model\ConfirmTotpEnrollment200Response',
@@ -848,7 +854,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 'array<string,\Upsun\Model\SendOrgMfaReminders200ResponseValue>',
@@ -982,7 +989,8 @@ final class MFAApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
 
         } catch (ApiException $e) {

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSerializable
+final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly array $watch,
@@ -24,7 +24,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements JsonSe
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

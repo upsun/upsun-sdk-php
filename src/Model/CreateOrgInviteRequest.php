@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateOrgInviteRequest implements JsonSerializable
+final class CreateOrgInviteRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $email,
@@ -23,7 +23,7 @@ final class CreateOrgInviteRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Backup implements JsonSerializable
+final class Backup implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $id,
@@ -35,7 +35,7 @@ final class Backup implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

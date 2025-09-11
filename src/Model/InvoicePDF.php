@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class InvoicePDF implements JsonSerializable
+final class InvoicePDF implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $url = null,
@@ -22,7 +22,7 @@ final class InvoicePDF implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

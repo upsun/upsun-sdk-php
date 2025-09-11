@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSerializable
+final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly TheCommandsDefinition $commands,
@@ -23,7 +23,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements JsonSe
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

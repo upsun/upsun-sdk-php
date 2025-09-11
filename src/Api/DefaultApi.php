@@ -127,7 +127,8 @@ final class DefaultApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListTickets200Response',

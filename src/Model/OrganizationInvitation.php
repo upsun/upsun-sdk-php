@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationInvitation implements JsonSerializable
+final class OrganizationInvitation implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $finishedAt = null,
@@ -29,7 +29,7 @@ final class OrganizationInvitation implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

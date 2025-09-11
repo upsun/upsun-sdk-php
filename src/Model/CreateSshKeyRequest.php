@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateSshKeyRequest implements JsonSerializable
+final class CreateSshKeyRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $value,
@@ -23,7 +23,7 @@ final class CreateSshKeyRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class SubscriptionCurrentUsageObject implements JsonSerializable
+final class SubscriptionCurrentUsageObject implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?UsageGroupCurrentUsageProperties $cpuApp = null,
@@ -33,7 +33,7 @@ final class SubscriptionCurrentUsageObject implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

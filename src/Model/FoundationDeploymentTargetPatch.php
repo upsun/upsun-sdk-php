@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class FoundationDeploymentTargetPatch implements JsonSerializable
+final class FoundationDeploymentTargetPatch implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -24,7 +24,7 @@ final class FoundationDeploymentTargetPatch implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

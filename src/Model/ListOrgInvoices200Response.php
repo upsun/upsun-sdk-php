@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ListOrgInvoices200Response implements JsonSerializable
+final class ListOrgInvoices200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?array $items = [],
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

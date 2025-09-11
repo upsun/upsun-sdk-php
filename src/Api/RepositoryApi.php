@@ -83,7 +83,8 @@ final class RepositoryApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Blob',
@@ -233,7 +234,8 @@ final class RepositoryApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Commit',
@@ -383,7 +385,8 @@ final class RepositoryApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Ref',
@@ -533,7 +536,8 @@ final class RepositoryApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Tree',
@@ -681,7 +685,8 @@ final class RepositoryApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Ref[]',

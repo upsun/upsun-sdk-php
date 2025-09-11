@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateUsageAlertRequest implements JsonSerializable
+final class UpdateUsageAlertRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?CreateUsageAlertRequestConfig $config = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

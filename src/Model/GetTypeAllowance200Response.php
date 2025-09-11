@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GetTypeAllowance200Response implements JsonSerializable
+final class GetTypeAllowance200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?GetTypeAllowance200ResponseCurrencies $currencies = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

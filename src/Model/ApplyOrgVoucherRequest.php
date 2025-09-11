@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ApplyOrgVoucherRequest implements JsonSerializable
+final class ApplyOrgVoucherRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $code,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

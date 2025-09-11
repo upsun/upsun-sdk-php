@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ProjectPatch implements JsonSerializable
+final class ProjectPatch implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $defaultBranch = null,
@@ -27,7 +27,7 @@ final class ProjectPatch implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

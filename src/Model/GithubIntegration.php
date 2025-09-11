@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GithubIntegration implements JsonSerializable
+final class GithubIntegration implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -33,7 +33,7 @@ final class GithubIntegration implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

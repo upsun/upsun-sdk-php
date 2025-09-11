@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheConfigurationOfTheRedirects implements JsonSerializable
+final class TheConfigurationOfTheRedirects implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $expires,
@@ -22,7 +22,7 @@ final class TheConfigurationOfTheRedirects implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class LineItemComponent implements JsonSerializable
+final class LineItemComponent implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?number $amount = null,
@@ -24,7 +24,7 @@ final class LineItemComponent implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

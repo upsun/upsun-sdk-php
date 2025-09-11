@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateTicketRequestAttachmentsInner implements JsonSerializable
+final class CreateTicketRequestAttachmentsInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $filename = null,
@@ -22,7 +22,7 @@ final class CreateTicketRequestAttachmentsInner implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

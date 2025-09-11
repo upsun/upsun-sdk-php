@@ -83,7 +83,8 @@ final class OrdersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\CreateAuthorizationCredentials200Response',
@@ -229,7 +230,8 @@ final class OrdersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
 
         } catch (ApiException $e) {
@@ -363,7 +365,8 @@ final class OrdersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\Order',
@@ -537,7 +540,8 @@ final class OrdersApi extends AbstractApi
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
             return $this->handleResponseWithDataType(
                 '\Upsun\Model\ListOrgOrders200Response',

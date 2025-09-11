@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateApiTokenRequest implements JsonSerializable
+final class CreateApiTokenRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $name,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

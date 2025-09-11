@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ThePathsToRedirectValue implements JsonSerializable
+final class ThePathsToRedirectValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $regexp,
@@ -26,7 +26,7 @@ final class ThePathsToRedirectValue implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

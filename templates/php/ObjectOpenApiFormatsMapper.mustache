@@ -28,9 +28,8 @@ final class ObjectOpenApiFormatsMapper
     }
 
     protected static $openAPIFormats = [
-{{#models}}
-{{#model}}
-        '\\{{modelPackage}}\\{{classname}}' => [
+{{#models}}{{#model}}
+        '{{modelPackage}}\{{classname}}' => [
             {{#vars}}'{{name}}' => {{#dataFormat}}'{{{.}}}'{{/dataFormat}}{{^dataFormat}}null{{/dataFormat}}{{^-last}},
             {{/-last}}{{/vars}}
         ],

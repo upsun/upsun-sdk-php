@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class DiscountCommitmentAmount implements JsonSerializable
+final class DiscountCommitmentAmount implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?CurrencyAmount $monthly = null,
@@ -23,7 +23,7 @@ final class DiscountCommitmentAmount implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

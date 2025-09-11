@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GetTypeAllowance200ResponseCurrenciesEUR implements JsonSerializable
+final class GetTypeAllowance200ResponseCurrenciesEUR implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $formatted = null,
@@ -24,7 +24,7 @@ final class GetTypeAllowance200ResponseCurrenciesEUR implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

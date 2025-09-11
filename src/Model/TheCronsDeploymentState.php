@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheCronsDeploymentState implements JsonSerializable
+final class TheCronsDeploymentState implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $enabled,
@@ -22,7 +22,7 @@ final class TheCronsDeploymentState implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

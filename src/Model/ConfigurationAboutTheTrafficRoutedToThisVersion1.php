@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements JsonSerializable
+final class ConfigurationAboutTheTrafficRoutedToThisVersion1 implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $percentage = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

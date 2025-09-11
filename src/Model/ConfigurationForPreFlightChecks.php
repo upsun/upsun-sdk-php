@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfigurationForPreFlightChecks implements JsonSerializable
+final class ConfigurationForPreFlightChecks implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $enabled,
@@ -22,7 +22,7 @@ final class ConfigurationForPreFlightChecks implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

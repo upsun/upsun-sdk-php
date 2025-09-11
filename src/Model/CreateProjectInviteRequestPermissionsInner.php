@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateProjectInviteRequestPermissionsInner implements JsonSerializable
+final class CreateProjectInviteRequestPermissionsInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $type = null,
@@ -22,7 +22,7 @@ final class CreateProjectInviteRequestPermissionsInner implements JsonSerializab
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

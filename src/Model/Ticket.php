@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Ticket implements JsonSerializable
+final class Ticket implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $ticketId = null,
@@ -55,7 +55,7 @@ final class Ticket implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ContainerProfilesValueValue implements JsonSerializable
+final class ContainerProfilesValueValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly number $cpu,
@@ -22,7 +22,7 @@ final class ContainerProfilesValueValue implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

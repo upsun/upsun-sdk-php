@@ -154,7 +154,7 @@ Class | Method | HTTP request | Description
 *DefaultApi* | [**listTickets**](docs/Api/DefaultApi.md#listtickets) | **GET** /tickets | List support tickets
 *DeploymentApi* | [**getProjectsEnvironmentsDeployments**](docs/Api/DeploymentApi.md#getprojectsenvironmentsdeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment
 *DeploymentApi* | [**listProjectsEnvironmentsDeployments**](docs/Api/DeploymentApi.md#listprojectsenvironmentsdeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information
-*DeploymentApi* | [**updateProjectsEnvironmentsDeployments**](docs/Api/DeploymentApi.md#updateprojectsenvironmentsdeployments) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Update a deployment
+*DeploymentApi* | [**updateProjectsEnvironmentsDeploymentsNext**](docs/Api/DeploymentApi.md#updateprojectsenvironmentsdeploymentsnext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment
 *DeploymentTargetApi* | [**createProjectsDeployments**](docs/Api/DeploymentTargetApi.md#createprojectsdeployments) | **POST** /projects/{projectId}/deployments | Create a project deployment target
 *DeploymentTargetApi* | [**deleteProjectsDeployments**](docs/Api/DeploymentTargetApi.md#deleteprojectsdeployments) | **DELETE** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Delete a single project deployment target
 *DeploymentTargetApi* | [**getProjectsDeployments**](docs/Api/DeploymentTargetApi.md#getprojectsdeployments) | **GET** /projects/{projectId}/deployments/{deploymentTargetConfigurationId} | Get a single project deployment target
@@ -734,7 +734,6 @@ Class | Method | HTTP request | Description
 - [SendOrgMfaReminders200ResponseValue](docs/Model/SendOrgMfaReminders200ResponseValue.md)
 - [SendOrgMfaRemindersRequest](docs/Model/SendOrgMfaRemindersRequest.md)
 - [ServerSideIncludeConfiguration](docs/Model/ServerSideIncludeConfiguration.md)
-- [ServicesUpdate](docs/Model/ServicesUpdate.md)
 - [ServicesValue](docs/Model/ServicesValue.md)
 - [SlackIntegration](docs/Model/SlackIntegration.md)
 - [SlackIntegrationCreateInput](docs/Model/SlackIntegrationCreateInput.md)
@@ -818,8 +817,9 @@ Class | Method | HTTP request | Description
 - [UpdateOrgSubscriptionRequest](docs/Model/UpdateOrgSubscriptionRequest.md)
 - [UpdateProfileRequest](docs/Model/UpdateProfileRequest.md)
 - [UpdateProjectUserAccessRequest](docs/Model/UpdateProjectUserAccessRequest.md)
-- [UpdateProjectsEnvironmentsDeployments200Response](docs/Model/UpdateProjectsEnvironmentsDeployments200Response.md)
-- [UpdateProjectsEnvironmentsDeploymentsRequest](docs/Model/UpdateProjectsEnvironmentsDeploymentsRequest.md)
+- [UpdateProjectsEnvironmentsDeploymentsNextRequest](docs/Model/UpdateProjectsEnvironmentsDeploymentsNextRequest.md)
+- [UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue](docs/Model/UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue.md)
+- [UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue](docs/Model/UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue.md)
 - [UpdateTeamRequest](docs/Model/UpdateTeamRequest.md)
 - [UpdateTicketRequest](docs/Model/UpdateTicketRequest.md)
 - [UpdateUsageAlertRequest](docs/Model/UpdateUsageAlertRequest.md)
@@ -846,10 +846,7 @@ Class | Method | HTTP request | Description
 - [WebHookIntegration](docs/Model/WebHookIntegration.md)
 - [WebHookIntegrationCreateInput](docs/Model/WebHookIntegrationCreateInput.md)
 - [WebHookIntegrationPatch](docs/Model/WebHookIntegrationPatch.md)
-- [WebappsUpdate](docs/Model/WebappsUpdate.md)
-- [WebappsUpdateWebappsValue](docs/Model/WebappsUpdateWebappsValue.md)
 - [WebhookIntegrationConfigurations](docs/Model/WebhookIntegrationConfigurations.md)
-- [WorkersUpdate](docs/Model/WorkersUpdate.md)
 - [WorkersValue](docs/Model/WorkersValue.md)
 
 ## Authorization

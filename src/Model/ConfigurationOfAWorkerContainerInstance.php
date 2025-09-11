@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
+final class ConfigurationOfAWorkerContainerInstance implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly TheCommandsToManageTheWorker $commands,
@@ -22,7 +22,7 @@ final class ConfigurationOfAWorkerContainerInstance implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

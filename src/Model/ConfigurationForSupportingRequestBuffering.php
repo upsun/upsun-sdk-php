@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfigurationForSupportingRequestBuffering implements JsonSerializable
+final class ConfigurationForSupportingRequestBuffering implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $enabled,
@@ -22,7 +22,7 @@ final class ConfigurationForSupportingRequestBuffering implements JsonSerializab
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

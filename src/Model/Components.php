@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Components implements JsonSerializable
+final class Components implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?object $voucherVatBaseprice = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

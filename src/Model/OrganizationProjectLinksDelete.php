@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationProjectLinksDelete implements JsonSerializable
+final class OrganizationProjectLinksDelete implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $href = null,
@@ -22,7 +22,7 @@ final class OrganizationProjectLinksDelete implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

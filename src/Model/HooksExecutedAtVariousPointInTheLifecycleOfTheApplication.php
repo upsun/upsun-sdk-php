@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements JsonSerializable
+final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $build = null,
@@ -23,7 +23,7 @@ final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

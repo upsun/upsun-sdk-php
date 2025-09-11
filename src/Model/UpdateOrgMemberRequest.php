@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateOrgMemberRequest implements JsonSerializable
+final class UpdateOrgMemberRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?array $permissions = [],
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

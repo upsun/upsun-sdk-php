@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class SubscriptionAddonsObject implements JsonSerializable
+final class SubscriptionAddonsObject implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?SubscriptionAddonsObjectAvailable $available = null,
@@ -23,7 +23,7 @@ final class SubscriptionAddonsObject implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

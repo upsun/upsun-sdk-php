@@ -26,12 +26,10 @@ final class ObjectAttributesMapper
     }
 
     private static array $attributeMap = [
-{{#models}}
-{{#model}}
-        '\\{{modelPackage}}\\{{classname}}' => [
+{{#models}}{{#model}}
+        '{{modelPackage}}\{{classname}}' => [
             {{#vars}}'{{name}}' => '{{baseName}}'{{^-last}},
             {{/-last}}{{/vars}}
-        ],
-{{/model}}{{/models}}
+        ],{{/model}}{{/models}}
     ];
 }

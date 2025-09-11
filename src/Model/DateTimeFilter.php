@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class DateTimeFilter implements JsonSerializable
+final class DateTimeFilter implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $eq = null,
@@ -27,7 +27,7 @@ final class DateTimeFilter implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class EnvironmentInitializeInput implements JsonSerializable
+final class EnvironmentInitializeInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $profile,
@@ -25,7 +25,7 @@ final class EnvironmentInitializeInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

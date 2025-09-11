@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements JsonSerializable
+final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $service = null,
@@ -22,7 +22,7 @@ final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements Js
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

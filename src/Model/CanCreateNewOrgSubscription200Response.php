@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CanCreateNewOrgSubscription200Response implements JsonSerializable
+final class CanCreateNewOrgSubscription200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?CanCreateNewOrgSubscription200ResponseRequiredAction $requiredAction = null,
@@ -23,7 +23,7 @@ final class CanCreateNewOrgSubscription200Response implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

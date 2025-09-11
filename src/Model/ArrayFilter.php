@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ArrayFilter implements JsonSerializable
+final class ArrayFilter implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $eq = null,
@@ -24,7 +24,7 @@ final class ArrayFilter implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

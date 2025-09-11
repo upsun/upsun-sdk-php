@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class HalLinksNext implements JsonSerializable
+final class HalLinksNext implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $title = null,
@@ -22,7 +22,7 @@ final class HalLinksNext implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

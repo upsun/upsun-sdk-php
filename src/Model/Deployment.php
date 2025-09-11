@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Deployment implements JsonSerializable
+final class Deployment implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $clusterName,
@@ -40,7 +40,7 @@ final class Deployment implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

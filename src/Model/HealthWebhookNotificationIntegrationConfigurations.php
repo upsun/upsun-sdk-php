@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class HealthWebhookNotificationIntegrationConfigurations implements JsonSerializable
+final class HealthWebhookNotificationIntegrationConfigurations implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?bool $enabled = null,
@@ -22,7 +22,7 @@ final class HealthWebhookNotificationIntegrationConfigurations implements JsonSe
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

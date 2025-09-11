@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class VouchersVouchersInner implements JsonSerializable
+final class VouchersVouchersInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $code = null,
@@ -24,7 +24,7 @@ final class VouchersVouchersInner implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

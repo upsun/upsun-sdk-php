@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class VouchersLinks implements JsonSerializable
+final class VouchersLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?GetOrgPrepaymentInfo200ResponseLinksSelf $self = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

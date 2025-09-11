@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class DomainCreateInput implements JsonSerializable
+final class DomainCreateInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $name,
@@ -24,7 +24,7 @@ final class DomainCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

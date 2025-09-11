@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
+final class BlackfireEnvironmentsCredentialsValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $serverUuid,
@@ -22,7 +22,7 @@ final class BlackfireEnvironmentsCredentialsValue implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

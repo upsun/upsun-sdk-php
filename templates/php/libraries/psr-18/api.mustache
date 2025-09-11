@@ -128,7 +128,8 @@ use {{invokerPackage}}\Core\OAuthProvider;
             $response = $this->sendAuthenticatedRequest(
                 $request->getMethod(),
                 (string) $request->getUri(),
-                $request->getHeaders()
+                $request->getHeaders(),
+                $request->getBody()
             );
 {{#returnType}}
             {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->handleResponseWithDataType(

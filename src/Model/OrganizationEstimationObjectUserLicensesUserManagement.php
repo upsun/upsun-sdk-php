@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationEstimationObjectUserLicensesUserManagement implements JsonSerializable
+final class OrganizationEstimationObjectUserLicensesUserManagement implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $count = null,
@@ -23,7 +23,7 @@ final class OrganizationEstimationObjectUserLicensesUserManagement implements Js
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

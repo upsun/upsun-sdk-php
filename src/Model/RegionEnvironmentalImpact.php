@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class RegionEnvironmentalImpact implements JsonSerializable
+final class RegionEnvironmentalImpact implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $zone = null,
@@ -23,7 +23,7 @@ final class RegionEnvironmentalImpact implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

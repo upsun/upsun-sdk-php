@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class PerServiceResourcesOverridesValue implements JsonSerializable
+final class PerServiceResourcesOverridesValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?number $cpu = null,
@@ -23,7 +23,7 @@ final class PerServiceResourcesOverridesValue implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

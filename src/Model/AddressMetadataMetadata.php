@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class AddressMetadataMetadata implements JsonSerializable
+final class AddressMetadataMetadata implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?array $requiredFields = [],
@@ -23,7 +23,7 @@ final class AddressMetadataMetadata implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

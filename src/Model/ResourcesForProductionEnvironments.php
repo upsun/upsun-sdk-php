@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ResourcesForProductionEnvironments implements JsonSerializable
+final class ResourcesForProductionEnvironments implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $legacyDevelopment,
@@ -24,7 +24,7 @@ final class ResourcesForProductionEnvironments implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

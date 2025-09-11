@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ProjectOptionsEnforced implements JsonSerializable
+final class ProjectOptionsEnforced implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?object $settings = null,
@@ -22,7 +22,7 @@ final class ProjectOptionsEnforced implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

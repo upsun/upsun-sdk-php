@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class EnvironmentPatch implements JsonSerializable
+final class EnvironmentPatch implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $parent = null,
@@ -29,7 +29,7 @@ final class EnvironmentPatch implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateOrgMemberRequest implements JsonSerializable
+final class CreateOrgMemberRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $userId,
@@ -22,7 +22,7 @@ final class CreateOrgMemberRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

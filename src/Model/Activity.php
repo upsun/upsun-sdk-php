@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Activity implements JsonSerializable
+final class Activity implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -25,6 +25,7 @@ final class Activity implements JsonSerializable
         private readonly array $timings,
         private readonly string $log,
         private readonly object $payload,
+        private readonly string $id,
         private readonly ?string $createdAt = null,
         private readonly ?string $updatedAt = null,
         private readonly ?string $result = null,
@@ -34,13 +35,12 @@ final class Activity implements JsonSerializable
         private readonly ?string $description = null,
         private readonly ?string $text = null,
         private readonly ?string $expiresAt = null,
-        private readonly ?string $id = null,
         private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }
@@ -161,7 +161,7 @@ final class Activity implements JsonSerializable
         return $this->expiresAt;
     }
 
-    public function getId(): ?string
+    public function getId(): string
     {
         return $this->id;
     }

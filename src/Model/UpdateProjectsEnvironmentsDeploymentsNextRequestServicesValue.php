@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Low level WebappsUpdateWebappsValue (auto-generated)
+ * Low level UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue (auto-generated)
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -14,14 +14,16 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class WebappsUpdateWebappsValue implements JsonSerializable
+final class UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly ?int $instanceCount = null,
+        private readonly ?int $disk = null,
         private readonly ?ResourceConfig $resources = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }
@@ -30,6 +32,8 @@ final class WebappsUpdateWebappsValue implements JsonSerializable
     {
         return [
             'resources' => $this->resources,
+            'instanceCount' => $this->instanceCount,
+            'disk' => $this->disk,
         ];
     }
 
@@ -41,5 +45,15 @@ final class WebappsUpdateWebappsValue implements JsonSerializable
     public function getResources(): ?ResourceConfig
     {
         return $this->resources;
+    }
+
+    public function getInstanceCount(): ?int
+    {
+        return $this->instanceCount;
+    }
+
+    public function getDisk(): ?int
+    {
+        return $this->disk;
     }
 }

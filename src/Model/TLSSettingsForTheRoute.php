@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TLSSettingsForTheRoute implements JsonSerializable
+final class TLSSettingsForTheRoute implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly StrictTransportSecurityOptions $strictTransportSecurity,
@@ -24,7 +24,7 @@ final class TLSSettingsForTheRoute implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

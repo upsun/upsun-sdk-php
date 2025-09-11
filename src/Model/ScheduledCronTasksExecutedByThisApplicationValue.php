@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSerializable
+final class ScheduledCronTasksExecutedByThisApplicationValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $spec,
@@ -25,7 +25,7 @@ final class ScheduledCronTasksExecutedByThisApplicationValue implements JsonSeri
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

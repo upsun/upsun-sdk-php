@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements JsonSerializable
+final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $path,
@@ -23,7 +23,7 @@ final class AListOfFilesToAddToTheRepositoryDuringInitializationInner implements
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

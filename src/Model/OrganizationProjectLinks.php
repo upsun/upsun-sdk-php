@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationProjectLinks implements JsonSerializable
+final class OrganizationProjectLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?OrganizationProjectLinksSelf $self = null,
@@ -25,7 +25,7 @@ final class OrganizationProjectLinks implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

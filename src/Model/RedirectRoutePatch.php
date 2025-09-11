@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class RedirectRoutePatch implements JsonSerializable
+final class RedirectRoutePatch implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -28,7 +28,7 @@ final class RedirectRoutePatch implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

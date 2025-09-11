@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheInformationAboutTheCommitter implements JsonSerializable
+final class TheInformationAboutTheCommitter implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $date,
@@ -23,7 +23,7 @@ final class TheInformationAboutTheCommitter implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

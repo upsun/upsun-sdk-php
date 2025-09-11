@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheBackupScheduleSpecificationInner implements JsonSerializable
+final class TheBackupScheduleSpecificationInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $interval,
@@ -22,7 +22,7 @@ final class TheBackupScheduleSpecificationInner implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

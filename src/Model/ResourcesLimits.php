@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ResourcesLimits implements JsonSerializable
+final class ResourcesLimits implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $containerProfiles,
@@ -23,7 +23,7 @@ final class ResourcesLimits implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

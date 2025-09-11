@@ -75,7 +75,8 @@ abstract class AbstractApi
     protected function createAuthenticatedRequest(
         string $method,
         string $uri,
-        array $headers = []
+        array $headers = [],
+        string|StreamInterface|null $body = null
     ): RequestInterface {
         if (preg_match('#^https?://#i', $uri)) {
             $fullUri = $uri;
@@ -91,6 +92,13 @@ abstract class AbstractApi
             $request = $request->withHeader($name, $value);
         }
 
+        if ($body !== null) {
+            if (is_string($body)) {
+                $body = $this->streamFactory->createStream($body);
+            }
+            $request = $request->withBody($body);
+        }
+
         return $request;
     }
 
@@ -100,11 +108,12 @@ abstract class AbstractApi
     protected function sendAuthenticatedRequest(
         string $method,
         string $uri,
-        array $headers = []
+        array $headers = [],
+        string|StreamInterface|null $body = null
     ): ResponseInterface {
         try {
             $this->refreshToken();
-            $request = $this->createAuthenticatedRequest($method, $uri, $headers);
+            $request = $this->createAuthenticatedRequest($method, $uri, $headers, $body);
 
             return $this->httpClient->sendRequest($request);
         } catch (HttpException $e) {

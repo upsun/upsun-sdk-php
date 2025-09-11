@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment
 [**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information
-[**updateProjectsEnvironmentsDeployments()**](DeploymentApi.md#updateProjectsEnvironmentsDeployments) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Update a deployment
+[**updateProjectsEnvironmentsDeploymentsNext()**](DeploymentApi.md#updateProjectsEnvironmentsDeploymentsNext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment
 
 
 ## `getProjectsEnvironmentsDeployments()`
@@ -127,15 +127,15 @@ No authorization required
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `updateProjectsEnvironmentsDeployments()`
+## `updateProjectsEnvironmentsDeploymentsNext()`
 
 ```php
-updateProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId, $updateProjectsEnvironmentsDeploymentsRequest): \Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response
+updateProjectsEnvironmentsDeploymentsNext($projectId, $environmentId, $updateProjectsEnvironmentsDeploymentsNextRequest): \Upsun\Model\AcceptedResponse
 ```
 
-Update a deployment
+Update the next deployment
 
-Update resources for either webapps, services, or workers.
+Update resources for either webapps, services, or workers in the next deployment.
 
 ### Example
 
@@ -152,14 +152,13 @@ $apiInstance = new Upsun\Api\DeploymentApi(
 );
 $projectId = 'projectId_example'; // string
 $environmentId = 'environmentId_example'; // string
-$deploymentId = 'deploymentId_example'; // string
-$updateProjectsEnvironmentsDeploymentsRequest = new \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest(); // \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest
+$updateProjectsEnvironmentsDeploymentsNextRequest = new \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest(); // \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest
 
 try {
-    $result = $apiInstance->updateProjectsEnvironmentsDeployments($projectId, $environmentId, $deploymentId, $updateProjectsEnvironmentsDeploymentsRequest);
+    $result = $apiInstance->updateProjectsEnvironmentsDeploymentsNext($projectId, $environmentId, $updateProjectsEnvironmentsDeploymentsNextRequest);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling DeploymentApi->updateProjectsEnvironmentsDeployments: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling DeploymentApi->updateProjectsEnvironmentsDeploymentsNext: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -169,12 +168,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectId** | **string**|  |
  **environmentId** | **string**|  |
- **deploymentId** | **string**|  |
- **updateProjectsEnvironmentsDeploymentsRequest** | [**\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest**](../Model/UpdateProjectsEnvironmentsDeploymentsRequest.md)|  |
+ **updateProjectsEnvironmentsDeploymentsNextRequest** | [**\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest**](../Model/UpdateProjectsEnvironmentsDeploymentsNextRequest.md)|  |
 
 ### Return type
 
-[**\Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response**](../Model/UpdateProjectsEnvironmentsDeployments200Response.md)
+[**\Upsun\Model\AcceptedResponse**](../Model/AcceptedResponse.md)
 
 ### Authorization
 

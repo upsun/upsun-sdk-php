@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class HttpAccessPermissions implements JsonSerializable
+final class HttpAccessPermissions implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $isEnabled,
@@ -23,7 +23,7 @@ final class HttpAccessPermissions implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -26,12 +26,11 @@ final class ObjectOpenApiTypesMapper
     }
 
     private static array $openApiTypes = [
-{{#models}}
-{{#model}}
-        '\\{{modelPackage}}\\{{classname}}' => [
-        {{#vars}}
+{{#models}}{{#model}}
+        '{{modelPackage}}\{{classname}}' => [
+            {{#vars}}
             '{{baseName}}' => '{{#isContainer}}{{#items}}{{dataType}}[]{{/items}}{{^items}}array{{/items}}{{/isContainer}}{{^isContainer}}{{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{dataType}}{{/isContainer}}',
-        {{/vars}}
+            {{/vars}}
         ],
 {{/model}}{{/models}}
     ];

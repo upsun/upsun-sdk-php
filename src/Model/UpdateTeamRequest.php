@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateTeamRequest implements JsonSerializable
+final class UpdateTeamRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $label = null,
@@ -22,7 +22,7 @@ final class UpdateTeamRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

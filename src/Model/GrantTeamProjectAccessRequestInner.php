@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GrantTeamProjectAccessRequestInner implements JsonSerializable
+final class GrantTeamProjectAccessRequestInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $projectId,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

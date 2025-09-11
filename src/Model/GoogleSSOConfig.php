@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GoogleSSOConfig implements JsonSerializable
+final class GoogleSSOConfig implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $providerType = null,
@@ -22,7 +22,7 @@ final class GoogleSSOConfig implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

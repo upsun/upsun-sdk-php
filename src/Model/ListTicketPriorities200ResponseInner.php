@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ListTicketPriorities200ResponseInner implements JsonSerializable
+final class ListTicketPriorities200ResponseInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $id = null,
@@ -24,7 +24,7 @@ final class ListTicketPriorities200ResponseInner implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

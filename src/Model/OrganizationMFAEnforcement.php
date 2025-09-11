@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationMFAEnforcement implements JsonSerializable
+final class OrganizationMFAEnforcement implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?bool $enforceMfa = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

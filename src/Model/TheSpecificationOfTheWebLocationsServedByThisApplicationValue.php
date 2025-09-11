@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements JsonSerializable
+final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $expires,
@@ -29,7 +29,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheTreeItemsInner implements JsonSerializable
+final class TheTreeItemsInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $path,
@@ -24,7 +24,7 @@ final class TheTreeItemsInner implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

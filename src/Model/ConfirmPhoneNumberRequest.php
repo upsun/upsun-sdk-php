@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfirmPhoneNumberRequest implements JsonSerializable
+final class ConfirmPhoneNumberRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $code,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

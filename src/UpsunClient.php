@@ -194,7 +194,8 @@ class UpsunClient
             new RegionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->resource = new ResourcesTask(
-            $this
+            $this,
+            new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->route = new RouteTask(
             $this,

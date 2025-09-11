@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class DataRetentionConfigurationValue implements JsonSerializable
+final class DataRetentionConfigurationValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly int $maxBackups,
@@ -22,7 +22,7 @@ final class DataRetentionConfigurationValue implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ListOrgPrepaymentTransactions200ResponseLinksNext implements JsonSerializable
+final class ListOrgPrepaymentTransactions200ResponseLinksNext implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $href = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

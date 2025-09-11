@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements JsonSerializable
+final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $socketFamily,
@@ -22,7 +22,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

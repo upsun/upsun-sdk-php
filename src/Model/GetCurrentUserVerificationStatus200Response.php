@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GetCurrentUserVerificationStatus200Response implements JsonSerializable
+final class GetCurrentUserVerificationStatus200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?bool $verifyPhone = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

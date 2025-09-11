@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class LogsForwarding implements JsonSerializable
+final class LogsForwarding implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly int $maxExtraPayloadSize,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

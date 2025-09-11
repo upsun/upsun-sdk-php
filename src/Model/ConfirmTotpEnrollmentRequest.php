@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ConfirmTotpEnrollmentRequest implements JsonSerializable
+final class ConfirmTotpEnrollmentRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $secret,
@@ -22,7 +22,7 @@ final class ConfirmTotpEnrollmentRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

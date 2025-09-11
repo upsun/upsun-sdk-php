@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheOAuth2ConsumerInformationOptional implements JsonSerializable
+final class TheOAuth2ConsumerInformationOptional implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $key,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

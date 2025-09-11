@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class EnvironmentRestoreInput implements JsonSerializable
+final class EnvironmentRestoreInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $restoreCode,
@@ -25,7 +25,7 @@ final class EnvironmentRestoreInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ResetEmailAddressRequest implements JsonSerializable
+final class ResetEmailAddressRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $emailAddress,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

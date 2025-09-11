@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateProfilePicture200Response implements JsonSerializable
+final class CreateProfilePicture200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $url = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

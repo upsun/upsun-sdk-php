@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class GetCurrentUserVerificationStatusFull200Response implements JsonSerializable
+final class GetCurrentUserVerificationStatusFull200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?bool $state = null,
@@ -22,7 +22,7 @@ final class GetCurrentUserVerificationStatusFull200Response implements JsonSeria
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

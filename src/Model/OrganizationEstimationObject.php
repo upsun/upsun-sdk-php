@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationEstimationObject implements JsonSerializable
+final class OrganizationEstimationObject implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $total = null,
@@ -27,7 +27,7 @@ final class OrganizationEstimationObject implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

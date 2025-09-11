@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class WorkersValue implements JsonSerializable
+final class WorkersValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $size,
@@ -44,7 +44,7 @@ final class WorkersValue implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

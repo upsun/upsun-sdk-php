@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class SendOrgMfaRemindersRequest implements JsonSerializable
+final class SendOrgMfaRemindersRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?array $userIds = [],
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,16 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ResourceConfig implements JsonSerializable
+final class ResourceConfig implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $profileSize = null,
-        private readonly ?string $containerProfile = null,
-        private readonly ?int $instanceCount = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }
@@ -32,8 +30,6 @@ final class ResourceConfig implements JsonSerializable
     {
         return [
             'profileSize' => $this->profileSize,
-            'containerProfile' => $this->containerProfile,
-            'instanceCount' => $this->instanceCount,
         ];
     }
 
@@ -45,15 +41,5 @@ final class ResourceConfig implements JsonSerializable
     public function getProfileSize(): ?string
     {
         return $this->profileSize;
-    }
-
-    public function getContainerProfile(): ?string
-    {
-        return $this->containerProfile;
-    }
-
-    public function getInstanceCount(): ?int
-    {
-        return $this->instanceCount;
     }
 }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class EnvironmentSynchronizeInput implements JsonSerializable
+final class EnvironmentSynchronizeInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $synchronizeCode,
@@ -24,7 +24,7 @@ final class EnvironmentSynchronizeInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateOrgSubscriptionRequest implements JsonSerializable
+final class UpdateOrgSubscriptionRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $projectTitle = null,
@@ -32,7 +32,7 @@ final class UpdateOrgSubscriptionRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

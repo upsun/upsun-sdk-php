@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationAlertConfig implements JsonSerializable
+final class OrganizationAlertConfig implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $lastAlertAt = null,
@@ -26,7 +26,7 @@ final class OrganizationAlertConfig implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

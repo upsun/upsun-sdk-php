@@ -1,5 +1,5 @@
 
-final class {{classname}} implements JsonSerializable
+final class {{classname}} implements ModelInterface, JsonSerializable
 {
     public function __construct(
     {{#vars}}
@@ -39,7 +39,7 @@ final class {{classname}} implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

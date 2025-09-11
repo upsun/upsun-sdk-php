@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializable
+final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $userId = null,
@@ -27,7 +27,7 @@ final class ListUserExtendedAccess200ResponseItemsInner implements JsonSerializa
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TeamReference implements JsonSerializable
+final class TeamReference implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $id = null,
@@ -27,7 +27,7 @@ final class TeamReference implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

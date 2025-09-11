@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheAddonCredentialInformationOptional implements JsonSerializable
+final class TheAddonCredentialInformationOptional implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $addonKey,
@@ -22,7 +22,7 @@ final class TheAddonCredentialInformationOptional implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

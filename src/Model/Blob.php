@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Blob implements JsonSerializable
+final class Blob implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $sha,
@@ -24,7 +24,7 @@ final class Blob implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

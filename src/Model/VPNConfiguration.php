@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class VPNConfiguration implements JsonSerializable
+final class VPNConfiguration implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly int $version,
@@ -34,7 +34,7 @@ final class VPNConfiguration implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

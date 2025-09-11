@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Low level UpdateProjectsEnvironmentsDeploymentsRequest (auto-generated)
+ * Low level UpdateProjectsEnvironmentsDeploymentsNextRequest (auto-generated)
  *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateProjectsEnvironmentsDeploymentsRequest implements JsonSerializable
+final class UpdateProjectsEnvironmentsDeploymentsNextRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?array $webapps = [],
@@ -23,7 +23,7 @@ final class UpdateProjectsEnvironmentsDeploymentsRequest implements JsonSerializ
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }
@@ -43,7 +43,7 @@ final class UpdateProjectsEnvironmentsDeploymentsRequest implements JsonSerializ
     }
 
     /**
-     * @return WebappsUpdateWebappsValue[]|null
+     * @return UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue[]|null
      */
     public function getWebapps(): ?array
     {
@@ -51,7 +51,7 @@ final class UpdateProjectsEnvironmentsDeploymentsRequest implements JsonSerializ
     }
 
     /**
-     * @return WebappsUpdateWebappsValue[]|null
+     * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
      */
     public function getServices(): ?array
     {
@@ -59,7 +59,7 @@ final class UpdateProjectsEnvironmentsDeploymentsRequest implements JsonSerializ
     }
 
     /**
-     * @return WebappsUpdateWebappsValue[]|null
+     * @return UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue[]|null
      */
     public function getWorkers(): ?array
     {

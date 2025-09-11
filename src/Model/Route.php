@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Route implements JsonSerializable
+final class Route implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly array $attributes,
@@ -31,7 +31,7 @@ final class Route implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

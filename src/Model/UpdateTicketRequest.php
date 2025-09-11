@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateTicketRequest implements JsonSerializable
+final class UpdateTicketRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $status = null,
@@ -23,7 +23,7 @@ final class UpdateTicketRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

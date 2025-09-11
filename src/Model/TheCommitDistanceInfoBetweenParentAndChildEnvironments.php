@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements JsonSerializable
+final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $commitsAhead = null,
@@ -23,7 +23,7 @@ final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements Js
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

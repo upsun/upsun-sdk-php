@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrganizationAddonsObject implements JsonSerializable
+final class OrganizationAddonsObject implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?OrganizationAddonsObjectAvailable $available = null,
@@ -23,7 +23,7 @@ final class OrganizationAddonsObject implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

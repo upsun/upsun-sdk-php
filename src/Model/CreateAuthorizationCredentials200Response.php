@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateAuthorizationCredentials200Response implements JsonSerializable
+final class CreateAuthorizationCredentials200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?CreateAuthorizationCredentials200ResponseRedirectToUrl $redirectToUrl = null,
@@ -22,7 +22,7 @@ final class CreateAuthorizationCredentials200Response implements JsonSerializabl
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

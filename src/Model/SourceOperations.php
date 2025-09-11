@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class SourceOperations implements JsonSerializable
+final class SourceOperations implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $enabled,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

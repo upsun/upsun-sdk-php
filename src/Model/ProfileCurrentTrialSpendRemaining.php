@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
+final class ProfileCurrentTrialSpendRemaining implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $formatted = null,
@@ -25,7 +25,7 @@ final class ProfileCurrentTrialSpendRemaining implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

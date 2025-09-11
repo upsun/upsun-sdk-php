@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ProxyRouteCreateInput implements JsonSerializable
+final class ProxyRouteCreateInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -27,7 +27,7 @@ final class ProxyRouteCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class HttpLogIntegrationCreateInput implements JsonSerializable
+final class HttpLogIntegrationCreateInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -25,7 +25,7 @@ final class HttpLogIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

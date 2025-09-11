@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ImagesValueValue implements JsonSerializable
+final class ImagesValueValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $available,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Config implements JsonSerializable
+final class Config implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?NewRelicLogForwardingIntegrationConfigurations $newrelic = null,
@@ -37,7 +37,7 @@ final class Config implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

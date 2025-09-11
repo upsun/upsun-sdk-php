@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateOrgProfileRequest implements JsonSerializable
+final class UpdateOrgProfileRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $defaultCatalog = null,
@@ -26,7 +26,7 @@ final class UpdateOrgProfileRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

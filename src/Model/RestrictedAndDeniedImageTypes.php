@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class RestrictedAndDeniedImageTypes implements JsonSerializable
+final class RestrictedAndDeniedImageTypes implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?array $only = [],
@@ -22,7 +22,7 @@ final class RestrictedAndDeniedImageTypes implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

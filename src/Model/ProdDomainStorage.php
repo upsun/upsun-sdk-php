@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class ProdDomainStorage implements JsonSerializable
+final class ProdDomainStorage implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -28,7 +28,7 @@ final class ProdDomainStorage implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

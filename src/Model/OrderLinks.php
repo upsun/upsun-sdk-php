@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class OrderLinks implements JsonSerializable
+final class OrderLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?OrderLinksInvoices $invoices = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class HealthWebHookIntegrationCreateInput implements JsonSerializable
+final class HealthWebHookIntegrationCreateInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $type,
@@ -23,7 +23,7 @@ final class HealthWebHookIntegrationCreateInput implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

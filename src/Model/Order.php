@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class Order implements JsonSerializable
+final class Order implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $paidOn = null,
@@ -40,7 +40,7 @@ final class Order implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

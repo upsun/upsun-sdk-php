@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class EnvironmentBackupInput implements JsonSerializable
+final class EnvironmentBackupInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly bool $safe,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

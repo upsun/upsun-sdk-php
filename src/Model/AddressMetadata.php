@@ -14,14 +14,14 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class AddressMetadata implements JsonSerializable
+final class AddressMetadata implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?AddressMetadataMetadata $metadata = null,
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

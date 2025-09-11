@@ -5,7 +5,11 @@ namespace Upsun\Core\Tasks;
 use Exception;
 use Upsun\Api\DeploymentApi;
 use Upsun\ApiException;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\UpdateDeploymentsNextRequest;
 use Upsun\Model\UpdateProjectsEnvironmentsDeployments200Response;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNext200Response;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsRequest;
 use Upsun\UpsunClient;
 
@@ -28,55 +32,46 @@ class ResourcesTask extends TaskBase
     /**
      * Update resources for a deployment
      *
-     * @param string $projectId
-     * @param string $environmentId
      * @param array{
      *     webapps?: array<string, array{
      *         resources?: array{
-     *             profile_size?: string,
-     *             container_profile?: string,
-     *             instance_count?: int
-     *         }
+     *             profile_size?: string
+     *         },
+     *         disk?: int,
+     *         instance_count?: int
      *     }>,
      *     services?: array<string, array{
      *         resources?: array{
      *             profile_size?: string,
-     *             container_profile?: string,
-     *             instance_count?: int
-     *         }
+     *         },
+     *         disk?: int,
+     *         instance_count?: int
      *     }>,
      *     workers?: array<string, array{
      *         resources?: array{
      *             profile_size?: string,
-     *             container_profile?: string,
-     *             instance_count?: int
-     *         }
+     *         },
+     *         disk?: int,
+     *         instance_count?: int
      *     }>
      * } $resourcesData Data specifying the new resources configuration for webapps, services, or workers
      *
-     * @return UpdateProjectsEnvironmentsDeployments200Response
-     *@throws ApiException|Exception
+     * @throws ApiException|Exception
      */
-    public function updateDeploymentResources(
+    public function update(
         string $projectId,
         string $environmentId,
         array $resourcesData
-    ): UpdateProjectsEnvironmentsDeployments200Response {
-        // Get the current deployment (usually the first one in the list)
-        $deployments = $this->api->listProjectsEnvironmentsDeployments($projectId, $environmentId);
-        $deployment = reset($deployments);
-        if (!$deployment) {
-            throw new Exception("No deployment found for environment $environmentId");
-        }
+    ): AcceptedResponse {
+        $data = new UpdateProjectsEnvironmentsDeploymentsNextRequest(
+            webapps: $resourcesData['webapps'] ?? null,
+            services: $resourcesData['services'] ?? null,
+            workers: $resourcesData['workers'] ?? null,
+        );
 
-        $deploymentId = $deployment->getId();
-
-        $data = new UpdateProjectsEnvironmentsDeploymentsRequest(...$resourcesData);
-
-        return $this->api->updateProjectsEnvironmentsDeployments(
+        return $this->api->updateProjectsEnvironmentsDeploymentsNext(
             $projectId,
             $environmentId,
-            $deploymentId,
             $data
         );
     }

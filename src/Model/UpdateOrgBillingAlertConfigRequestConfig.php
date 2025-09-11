@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
+final class UpdateOrgBillingAlertConfigRequestConfig implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $threshold = null,
@@ -22,7 +22,7 @@ final class UpdateOrgBillingAlertConfigRequestConfig implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }

@@ -9,11 +9,12 @@ if ($spec === null) {
     die("Error : JSON $file is not valid\n");
 }
 
-$path = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}';
+// ✅ Nouvelle route
+$path = '/projects/{projectId}/environments/{environmentId}/deployments/next';
 
-// check path does not exist yet
+// check path does not exist encore
 if (!isset($spec['paths'][$path])) {
-    die("Erreur : endpoint $path does not exist\n");
+    $spec['paths'][$path] = [];
 }
 
 if (isset($spec['paths'][$path]['patch'])) {
@@ -23,8 +24,8 @@ if (isset($spec['paths'][$path]['patch'])) {
 
 // add/update Deployment PATCH
 $spec['paths'][$path]['patch'] = [
-    'summary' => 'Update a deployment',
-    'description' => 'Update resources for either webapps, services, or workers.',
+    'summary' => 'Update the next deployment',
+    'description' => 'Update resources for either webapps, services, or workers in the next deployment.',
     'parameters' => [
         [
             'name' => 'projectId',
@@ -37,12 +38,6 @@ $spec['paths'][$path]['patch'] = [
             'in' => 'path',
             'required' => true,
             'schema' => ['type' => 'string']
-        ],
-        [
-            'name' => 'deploymentId',
-            'in' => 'path',
-            'required' => true,
-            'schema' => ['type' => 'string']
         ]
     ],
     'requestBody' => [
@@ -50,18 +45,74 @@ $spec['paths'][$path]['patch'] = [
         'content' => [
             'application/json' => [
                 'schema' => [
-                    'oneOf' => [
-                        ['$ref' => '#/components/schemas/WebappsUpdate'],
-                        ['$ref' => '#/components/schemas/ServicesUpdate'],
-                        ['$ref' => '#/components/schemas/WorkersUpdate'],
-                    ],
-                    'example' => [
+                    'type' => 'object',
+                    'properties' => [
                         'webapps' => [
-                            'app' => [
-                                'resources' => [
-                                    'profile_size' => '2',
-                                    'container_profile' => 'CPU-optimized',
-                                    'instance_count' => 3
+                            'type' => 'object',
+                            'additionalProperties' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'resources' => [
+                                        '$ref' => '#/components/schemas/ResourceConfig'
+                                    ],
+                                    'instance_count' => [
+                                        'type' => 'integer',
+                                        'nullable' => true,
+                                        'description' => 'Number of instances to run',
+                                        'example' => 2
+                                    ],
+                                    'disk' => [
+                                        'type' => 'integer',
+                                        'nullable' => true,
+                                        'description' => 'Size of the disk.',
+                                        'example' => 1
+                                    ]
+                                ]
+                            ]
+                        ],
+                        'services' => [
+                            'type' => 'object',
+                            'additionalProperties' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'resources' => [
+                                        '$ref' => '#/components/schemas/ResourceConfig'
+                                    ],
+                                    'instance_count' => [
+                                        'type' => 'integer',
+                                        'nullable' => true,
+                                        'description' => 'Number of instances to run',
+                                        'example' => 1
+                                    ],
+                                    'disk' => [
+                                        'type' => 'integer',
+                                        'nullable' => true,
+                                        'description' => 'Size of the disk.',
+                                        'example' => 1
+                                    ]
+                                ]
+                            ]
+                        ],
+                        'workers' => [
+                            'type' => 'object',
+                            'additionalProperties' => [
+                                'type' => 'object',
+                                'properties' => [
+                                    'resources' => [
+                                        '$ref' => '#/components/schemas/ResourceConfig'
+                                    ],
+                                    'instance_count' => [
+                                        'type' => 'integer',
+                                        'nullable' => true,
+                                        'description' => 'Number of instances to run',
+                                        'example' => 1
+                                    ],
+                                    'disk' => [
+                                        'type' => 'integer',
+                                        'nullable' => true,
+                                        'description' => 'Size of the disk.',
+                                        'example' => 1
+                                    ]
                                 ]
                             ]
                         ]
@@ -71,94 +122,42 @@ $spec['paths'][$path]['patch'] = [
         ]
     ],
     'responses' => [
-        '200' => [
+        'default' => [
             'description' => 'Deployment successfully updated',
             'content' => [
                 'application/json' => [
                     'schema' => [
-                        'type' => 'object',
-                        'properties' => [
-                            'status' => ['type' => 'string', 'example' => 'OK'],
-                            'code'   => ['type' => 'integer', 'example' => 200],
-                        ]
+                        '$ref' => "#/components/schemas/AcceptedResponse"
                     ]
                 ]
             ]
         ]
     ],
     'tags' => ['Deployment'],
-    'operationId' => 'update-projects-environments-deployments'
+    'operationId' => 'update-projects-environments-deployments-next'
 ];
 
+// Initialiser components/schemas s'il n'existe pas
+if (!isset($spec['components'])) {
+    $spec['components'] = [];
+}
+if (!isset($spec['components']['schemas'])) {
+    $spec['components']['schemas'] = [];
+}
 
-// Add schema
-$spec['components']['schemas']['ResourceConfig'] ??= [
+// ✅ ResourceConfig simplifié
+$spec['components']['schemas']['ResourceConfig'] = [
     'type' => 'object',
     'properties' => [
         'profile_size' => [
             'type' => 'string',
+            'nullable' => true,
             'description' => 'Profile size (e.g. "0.5", "1", "2")',
             'example' => '2'
-        ],
-        'container_profile' => [
-            'type' => 'string',
-            'description' => 'Container profile (e.g. "CPU-optimized", "Memory-optimized")',
-            'example' => 'CPU-optimized'
-        ],
-        'instance_count' => [
-            'type' => 'integer',
-            'description' => 'Number of instances to run',
-            'example' => 3
-        ]
-    ]
-];
-
-$spec['components']['schemas']['WebappsUpdate'] ??= [
-    'type' => 'object',
-    'properties' => [
-        'webapps' => [
-            'type' => 'object',
-            'additionalProperties' => [
-                'type' => 'object',
-                'properties' => [
-                    'resources' => ['$ref' => '#/components/schemas/ResourceConfig']
-                ]
-            ]
-        ]
-    ]
-];
-
-$spec['components']['schemas']['ServicesUpdate'] ??= [
-    'type' => 'object',
-    'properties' => [
-        'services' => [
-            'type' => 'object',
-            'additionalProperties' => [
-                'type' => 'object',
-                'properties' => [
-                    'resources' => ['$ref' => '#/components/schemas/ResourceConfig']
-                ]
-            ]
-        ]
-    ]
-];
-
-$spec['components']['schemas']['WorkersUpdate'] ??= [
-    'type' => 'object',
-    'properties' => [
-        'workers' => [
-            'type' => 'object',
-            'additionalProperties' => [
-                'type' => 'object',
-                'properties' => [
-                    'resources' => ['$ref' => '#/components/schemas/ResourceConfig']
-                ]
-            ]
         ]
     ]
 ];
 
 // save file
 file_put_contents($outputFile, json_encode($spec, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-
-echo "✅ PATCH ajouté à $path dans $file\n";
+echo "✅ PATCH ajouté à $path dans $outputFile\n";

@@ -73,7 +73,7 @@ class ObjectSerializer
                             }
                         }
                     }
-                    if (($data::isNullable($property) && $data->isNullableSetToNull($property)) || $value !== null) {
+                    if ($value !== null) {
                         $values[ObjectAttributesMapper::attributeMap($data->getModelName())[$property]]
                             = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
                     }
@@ -154,7 +154,7 @@ class ObjectSerializer
             return array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), $data);
         }
 
-        $fullClass = '\\' . ltrim($class, '\\');
+        $fullClass = ltrim($class, '\\');
         $reflectionClass = new \ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
 
@@ -167,8 +167,6 @@ class ObjectSerializer
             $paramName = $param->getName();
             $paramType = $param->getType();
             $allowsNull = $paramType?->allowsNull() ?? true;
-
-            $jsonKey = $paramName; // fallback
 
             $attributeMap = ObjectAttributesMapper::attributeMap($fullClass);
             $jsonKey = $attributeMap[$paramName] ?? $paramName;

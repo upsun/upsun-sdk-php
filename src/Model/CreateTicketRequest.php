@@ -14,7 +14,7 @@ namespace Upsun\Model;
 
 use JsonSerializable;
 
-final class CreateTicketRequest implements JsonSerializable
+final class CreateTicketRequest implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $subject,
@@ -31,7 +31,7 @@ final class CreateTicketRequest implements JsonSerializable
     ) {
     }
 
-    public static function getModelName(): string
+    public function getModelName(): string
     {
         return self::class;
     }
