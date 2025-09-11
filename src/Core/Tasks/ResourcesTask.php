@@ -79,14 +79,14 @@ class ResourcesTask extends TaskBase
     /**
      * Validate the structure of $resourcesData before sending it to the API.
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function validateResourcesData(array $resourcesData): void
     {
         $allowedTopKeys = ['webapps', 'services', 'workers'];
         foreach (array_keys($resourcesData) as $topKey) {
             if (!in_array($topKey, $allowedTopKeys, true)) {
-                throw new \InvalidArgumentException(sprintf(
+                throw new InvalidArgumentException(sprintf(
                     'Unexpected top-level key "%s". Allowed keys: %s',
                     $topKey,
                     implode(', ', $allowedTopKeys)
@@ -95,7 +95,7 @@ class ResourcesTask extends TaskBase
 
             foreach ($resourcesData[$topKey] as $name => $config) {
                 if (!is_array($config)) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new InvalidArgumentException(sprintf(
                         'Invalid value for "%s.%s". Expected an object (array), got %s.',
                         $topKey,
                         $name,
@@ -106,7 +106,7 @@ class ResourcesTask extends TaskBase
                 $allowedKeys = ['resources', 'disk', 'instance_count'];
                 foreach (array_keys($config) as $key) {
                     if (!in_array($key, $allowedKeys, true)) {
-                        throw new \InvalidArgumentException(sprintf(
+                        throw new InvalidArgumentException(sprintf(
                             'Unexpected key "%s" in %s.%s. Allowed keys: %s',
                             $key,
                             $topKey,
@@ -118,7 +118,7 @@ class ResourcesTask extends TaskBase
 
                 if (isset($config['resources'])) {
                     if (!is_array($config['resources'])) {
-                        throw new \InvalidArgumentException(sprintf(
+                        throw new InvalidArgumentException(sprintf(
                             'Invalid value for "%s.%s.resources". Expected an object (array), got %s.',
                             $topKey,
                             $name,
@@ -129,7 +129,7 @@ class ResourcesTask extends TaskBase
                     $allowedResourceKeys = ['profile_size'];
                     foreach (array_keys($config['resources']) as $resKey) {
                         if (!in_array($resKey, $allowedResourceKeys, true)) {
-                            throw new \InvalidArgumentException(sprintf(
+                            throw new InvalidArgumentException(sprintf(
                                 'Unexpected key "%s" in %s.%s.resources. Allowed keys: %s',
                                 $resKey,
                                 $topKey,
