@@ -3,16 +3,16 @@
 $file = __DIR__ . '/../../schema/openapispec-platformsh.json';
 $outputFile = __DIR__ . '/../../schema/openapispec-platformsh-with-resources.json';
 
-// Charger le JSON
+// Load the JSON
 $spec = json_decode(file_get_contents($file), true);
 if ($spec === null) {
     die("Error : JSON $file is not valid\n");
 }
 
-// ✅ Nouvelle route
+// ✅ New route
 $path = '/projects/{projectId}/environments/{environmentId}/deployments/next';
 
-// check path does not exist encore
+// Check if path does not exist yet
 if (!isset($spec['paths'][$path])) {
     $spec['paths'][$path] = [];
 }
@@ -22,7 +22,7 @@ if (isset($spec['paths'][$path]['patch'])) {
     exit(0);
 }
 
-// add/update Deployment PATCH
+// Add/Update Deployment PATCH
 $spec['paths'][$path]['patch'] = [
     'summary' => 'Update the next deployment',
     'description' => 'Update resources for either webapps, services, or workers in the next deployment.',
@@ -64,8 +64,9 @@ $spec['paths'][$path]['patch'] = [
                                     'disk' => [
                                         'type' => 'integer',
                                         'nullable' => true,
-                                        'description' => 'Size of the disk.',
-                                        'example' => 1
+                                        'title' => 'Disk Size',
+                                        'description' => 'Size of the disk in Bytes',
+                                        'example' => 1024
                                     ]
                                 ]
                             ]
@@ -87,8 +88,9 @@ $spec['paths'][$path]['patch'] = [
                                     'disk' => [
                                         'type' => 'integer',
                                         'nullable' => true,
-                                        'description' => 'Size of the disk.',
-                                        'example' => 1
+                                        'title' => 'Disk Size',
+                                        'description' => 'Size of the disk in Bytes',
+                                        'example' => 1024
                                     ]
                                 ]
                             ]
@@ -110,8 +112,9 @@ $spec['paths'][$path]['patch'] = [
                                     'disk' => [
                                         'type' => 'integer',
                                         'nullable' => true,
-                                        'description' => 'Size of the disk.',
-                                        'example' => 1
+                                        'title' => 'Disk Size',
+                                        'description' => 'Size of the disk in Bytes',
+                                        'example' => 1024
                                     ]
                                 ]
                             ]
@@ -137,7 +140,7 @@ $spec['paths'][$path]['patch'] = [
     'operationId' => 'update-projects-environments-deployments-next'
 ];
 
-// Initialiser components/schemas s'il n'existe pas
+// Initialize components/schemas if it does not exist
 if (!isset($spec['components'])) {
     $spec['components'] = [];
 }
@@ -145,7 +148,7 @@ if (!isset($spec['components']['schemas'])) {
     $spec['components']['schemas'] = [];
 }
 
-// ✅ ResourceConfig simplifié
+// ✅ Simplified ResourceConfig
 $spec['components']['schemas']['ResourceConfig'] = [
     'type' => 'object',
     'properties' => [
@@ -158,6 +161,6 @@ $spec['components']['schemas']['ResourceConfig'] = [
     ]
 ];
 
-// save file
+// Save file
 file_put_contents($outputFile, json_encode($spec, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-echo "✅ PATCH ajouté à $path dans $outputFile\n";
+echo "✅ PATCH added to $path in $outputFile\n";
