@@ -45,17 +45,14 @@ use Upsun\Model\Organization;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
-use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
-use Upsun\Model\Team;
 use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
 use Upsun\Model\UpdateOrgRequest;
-use Upsun\Model\Usage;
 use Upsun\Model\Vouchers;
 use Upsun\ObjectSerializer;
 use Psr\Http\Message\RequestInterface;
@@ -146,14 +143,14 @@ class OrganizationTask extends TaskBase
         ?string $sort = null
     ): \Upsun\Model\ListOrgs200Response {
         return $this->api->listOrgs(
-            new StringFilter($filterId),
-            new StringFilter($filterOwnerId),
-            new StringFilter($filterName),
-            new StringFilter($filterLabel),
-            new StringFilter($filterVendor),
-            new ArrayFilter($filterCapabilities),
-            new StringFilter($filterStatus),
-            new DateTimeFilter($filterUpdatedAt),
+            new StringFilter(...$this->normalizeFilter($filterId)),
+            new StringFilter(...$this->normalizeFilter($filterOwnerId)),
+            new StringFilter(...$this->normalizeFilter($filterName)),
+            new StringFilter(...$this->normalizeFilter($filterLabel)),
+            new StringFilter(...$this->normalizeFilter($filterVendor)),
+            new ArrayFilter(...$this->normalizeFilter($filterCapabilities)),
+            new StringFilter(...$this->normalizeFilter($filterStatus)),
+            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -179,10 +176,10 @@ class OrganizationTask extends TaskBase
     ): ListUserOrgs200Response {
         return $this->api->listUserOrgs(
             $userId,
-            new StringFilter($filterId),
-            new StringFilter($filterVendor),
-            new StringFilter($filterStatus),
-            new DateTimeFilter($filterUpdatedAt),
+            new StringFilter(...$this->normalizeFilter($filterId)),
+            new StringFilter(...$this->normalizeFilter($filterVendor)),
+            new StringFilter(...$this->normalizeFilter($filterStatus)),
+            new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
             $pageSize,
             $pageBefore,
             $pageAfter,
@@ -285,7 +282,7 @@ class OrganizationTask extends TaskBase
     ): ListOrgProjects200Response {
         return $this->projectsApi->listOrgProjects(
             $organizationId,
-            $filterId? new StringFilter(...$this->normalizeFilter($filterId)) : null,
+            $filterId ? new StringFilter(...$this->normalizeFilter($filterId)) : null,
             $filterTitle ? new StringFilter(...$this->normalizeFilter($filterTitle)) : null,
             $filterStatus ? new StringFilter(...$this->normalizeFilter($filterStatus)) : null,
             $filterUpdatedAt ? new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)) : null,
