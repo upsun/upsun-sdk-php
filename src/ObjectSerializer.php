@@ -55,7 +55,8 @@ class ObjectSerializer
                 $formats = ObjectOpenApiFormatsMapper::openAPIFormats($data->getModelName());
 
                 foreach (ObjectOpenApiTypesMapper::openAPITypes($data->getModelName()) as $property => $openAPIType) {
-                    $getterMethod = 'get' . ucfirst($property);
+                    $camelCaseProperty = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $property))));
+                    $getterMethod = 'get' . ucfirst($camelCaseProperty);
                     if (method_exists($data, $getterMethod)) {
                         $value = $data->$getterMethod();
                     } else {
@@ -72,15 +73,19 @@ class ObjectSerializer
                             if (!in_array($value, $allowedEnumTypes, true)) {
                                 $imploded = implode("', '", $allowedEnumTypes);
                                 throw new InvalidArgumentException(
-                                    sprintf("Invalid value for enum '%s', must be one of: '%s'", $openAPIType, $imploded)
+                                    sprintf(
+                                        "Invalid value for enum '%s', must be one of: '%s'",
+                                        $openAPIType,
+                                        $imploded
+                                    )
                                 );
                             }
                         }
                     }
 
                     if ($value !== null) {
-                        $values[ObjectAttributesMapper::attributeMap($data->getModelName())[$property]]
-                            = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
+                        $values[ObjectAttributesMapper::attributeMap($data->getModelName())[$camelCaseProperty]]
+                            = self::sanitizeForSerialization($value, $openAPIType, $formats[$camelCaseProperty]);
                     }
                 }
             } else {
@@ -276,7 +281,9 @@ class ObjectSerializer
                     continue;
                 }
 
-                throw new InvalidArgumentException(sprintf("Required value '%s' missing for class %s", $paramName, $class));
+                throw new InvalidArgumentException(
+                    sprintf("Required value '%s' missing for class %s", $paramName, $class)
+                );
             }
         }
 
