@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Deployment;
-use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -30,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class DeploymentApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -59,17 +55,22 @@ final class DeploymentApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Get a single environment deployment
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json"
      */
     public function getProjectsEnvironmentsDeployments(
         string $projectId,
         string $environmentId,
         string $deploymentId
-    ): Deployment {
+    ): \Upsun\Model\Deployment {
         return $this->getProjectsEnvironmentsDeploymentsWithHttpInfo(
             $projectId,
             $environmentId,
@@ -86,7 +87,7 @@ final class DeploymentApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId
-    ): Deployment {
+    ): \Upsun\Model\Deployment {
         $request = $this->getProjectsEnvironmentsDeploymentsRequest(
             $projectId,
             $environmentId,
@@ -102,12 +103,12 @@ final class DeploymentApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Deployment::class,
+                '\Upsun\Model\Deployment',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -128,7 +129,7 @@ final class DeploymentApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsEnvironmentsDeployments'
             );
@@ -140,7 +141,7 @@ final class DeploymentApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling getProjectsEnvironmentsDeployments'
             );
@@ -152,12 +153,11 @@ final class DeploymentApi extends AbstractApi
             || (is_array($deploymentId)
             && count($deploymentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentId 
                 when calling getProjectsEnvironmentsDeployments'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}';
         $formParams = [];
         $queryParams = [];
@@ -173,7 +173,6 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -182,7 +181,6 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($deploymentId !== null) {
             $resourcePath = str_replace(
@@ -200,7 +198,7 @@ final class DeploymentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -212,7 +210,6 @@ final class DeploymentApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -241,14 +238,17 @@ final class DeploymentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an environment&#39;s deployment information
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Deployment[]
+     * @return \Upsun\Model\Deployment[]
+     * @example
+     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/deployments" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json"
      */
     public function listProjectsEnvironmentsDeployments(
         string $projectId,
@@ -287,8 +287,8 @@ final class DeploymentApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -308,7 +308,7 @@ final class DeploymentApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsEnvironmentsDeployments'
             );
@@ -320,12 +320,11 @@ final class DeploymentApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling listProjectsEnvironmentsDeployments'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments';
         $formParams = [];
         $queryParams = [];
@@ -341,7 +340,6 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -359,7 +357,7 @@ final class DeploymentApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -371,7 +369,6 @@ final class DeploymentApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -400,17 +397,25 @@ final class DeploymentApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Update the next deployment
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X PATCH "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/deployments/next" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Content-Type: application/json" \
+     *      -d '{
+     *          "webapps": [],
+     *          "services": [],
+     *          "workers": []
+     *      }'
      */
     public function updateProjectsEnvironmentsDeploymentsNext(
         string $projectId,
         string $environmentId,
-        UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
     ): void {
         $this->updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
             $projectId,
@@ -427,7 +432,7 @@ final class DeploymentApi extends AbstractApi
     private function updateProjectsEnvironmentsDeploymentsNextWithHttpInfo(
         string $projectId,
         string $environmentId,
-        UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
     ): void {
         $request = $this->updateProjectsEnvironmentsDeploymentsNextRequest(
             $projectId,
@@ -444,12 +449,12 @@ final class DeploymentApi extends AbstractApi
             );
 
             $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -461,7 +466,7 @@ final class DeploymentApi extends AbstractApi
     private function updateProjectsEnvironmentsDeploymentsNextRequest(
         string $projectId,
         string $environmentId,
-        UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
+        \Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest $updateProjectsEnvironmentsDeploymentsNextRequest
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -470,7 +475,7 @@ final class DeploymentApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
@@ -482,7 +487,7 @@ final class DeploymentApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
@@ -494,12 +499,11 @@ final class DeploymentApi extends AbstractApi
             || (is_array($updateProjectsEnvironmentsDeploymentsNextRequest)
             && count($updateProjectsEnvironmentsDeploymentsNextRequest) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $updateProjectsEnvironmentsDeploymentsNextRequest 
                 when calling updateProjectsEnvironmentsDeploymentsNext'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/next';
         $formParams = [];
         $queryParams = [];
@@ -515,7 +519,6 @@ final class DeploymentApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -541,7 +544,7 @@ final class DeploymentApi extends AbstractApi
             } else {
                 $httpBody = $updateProjectsEnvironmentsDeploymentsNextRequest;
             }
-        } elseif ($formParams !== []) {
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -553,7 +556,6 @@ final class DeploymentApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

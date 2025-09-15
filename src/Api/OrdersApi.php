@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateAuthorizationCredentials200Response;
-use Upsun\Model\Order;
-use Upsun\Model\ListOrgOrders200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -30,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class OrdersApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -59,16 +55,21 @@ final class OrdersApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Create confirmation credentials for for 3D-Secure
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X POST "https://api.platform.sh/organizations/{organization_id}/orders/{order_id}/authorize" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json, application/problem+json"
      */
     public function createAuthorizationCredentials(
         string $organizationId,
         string $orderId
-    ): CreateAuthorizationCredentials200Response {
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         return $this->createAuthorizationCredentialsWithHttpInfo(
             $organizationId,
             $orderId
@@ -83,7 +84,7 @@ final class OrdersApi extends AbstractApi
     private function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
         string $orderId
-    ): CreateAuthorizationCredentials200Response {
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         $request = $this->createAuthorizationCredentialsRequest(
             $organizationId,
             $orderId
@@ -98,12 +99,12 @@ final class OrdersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                CreateAuthorizationCredentials200Response::class,
+                '\Upsun\Model\CreateAuthorizationCredentials200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -123,7 +124,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling createAuthorizationCredentials'
             );
@@ -135,12 +136,11 @@ final class OrdersApi extends AbstractApi
             || (is_array($orderId)
             && count($orderId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $orderId 
                 when calling createAuthorizationCredentials'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/orders/{order_id}/authorize';
         $formParams = [];
         $queryParams = [];
@@ -156,7 +156,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($orderId !== null) {
             $resourcePath = str_replace(
@@ -174,7 +173,7 @@ final class OrdersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -186,7 +185,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -215,12 +213,15 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Download an invoice.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X GET "https://api.platform.sh/orders/download?token=&#39;token_example&#39;" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/pdf"
      */
     public function downloadInvoice(
         string $token
@@ -249,8 +250,8 @@ final class OrdersApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -269,12 +270,11 @@ final class OrdersApi extends AbstractApi
             || (is_array($token)
             && count($token) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $token 
                 when calling downloadInvoice'
             );
         }
-
         $resourcePath = '/orders/download';
         $formParams = [];
         $queryParams = [];
@@ -304,7 +304,7 @@ final class OrdersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -316,7 +316,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -345,18 +344,21 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get order
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/orders/{order_id}?mode=&#39;mode_example&#39;" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json, application/problem+json"
      */
     public function getOrgOrder(
         string $organizationId,
         string $orderId,
         ?string $mode = null
-    ): Order {
+    ): \Upsun\Model\Order {
         return $this->getOrgOrderWithHttpInfo(
             $organizationId,
             $orderId,
@@ -373,7 +375,7 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId,
         ?string $mode = null
-    ): Order {
+    ): \Upsun\Model\Order {
         $request = $this->getOrgOrderRequest(
             $organizationId,
             $orderId,
@@ -389,12 +391,12 @@ final class OrdersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Order::class,
+                '\Upsun\Model\Order',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -415,7 +417,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgOrder'
             );
@@ -427,7 +429,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($orderId)
             && count($orderId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $orderId 
                 when calling getOrgOrder'
             );
@@ -461,7 +463,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($orderId !== null) {
             $resourcePath = str_replace(
@@ -479,7 +480,7 @@ final class OrdersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -491,7 +492,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -520,14 +520,17 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List orders
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Order[]
+     * @return \Upsun\Model\Order[]
+     * @example
+     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/orders?filterStatus=&#39;filterStatus_example&#39;filterTotal=56page=56mode=&#39;mode_example&#39;" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json, application/problem+json"
      */
     public function listOrgOrders(
         string $organizationId,
@@ -574,12 +577,12 @@ final class OrdersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListOrgOrders200Response::class,
+                '\Upsun\Model\ListOrgOrders200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -602,7 +605,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgOrders'
             );
@@ -687,7 +690,7 @@ final class OrdersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -699,7 +702,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

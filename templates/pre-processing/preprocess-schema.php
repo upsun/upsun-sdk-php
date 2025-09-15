@@ -129,7 +129,7 @@ class OpenApiPreprocessor
                 'nullable' => true
             ];
         }
-        
+
         // Otherwise, simply add nullable: true
         $nullableProp['nullable'] = true;
 
@@ -672,45 +672,6 @@ class OpenApiPreprocessor
         ];
     }
 
-    /**
-     * Creates a nullable property, and if a $ref has extra properties, wraps them in allOf
-     *
-     * @param array $originalProperty Original property definition
-     * @return array Modified property compatible with OpenAPI Generator
-     */
-    private function createRefWithAllOf(array $originalProperty): array
-    {
-        // If the property contains a $ref
-        if (isset($originalProperty['$ref'])) {
-            $refOnly = ['$ref' => $originalProperty['$ref']];
-
-            // Remove $ref from original to keep only additional properties
-            $additionalProperties = $originalProperty;
-            unset(
-                $additionalProperties['$ref'],
-                $additionalProperties['nullable'],
-                $additionalProperties['type'] // remove type to avoid generator conflict
-            );
-
-            // If there are no additional properties, just return $ref
-            if (empty($additionalProperties) || count($additionalProperties) === 0) {
-                return $refOnly;
-            }
-
-            // Otherwise, wrap in allOf
-            $allOf = [
-                $refOnly,
-                $additionalProperties
-            ];
-
-            return ['allOf' => $allOf];
-        }
-
-        // If no $ref, just make the property nullable
-        $originalProperty['nullable'] = true;
-        return $originalProperty;
-    }
-
     public function fixAllRefsWithAllOf(mixed &$node): void
     {
         if (is_array($node)) {
@@ -746,6 +707,76 @@ class OpenApiPreprocessor
                 }
             }
         }
+    }
+
+    public function addRequestBodyExamples(): void
+    {
+        foreach ($this->schema['paths'] as $path => &$methods) {
+            foreach ($methods as $httpMethod => &$operation) {
+                if (!is_array($operation) || $httpMethod === 'parameters') {
+                    continue;
+                }
+
+                $bodySchema = $operation['requestBody']['content']['application/json']['schema'] ?? null;
+                if (!$bodySchema) {
+                    continue;
+                }
+
+                $example = $this->generateExampleFromSchema($bodySchema);
+                if ($example === null) {
+                    continue;
+                }
+
+                // JSON pretty print
+                $bodyExample = json_encode($example, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+                // Préparer le format pour PHPDoc : première ligne sans indentation
+                $lines = explode("\n", $bodyExample);
+                foreach ($lines as $i => &$line) {
+                    if ($i > 0) { // do not indent first line
+                        $line = '     *      ' . $line;
+                    }
+                }
+                unset($line);
+                
+                $operation['x-body-example'] = implode("\n", $lines);
+            }
+        }
+    }
+
+
+    private function generateExampleFromSchema(array $schema)
+    {
+        if (isset($schema['example'])) {
+            return $schema['example'];
+        }
+
+        if (isset($schema['$ref'])) {
+            $resolved = $this->resolveRef($this->schema, $schema['$ref']);
+            return $this->generateExampleFromSchema($resolved);
+        }
+
+        if (($schema['type'] ?? null) === 'object') {
+            $result = [];
+            foreach ($schema['properties'] ?? [] as $propName => $propSchema) {
+                $result[$propName] = $this->generateExampleFromSchema($propSchema);
+            }
+            return $result;
+        }
+
+        if (($schema['type'] ?? null) === 'array') {
+            return [
+                $this->generateExampleFromSchema($schema['items'] ?? [])
+            ];
+        }
+
+        return match ($schema['type'] ?? null) {
+            'string' => $schema['example'] ?? 'string',
+            'integer' => $schema['example'] ?? 0,
+            'number' => $schema['example'] ?? 0.0,
+            'boolean' => $schema['example'] ?? false,
+            default => null,
+        };
     }
 }
 
@@ -787,6 +818,9 @@ try {
 
     // Fix nullable/required
     $preprocessor->fixNullableRequired();
+
+    // Add bodyParam examples for curl docs
+    $preprocessor->addRequestBodyExamples();
 
     // Save
     $preprocessor->save($outputPath);

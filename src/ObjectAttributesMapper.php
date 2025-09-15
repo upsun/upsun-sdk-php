@@ -15,492 +15,6 @@
 
 namespace Upsun;
 
-use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
-use Upsun\Model\APIToken;
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
-use Upsun\Model\Activity;
-use Upsun\Model\Address;
-use Upsun\Model\AddressGrantsInner;
-use Upsun\Model\AddressMetadata;
-use Upsun\Model\AddressMetadataMetadata;
-use Upsun\Model\Alert;
-use Upsun\Model\ApplyOrgVoucherRequest;
-use Upsun\Model\ArrayFilter;
-use Upsun\Model\Backup;
-use Upsun\Model\BitbucketIntegration;
-use Upsun\Model\BitbucketIntegrationConfigurations;
-use Upsun\Model\BitbucketIntegrationCreateInput;
-use Upsun\Model\BitbucketIntegrationPatch;
-use Upsun\Model\BitbucketServerIntegration;
-use Upsun\Model\BitbucketServerIntegrationConfigurations;
-use Upsun\Model\BitbucketServerIntegrationCreateInput;
-use Upsun\Model\BitbucketServerIntegrationPatch;
-use Upsun\Model\BlackfireEnvironmentsCredentialsValue;
-use Upsun\Model\BlackfireIntegration;
-use Upsun\Model\BlackfireIntegrationConfigurations;
-use Upsun\Model\BlackfireIntegrationCreateInput;
-use Upsun\Model\BlackfireIntegrationPatch;
-use Upsun\Model\Blob;
-use Upsun\Model\BuildResources;
-use Upsun\Model\BuildResources1;
-use Upsun\Model\BuildResources2;
-use Upsun\Model\CacheConfiguration;
-use Upsun\Model\CacheConfiguration1;
-use Upsun\Model\CanCreateNewOrgSubscription200Response;
-use Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction;
-use Upsun\Model\Certificate;
-use Upsun\Model\CertificateCreateInput;
-use Upsun\Model\CertificatePatch;
-use Upsun\Model\CommandsToManageTheApplicationSLifecycle;
-use Upsun\Model\Commit;
-use Upsun\Model\Components;
-use Upsun\Model\Config;
-use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion;
-use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
-use Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP;
-use Upsun\Model\ConfigurationForPreFlightChecks;
-use Upsun\Model\ConfigurationForSupportingRequestBuffering;
-use Upsun\Model\ConfigurationOfAWorkerContainerInstance;
-use Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication;
-use Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication;
-use Upsun\Model\ConfirmPhoneNumberRequest;
-use Upsun\Model\ConfirmTotpEnrollment200Response;
-use Upsun\Model\ConfirmTotpEnrollmentRequest;
-use Upsun\Model\Connection;
-use Upsun\Model\ContainerProfilesValueValue;
-use Upsun\Model\CreateApiTokenRequest;
-use Upsun\Model\CreateAuthorizationCredentials200Response;
-use Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl;
-use Upsun\Model\CreateOrgInviteRequest;
-use Upsun\Model\CreateOrgMemberRequest;
-use Upsun\Model\CreateOrgRequest;
-use Upsun\Model\CreateOrgSubscriptionRequest;
-use Upsun\Model\CreateProfilePicture200Response;
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\CreateProjectInviteRequestEnvironmentsInner;
-use Upsun\Model\CreateProjectInviteRequestPermissionsInner;
-use Upsun\Model\CreateSshKeyRequest;
-use Upsun\Model\CreateTeamMemberRequest;
-use Upsun\Model\CreateTeamRequest;
-use Upsun\Model\CreateTicketRequest;
-use Upsun\Model\CreateTicketRequestAttachmentsInner;
-use Upsun\Model\CreateUsageAlertRequest;
-use Upsun\Model\CreateUsageAlertRequestConfig;
-use Upsun\Model\CurrencyAmount;
-use Upsun\Model\CurrencyAmountNullable;
-use Upsun\Model\CurrentUser;
-use Upsun\Model\CurrentUserCurrentTrialInner;
-use Upsun\Model\CurrentUserProjectsInner;
-use Upsun\Model\CustomDomains;
-use Upsun\Model\DataRetention;
-use Upsun\Model\DataRetentionConfigurationValue;
-use Upsun\Model\DataRetentionConfigurationValue1;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\DedicatedDeploymentTarget;
-use Upsun\Model\DedicatedDeploymentTargetCreateInput;
-use Upsun\Model\DedicatedDeploymentTargetPatch;
-use Upsun\Model\DefaultConfig;
-use Upsun\Model\DefaultConfig1;
-use Upsun\Model\Deployment;
-use Upsun\Model\DeploymentTarget;
-use Upsun\Model\DeploymentTargetCreateInput;
-use Upsun\Model\DeploymentTargetPatch;
-use Upsun\Model\Discount;
-use Upsun\Model\DiscountCommitment;
-use Upsun\Model\DiscountCommitmentAmount;
-use Upsun\Model\DiscountCommitmentNet;
-use Upsun\Model\DiscountDiscount;
-use Upsun\Model\Domain;
-use Upsun\Model\DomainCreateInput;
-use Upsun\Model\DomainPatch;
-use Upsun\Model\EmailIntegration;
-use Upsun\Model\EmailIntegrationCreateInput;
-use Upsun\Model\EmailIntegrationPatch;
-use Upsun\Model\EnterpriseDeploymentTarget;
-use Upsun\Model\EnterpriseDeploymentTargetCreateInput;
-use Upsun\Model\EnterpriseDeploymentTargetPatch;
-use Upsun\Model\Environment;
-use Upsun\Model\EnvironmentActivateInput;
-use Upsun\Model\EnvironmentBackupInput;
-use Upsun\Model\EnvironmentBranchInput;
-use Upsun\Model\EnvironmentInfo;
-use Upsun\Model\EnvironmentInitializeInput;
-use Upsun\Model\EnvironmentMergeInput;
-use Upsun\Model\EnvironmentOperationInput;
-use Upsun\Model\EnvironmentPatch;
-use Upsun\Model\EnvironmentRestoreInput;
-use Upsun\Model\EnvironmentSourceOperation;
-use Upsun\Model\EnvironmentSourceOperationInput;
-use Upsun\Model\EnvironmentSynchronizeInput;
-use Upsun\Model\EnvironmentType;
-use Upsun\Model\EnvironmentVariable;
-use Upsun\Model\EnvironmentVariableCreateInput;
-use Upsun\Model\EnvironmentVariablePatch;
-use Upsun\Model\Error;
-use Upsun\Model\EstimationObject;
-use Upsun\Model\FastlyCDNIntegrationConfigurations;
-use Upsun\Model\FastlyIntegration;
-use Upsun\Model\FastlyIntegrationCreateInput;
-use Upsun\Model\FastlyIntegrationPatch;
-use Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue;
-use Upsun\Model\Firewall;
-use Upsun\Model\FoundationDeploymentTarget;
-use Upsun\Model\FoundationDeploymentTargetCreateInput;
-use Upsun\Model\FoundationDeploymentTargetPatch;
-use Upsun\Model\GetAddress200Response;
-use Upsun\Model\GetCurrentUserVerificationStatus200Response;
-use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
-use Upsun\Model\GetOrgPrepaymentInfo200Response;
-use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks;
-use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf;
-use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions;
-use Upsun\Model\GetOrgPrepaymentInfo200ResponsePrepayment;
-use Upsun\Model\GetTotpEnrollment200Response;
-use Upsun\Model\GetTypeAllowance200Response;
-use Upsun\Model\GetTypeAllowance200ResponseCurrencies;
-use Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD;
-use Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD;
-use Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR;
-use Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP;
-use Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD;
-use Upsun\Model\GetUsageAlerts200Response;
-use Upsun\Model\GitHubIntegrationConfigurations;
-use Upsun\Model\GitLabIntegration;
-use Upsun\Model\GitLabIntegrationConfigurations;
-use Upsun\Model\GitLabIntegrationCreateInput;
-use Upsun\Model\GitLabIntegrationPatch;
-use Upsun\Model\GithubIntegration;
-use Upsun\Model\GithubIntegrationCreateInput;
-use Upsun\Model\GithubIntegrationPatch;
-use Upsun\Model\GoogleSSOConfig;
-use Upsun\Model\GrantProjectTeamAccessRequestInner;
-use Upsun\Model\GrantProjectUserAccessRequestInner;
-use Upsun\Model\GrantTeamProjectAccessRequestInner;
-use Upsun\Model\GrantUserProjectAccessRequestInner;
-use Upsun\Model\HTTPLogForwardingIntegrationConfigurations;
-use Upsun\Model\HalLinks;
-use Upsun\Model\HalLinksNext;
-use Upsun\Model\HalLinksPrevious;
-use Upsun\Model\HalLinksSelf;
-use Upsun\Model\HealthEmailNotificationIntegrationConfigurations;
-use Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations;
-use Upsun\Model\HealthSlackNotificationIntegrationConfigurations;
-use Upsun\Model\HealthWebHookIntegration;
-use Upsun\Model\HealthWebHookIntegrationCreateInput;
-use Upsun\Model\HealthWebHookIntegrationPatch;
-use Upsun\Model\HealthWebhookNotificationIntegrationConfigurations;
-use Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication;
-use Upsun\Model\HttpAccessPermissions;
-use Upsun\Model\HttpAccessPermissions1;
-use Upsun\Model\HttpLogIntegration;
-use Upsun\Model\HttpLogIntegrationCreateInput;
-use Upsun\Model\HttpLogIntegrationPatch;
-use Upsun\Model\ImagesValueValue;
-use Upsun\Model\Integration;
-use Upsun\Model\IntegrationCreateInput;
-use Upsun\Model\IntegrationPatch;
-use Upsun\Model\Integrations;
-use Upsun\Model\Invoice;
-use Upsun\Model\InvoicePDF;
-use Upsun\Model\LineItem;
-use Upsun\Model\LineItemComponent;
-use Upsun\Model\ListLinks;
-use Upsun\Model\ListLinksNext;
-use Upsun\Model\ListLinksPrevious;
-use Upsun\Model\ListLinksSelf;
-use Upsun\Model\ListOrgDiscounts200Response;
-use Upsun\Model\ListOrgInvoices200Response;
-use Upsun\Model\ListOrgMembers200Response;
-use Upsun\Model\ListOrgOrders200Response;
-use Upsun\Model\ListOrgPlanRecords200Response;
-use Upsun\Model\ListOrgPrepaymentTransactions200Response;
-use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks;
-use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment;
-use Upsun\Model\ListOrgProjects200Response;
-use Upsun\Model\ListOrgSubscriptions200Response;
-use Upsun\Model\ListOrgUsageRecords200Response;
-use Upsun\Model\ListOrgs200Response;
-use Upsun\Model\ListPlans200Response;
-use Upsun\Model\ListProfiles200Response;
-use Upsun\Model\ListProjectUserAccess200Response;
-use Upsun\Model\ListRegions200Response;
-use Upsun\Model\ListTeamMembers200Response;
-use Upsun\Model\ListTeamProjectAccess200Response;
-use Upsun\Model\ListTeams200Response;
-use Upsun\Model\ListTicketCategories200ResponseInner;
-use Upsun\Model\ListTicketPriorities200ResponseInner;
-use Upsun\Model\ListTickets200Response;
-use Upsun\Model\ListUserExtendedAccess200Response;
-use Upsun\Model\ListUserExtendedAccess200ResponseItemsInner;
-use Upsun\Model\ListUserOrgs200Response;
-use Upsun\Model\LogsForwarding;
-use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
-use Upsun\Model\Metrics;
-use Upsun\Model\NewRelicIntegration;
-use Upsun\Model\NewRelicIntegrationCreateInput;
-use Upsun\Model\NewRelicIntegrationPatch;
-use Upsun\Model\NewRelicLogForwardingIntegrationConfigurations;
-use Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue;
-use Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue;
-use Upsun\Model\Order;
-use Upsun\Model\OrderBillingPeriodLabel;
-use Upsun\Model\OrderLinks;
-use Upsun\Model\OrderLinksInvoices;
-use Upsun\Model\Organization;
-use Upsun\Model\OrganizationAddonsObject;
-use Upsun\Model\OrganizationAddonsObjectAvailable;
-use Upsun\Model\OrganizationAddonsObjectCurrent;
-use Upsun\Model\OrganizationAddonsObjectUpgradesAvailable;
-use Upsun\Model\OrganizationAlertConfig;
-use Upsun\Model\OrganizationAlertConfigConfig;
-use Upsun\Model\OrganizationAlertConfigConfigThreshold;
-use Upsun\Model\OrganizationEstimationObject;
-use Upsun\Model\OrganizationEstimationObjectSubscriptions;
-use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner;
-use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage;
-use Upsun\Model\OrganizationEstimationObjectUserLicenses;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesBase;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser;
-use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser;
-use Upsun\Model\OrganizationInvitation;
-use Upsun\Model\OrganizationInvitationOwner;
-use Upsun\Model\OrganizationLinks;
-use Upsun\Model\OrganizationLinksAddress;
-use Upsun\Model\OrganizationLinksApplyVoucher;
-use Upsun\Model\OrganizationLinksCreateMember;
-use Upsun\Model\OrganizationLinksCreateSubscription;
-use Upsun\Model\OrganizationLinksDelete;
-use Upsun\Model\OrganizationLinksEstimateSubscription;
-use Upsun\Model\OrganizationLinksMembers;
-use Upsun\Model\OrganizationLinksMfaEnforcement;
-use Upsun\Model\OrganizationLinksOrders;
-use Upsun\Model\OrganizationLinksPaymentSource;
-use Upsun\Model\OrganizationLinksProfile;
-use Upsun\Model\OrganizationLinksSelf;
-use Upsun\Model\OrganizationLinksSubscriptions;
-use Upsun\Model\OrganizationLinksUpdate;
-use Upsun\Model\OrganizationLinksVouchers;
-use Upsun\Model\OrganizationMFAEnforcement;
-use Upsun\Model\OrganizationMember;
-use Upsun\Model\OrganizationMemberLinks;
-use Upsun\Model\OrganizationMemberLinksDelete;
-use Upsun\Model\OrganizationMemberLinksSelf;
-use Upsun\Model\OrganizationMemberLinksUpdate;
-use Upsun\Model\OrganizationProject;
-use Upsun\Model\OrganizationProjectLinks;
-use Upsun\Model\OrganizationProjectLinksApi;
-use Upsun\Model\OrganizationProjectLinksDelete;
-use Upsun\Model\OrganizationProjectLinksSelf;
-use Upsun\Model\OrganizationProjectLinksSubscription;
-use Upsun\Model\OrganizationProjectLinksUpdate;
-use Upsun\Model\OrganizationProjectPlan;
-use Upsun\Model\OrganizationProjectStatus;
-use Upsun\Model\OrganizationProjectType;
-use Upsun\Model\OrganizationReference;
-use Upsun\Model\OrganizationSSOConfig;
-use Upsun\Model\OutboundFirewall;
-use Upsun\Model\OutboundFirewallRestrictionsInner;
-use Upsun\Model\OwnerInfo;
-use Upsun\Model\PagerDutyIntegration;
-use Upsun\Model\PagerDutyIntegrationCreateInput;
-use Upsun\Model\PagerDutyIntegrationPatch;
-use Upsun\Model\PerServiceResourcesOverridesValue;
-use Upsun\Model\Plan;
-use Upsun\Model\PlanRecords;
-use Upsun\Model\PrepaymentObject;
-use Upsun\Model\PrepaymentObjectPrepayment;
-use Upsun\Model\PrepaymentObjectPrepaymentBalance;
-use Upsun\Model\PrepaymentTransactionObject;
-use Upsun\Model\ProdDomainStorage;
-use Upsun\Model\ProdDomainStorageCreateInput;
-use Upsun\Model\ProdDomainStoragePatch;
-use Upsun\Model\Profile;
-use Upsun\Model\ProfileCurrentTrial;
-use Upsun\Model\ProfileCurrentTrialCurrent;
-use Upsun\Model\ProfileCurrentTrialProjects;
-use Upsun\Model\ProfileCurrentTrialProjectsTotal;
-use Upsun\Model\ProfileCurrentTrialSpend;
-use Upsun\Model\ProfileCurrentTrialSpendRemaining;
-use Upsun\Model\Project;
-use Upsun\Model\ProjectCapabilities;
-use Upsun\Model\ProjectInfo;
-use Upsun\Model\ProjectInvitation;
-use Upsun\Model\ProjectInvitationEnvironmentsInner;
-use Upsun\Model\ProjectOptions;
-use Upsun\Model\ProjectOptionsDefaults;
-use Upsun\Model\ProjectOptionsEnforced;
-use Upsun\Model\ProjectPatch;
-use Upsun\Model\ProjectReference;
-use Upsun\Model\ProjectSettings;
-use Upsun\Model\ProjectSettingsPatch;
-use Upsun\Model\ProjectVariable;
-use Upsun\Model\ProjectVariableCreateInput;
-use Upsun\Model\ProjectVariablePatch;
-use Upsun\Model\ProxyRoute;
-use Upsun\Model\ProxyRouteCreateInput;
-use Upsun\Model\ProxyRoutePatch;
-use Upsun\Model\RedirectRoute;
-use Upsun\Model\RedirectRouteCreateInput;
-use Upsun\Model\RedirectRoutePatch;
-use Upsun\Model\Ref;
-use Upsun\Model\Region;
-use Upsun\Model\RegionDatacenter;
-use Upsun\Model\RegionEnvironmentalImpact;
-use Upsun\Model\RegionProvider;
-use Upsun\Model\RegionReference;
-use Upsun\Model\ReplacementDomainStorage;
-use Upsun\Model\ReplacementDomainStorageCreateInput;
-use Upsun\Model\ReplacementDomainStoragePatch;
-use Upsun\Model\RepositoryInformation;
-use Upsun\Model\ResetEmailAddressRequest;
-use Upsun\Model\ResourceConfig;
-use Upsun\Model\Resources;
-use Upsun\Model\Resources1;
-use Upsun\Model\Resources2;
-use Upsun\Model\Resources3;
-use Upsun\Model\Resources4;
-use Upsun\Model\Resources5;
-use Upsun\Model\ResourcesForDevelopmentEnvironments;
-use Upsun\Model\ResourcesForProductionEnvironments;
-use Upsun\Model\ResourcesLimits;
-use Upsun\Model\ResourcesOverridesValue;
-use Upsun\Model\RestrictedAndDeniedImageTypes;
-use Upsun\Model\Route;
-use Upsun\Model\RouteCreateInput;
-use Upsun\Model\RoutePatch;
-use Upsun\Model\RoutesValue;
-use Upsun\Model\RuntimeOperations;
-use Upsun\Model\SSHKey;
-use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
-use Upsun\Model\ScriptIntegration;
-use Upsun\Model\ScriptIntegrationConfigurations;
-use Upsun\Model\ScriptIntegrationCreateInput;
-use Upsun\Model\ScriptIntegrationPatch;
-use Upsun\Model\SendOrgMfaReminders200ResponseValue;
-use Upsun\Model\SendOrgMfaRemindersRequest;
-use Upsun\Model\ServerSideIncludeConfiguration;
-use Upsun\Model\ServerSideIncludeConfiguration1;
-use Upsun\Model\ServicesValue;
-use Upsun\Model\SlackIntegration;
-use Upsun\Model\SlackIntegrationCreateInput;
-use Upsun\Model\SlackIntegrationPatch;
-use Upsun\Model\SourceOperations;
-use Upsun\Model\SpecificOverridesValue;
-use Upsun\Model\SplunkIntegration;
-use Upsun\Model\SplunkIntegrationCreateInput;
-use Upsun\Model\SplunkIntegrationPatch;
-use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
-use Upsun\Model\Status;
-use Upsun\Model\StrictTransportSecurityOptions;
-use Upsun\Model\StrictTransportSecurityOptions1;
-use Upsun\Model\StringFilter;
-use Upsun\Model\Subscription;
-use Upsun\Model\Subscription1;
-use Upsun\Model\SubscriptionAddonsObject;
-use Upsun\Model\SubscriptionAddonsObjectAvailable;
-use Upsun\Model\SubscriptionAddonsObjectCurrent;
-use Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable;
-use Upsun\Model\SubscriptionCurrentUsageObject;
-use Upsun\Model\SubscriptionInformation;
-use Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations;
-use Upsun\Model\SumologicIntegration;
-use Upsun\Model\SumologicIntegrationCreateInput;
-use Upsun\Model\SumologicIntegrationPatch;
-use Upsun\Model\SyslogIntegration;
-use Upsun\Model\SyslogIntegrationCreateInput;
-use Upsun\Model\SyslogIntegrationPatch;
-use Upsun\Model\SyslogLogForwardingIntegrationConfigurations;
-use Upsun\Model\SystemInformation;
-use Upsun\Model\TLSSettingsForTheRoute;
-use Upsun\Model\TLSSettingsForTheRoute1;
-use Upsun\Model\Team;
-use Upsun\Model\TeamCounts;
-use Upsun\Model\TeamMember;
-use Upsun\Model\TeamProjectAccess;
-use Upsun\Model\TeamProjectAccessLinks;
-use Upsun\Model\TeamProjectAccessLinksDelete;
-use Upsun\Model\TeamProjectAccessLinksSelf;
-use Upsun\Model\TeamProjectAccessLinksUpdate;
-use Upsun\Model\TeamReference;
-use Upsun\Model\TheAddonCredentialInformationOptional;
-use Upsun\Model\TheAddonCredentialInformationOptional1;
-use Upsun\Model\TheBackupScheduleSpecificationInner;
-use Upsun\Model\TheBuildConfigurationOfTheApplication;
-use Upsun\Model\TheCommandsDefinition;
-use Upsun\Model\TheCommandsToManageTheWorker;
-use Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments;
-use Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue;
-use Upsun\Model\TheConfigurationOfTheRedirects;
-use Upsun\Model\TheConfigurationOfTheRedirects1;
-use Upsun\Model\TheContinuousProfilingConfiguration;
-use Upsun\Model\TheCronsDeploymentState;
-use Upsun\Model\TheDefaultResourcesForThisService;
-use Upsun\Model\TheDisksResources;
-use Upsun\Model\TheEnvironmentDeploymentState;
-use Upsun\Model\TheHostsOfTheDeploymentTargetInner;
-use Upsun\Model\TheHostsOfTheDeploymentTargetInner1;
-use Upsun\Model\TheInformationAboutTheAuthor;
-use Upsun\Model\TheInformationAboutTheCommitter;
-use Upsun\Model\TheIssuerOfTheCertificateInner;
-use Upsun\Model\TheMinimumResourcesForThisService;
-use Upsun\Model\TheOAuth2ConsumerInformationOptional;
-use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
-use Upsun\Model\TheObjectTheReferencePointsTo;
-use Upsun\Model\ThePathsToRedirectValue;
-use Upsun\Model\ThePathsToRedirectValue1;
-use Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue;
-use Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue;
-use Upsun\Model\TheTreeItemsInner;
-use Upsun\Model\TheVariablesApplyingToThisEnvironmentInner;
-use Upsun\Model\Ticket;
-use Upsun\Model\TicketJiraInner;
-use Upsun\Model\Tree;
-use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
-use Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig;
-use Upsun\Model\UpdateOrgMemberRequest;
-use Upsun\Model\UpdateOrgProfileRequest;
-use Upsun\Model\UpdateOrgRequest;
-use Upsun\Model\UpdateOrgSubscriptionRequest;
-use Upsun\Model\UpdateProfileRequest;
-use Upsun\Model\UpdateProjectUserAccessRequest;
-use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
-use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue;
-use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue;
-use Upsun\Model\UpdateTeamRequest;
-use Upsun\Model\UpdateTicketRequest;
-use Upsun\Model\UpdateUsageAlertRequest;
-use Upsun\Model\UpdateUserRequest;
-use Upsun\Model\UpstreamRoute;
-use Upsun\Model\UpstreamRouteCreateInput;
-use Upsun\Model\UpstreamRoutePatch;
-use Upsun\Model\Usage;
-use Upsun\Model\UsageGroupCurrentUsageProperties;
-use Upsun\Model\User;
-use Upsun\Model\UserProjectAccess;
-use Upsun\Model\UserReference;
-use Upsun\Model\VPNConfiguration;
-use Upsun\Model\VerifyPhoneNumber200Response;
-use Upsun\Model\VerifyPhoneNumberRequest;
-use Upsun\Model\Version;
-use Upsun\Model\VersionCreateInput;
-use Upsun\Model\VersionPatch;
-use Upsun\Model\Vouchers;
-use Upsun\Model\VouchersLinks;
-use Upsun\Model\VouchersVouchersInner;
-use Upsun\Model\VouchersVouchersInnerOrdersInner;
-use Upsun\Model\WebApplicationsValue;
-use Upsun\Model\WebHookIntegration;
-use Upsun\Model\WebHookIntegrationCreateInput;
-use Upsun\Model\WebHookIntegrationPatch;
-use Upsun\Model\WebhookIntegrationConfigurations;
-use Upsun\Model\WorkersValue;
-
 final class ObjectAttributesMapper
 {
     /**
@@ -513,12 +27,12 @@ final class ObjectAttributesMapper
 
     private static array $attributeMap = [
 
-        AListOfFilesToAddToTheRepositoryDuringInitializationInner::class => [
+        'Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner' => [
             'path' => 'path',
             'mode' => 'mode',
             'contents' => 'contents'
         ],
-        APIToken::class => [
+        'Upsun\Model\APIToken' => [
             'id' => 'id',
             'name' => 'name',
             'mfaOnCreation' => 'mfa_on_creation',
@@ -527,15 +41,15 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'lastUsedAt' => 'last_used_at'
         ],
-        AcceptedResponse::class => [
+        'Upsun\Model\AcceptedResponse' => [
             'status' => 'status',
             'code' => 'code'
         ],
-        AccessControlDefinitionForThisEnviromentInner::class => [
+        'Upsun\Model\AccessControlDefinitionForThisEnviromentInner' => [
             'entityId' => 'entity_id',
             'role' => 'role'
         ],
-        Activity::class => [
+        'Upsun\Model\Activity' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -557,7 +71,7 @@ final class ObjectAttributesMapper
             'integration' => 'integration',
             'environments' => 'environments'
         ],
-        Address::class => [
+        'Upsun\Model\Address' => [
             'country' => 'country',
             'nameLine' => 'name_line',
             'premise' => 'premise',
@@ -569,19 +83,19 @@ final class ObjectAttributesMapper
             'dependentLocality' => 'dependent_locality',
             'postalCode' => 'postal_code'
         ],
-        AddressGrantsInner::class => [
+        'Upsun\Model\AddressGrantsInner' => [
             'permission' => 'permission',
             'address' => 'address'
         ],
-        AddressMetadata::class => [
+        'Upsun\Model\AddressMetadata' => [
             'metadata' => 'metadata'
         ],
-        AddressMetadataMetadata::class => [
+        'Upsun\Model\AddressMetadataMetadata' => [
             'requiredFields' => 'required_fields',
             'fieldLabels' => 'field_labels',
             'showVat' => 'show_vat'
         ],
-        Alert::class => [
+        'Upsun\Model\Alert' => [
             'id' => 'id',
             'active' => 'active',
             'alertsSent' => 'alerts_sent',
@@ -589,16 +103,16 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'config' => 'config'
         ],
-        ApplyOrgVoucherRequest::class => [
+        'Upsun\Model\ApplyOrgVoucherRequest' => [
             'code' => 'code'
         ],
-        ArrayFilter::class => [
+        'Upsun\Model\ArrayFilter' => [
             'eq' => 'eq',
             'ne' => 'ne',
             'in' => 'in',
             'nin' => 'nin'
         ],
-        Backup::class => [
+        'Upsun\Model\Backup' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'id' => 'id',
@@ -615,7 +129,7 @@ final class ObjectAttributesMapper
             'restorable' => 'restorable',
             'automated' => 'automated'
         ],
-        BitbucketIntegration::class => [
+        'Upsun\Model\BitbucketIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -629,11 +143,11 @@ final class ObjectAttributesMapper
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
-        BitbucketIntegrationConfigurations::class => [
+        'Upsun\Model\BitbucketIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        BitbucketIntegrationCreateInput::class => [
+        'Upsun\Model\BitbucketIntegrationCreateInput' => [
             'type' => 'type',
             'repository' => 'repository',
             'fetchBranches' => 'fetch_branches',
@@ -645,7 +159,7 @@ final class ObjectAttributesMapper
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
             'resyncPullRequests' => 'resync_pull_requests'
         ],
-        BitbucketIntegrationPatch::class => [
+        'Upsun\Model\BitbucketIntegrationPatch' => [
             'type' => 'type',
             'repository' => 'repository',
             'fetchBranches' => 'fetch_branches',
@@ -657,7 +171,7 @@ final class ObjectAttributesMapper
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
             'resyncPullRequests' => 'resync_pull_requests'
         ],
-        BitbucketServerIntegration::class => [
+        'Upsun\Model\BitbucketServerIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -671,11 +185,11 @@ final class ObjectAttributesMapper
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
         ],
-        BitbucketServerIntegrationConfigurations::class => [
+        'Upsun\Model\BitbucketServerIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        BitbucketServerIntegrationCreateInput::class => [
+        'Upsun\Model\BitbucketServerIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'username' => 'username',
@@ -688,7 +202,7 @@ final class ObjectAttributesMapper
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
         ],
-        BitbucketServerIntegrationPatch::class => [
+        'Upsun\Model\BitbucketServerIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'username' => 'username',
@@ -701,68 +215,68 @@ final class ObjectAttributesMapper
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
         ],
-        BlackfireEnvironmentsCredentialsValue::class => [
+        'Upsun\Model\BlackfireEnvironmentsCredentialsValue' => [
             'serverUuid' => 'server_uuid',
             'serverToken' => 'server_token'
         ],
-        BlackfireIntegration::class => [
+        'Upsun\Model\BlackfireIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'environmentsCredentials' => 'environments_credentials',
             'continuousProfiling' => 'continuous_profiling'
         ],
-        BlackfireIntegrationConfigurations::class => [
+        'Upsun\Model\BlackfireIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        BlackfireIntegrationCreateInput::class => [
+        'Upsun\Model\BlackfireIntegrationCreateInput' => [
             'type' => 'type'
         ],
-        BlackfireIntegrationPatch::class => [
+        'Upsun\Model\BlackfireIntegrationPatch' => [
             'type' => 'type'
         ],
-        Blob::class => [
+        'Upsun\Model\Blob' => [
             'sha' => 'sha',
             'size' => 'size',
             'encoding' => 'encoding',
             'content' => 'content'
         ],
-        BuildResources::class => [
+        'Upsun\Model\BuildResources' => [
             'enabled' => 'enabled',
             'maxCpu' => 'max_cpu',
             'maxMemory' => 'max_memory'
         ],
-        BuildResources1::class => [
+        'Upsun\Model\BuildResources1' => [
             'cpu' => 'cpu',
             'memory' => 'memory'
         ],
-        BuildResources2::class => [
+        'Upsun\Model\BuildResources2' => [
             'cpu' => 'cpu',
             'memory' => 'memory'
         ],
-        CacheConfiguration::class => [
+        'Upsun\Model\CacheConfiguration' => [
             'enabled' => 'enabled',
             'defaultTtl' => 'default_ttl',
             'cookies' => 'cookies',
             'headers' => 'headers'
         ],
-        CacheConfiguration1::class => [
+        'Upsun\Model\CacheConfiguration1' => [
             'enabled' => 'enabled',
             'defaultTtl' => 'default_ttl',
             'cookies' => 'cookies',
             'headers' => 'headers'
         ],
-        CanCreateNewOrgSubscription200Response::class => [
+        'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
             'canCreate' => 'can_create',
             'message' => 'message',
             'requiredAction' => 'required_action'
         ],
-        CanCreateNewOrgSubscription200ResponseRequiredAction::class => [
+        'Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction' => [
             'action' => 'action',
             'type' => 'type'
         ],
-        Certificate::class => [
+        'Upsun\Model\Certificate' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'certificate' => 'certificate',
@@ -775,21 +289,21 @@ final class ObjectAttributesMapper
             'issuer' => 'issuer',
             'expiresAt' => 'expires_at'
         ],
-        CertificateCreateInput::class => [
+        'Upsun\Model\CertificateCreateInput' => [
             'certificate' => 'certificate',
             'key' => 'key',
             'chain' => 'chain',
             'isInvalid' => 'is_invalid'
         ],
-        CertificatePatch::class => [
+        'Upsun\Model\CertificatePatch' => [
             'chain' => 'chain',
             'isInvalid' => 'is_invalid'
         ],
-        CommandsToManageTheApplicationSLifecycle::class => [
+        'Upsun\Model\CommandsToManageTheApplicationSLifecycle' => [
             'preStart' => 'pre_start',
             'start' => 'start'
         ],
-        Commit::class => [
+        'Upsun\Model\Commit' => [
             'sha' => 'sha',
             'author' => 'author',
             'committer' => 'committer',
@@ -797,10 +311,10 @@ final class ObjectAttributesMapper
             'tree' => 'tree',
             'parents' => 'parents'
         ],
-        Components::class => [
+        'Upsun\Model\Components' => [
             'voucherVatBaseprice' => 'voucher/vat/baseprice'
         ],
-        Config::class => [
+        'Upsun\Model\Config' => [
             'newrelic' => 'newrelic',
             'sumologic' => 'sumologic',
             'splunk' => 'splunk',
@@ -819,13 +333,13 @@ final class ObjectAttributesMapper
             'cdnFastly' => 'cdn.fastly',
             'blackfire' => 'blackfire'
         ],
-        ConfigurationAboutTheTrafficRoutedToThisVersion::class => [
+        'Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion' => [
             'percentage' => 'percentage'
         ],
-        ConfigurationAboutTheTrafficRoutedToThisVersion1::class => [
+        'Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1' => [
             'percentage' => 'percentage'
         ],
-        ConfigurationForAccessingThisApplicationViaHTTP::class => [
+        'Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP' => [
             'locations' => 'locations',
             'moveToRoot' => 'move_to_root',
             'commands' => 'commands',
@@ -837,37 +351,37 @@ final class ObjectAttributesMapper
             'blacklist' => 'blacklist',
             'expires' => 'expires'
         ],
-        ConfigurationForPreFlightChecks::class => [
+        'Upsun\Model\ConfigurationForPreFlightChecks' => [
             'enabled' => 'enabled',
             'ignoredRules' => 'ignored_rules'
         ],
-        ConfigurationForSupportingRequestBuffering::class => [
+        'Upsun\Model\ConfigurationForSupportingRequestBuffering' => [
             'enabled' => 'enabled',
             'maxRequestSize' => 'max_request_size'
         ],
-        ConfigurationOfAWorkerContainerInstance::class => [
+        'Upsun\Model\ConfigurationOfAWorkerContainerInstance' => [
             'commands' => 'commands',
             'disk' => 'disk'
         ],
-        ConfigurationOnHowTheWebServerCommunicatesWithTheApplication::class => [
+        'Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication' => [
             'socketFamily' => 'socket_family',
             'protocol' => 'protocol'
         ],
-        ConfigurationRelatedToTheSourceCodeOfTheApplication::class => [
+        'Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication' => [
             'root' => 'root',
             'operations' => 'operations'
         ],
-        ConfirmPhoneNumberRequest::class => [
+        'Upsun\Model\ConfirmPhoneNumberRequest' => [
             'code' => 'code'
         ],
-        ConfirmTotpEnrollment200Response::class => [
+        'Upsun\Model\ConfirmTotpEnrollment200Response' => [
             'recoveryCodes' => 'recovery_codes'
         ],
-        ConfirmTotpEnrollmentRequest::class => [
+        'Upsun\Model\ConfirmTotpEnrollmentRequest' => [
             'secret' => 'secret',
             'passcode' => 'passcode'
         ],
-        Connection::class => [
+        'Upsun\Model\Connection' => [
             'provider' => 'provider',
             'providerType' => 'provider_type',
             'isMandatory' => 'is_mandatory',
@@ -876,38 +390,38 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        ContainerProfilesValueValue::class => [
+        'Upsun\Model\ContainerProfilesValueValue' => [
             'cpu' => 'cpu',
             'memory' => 'memory'
         ],
-        CreateApiTokenRequest::class => [
+        'Upsun\Model\CreateApiTokenRequest' => [
             'name' => 'name'
         ],
-        CreateAuthorizationCredentials200Response::class => [
+        'Upsun\Model\CreateAuthorizationCredentials200Response' => [
             'redirectToUrl' => 'redirect_to_url',
             'type' => 'type'
         ],
-        CreateAuthorizationCredentials200ResponseRedirectToUrl::class => [
+        'Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl' => [
             'returnUrl' => 'return_url',
             'url' => 'url'
         ],
-        CreateOrgInviteRequest::class => [
+        'Upsun\Model\CreateOrgInviteRequest' => [
             'email' => 'email',
             'permissions' => 'permissions',
             'force' => 'force'
         ],
-        CreateOrgMemberRequest::class => [
+        'Upsun\Model\CreateOrgMemberRequest' => [
             'userId' => 'user_id',
             'permissions' => 'permissions'
         ],
-        CreateOrgRequest::class => [
+        'Upsun\Model\CreateOrgRequest' => [
             'label' => 'label',
             'type' => 'type',
             'ownerId' => 'owner_id',
             'name' => 'name',
             'country' => 'country'
         ],
-        CreateOrgSubscriptionRequest::class => [
+        'Upsun\Model\CreateOrgSubscriptionRequest' => [
             'projectRegion' => 'project_region',
             'plan' => 'plan',
             'projectTitle' => 'project_title',
@@ -916,38 +430,38 @@ final class ObjectAttributesMapper
             'environments' => 'environments',
             'storage' => 'storage'
         ],
-        CreateProfilePicture200Response::class => [
+        'Upsun\Model\CreateProfilePicture200Response' => [
             'url' => 'url'
         ],
-        CreateProjectInviteRequest::class => [
+        'Upsun\Model\CreateProjectInviteRequest' => [
             'email' => 'email',
             'role' => 'role',
             'permissions' => 'permissions',
             'environments' => 'environments',
             'force' => 'force'
         ],
-        CreateProjectInviteRequestEnvironmentsInner::class => [
+        'Upsun\Model\CreateProjectInviteRequestEnvironmentsInner' => [
             'id' => 'id',
             'role' => 'role'
         ],
-        CreateProjectInviteRequestPermissionsInner::class => [
+        'Upsun\Model\CreateProjectInviteRequestPermissionsInner' => [
             'type' => 'type',
             'role' => 'role'
         ],
-        CreateSshKeyRequest::class => [
+        'Upsun\Model\CreateSshKeyRequest' => [
             'value' => 'value',
             'title' => 'title',
             'uuid' => 'uuid'
         ],
-        CreateTeamMemberRequest::class => [
+        'Upsun\Model\CreateTeamMemberRequest' => [
             'userId' => 'user_id'
         ],
-        CreateTeamRequest::class => [
+        'Upsun\Model\CreateTeamRequest' => [
             'organizationId' => 'organization_id',
             'label' => 'label',
             'projectPermissions' => 'project_permissions'
         ],
-        CreateTicketRequest::class => [
+        'Upsun\Model\CreateTicketRequest' => [
             'subject' => 'subject',
             'description' => 'description',
             'requesterId' => 'requester_id',
@@ -960,30 +474,30 @@ final class ObjectAttributesMapper
             'attachments' => 'attachments',
             'collaboratorIds' => 'collaborator_ids'
         ],
-        CreateTicketRequestAttachmentsInner::class => [
+        'Upsun\Model\CreateTicketRequestAttachmentsInner' => [
             'filename' => 'filename',
             'data' => 'data'
         ],
-        CreateUsageAlertRequest::class => [
+        'Upsun\Model\CreateUsageAlertRequest' => [
             'id' => 'id',
             'config' => 'config'
         ],
-        CreateUsageAlertRequestConfig::class => [
+        'Upsun\Model\CreateUsageAlertRequestConfig' => [
             'threshold' => 'threshold'
         ],
-        CurrencyAmount::class => [
+        'Upsun\Model\CurrencyAmount' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol'
         ],
-        CurrencyAmountNullable::class => [
+        'Upsun\Model\CurrencyAmountNullable' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol'
         ],
-        CurrentUser::class => [
+        'Upsun\Model\CurrentUser' => [
             'id' => 'id',
             'uuid' => 'uuid',
             'username' => 'username',
@@ -1000,13 +514,13 @@ final class ObjectAttributesMapper
             'trial' => 'trial',
             'currentTrial' => 'current_trial'
         ],
-        CurrentUserCurrentTrialInner::class => [
+        'Upsun\Model\CurrentUserCurrentTrialInner' => [
             'created' => 'created',
             'description' => 'description',
             'spendRemaining' => 'spend_remaining',
             'expiration' => 'expiration'
         ],
-        CurrentUserProjectsInner::class => [
+        'Upsun\Model\CurrentUserProjectsInner' => [
             'id' => 'id',
             'name' => 'name',
             'title' => 'title',
@@ -1028,22 +542,22 @@ final class ObjectAttributesMapper
             'vendorResources' => 'vendor_resources',
             'createdAt' => 'created_at'
         ],
-        CustomDomains::class => [
+        'Upsun\Model\CustomDomains' => [
             'enabled' => 'enabled',
             'environmentsWithDomainsLimit' => 'environments_with_domains_limit'
         ],
-        DataRetention::class => [
+        'Upsun\Model\DataRetention' => [
             'enabled' => 'enabled'
         ],
-        DataRetentionConfigurationValue::class => [
+        'Upsun\Model\DataRetentionConfigurationValue' => [
             'maxBackups' => 'max_backups',
             'defaultConfig' => 'default_config'
         ],
-        DataRetentionConfigurationValue1::class => [
+        'Upsun\Model\DataRetentionConfigurationValue1' => [
             'defaultConfig' => 'default_config',
             'maxBackups' => 'max_backups'
         ],
-        DateTimeFilter::class => [
+        'Upsun\Model\DateTimeFilter' => [
             'eq' => 'eq',
             'ne' => 'ne',
             'between' => 'between',
@@ -1052,7 +566,7 @@ final class ObjectAttributesMapper
             'lt' => 'lt',
             'lte' => 'lte'
         ],
-        DedicatedDeploymentTarget::class => [
+        'Upsun\Model\DedicatedDeploymentTarget' => [
             'type' => 'type',
             'name' => 'name',
             'deployHost' => 'deploy_host',
@@ -1067,25 +581,25 @@ final class ObjectAttributesMapper
             'maintenanceMode' => 'maintenance_mode',
             'guardrailsPhase' => 'guardrails_phase'
         ],
-        DedicatedDeploymentTargetCreateInput::class => [
+        'Upsun\Model\DedicatedDeploymentTargetCreateInput' => [
             'type' => 'type',
             'name' => 'name',
             'enforcedMounts' => 'enforced_mounts'
         ],
-        DedicatedDeploymentTargetPatch::class => [
+        'Upsun\Model\DedicatedDeploymentTargetPatch' => [
             'type' => 'type',
             'name' => 'name',
             'enforcedMounts' => 'enforced_mounts'
         ],
-        DefaultConfig::class => [
+        'Upsun\Model\DefaultConfig' => [
             'manualCount' => 'manual_count',
             'schedule' => 'schedule'
         ],
-        DefaultConfig1::class => [
+        'Upsun\Model\DefaultConfig1' => [
             'manualCount' => 'manual_count',
             'schedule' => 'schedule'
         ],
-        Deployment::class => [
+        'Upsun\Model\Deployment' => [
             'clusterName' => 'cluster_name',
             'projectInfo' => 'project_info',
             'environmentInfo' => 'environment_info',
@@ -1107,7 +621,7 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'fingerprint' => 'fingerprint'
         ],
-        DeploymentTarget::class => [
+        'Upsun\Model\DeploymentTarget' => [
             'type' => 'type',
             'name' => 'name',
             'deployHost' => 'deploy_host',
@@ -1128,7 +642,7 @@ final class ObjectAttributesMapper
             'storageType' => 'storage_type',
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
-        DeploymentTargetCreateInput::class => [
+        'Upsun\Model\DeploymentTargetCreateInput' => [
             'type' => 'type',
             'name' => 'name',
             'enforcedMounts' => 'enforced_mounts',
@@ -1138,7 +652,7 @@ final class ObjectAttributesMapper
             'hosts' => 'hosts',
             'useDedicatedGrid' => 'use_dedicated_grid'
         ],
-        DeploymentTargetPatch::class => [
+        'Upsun\Model\DeploymentTargetPatch' => [
             'type' => 'type',
             'name' => 'name',
             'enforcedMounts' => 'enforced_mounts',
@@ -1148,7 +662,7 @@ final class ObjectAttributesMapper
             'hosts' => 'hosts',
             'useDedicatedGrid' => 'use_dedicated_grid'
         ],
-        Discount::class => [
+        'Upsun\Model\Discount' => [
             'id' => 'id',
             'organizationId' => 'organization_id',
             'type' => 'type',
@@ -1161,27 +675,27 @@ final class ObjectAttributesMapper
             'startAt' => 'start_at',
             'endAt' => 'end_at'
         ],
-        DiscountCommitment::class => [
+        'Upsun\Model\DiscountCommitment' => [
             'months' => 'months',
             'amount' => 'amount',
             'net' => 'net'
         ],
-        DiscountCommitmentAmount::class => [
+        'Upsun\Model\DiscountCommitmentAmount' => [
             'monthly' => 'monthly',
             'commitmentPeriod' => 'commitment_period',
             'contractTotal' => 'contract_total'
         ],
-        DiscountCommitmentNet::class => [
+        'Upsun\Model\DiscountCommitmentNet' => [
             'monthly' => 'monthly',
             'commitmentPeriod' => 'commitment_period',
             'contractTotal' => 'contract_total'
         ],
-        DiscountDiscount::class => [
+        'Upsun\Model\DiscountDiscount' => [
             'monthly' => 'monthly',
             'commitmentPeriod' => 'commitment_period',
             'contractTotal' => 'contract_total'
         ],
-        Domain::class => [
+        'Upsun\Model\Domain' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -1192,34 +706,34 @@ final class ObjectAttributesMapper
             'isDefault' => 'is_default',
             'replacementFor' => 'replacement_for'
         ],
-        DomainCreateInput::class => [
+        'Upsun\Model\DomainCreateInput' => [
             'name' => 'name',
             'attributes' => 'attributes',
             'isDefault' => 'is_default',
             'replacementFor' => 'replacement_for'
         ],
-        DomainPatch::class => [
+        'Upsun\Model\DomainPatch' => [
             'attributes' => 'attributes',
             'isDefault' => 'is_default'
         ],
-        EmailIntegration::class => [
+        'Upsun\Model\EmailIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'fromAddress' => 'from_address',
             'recipients' => 'recipients'
         ],
-        EmailIntegrationCreateInput::class => [
+        'Upsun\Model\EmailIntegrationCreateInput' => [
             'type' => 'type',
             'recipients' => 'recipients',
             'fromAddress' => 'from_address'
         ],
-        EmailIntegrationPatch::class => [
+        'Upsun\Model\EmailIntegrationPatch' => [
             'type' => 'type',
             'recipients' => 'recipients',
             'fromAddress' => 'from_address'
         ],
-        EnterpriseDeploymentTarget::class => [
+        'Upsun\Model\EnterpriseDeploymentTarget' => [
             'type' => 'type',
             'name' => 'name',
             'deployHost' => 'deploy_host',
@@ -1229,21 +743,21 @@ final class ObjectAttributesMapper
             'maintenanceMode' => 'maintenance_mode',
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
-        EnterpriseDeploymentTargetCreateInput::class => [
+        'Upsun\Model\EnterpriseDeploymentTargetCreateInput' => [
             'type' => 'type',
             'name' => 'name',
             'siteUrls' => 'site_urls',
             'sshHosts' => 'ssh_hosts',
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
-        EnterpriseDeploymentTargetPatch::class => [
+        'Upsun\Model\EnterpriseDeploymentTargetPatch' => [
             'type' => 'type',
             'name' => 'name',
             'siteUrls' => 'site_urls',
             'sshHosts' => 'ssh_hosts',
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
-        Environment::class => [
+        'Upsun\Model\Environment' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'name' => 'name',
@@ -1277,20 +791,20 @@ final class ObjectAttributesMapper
             'hasDeployment' => 'has_deployment',
             'supportsRestrictRobots' => 'supports_restrict_robots'
         ],
-        EnvironmentActivateInput::class => [
+        'Upsun\Model\EnvironmentActivateInput' => [
             'resources' => 'resources'
         ],
-        EnvironmentBackupInput::class => [
+        'Upsun\Model\EnvironmentBackupInput' => [
             'safe' => 'safe'
         ],
-        EnvironmentBranchInput::class => [
+        'Upsun\Model\EnvironmentBranchInput' => [
             'title' => 'title',
             'name' => 'name',
             'cloneParent' => 'clone_parent',
             'type' => 'type',
             'resources' => 'resources'
         ],
-        EnvironmentInfo::class => [
+        'Upsun\Model\EnvironmentInfo' => [
             'name' => 'name',
             'status' => 'status',
             'isMain' => 'is_main',
@@ -1301,21 +815,21 @@ final class ObjectAttributesMapper
             'environmentType' => 'environment_type',
             'links' => 'links'
         ],
-        EnvironmentInitializeInput::class => [
+        'Upsun\Model\EnvironmentInitializeInput' => [
             'profile' => 'profile',
             'repository' => 'repository',
             'config' => 'config',
             'files' => 'files',
             'resources' => 'resources'
         ],
-        EnvironmentMergeInput::class => [
+        'Upsun\Model\EnvironmentMergeInput' => [
             'resources' => 'resources'
         ],
-        EnvironmentOperationInput::class => [
+        'Upsun\Model\EnvironmentOperationInput' => [
             'service' => 'service',
             'operation' => 'operation'
         ],
-        EnvironmentPatch::class => [
+        'Upsun\Model\EnvironmentPatch' => [
             'name' => 'name',
             'title' => 'title',
             'attributes' => 'attributes',
@@ -1326,32 +840,32 @@ final class ObjectAttributesMapper
             'enableSmtp' => 'enable_smtp',
             'restrictRobots' => 'restrict_robots'
         ],
-        EnvironmentRestoreInput::class => [
+        'Upsun\Model\EnvironmentRestoreInput' => [
             'environmentName' => 'environment_name',
             'branchFrom' => 'branch_from',
             'restoreCode' => 'restore_code',
             'restoreResources' => 'restore_resources',
             'resources' => 'resources'
         ],
-        EnvironmentSourceOperation::class => [
+        'Upsun\Model\EnvironmentSourceOperation' => [
             'app' => 'app',
             'operation' => 'operation',
             'command' => 'command'
         ],
-        EnvironmentSourceOperationInput::class => [
+        'Upsun\Model\EnvironmentSourceOperationInput' => [
             'operation' => 'operation',
             'variables' => 'variables'
         ],
-        EnvironmentSynchronizeInput::class => [
+        'Upsun\Model\EnvironmentSynchronizeInput' => [
             'synchronizeCode' => 'synchronize_code',
             'rebase' => 'rebase',
             'synchronizeData' => 'synchronize_data',
             'synchronizeResources' => 'synchronize_resources'
         ],
-        EnvironmentType::class => [
+        'Upsun\Model\EnvironmentType' => [
             'attributes' => 'attributes'
         ],
-        EnvironmentVariable::class => [
+        'Upsun\Model\EnvironmentVariable' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'name' => 'name',
@@ -1367,7 +881,7 @@ final class ObjectAttributesMapper
             'isInheritable' => 'is_inheritable',
             'value' => 'value'
         ],
-        EnvironmentVariableCreateInput::class => [
+        'Upsun\Model\EnvironmentVariableCreateInput' => [
             'name' => 'name',
             'value' => 'value',
             'attributes' => 'attributes',
@@ -1378,7 +892,7 @@ final class ObjectAttributesMapper
             'isEnabled' => 'is_enabled',
             'isInheritable' => 'is_inheritable'
         ],
-        EnvironmentVariablePatch::class => [
+        'Upsun\Model\EnvironmentVariablePatch' => [
             'name' => 'name',
             'attributes' => 'attributes',
             'value' => 'value',
@@ -1389,14 +903,14 @@ final class ObjectAttributesMapper
             'isEnabled' => 'is_enabled',
             'isInheritable' => 'is_inheritable'
         ],
-        Error::class => [
+        'Upsun\Model\Error' => [
             'status' => 'status',
             'message' => 'message',
             'code' => 'code',
             'detail' => 'detail',
             'title' => 'title'
         ],
-        EstimationObject::class => [
+        'Upsun\Model\EstimationObject' => [
             'plan' => 'plan',
             'userLicenses' => 'user_licenses',
             'environments' => 'environments',
@@ -1404,11 +918,11 @@ final class ObjectAttributesMapper
             'total' => 'total',
             'options' => 'options'
         ],
-        FastlyCDNIntegrationConfigurations::class => [
+        'Upsun\Model\FastlyCDNIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        FastlyIntegration::class => [
+        'Upsun\Model\FastlyIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -1419,7 +933,7 @@ final class ObjectAttributesMapper
             'result' => 'result',
             'serviceId' => 'service_id'
         ],
-        FastlyIntegrationCreateInput::class => [
+        'Upsun\Model\FastlyIntegrationCreateInput' => [
             'type' => 'type',
             'token' => 'token',
             'serviceId' => 'service_id',
@@ -1429,7 +943,7 @@ final class ObjectAttributesMapper
             'states' => 'states',
             'result' => 'result'
         ],
-        FastlyIntegrationPatch::class => [
+        'Upsun\Model\FastlyIntegrationPatch' => [
             'type' => 'type',
             'token' => 'token',
             'serviceId' => 'service_id',
@@ -1439,34 +953,34 @@ final class ObjectAttributesMapper
             'states' => 'states',
             'result' => 'result'
         ],
-        FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class => [
+        'Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue' => [
             'source' => 'source',
             'sourcePath' => 'source_path',
             'service' => 'service'
         ],
-        Firewall::class => [
+        'Upsun\Model\Firewall' => [
             'outbound' => 'outbound'
         ],
-        FoundationDeploymentTarget::class => [
+        'Upsun\Model\FoundationDeploymentTarget' => [
             'type' => 'type',
             'name' => 'name',
             'hosts' => 'hosts',
             'useDedicatedGrid' => 'use_dedicated_grid',
             'storageType' => 'storage_type'
         ],
-        FoundationDeploymentTargetCreateInput::class => [
+        'Upsun\Model\FoundationDeploymentTargetCreateInput' => [
             'type' => 'type',
             'name' => 'name',
             'hosts' => 'hosts',
             'useDedicatedGrid' => 'use_dedicated_grid'
         ],
-        FoundationDeploymentTargetPatch::class => [
+        'Upsun\Model\FoundationDeploymentTargetPatch' => [
             'type' => 'type',
             'name' => 'name',
             'hosts' => 'hosts',
             'useDedicatedGrid' => 'use_dedicated_grid'
         ],
-        GetAddress200Response::class => [
+        'Upsun\Model\GetAddress200Response' => [
             'country' => 'country',
             'nameLine' => 'name_line',
             'premise' => 'premise',
@@ -1479,85 +993,85 @@ final class ObjectAttributesMapper
             'postalCode' => 'postal_code',
             'metadata' => 'metadata'
         ],
-        GetCurrentUserVerificationStatus200Response::class => [
+        'Upsun\Model\GetCurrentUserVerificationStatus200Response' => [
             'verifyPhone' => 'verify_phone'
         ],
-        GetCurrentUserVerificationStatusFull200Response::class => [
+        'Upsun\Model\GetCurrentUserVerificationStatusFull200Response' => [
             'state' => 'state',
             'type' => 'type'
         ],
-        GetOrgPrepaymentInfo200Response::class => [
+        'Upsun\Model\GetOrgPrepaymentInfo200Response' => [
             'prepayment' => 'prepayment',
             'links' => '_links'
         ],
-        GetOrgPrepaymentInfo200ResponseLinks::class => [
+        'Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks' => [
             'self' => 'self',
             'transactions' => 'transactions'
         ],
-        GetOrgPrepaymentInfo200ResponseLinksSelf::class => [
+        'Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf' => [
             'href' => 'href'
         ],
-        GetOrgPrepaymentInfo200ResponseLinksTransactions::class => [
+        'Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions' => [
             'href' => 'href'
         ],
-        GetOrgPrepaymentInfo200ResponsePrepayment::class => [
+        'Upsun\Model\GetOrgPrepaymentInfo200ResponsePrepayment' => [
             'prepayment' => 'prepayment'
         ],
-        GetTotpEnrollment200Response::class => [
+        'Upsun\Model\GetTotpEnrollment200Response' => [
             'issuer' => 'issuer',
             'accountName' => 'account_name',
             'secret' => 'secret',
             'qrCode' => 'qr_code'
         ],
-        GetTypeAllowance200Response::class => [
+        'Upsun\Model\GetTypeAllowance200Response' => [
             'currencies' => 'currencies'
         ],
-        GetTypeAllowance200ResponseCurrencies::class => [
+        'Upsun\Model\GetTypeAllowance200ResponseCurrencies' => [
             'eUR' => 'EUR',
             'uSD' => 'USD',
             'gBP' => 'GBP',
             'aUD' => 'AUD',
             'cAD' => 'CAD'
         ],
-        GetTypeAllowance200ResponseCurrenciesAUD::class => [
+        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        GetTypeAllowance200ResponseCurrenciesCAD::class => [
+        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        GetTypeAllowance200ResponseCurrenciesEUR::class => [
+        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        GetTypeAllowance200ResponseCurrenciesGBP::class => [
+        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        GetTypeAllowance200ResponseCurrenciesUSD::class => [
+        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        GetUsageAlerts200Response::class => [
+        'Upsun\Model\GetUsageAlerts200Response' => [
             'available' => 'available',
             'current' => 'current'
         ],
-        GitHubIntegrationConfigurations::class => [
+        'Upsun\Model\GitHubIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        GitLabIntegration::class => [
+        'Upsun\Model\GitLabIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -1570,11 +1084,11 @@ final class ObjectAttributesMapper
             'buildWipMergeRequests' => 'build_wip_merge_requests',
             'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
         ],
-        GitLabIntegrationConfigurations::class => [
+        'Upsun\Model\GitLabIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        GitLabIntegrationCreateInput::class => [
+        'Upsun\Model\GitLabIntegrationCreateInput' => [
             'type' => 'type',
             'token' => 'token',
             'project' => 'project',
@@ -1586,7 +1100,7 @@ final class ObjectAttributesMapper
             'buildWipMergeRequests' => 'build_wip_merge_requests',
             'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
         ],
-        GitLabIntegrationPatch::class => [
+        'Upsun\Model\GitLabIntegrationPatch' => [
             'type' => 'type',
             'token' => 'token',
             'project' => 'project',
@@ -1598,7 +1112,7 @@ final class ObjectAttributesMapper
             'buildWipMergeRequests' => 'build_wip_merge_requests',
             'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
         ],
-        GithubIntegration::class => [
+        'Upsun\Model\GithubIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -1613,7 +1127,7 @@ final class ObjectAttributesMapper
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
             'tokenType' => 'token_type'
         ],
-        GithubIntegrationCreateInput::class => [
+        'Upsun\Model\GithubIntegrationCreateInput' => [
             'type' => 'type',
             'token' => 'token',
             'repository' => 'repository',
@@ -1626,7 +1140,7 @@ final class ObjectAttributesMapper
             'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
         ],
-        GithubIntegrationPatch::class => [
+        'Upsun\Model\GithubIntegrationPatch' => [
             'type' => 'type',
             'token' => 'token',
             'repository' => 'repository',
@@ -1639,94 +1153,94 @@ final class ObjectAttributesMapper
             'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
         ],
-        GoogleSSOConfig::class => [
+        'Upsun\Model\GoogleSSOConfig' => [
             'providerType' => 'provider_type',
             'domain' => 'domain'
         ],
-        GrantProjectTeamAccessRequestInner::class => [
+        'Upsun\Model\GrantProjectTeamAccessRequestInner' => [
             'teamId' => 'team_id'
         ],
-        GrantProjectUserAccessRequestInner::class => [
+        'Upsun\Model\GrantProjectUserAccessRequestInner' => [
             'userId' => 'user_id',
             'permissions' => 'permissions',
             'autoAddMember' => 'auto_add_member'
         ],
-        GrantTeamProjectAccessRequestInner::class => [
+        'Upsun\Model\GrantTeamProjectAccessRequestInner' => [
             'projectId' => 'project_id'
         ],
-        GrantUserProjectAccessRequestInner::class => [
+        'Upsun\Model\GrantUserProjectAccessRequestInner' => [
             'projectId' => 'project_id',
             'permissions' => 'permissions'
         ],
-        HTTPLogForwardingIntegrationConfigurations::class => [
+        'Upsun\Model\HTTPLogForwardingIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        HalLinks::class => [
+        'Upsun\Model\HalLinks' => [
             'self' => 'self',
             'previous' => 'previous',
             'next' => 'next'
         ],
-        HalLinksNext::class => [
+        'Upsun\Model\HalLinksNext' => [
             'title' => 'title',
             'href' => 'href'
         ],
-        HalLinksPrevious::class => [
+        'Upsun\Model\HalLinksPrevious' => [
             'title' => 'title',
             'href' => 'href'
         ],
-        HalLinksSelf::class => [
+        'Upsun\Model\HalLinksSelf' => [
             'title' => 'title',
             'href' => 'href'
         ],
-        HealthEmailNotificationIntegrationConfigurations::class => [
+        'Upsun\Model\HealthEmailNotificationIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        HealthPagerDutyNotificationIntegrationConfigurations::class => [
+        'Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        HealthSlackNotificationIntegrationConfigurations::class => [
+        'Upsun\Model\HealthSlackNotificationIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        HealthWebHookIntegration::class => [
+        'Upsun\Model\HealthWebHookIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'url' => 'url'
         ],
-        HealthWebHookIntegrationCreateInput::class => [
+        'Upsun\Model\HealthWebHookIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'sharedKey' => 'shared_key'
         ],
-        HealthWebHookIntegrationPatch::class => [
+        'Upsun\Model\HealthWebHookIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'sharedKey' => 'shared_key'
         ],
-        HealthWebhookNotificationIntegrationConfigurations::class => [
+        'Upsun\Model\HealthWebhookNotificationIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        HooksExecutedAtVariousPointInTheLifecycleOfTheApplication::class => [
+        'Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication' => [
             'build' => 'build',
             'deploy' => 'deploy',
             'postDeploy' => 'post_deploy'
         ],
-        HttpAccessPermissions::class => [
+        'Upsun\Model\HttpAccessPermissions' => [
             'isEnabled' => 'is_enabled',
             'addresses' => 'addresses',
             'basicAuth' => 'basic_auth'
         ],
-        HttpAccessPermissions1::class => [
+        'Upsun\Model\HttpAccessPermissions1' => [
             'isEnabled' => 'is_enabled',
             'addresses' => 'addresses',
             'basicAuth' => 'basic_auth'
         ],
-        HttpLogIntegration::class => [
+        'Upsun\Model\HttpLogIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -1735,24 +1249,24 @@ final class ObjectAttributesMapper
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify'
         ],
-        HttpLogIntegrationCreateInput::class => [
+        'Upsun\Model\HttpLogIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify'
         ],
-        HttpLogIntegrationPatch::class => [
+        'Upsun\Model\HttpLogIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify'
         ],
-        ImagesValueValue::class => [
+        'Upsun\Model\ImagesValueValue' => [
             'available' => 'available'
         ],
-        Integration::class => [
+        'Upsun\Model\Integration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -1801,7 +1315,7 @@ final class ObjectAttributesMapper
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
-        IntegrationCreateInput::class => [
+        'Upsun\Model\IntegrationCreateInput' => [
             'type' => 'type',
             'repository' => 'repository',
             'url' => 'url',
@@ -1849,7 +1363,7 @@ final class ObjectAttributesMapper
             'authToken' => 'auth_token',
             'authMode' => 'auth_mode'
         ],
-        IntegrationPatch::class => [
+        'Upsun\Model\IntegrationPatch' => [
             'type' => 'type',
             'repository' => 'repository',
             'url' => 'url',
@@ -1897,12 +1411,12 @@ final class ObjectAttributesMapper
             'authToken' => 'auth_token',
             'authMode' => 'auth_mode'
         ],
-        Integrations::class => [
+        'Upsun\Model\Integrations' => [
             'enabled' => 'enabled',
             'config' => 'config',
             'allowedIntegrations' => 'allowed_integrations'
         ],
-        Invoice::class => [
+        'Upsun\Model\Invoice' => [
             'id' => 'id',
             'invoiceNumber' => 'invoice_number',
             'type' => 'type',
@@ -1920,11 +1434,11 @@ final class ObjectAttributesMapper
             'notes' => 'notes',
             'invoicePdf' => 'invoice_pdf'
         ],
-        InvoicePDF::class => [
+        'Upsun\Model\InvoicePDF' => [
             'url' => 'url',
             'status' => 'status'
         ],
-        LineItem::class => [
+        'Upsun\Model\LineItem' => [
             'type' => 'type',
             'licenseId' => 'license_id',
             'projectId' => 'project_id',
@@ -1935,128 +1449,128 @@ final class ObjectAttributesMapper
             'components' => 'components',
             'excludeFromInvoice' => 'exclude_from_invoice'
         ],
-        LineItemComponent::class => [
+        'Upsun\Model\LineItemComponent' => [
             'amount' => 'amount',
             'amountFormatted' => 'amount_formatted',
             'displayTitle' => 'display_title',
             'currency' => 'currency'
         ],
-        ListLinks::class => [
+        'Upsun\Model\ListLinks' => [
             'self' => 'self',
             'previous' => 'previous',
             'next' => 'next'
         ],
-        ListLinksNext::class => [
+        'Upsun\Model\ListLinksNext' => [
             'href' => 'href'
         ],
-        ListLinksPrevious::class => [
+        'Upsun\Model\ListLinksPrevious' => [
             'href' => 'href'
         ],
-        ListLinksSelf::class => [
+        'Upsun\Model\ListLinksSelf' => [
             'href' => 'href'
         ],
-        ListOrgDiscounts200Response::class => [
+        'Upsun\Model\ListOrgDiscounts200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgInvoices200Response::class => [
+        'Upsun\Model\ListOrgInvoices200Response' => [
             'items' => 'items'
         ],
-        ListOrgMembers200Response::class => [
+        'Upsun\Model\ListOrgMembers200Response' => [
             'count' => 'count',
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgOrders200Response::class => [
+        'Upsun\Model\ListOrgOrders200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgPlanRecords200Response::class => [
+        'Upsun\Model\ListOrgPlanRecords200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgPrepaymentTransactions200Response::class => [
+        'Upsun\Model\ListOrgPrepaymentTransactions200Response' => [
             'count' => 'count',
             'transactions' => 'transactions',
             'links' => '_links'
         ],
-        ListOrgPrepaymentTransactions200ResponseLinks::class => [
+        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks' => [
             'self' => 'self',
             'previous' => 'previous',
             'next' => 'next',
             'prepayment' => 'prepayment'
         ],
-        ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment::class => [
+        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment' => [
             'href' => 'href'
         ],
-        ListOrgProjects200Response::class => [
+        'Upsun\Model\ListOrgProjects200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgSubscriptions200Response::class => [
+        'Upsun\Model\ListOrgSubscriptions200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgUsageRecords200Response::class => [
+        'Upsun\Model\ListOrgUsageRecords200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListOrgs200Response::class => [
+        'Upsun\Model\ListOrgs200Response' => [
             'count' => 'count',
             'items' => 'items',
             'links' => '_links'
         ],
-        ListPlans200Response::class => [
+        'Upsun\Model\ListPlans200Response' => [
             'count' => 'count',
             'plans' => 'plans',
             'links' => '_links'
         ],
-        ListProfiles200Response::class => [
+        'Upsun\Model\ListProfiles200Response' => [
             'count' => 'count',
             'profiles' => 'profiles',
             'links' => '_links'
         ],
-        ListProjectUserAccess200Response::class => [
+        'Upsun\Model\ListProjectUserAccess200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListRegions200Response::class => [
+        'Upsun\Model\ListRegions200Response' => [
             'regions' => 'regions',
             'links' => '_links'
         ],
-        ListTeamMembers200Response::class => [
+        'Upsun\Model\ListTeamMembers200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListTeamProjectAccess200Response::class => [
+        'Upsun\Model\ListTeamProjectAccess200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListTeams200Response::class => [
+        'Upsun\Model\ListTeams200Response' => [
             'items' => 'items',
             'count' => 'count',
             'links' => '_links'
         ],
-        ListTicketCategories200ResponseInner::class => [
+        'Upsun\Model\ListTicketCategories200ResponseInner' => [
             'id' => 'id',
             'label' => 'label'
         ],
-        ListTicketPriorities200ResponseInner::class => [
+        'Upsun\Model\ListTicketPriorities200ResponseInner' => [
             'id' => 'id',
             'label' => 'label',
             'shortDescription' => 'short_description',
             'description' => 'description'
         ],
-        ListTickets200Response::class => [
+        'Upsun\Model\ListTickets200Response' => [
             'count' => 'count',
             'tickets' => 'tickets',
             'links' => '_links'
         ],
-        ListUserExtendedAccess200Response::class => [
+        'Upsun\Model\ListUserExtendedAccess200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        ListUserExtendedAccess200ResponseItemsInner::class => [
+        'Upsun\Model\ListUserExtendedAccess200ResponseItemsInner' => [
             'userId' => 'user_id',
             'resourceId' => 'resource_id',
             'resourceType' => 'resource_type',
@@ -2065,21 +1579,21 @@ final class ObjectAttributesMapper
             'grantedAt' => 'granted_at',
             'updatedAt' => 'updated_at'
         ],
-        ListUserOrgs200Response::class => [
+        'Upsun\Model\ListUserOrgs200Response' => [
             'items' => 'items',
             'links' => '_links'
         ],
-        LogsForwarding::class => [
+        'Upsun\Model\LogsForwarding' => [
             'maxExtraPayloadSize' => 'max_extra_payload_size'
         ],
-        MappingOfClustersToEnterpriseApplicationsValue::class => [
+        'Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue' => [
             'activeDocroot' => 'active_docroot',
             'docrootVersions' => 'docroot_versions'
         ],
-        Metrics::class => [
+        'Upsun\Model\Metrics' => [
             'maxRange' => 'max_range'
         ],
-        NewRelicIntegration::class => [
+        'Upsun\Model\NewRelicIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -2087,33 +1601,33 @@ final class ObjectAttributesMapper
             'url' => 'url',
             'tlsVerify' => 'tls_verify'
         ],
-        NewRelicIntegrationCreateInput::class => [
+        'Upsun\Model\NewRelicIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'licenseKey' => 'license_key',
             'extra' => 'extra',
             'tlsVerify' => 'tls_verify'
         ],
-        NewRelicIntegrationPatch::class => [
+        'Upsun\Model\NewRelicIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'licenseKey' => 'license_key',
             'extra' => 'extra',
             'tlsVerify' => 'tls_verify'
         ],
-        NewRelicLogForwardingIntegrationConfigurations::class => [
+        'Upsun\Model\NewRelicLogForwardingIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        OperationsThatCanBeAppliedToTheSourceCodeValue::class => [
+        'Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue' => [
             'command' => 'command'
         ],
-        OperationsThatCanBeTriggeredOnThisApplicationValue::class => [
+        'Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue' => [
             'commands' => 'commands',
             'timeout' => 'timeout',
             'role' => 'role'
         ],
-        Order::class => [
+        'Upsun\Model\Order' => [
             'id' => 'id',
             'status' => 'status',
             'owner' => 'owner',
@@ -2135,19 +1649,19 @@ final class ObjectAttributesMapper
             'lineItems' => 'line_items',
             'links' => '_links'
         ],
-        OrderBillingPeriodLabel::class => [
+        'Upsun\Model\OrderBillingPeriodLabel' => [
             'formatted' => 'formatted',
             'month' => 'month',
             'year' => 'year',
             'nextMonth' => 'next_month'
         ],
-        OrderLinks::class => [
+        'Upsun\Model\OrderLinks' => [
             'invoices' => 'invoices'
         ],
-        OrderLinksInvoices::class => [
+        'Upsun\Model\OrderLinksInvoices' => [
             'href' => 'href'
         ],
-        Organization::class => [
+        'Upsun\Model\Organization' => [
             'id' => 'id',
             'type' => 'type',
             'ownerId' => 'owner_id',
@@ -2162,24 +1676,24 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'links' => '_links'
         ],
-        OrganizationAddonsObject::class => [
+        'Upsun\Model\OrganizationAddonsObject' => [
             'available' => 'available',
             'current' => 'current',
             'upgradesAvailable' => 'upgrades_available'
         ],
-        OrganizationAddonsObjectAvailable::class => [
+        'Upsun\Model\OrganizationAddonsObjectAvailable' => [
             'userManagement' => 'user_management',
             'supportLevel' => 'support_level'
         ],
-        OrganizationAddonsObjectCurrent::class => [
+        'Upsun\Model\OrganizationAddonsObjectCurrent' => [
             'userManagement' => 'user_management',
             'supportLevel' => 'support_level'
         ],
-        OrganizationAddonsObjectUpgradesAvailable::class => [
+        'Upsun\Model\OrganizationAddonsObjectUpgradesAvailable' => [
             'userManagement' => 'user_management',
             'supportLevel' => 'support_level'
         ],
-        OrganizationAlertConfig::class => [
+        'Upsun\Model\OrganizationAlertConfig' => [
             'id' => 'id',
             'active' => 'active',
             'alertsSent' => 'alerts_sent',
@@ -2187,17 +1701,17 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'config' => 'config'
         ],
-        OrganizationAlertConfigConfig::class => [
+        'Upsun\Model\OrganizationAlertConfigConfig' => [
             'threshold' => 'threshold',
             'mode' => 'mode'
         ],
-        OrganizationAlertConfigConfigThreshold::class => [
+        'Upsun\Model\OrganizationAlertConfigConfigThreshold' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol'
         ],
-        OrganizationEstimationObject::class => [
+        'Upsun\Model\OrganizationEstimationObject' => [
             'total' => 'total',
             'subTotal' => 'sub_total',
             'vouchers' => 'vouchers',
@@ -2206,61 +1720,61 @@ final class ObjectAttributesMapper
             'supportLevel' => 'support_level',
             'subscriptions' => 'subscriptions'
         ],
-        OrganizationEstimationObjectSubscriptions::class => [
+        'Upsun\Model\OrganizationEstimationObjectSubscriptions' => [
             'total' => 'total',
             'list' => 'list'
         ],
-        OrganizationEstimationObjectSubscriptionsListInner::class => [
+        'Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner' => [
             'licenseId' => 'license_id',
             'projectTitle' => 'project_title',
             'total' => 'total',
             'usage' => 'usage'
         ],
-        OrganizationEstimationObjectSubscriptionsListInnerUsage::class => [
+        'Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage' => [
             'cpu' => 'cpu',
             'memory' => 'memory',
             'storage' => 'storage',
             'environments' => 'environments'
         ],
-        OrganizationEstimationObjectUserLicenses::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicenses' => [
             'base' => 'base',
             'userManagement' => 'user_management'
         ],
-        OrganizationEstimationObjectUserLicensesBase::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesBase' => [
             'count' => 'count',
             'total' => 'total',
             'list' => 'list'
         ],
-        OrganizationEstimationObjectUserLicensesBaseList::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList' => [
             'adminUser' => 'admin_user',
             'viewerUser' => 'viewer_user'
         ],
-        OrganizationEstimationObjectUserLicensesBaseListAdminUser::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser' => [
             'count' => 'count',
             'total' => 'total'
         ],
-        OrganizationEstimationObjectUserLicensesBaseListViewerUser::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser' => [
             'count' => 'count',
             'total' => 'total'
         ],
-        OrganizationEstimationObjectUserLicensesUserManagement::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement' => [
             'count' => 'count',
             'total' => 'total',
             'list' => 'list'
         ],
-        OrganizationEstimationObjectUserLicensesUserManagementList::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList' => [
             'standardManagementUser' => 'standard_management_user',
             'advancedManagementUser' => 'advanced_management_user'
         ],
-        OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser' => [
             'count' => 'count',
             'total' => 'total'
         ],
-        OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser::class => [
+        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser' => [
             'count' => 'count',
             'total' => 'total'
         ],
-        OrganizationInvitation::class => [
+        'Upsun\Model\OrganizationInvitation' => [
             'id' => 'id',
             'state' => 'state',
             'organizationId' => 'organization_id',
@@ -2271,11 +1785,11 @@ final class ObjectAttributesMapper
             'finishedAt' => 'finished_at',
             'permissions' => 'permissions'
         ],
-        OrganizationInvitationOwner::class => [
+        'Upsun\Model\OrganizationInvitationOwner' => [
             'id' => 'id',
             'displayName' => 'display_name'
         ],
-        OrganizationLinks::class => [
+        'Upsun\Model\OrganizationLinks' => [
             'self' => 'self',
             'update' => 'update',
             'delete' => 'delete',
@@ -2292,60 +1806,60 @@ final class ObjectAttributesMapper
             'estimateSubscription' => 'estimate-subscription',
             'mfaEnforcement' => 'mfa-enforcement'
         ],
-        OrganizationLinksAddress::class => [
+        'Upsun\Model\OrganizationLinksAddress' => [
             'href' => 'href'
         ],
-        OrganizationLinksApplyVoucher::class => [
+        'Upsun\Model\OrganizationLinksApplyVoucher' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationLinksCreateMember::class => [
+        'Upsun\Model\OrganizationLinksCreateMember' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationLinksCreateSubscription::class => [
+        'Upsun\Model\OrganizationLinksCreateSubscription' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationLinksDelete::class => [
+        'Upsun\Model\OrganizationLinksDelete' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationLinksEstimateSubscription::class => [
+        'Upsun\Model\OrganizationLinksEstimateSubscription' => [
             'href' => 'href'
         ],
-        OrganizationLinksMembers::class => [
+        'Upsun\Model\OrganizationLinksMembers' => [
             'href' => 'href'
         ],
-        OrganizationLinksMfaEnforcement::class => [
+        'Upsun\Model\OrganizationLinksMfaEnforcement' => [
             'href' => 'href'
         ],
-        OrganizationLinksOrders::class => [
+        'Upsun\Model\OrganizationLinksOrders' => [
             'href' => 'href'
         ],
-        OrganizationLinksPaymentSource::class => [
+        'Upsun\Model\OrganizationLinksPaymentSource' => [
             'href' => 'href'
         ],
-        OrganizationLinksProfile::class => [
+        'Upsun\Model\OrganizationLinksProfile' => [
             'href' => 'href'
         ],
-        OrganizationLinksSelf::class => [
+        'Upsun\Model\OrganizationLinksSelf' => [
             'href' => 'href'
         ],
-        OrganizationLinksSubscriptions::class => [
+        'Upsun\Model\OrganizationLinksSubscriptions' => [
             'href' => 'href'
         ],
-        OrganizationLinksUpdate::class => [
+        'Upsun\Model\OrganizationLinksUpdate' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationLinksVouchers::class => [
+        'Upsun\Model\OrganizationLinksVouchers' => [
             'href' => 'href'
         ],
-        OrganizationMFAEnforcement::class => [
+        'Upsun\Model\OrganizationMFAEnforcement' => [
             'enforceMfa' => 'enforce_mfa'
         ],
-        OrganizationMember::class => [
+        'Upsun\Model\OrganizationMember' => [
             'id' => 'id',
             'organizationId' => 'organization_id',
             'userId' => 'user_id',
@@ -2356,23 +1870,23 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'links' => '_links'
         ],
-        OrganizationMemberLinks::class => [
+        'Upsun\Model\OrganizationMemberLinks' => [
             'self' => 'self',
             'update' => 'update',
             'delete' => 'delete'
         ],
-        OrganizationMemberLinksDelete::class => [
+        'Upsun\Model\OrganizationMemberLinksDelete' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationMemberLinksSelf::class => [
+        'Upsun\Model\OrganizationMemberLinksSelf' => [
             'href' => 'href'
         ],
-        OrganizationMemberLinksUpdate::class => [
+        'Upsun\Model\OrganizationMemberLinksUpdate' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationProject::class => [
+        'Upsun\Model\OrganizationProject' => [
             'id' => 'id',
             'organizationId' => 'organization_id',
             'subscriptionId' => 'subscription_id',
@@ -2387,40 +1901,40 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'links' => '_links'
         ],
-        OrganizationProjectLinks::class => [
+        'Upsun\Model\OrganizationProjectLinks' => [
             'self' => 'self',
             'update' => 'update',
             'delete' => 'delete',
             'subscription' => 'subscription',
             'api' => 'api'
         ],
-        OrganizationProjectLinksApi::class => [
+        'Upsun\Model\OrganizationProjectLinksApi' => [
             'href' => 'href'
         ],
-        OrganizationProjectLinksDelete::class => [
+        'Upsun\Model\OrganizationProjectLinksDelete' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationProjectLinksSelf::class => [
+        'Upsun\Model\OrganizationProjectLinksSelf' => [
             'href' => 'href'
         ],
-        OrganizationProjectLinksSubscription::class => [
+        'Upsun\Model\OrganizationProjectLinksSubscription' => [
             'href' => 'href'
         ],
-        OrganizationProjectLinksUpdate::class => [
+        'Upsun\Model\OrganizationProjectLinksUpdate' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationProjectPlan::class => [
-
+        'Upsun\Model\OrganizationProjectPlan' => [
+            
         ],
-        OrganizationProjectStatus::class => [
-
+        'Upsun\Model\OrganizationProjectStatus' => [
+            
         ],
-        OrganizationProjectType::class => [
-
+        'Upsun\Model\OrganizationProjectType' => [
+            
         ],
-        OrganizationReference::class => [
+        'Upsun\Model\OrganizationReference' => [
             'id' => 'id',
             'ownerId' => 'owner_id',
             'name' => 'name',
@@ -2429,7 +1943,7 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        OrganizationSSOConfig::class => [
+        'Upsun\Model\OrganizationSSOConfig' => [
             'providerType' => 'provider_type',
             'domain' => 'domain',
             'organizationId' => 'organization_id',
@@ -2437,44 +1951,44 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        OutboundFirewall::class => [
+        'Upsun\Model\OutboundFirewall' => [
             'enabled' => 'enabled'
         ],
-        OutboundFirewallRestrictionsInner::class => [
+        'Upsun\Model\OutboundFirewallRestrictionsInner' => [
             'protocol' => 'protocol',
             'ips' => 'ips',
             'domains' => 'domains',
             'ports' => 'ports'
         ],
-        OwnerInfo::class => [
+        'Upsun\Model\OwnerInfo' => [
             'type' => 'type',
             'username' => 'username',
             'displayName' => 'display_name'
         ],
-        PagerDutyIntegration::class => [
+        'Upsun\Model\PagerDutyIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'routingKey' => 'routing_key'
         ],
-        PagerDutyIntegrationCreateInput::class => [
+        'Upsun\Model\PagerDutyIntegrationCreateInput' => [
             'type' => 'type',
             'routingKey' => 'routing_key'
         ],
-        PagerDutyIntegrationPatch::class => [
+        'Upsun\Model\PagerDutyIntegrationPatch' => [
             'type' => 'type',
             'routingKey' => 'routing_key'
         ],
-        PerServiceResourcesOverridesValue::class => [
+        'Upsun\Model\PerServiceResourcesOverridesValue' => [
             'cpu' => 'cpu',
             'memory' => 'memory',
             'disk' => 'disk'
         ],
-        Plan::class => [
+        'Upsun\Model\Plan' => [
             'name' => 'name',
             'label' => 'label'
         ],
-        PlanRecords::class => [
+        'Upsun\Model\PlanRecords' => [
             'id' => 'id',
             'owner' => 'owner',
             'subscriptionId' => 'subscription_id',
@@ -2485,23 +1999,23 @@ final class ObjectAttributesMapper
             'end' => 'end',
             'status' => 'status'
         ],
-        PrepaymentObject::class => [
+        'Upsun\Model\PrepaymentObject' => [
             'prepayment' => 'prepayment'
         ],
-        PrepaymentObjectPrepayment::class => [
+        'Upsun\Model\PrepaymentObjectPrepayment' => [
             'organizationId' => 'organization_id',
             'balance' => 'balance',
             'lastUpdatedAt' => 'last_updated_at',
             'sufficient' => 'sufficient',
             'fallback' => 'fallback'
         ],
-        PrepaymentObjectPrepaymentBalance::class => [
+        'Upsun\Model\PrepaymentObjectPrepaymentBalance' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol'
         ],
-        PrepaymentTransactionObject::class => [
+        'Upsun\Model\PrepaymentTransactionObject' => [
             'orderId' => 'order_id',
             'message' => 'message',
             'status' => 'status',
@@ -2510,7 +2024,7 @@ final class ObjectAttributesMapper
             'updated' => 'updated',
             'expireDate' => 'expire_date'
         ],
-        ProdDomainStorage::class => [
+        'Upsun\Model\ProdDomainStorage' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -2520,16 +2034,16 @@ final class ObjectAttributesMapper
             'registeredName' => 'registered_name',
             'isDefault' => 'is_default'
         ],
-        ProdDomainStorageCreateInput::class => [
+        'Upsun\Model\ProdDomainStorageCreateInput' => [
             'name' => 'name',
             'attributes' => 'attributes',
             'isDefault' => 'is_default'
         ],
-        ProdDomainStoragePatch::class => [
+        'Upsun\Model\ProdDomainStoragePatch' => [
             'attributes' => 'attributes',
             'isDefault' => 'is_default'
         ],
-        Profile::class => [
+        'Upsun\Model\Profile' => [
             'id' => 'id',
             'displayName' => 'display_name',
             'email' => 'email',
@@ -2554,7 +2068,7 @@ final class ObjectAttributesMapper
             'currentTrial' => 'current_trial',
             'invoiced' => 'invoiced'
         ],
-        ProfileCurrentTrial::class => [
+        'Upsun\Model\ProfileCurrentTrial' => [
             'active' => 'active',
             'created' => 'created',
             'description' => 'description',
@@ -2567,37 +2081,37 @@ final class ObjectAttributesMapper
             'model' => 'model',
             'daysRemaining' => 'days_remaining'
         ],
-        ProfileCurrentTrialCurrent::class => [
+        'Upsun\Model\ProfileCurrentTrialCurrent' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        ProfileCurrentTrialProjects::class => [
+        'Upsun\Model\ProfileCurrentTrialProjects' => [
             'id' => 'id',
             'name' => 'name',
             'total' => 'total'
         ],
-        ProfileCurrentTrialProjectsTotal::class => [
+        'Upsun\Model\ProfileCurrentTrialProjectsTotal' => [
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol',
             'formatted' => 'formatted'
         ],
-        ProfileCurrentTrialSpend::class => [
+        'Upsun\Model\ProfileCurrentTrialSpend' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol'
         ],
-        ProfileCurrentTrialSpendRemaining::class => [
+        'Upsun\Model\ProfileCurrentTrialSpendRemaining' => [
             'formatted' => 'formatted',
             'amount' => 'amount',
             'currency' => 'currency',
             'currencySymbol' => 'currency_symbol',
             'unlimited' => 'unlimited'
         ],
-        Project::class => [
+        'Upsun\Model\Project' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'attributes' => 'attributes',
@@ -2614,7 +2128,7 @@ final class ObjectAttributesMapper
             'defaultDomain' => 'default_domain',
             'subscription' => 'subscription'
         ],
-        ProjectCapabilities::class => [
+        'Upsun\Model\ProjectCapabilities' => [
             'metrics' => 'metrics',
             'logsForwarding' => 'logs_forwarding',
             'images' => 'images',
@@ -2627,7 +2141,7 @@ final class ObjectAttributesMapper
             'outboundFirewall' => 'outbound_firewall',
             'integrations' => 'integrations'
         ],
-        ProjectInfo::class => [
+        'Upsun\Model\ProjectInfo' => [
             'title' => 'title',
             'name' => 'name',
             'namespace' => 'namespace',
@@ -2635,7 +2149,7 @@ final class ObjectAttributesMapper
             'capabilities' => 'capabilities',
             'settings' => 'settings'
         ],
-        ProjectInvitation::class => [
+        'Upsun\Model\ProjectInvitation' => [
             'id' => 'id',
             'state' => 'state',
             'projectId' => 'project_id',
@@ -2647,30 +2161,30 @@ final class ObjectAttributesMapper
             'finishedAt' => 'finished_at',
             'environments' => 'environments'
         ],
-        ProjectInvitationEnvironmentsInner::class => [
+        'Upsun\Model\ProjectInvitationEnvironmentsInner' => [
             'id' => 'id',
             'type' => 'type',
             'role' => 'role',
             'title' => 'title'
         ],
-        ProjectOptions::class => [
+        'Upsun\Model\ProjectOptions' => [
             'defaults' => 'defaults',
             'enforced' => 'enforced',
             'regions' => 'regions',
             'plans' => 'plans',
             'billing' => 'billing'
         ],
-        ProjectOptionsDefaults::class => [
+        'Upsun\Model\ProjectOptionsDefaults' => [
             'settings' => 'settings',
             'variables' => 'variables',
             'access' => 'access',
             'capabilities' => 'capabilities'
         ],
-        ProjectOptionsEnforced::class => [
+        'Upsun\Model\ProjectOptionsEnforced' => [
             'settings' => 'settings',
             'capabilities' => 'capabilities'
         ],
-        ProjectPatch::class => [
+        'Upsun\Model\ProjectPatch' => [
             'attributes' => 'attributes',
             'title' => 'title',
             'description' => 'description',
@@ -2679,7 +2193,7 @@ final class ObjectAttributesMapper
             'region' => 'region',
             'defaultDomain' => 'default_domain'
         ],
-        ProjectReference::class => [
+        'Upsun\Model\ProjectReference' => [
             'id' => 'id',
             'organizationId' => 'organization_id',
             'subscriptionId' => 'subscription_id',
@@ -2691,7 +2205,7 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        ProjectSettings::class => [
+        'Upsun\Model\ProjectSettings' => [
             'initialize' => 'initialize',
             'productName' => 'product_name',
             'productCode' => 'product_code',
@@ -2753,12 +2267,12 @@ final class ObjectAttributesMapper
             'disableAgentErrorReporter' => 'disable_agent_error_reporter',
             'requiresDomainOwnership' => 'requires_domain_ownership'
         ],
-        ProjectSettingsPatch::class => [
+        'Upsun\Model\ProjectSettingsPatch' => [
             'initialize' => 'initialize',
             'dataRetention' => 'data_retention',
             'buildResources' => 'build_resources'
         ],
-        ProjectVariable::class => [
+        'Upsun\Model\ProjectVariable' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'name' => 'name',
@@ -2769,7 +2283,7 @@ final class ObjectAttributesMapper
             'visibleRuntime' => 'visible_runtime',
             'value' => 'value'
         ],
-        ProjectVariableCreateInput::class => [
+        'Upsun\Model\ProjectVariableCreateInput' => [
             'name' => 'name',
             'value' => 'value',
             'attributes' => 'attributes',
@@ -2778,7 +2292,7 @@ final class ObjectAttributesMapper
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime'
         ],
-        ProjectVariablePatch::class => [
+        'Upsun\Model\ProjectVariablePatch' => [
             'name' => 'name',
             'attributes' => 'attributes',
             'value' => 'value',
@@ -2787,7 +2301,7 @@ final class ObjectAttributesMapper
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime'
         ],
-        ProxyRoute::class => [
+        'Upsun\Model\ProxyRoute' => [
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
@@ -2800,7 +2314,7 @@ final class ObjectAttributesMapper
             'ssi' => 'ssi',
             'upstream' => 'upstream'
         ],
-        ProxyRouteCreateInput::class => [
+        'Upsun\Model\ProxyRouteCreateInput' => [
             'type' => 'type',
             'to' => 'to',
             'primary' => 'primary',
@@ -2809,7 +2323,7 @@ final class ObjectAttributesMapper
             'attributes' => 'attributes',
             'tls' => 'tls'
         ],
-        ProxyRoutePatch::class => [
+        'Upsun\Model\ProxyRoutePatch' => [
             'type' => 'type',
             'to' => 'to',
             'primary' => 'primary',
@@ -2818,7 +2332,7 @@ final class ObjectAttributesMapper
             'attributes' => 'attributes',
             'tls' => 'tls'
         ],
-        RedirectRoute::class => [
+        'Upsun\Model\RedirectRoute' => [
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
@@ -2831,7 +2345,7 @@ final class ObjectAttributesMapper
             'ssi' => 'ssi',
             'upstream' => 'upstream'
         ],
-        RedirectRouteCreateInput::class => [
+        'Upsun\Model\RedirectRouteCreateInput' => [
             'type' => 'type',
             'to' => 'to',
             'primary' => 'primary',
@@ -2841,7 +2355,7 @@ final class ObjectAttributesMapper
             'tls' => 'tls',
             'redirects' => 'redirects'
         ],
-        RedirectRoutePatch::class => [
+        'Upsun\Model\RedirectRoutePatch' => [
             'type' => 'type',
             'to' => 'to',
             'primary' => 'primary',
@@ -2851,12 +2365,12 @@ final class ObjectAttributesMapper
             'tls' => 'tls',
             'redirects' => 'redirects'
         ],
-        Ref::class => [
+        'Upsun\Model\Ref' => [
             'ref' => 'ref',
             'object' => 'object',
             'sha' => 'sha'
         ],
-        Region::class => [
+        'Upsun\Model\Region' => [
             'id' => 'id',
             'label' => 'label',
             'zone' => 'zone',
@@ -2870,21 +2384,21 @@ final class ObjectAttributesMapper
             'datacenter' => 'datacenter',
             'environmentalImpact' => 'environmental_impact'
         ],
-        RegionDatacenter::class => [
+        'Upsun\Model\RegionDatacenter' => [
             'name' => 'name',
             'label' => 'label',
             'location' => 'location'
         ],
-        RegionEnvironmentalImpact::class => [
+        'Upsun\Model\RegionEnvironmentalImpact' => [
             'zone' => 'zone',
             'carbonIntensity' => 'carbon_intensity',
             'green' => 'green'
         ],
-        RegionProvider::class => [
+        'Upsun\Model\RegionProvider' => [
             'name' => 'name',
             'logo' => 'logo'
         ],
-        RegionReference::class => [
+        'Upsun\Model\RegionReference' => [
             'id' => 'id',
             'label' => 'label',
             'zone' => 'zone',
@@ -2902,7 +2416,7 @@ final class ObjectAttributesMapper
             'code' => 'code',
             'envimpact' => 'envimpact'
         ],
-        ReplacementDomainStorage::class => [
+        'Upsun\Model\ReplacementDomainStorage' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -2912,25 +2426,25 @@ final class ObjectAttributesMapper
             'registeredName' => 'registered_name',
             'replacementFor' => 'replacement_for'
         ],
-        ReplacementDomainStorageCreateInput::class => [
+        'Upsun\Model\ReplacementDomainStorageCreateInput' => [
             'name' => 'name',
             'attributes' => 'attributes',
             'replacementFor' => 'replacement_for'
         ],
-        ReplacementDomainStoragePatch::class => [
+        'Upsun\Model\ReplacementDomainStoragePatch' => [
             'attributes' => 'attributes'
         ],
-        RepositoryInformation::class => [
+        'Upsun\Model\RepositoryInformation' => [
             'url' => 'url',
             'clientSshKey' => 'client_ssh_key'
         ],
-        ResetEmailAddressRequest::class => [
+        'Upsun\Model\ResetEmailAddressRequest' => [
             'emailAddress' => 'email_address'
         ],
-        ResourceConfig::class => [
+        'Upsun\Model\ResourceConfig' => [
             'profileSize' => 'profile_size'
         ],
-        Resources::class => [
+        'Upsun\Model\Resources' => [
             'baseMemory' => 'base_memory',
             'memoryRatio' => 'memory_ratio',
             'profileSize' => 'profile_size',
@@ -2938,50 +2452,50 @@ final class ObjectAttributesMapper
             'default' => 'default',
             'disk' => 'disk'
         ],
-        Resources1::class => [
+        'Upsun\Model\Resources1' => [
             'init' => 'init'
         ],
-        Resources2::class => [
+        'Upsun\Model\Resources2' => [
             'init' => 'init'
         ],
-        Resources3::class => [
+        'Upsun\Model\Resources3' => [
             'init' => 'init'
         ],
-        Resources4::class => [
+        'Upsun\Model\Resources4' => [
             'init' => 'init'
         ],
-        Resources5::class => [
+        'Upsun\Model\Resources5' => [
             'init' => 'init'
         ],
-        ResourcesForDevelopmentEnvironments::class => [
+        'Upsun\Model\ResourcesForDevelopmentEnvironments' => [
             'legacyDevelopment' => 'legacy_development',
             'maxCpu' => 'max_cpu',
             'maxMemory' => 'max_memory',
             'maxEnvironments' => 'max_environments'
         ],
-        ResourcesForProductionEnvironments::class => [
+        'Upsun\Model\ResourcesForProductionEnvironments' => [
             'legacyDevelopment' => 'legacy_development',
             'maxCpu' => 'max_cpu',
             'maxMemory' => 'max_memory',
             'maxEnvironments' => 'max_environments'
         ],
-        ResourcesLimits::class => [
+        'Upsun\Model\ResourcesLimits' => [
             'containerProfiles' => 'container_profiles',
             'production' => 'production',
             'development' => 'development'
         ],
-        ResourcesOverridesValue::class => [
+        'Upsun\Model\ResourcesOverridesValue' => [
             'services' => 'services',
             'startsAt' => 'starts_at',
             'endsAt' => 'ends_at',
             'redeployedStart' => 'redeployed_start',
             'redeployedEnd' => 'redeployed_end'
         ],
-        RestrictedAndDeniedImageTypes::class => [
+        'Upsun\Model\RestrictedAndDeniedImageTypes' => [
             'only' => 'only',
             'exclude' => 'exclude'
         ],
-        Route::class => [
+        'Upsun\Model\Route' => [
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
@@ -2994,7 +2508,7 @@ final class ObjectAttributesMapper
             'ssi' => 'ssi',
             'upstream' => 'upstream'
         ],
-        RouteCreateInput::class => [
+        'Upsun\Model\RouteCreateInput' => [
             'type' => 'type',
             'to' => 'to',
             'upstream' => 'upstream',
@@ -3007,7 +2521,7 @@ final class ObjectAttributesMapper
             'cache' => 'cache',
             'ssi' => 'ssi'
         ],
-        RoutePatch::class => [
+        'Upsun\Model\RoutePatch' => [
             'type' => 'type',
             'to' => 'to',
             'upstream' => 'upstream',
@@ -3020,7 +2534,7 @@ final class ObjectAttributesMapper
             'cache' => 'cache',
             'ssi' => 'ssi'
         ],
-        RoutesValue::class => [
+        'Upsun\Model\RoutesValue' => [
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
@@ -3033,10 +2547,10 @@ final class ObjectAttributesMapper
             'ssi' => 'ssi',
             'upstream' => 'upstream'
         ],
-        RuntimeOperations::class => [
+        'Upsun\Model\RuntimeOperations' => [
             'enabled' => 'enabled'
         ],
-        SSHKey::class => [
+        'Upsun\Model\SSHKey' => [
             'keyId' => 'key_id',
             'uid' => 'uid',
             'fingerprint' => 'fingerprint',
@@ -3044,14 +2558,14 @@ final class ObjectAttributesMapper
             'value' => 'value',
             'changed' => 'changed'
         ],
-        ScheduledCronTasksExecutedByThisApplicationValue::class => [
+        'Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue' => [
             'spec' => 'spec',
             'commands' => 'commands',
             'timeout' => 'timeout',
             'shutdownTimeout' => 'shutdown_timeout',
             'cmd' => 'cmd'
         ],
-        ScriptIntegration::class => [
+        'Upsun\Model\ScriptIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -3062,11 +2576,11 @@ final class ObjectAttributesMapper
             'result' => 'result',
             'script' => 'script'
         ],
-        ScriptIntegrationConfigurations::class => [
+        'Upsun\Model\ScriptIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        ScriptIntegrationCreateInput::class => [
+        'Upsun\Model\ScriptIntegrationCreateInput' => [
             'type' => 'type',
             'script' => 'script',
             'events' => 'events',
@@ -3075,7 +2589,7 @@ final class ObjectAttributesMapper
             'states' => 'states',
             'result' => 'result'
         ],
-        ScriptIntegrationPatch::class => [
+        'Upsun\Model\ScriptIntegrationPatch' => [
             'type' => 'type',
             'script' => 'script',
             'events' => 'events',
@@ -3084,20 +2598,20 @@ final class ObjectAttributesMapper
             'states' => 'states',
             'result' => 'result'
         ],
-        SendOrgMfaReminders200ResponseValue::class => [
+        'Upsun\Model\SendOrgMfaReminders200ResponseValue' => [
             'code' => 'code',
             'message' => 'message'
         ],
-        SendOrgMfaRemindersRequest::class => [
+        'Upsun\Model\SendOrgMfaRemindersRequest' => [
             'userIds' => 'user_ids'
         ],
-        ServerSideIncludeConfiguration::class => [
+        'Upsun\Model\ServerSideIncludeConfiguration' => [
             'enabled' => 'enabled'
         ],
-        ServerSideIncludeConfiguration1::class => [
+        'Upsun\Model\ServerSideIncludeConfiguration1' => [
             'enabled' => 'enabled'
         ],
-        ServicesValue::class => [
+        'Upsun\Model\ServicesValue' => [
             'type' => 'type',
             'size' => 'size',
             'disk' => 'disk',
@@ -3109,33 +2623,33 @@ final class ObjectAttributesMapper
             'containerProfile' => 'container_profile',
             'endpoints' => 'endpoints'
         ],
-        SlackIntegration::class => [
+        'Upsun\Model\SlackIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'channel' => 'channel'
         ],
-        SlackIntegrationCreateInput::class => [
+        'Upsun\Model\SlackIntegrationCreateInput' => [
             'type' => 'type',
             'token' => 'token',
             'channel' => 'channel'
         ],
-        SlackIntegrationPatch::class => [
+        'Upsun\Model\SlackIntegrationPatch' => [
             'type' => 'type',
             'token' => 'token',
             'channel' => 'channel'
         ],
-        SourceOperations::class => [
+        'Upsun\Model\SourceOperations' => [
             'enabled' => 'enabled'
         ],
-        SpecificOverridesValue::class => [
+        'Upsun\Model\SpecificOverridesValue' => [
             'expires' => 'expires',
             'passthru' => 'passthru',
             'scripts' => 'scripts',
             'allow' => 'allow',
             'headers' => 'headers'
         ],
-        SplunkIntegration::class => [
+        'Upsun\Model\SplunkIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -3145,7 +2659,7 @@ final class ObjectAttributesMapper
             'sourcetype' => 'sourcetype',
             'tlsVerify' => 'tls_verify'
         ],
-        SplunkIntegrationCreateInput::class => [
+        'Upsun\Model\SplunkIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'index' => 'index',
@@ -3154,7 +2668,7 @@ final class ObjectAttributesMapper
             'sourcetype' => 'sourcetype',
             'tlsVerify' => 'tls_verify'
         ],
-        SplunkIntegrationPatch::class => [
+        'Upsun\Model\SplunkIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'index' => 'index',
@@ -3163,25 +2677,25 @@ final class ObjectAttributesMapper
             'sourcetype' => 'sourcetype',
             'tlsVerify' => 'tls_verify'
         ],
-        SplunkLogForwardingIntegrationConfigurations::class => [
+        'Upsun\Model\SplunkLogForwardingIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        Status::class => [
+        'Upsun\Model\Status' => [
             'code' => 'code',
             'message' => 'message'
         ],
-        StrictTransportSecurityOptions::class => [
+        'Upsun\Model\StrictTransportSecurityOptions' => [
             'enabled' => 'enabled',
             'includeSubdomains' => 'include_subdomains',
             'preload' => 'preload'
         ],
-        StrictTransportSecurityOptions1::class => [
+        'Upsun\Model\StrictTransportSecurityOptions1' => [
             'enabled' => 'enabled',
             'includeSubdomains' => 'include_subdomains',
             'preload' => 'preload'
         ],
-        StringFilter::class => [
+        'Upsun\Model\StringFilter' => [
             'eq' => 'eq',
             'ne' => 'ne',
             'in' => 'in',
@@ -3191,7 +2705,7 @@ final class ObjectAttributesMapper
             'starts' => 'starts',
             'ends' => 'ends'
         ],
-        Subscription::class => [
+        'Upsun\Model\Subscription' => [
             'id' => 'id',
             'status' => 'status',
             'createdAt' => 'created_at',
@@ -3217,7 +2731,7 @@ final class ObjectAttributesMapper
             'services' => 'services',
             'green' => 'green'
         ],
-        Subscription1::class => [
+        'Upsun\Model\Subscription1' => [
             'licenseUri' => 'license_uri',
             'storage' => 'storage',
             'includedUsers' => 'included_users',
@@ -3231,24 +2745,24 @@ final class ObjectAttributesMapper
             'resourceValidationUrl' => 'resource_validation_url',
             'imageTypes' => 'image_types'
         ],
-        SubscriptionAddonsObject::class => [
+        'Upsun\Model\SubscriptionAddonsObject' => [
             'available' => 'available',
             'current' => 'current',
             'upgradesAvailable' => 'upgrades_available'
         ],
-        SubscriptionAddonsObjectAvailable::class => [
+        'Upsun\Model\SubscriptionAddonsObjectAvailable' => [
             'continuousProfiling' => 'continuous_profiling',
             'projectSupportLevel' => 'project_support_level'
         ],
-        SubscriptionAddonsObjectCurrent::class => [
+        'Upsun\Model\SubscriptionAddonsObjectCurrent' => [
             'continuousProfiling' => 'continuous_profiling',
             'projectSupportLevel' => 'project_support_level'
         ],
-        SubscriptionAddonsObjectUpgradesAvailable::class => [
+        'Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable' => [
             'continuousProfiling' => 'continuous_profiling',
             'projectSupportLevel' => 'project_support_level'
         ],
-        SubscriptionCurrentUsageObject::class => [
+        'Upsun\Model\SubscriptionCurrentUsageObject' => [
             'cpuApp' => 'cpu_app',
             'storageAppServices' => 'storage_app_services',
             'memoryApp' => 'memory_app',
@@ -3263,7 +2777,7 @@ final class ObjectAttributesMapper
             'fastlyBandwidth' => 'fastly_bandwidth',
             'fastlyRequests' => 'fastly_requests'
         ],
-        SubscriptionInformation::class => [
+        'Upsun\Model\SubscriptionInformation' => [
             'licenseUri' => 'license_uri',
             'storage' => 'storage',
             'includedUsers' => 'included_users',
@@ -3277,11 +2791,11 @@ final class ObjectAttributesMapper
             'resourceValidationUrl' => 'resource_validation_url',
             'imageTypes' => 'image_types'
         ],
-        SumoLogicLogForwardingIntegrationConfigurations::class => [
+        'Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        SumologicIntegration::class => [
+        'Upsun\Model\SumologicIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -3290,21 +2804,21 @@ final class ObjectAttributesMapper
             'category' => 'category',
             'tlsVerify' => 'tls_verify'
         ],
-        SumologicIntegrationCreateInput::class => [
+        'Upsun\Model\SumologicIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'category' => 'category',
             'tlsVerify' => 'tls_verify'
         ],
-        SumologicIntegrationPatch::class => [
+        'Upsun\Model\SumologicIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'category' => 'category',
             'tlsVerify' => 'tls_verify'
         ],
-        SyslogIntegration::class => [
+        'Upsun\Model\SyslogIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -3316,7 +2830,7 @@ final class ObjectAttributesMapper
             'messageFormat' => 'message_format',
             'tlsVerify' => 'tls_verify'
         ],
-        SyslogIntegrationCreateInput::class => [
+        'Upsun\Model\SyslogIntegrationCreateInput' => [
             'type' => 'type',
             'extra' => 'extra',
             'host' => 'host',
@@ -3328,7 +2842,7 @@ final class ObjectAttributesMapper
             'authMode' => 'auth_mode',
             'tlsVerify' => 'tls_verify'
         ],
-        SyslogIntegrationPatch::class => [
+        'Upsun\Model\SyslogIntegrationPatch' => [
             'type' => 'type',
             'extra' => 'extra',
             'host' => 'host',
@@ -3340,28 +2854,28 @@ final class ObjectAttributesMapper
             'authMode' => 'auth_mode',
             'tlsVerify' => 'tls_verify'
         ],
-        SyslogLogForwardingIntegrationConfigurations::class => [
+        'Upsun\Model\SyslogLogForwardingIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        SystemInformation::class => [
+        'Upsun\Model\SystemInformation' => [
             'version' => 'version',
             'image' => 'image',
             'startedAt' => 'started_at'
         ],
-        TLSSettingsForTheRoute::class => [
+        'Upsun\Model\TLSSettingsForTheRoute' => [
             'strictTransportSecurity' => 'strict_transport_security',
             'minVersion' => 'min_version',
             'clientAuthentication' => 'client_authentication',
             'clientCertificateAuthorities' => 'client_certificate_authorities'
         ],
-        TLSSettingsForTheRoute1::class => [
+        'Upsun\Model\TLSSettingsForTheRoute1' => [
             'strictTransportSecurity' => 'strict_transport_security',
             'minVersion' => 'min_version',
             'clientAuthentication' => 'client_authentication',
             'clientCertificateAuthorities' => 'client_certificate_authorities'
         ],
-        Team::class => [
+        'Upsun\Model\Team' => [
             'id' => 'id',
             'organizationId' => 'organization_id',
             'label' => 'label',
@@ -3370,17 +2884,17 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        TeamCounts::class => [
+        'Upsun\Model\TeamCounts' => [
             'memberCount' => 'member_count',
             'projectCount' => 'project_count'
         ],
-        TeamMember::class => [
+        'Upsun\Model\TeamMember' => [
             'teamId' => 'team_id',
             'userId' => 'user_id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        TeamProjectAccess::class => [
+        'Upsun\Model\TeamProjectAccess' => [
             'teamId' => 'team_id',
             'organizationId' => 'organization_id',
             'projectId' => 'project_id',
@@ -3389,23 +2903,23 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'links' => '_links'
         ],
-        TeamProjectAccessLinks::class => [
+        'Upsun\Model\TeamProjectAccessLinks' => [
             'self' => 'self',
             'update' => 'update',
             'delete' => 'delete'
         ],
-        TeamProjectAccessLinksDelete::class => [
+        'Upsun\Model\TeamProjectAccessLinksDelete' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        TeamProjectAccessLinksSelf::class => [
+        'Upsun\Model\TeamProjectAccessLinksSelf' => [
             'href' => 'href'
         ],
-        TeamProjectAccessLinksUpdate::class => [
+        'Upsun\Model\TeamProjectAccessLinksUpdate' => [
             'href' => 'href',
             'method' => 'method'
         ],
-        TeamReference::class => [
+        'Upsun\Model\TeamReference' => [
             'id' => 'id',
             'organizationId' => 'organization_id',
             'label' => 'label',
@@ -3414,116 +2928,116 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        TheAddonCredentialInformationOptional::class => [
+        'Upsun\Model\TheAddonCredentialInformationOptional' => [
             'addonKey' => 'addon_key',
             'clientKey' => 'client_key'
         ],
-        TheAddonCredentialInformationOptional1::class => [
+        'Upsun\Model\TheAddonCredentialInformationOptional1' => [
             'addonKey' => 'addon_key',
             'clientKey' => 'client_key',
             'sharedSecret' => 'shared_secret'
         ],
-        TheBackupScheduleSpecificationInner::class => [
+        'Upsun\Model\TheBackupScheduleSpecificationInner' => [
             'interval' => 'interval',
             'count' => 'count'
         ],
-        TheBuildConfigurationOfTheApplication::class => [
+        'Upsun\Model\TheBuildConfigurationOfTheApplication' => [
             'flavor' => 'flavor',
             'caches' => 'caches'
         ],
-        TheCommandsDefinition::class => [
+        'Upsun\Model\TheCommandsDefinition' => [
             'start' => 'start',
             'stop' => 'stop'
         ],
-        TheCommandsToManageTheWorker::class => [
+        'Upsun\Model\TheCommandsToManageTheWorker' => [
             'start' => 'start',
             'preStart' => 'pre_start'
         ],
-        TheCommitDistanceInfoBetweenParentAndChildEnvironments::class => [
+        'Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments' => [
             'commitsAhead' => 'commits_ahead',
             'commitsBehind' => 'commits_behind',
             'parentRef' => 'parent_ref'
         ],
-        TheConfigurationOfPathsManagedByTheBuildCacheValue::class => [
+        'Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue' => [
             'directory' => 'directory',
             'watch' => 'watch',
             'allowStale' => 'allow_stale',
             'shareBetweenApps' => 'share_between_apps'
         ],
-        TheConfigurationOfTheRedirects::class => [
+        'Upsun\Model\TheConfigurationOfTheRedirects' => [
             'expires' => 'expires',
             'paths' => 'paths'
         ],
-        TheConfigurationOfTheRedirects1::class => [
+        'Upsun\Model\TheConfigurationOfTheRedirects1' => [
             'paths' => 'paths',
             'expires' => 'expires'
         ],
-        TheContinuousProfilingConfiguration::class => [
+        'Upsun\Model\TheContinuousProfilingConfiguration' => [
             'supportedRuntimes' => 'supported_runtimes'
         ],
-        TheCronsDeploymentState::class => [
+        'Upsun\Model\TheCronsDeploymentState' => [
             'enabled' => 'enabled',
             'status' => 'status'
         ],
-        TheDefaultResourcesForThisService::class => [
+        'Upsun\Model\TheDefaultResourcesForThisService' => [
             'cpu' => 'cpu',
             'memory' => 'memory',
             'disk' => 'disk',
             'profileSize' => 'profile_size'
         ],
-        TheDisksResources::class => [
+        'Upsun\Model\TheDisksResources' => [
             'temporary' => 'temporary',
             'instance' => 'instance',
             'storage' => 'storage'
         ],
-        TheEnvironmentDeploymentState::class => [
+        'Upsun\Model\TheEnvironmentDeploymentState' => [
             'lastDeploymentSuccessful' => 'last_deployment_successful',
             'lastDeploymentAt' => 'last_deployment_at',
             'crons' => 'crons'
         ],
-        TheHostsOfTheDeploymentTargetInner::class => [
+        'Upsun\Model\TheHostsOfTheDeploymentTargetInner' => [
             'id' => 'id',
             'type' => 'type',
             'services' => 'services'
         ],
-        TheHostsOfTheDeploymentTargetInner1::class => [
+        'Upsun\Model\TheHostsOfTheDeploymentTargetInner1' => [
             'id' => 'id',
             'type' => 'type',
             'services' => 'services'
         ],
-        TheInformationAboutTheAuthor::class => [
+        'Upsun\Model\TheInformationAboutTheAuthor' => [
             'date' => 'date',
             'name' => 'name',
             'email' => 'email'
         ],
-        TheInformationAboutTheCommitter::class => [
+        'Upsun\Model\TheInformationAboutTheCommitter' => [
             'date' => 'date',
             'name' => 'name',
             'email' => 'email'
         ],
-        TheIssuerOfTheCertificateInner::class => [
+        'Upsun\Model\TheIssuerOfTheCertificateInner' => [
             'oid' => 'oid',
             'alias' => 'alias',
             'value' => 'value'
         ],
-        TheMinimumResourcesForThisService::class => [
+        'Upsun\Model\TheMinimumResourcesForThisService' => [
             'cpu' => 'cpu',
             'memory' => 'memory',
             'disk' => 'disk',
             'profileSize' => 'profile_size'
         ],
-        TheOAuth2ConsumerInformationOptional::class => [
+        'Upsun\Model\TheOAuth2ConsumerInformationOptional' => [
             'key' => 'key'
         ],
-        TheOAuth2ConsumerInformationOptional1::class => [
+        'Upsun\Model\TheOAuth2ConsumerInformationOptional1' => [
             'key' => 'key',
             'secret' => 'secret'
         ],
-        TheObjectTheReferencePointsTo::class => [
+        'Upsun\Model\TheObjectTheReferencePointsTo' => [
             'type' => 'type',
             'sha' => 'sha'
         ],
-        ThePathsToRedirectValue::class => [
+        'Upsun\Model\ThePathsToRedirectValue' => [
             'regexp' => 'regexp',
             'to' => 'to',
             'prefix' => 'prefix',
@@ -3531,7 +3045,7 @@ final class ObjectAttributesMapper
             'code' => 'code',
             'expires' => 'expires'
         ],
-        ThePathsToRedirectValue1::class => [
+        'Upsun\Model\ThePathsToRedirectValue1' => [
             'to' => 'to',
             'regexp' => 'regexp',
             'prefix' => 'prefix',
@@ -3539,11 +3053,11 @@ final class ObjectAttributesMapper
             'code' => 'code',
             'expires' => 'expires'
         ],
-        TheRelationshipsOfTheApplicationToDefinedServicesValue::class => [
+        'Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue' => [
             'service' => 'service',
             'endpoint' => 'endpoint'
         ],
-        TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class => [
+        'Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue' => [
             'root' => 'root',
             'expires' => 'expires',
             'passthru' => 'passthru',
@@ -3554,13 +3068,13 @@ final class ObjectAttributesMapper
             'index' => 'index',
             'requestBuffering' => 'request_buffering'
         ],
-        TheTreeItemsInner::class => [
+        'Upsun\Model\TheTreeItemsInner' => [
             'path' => 'path',
             'mode' => 'mode',
             'type' => 'type',
             'sha' => 'sha'
         ],
-        TheVariablesApplyingToThisEnvironmentInner::class => [
+        'Upsun\Model\TheVariablesApplyingToThisEnvironmentInner' => [
             'name' => 'name',
             'isSensitive' => 'is_sensitive',
             'isJson' => 'is_json',
@@ -3568,7 +3082,7 @@ final class ObjectAttributesMapper
             'visibleRuntime' => 'visible_runtime',
             'value' => 'value'
         ],
-        Ticket::class => [
+        'Upsun\Model\Ticket' => [
             'ticketId' => 'ticket_id',
             'created' => 'created',
             'updated' => 'updated',
@@ -3605,7 +3119,7 @@ final class ObjectAttributesMapper
             'jira' => 'jira',
             'zdTicketUrl' => 'zd_ticket_url'
         ],
-        TicketJiraInner::class => [
+        'Upsun\Model\TicketJiraInner' => [
             'id' => 'id',
             'ticketId' => 'ticket_id',
             'issueId' => 'issue_id',
@@ -3613,22 +3127,22 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at'
         ],
-        Tree::class => [
+        'Upsun\Model\Tree' => [
             'sha' => 'sha',
             'tree' => 'tree'
         ],
-        UpdateOrgBillingAlertConfigRequest::class => [
+        'Upsun\Model\UpdateOrgBillingAlertConfigRequest' => [
             'active' => 'active',
             'config' => 'config'
         ],
-        UpdateOrgBillingAlertConfigRequestConfig::class => [
+        'Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig' => [
             'threshold' => 'threshold',
             'mode' => 'mode'
         ],
-        UpdateOrgMemberRequest::class => [
+        'Upsun\Model\UpdateOrgMemberRequest' => [
             'permissions' => 'permissions'
         ],
-        UpdateOrgProfileRequest::class => [
+        'Upsun\Model\UpdateOrgProfileRequest' => [
             'defaultCatalog' => 'default_catalog',
             'projectOptionsUrl' => 'project_options_url',
             'securityContact' => 'security_contact',
@@ -3636,12 +3150,12 @@ final class ObjectAttributesMapper
             'vatNumber' => 'vat_number',
             'billingContact' => 'billing_contact'
         ],
-        UpdateOrgRequest::class => [
+        'Upsun\Model\UpdateOrgRequest' => [
             'name' => 'name',
             'label' => 'label',
             'country' => 'country'
         ],
-        UpdateOrgSubscriptionRequest::class => [
+        'Upsun\Model\UpdateOrgSubscriptionRequest' => [
             'projectTitle' => 'project_title',
             'plan' => 'plan',
             'timezone' => 'timezone',
@@ -3655,7 +3169,7 @@ final class ObjectAttributesMapper
             'continuousProfiling' => 'continuous_profiling',
             'projectSupportLevel' => 'project_support_level'
         ],
-        UpdateProfileRequest::class => [
+        'Upsun\Model\UpdateProfileRequest' => [
             'displayName' => 'display_name',
             'username' => 'username',
             'currentPassword' => 'current_password',
@@ -3670,37 +3184,37 @@ final class ObjectAttributesMapper
             'projectOptionsUrl' => 'project_options_url',
             'picture' => 'picture'
         ],
-        UpdateProjectUserAccessRequest::class => [
+        'Upsun\Model\UpdateProjectUserAccessRequest' => [
             'permissions' => 'permissions'
         ],
-        UpdateProjectsEnvironmentsDeploymentsNextRequest::class => [
+        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest' => [
             'webapps' => 'webapps',
             'services' => 'services',
             'workers' => 'workers'
         ],
-        UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue::class => [
+        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue' => [
             'resources' => 'resources',
             'instanceCount' => 'instance_count',
             'disk' => 'disk'
         ],
-        UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue::class => [
+        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue' => [
             'resources' => 'resources',
             'instanceCount' => 'instance_count',
             'disk' => 'disk'
         ],
-        UpdateTeamRequest::class => [
+        'Upsun\Model\UpdateTeamRequest' => [
             'label' => 'label',
             'projectPermissions' => 'project_permissions'
         ],
-        UpdateTicketRequest::class => [
+        'Upsun\Model\UpdateTicketRequest' => [
             'status' => 'status',
             'collaboratorIds' => 'collaborator_ids',
             'collaboratorsReplace' => 'collaborators_replace'
         ],
-        UpdateUsageAlertRequest::class => [
+        'Upsun\Model\UpdateUsageAlertRequest' => [
             'config' => 'config'
         ],
-        UpdateUserRequest::class => [
+        'Upsun\Model\UpdateUserRequest' => [
             'username' => 'username',
             'firstName' => 'first_name',
             'lastName' => 'last_name',
@@ -3709,7 +3223,7 @@ final class ObjectAttributesMapper
             'website' => 'website',
             'country' => 'country'
         ],
-        UpstreamRoute::class => [
+        'Upsun\Model\UpstreamRoute' => [
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
@@ -3722,7 +3236,7 @@ final class ObjectAttributesMapper
             'redirects' => 'redirects',
             'to' => 'to'
         ],
-        UpstreamRouteCreateInput::class => [
+        'Upsun\Model\UpstreamRouteCreateInput' => [
             'type' => 'type',
             'upstream' => 'upstream',
             'primary' => 'primary',
@@ -3734,7 +3248,7 @@ final class ObjectAttributesMapper
             'ssi' => 'ssi',
             'redirects' => 'redirects'
         ],
-        UpstreamRoutePatch::class => [
+        'Upsun\Model\UpstreamRoutePatch' => [
             'type' => 'type',
             'upstream' => 'upstream',
             'primary' => 'primary',
@@ -3746,14 +3260,14 @@ final class ObjectAttributesMapper
             'ssi' => 'ssi',
             'redirects' => 'redirects'
         ],
-        Usage::class => [
+        'Upsun\Model\Usage' => [
             'id' => 'id',
             'subscriptionId' => 'subscription_id',
             'usageGroup' => 'usage_group',
             'quantity' => 'quantity',
             'start' => 'start'
         ],
-        UsageGroupCurrentUsageProperties::class => [
+        'Upsun\Model\UsageGroupCurrentUsageProperties' => [
             'title' => 'title',
             'type' => 'type',
             'currentUsage' => 'current_usage',
@@ -3764,7 +3278,7 @@ final class ObjectAttributesMapper
             'dailyAverage' => 'daily_average',
             'dailyAverageFormatted' => 'daily_average_formatted'
         ],
-        User::class => [
+        'Upsun\Model\User' => [
             'id' => 'id',
             'deactivated' => 'deactivated',
             'namespace' => 'namespace',
@@ -3782,7 +3296,7 @@ final class ObjectAttributesMapper
             'consentedAt' => 'consented_at',
             'consentMethod' => 'consent_method'
         ],
-        UserProjectAccess::class => [
+        'Upsun\Model\UserProjectAccess' => [
             'userId' => 'user_id',
             'organizationId' => 'organization_id',
             'projectId' => 'project_id',
@@ -3792,7 +3306,7 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'links' => '_links'
         ],
-        UserReference::class => [
+        'Upsun\Model\UserReference' => [
             'id' => 'id',
             'username' => 'username',
             'email' => 'email',
@@ -3802,7 +3316,7 @@ final class ObjectAttributesMapper
             'mfaEnabled' => 'mfa_enabled',
             'ssoEnabled' => 'sso_enabled'
         ],
-        VPNConfiguration::class => [
+        'Upsun\Model\VPNConfiguration' => [
             'version' => 'version',
             'aggressive' => 'aggressive',
             'modeconfig' => 'modeconfig',
@@ -3818,25 +3332,25 @@ final class ObjectAttributesMapper
             'lifetime' => 'lifetime',
             'margintime' => 'margintime'
         ],
-        VerifyPhoneNumber200Response::class => [
+        'Upsun\Model\VerifyPhoneNumber200Response' => [
             'sid' => 'sid'
         ],
-        VerifyPhoneNumberRequest::class => [
+        'Upsun\Model\VerifyPhoneNumberRequest' => [
             'channel' => 'channel',
             'phoneNumber' => 'phone_number'
         ],
-        Version::class => [
+        'Upsun\Model\Version' => [
             'commit' => 'commit',
             'locked' => 'locked',
             'routing' => 'routing'
         ],
-        VersionCreateInput::class => [
+        'Upsun\Model\VersionCreateInput' => [
             'routing' => 'routing'
         ],
-        VersionPatch::class => [
+        'Upsun\Model\VersionPatch' => [
             'routing' => 'routing'
         ],
-        Vouchers::class => [
+        'Upsun\Model\Vouchers' => [
             'uuid' => 'uuid',
             'vouchersTotal' => 'vouchers_total',
             'vouchersApplied' => 'vouchers_applied',
@@ -3845,16 +3359,16 @@ final class ObjectAttributesMapper
             'vouchers' => 'vouchers',
             'links' => '_links'
         ],
-        VouchersLinks::class => [
+        'Upsun\Model\VouchersLinks' => [
             'self' => 'self'
         ],
-        VouchersVouchersInner::class => [
+        'Upsun\Model\VouchersVouchersInner' => [
             'code' => 'code',
             'amount' => 'amount',
             'currency' => 'currency',
             'orders' => 'orders'
         ],
-        VouchersVouchersInnerOrdersInner::class => [
+        'Upsun\Model\VouchersVouchersInnerOrdersInner' => [
             'orderId' => 'order_id',
             'status' => 'status',
             'billingPeriodStart' => 'billing_period_start',
@@ -3863,7 +3377,7 @@ final class ObjectAttributesMapper
             'orderDiscount' => 'order_discount',
             'currency' => 'currency'
         ],
-        WebApplicationsValue::class => [
+        'Upsun\Model\WebApplicationsValue' => [
             'resources' => 'resources',
             'size' => 'size',
             'disk' => 'disk',
@@ -3895,7 +3409,7 @@ final class ObjectAttributesMapper
             'configId' => 'config_id',
             'slugId' => 'slug_id'
         ],
-        WebHookIntegration::class => [
+        'Upsun\Model\WebHookIntegration' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -3907,7 +3421,7 @@ final class ObjectAttributesMapper
             'sharedKey' => 'shared_key',
             'url' => 'url'
         ],
-        WebHookIntegrationCreateInput::class => [
+        'Upsun\Model\WebHookIntegrationCreateInput' => [
             'type' => 'type',
             'url' => 'url',
             'events' => 'events',
@@ -3917,7 +3431,7 @@ final class ObjectAttributesMapper
             'result' => 'result',
             'sharedKey' => 'shared_key'
         ],
-        WebHookIntegrationPatch::class => [
+        'Upsun\Model\WebHookIntegrationPatch' => [
             'type' => 'type',
             'url' => 'url',
             'events' => 'events',
@@ -3927,11 +3441,11 @@ final class ObjectAttributesMapper
             'result' => 'result',
             'sharedKey' => 'shared_key'
         ],
-        WebhookIntegrationConfigurations::class => [
+        'Upsun\Model\WebhookIntegrationConfigurations' => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
-        WorkersValue::class => [
+        'Upsun\Model\WorkersValue' => [
             'resources' => 'resources',
             'size' => 'size',
             'disk' => 'disk',

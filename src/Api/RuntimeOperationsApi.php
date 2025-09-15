@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\EnvironmentOperationInput;
-use Upsun\Model\AcceptedResponse;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -29,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class RuntimeOperationsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -58,18 +55,27 @@ final class RuntimeOperationsApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Execute a runtime operation
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Content-Type: application/json" \
+     *      -d '{
+     *          "service": "string",
+     *          "operation": "string"
+     *      }'
      */
     public function runOperation(
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        EnvironmentOperationInput $environmentOperationInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
+    ): \Upsun\Model\AcceptedResponse {
         return $this->runOperationWithHttpInfo(
             $projectId,
             $environmentId,
@@ -87,8 +93,8 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        EnvironmentOperationInput $environmentOperationInput
-    ): AcceptedResponse {
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->runOperationRequest(
             $projectId,
             $environmentId,
@@ -105,12 +111,12 @@ final class RuntimeOperationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -123,7 +129,7 @@ final class RuntimeOperationsApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        EnvironmentOperationInput $environmentOperationInput
+        \Upsun\Model\EnvironmentOperationInput $environmentOperationInput
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -132,7 +138,7 @@ final class RuntimeOperationsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling runOperation'
             );
@@ -144,7 +150,7 @@ final class RuntimeOperationsApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling runOperation'
             );
@@ -156,7 +162,7 @@ final class RuntimeOperationsApi extends AbstractApi
             || (is_array($deploymentId)
             && count($deploymentId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $deploymentId 
                 when calling runOperation'
             );
@@ -168,12 +174,11 @@ final class RuntimeOperationsApi extends AbstractApi
             || (is_array($environmentOperationInput)
             && count($environmentOperationInput) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $environmentOperationInput 
                 when calling runOperation'
             );
         }
-
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations';
         $formParams = [];
         $queryParams = [];
@@ -189,7 +194,6 @@ final class RuntimeOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -198,7 +202,6 @@ final class RuntimeOperationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($deploymentId !== null) {
             $resourcePath = str_replace(
@@ -224,7 +227,7 @@ final class RuntimeOperationsApi extends AbstractApi
             } else {
                 $httpBody = $environmentOperationInput;
             }
-        } elseif ($formParams !== []) {
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -236,7 +239,6 @@ final class RuntimeOperationsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

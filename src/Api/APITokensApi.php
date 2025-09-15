@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateApiTokenRequest;
-use Upsun\Model\APIToken;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -29,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class APITokensApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -58,16 +55,24 @@ final class APITokensApi extends AbstractApi
         return $this->config;
     }
 
+
     /**
      * Create an API token
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X POST "https://api.platform.sh/users/{user_id}/api-tokens" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Content-Type: application/json" \
+     *      -d '{
+     *          "name": "string"
+     *      }'
      */
     public function createApiToken(
         string $userId,
-        ?CreateApiTokenRequest $createApiTokenRequest = null
-    ): APIToken {
+        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
+    ): \Upsun\Model\APIToken {
         return $this->createApiTokenWithHttpInfo(
             $userId,
             $createApiTokenRequest
@@ -81,8 +86,8 @@ final class APITokensApi extends AbstractApi
      */
     private function createApiTokenWithHttpInfo(
         string $userId,
-        ?CreateApiTokenRequest $createApiTokenRequest = null
-    ): APIToken {
+        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
+    ): \Upsun\Model\APIToken {
         $request = $this->createApiTokenRequest(
             $userId,
             $createApiTokenRequest
@@ -97,12 +102,12 @@ final class APITokensApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                APIToken::class,
+                '\Upsun\Model\APIToken',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -113,7 +118,7 @@ final class APITokensApi extends AbstractApi
      */
     private function createApiTokenRequest(
         string $userId,
-        ?CreateApiTokenRequest $createApiTokenRequest = null
+        ?\Upsun\Model\CreateApiTokenRequest $createApiTokenRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -122,7 +127,7 @@ final class APITokensApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling createApiToken'
             );
@@ -160,7 +165,7 @@ final class APITokensApi extends AbstractApi
             } else {
                 $httpBody = $createApiTokenRequest;
             }
-        } elseif ($formParams !== []) {
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -172,7 +177,6 @@ final class APITokensApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -201,12 +205,15 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an API token
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X DELETE "https://api.platform.sh/users/{user_id}/api-tokens/{token_id}" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json"
      */
     public function deleteApiToken(
         string $userId,
@@ -239,8 +246,8 @@ final class APITokensApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -260,7 +267,7 @@ final class APITokensApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling deleteApiToken'
             );
@@ -272,12 +279,11 @@ final class APITokensApi extends AbstractApi
             || (is_array($tokenId)
             && count($tokenId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $tokenId 
                 when calling deleteApiToken'
             );
         }
-
         $resourcePath = '/users/{user_id}/api-tokens/{token_id}';
         $formParams = [];
         $queryParams = [];
@@ -293,7 +299,6 @@ final class APITokensApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($tokenId !== null) {
             $resourcePath = str_replace(
@@ -311,7 +316,7 @@ final class APITokensApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -323,7 +328,6 @@ final class APITokensApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -352,17 +356,20 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an API token
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     * @example
+     * curl -X GET "https://api.platform.sh/users/{user_id}/api-tokens/{token_id}" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json"
      */
     public function getApiToken(
         string $userId,
         string $tokenId
-    ): APIToken {
+    ): \Upsun\Model\APIToken {
         return $this->getApiTokenWithHttpInfo(
             $userId,
             $tokenId
@@ -377,7 +384,7 @@ final class APITokensApi extends AbstractApi
     private function getApiTokenWithHttpInfo(
         string $userId,
         string $tokenId
-    ): APIToken {
+    ): \Upsun\Model\APIToken {
         $request = $this->getApiTokenRequest(
             $userId,
             $tokenId
@@ -392,12 +399,12 @@ final class APITokensApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                APIToken::class,
+                '\Upsun\Model\APIToken',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -417,7 +424,7 @@ final class APITokensApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling getApiToken'
             );
@@ -429,12 +436,11 @@ final class APITokensApi extends AbstractApi
             || (is_array($tokenId)
             && count($tokenId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $tokenId 
                 when calling getApiToken'
             );
         }
-
         $resourcePath = '/users/{user_id}/api-tokens/{token_id}';
         $formParams = [];
         $queryParams = [];
@@ -450,7 +456,6 @@ final class APITokensApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($tokenId !== null) {
             $resourcePath = str_replace(
@@ -468,7 +473,7 @@ final class APITokensApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -480,7 +485,6 @@ final class APITokensApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -509,14 +513,17 @@ final class APITokensApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List a user&#39;s API tokens
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return APIToken[]
+     * @return \Upsun\Model\APIToken[]
+     * @example
+     * curl -X GET "https://api.platform.sh/users/{user_id}/api-tokens" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Accept: application/json"
      */
     public function listApiTokens(
         string $userId
@@ -551,8 +558,8 @@ final class APITokensApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            throw $e;
         }
     }
 
@@ -571,12 +578,11 @@ final class APITokensApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling listApiTokens'
             );
         }
-
         $resourcePath = '/users/{user_id}/api-tokens';
         $formParams = [];
         $queryParams = [];
@@ -601,7 +607,7 @@ final class APITokensApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -613,7 +619,6 @@ final class APITokensApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

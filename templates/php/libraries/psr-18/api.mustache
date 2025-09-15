@@ -54,6 +54,7 @@ use {{invokerPackage}}\Core\OAuthProvider;
     {
         return $this->config;
     }
+
 {{#operation}}
 
     /**
@@ -81,6 +82,14 @@ use {{invokerPackage}}\Core\OAuthProvider;
      *
      * @return {{{vendorExtensions.x-return-types.0}}}
 {{/vendorExtensions.x-return-types-displayReturn}}
+     * @see Curl example:
+     * curl -X {{httpMethod}} "{{basePath}}{{path}}{{#hasQueryParams}}?{{#queryParams}}{{paramName}}={{example}}{{#hasMore}}&{{/hasMore}}{{/queryParams}}{{/hasQueryParams}}" \
+     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \{{^hasBodyParam}}
+     *      -H "Accept: {{#produces}}{{{mediaType}}}{{^-last}}, {{/-last}}{{/produces}}"{{/hasBodyParam}}
+{{#hasBodyParam}}
+     *      -H "Content-Type: {{#produces}}{{{mediaType}}}{{^-last}}, {{/-last}}{{/produces}}" \
+     *      -d '{{{vendorExtensions.x-body-example}}}'
+{{/hasBodyParam}}     
      */
     public function {{operationId}}({{#allParams}}
         {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
