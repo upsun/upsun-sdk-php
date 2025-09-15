@@ -2,6 +2,8 @@
 
 namespace Upsun;
 
+use InvalidArgumentException;
+
 /**
  * Configuration holder for the Upsun API Client.
  *
@@ -17,6 +19,7 @@ namespace Upsun;
 final class Configuration
 {
     public const BOOLEAN_FORMAT_INT = 'int';
+
     public const BOOLEAN_FORMAT_STRING = 'string';
 
     private static $defaultConfiguration;
@@ -204,7 +207,7 @@ final class Configuration
     /**
      * Sets the user agent of the api client
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function setUserAgent(string $userAgent): self
     {
@@ -356,8 +359,8 @@ final class Configuration
 
         // check array index out of bound
         if ($hostIndex < 0 || $hostIndex >= count($hostSettings)) {
-            throw new \InvalidArgumentException(
-                "Invalid index $hostIndex when selecting the host. Must be less than " . count($hostSettings)
+            throw new InvalidArgumentException(
+                sprintf('Invalid index %d when selecting the host. Must be less than ', $hostIndex) . count($hostSettings)
             );
         }
 
@@ -372,8 +375,8 @@ final class Configuration
                 if (!isset($variable['enum_values']) || in_array($variables[$name], $variable["enum_values"], true)) {
                     $url = str_replace("{" . $name . "}", $variables[$name], $url);
                 } else {
-                    throw new \InvalidArgumentException(
-                        "The variable `$name` in the host URL has invalid value " . $variables[$name] . ". 
+                    throw new InvalidArgumentException(
+                        sprintf('The variable `%s` in the host URL has invalid value ', $name) . $variables[$name] . ". 
                         Must be " . join(',', $variable["enum_values"]) . "."
                     );
                 }

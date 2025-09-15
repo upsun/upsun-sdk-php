@@ -2,6 +2,9 @@
 
 namespace Upsun;
 
+use ReflectionClass;
+use stdClass;
+use SplFileObject;
 use DateTime;
 use DateTimeInterface;
 use Exception;
@@ -42,6 +45,7 @@ class ObjectSerializer
             foreach ($data as $property => $value) {
                 $data[$property] = self::sanitizeForSerialization($value);
             }
+
             return $data;
         }
 
@@ -68,11 +72,12 @@ class ObjectSerializer
                             if (!in_array($value, $allowedEnumTypes, true)) {
                                 $imploded = implode("', '", $allowedEnumTypes);
                                 throw new InvalidArgumentException(
-                                    "Invalid value for enum '$openAPIType', must be one of: '$imploded'"
+                                    sprintf("Invalid value for enum '%s', must be one of: '%s'", $openAPIType, $imploded)
                                 );
                             }
                         }
                     }
+
                     if ($value !== null) {
                         $values[ObjectAttributesMapper::attributeMap($data->getModelName())[$property]]
                             = self::sanitizeForSerialization($value, $openAPIType, $formats[$property]);
@@ -83,6 +88,7 @@ class ObjectSerializer
                     $values[$property] = self::sanitizeForSerialization($value);
                 }
             }
+
             return (object)$values;
         } else {
             return (string)$data;
@@ -143,19 +149,20 @@ class ObjectSerializer
         }
 
         if (!class_exists($class)) {
-            throw new InvalidArgumentException("Class {$class} does not exist");
+            throw new InvalidArgumentException(sprintf('Class %s does not exist', $class));
         }
 
         if (str_ends_with($class, '[]')) {
             $subClass = substr($class, 0, -2);
             if (!is_array($data)) {
-                throw new InvalidArgumentException("Data must be an array to deserialize into {$class}");
+                throw new InvalidArgumentException('Data must be an array to deserialize into ' . $class);
             }
+
             return array_map(fn($item) => self::deserializeSimplifiedModel($item, $subClass), $data);
         }
 
         $fullClass = ltrim($class, '\\');
-        $reflectionClass = new \ReflectionClass($class);
+        $reflectionClass = new ReflectionClass($class);
         $constructor = $reflectionClass->getConstructor();
 
         if (!$constructor) {
@@ -178,7 +185,7 @@ class ObjectSerializer
                 $value = $data[$jsonKey] ?? $data[$paramName] ?? null;
             }
 
-            if ($value instanceof \stdClass && $paramType?->getName() === 'array') {
+            if ($value instanceof stdClass && $paramType?->getName() === 'array') {
                 $value = (array)$value;
             }
 
@@ -269,7 +276,7 @@ class ObjectSerializer
                     continue;
                 }
 
-                throw new InvalidArgumentException("Required value '{$paramName}' missing for class {$class}");
+                throw new InvalidArgumentException(sprintf("Required value '%s' missing for class %s", $paramName, $class));
             }
         }
 
@@ -291,6 +298,7 @@ class ObjectSerializer
             if (is_array($data)) {
                 $data = self::preprocessArrayProperties($data, $class);
             }
+
             return self::deserializeSimplifiedModel($data, $class);
         }
 
@@ -300,7 +308,7 @@ class ObjectSerializer
             $values = [];
 
             if (!is_array($data)) {
-                throw new InvalidArgumentException("Data must be an array to deserialize into {$class}");
+                throw new InvalidArgumentException('Data must be an array to deserialize into ' . $class);
             }
 
             foreach ($data as $item) {
@@ -358,9 +366,10 @@ class ObjectSerializer
                 while ($chunk = $data->read(200)) {
                     fwrite($file, $chunk);
                 }
+
                 fclose($file);
 
-                return new \SplFileObject($filename, 'r');
+                return new SplFileObject($filename, 'r');
             default:
                 // Nested model
                 return self::deserializeSimplifiedModel($data, $class);
@@ -391,6 +400,7 @@ class ObjectSerializer
                         foreach ($data[$propertyName] as $item) {
                             $values[] = self::deserialize($item, $subClass);
                         }
+
                         $data[$propertyName] = $values;
                     }
                 }
@@ -444,6 +454,7 @@ class ObjectSerializer
                 if ($v !== null) {
                     $qs .= '=' . $encoder((string)$v);
                 }
+
                 $qs .= '&';
             } else {
                 foreach ($v as $vv) {
@@ -452,6 +463,7 @@ class ObjectSerializer
                     if ($vv !== null) {
                         $qs .= '=' . $encoder((string)$vv);
                     }
+
                     $qs .= '&';
                 }
             }

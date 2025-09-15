@@ -30,7 +30,6 @@ use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Route;
-use Upsun\Model\SourceOperations;
 use Upsun\Model\Version;
 use Upsun\Model\VersionCreateInput;
 use Upsun\Model\VersionPatch;

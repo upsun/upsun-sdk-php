@@ -61,11 +61,10 @@ class ActivityTaskTest extends TestCase
                 json_encode([
                     "status" => "OK",
                     "code" => 200,
-                    "_embedded" => (object) ['activities' => []],
+                    "_embedded" => (object)['activities' => []],
                 ])
             ));
 
-        /** @var Activity $activity */
         $response = $this->activityTask->cancel("proj-id", "act-213");
 
         $this->assertNotEmpty($response);
@@ -93,7 +92,6 @@ class ActivityTaskTest extends TestCase
                 )
             ));
 
-        /** @var Activity $activity */
         $activity = $this->activityTask->get("proj-id", "act-213");
 
         $this->assertNotEmpty($activity);
@@ -110,7 +108,7 @@ class ActivityTaskTest extends TestCase
                 json_encode([
                     "status" => "OK",
                     "code" => 200,
-                    "_embedded" => (object) ['activities' => []],
+                    "_embedded" => (object)['activities' => []],
                 ])
             ));
 

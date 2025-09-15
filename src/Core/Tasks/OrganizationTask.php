@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Upsun\Model\ListOrgs200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -141,7 +142,7 @@ class OrganizationTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): \Upsun\Model\ListOrgs200Response {
+    ): ListOrgs200Response {
         return $this->api->listOrgs(
             new StringFilter(...$this->normalizeFilter($filterId)),
             new StringFilter(...$this->normalizeFilter($filterOwnerId)),
@@ -794,7 +795,7 @@ class OrganizationTask extends TaskBase
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (\JsonException $exception) {
+                } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
                             'Error JSON decoding server response (%s)',
@@ -829,12 +830,12 @@ class OrganizationTask extends TaskBase
             $response = $this->client->apiClient->sendRequest($request);
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Organization',
+                Organization::class,
                 $request,
                 $response,
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -850,7 +851,7 @@ class OrganizationTask extends TaskBase
         ?string $contentType = 'application/json'
     ): Request {
         // verify the required parameter 'organization_id' is set
-        if ($organizationId === null || (is_array($organizationId) && count($organizationId) === 0)) {
+        if ($organizationId === null || (is_array($organizationId) && $organizationId === [])) {
             throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId when calling updateOrgAddons'
             );
@@ -889,7 +890,7 @@ class OrganizationTask extends TaskBase
                         JSON_THROW_ON_ERROR
                     );
                 } catch (JsonException $e) {
-                    throw new \RuntimeException(
+                    throw new RuntimeException(
                         'Failed to encode request body to JSON: ' . $e->getMessage(),
                         0,
                         $e
@@ -898,7 +899,7 @@ class OrganizationTask extends TaskBase
             } else {
                 $httpBody = $update_org_request;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -910,6 +911,7 @@ class OrganizationTask extends TaskBase
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
@@ -917,7 +919,7 @@ class OrganizationTask extends TaskBase
                 try {
                     $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
                 } catch (JsonException $e) {
-                    throw new \RuntimeException(
+                    throw new RuntimeException(
                         'Failed to encode form parameters to JSON: ' . $e->getMessage(),
                         0,
                         $e
@@ -949,7 +951,7 @@ class OrganizationTask extends TaskBase
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PATCH',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? '?' . $query : ''),
             $headers,
             $httpBody
         );

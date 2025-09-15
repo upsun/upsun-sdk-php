@@ -2,10 +2,16 @@
 
 namespace Tests\Unit\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
+use Upsun\Api\DeploymentApi;
 use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
+use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Backup;
 use Symfony\Component\HttpClient\HttplugClient;
@@ -17,51 +23,53 @@ use Upsun\UpsunConfig;
 
 class BackupTaskTest extends TestCase
 {
-    private EnvironmentBackupsApi $apiMock;
-    private BackupTask $task;
+    private BackupTask $backupTask;
 
-    private UpsunClient $clientMock;
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->apiMock = $this->createMock(EnvironmentBackupsApi::class);
+        $psr17Factory = new Psr17Factory();
 
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public UpsunConfig $upsunConfig;
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->task = new class($this->clientMock, $this->apiMock) extends BackupTask {
-            public function refreshToken(): void {}
+        $environmentBackupApi = new EnvironmentBackupsApi(
+            $oauthProvider,
+            $this->httpClient,
+            $psr17Factory,
+            new Configuration()
+        );
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->backupTask = new class (
+            $upsunClient,
+            $environmentBackupApi
+        ) extends BackupTask {
         };
     }
 
     public function testBackupCallsApiWithCorrectParameters()
     {
-        $projectId = 'prj';
-        $envId = 'env';
-        $inputArray = ['foo' => 'bar'];
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $expectedResponse = $this->createMock(AcceptedResponse::class);
+        $projectId = 'proj-1';
+        $envId = 'env-1';
+        $safe = true;
 
-        $this->apiMock->expects($this->once())
-            ->method('backupEnvironment')
-            ->with(
-                $this->equalTo($projectId),
-                $this->equalTo($envId),
-                $this->isInstanceOf(EnvironmentBackupInput::class)
-            )
-            ->willReturn($expectedResponse);
-
-        $result = $this->task->backup($projectId, $envId, $inputArray);
-
-        $this->assertSame($expectedResponse, $result);
+        $result = $this->backupTask->backup($projectId, $envId, $safe);
+        $this->assertSame(new AcceptedResponse('accepted', 200), $result);
     }
 
     public function testDeleteCallsApi()

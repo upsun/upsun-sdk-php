@@ -22,5 +22,15 @@ jobs:
             - name: Install Composer dependencies
               run: composer install --prefer-dist --no-progress
 
+            - name: PHPCS fix on generated Model and Api classes in src
+              run: |
+                composer run fix
+              continue-on-error: true
+
+            - name: Rector fix on generated Model and Api classes in src
+              run: |
+                composer run rector
+              continue-on-error: true
+            
             - name: Run PHP lint (phpcs)
               run: composer run lint

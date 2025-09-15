@@ -9,7 +9,7 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         private readonly array ${{name}},
       {{/isContainer}}
       {{^isContainer}}
-        private readonly {{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}} ${{name}},
+        private readonly {{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}},
       {{/isContainer}}
       {{/isNullable}}
       {{/required}}      
@@ -20,7 +20,7 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         private readonly ?array ${{name}} = [],
       {{/isContainer}}
       {{^isContainer}}
-        private readonly ?{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly ?{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
       {{/isContainer}}
       {{/isNullable}}      
     {{/vars}}
@@ -31,11 +31,11 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         private readonly ?array ${{name}} = [],
     {{/isContainer}}
     {{^isContainer}}
-        private readonly ?{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly ?{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
     {{/isContainer}}
     {{/isNullable}}      
     {{/required}}      
-    {{/vars}}  
+    {{/vars}}
     ) {
     }
 
@@ -66,7 +66,7 @@ final class {{classname}} implements ModelInterface, JsonSerializable
      */
   {{/items.isModel}}
 {{/isContainer}}
-    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{{openApiType}}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

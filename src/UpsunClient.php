@@ -81,30 +81,53 @@ use Upsun\Core\Tasks\WorkerTask;
 class UpsunClient
 {
     public HttplugClient $apiClient;
+
     public Configuration $apiConfig;
+
     public OAuthProvider $auth;
+
     public ?string $userId = null;
 
     public ActivityTask $activity;
+
     public ApplicationTask $application;
+
     public BackupTask $backup;
+
     public CertificateTask $certificate;
+
     public DomainTask $domain;
+
     public EnvironmentTask $environment;
+
     public InvitationTask $invitations;
+
     public MetricsTask $metrics;
+
     public MountTask $mount;
+
     public OperationTask $operation;
+
     public OrganizationTask $organization;
+
     public ProjectTask $project;
+
     public RegionTask $region;
+
     public ResourcesTask $resource;
+
     public RouteTask $route;
+
     public SourceOperationTask $sourceOperation;
+
     public TeamTask $team;
+
     public SupportTicketTask $supportTicket;
+
     public UserTask $user;
+
     public VariableTask $variables;
+
     public WorkerTask $worker;
 
     public function __construct(protected UpsunConfig $upsunConfig)

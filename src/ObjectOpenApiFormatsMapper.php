@@ -15,6 +15,492 @@
 
 namespace Upsun;
 
+use Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner;
+use Upsun\Model\APIToken;
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\AccessControlDefinitionForThisEnviromentInner;
+use Upsun\Model\Activity;
+use Upsun\Model\Address;
+use Upsun\Model\AddressGrantsInner;
+use Upsun\Model\AddressMetadata;
+use Upsun\Model\AddressMetadataMetadata;
+use Upsun\Model\Alert;
+use Upsun\Model\ApplyOrgVoucherRequest;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\Backup;
+use Upsun\Model\BitbucketIntegration;
+use Upsun\Model\BitbucketIntegrationConfigurations;
+use Upsun\Model\BitbucketIntegrationCreateInput;
+use Upsun\Model\BitbucketIntegrationPatch;
+use Upsun\Model\BitbucketServerIntegration;
+use Upsun\Model\BitbucketServerIntegrationConfigurations;
+use Upsun\Model\BitbucketServerIntegrationCreateInput;
+use Upsun\Model\BitbucketServerIntegrationPatch;
+use Upsun\Model\BlackfireEnvironmentsCredentialsValue;
+use Upsun\Model\BlackfireIntegration;
+use Upsun\Model\BlackfireIntegrationConfigurations;
+use Upsun\Model\BlackfireIntegrationCreateInput;
+use Upsun\Model\BlackfireIntegrationPatch;
+use Upsun\Model\Blob;
+use Upsun\Model\BuildResources;
+use Upsun\Model\BuildResources1;
+use Upsun\Model\BuildResources2;
+use Upsun\Model\CacheConfiguration;
+use Upsun\Model\CacheConfiguration1;
+use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction;
+use Upsun\Model\Certificate;
+use Upsun\Model\CertificateCreateInput;
+use Upsun\Model\CertificatePatch;
+use Upsun\Model\CommandsToManageTheApplicationSLifecycle;
+use Upsun\Model\Commit;
+use Upsun\Model\Components;
+use Upsun\Model\Config;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion;
+use Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1;
+use Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP;
+use Upsun\Model\ConfigurationForPreFlightChecks;
+use Upsun\Model\ConfigurationForSupportingRequestBuffering;
+use Upsun\Model\ConfigurationOfAWorkerContainerInstance;
+use Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication;
+use Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication;
+use Upsun\Model\ConfirmPhoneNumberRequest;
+use Upsun\Model\ConfirmTotpEnrollment200Response;
+use Upsun\Model\ConfirmTotpEnrollmentRequest;
+use Upsun\Model\Connection;
+use Upsun\Model\ContainerProfilesValueValue;
+use Upsun\Model\CreateApiTokenRequest;
+use Upsun\Model\CreateAuthorizationCredentials200Response;
+use Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl;
+use Upsun\Model\CreateOrgInviteRequest;
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\CreateOrgRequest;
+use Upsun\Model\CreateOrgSubscriptionRequest;
+use Upsun\Model\CreateProfilePicture200Response;
+use Upsun\Model\CreateProjectInviteRequest;
+use Upsun\Model\CreateProjectInviteRequestEnvironmentsInner;
+use Upsun\Model\CreateProjectInviteRequestPermissionsInner;
+use Upsun\Model\CreateSshKeyRequest;
+use Upsun\Model\CreateTeamMemberRequest;
+use Upsun\Model\CreateTeamRequest;
+use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\CreateTicketRequestAttachmentsInner;
+use Upsun\Model\CreateUsageAlertRequest;
+use Upsun\Model\CreateUsageAlertRequestConfig;
+use Upsun\Model\CurrencyAmount;
+use Upsun\Model\CurrencyAmountNullable;
+use Upsun\Model\CurrentUser;
+use Upsun\Model\CurrentUserCurrentTrialInner;
+use Upsun\Model\CurrentUserProjectsInner;
+use Upsun\Model\CustomDomains;
+use Upsun\Model\DataRetention;
+use Upsun\Model\DataRetentionConfigurationValue;
+use Upsun\Model\DataRetentionConfigurationValue1;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\DedicatedDeploymentTarget;
+use Upsun\Model\DedicatedDeploymentTargetCreateInput;
+use Upsun\Model\DedicatedDeploymentTargetPatch;
+use Upsun\Model\DefaultConfig;
+use Upsun\Model\DefaultConfig1;
+use Upsun\Model\Deployment;
+use Upsun\Model\DeploymentTarget;
+use Upsun\Model\DeploymentTargetCreateInput;
+use Upsun\Model\DeploymentTargetPatch;
+use Upsun\Model\Discount;
+use Upsun\Model\DiscountCommitment;
+use Upsun\Model\DiscountCommitmentAmount;
+use Upsun\Model\DiscountCommitmentNet;
+use Upsun\Model\DiscountDiscount;
+use Upsun\Model\Domain;
+use Upsun\Model\DomainCreateInput;
+use Upsun\Model\DomainPatch;
+use Upsun\Model\EmailIntegration;
+use Upsun\Model\EmailIntegrationCreateInput;
+use Upsun\Model\EmailIntegrationPatch;
+use Upsun\Model\EnterpriseDeploymentTarget;
+use Upsun\Model\EnterpriseDeploymentTargetCreateInput;
+use Upsun\Model\EnterpriseDeploymentTargetPatch;
+use Upsun\Model\Environment;
+use Upsun\Model\EnvironmentActivateInput;
+use Upsun\Model\EnvironmentBackupInput;
+use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentInfo;
+use Upsun\Model\EnvironmentInitializeInput;
+use Upsun\Model\EnvironmentMergeInput;
+use Upsun\Model\EnvironmentOperationInput;
+use Upsun\Model\EnvironmentPatch;
+use Upsun\Model\EnvironmentRestoreInput;
+use Upsun\Model\EnvironmentSourceOperation;
+use Upsun\Model\EnvironmentSourceOperationInput;
+use Upsun\Model\EnvironmentSynchronizeInput;
+use Upsun\Model\EnvironmentType;
+use Upsun\Model\EnvironmentVariable;
+use Upsun\Model\EnvironmentVariableCreateInput;
+use Upsun\Model\EnvironmentVariablePatch;
+use Upsun\Model\Error;
+use Upsun\Model\EstimationObject;
+use Upsun\Model\FastlyCDNIntegrationConfigurations;
+use Upsun\Model\FastlyIntegration;
+use Upsun\Model\FastlyIntegrationCreateInput;
+use Upsun\Model\FastlyIntegrationPatch;
+use Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue;
+use Upsun\Model\Firewall;
+use Upsun\Model\FoundationDeploymentTarget;
+use Upsun\Model\FoundationDeploymentTargetCreateInput;
+use Upsun\Model\FoundationDeploymentTargetPatch;
+use Upsun\Model\GetAddress200Response;
+use Upsun\Model\GetCurrentUserVerificationStatus200Response;
+use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
+use Upsun\Model\GetOrgPrepaymentInfo200Response;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions;
+use Upsun\Model\GetOrgPrepaymentInfo200ResponsePrepayment;
+use Upsun\Model\GetTotpEnrollment200Response;
+use Upsun\Model\GetTypeAllowance200Response;
+use Upsun\Model\GetTypeAllowance200ResponseCurrencies;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP;
+use Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD;
+use Upsun\Model\GetUsageAlerts200Response;
+use Upsun\Model\GitHubIntegrationConfigurations;
+use Upsun\Model\GitLabIntegration;
+use Upsun\Model\GitLabIntegrationConfigurations;
+use Upsun\Model\GitLabIntegrationCreateInput;
+use Upsun\Model\GitLabIntegrationPatch;
+use Upsun\Model\GithubIntegration;
+use Upsun\Model\GithubIntegrationCreateInput;
+use Upsun\Model\GithubIntegrationPatch;
+use Upsun\Model\GoogleSSOConfig;
+use Upsun\Model\GrantProjectTeamAccessRequestInner;
+use Upsun\Model\GrantProjectUserAccessRequestInner;
+use Upsun\Model\GrantTeamProjectAccessRequestInner;
+use Upsun\Model\GrantUserProjectAccessRequestInner;
+use Upsun\Model\HTTPLogForwardingIntegrationConfigurations;
+use Upsun\Model\HalLinks;
+use Upsun\Model\HalLinksNext;
+use Upsun\Model\HalLinksPrevious;
+use Upsun\Model\HalLinksSelf;
+use Upsun\Model\HealthEmailNotificationIntegrationConfigurations;
+use Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations;
+use Upsun\Model\HealthSlackNotificationIntegrationConfigurations;
+use Upsun\Model\HealthWebHookIntegration;
+use Upsun\Model\HealthWebHookIntegrationCreateInput;
+use Upsun\Model\HealthWebHookIntegrationPatch;
+use Upsun\Model\HealthWebhookNotificationIntegrationConfigurations;
+use Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication;
+use Upsun\Model\HttpAccessPermissions;
+use Upsun\Model\HttpAccessPermissions1;
+use Upsun\Model\HttpLogIntegration;
+use Upsun\Model\HttpLogIntegrationCreateInput;
+use Upsun\Model\HttpLogIntegrationPatch;
+use Upsun\Model\ImagesValueValue;
+use Upsun\Model\Integration;
+use Upsun\Model\IntegrationCreateInput;
+use Upsun\Model\IntegrationPatch;
+use Upsun\Model\Integrations;
+use Upsun\Model\Invoice;
+use Upsun\Model\InvoicePDF;
+use Upsun\Model\LineItem;
+use Upsun\Model\LineItemComponent;
+use Upsun\Model\ListLinks;
+use Upsun\Model\ListLinksNext;
+use Upsun\Model\ListLinksPrevious;
+use Upsun\Model\ListLinksSelf;
+use Upsun\Model\ListOrgDiscounts200Response;
+use Upsun\Model\ListOrgInvoices200Response;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\ListOrgOrders200Response;
+use Upsun\Model\ListOrgPlanRecords200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200Response;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment;
+use Upsun\Model\ListOrgProjects200Response;
+use Upsun\Model\ListOrgSubscriptions200Response;
+use Upsun\Model\ListOrgUsageRecords200Response;
+use Upsun\Model\ListOrgs200Response;
+use Upsun\Model\ListPlans200Response;
+use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\ListProjectUserAccess200Response;
+use Upsun\Model\ListRegions200Response;
+use Upsun\Model\ListTeamMembers200Response;
+use Upsun\Model\ListTeamProjectAccess200Response;
+use Upsun\Model\ListTeams200Response;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
+use Upsun\Model\ListTickets200Response;
+use Upsun\Model\ListUserExtendedAccess200Response;
+use Upsun\Model\ListUserExtendedAccess200ResponseItemsInner;
+use Upsun\Model\ListUserOrgs200Response;
+use Upsun\Model\LogsForwarding;
+use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
+use Upsun\Model\Metrics;
+use Upsun\Model\NewRelicIntegration;
+use Upsun\Model\NewRelicIntegrationCreateInput;
+use Upsun\Model\NewRelicIntegrationPatch;
+use Upsun\Model\NewRelicLogForwardingIntegrationConfigurations;
+use Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue;
+use Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue;
+use Upsun\Model\Order;
+use Upsun\Model\OrderBillingPeriodLabel;
+use Upsun\Model\OrderLinks;
+use Upsun\Model\OrderLinksInvoices;
+use Upsun\Model\Organization;
+use Upsun\Model\OrganizationAddonsObject;
+use Upsun\Model\OrganizationAddonsObjectAvailable;
+use Upsun\Model\OrganizationAddonsObjectCurrent;
+use Upsun\Model\OrganizationAddonsObjectUpgradesAvailable;
+use Upsun\Model\OrganizationAlertConfig;
+use Upsun\Model\OrganizationAlertConfigConfig;
+use Upsun\Model\OrganizationAlertConfigConfigThreshold;
+use Upsun\Model\OrganizationEstimationObject;
+use Upsun\Model\OrganizationEstimationObjectSubscriptions;
+use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner;
+use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage;
+use Upsun\Model\OrganizationEstimationObjectUserLicenses;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBase;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser;
+use Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser;
+use Upsun\Model\OrganizationInvitation;
+use Upsun\Model\OrganizationInvitationOwner;
+use Upsun\Model\OrganizationLinks;
+use Upsun\Model\OrganizationLinksAddress;
+use Upsun\Model\OrganizationLinksApplyVoucher;
+use Upsun\Model\OrganizationLinksCreateMember;
+use Upsun\Model\OrganizationLinksCreateSubscription;
+use Upsun\Model\OrganizationLinksDelete;
+use Upsun\Model\OrganizationLinksEstimateSubscription;
+use Upsun\Model\OrganizationLinksMembers;
+use Upsun\Model\OrganizationLinksMfaEnforcement;
+use Upsun\Model\OrganizationLinksOrders;
+use Upsun\Model\OrganizationLinksPaymentSource;
+use Upsun\Model\OrganizationLinksProfile;
+use Upsun\Model\OrganizationLinksSelf;
+use Upsun\Model\OrganizationLinksSubscriptions;
+use Upsun\Model\OrganizationLinksUpdate;
+use Upsun\Model\OrganizationLinksVouchers;
+use Upsun\Model\OrganizationMFAEnforcement;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\OrganizationMemberLinks;
+use Upsun\Model\OrganizationMemberLinksDelete;
+use Upsun\Model\OrganizationMemberLinksSelf;
+use Upsun\Model\OrganizationMemberLinksUpdate;
+use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationProjectLinks;
+use Upsun\Model\OrganizationProjectLinksApi;
+use Upsun\Model\OrganizationProjectLinksDelete;
+use Upsun\Model\OrganizationProjectLinksSelf;
+use Upsun\Model\OrganizationProjectLinksSubscription;
+use Upsun\Model\OrganizationProjectLinksUpdate;
+use Upsun\Model\OrganizationProjectPlan;
+use Upsun\Model\OrganizationProjectStatus;
+use Upsun\Model\OrganizationProjectType;
+use Upsun\Model\OrganizationReference;
+use Upsun\Model\OrganizationSSOConfig;
+use Upsun\Model\OutboundFirewall;
+use Upsun\Model\OutboundFirewallRestrictionsInner;
+use Upsun\Model\OwnerInfo;
+use Upsun\Model\PagerDutyIntegration;
+use Upsun\Model\PagerDutyIntegrationCreateInput;
+use Upsun\Model\PagerDutyIntegrationPatch;
+use Upsun\Model\PerServiceResourcesOverridesValue;
+use Upsun\Model\Plan;
+use Upsun\Model\PlanRecords;
+use Upsun\Model\PrepaymentObject;
+use Upsun\Model\PrepaymentObjectPrepayment;
+use Upsun\Model\PrepaymentObjectPrepaymentBalance;
+use Upsun\Model\PrepaymentTransactionObject;
+use Upsun\Model\ProdDomainStorage;
+use Upsun\Model\ProdDomainStorageCreateInput;
+use Upsun\Model\ProdDomainStoragePatch;
+use Upsun\Model\Profile;
+use Upsun\Model\ProfileCurrentTrial;
+use Upsun\Model\ProfileCurrentTrialCurrent;
+use Upsun\Model\ProfileCurrentTrialProjects;
+use Upsun\Model\ProfileCurrentTrialProjectsTotal;
+use Upsun\Model\ProfileCurrentTrialSpend;
+use Upsun\Model\ProfileCurrentTrialSpendRemaining;
+use Upsun\Model\Project;
+use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectInfo;
+use Upsun\Model\ProjectInvitation;
+use Upsun\Model\ProjectInvitationEnvironmentsInner;
+use Upsun\Model\ProjectOptions;
+use Upsun\Model\ProjectOptionsDefaults;
+use Upsun\Model\ProjectOptionsEnforced;
+use Upsun\Model\ProjectPatch;
+use Upsun\Model\ProjectReference;
+use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\ProjectVariable;
+use Upsun\Model\ProjectVariableCreateInput;
+use Upsun\Model\ProjectVariablePatch;
+use Upsun\Model\ProxyRoute;
+use Upsun\Model\ProxyRouteCreateInput;
+use Upsun\Model\ProxyRoutePatch;
+use Upsun\Model\RedirectRoute;
+use Upsun\Model\RedirectRouteCreateInput;
+use Upsun\Model\RedirectRoutePatch;
+use Upsun\Model\Ref;
+use Upsun\Model\Region;
+use Upsun\Model\RegionDatacenter;
+use Upsun\Model\RegionEnvironmentalImpact;
+use Upsun\Model\RegionProvider;
+use Upsun\Model\RegionReference;
+use Upsun\Model\ReplacementDomainStorage;
+use Upsun\Model\ReplacementDomainStorageCreateInput;
+use Upsun\Model\ReplacementDomainStoragePatch;
+use Upsun\Model\RepositoryInformation;
+use Upsun\Model\ResetEmailAddressRequest;
+use Upsun\Model\ResourceConfig;
+use Upsun\Model\Resources;
+use Upsun\Model\Resources1;
+use Upsun\Model\Resources2;
+use Upsun\Model\Resources3;
+use Upsun\Model\Resources4;
+use Upsun\Model\Resources5;
+use Upsun\Model\ResourcesForDevelopmentEnvironments;
+use Upsun\Model\ResourcesForProductionEnvironments;
+use Upsun\Model\ResourcesLimits;
+use Upsun\Model\ResourcesOverridesValue;
+use Upsun\Model\RestrictedAndDeniedImageTypes;
+use Upsun\Model\Route;
+use Upsun\Model\RouteCreateInput;
+use Upsun\Model\RoutePatch;
+use Upsun\Model\RoutesValue;
+use Upsun\Model\RuntimeOperations;
+use Upsun\Model\SSHKey;
+use Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue;
+use Upsun\Model\ScriptIntegration;
+use Upsun\Model\ScriptIntegrationConfigurations;
+use Upsun\Model\ScriptIntegrationCreateInput;
+use Upsun\Model\ScriptIntegrationPatch;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
+use Upsun\Model\SendOrgMfaRemindersRequest;
+use Upsun\Model\ServerSideIncludeConfiguration;
+use Upsun\Model\ServerSideIncludeConfiguration1;
+use Upsun\Model\ServicesValue;
+use Upsun\Model\SlackIntegration;
+use Upsun\Model\SlackIntegrationCreateInput;
+use Upsun\Model\SlackIntegrationPatch;
+use Upsun\Model\SourceOperations;
+use Upsun\Model\SpecificOverridesValue;
+use Upsun\Model\SplunkIntegration;
+use Upsun\Model\SplunkIntegrationCreateInput;
+use Upsun\Model\SplunkIntegrationPatch;
+use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
+use Upsun\Model\Status;
+use Upsun\Model\StrictTransportSecurityOptions;
+use Upsun\Model\StrictTransportSecurityOptions1;
+use Upsun\Model\StringFilter;
+use Upsun\Model\Subscription;
+use Upsun\Model\Subscription1;
+use Upsun\Model\SubscriptionAddonsObject;
+use Upsun\Model\SubscriptionAddonsObjectAvailable;
+use Upsun\Model\SubscriptionAddonsObjectCurrent;
+use Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable;
+use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\SubscriptionInformation;
+use Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations;
+use Upsun\Model\SumologicIntegration;
+use Upsun\Model\SumologicIntegrationCreateInput;
+use Upsun\Model\SumologicIntegrationPatch;
+use Upsun\Model\SyslogIntegration;
+use Upsun\Model\SyslogIntegrationCreateInput;
+use Upsun\Model\SyslogIntegrationPatch;
+use Upsun\Model\SyslogLogForwardingIntegrationConfigurations;
+use Upsun\Model\SystemInformation;
+use Upsun\Model\TLSSettingsForTheRoute;
+use Upsun\Model\TLSSettingsForTheRoute1;
+use Upsun\Model\Team;
+use Upsun\Model\TeamCounts;
+use Upsun\Model\TeamMember;
+use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\TeamProjectAccessLinks;
+use Upsun\Model\TeamProjectAccessLinksDelete;
+use Upsun\Model\TeamProjectAccessLinksSelf;
+use Upsun\Model\TeamProjectAccessLinksUpdate;
+use Upsun\Model\TeamReference;
+use Upsun\Model\TheAddonCredentialInformationOptional;
+use Upsun\Model\TheAddonCredentialInformationOptional1;
+use Upsun\Model\TheBackupScheduleSpecificationInner;
+use Upsun\Model\TheBuildConfigurationOfTheApplication;
+use Upsun\Model\TheCommandsDefinition;
+use Upsun\Model\TheCommandsToManageTheWorker;
+use Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments;
+use Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue;
+use Upsun\Model\TheConfigurationOfTheRedirects;
+use Upsun\Model\TheConfigurationOfTheRedirects1;
+use Upsun\Model\TheContinuousProfilingConfiguration;
+use Upsun\Model\TheCronsDeploymentState;
+use Upsun\Model\TheDefaultResourcesForThisService;
+use Upsun\Model\TheDisksResources;
+use Upsun\Model\TheEnvironmentDeploymentState;
+use Upsun\Model\TheHostsOfTheDeploymentTargetInner;
+use Upsun\Model\TheHostsOfTheDeploymentTargetInner1;
+use Upsun\Model\TheInformationAboutTheAuthor;
+use Upsun\Model\TheInformationAboutTheCommitter;
+use Upsun\Model\TheIssuerOfTheCertificateInner;
+use Upsun\Model\TheMinimumResourcesForThisService;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional;
+use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
+use Upsun\Model\TheObjectTheReferencePointsTo;
+use Upsun\Model\ThePathsToRedirectValue;
+use Upsun\Model\ThePathsToRedirectValue1;
+use Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue;
+use Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue;
+use Upsun\Model\TheTreeItemsInner;
+use Upsun\Model\TheVariablesApplyingToThisEnvironmentInner;
+use Upsun\Model\Ticket;
+use Upsun\Model\TicketJiraInner;
+use Upsun\Model\Tree;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
+use Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig;
+use Upsun\Model\UpdateOrgMemberRequest;
+use Upsun\Model\UpdateOrgProfileRequest;
+use Upsun\Model\UpdateOrgRequest;
+use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateProfileRequest;
+use Upsun\Model\UpdateProjectUserAccessRequest;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue;
+use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue;
+use Upsun\Model\UpdateTeamRequest;
+use Upsun\Model\UpdateTicketRequest;
+use Upsun\Model\UpdateUsageAlertRequest;
+use Upsun\Model\UpdateUserRequest;
+use Upsun\Model\UpstreamRoute;
+use Upsun\Model\UpstreamRouteCreateInput;
+use Upsun\Model\UpstreamRoutePatch;
+use Upsun\Model\Usage;
+use Upsun\Model\UsageGroupCurrentUsageProperties;
+use Upsun\Model\User;
+use Upsun\Model\UserProjectAccess;
+use Upsun\Model\UserReference;
+use Upsun\Model\VPNConfiguration;
+use Upsun\Model\VerifyPhoneNumber200Response;
+use Upsun\Model\VerifyPhoneNumberRequest;
+use Upsun\Model\Version;
+use Upsun\Model\VersionCreateInput;
+use Upsun\Model\VersionPatch;
+use Upsun\Model\Vouchers;
+use Upsun\Model\VouchersLinks;
+use Upsun\Model\VouchersVouchersInner;
+use Upsun\Model\VouchersVouchersInnerOrdersInner;
+use Upsun\Model\WebApplicationsValue;
+use Upsun\Model\WebHookIntegration;
+use Upsun\Model\WebHookIntegrationCreateInput;
+use Upsun\Model\WebHookIntegrationPatch;
+use Upsun\Model\WebhookIntegrationConfigurations;
+use Upsun\Model\WorkersValue;
+
 final class ObjectOpenApiFormatsMapper
 {
     /**
@@ -29,13 +515,13 @@ final class ObjectOpenApiFormatsMapper
 
     protected static $openAPIFormats = [
 
-        'Upsun\Model\AListOfFilesToAddToTheRepositoryDuringInitializationInner' => [
+        AListOfFilesToAddToTheRepositoryDuringInitializationInner::class => [
             'path' => null,
             'mode' => null,
             'contents' => null
         ],
 
-        'Upsun\Model\APIToken' => [
+        APIToken::class => [
             'id' => 'uuid',
             'name' => null,
             'mfaOnCreation' => null,
@@ -45,17 +531,17 @@ final class ObjectOpenApiFormatsMapper
             'lastUsedAt' => 'date-time'
         ],
 
-        'Upsun\Model\AcceptedResponse' => [
+        AcceptedResponse::class => [
             'status' => null,
             'code' => null
         ],
 
-        'Upsun\Model\AccessControlDefinitionForThisEnviromentInner' => [
+        AccessControlDefinitionForThisEnviromentInner::class => [
             'entityId' => null,
             'role' => null
         ],
 
-        'Upsun\Model\Activity' => [
+        Activity::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -78,7 +564,7 @@ final class ObjectOpenApiFormatsMapper
             'environments' => null
         ],
 
-        'Upsun\Model\Address' => [
+        Address::class => [
             'country' => 'ISO ALPHA-2',
             'nameLine' => null,
             'premise' => null,
@@ -91,22 +577,22 @@ final class ObjectOpenApiFormatsMapper
             'postalCode' => null
         ],
 
-        'Upsun\Model\AddressGrantsInner' => [
+        AddressGrantsInner::class => [
             'permission' => null,
             'address' => null
         ],
 
-        'Upsun\Model\AddressMetadata' => [
+        AddressMetadata::class => [
             'metadata' => null
         ],
 
-        'Upsun\Model\AddressMetadataMetadata' => [
+        AddressMetadataMetadata::class => [
             'requiredFields' => null,
             'fieldLabels' => null,
             'showVat' => null
         ],
 
-        'Upsun\Model\Alert' => [
+        Alert::class => [
             'id' => null,
             'active' => null,
             'alertsSent' => null,
@@ -115,18 +601,18 @@ final class ObjectOpenApiFormatsMapper
             'config' => null
         ],
 
-        'Upsun\Model\ApplyOrgVoucherRequest' => [
+        ApplyOrgVoucherRequest::class => [
             'code' => null
         ],
 
-        'Upsun\Model\ArrayFilter' => [
+        ArrayFilter::class => [
             'eq' => null,
             'ne' => null,
             'in' => null,
             'nin' => null
         ],
 
-        'Upsun\Model\Backup' => [
+        Backup::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'id' => null,
@@ -144,7 +630,7 @@ final class ObjectOpenApiFormatsMapper
             'automated' => null
         ],
 
-        'Upsun\Model\BitbucketIntegration' => [
+        BitbucketIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -159,12 +645,12 @@ final class ObjectOpenApiFormatsMapper
             'addonCredentials' => null
         ],
 
-        'Upsun\Model\BitbucketIntegrationConfigurations' => [
+        BitbucketIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\BitbucketIntegrationCreateInput' => [
+        BitbucketIntegrationCreateInput::class => [
             'type' => null,
             'repository' => null,
             'fetchBranches' => null,
@@ -177,7 +663,7 @@ final class ObjectOpenApiFormatsMapper
             'resyncPullRequests' => null
         ],
 
-        'Upsun\Model\BitbucketIntegrationPatch' => [
+        BitbucketIntegrationPatch::class => [
             'type' => null,
             'repository' => null,
             'fetchBranches' => null,
@@ -190,7 +676,7 @@ final class ObjectOpenApiFormatsMapper
             'resyncPullRequests' => null
         ],
 
-        'Upsun\Model\BitbucketServerIntegration' => [
+        BitbucketServerIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -205,12 +691,12 @@ final class ObjectOpenApiFormatsMapper
             'pullRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\BitbucketServerIntegrationConfigurations' => [
+        BitbucketServerIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\BitbucketServerIntegrationCreateInput' => [
+        BitbucketServerIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'username' => null,
@@ -224,7 +710,7 @@ final class ObjectOpenApiFormatsMapper
             'pullRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\BitbucketServerIntegrationPatch' => [
+        BitbucketServerIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'username' => null,
@@ -238,12 +724,12 @@ final class ObjectOpenApiFormatsMapper
             'pullRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\BlackfireEnvironmentsCredentialsValue' => [
+        BlackfireEnvironmentsCredentialsValue::class => [
             'serverUuid' => null,
             'serverToken' => null
         ],
 
-        'Upsun\Model\BlackfireIntegration' => [
+        BlackfireIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -251,68 +737,68 @@ final class ObjectOpenApiFormatsMapper
             'continuousProfiling' => null
         ],
 
-        'Upsun\Model\BlackfireIntegrationConfigurations' => [
+        BlackfireIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\BlackfireIntegrationCreateInput' => [
+        BlackfireIntegrationCreateInput::class => [
             'type' => null
         ],
 
-        'Upsun\Model\BlackfireIntegrationPatch' => [
+        BlackfireIntegrationPatch::class => [
             'type' => null
         ],
 
-        'Upsun\Model\Blob' => [
+        Blob::class => [
             'sha' => null,
             'size' => null,
             'encoding' => null,
             'content' => null
         ],
 
-        'Upsun\Model\BuildResources' => [
+        BuildResources::class => [
             'enabled' => null,
             'maxCpu' => 'float',
             'maxMemory' => null
         ],
 
-        'Upsun\Model\BuildResources1' => [
+        BuildResources1::class => [
             'cpu' => 'float',
             'memory' => null
         ],
 
-        'Upsun\Model\BuildResources2' => [
+        BuildResources2::class => [
             'cpu' => 'float',
             'memory' => null
         ],
 
-        'Upsun\Model\CacheConfiguration' => [
+        CacheConfiguration::class => [
             'enabled' => null,
             'defaultTtl' => null,
             'cookies' => null,
             'headers' => null
         ],
 
-        'Upsun\Model\CacheConfiguration1' => [
+        CacheConfiguration1::class => [
             'enabled' => null,
             'defaultTtl' => null,
             'cookies' => null,
             'headers' => null
         ],
 
-        'Upsun\Model\CanCreateNewOrgSubscription200Response' => [
+        CanCreateNewOrgSubscription200Response::class => [
             'canCreate' => null,
             'message' => null,
             'requiredAction' => null
         ],
 
-        'Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction' => [
+        CanCreateNewOrgSubscription200ResponseRequiredAction::class => [
             'action' => null,
             'type' => null
         ],
 
-        'Upsun\Model\Certificate' => [
+        Certificate::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'certificate' => null,
@@ -326,24 +812,24 @@ final class ObjectOpenApiFormatsMapper
             'expiresAt' => 'date-time'
         ],
 
-        'Upsun\Model\CertificateCreateInput' => [
+        CertificateCreateInput::class => [
             'certificate' => null,
             'key' => null,
             'chain' => null,
             'isInvalid' => null
         ],
 
-        'Upsun\Model\CertificatePatch' => [
+        CertificatePatch::class => [
             'chain' => null,
             'isInvalid' => null
         ],
 
-        'Upsun\Model\CommandsToManageTheApplicationSLifecycle' => [
+        CommandsToManageTheApplicationSLifecycle::class => [
             'preStart' => null,
             'start' => null
         ],
 
-        'Upsun\Model\Commit' => [
+        Commit::class => [
             'sha' => null,
             'author' => null,
             'committer' => null,
@@ -352,11 +838,11 @@ final class ObjectOpenApiFormatsMapper
             'parents' => null
         ],
 
-        'Upsun\Model\Components' => [
+        Components::class => [
             'voucherVatBaseprice' => null
         ],
 
-        'Upsun\Model\Config' => [
+        Config::class => [
             'newrelic' => null,
             'sumologic' => null,
             'splunk' => null,
@@ -376,15 +862,15 @@ final class ObjectOpenApiFormatsMapper
             'blackfire' => null
         ],
 
-        'Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion' => [
+        ConfigurationAboutTheTrafficRoutedToThisVersion::class => [
             'percentage' => null
         ],
 
-        'Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion1' => [
+        ConfigurationAboutTheTrafficRoutedToThisVersion1::class => [
             'percentage' => null
         ],
 
-        'Upsun\Model\ConfigurationForAccessingThisApplicationViaHTTP' => [
+        ConfigurationForAccessingThisApplicationViaHTTP::class => [
             'locations' => null,
             'moveToRoot' => null,
             'commands' => null,
@@ -397,45 +883,45 @@ final class ObjectOpenApiFormatsMapper
             'expires' => null
         ],
 
-        'Upsun\Model\ConfigurationForPreFlightChecks' => [
+        ConfigurationForPreFlightChecks::class => [
             'enabled' => null,
             'ignoredRules' => null
         ],
 
-        'Upsun\Model\ConfigurationForSupportingRequestBuffering' => [
+        ConfigurationForSupportingRequestBuffering::class => [
             'enabled' => null,
             'maxRequestSize' => null
         ],
 
-        'Upsun\Model\ConfigurationOfAWorkerContainerInstance' => [
+        ConfigurationOfAWorkerContainerInstance::class => [
             'commands' => null,
             'disk' => null
         ],
 
-        'Upsun\Model\ConfigurationOnHowTheWebServerCommunicatesWithTheApplication' => [
+        ConfigurationOnHowTheWebServerCommunicatesWithTheApplication::class => [
             'socketFamily' => null,
             'protocol' => null
         ],
 
-        'Upsun\Model\ConfigurationRelatedToTheSourceCodeOfTheApplication' => [
+        ConfigurationRelatedToTheSourceCodeOfTheApplication::class => [
             'root' => null,
             'operations' => null
         ],
 
-        'Upsun\Model\ConfirmPhoneNumberRequest' => [
+        ConfirmPhoneNumberRequest::class => [
             'code' => null
         ],
 
-        'Upsun\Model\ConfirmTotpEnrollment200Response' => [
+        ConfirmTotpEnrollment200Response::class => [
             'recoveryCodes' => null
         ],
 
-        'Upsun\Model\ConfirmTotpEnrollmentRequest' => [
+        ConfirmTotpEnrollmentRequest::class => [
             'secret' => null,
             'passcode' => null
         ],
 
-        'Upsun\Model\Connection' => [
+        Connection::class => [
             'provider' => null,
             'providerType' => null,
             'isMandatory' => null,
@@ -445,37 +931,37 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\ContainerProfilesValueValue' => [
+        ContainerProfilesValueValue::class => [
             'cpu' => 'float',
             'memory' => null
         ],
 
-        'Upsun\Model\CreateApiTokenRequest' => [
+        CreateApiTokenRequest::class => [
             'name' => null
         ],
 
-        'Upsun\Model\CreateAuthorizationCredentials200Response' => [
+        CreateAuthorizationCredentials200Response::class => [
             'redirectToUrl' => null,
             'type' => null
         ],
 
-        'Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl' => [
+        CreateAuthorizationCredentials200ResponseRedirectToUrl::class => [
             'returnUrl' => null,
             'url' => null
         ],
 
-        'Upsun\Model\CreateOrgInviteRequest' => [
+        CreateOrgInviteRequest::class => [
             'email' => 'email',
             'permissions' => null,
             'force' => null
         ],
 
-        'Upsun\Model\CreateOrgMemberRequest' => [
+        CreateOrgMemberRequest::class => [
             'userId' => 'uuid',
             'permissions' => null
         ],
 
-        'Upsun\Model\CreateOrgRequest' => [
+        CreateOrgRequest::class => [
             'label' => null,
             'type' => null,
             'ownerId' => 'uuid',
@@ -483,7 +969,7 @@ final class ObjectOpenApiFormatsMapper
             'country' => null
         ],
 
-        'Upsun\Model\CreateOrgSubscriptionRequest' => [
+        CreateOrgSubscriptionRequest::class => [
             'projectRegion' => null,
             'plan' => null,
             'projectTitle' => null,
@@ -493,11 +979,11 @@ final class ObjectOpenApiFormatsMapper
             'storage' => null
         ],
 
-        'Upsun\Model\CreateProfilePicture200Response' => [
+        CreateProfilePicture200Response::class => [
             'url' => null
         ],
 
-        'Upsun\Model\CreateProjectInviteRequest' => [
+        CreateProjectInviteRequest::class => [
             'email' => 'email',
             'role' => null,
             'permissions' => null,
@@ -505,33 +991,33 @@ final class ObjectOpenApiFormatsMapper
             'force' => null
         ],
 
-        'Upsun\Model\CreateProjectInviteRequestEnvironmentsInner' => [
+        CreateProjectInviteRequestEnvironmentsInner::class => [
             'id' => null,
             'role' => null
         ],
 
-        'Upsun\Model\CreateProjectInviteRequestPermissionsInner' => [
+        CreateProjectInviteRequestPermissionsInner::class => [
             'type' => null,
             'role' => null
         ],
 
-        'Upsun\Model\CreateSshKeyRequest' => [
+        CreateSshKeyRequest::class => [
             'value' => null,
             'title' => null,
             'uuid' => null
         ],
 
-        'Upsun\Model\CreateTeamMemberRequest' => [
+        CreateTeamMemberRequest::class => [
             'userId' => 'uuid'
         ],
 
-        'Upsun\Model\CreateTeamRequest' => [
+        CreateTeamRequest::class => [
             'organizationId' => 'ulid',
             'label' => null,
             'projectPermissions' => null
         ],
 
-        'Upsun\Model\CreateTicketRequest' => [
+        CreateTicketRequest::class => [
             'subject' => null,
             'description' => null,
             'requesterId' => 'uuid',
@@ -545,35 +1031,35 @@ final class ObjectOpenApiFormatsMapper
             'collaboratorIds' => null
         ],
 
-        'Upsun\Model\CreateTicketRequestAttachmentsInner' => [
+        CreateTicketRequestAttachmentsInner::class => [
             'filename' => null,
             'data' => null
         ],
 
-        'Upsun\Model\CreateUsageAlertRequest' => [
+        CreateUsageAlertRequest::class => [
             'id' => null,
             'config' => null
         ],
 
-        'Upsun\Model\CreateUsageAlertRequestConfig' => [
+        CreateUsageAlertRequestConfig::class => [
             'threshold' => null
         ],
 
-        'Upsun\Model\CurrencyAmount' => [
+        CurrencyAmount::class => [
             'formatted' => null,
             'amount' => 'float',
             'currencyCode' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\CurrencyAmountNullable' => [
+        CurrencyAmountNullable::class => [
             'formatted' => null,
             'amount' => 'float',
             'currencyCode' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\CurrentUser' => [
+        CurrentUser::class => [
             'id' => 'uuid',
             'uuid' => 'uuid',
             'username' => null,
@@ -591,14 +1077,14 @@ final class ObjectOpenApiFormatsMapper
             'currentTrial' => null
         ],
 
-        'Upsun\Model\CurrentUserCurrentTrialInner' => [
+        CurrentUserCurrentTrialInner::class => [
             'created' => 'date-time',
             'description' => null,
             'spendRemaining' => null,
             'expiration' => 'date-time'
         ],
 
-        'Upsun\Model\CurrentUserProjectsInner' => [
+        CurrentUserProjectsInner::class => [
             'id' => null,
             'name' => null,
             'title' => null,
@@ -621,26 +1107,26 @@ final class ObjectOpenApiFormatsMapper
             'createdAt' => 'date-time'
         ],
 
-        'Upsun\Model\CustomDomains' => [
+        CustomDomains::class => [
             'enabled' => null,
             'environmentsWithDomainsLimit' => null
         ],
 
-        'Upsun\Model\DataRetention' => [
+        DataRetention::class => [
             'enabled' => null
         ],
 
-        'Upsun\Model\DataRetentionConfigurationValue' => [
+        DataRetentionConfigurationValue::class => [
             'maxBackups' => null,
             'defaultConfig' => null
         ],
 
-        'Upsun\Model\DataRetentionConfigurationValue1' => [
+        DataRetentionConfigurationValue1::class => [
             'defaultConfig' => null,
             'maxBackups' => null
         ],
 
-        'Upsun\Model\DateTimeFilter' => [
+        DateTimeFilter::class => [
             'eq' => null,
             'ne' => null,
             'between' => null,
@@ -650,7 +1136,7 @@ final class ObjectOpenApiFormatsMapper
             'lte' => null
         ],
 
-        'Upsun\Model\DedicatedDeploymentTarget' => [
+        DedicatedDeploymentTarget::class => [
             'type' => null,
             'name' => null,
             'deployHost' => null,
@@ -666,29 +1152,29 @@ final class ObjectOpenApiFormatsMapper
             'guardrailsPhase' => null
         ],
 
-        'Upsun\Model\DedicatedDeploymentTargetCreateInput' => [
+        DedicatedDeploymentTargetCreateInput::class => [
             'type' => null,
             'name' => null,
             'enforcedMounts' => null
         ],
 
-        'Upsun\Model\DedicatedDeploymentTargetPatch' => [
+        DedicatedDeploymentTargetPatch::class => [
             'type' => null,
             'name' => null,
             'enforcedMounts' => null
         ],
 
-        'Upsun\Model\DefaultConfig' => [
+        DefaultConfig::class => [
             'manualCount' => null,
             'schedule' => null
         ],
 
-        'Upsun\Model\DefaultConfig1' => [
+        DefaultConfig1::class => [
             'manualCount' => null,
             'schedule' => null
         ],
 
-        'Upsun\Model\Deployment' => [
+        Deployment::class => [
             'clusterName' => null,
             'projectInfo' => null,
             'environmentInfo' => null,
@@ -711,7 +1197,7 @@ final class ObjectOpenApiFormatsMapper
             'fingerprint' => null
         ],
 
-        'Upsun\Model\DeploymentTarget' => [
+        DeploymentTarget::class => [
             'type' => null,
             'name' => null,
             'deployHost' => null,
@@ -733,7 +1219,7 @@ final class ObjectOpenApiFormatsMapper
             'enterpriseEnvironmentsMapping' => null
         ],
 
-        'Upsun\Model\DeploymentTargetCreateInput' => [
+        DeploymentTargetCreateInput::class => [
             'type' => null,
             'name' => null,
             'enforcedMounts' => null,
@@ -744,7 +1230,7 @@ final class ObjectOpenApiFormatsMapper
             'useDedicatedGrid' => null
         ],
 
-        'Upsun\Model\DeploymentTargetPatch' => [
+        DeploymentTargetPatch::class => [
             'type' => null,
             'name' => null,
             'enforcedMounts' => null,
@@ -755,7 +1241,7 @@ final class ObjectOpenApiFormatsMapper
             'useDedicatedGrid' => null
         ],
 
-        'Upsun\Model\Discount' => [
+        Discount::class => [
             'id' => null,
             'organizationId' => null,
             'type' => null,
@@ -769,31 +1255,31 @@ final class ObjectOpenApiFormatsMapper
             'endAt' => 'date-time'
         ],
 
-        'Upsun\Model\DiscountCommitment' => [
+        DiscountCommitment::class => [
             'months' => null,
             'amount' => null,
             'net' => null
         ],
 
-        'Upsun\Model\DiscountCommitmentAmount' => [
+        DiscountCommitmentAmount::class => [
             'monthly' => null,
             'commitmentPeriod' => null,
             'contractTotal' => null
         ],
 
-        'Upsun\Model\DiscountCommitmentNet' => [
+        DiscountCommitmentNet::class => [
             'monthly' => null,
             'commitmentPeriod' => null,
             'contractTotal' => null
         ],
 
-        'Upsun\Model\DiscountDiscount' => [
+        DiscountDiscount::class => [
             'monthly' => null,
             'commitmentPeriod' => null,
             'contractTotal' => null
         ],
 
-        'Upsun\Model\Domain' => [
+        Domain::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -805,19 +1291,19 @@ final class ObjectOpenApiFormatsMapper
             'replacementFor' => null
         ],
 
-        'Upsun\Model\DomainCreateInput' => [
+        DomainCreateInput::class => [
             'name' => null,
             'attributes' => null,
             'isDefault' => null,
             'replacementFor' => null
         ],
 
-        'Upsun\Model\DomainPatch' => [
+        DomainPatch::class => [
             'attributes' => null,
             'isDefault' => null
         ],
 
-        'Upsun\Model\EmailIntegration' => [
+        EmailIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -825,19 +1311,19 @@ final class ObjectOpenApiFormatsMapper
             'recipients' => null
         ],
 
-        'Upsun\Model\EmailIntegrationCreateInput' => [
+        EmailIntegrationCreateInput::class => [
             'type' => null,
             'recipients' => null,
             'fromAddress' => null
         ],
 
-        'Upsun\Model\EmailIntegrationPatch' => [
+        EmailIntegrationPatch::class => [
             'type' => null,
             'recipients' => null,
             'fromAddress' => null
         ],
 
-        'Upsun\Model\EnterpriseDeploymentTarget' => [
+        EnterpriseDeploymentTarget::class => [
             'type' => null,
             'name' => null,
             'deployHost' => null,
@@ -848,7 +1334,7 @@ final class ObjectOpenApiFormatsMapper
             'enterpriseEnvironmentsMapping' => null
         ],
 
-        'Upsun\Model\EnterpriseDeploymentTargetCreateInput' => [
+        EnterpriseDeploymentTargetCreateInput::class => [
             'type' => null,
             'name' => null,
             'siteUrls' => null,
@@ -856,7 +1342,7 @@ final class ObjectOpenApiFormatsMapper
             'enterpriseEnvironmentsMapping' => null
         ],
 
-        'Upsun\Model\EnterpriseDeploymentTargetPatch' => [
+        EnterpriseDeploymentTargetPatch::class => [
             'type' => null,
             'name' => null,
             'siteUrls' => null,
@@ -864,7 +1350,7 @@ final class ObjectOpenApiFormatsMapper
             'enterpriseEnvironmentsMapping' => null
         ],
 
-        'Upsun\Model\Environment' => [
+        Environment::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'name' => null,
@@ -873,6 +1359,7 @@ final class ObjectOpenApiFormatsMapper
             'attributes' => null,
             'type' => null,
             'parent' => null,
+            'defaultDomain' => null,
             'hasDomains' => null,
             'cloneParentOnCreate' => null,
             'deploymentTarget' => null,
@@ -895,19 +1382,18 @@ final class ObjectOpenApiFormatsMapper
             'headCommit' => null,
             'mergeInfo' => null,
             'hasDeployment' => null,
-            'supportsRestrictRobots' => null,
-            'defaultDomain' => null
+            'supportsRestrictRobots' => null
         ],
 
-        'Upsun\Model\EnvironmentActivateInput' => [
+        EnvironmentActivateInput::class => [
             'resources' => null
         ],
 
-        'Upsun\Model\EnvironmentBackupInput' => [
+        EnvironmentBackupInput::class => [
             'safe' => null
         ],
 
-        'Upsun\Model\EnvironmentBranchInput' => [
+        EnvironmentBranchInput::class => [
             'title' => null,
             'name' => null,
             'cloneParent' => null,
@@ -915,7 +1401,7 @@ final class ObjectOpenApiFormatsMapper
             'resources' => null
         ],
 
-        'Upsun\Model\EnvironmentInfo' => [
+        EnvironmentInfo::class => [
             'name' => null,
             'status' => null,
             'isMain' => null,
@@ -927,7 +1413,7 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\EnvironmentInitializeInput' => [
+        EnvironmentInitializeInput::class => [
             'profile' => null,
             'repository' => null,
             'config' => null,
@@ -935,16 +1421,16 @@ final class ObjectOpenApiFormatsMapper
             'resources' => null
         ],
 
-        'Upsun\Model\EnvironmentMergeInput' => [
+        EnvironmentMergeInput::class => [
             'resources' => null
         ],
 
-        'Upsun\Model\EnvironmentOperationInput' => [
+        EnvironmentOperationInput::class => [
             'service' => null,
             'operation' => null
         ],
 
-        'Upsun\Model\EnvironmentPatch' => [
+        EnvironmentPatch::class => [
             'name' => null,
             'title' => null,
             'attributes' => null,
@@ -956,7 +1442,7 @@ final class ObjectOpenApiFormatsMapper
             'restrictRobots' => null
         ],
 
-        'Upsun\Model\EnvironmentRestoreInput' => [
+        EnvironmentRestoreInput::class => [
             'environmentName' => null,
             'branchFrom' => null,
             'restoreCode' => null,
@@ -964,29 +1450,29 @@ final class ObjectOpenApiFormatsMapper
             'resources' => null
         ],
 
-        'Upsun\Model\EnvironmentSourceOperation' => [
+        EnvironmentSourceOperation::class => [
             'app' => null,
             'operation' => null,
             'command' => null
         ],
 
-        'Upsun\Model\EnvironmentSourceOperationInput' => [
+        EnvironmentSourceOperationInput::class => [
             'operation' => null,
             'variables' => null
         ],
 
-        'Upsun\Model\EnvironmentSynchronizeInput' => [
+        EnvironmentSynchronizeInput::class => [
             'synchronizeCode' => null,
             'rebase' => null,
             'synchronizeData' => null,
             'synchronizeResources' => null
         ],
 
-        'Upsun\Model\EnvironmentType' => [
+        EnvironmentType::class => [
             'attributes' => null
         ],
 
-        'Upsun\Model\EnvironmentVariable' => [
+        EnvironmentVariable::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'name' => null,
@@ -1003,7 +1489,7 @@ final class ObjectOpenApiFormatsMapper
             'value' => null
         ],
 
-        'Upsun\Model\EnvironmentVariableCreateInput' => [
+        EnvironmentVariableCreateInput::class => [
             'name' => null,
             'value' => null,
             'attributes' => null,
@@ -1015,7 +1501,7 @@ final class ObjectOpenApiFormatsMapper
             'isInheritable' => null
         ],
 
-        'Upsun\Model\EnvironmentVariablePatch' => [
+        EnvironmentVariablePatch::class => [
             'name' => null,
             'attributes' => null,
             'value' => null,
@@ -1027,7 +1513,7 @@ final class ObjectOpenApiFormatsMapper
             'isInheritable' => null
         ],
 
-        'Upsun\Model\Error' => [
+        Error::class => [
             'status' => null,
             'message' => null,
             'code' => null,
@@ -1035,7 +1521,7 @@ final class ObjectOpenApiFormatsMapper
             'title' => null
         ],
 
-        'Upsun\Model\EstimationObject' => [
+        EstimationObject::class => [
             'plan' => null,
             'userLicenses' => null,
             'environments' => null,
@@ -1044,12 +1530,12 @@ final class ObjectOpenApiFormatsMapper
             'options' => null
         ],
 
-        'Upsun\Model\FastlyCDNIntegrationConfigurations' => [
+        FastlyCDNIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\FastlyIntegration' => [
+        FastlyIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -1061,7 +1547,7 @@ final class ObjectOpenApiFormatsMapper
             'serviceId' => null
         ],
 
-        'Upsun\Model\FastlyIntegrationCreateInput' => [
+        FastlyIntegrationCreateInput::class => [
             'type' => null,
             'token' => null,
             'serviceId' => null,
@@ -1072,7 +1558,7 @@ final class ObjectOpenApiFormatsMapper
             'result' => null
         ],
 
-        'Upsun\Model\FastlyIntegrationPatch' => [
+        FastlyIntegrationPatch::class => [
             'type' => null,
             'token' => null,
             'serviceId' => null,
@@ -1083,17 +1569,17 @@ final class ObjectOpenApiFormatsMapper
             'result' => null
         ],
 
-        'Upsun\Model\FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue' => [
+        FilesystemMountsOfThisApplicationIfNotSpecifiedTheApplicationWillHaveNoWriteableDiskSpaceValue::class => [
             'source' => null,
             'sourcePath' => null,
             'service' => null
         ],
 
-        'Upsun\Model\Firewall' => [
+        Firewall::class => [
             'outbound' => null
         ],
 
-        'Upsun\Model\FoundationDeploymentTarget' => [
+        FoundationDeploymentTarget::class => [
             'type' => null,
             'name' => null,
             'hosts' => null,
@@ -1101,21 +1587,21 @@ final class ObjectOpenApiFormatsMapper
             'storageType' => null
         ],
 
-        'Upsun\Model\FoundationDeploymentTargetCreateInput' => [
+        FoundationDeploymentTargetCreateInput::class => [
             'type' => null,
             'name' => null,
             'hosts' => null,
             'useDedicatedGrid' => null
         ],
 
-        'Upsun\Model\FoundationDeploymentTargetPatch' => [
+        FoundationDeploymentTargetPatch::class => [
             'type' => null,
             'name' => null,
             'hosts' => null,
             'useDedicatedGrid' => null
         ],
 
-        'Upsun\Model\GetAddress200Response' => [
+        GetAddress200Response::class => [
             'country' => 'ISO ALPHA-2',
             'nameLine' => null,
             'premise' => null,
@@ -1129,45 +1615,49 @@ final class ObjectOpenApiFormatsMapper
             'metadata' => null
         ],
 
-        'Upsun\Model\GetCurrentUserVerificationStatus200Response' => [
+        GetCurrentUserVerificationStatus200Response::class => [
             'verifyPhone' => null
         ],
 
-        'Upsun\Model\GetCurrentUserVerificationStatusFull200Response' => [
+        GetCurrentUserVerificationStatusFull200Response::class => [
             'state' => null,
             'type' => null
         ],
 
-        'Upsun\Model\GetOrgPrepaymentInfo200Response' => [
+        GetOrgPrepaymentInfo200Response::class => [
             'prepayment' => null,
             'links' => null
         ],
 
-        'Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks' => [
+        GetOrgPrepaymentInfo200ResponseLinks::class => [
             'self' => null,
             'transactions' => null
         ],
 
-        'Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf' => [
+        GetOrgPrepaymentInfo200ResponseLinksSelf::class => [
             'href' => null
         ],
 
-        'Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions' => [
+        GetOrgPrepaymentInfo200ResponseLinksTransactions::class => [
             'href' => null
         ],
 
-        'Upsun\Model\GetTotpEnrollment200Response' => [
+        GetOrgPrepaymentInfo200ResponsePrepayment::class => [
+            'prepayment' => null
+        ],
+
+        GetTotpEnrollment200Response::class => [
             'issuer' => 'uri',
             'accountName' => null,
             'secret' => null,
             'qrCode' => 'byte'
         ],
 
-        'Upsun\Model\GetTypeAllowance200Response' => [
+        GetTypeAllowance200Response::class => [
             'currencies' => null
         ],
 
-        'Upsun\Model\GetTypeAllowance200ResponseCurrencies' => [
+        GetTypeAllowance200ResponseCurrencies::class => [
             'eUR' => null,
             'uSD' => null,
             'gBP' => null,
@@ -1175,52 +1665,52 @@ final class ObjectOpenApiFormatsMapper
             'cAD' => null
         ],
 
-        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesAUD' => [
+        GetTypeAllowance200ResponseCurrenciesAUD::class => [
             'formatted' => null,
             'amount' => 'float',
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesCAD' => [
+        GetTypeAllowance200ResponseCurrenciesCAD::class => [
             'formatted' => null,
             'amount' => 'float',
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesEUR' => [
+        GetTypeAllowance200ResponseCurrenciesEUR::class => [
             'formatted' => null,
             'amount' => 'float',
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesGBP' => [
+        GetTypeAllowance200ResponseCurrenciesGBP::class => [
             'formatted' => null,
             'amount' => 'float',
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\GetTypeAllowance200ResponseCurrenciesUSD' => [
+        GetTypeAllowance200ResponseCurrenciesUSD::class => [
             'formatted' => null,
             'amount' => 'float',
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\GetUsageAlerts200Response' => [
+        GetUsageAlerts200Response::class => [
             'available' => null,
             'current' => null
         ],
 
-        'Upsun\Model\GitHubIntegrationConfigurations' => [
+        GitHubIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\GitLabIntegration' => [
+        GitLabIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -1234,12 +1724,12 @@ final class ObjectOpenApiFormatsMapper
             'mergeRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\GitLabIntegrationConfigurations' => [
+        GitLabIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\GitLabIntegrationCreateInput' => [
+        GitLabIntegrationCreateInput::class => [
             'type' => null,
             'token' => null,
             'project' => null,
@@ -1252,7 +1742,7 @@ final class ObjectOpenApiFormatsMapper
             'mergeRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\GitLabIntegrationPatch' => [
+        GitLabIntegrationPatch::class => [
             'type' => null,
             'token' => null,
             'project' => null,
@@ -1265,7 +1755,7 @@ final class ObjectOpenApiFormatsMapper
             'mergeRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\GithubIntegration' => [
+        GithubIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -1281,7 +1771,7 @@ final class ObjectOpenApiFormatsMapper
             'tokenType' => null
         ],
 
-        'Upsun\Model\GithubIntegrationCreateInput' => [
+        GithubIntegrationCreateInput::class => [
             'type' => null,
             'token' => null,
             'repository' => null,
@@ -1295,7 +1785,7 @@ final class ObjectOpenApiFormatsMapper
             'pullRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\GithubIntegrationPatch' => [
+        GithubIntegrationPatch::class => [
             'type' => null,
             'token' => null,
             'repository' => null,
@@ -1309,114 +1799,114 @@ final class ObjectOpenApiFormatsMapper
             'pullRequestsCloneParentData' => null
         ],
 
-        'Upsun\Model\GoogleSSOConfig' => [
+        GoogleSSOConfig::class => [
             'providerType' => null,
             'domain' => null
         ],
 
-        'Upsun\Model\GrantProjectTeamAccessRequestInner' => [
+        GrantProjectTeamAccessRequestInner::class => [
             'teamId' => null
         ],
 
-        'Upsun\Model\GrantProjectUserAccessRequestInner' => [
+        GrantProjectUserAccessRequestInner::class => [
             'userId' => null,
             'permissions' => null,
             'autoAddMember' => null
         ],
 
-        'Upsun\Model\GrantTeamProjectAccessRequestInner' => [
+        GrantTeamProjectAccessRequestInner::class => [
             'projectId' => null
         ],
 
-        'Upsun\Model\GrantUserProjectAccessRequestInner' => [
+        GrantUserProjectAccessRequestInner::class => [
             'projectId' => null,
             'permissions' => null
         ],
 
-        'Upsun\Model\HTTPLogForwardingIntegrationConfigurations' => [
+        HTTPLogForwardingIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\HalLinks' => [
+        HalLinks::class => [
             'self' => null,
             'previous' => null,
             'next' => null
         ],
 
-        'Upsun\Model\HalLinksNext' => [
+        HalLinksNext::class => [
             'title' => null,
             'href' => null
         ],
 
-        'Upsun\Model\HalLinksPrevious' => [
+        HalLinksPrevious::class => [
             'title' => null,
             'href' => null
         ],
 
-        'Upsun\Model\HalLinksSelf' => [
+        HalLinksSelf::class => [
             'title' => null,
             'href' => null
         ],
 
-        'Upsun\Model\HealthEmailNotificationIntegrationConfigurations' => [
+        HealthEmailNotificationIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\HealthPagerDutyNotificationIntegrationConfigurations' => [
+        HealthPagerDutyNotificationIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\HealthSlackNotificationIntegrationConfigurations' => [
+        HealthSlackNotificationIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\HealthWebHookIntegration' => [
+        HealthWebHookIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
             'url' => null
         ],
 
-        'Upsun\Model\HealthWebHookIntegrationCreateInput' => [
+        HealthWebHookIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'sharedKey' => null
         ],
 
-        'Upsun\Model\HealthWebHookIntegrationPatch' => [
+        HealthWebHookIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'sharedKey' => null
         ],
 
-        'Upsun\Model\HealthWebhookNotificationIntegrationConfigurations' => [
+        HealthWebhookNotificationIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\HooksExecutedAtVariousPointInTheLifecycleOfTheApplication' => [
+        HooksExecutedAtVariousPointInTheLifecycleOfTheApplication::class => [
             'build' => null,
             'deploy' => null,
             'postDeploy' => null
         ],
 
-        'Upsun\Model\HttpAccessPermissions' => [
+        HttpAccessPermissions::class => [
             'isEnabled' => null,
             'addresses' => null,
             'basicAuth' => null
         ],
 
-        'Upsun\Model\HttpAccessPermissions1' => [
+        HttpAccessPermissions1::class => [
             'isEnabled' => null,
             'addresses' => null,
             'basicAuth' => null
         ],
 
-        'Upsun\Model\HttpLogIntegration' => [
+        HttpLogIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -1426,7 +1916,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\HttpLogIntegrationCreateInput' => [
+        HttpLogIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'extra' => null,
@@ -1434,7 +1924,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\HttpLogIntegrationPatch' => [
+        HttpLogIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'extra' => null,
@@ -1442,11 +1932,11 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\ImagesValueValue' => [
+        ImagesValueValue::class => [
             'available' => null
         ],
 
-        'Upsun\Model\Integration' => [
+        Integration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -1496,7 +1986,7 @@ final class ObjectOpenApiFormatsMapper
             'addonCredentials' => null
         ],
 
-        'Upsun\Model\IntegrationCreateInput' => [
+        IntegrationCreateInput::class => [
             'type' => null,
             'repository' => null,
             'url' => null,
@@ -1545,7 +2035,7 @@ final class ObjectOpenApiFormatsMapper
             'authMode' => null
         ],
 
-        'Upsun\Model\IntegrationPatch' => [
+        IntegrationPatch::class => [
             'type' => null,
             'repository' => null,
             'url' => null,
@@ -1594,13 +2084,13 @@ final class ObjectOpenApiFormatsMapper
             'authMode' => null
         ],
 
-        'Upsun\Model\Integrations' => [
+        Integrations::class => [
             'enabled' => null,
             'config' => null,
             'allowedIntegrations' => null
         ],
 
-        'Upsun\Model\Invoice' => [
+        Invoice::class => [
             'id' => null,
             'invoiceNumber' => null,
             'type' => null,
@@ -1619,12 +2109,12 @@ final class ObjectOpenApiFormatsMapper
             'invoicePdf' => null
         ],
 
-        'Upsun\Model\InvoicePDF' => [
+        InvoicePDF::class => [
             'url' => null,
             'status' => null
         ],
 
-        'Upsun\Model\LineItem' => [
+        LineItem::class => [
             'type' => null,
             'licenseId' => null,
             'projectId' => null,
@@ -1636,168 +2126,156 @@ final class ObjectOpenApiFormatsMapper
             'excludeFromInvoice' => null
         ],
 
-        'Upsun\Model\LineItemComponent' => [
+        LineItemComponent::class => [
             'amount' => null,
             'amountFormatted' => null,
             'displayTitle' => null,
             'currency' => null
         ],
 
-        'Upsun\Model\LinkNext' => [
-            'href' => null
-        ],
-
-        'Upsun\Model\LinkPrevious' => [
-            'href' => null
-        ],
-
-        'Upsun\Model\LinkSelf' => [
-            'href' => null
-        ],
-
-        'Upsun\Model\ListLinks' => [
+        ListLinks::class => [
             'self' => null,
             'previous' => null,
             'next' => null
         ],
 
-        'Upsun\Model\ListOrgDiscounts200Response' => [
+        ListLinksNext::class => [
+            'href' => null
+        ],
+
+        ListLinksPrevious::class => [
+            'href' => null
+        ],
+
+        ListLinksSelf::class => [
+            'href' => null
+        ],
+
+        ListOrgDiscounts200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgInvoices200Response' => [
+        ListOrgInvoices200Response::class => [
             'items' => null
         ],
 
-        'Upsun\Model\ListOrgMembers200Response' => [
+        ListOrgMembers200Response::class => [
             'count' => null,
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgOrders200Response' => [
+        ListOrgOrders200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgPlanRecords200Response' => [
+        ListOrgPlanRecords200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgPrepaymentTransactions200Response' => [
+        ListOrgPrepaymentTransactions200Response::class => [
             'count' => null,
             'transactions' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks' => [
+        ListOrgPrepaymentTransactions200ResponseLinks::class => [
             'self' => null,
             'previous' => null,
             'next' => null,
             'prepayment' => null
         ],
 
-        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext' => [
+        ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment::class => [
             'href' => null
         ],
 
-        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment' => [
-            'href' => null
-        ],
-
-        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious' => [
-            'href' => null
-        ],
-
-        'Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf' => [
-            'href' => null
-        ],
-
-        'Upsun\Model\ListOrgProjects200Response' => [
+        ListOrgProjects200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgSubscriptions200Response' => [
+        ListOrgSubscriptions200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgUsageRecords200Response' => [
+        ListOrgUsageRecords200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListOrgs200Response' => [
+        ListOrgs200Response::class => [
             'count' => null,
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListPlans200Response' => [
+        ListPlans200Response::class => [
             'count' => null,
             'plans' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListProfiles200Response' => [
+        ListProfiles200Response::class => [
             'count' => null,
             'profiles' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListProjectUserAccess200Response' => [
+        ListProjectUserAccess200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListRegions200Response' => [
+        ListRegions200Response::class => [
             'regions' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListTeamMembers200Response' => [
+        ListTeamMembers200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListTeamProjectAccess200Response' => [
+        ListTeamProjectAccess200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListTeams200Response' => [
+        ListTeams200Response::class => [
             'items' => null,
             'count' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListTicketCategories200ResponseInner' => [
+        ListTicketCategories200ResponseInner::class => [
             'id' => null,
             'label' => null
         ],
 
-        'Upsun\Model\ListTicketPriorities200ResponseInner' => [
+        ListTicketPriorities200ResponseInner::class => [
             'id' => null,
             'label' => null,
             'shortDescription' => null,
             'description' => null
         ],
 
-        'Upsun\Model\ListTickets200Response' => [
+        ListTickets200Response::class => [
             'count' => null,
             'tickets' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListUserExtendedAccess200Response' => [
+        ListUserExtendedAccess200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\ListUserExtendedAccess200ResponseItemsInner' => [
+        ListUserExtendedAccess200ResponseItemsInner::class => [
             'userId' => 'uuid',
             'resourceId' => null,
             'resourceType' => null,
@@ -1807,25 +2285,25 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\ListUserOrgs200Response' => [
+        ListUserOrgs200Response::class => [
             'items' => null,
             'links' => null
         ],
 
-        'Upsun\Model\LogsForwarding' => [
+        LogsForwarding::class => [
             'maxExtraPayloadSize' => null
         ],
 
-        'Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue' => [
+        MappingOfClustersToEnterpriseApplicationsValue::class => [
             'activeDocroot' => null,
             'docrootVersions' => null
         ],
 
-        'Upsun\Model\Metrics' => [
+        Metrics::class => [
             'maxRange' => null
         ],
 
-        'Upsun\Model\NewRelicIntegration' => [
+        NewRelicIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -1834,7 +2312,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\NewRelicIntegrationCreateInput' => [
+        NewRelicIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'licenseKey' => null,
@@ -1842,7 +2320,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\NewRelicIntegrationPatch' => [
+        NewRelicIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'licenseKey' => null,
@@ -1850,22 +2328,22 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\NewRelicLogForwardingIntegrationConfigurations' => [
+        NewRelicLogForwardingIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue' => [
+        OperationsThatCanBeAppliedToTheSourceCodeValue::class => [
             'command' => null
         ],
 
-        'Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue' => [
+        OperationsThatCanBeTriggeredOnThisApplicationValue::class => [
             'commands' => null,
             'timeout' => null,
             'role' => null
         ],
 
-        'Upsun\Model\Order' => [
+        Order::class => [
             'id' => null,
             'status' => null,
             'owner' => 'uuid',
@@ -1888,22 +2366,22 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\OrderBillingPeriodLabel' => [
+        OrderBillingPeriodLabel::class => [
             'formatted' => null,
             'month' => null,
             'year' => null,
             'nextMonth' => null
         ],
 
-        'Upsun\Model\OrderLinks' => [
+        OrderLinks::class => [
             'invoices' => null
         ],
 
-        'Upsun\Model\OrderLinksInvoices' => [
+        OrderLinksInvoices::class => [
             'href' => null
         ],
 
-        'Upsun\Model\Organization' => [
+        Organization::class => [
             'id' => 'ulid',
             'type' => null,
             'ownerId' => 'uuid',
@@ -1919,28 +2397,28 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\OrganizationAddonsObject' => [
+        OrganizationAddonsObject::class => [
             'available' => null,
             'current' => null,
             'upgradesAvailable' => null
         ],
 
-        'Upsun\Model\OrganizationAddonsObjectAvailable' => [
+        OrganizationAddonsObjectAvailable::class => [
             'userManagement' => null,
             'supportLevel' => null
         ],
 
-        'Upsun\Model\OrganizationAddonsObjectCurrent' => [
+        OrganizationAddonsObjectCurrent::class => [
             'userManagement' => null,
             'supportLevel' => null
         ],
 
-        'Upsun\Model\OrganizationAddonsObjectUpgradesAvailable' => [
+        OrganizationAddonsObjectUpgradesAvailable::class => [
             'userManagement' => null,
             'supportLevel' => null
         ],
 
-        'Upsun\Model\OrganizationAlertConfig' => [
+        OrganizationAlertConfig::class => [
             'id' => null,
             'active' => null,
             'alertsSent' => null,
@@ -1949,19 +2427,19 @@ final class ObjectOpenApiFormatsMapper
             'config' => null
         ],
 
-        'Upsun\Model\OrganizationAlertConfigConfig' => [
+        OrganizationAlertConfigConfig::class => [
             'threshold' => null,
             'mode' => null
         ],
 
-        'Upsun\Model\OrganizationAlertConfigConfigThreshold' => [
+        OrganizationAlertConfigConfigThreshold::class => [
             'formatted' => null,
             'amount' => null,
             'currencyCode' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObject' => [
+        OrganizationEstimationObject::class => [
             'total' => null,
             'subTotal' => null,
             'vouchers' => null,
@@ -1971,73 +2449,73 @@ final class ObjectOpenApiFormatsMapper
             'subscriptions' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectSubscriptions' => [
+        OrganizationEstimationObjectSubscriptions::class => [
             'total' => null,
             'list' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner' => [
+        OrganizationEstimationObjectSubscriptionsListInner::class => [
             'licenseId' => null,
             'projectTitle' => null,
             'total' => null,
             'usage' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectSubscriptionsListInnerUsage' => [
+        OrganizationEstimationObjectSubscriptionsListInnerUsage::class => [
             'cpu' => null,
             'memory' => null,
             'storage' => null,
             'environments' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicenses' => [
+        OrganizationEstimationObjectUserLicenses::class => [
             'base' => null,
             'userManagement' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesBase' => [
+        OrganizationEstimationObjectUserLicensesBase::class => [
             'count' => null,
             'total' => null,
             'list' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesBaseList' => [
+        OrganizationEstimationObjectUserLicensesBaseList::class => [
             'adminUser' => null,
             'viewerUser' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListAdminUser' => [
+        OrganizationEstimationObjectUserLicensesBaseListAdminUser::class => [
             'count' => null,
             'total' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesBaseListViewerUser' => [
+        OrganizationEstimationObjectUserLicensesBaseListViewerUser::class => [
             'count' => null,
             'total' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagement' => [
+        OrganizationEstimationObjectUserLicensesUserManagement::class => [
             'count' => null,
             'total' => null,
             'list' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementList' => [
+        OrganizationEstimationObjectUserLicensesUserManagementList::class => [
             'standardManagementUser' => null,
             'advancedManagementUser' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser' => [
+        OrganizationEstimationObjectUserLicensesUserManagementListAdvancedManagementUser::class => [
             'count' => null,
             'total' => null
         ],
 
-        'Upsun\Model\OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser' => [
+        OrganizationEstimationObjectUserLicensesUserManagementListStandardManagementUser::class => [
             'count' => null,
             'total' => null
         ],
 
-        'Upsun\Model\OrganizationInvitation' => [
+        OrganizationInvitation::class => [
             'id' => 'uuid',
             'state' => null,
             'organizationId' => null,
@@ -2049,12 +2527,12 @@ final class ObjectOpenApiFormatsMapper
             'permissions' => null
         ],
 
-        'Upsun\Model\OrganizationInvitationOwner' => [
+        OrganizationInvitationOwner::class => [
             'id' => 'uuid',
             'displayName' => null
         ],
 
-        'Upsun\Model\OrganizationLinks' => [
+        OrganizationLinks::class => [
             'self' => null,
             'update' => null,
             'delete' => null,
@@ -2072,76 +2550,76 @@ final class ObjectOpenApiFormatsMapper
             'mfaEnforcement' => null
         ],
 
-        'Upsun\Model\OrganizationLinksAddress' => [
+        OrganizationLinksAddress::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksApplyVoucher' => [
+        OrganizationLinksApplyVoucher::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationLinksCreateMember' => [
+        OrganizationLinksCreateMember::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationLinksCreateSubscription' => [
+        OrganizationLinksCreateSubscription::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationLinksDelete' => [
+        OrganizationLinksDelete::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationLinksEstimateSubscription' => [
+        OrganizationLinksEstimateSubscription::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksMembers' => [
+        OrganizationLinksMembers::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksMfaEnforcement' => [
+        OrganizationLinksMfaEnforcement::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksOrders' => [
+        OrganizationLinksOrders::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksPaymentSource' => [
+        OrganizationLinksPaymentSource::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksProfile' => [
+        OrganizationLinksProfile::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksSelf' => [
+        OrganizationLinksSelf::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksSubscriptions' => [
+        OrganizationLinksSubscriptions::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationLinksUpdate' => [
+        OrganizationLinksUpdate::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationLinksVouchers' => [
+        OrganizationLinksVouchers::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationMFAEnforcement' => [
+        OrganizationMFAEnforcement::class => [
             'enforceMfa' => null
         ],
 
-        'Upsun\Model\OrganizationMember' => [
+        OrganizationMember::class => [
             'id' => 'uuid',
             'organizationId' => 'ulid',
             'userId' => 'uuid',
@@ -2153,27 +2631,27 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\OrganizationMemberLinks' => [
+        OrganizationMemberLinks::class => [
             'self' => null,
             'update' => null,
             'delete' => null
         ],
 
-        'Upsun\Model\OrganizationMemberLinksDelete' => [
+        OrganizationMemberLinksDelete::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationMemberLinksSelf' => [
+        OrganizationMemberLinksSelf::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationMemberLinksUpdate' => [
+        OrganizationMemberLinksUpdate::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationProject' => [
+        OrganizationProject::class => [
             'id' => null,
             'organizationId' => 'ulid',
             'subscriptionId' => null,
@@ -2189,7 +2667,7 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\OrganizationProjectLinks' => [
+        OrganizationProjectLinks::class => [
             'self' => null,
             'update' => null,
             'delete' => null,
@@ -2197,41 +2675,41 @@ final class ObjectOpenApiFormatsMapper
             'api' => null
         ],
 
-        'Upsun\Model\OrganizationProjectLinksApi' => [
+        OrganizationProjectLinksApi::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationProjectLinksDelete' => [
+        OrganizationProjectLinksDelete::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationProjectLinksSelf' => [
+        OrganizationProjectLinksSelf::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationProjectLinksSubscription' => [
+        OrganizationProjectLinksSubscription::class => [
             'href' => null
         ],
 
-        'Upsun\Model\OrganizationProjectLinksUpdate' => [
+        OrganizationProjectLinksUpdate::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\OrganizationProjectPlan' => [
-            
+        OrganizationProjectPlan::class => [
+
         ],
 
-        'Upsun\Model\OrganizationProjectStatus' => [
-            
+        OrganizationProjectStatus::class => [
+
         ],
 
-        'Upsun\Model\OrganizationProjectType' => [
-            
+        OrganizationProjectType::class => [
+
         ],
 
-        'Upsun\Model\OrganizationReference' => [
+        OrganizationReference::class => [
             'id' => 'ulid',
             'ownerId' => 'uuid',
             'name' => null,
@@ -2241,7 +2719,7 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\OrganizationSSOConfig' => [
+        OrganizationSSOConfig::class => [
             'providerType' => null,
             'domain' => null,
             'organizationId' => null,
@@ -2250,52 +2728,52 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\OutboundFirewall' => [
+        OutboundFirewall::class => [
             'enabled' => null
         ],
 
-        'Upsun\Model\OutboundFirewallRestrictionsInner' => [
+        OutboundFirewallRestrictionsInner::class => [
             'protocol' => null,
             'ips' => null,
             'domains' => null,
             'ports' => null
         ],
 
-        'Upsun\Model\OwnerInfo' => [
+        OwnerInfo::class => [
             'type' => null,
             'username' => null,
             'displayName' => null
         ],
 
-        'Upsun\Model\PagerDutyIntegration' => [
+        PagerDutyIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
             'routingKey' => null
         ],
 
-        'Upsun\Model\PagerDutyIntegrationCreateInput' => [
+        PagerDutyIntegrationCreateInput::class => [
             'type' => null,
             'routingKey' => null
         ],
 
-        'Upsun\Model\PagerDutyIntegrationPatch' => [
+        PagerDutyIntegrationPatch::class => [
             'type' => null,
             'routingKey' => null
         ],
 
-        'Upsun\Model\PerServiceResourcesOverridesValue' => [
+        PerServiceResourcesOverridesValue::class => [
             'cpu' => 'float',
             'memory' => null,
             'disk' => null
         ],
 
-        'Upsun\Model\Plan' => [
+        Plan::class => [
             'name' => null,
             'label' => null
         ],
 
-        'Upsun\Model\PlanRecords' => [
+        PlanRecords::class => [
             'id' => null,
             'owner' => 'uuid',
             'subscriptionId' => null,
@@ -2307,11 +2785,11 @@ final class ObjectOpenApiFormatsMapper
             'status' => null
         ],
 
-        'Upsun\Model\PrepaymentObject' => [
+        PrepaymentObject::class => [
             'prepayment' => null
         ],
 
-        'Upsun\Model\PrepaymentObjectPrepayment' => [
+        PrepaymentObjectPrepayment::class => [
             'organizationId' => null,
             'balance' => null,
             'lastUpdatedAt' => null,
@@ -2319,14 +2797,14 @@ final class ObjectOpenApiFormatsMapper
             'fallback' => null
         ],
 
-        'Upsun\Model\PrepaymentObjectPrepaymentBalance' => [
+        PrepaymentObjectPrepaymentBalance::class => [
             'formatted' => null,
             'amount' => null,
             'currencyCode' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\PrepaymentTransactionObject' => [
+        PrepaymentTransactionObject::class => [
             'orderId' => null,
             'message' => null,
             'status' => null,
@@ -2336,7 +2814,7 @@ final class ObjectOpenApiFormatsMapper
             'expireDate' => null
         ],
 
-        'Upsun\Model\ProdDomainStorage' => [
+        ProdDomainStorage::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -2347,18 +2825,18 @@ final class ObjectOpenApiFormatsMapper
             'isDefault' => null
         ],
 
-        'Upsun\Model\ProdDomainStorageCreateInput' => [
+        ProdDomainStorageCreateInput::class => [
             'name' => null,
             'attributes' => null,
             'isDefault' => null
         ],
 
-        'Upsun\Model\ProdDomainStoragePatch' => [
+        ProdDomainStoragePatch::class => [
             'attributes' => null,
             'isDefault' => null
         ],
 
-        'Upsun\Model\Profile' => [
+        Profile::class => [
             'id' => 'uuid',
             'displayName' => null,
             'email' => 'email',
@@ -2384,7 +2862,7 @@ final class ObjectOpenApiFormatsMapper
             'invoiced' => null
         ],
 
-        'Upsun\Model\ProfileCurrentTrial' => [
+        ProfileCurrentTrial::class => [
             'active' => null,
             'created' => 'date-time',
             'description' => null,
@@ -2398,34 +2876,34 @@ final class ObjectOpenApiFormatsMapper
             'daysRemaining' => null
         ],
 
-        'Upsun\Model\ProfileCurrentTrialCurrent' => [
+        ProfileCurrentTrialCurrent::class => [
             'formatted' => null,
             'amount' => null,
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\ProfileCurrentTrialProjects' => [
+        ProfileCurrentTrialProjects::class => [
             'id' => null,
             'name' => null,
             'total' => null
         ],
 
-        'Upsun\Model\ProfileCurrentTrialProjectsTotal' => [
+        ProfileCurrentTrialProjectsTotal::class => [
             'amount' => null,
             'currencyCode' => null,
             'currencySymbol' => null,
             'formatted' => null
         ],
 
-        'Upsun\Model\ProfileCurrentTrialSpend' => [
+        ProfileCurrentTrialSpend::class => [
             'formatted' => null,
             'amount' => null,
             'currency' => null,
             'currencySymbol' => null
         ],
 
-        'Upsun\Model\ProfileCurrentTrialSpendRemaining' => [
+        ProfileCurrentTrialSpendRemaining::class => [
             'formatted' => null,
             'amount' => null,
             'currency' => null,
@@ -2433,7 +2911,7 @@ final class ObjectOpenApiFormatsMapper
             'unlimited' => null
         ],
 
-        'Upsun\Model\Project' => [
+        Project::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'attributes' => null,
@@ -2447,11 +2925,11 @@ final class ObjectOpenApiFormatsMapper
             'timezone' => null,
             'region' => null,
             'repository' => null,
-            'subscription' => null,
-            'defaultDomain' => null
+            'defaultDomain' => null,
+            'subscription' => null
         ],
 
-        'Upsun\Model\ProjectCapabilities' => [
+        ProjectCapabilities::class => [
             'metrics' => null,
             'logsForwarding' => null,
             'images' => null,
@@ -2465,7 +2943,7 @@ final class ObjectOpenApiFormatsMapper
             'integrations' => null
         ],
 
-        'Upsun\Model\ProjectInfo' => [
+        ProjectInfo::class => [
             'title' => null,
             'name' => null,
             'namespace' => null,
@@ -2474,7 +2952,7 @@ final class ObjectOpenApiFormatsMapper
             'settings' => null
         ],
 
-        'Upsun\Model\ProjectInvitation' => [
+        ProjectInvitation::class => [
             'id' => 'uuid',
             'state' => null,
             'projectId' => null,
@@ -2487,14 +2965,14 @@ final class ObjectOpenApiFormatsMapper
             'environments' => null
         ],
 
-        'Upsun\Model\ProjectInvitationEnvironmentsInner' => [
+        ProjectInvitationEnvironmentsInner::class => [
             'id' => null,
             'type' => null,
             'role' => null,
             'title' => null
         ],
 
-        'Upsun\Model\ProjectOptions' => [
+        ProjectOptions::class => [
             'defaults' => null,
             'enforced' => null,
             'regions' => null,
@@ -2502,19 +2980,19 @@ final class ObjectOpenApiFormatsMapper
             'billing' => null
         ],
 
-        'Upsun\Model\ProjectOptionsDefaults' => [
+        ProjectOptionsDefaults::class => [
             'settings' => null,
             'variables' => null,
             'access' => null,
             'capabilities' => null
         ],
 
-        'Upsun\Model\ProjectOptionsEnforced' => [
+        ProjectOptionsEnforced::class => [
             'settings' => null,
             'capabilities' => null
         ],
 
-        'Upsun\Model\ProjectPatch' => [
+        ProjectPatch::class => [
             'attributes' => null,
             'title' => null,
             'description' => null,
@@ -2524,7 +3002,7 @@ final class ObjectOpenApiFormatsMapper
             'defaultDomain' => null
         ],
 
-        'Upsun\Model\ProjectReference' => [
+        ProjectReference::class => [
             'id' => null,
             'organizationId' => 'ulid',
             'subscriptionId' => null,
@@ -2537,7 +3015,7 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\ProjectSettings' => [
+        ProjectSettings::class => [
             'initialize' => null,
             'productName' => null,
             'productCode' => null,
@@ -2600,13 +3078,13 @@ final class ObjectOpenApiFormatsMapper
             'requiresDomainOwnership' => null
         ],
 
-        'Upsun\Model\ProjectSettingsPatch' => [
+        ProjectSettingsPatch::class => [
             'initialize' => null,
             'dataRetention' => null,
             'buildResources' => null
         ],
 
-        'Upsun\Model\ProjectVariable' => [
+        ProjectVariable::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'name' => null,
@@ -2618,7 +3096,7 @@ final class ObjectOpenApiFormatsMapper
             'value' => null
         ],
 
-        'Upsun\Model\ProjectVariableCreateInput' => [
+        ProjectVariableCreateInput::class => [
             'name' => null,
             'value' => null,
             'attributes' => null,
@@ -2628,7 +3106,7 @@ final class ObjectOpenApiFormatsMapper
             'visibleRuntime' => null
         ],
 
-        'Upsun\Model\ProjectVariablePatch' => [
+        ProjectVariablePatch::class => [
             'name' => null,
             'attributes' => null,
             'value' => null,
@@ -2638,17 +3116,21 @@ final class ObjectOpenApiFormatsMapper
             'visibleRuntime' => null
         ],
 
-        'Upsun\Model\ProxyRoute' => [
-            'primary' => null,
-            'id' => null,
-            'productionUrl' => null,
+        ProxyRoute::class => [
             'attributes' => null,
             'type' => null,
             'tls' => null,
-            'to' => null
+            'to' => null,
+            'primary' => null,
+            'id' => null,
+            'productionUrl' => null,
+            'redirects' => null,
+            'cache' => null,
+            'ssi' => null,
+            'upstream' => null
         ],
 
-        'Upsun\Model\ProxyRouteCreateInput' => [
+        ProxyRouteCreateInput::class => [
             'type' => null,
             'to' => null,
             'primary' => null,
@@ -2658,7 +3140,7 @@ final class ObjectOpenApiFormatsMapper
             'tls' => null
         ],
 
-        'Upsun\Model\ProxyRoutePatch' => [
+        ProxyRoutePatch::class => [
             'type' => null,
             'to' => null,
             'primary' => null,
@@ -2668,29 +3150,21 @@ final class ObjectOpenApiFormatsMapper
             'tls' => null
         ],
 
-        'Upsun\Model\RedirectRoute' => [
-            'primary' => null,
-            'id' => null,
-            'productionUrl' => null,
+        RedirectRoute::class => [
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
-            'redirects' => null
-        ],
-
-        'Upsun\Model\RedirectRouteCreateInput' => [
-            'type' => null,
-            'to' => null,
             'primary' => null,
             'id' => null,
             'productionUrl' => null,
-            'attributes' => null,
-            'tls' => null,
-            'redirects' => null
+            'redirects' => null,
+            'cache' => null,
+            'ssi' => null,
+            'upstream' => null
         ],
 
-        'Upsun\Model\RedirectRoutePatch' => [
+        RedirectRouteCreateInput::class => [
             'type' => null,
             'to' => null,
             'primary' => null,
@@ -2701,13 +3175,24 @@ final class ObjectOpenApiFormatsMapper
             'redirects' => null
         ],
 
-        'Upsun\Model\Ref' => [
+        RedirectRoutePatch::class => [
+            'type' => null,
+            'to' => null,
+            'primary' => null,
+            'id' => null,
+            'productionUrl' => null,
+            'attributes' => null,
+            'tls' => null,
+            'redirects' => null
+        ],
+
+        Ref::class => [
             'ref' => null,
             'object' => null,
             'sha' => null
         ],
 
-        'Upsun\Model\Region' => [
+        Region::class => [
             'id' => null,
             'label' => null,
             'zone' => null,
@@ -2722,24 +3207,24 @@ final class ObjectOpenApiFormatsMapper
             'environmentalImpact' => null
         ],
 
-        'Upsun\Model\RegionDatacenter' => [
+        RegionDatacenter::class => [
             'name' => null,
             'label' => null,
             'location' => null
         ],
 
-        'Upsun\Model\RegionEnvironmentalImpact' => [
+        RegionEnvironmentalImpact::class => [
             'zone' => null,
             'carbonIntensity' => null,
             'green' => null
         ],
 
-        'Upsun\Model\RegionProvider' => [
+        RegionProvider::class => [
             'name' => null,
             'logo' => null
         ],
 
-        'Upsun\Model\RegionReference' => [
+        RegionReference::class => [
             'id' => null,
             'label' => null,
             'zone' => null,
@@ -2758,7 +3243,7 @@ final class ObjectOpenApiFormatsMapper
             'envimpact' => null
         ],
 
-        'Upsun\Model\ReplacementDomainStorage' => [
+        ReplacementDomainStorage::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -2769,30 +3254,30 @@ final class ObjectOpenApiFormatsMapper
             'replacementFor' => null
         ],
 
-        'Upsun\Model\ReplacementDomainStorageCreateInput' => [
+        ReplacementDomainStorageCreateInput::class => [
             'name' => null,
             'attributes' => null,
             'replacementFor' => null
         ],
 
-        'Upsun\Model\ReplacementDomainStoragePatch' => [
+        ReplacementDomainStoragePatch::class => [
             'attributes' => null
         ],
 
-        'Upsun\Model\RepositoryInformation' => [
+        RepositoryInformation::class => [
             'url' => null,
             'clientSshKey' => null
         ],
 
-        'Upsun\Model\ResetEmailAddressRequest' => [
+        ResetEmailAddressRequest::class => [
             'emailAddress' => 'email'
         ],
 
-        'Upsun\Model\ResourceConfig' => [
+        ResourceConfig::class => [
             'profileSize' => null
         ],
 
-        'Upsun\Model\Resources' => [
+        Resources::class => [
             'baseMemory' => null,
             'memoryRatio' => null,
             'profileSize' => null,
@@ -2801,47 +3286,47 @@ final class ObjectOpenApiFormatsMapper
             'disk' => null
         ],
 
-        'Upsun\Model\Resources1' => [
+        Resources1::class => [
             'init' => null
         ],
 
-        'Upsun\Model\Resources2' => [
+        Resources2::class => [
             'init' => null
         ],
 
-        'Upsun\Model\Resources3' => [
+        Resources3::class => [
             'init' => null
         ],
 
-        'Upsun\Model\Resources4' => [
+        Resources4::class => [
             'init' => null
         ],
 
-        'Upsun\Model\Resources5' => [
+        Resources5::class => [
             'init' => null
         ],
 
-        'Upsun\Model\ResourcesForDevelopmentEnvironments' => [
+        ResourcesForDevelopmentEnvironments::class => [
             'legacyDevelopment' => null,
             'maxCpu' => 'float',
             'maxMemory' => null,
             'maxEnvironments' => null
         ],
 
-        'Upsun\Model\ResourcesForProductionEnvironments' => [
+        ResourcesForProductionEnvironments::class => [
             'legacyDevelopment' => null,
             'maxCpu' => 'float',
             'maxMemory' => null,
             'maxEnvironments' => null
         ],
 
-        'Upsun\Model\ResourcesLimits' => [
+        ResourcesLimits::class => [
             'containerProfiles' => null,
             'production' => null,
             'development' => null
         ],
 
-        'Upsun\Model\ResourcesOverridesValue' => [
+        ResourcesOverridesValue::class => [
             'services' => null,
             'startsAt' => 'date-time',
             'endsAt' => 'date-time',
@@ -2849,26 +3334,26 @@ final class ObjectOpenApiFormatsMapper
             'redeployedEnd' => null
         ],
 
-        'Upsun\Model\RestrictedAndDeniedImageTypes' => [
+        RestrictedAndDeniedImageTypes::class => [
             'only' => null,
             'exclude' => null
         ],
 
-        'Upsun\Model\Route' => [
-            'primary' => null,
-            'id' => null,
-            'productionUrl' => null,
+        Route::class => [
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
+            'primary' => null,
+            'id' => null,
+            'productionUrl' => null,
             'redirects' => null,
             'cache' => null,
             'ssi' => null,
             'upstream' => null
         ],
 
-        'Upsun\Model\RouteCreateInput' => [
+        RouteCreateInput::class => [
             'type' => null,
             'to' => null,
             'upstream' => null,
@@ -2882,7 +3367,7 @@ final class ObjectOpenApiFormatsMapper
             'ssi' => null
         ],
 
-        'Upsun\Model\RoutePatch' => [
+        RoutePatch::class => [
             'type' => null,
             'to' => null,
             'upstream' => null,
@@ -2896,25 +3381,25 @@ final class ObjectOpenApiFormatsMapper
             'ssi' => null
         ],
 
-        'Upsun\Model\RoutesValue' => [
-            'primary' => null,
-            'id' => null,
-            'productionUrl' => null,
+        RoutesValue::class => [
             'attributes' => null,
             'type' => null,
             'tls' => null,
             'to' => null,
+            'primary' => null,
+            'id' => null,
+            'productionUrl' => null,
             'redirects' => null,
             'cache' => null,
             'ssi' => null,
             'upstream' => null
         ],
 
-        'Upsun\Model\RuntimeOperations' => [
+        RuntimeOperations::class => [
             'enabled' => null
         ],
 
-        'Upsun\Model\SSHKey' => [
+        SSHKey::class => [
             'keyId' => null,
             'uid' => null,
             'fingerprint' => null,
@@ -2923,7 +3408,7 @@ final class ObjectOpenApiFormatsMapper
             'changed' => null
         ],
 
-        'Upsun\Model\ScheduledCronTasksExecutedByThisApplicationValue' => [
+        ScheduledCronTasksExecutedByThisApplicationValue::class => [
             'spec' => null,
             'commands' => null,
             'timeout' => null,
@@ -2931,7 +3416,7 @@ final class ObjectOpenApiFormatsMapper
             'cmd' => null
         ],
 
-        'Upsun\Model\ScriptIntegration' => [
+        ScriptIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -2943,12 +3428,12 @@ final class ObjectOpenApiFormatsMapper
             'script' => null
         ],
 
-        'Upsun\Model\ScriptIntegrationConfigurations' => [
+        ScriptIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\ScriptIntegrationCreateInput' => [
+        ScriptIntegrationCreateInput::class => [
             'type' => null,
             'script' => null,
             'events' => null,
@@ -2958,7 +3443,7 @@ final class ObjectOpenApiFormatsMapper
             'result' => null
         ],
 
-        'Upsun\Model\ScriptIntegrationPatch' => [
+        ScriptIntegrationPatch::class => [
             'type' => null,
             'script' => null,
             'events' => null,
@@ -2968,20 +3453,24 @@ final class ObjectOpenApiFormatsMapper
             'result' => null
         ],
 
-        'Upsun\Model\SendOrgMfaReminders200ResponseValue' => [
+        SendOrgMfaReminders200ResponseValue::class => [
             'code' => null,
             'message' => null
         ],
 
-        'Upsun\Model\SendOrgMfaRemindersRequest' => [
+        SendOrgMfaRemindersRequest::class => [
             'userIds' => 'uuid'
         ],
 
-        'Upsun\Model\ServerSideIncludeConfiguration' => [
+        ServerSideIncludeConfiguration::class => [
             'enabled' => null
         ],
 
-        'Upsun\Model\ServicesValue' => [
+        ServerSideIncludeConfiguration1::class => [
+            'enabled' => null
+        ],
+
+        ServicesValue::class => [
             'type' => null,
             'size' => null,
             'disk' => null,
@@ -2994,30 +3483,30 @@ final class ObjectOpenApiFormatsMapper
             'endpoints' => null
         ],
 
-        'Upsun\Model\SlackIntegration' => [
+        SlackIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
             'channel' => null
         ],
 
-        'Upsun\Model\SlackIntegrationCreateInput' => [
+        SlackIntegrationCreateInput::class => [
             'type' => null,
             'token' => null,
             'channel' => null
         ],
 
-        'Upsun\Model\SlackIntegrationPatch' => [
+        SlackIntegrationPatch::class => [
             'type' => null,
             'token' => null,
             'channel' => null
         ],
 
-        'Upsun\Model\SourceOperations' => [
+        SourceOperations::class => [
             'enabled' => null
         ],
 
-        'Upsun\Model\SpecificOverridesValue' => [
+        SpecificOverridesValue::class => [
             'expires' => null,
             'passthru' => null,
             'scripts' => null,
@@ -3025,7 +3514,7 @@ final class ObjectOpenApiFormatsMapper
             'headers' => null
         ],
 
-        'Upsun\Model\SplunkIntegration' => [
+        SplunkIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -3036,7 +3525,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SplunkIntegrationCreateInput' => [
+        SplunkIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'index' => null,
@@ -3046,7 +3535,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SplunkIntegrationPatch' => [
+        SplunkIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'index' => null,
@@ -3056,29 +3545,29 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SplunkLogForwardingIntegrationConfigurations' => [
+        SplunkLogForwardingIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\Status' => [
+        Status::class => [
             'code' => null,
             'message' => null
         ],
 
-        'Upsun\Model\StrictTransportSecurityOptions' => [
+        StrictTransportSecurityOptions::class => [
             'enabled' => null,
             'includeSubdomains' => null,
             'preload' => null
         ],
 
-        'Upsun\Model\StrictTransportSecurityOptions1' => [
+        StrictTransportSecurityOptions1::class => [
             'enabled' => null,
             'includeSubdomains' => null,
             'preload' => null
         ],
 
-        'Upsun\Model\StringFilter' => [
+        StringFilter::class => [
             'eq' => null,
             'ne' => null,
             'in' => null,
@@ -3089,7 +3578,7 @@ final class ObjectOpenApiFormatsMapper
             'ends' => null
         ],
 
-        'Upsun\Model\Subscription' => [
+        Subscription::class => [
             'id' => null,
             'status' => null,
             'createdAt' => 'date-time',
@@ -3116,7 +3605,7 @@ final class ObjectOpenApiFormatsMapper
             'green' => null
         ],
 
-        'Upsun\Model\Subscription1' => [
+        Subscription1::class => [
             'licenseUri' => null,
             'storage' => null,
             'includedUsers' => null,
@@ -3131,28 +3620,28 @@ final class ObjectOpenApiFormatsMapper
             'imageTypes' => null
         ],
 
-        'Upsun\Model\SubscriptionAddonsObject' => [
+        SubscriptionAddonsObject::class => [
             'available' => null,
             'current' => null,
             'upgradesAvailable' => null
         ],
 
-        'Upsun\Model\SubscriptionAddonsObjectAvailable' => [
+        SubscriptionAddonsObjectAvailable::class => [
             'continuousProfiling' => null,
             'projectSupportLevel' => null
         ],
 
-        'Upsun\Model\SubscriptionAddonsObjectCurrent' => [
+        SubscriptionAddonsObjectCurrent::class => [
             'continuousProfiling' => null,
             'projectSupportLevel' => null
         ],
 
-        'Upsun\Model\SubscriptionAddonsObjectUpgradesAvailable' => [
+        SubscriptionAddonsObjectUpgradesAvailable::class => [
             'continuousProfiling' => null,
             'projectSupportLevel' => null
         ],
 
-        'Upsun\Model\SubscriptionCurrentUsageObject' => [
+        SubscriptionCurrentUsageObject::class => [
             'cpuApp' => null,
             'storageAppServices' => null,
             'memoryApp' => null,
@@ -3168,7 +3657,7 @@ final class ObjectOpenApiFormatsMapper
             'fastlyRequests' => null
         ],
 
-        'Upsun\Model\SubscriptionInformation' => [
+        SubscriptionInformation::class => [
             'licenseUri' => null,
             'storage' => null,
             'includedUsers' => null,
@@ -3183,12 +3672,12 @@ final class ObjectOpenApiFormatsMapper
             'imageTypes' => null
         ],
 
-        'Upsun\Model\SumoLogicLogForwardingIntegrationConfigurations' => [
+        SumoLogicLogForwardingIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\SumologicIntegration' => [
+        SumologicIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -3198,7 +3687,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SumologicIntegrationCreateInput' => [
+        SumologicIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'extra' => null,
@@ -3206,7 +3695,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SumologicIntegrationPatch' => [
+        SumologicIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'extra' => null,
@@ -3214,7 +3703,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SyslogIntegration' => [
+        SyslogIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -3227,7 +3716,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SyslogIntegrationCreateInput' => [
+        SyslogIntegrationCreateInput::class => [
             'type' => null,
             'extra' => null,
             'host' => null,
@@ -3240,7 +3729,7 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SyslogIntegrationPatch' => [
+        SyslogIntegrationPatch::class => [
             'type' => null,
             'extra' => null,
             'host' => null,
@@ -3253,32 +3742,32 @@ final class ObjectOpenApiFormatsMapper
             'tlsVerify' => null
         ],
 
-        'Upsun\Model\SyslogLogForwardingIntegrationConfigurations' => [
+        SyslogLogForwardingIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\SystemInformation' => [
+        SystemInformation::class => [
             'version' => null,
             'image' => null,
             'startedAt' => 'date-time'
         ],
 
-        'Upsun\Model\TLSSettingsForTheRoute' => [
+        TLSSettingsForTheRoute::class => [
             'strictTransportSecurity' => null,
             'minVersion' => null,
             'clientAuthentication' => null,
             'clientCertificateAuthorities' => null
         ],
 
-        'Upsun\Model\TLSSettingsForTheRoute1' => [
+        TLSSettingsForTheRoute1::class => [
             'strictTransportSecurity' => null,
             'minVersion' => null,
             'clientAuthentication' => null,
             'clientCertificateAuthorities' => null
         ],
 
-        'Upsun\Model\Team' => [
+        Team::class => [
             'id' => 'ulid',
             'organizationId' => 'ulid',
             'label' => null,
@@ -3288,19 +3777,19 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\TeamCounts' => [
+        TeamCounts::class => [
             'memberCount' => null,
             'projectCount' => null
         ],
 
-        'Upsun\Model\TeamMember' => [
+        TeamMember::class => [
             'teamId' => 'ulid',
             'userId' => 'uuid',
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\TeamProjectAccess' => [
+        TeamProjectAccess::class => [
             'teamId' => 'ulid',
             'organizationId' => 'ulid',
             'projectId' => null,
@@ -3310,27 +3799,27 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\TeamProjectAccessLinks' => [
+        TeamProjectAccessLinks::class => [
             'self' => null,
             'update' => null,
             'delete' => null
         ],
 
-        'Upsun\Model\TeamProjectAccessLinksDelete' => [
+        TeamProjectAccessLinksDelete::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\TeamProjectAccessLinksSelf' => [
+        TeamProjectAccessLinksSelf::class => [
             'href' => null
         ],
 
-        'Upsun\Model\TeamProjectAccessLinksUpdate' => [
+        TeamProjectAccessLinksUpdate::class => [
             'href' => null,
             'method' => null
         ],
 
-        'Upsun\Model\TeamReference' => [
+        TeamReference::class => [
             'id' => 'ulid',
             'organizationId' => 'ulid',
             'label' => null,
@@ -3340,140 +3829,140 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'date-time'
         ],
 
-        'Upsun\Model\TheAddonCredentialInformationOptional' => [
+        TheAddonCredentialInformationOptional::class => [
             'addonKey' => null,
             'clientKey' => null
         ],
 
-        'Upsun\Model\TheAddonCredentialInformationOptional1' => [
+        TheAddonCredentialInformationOptional1::class => [
             'addonKey' => null,
             'clientKey' => null,
             'sharedSecret' => null
         ],
 
-        'Upsun\Model\TheBackupScheduleSpecificationInner' => [
+        TheBackupScheduleSpecificationInner::class => [
             'interval' => null,
             'count' => null
         ],
 
-        'Upsun\Model\TheBuildConfigurationOfTheApplication' => [
+        TheBuildConfigurationOfTheApplication::class => [
             'flavor' => null,
             'caches' => null
         ],
 
-        'Upsun\Model\TheCommandsDefinition' => [
+        TheCommandsDefinition::class => [
             'start' => null,
             'stop' => null
         ],
 
-        'Upsun\Model\TheCommandsToManageTheWorker' => [
+        TheCommandsToManageTheWorker::class => [
             'start' => null,
             'preStart' => null
         ],
 
-        'Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments' => [
+        TheCommitDistanceInfoBetweenParentAndChildEnvironments::class => [
             'commitsAhead' => null,
             'commitsBehind' => null,
             'parentRef' => null
         ],
 
-        'Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue' => [
+        TheConfigurationOfPathsManagedByTheBuildCacheValue::class => [
             'directory' => null,
             'watch' => null,
             'allowStale' => null,
             'shareBetweenApps' => null
         ],
 
-        'Upsun\Model\TheConfigurationOfTheRedirects' => [
+        TheConfigurationOfTheRedirects::class => [
             'expires' => null,
             'paths' => null
         ],
 
-        'Upsun\Model\TheConfigurationOfTheRedirects1' => [
+        TheConfigurationOfTheRedirects1::class => [
             'paths' => null,
             'expires' => null
         ],
 
-        'Upsun\Model\TheContinuousProfilingConfiguration' => [
+        TheContinuousProfilingConfiguration::class => [
             'supportedRuntimes' => null
         ],
 
-        'Upsun\Model\TheCronsDeploymentState' => [
+        TheCronsDeploymentState::class => [
             'enabled' => null,
             'status' => null
         ],
 
-        'Upsun\Model\TheDefaultResourcesForThisService' => [
+        TheDefaultResourcesForThisService::class => [
             'cpu' => 'float',
             'memory' => null,
             'disk' => null,
             'profileSize' => null
         ],
 
-        'Upsun\Model\TheDisksResources' => [
+        TheDisksResources::class => [
             'temporary' => null,
             'instance' => null,
             'storage' => null
         ],
 
-        'Upsun\Model\TheEnvironmentDeploymentState' => [
+        TheEnvironmentDeploymentState::class => [
             'lastDeploymentSuccessful' => null,
             'lastDeploymentAt' => 'date-time',
             'crons' => null
         ],
 
-        'Upsun\Model\TheHostsOfTheDeploymentTargetInner' => [
+        TheHostsOfTheDeploymentTargetInner::class => [
             'id' => null,
             'type' => null,
             'services' => null
         ],
 
-        'Upsun\Model\TheHostsOfTheDeploymentTargetInner1' => [
+        TheHostsOfTheDeploymentTargetInner1::class => [
             'id' => null,
             'type' => null,
             'services' => null
         ],
 
-        'Upsun\Model\TheInformationAboutTheAuthor' => [
+        TheInformationAboutTheAuthor::class => [
             'date' => 'date-time',
             'name' => null,
             'email' => null
         ],
 
-        'Upsun\Model\TheInformationAboutTheCommitter' => [
+        TheInformationAboutTheCommitter::class => [
             'date' => 'date-time',
             'name' => null,
             'email' => null
         ],
 
-        'Upsun\Model\TheIssuerOfTheCertificateInner' => [
+        TheIssuerOfTheCertificateInner::class => [
             'oid' => null,
             'alias' => null,
             'value' => null
         ],
 
-        'Upsun\Model\TheMinimumResourcesForThisService' => [
+        TheMinimumResourcesForThisService::class => [
             'cpu' => 'float',
             'memory' => null,
             'disk' => null,
             'profileSize' => null
         ],
 
-        'Upsun\Model\TheOAuth2ConsumerInformationOptional' => [
+        TheOAuth2ConsumerInformationOptional::class => [
             'key' => null
         ],
 
-        'Upsun\Model\TheOAuth2ConsumerInformationOptional1' => [
+        TheOAuth2ConsumerInformationOptional1::class => [
             'key' => null,
             'secret' => null
         ],
 
-        'Upsun\Model\TheObjectTheReferencePointsTo' => [
+        TheObjectTheReferencePointsTo::class => [
             'type' => null,
             'sha' => null
         ],
 
-        'Upsun\Model\ThePathsToRedirectValue' => [
+        ThePathsToRedirectValue::class => [
             'regexp' => null,
             'to' => null,
             'prefix' => null,
@@ -3482,7 +3971,7 @@ final class ObjectOpenApiFormatsMapper
             'expires' => null
         ],
 
-        'Upsun\Model\ThePathsToRedirectValue1' => [
+        ThePathsToRedirectValue1::class => [
             'to' => null,
             'regexp' => null,
             'prefix' => null,
@@ -3491,12 +3980,12 @@ final class ObjectOpenApiFormatsMapper
             'expires' => null
         ],
 
-        'Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue' => [
+        TheRelationshipsOfTheApplicationToDefinedServicesValue::class => [
             'service' => null,
             'endpoint' => null
         ],
 
-        'Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue' => [
+        TheSpecificationOfTheWebLocationsServedByThisApplicationValue::class => [
             'root' => null,
             'expires' => null,
             'passthru' => null,
@@ -3508,14 +3997,14 @@ final class ObjectOpenApiFormatsMapper
             'requestBuffering' => null
         ],
 
-        'Upsun\Model\TheTreeItemsInner' => [
+        TheTreeItemsInner::class => [
             'path' => null,
             'mode' => null,
             'type' => null,
             'sha' => null
         ],
 
-        'Upsun\Model\TheVariablesApplyingToThisEnvironmentInner' => [
+        TheVariablesApplyingToThisEnvironmentInner::class => [
             'name' => null,
             'isSensitive' => null,
             'isJson' => null,
@@ -3524,7 +4013,7 @@ final class ObjectOpenApiFormatsMapper
             'value' => null
         ],
 
-        'Upsun\Model\Ticket' => [
+        Ticket::class => [
             'ticketId' => null,
             'created' => 'date-time',
             'updated' => 'date-time',
@@ -3562,7 +4051,7 @@ final class ObjectOpenApiFormatsMapper
             'zdTicketUrl' => 'url'
         ],
 
-        'Upsun\Model\TicketJiraInner' => [
+        TicketJiraInner::class => [
             'id' => null,
             'ticketId' => null,
             'issueId' => null,
@@ -3571,26 +4060,26 @@ final class ObjectOpenApiFormatsMapper
             'updatedAt' => 'float'
         ],
 
-        'Upsun\Model\Tree' => [
+        Tree::class => [
             'sha' => null,
             'tree' => null
         ],
 
-        'Upsun\Model\UpdateOrgBillingAlertConfigRequest' => [
+        UpdateOrgBillingAlertConfigRequest::class => [
             'active' => null,
             'config' => null
         ],
 
-        'Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig' => [
+        UpdateOrgBillingAlertConfigRequestConfig::class => [
             'threshold' => null,
             'mode' => null
         ],
 
-        'Upsun\Model\UpdateOrgMemberRequest' => [
+        UpdateOrgMemberRequest::class => [
             'permissions' => null
         ],
 
-        'Upsun\Model\UpdateOrgProfileRequest' => [
+        UpdateOrgProfileRequest::class => [
             'defaultCatalog' => null,
             'projectOptionsUrl' => 'uri',
             'securityContact' => 'email',
@@ -3599,13 +4088,13 @@ final class ObjectOpenApiFormatsMapper
             'billingContact' => 'email'
         ],
 
-        'Upsun\Model\UpdateOrgRequest' => [
+        UpdateOrgRequest::class => [
             'name' => null,
             'label' => null,
             'country' => null
         ],
 
-        'Upsun\Model\UpdateOrgSubscriptionRequest' => [
+        UpdateOrgSubscriptionRequest::class => [
             'projectTitle' => null,
             'plan' => null,
             'timezone' => null,
@@ -3620,7 +4109,7 @@ final class ObjectOpenApiFormatsMapper
             'projectSupportLevel' => null
         ],
 
-        'Upsun\Model\UpdateProfileRequest' => [
+        UpdateProfileRequest::class => [
             'displayName' => null,
             'username' => null,
             'currentPassword' => null,
@@ -3636,44 +4125,44 @@ final class ObjectOpenApiFormatsMapper
             'picture' => null
         ],
 
-        'Upsun\Model\UpdateProjectUserAccessRequest' => [
+        UpdateProjectUserAccessRequest::class => [
             'permissions' => null
         ],
 
-        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest' => [
+        UpdateProjectsEnvironmentsDeploymentsNextRequest::class => [
             'webapps' => null,
             'services' => null,
             'workers' => null
         ],
 
-        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue' => [
+        UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue::class => [
             'resources' => null,
             'instanceCount' => null,
             'disk' => null
         ],
 
-        'Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue' => [
+        UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue::class => [
             'resources' => null,
             'instanceCount' => null,
             'disk' => null
         ],
 
-        'Upsun\Model\UpdateTeamRequest' => [
+        UpdateTeamRequest::class => [
             'label' => null,
             'projectPermissions' => null
         ],
 
-        'Upsun\Model\UpdateTicketRequest' => [
+        UpdateTicketRequest::class => [
             'status' => null,
             'collaboratorIds' => null,
             'collaboratorsReplace' => null
         ],
 
-        'Upsun\Model\UpdateUsageAlertRequest' => [
+        UpdateUsageAlertRequest::class => [
             'config' => null
         ],
 
-        'Upsun\Model\UpdateUserRequest' => [
+        UpdateUserRequest::class => [
             'username' => null,
             'firstName' => null,
             'lastName' => null,
@@ -3683,33 +4172,21 @@ final class ObjectOpenApiFormatsMapper
             'country' => null
         ],
 
-        'Upsun\Model\UpstreamRoute' => [
-            'primary' => null,
-            'id' => null,
-            'productionUrl' => null,
+        UpstreamRoute::class => [
             'attributes' => null,
             'type' => null,
             'tls' => null,
-            'cache' => null,
-            'ssi' => null,
-            'upstream' => null,
-            'redirects' => null
-        ],
-
-        'Upsun\Model\UpstreamRouteCreateInput' => [
-            'type' => null,
-            'upstream' => null,
             'primary' => null,
             'id' => null,
             'productionUrl' => null,
-            'attributes' => null,
-            'tls' => null,
             'cache' => null,
             'ssi' => null,
-            'redirects' => null
+            'upstream' => null,
+            'redirects' => null,
+            'to' => null
         ],
 
-        'Upsun\Model\UpstreamRoutePatch' => [
+        UpstreamRouteCreateInput::class => [
             'type' => null,
             'upstream' => null,
             'primary' => null,
@@ -3722,7 +4199,20 @@ final class ObjectOpenApiFormatsMapper
             'redirects' => null
         ],
 
-        'Upsun\Model\Usage' => [
+        UpstreamRoutePatch::class => [
+            'type' => null,
+            'upstream' => null,
+            'primary' => null,
+            'id' => null,
+            'productionUrl' => null,
+            'attributes' => null,
+            'tls' => null,
+            'cache' => null,
+            'ssi' => null,
+            'redirects' => null
+        ],
+
+        Usage::class => [
             'id' => null,
             'subscriptionId' => null,
             'usageGroup' => null,
@@ -3730,7 +4220,7 @@ final class ObjectOpenApiFormatsMapper
             'start' => 'date-time'
         ],
 
-        'Upsun\Model\UsageGroupCurrentUsageProperties' => [
+        UsageGroupCurrentUsageProperties::class => [
             'title' => null,
             'type' => null,
             'currentUsage' => null,
@@ -3742,7 +4232,7 @@ final class ObjectOpenApiFormatsMapper
             'dailyAverageFormatted' => null
         ],
 
-        'Upsun\Model\User' => [
+        User::class => [
             'id' => 'uuid',
             'deactivated' => null,
             'namespace' => null,
@@ -3761,7 +4251,7 @@ final class ObjectOpenApiFormatsMapper
             'consentMethod' => null
         ],
 
-        'Upsun\Model\UserProjectAccess' => [
+        UserProjectAccess::class => [
             'userId' => 'uuid',
             'organizationId' => 'ulid',
             'projectId' => null,
@@ -3772,7 +4262,7 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\UserReference' => [
+        UserReference::class => [
             'id' => 'uuid',
             'username' => null,
             'email' => 'email',
@@ -3783,7 +4273,7 @@ final class ObjectOpenApiFormatsMapper
             'ssoEnabled' => null
         ],
 
-        'Upsun\Model\VPNConfiguration' => [
+        VPNConfiguration::class => [
             'version' => null,
             'aggressive' => null,
             'modeconfig' => null,
@@ -3800,30 +4290,30 @@ final class ObjectOpenApiFormatsMapper
             'margintime' => null
         ],
 
-        'Upsun\Model\VerifyPhoneNumber200Response' => [
+        VerifyPhoneNumber200Response::class => [
             'sid' => null
         ],
 
-        'Upsun\Model\VerifyPhoneNumberRequest' => [
+        VerifyPhoneNumberRequest::class => [
             'channel' => null,
             'phoneNumber' => null
         ],
 
-        'Upsun\Model\Version' => [
+        Version::class => [
             'commit' => null,
             'locked' => null,
             'routing' => null
         ],
 
-        'Upsun\Model\VersionCreateInput' => [
+        VersionCreateInput::class => [
             'routing' => null
         ],
 
-        'Upsun\Model\VersionPatch' => [
+        VersionPatch::class => [
             'routing' => null
         ],
 
-        'Upsun\Model\Vouchers' => [
+        Vouchers::class => [
             'uuid' => 'uuid',
             'vouchersTotal' => null,
             'vouchersApplied' => null,
@@ -3833,18 +4323,18 @@ final class ObjectOpenApiFormatsMapper
             'links' => null
         ],
 
-        'Upsun\Model\VouchersLinks' => [
+        VouchersLinks::class => [
             'self' => null
         ],
 
-        'Upsun\Model\VouchersVouchersInner' => [
+        VouchersVouchersInner::class => [
             'code' => null,
             'amount' => null,
             'currency' => null,
             'orders' => null
         ],
 
-        'Upsun\Model\VouchersVouchersInnerOrdersInner' => [
+        VouchersVouchersInnerOrdersInner::class => [
             'orderId' => null,
             'status' => null,
             'billingPeriodStart' => null,
@@ -3854,7 +4344,7 @@ final class ObjectOpenApiFormatsMapper
             'currency' => null
         ],
 
-        'Upsun\Model\WebApplicationsValue' => [
+        WebApplicationsValue::class => [
             'resources' => null,
             'size' => null,
             'disk' => null,
@@ -3887,7 +4377,7 @@ final class ObjectOpenApiFormatsMapper
             'slugId' => null
         ],
 
-        'Upsun\Model\WebHookIntegration' => [
+        WebHookIntegration::class => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',
             'type' => null,
@@ -3900,7 +4390,7 @@ final class ObjectOpenApiFormatsMapper
             'url' => null
         ],
 
-        'Upsun\Model\WebHookIntegrationCreateInput' => [
+        WebHookIntegrationCreateInput::class => [
             'type' => null,
             'url' => null,
             'events' => null,
@@ -3911,7 +4401,7 @@ final class ObjectOpenApiFormatsMapper
             'sharedKey' => null
         ],
 
-        'Upsun\Model\WebHookIntegrationPatch' => [
+        WebHookIntegrationPatch::class => [
             'type' => null,
             'url' => null,
             'events' => null,
@@ -3922,12 +4412,12 @@ final class ObjectOpenApiFormatsMapper
             'sharedKey' => null
         ],
 
-        'Upsun\Model\WebhookIntegrationConfigurations' => [
+        WebhookIntegrationConfigurations::class => [
             'enabled' => null,
             'role' => null
         ],
 
-        'Upsun\Model\WorkersValue' => [
+        WorkersValue::class => [
             'resources' => null,
             'size' => null,
             'disk' => null,

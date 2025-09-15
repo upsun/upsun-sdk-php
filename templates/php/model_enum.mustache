@@ -25,7 +25,9 @@ final class {{classname}} implements JsonSerializable
     public function __construct(string $value)
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
-            throw new InvalidArgumentException("Invalid value '{$value}' for enum {{classname}}");
+            throw new InvalidArgumentException(
+                "Invalid value '{$value}' for enum {{classname}}"
+            );
         }
         $this->value = $value;
     }

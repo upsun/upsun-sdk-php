@@ -1,5 +1,5 @@
 generatorName: php
-inputSpec: ./schema/openapispec-platformsh-xreturn.json
+inputSpec: ./schema/openapispec-platformsh-processed.json
 outputDir: .
 packageName: upsun-client
 templateDir: ./templates/php
@@ -35,6 +35,7 @@ additionalProperties:
   generateEnums: true
   enumClassPrefix: true
   sortModelPropertiesByRequiredFlag: true
+
 files:
   abstract_api.mustache:
     templateType: SupportingFiles
@@ -56,3 +57,4 @@ files:
     templateType: SupportingFiles
     destinationFilename: ObjectOpenApiTypesMapper.php
     folder: src/
+

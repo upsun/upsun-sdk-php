@@ -5,27 +5,20 @@ namespace Upsun\Test\Core;
 use Nyholm\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Upsun\Api\DeploymentApi;
-use Upsun\Api\EnvironmentApi;
-use Upsun\Core\Tasks\EnvironmentTask;
+use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\UpsunClient;
-use Upsun\Model\Deployment;
-use Upsun\Model\WebApplicationsValue;
-use Upsun\Model\Environment;
-use Upsun\Model\TheEnvironmentDeploymentState as DeploymentState;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
 class ApplicationTaskTest extends TestCase
 {
-    private UpsunClient $clientMock;
-    private EnvironmentTask $environmentTaskMock;
+    private ApplicationTask $applicationTask;
+    private ClientInterface $httpClient;
+
     protected function setUp(): void
     {
-        $this->environmentTaskMock = $this->createMock(EnvironmentTask::class);
-
         $psr17Factory = new Psr17Factory();
 
         $this->httpClient = $this->createMock(ClientInterface::class);
@@ -39,28 +32,12 @@ class ApplicationTaskTest extends TestCase
             new Configuration()
         );
 
-        $environmentApi = new EnvironmentApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new Configuration()
-        );
-
-        $environmentActivityApi = new EnvironmentActivityApi(
-            $oauthProvider,
-            $this->httpClient,
-            $psr17Factory,
-            new Configuration()
-        );
-
         $upsunClient = $this->createMock(UpsunClient::class);
 
-        $this->environmentTaskMock = new class (
+        $this->applicationTask = new class (
             $upsunClient,
-            $environmentApi,
-            $environmentActivityApi,
-            $deploymentApi,
-        ) extends EnvironmentTask {
+            $deploymentApi
+        ) extends ApplicationTask {
         };
     }
 
@@ -72,36 +49,136 @@ class ApplicationTaskTest extends TestCase
                 200,
                 ['Content-Type' => 'application/json'],
                 json_encode([
-                    "status" => "OK",
-                    "code" => 200,
-                    "_embedded" => (object) ['activities' => []],
+                    [
+                        "id" => "deploymentId",
+                        "cluster_name" => "clusterName",
+                        "project_info" => [
+                            "title" => "Test project",
+                            "name" => "azertyuiop",
+                            'capabilities' => new \stdClass(),
+                            'settings' => new \stdClass()
+
+                        ],
+                        "environment_info" => [
+                            "name" => "main",
+                            "status" => "active",
+                            "is_main" => true,
+                            "is_production" => true,
+                            "reference" => 'reference',
+                            'machine_name' => 'machine name',
+                            'environment_type' => 'production',
+                            "constraints" => [
+                                "cluster_type" => "environment",
+                                "deployment_type" => "production"
+                            ],
+                            "links" => []
+                        ],
+                        "deployment_target" => "local",
+                        "http_access" => [
+                            "is_enabled" => true,
+                            "addresses" => [],
+                            "basic_auth" => new \stdClass(),
+                        ],
+                        "enable_smtp" => true,
+                        "restrict_robots" => true,
+                        "variables" => [],
+                        "access" => [["entity_id" => "entityId", "role" => "admin"]],
+                        "subscription" => [
+                            "license_uri" => "licence-uri",
+                            "storage" => 1024,
+                            "included_users" => 1,
+                            "restricted" => false,
+                            "suspended" => false,
+                            "user_licenses" => 1,
+                            'subscription_management_uri' => 'subscription_management_uri'
+                        ],
+                        "services" => new \stdClass(),
+                        "routes" => new \stdClass(),
+                        "webapps" => [
+                            "app" => [
+                                "name" => "app",
+                                "type" => "php:8.3:545",
+                                "disk" => 512,
+                                "size" => "AUTO",
+                                "preflight" => [
+                                    "enabled" => true,
+                                    "ignored_rules" => []
+                                ],
+                                "tree_id" => "treeId",
+                                "app_dir" => "/app",
+                                "runtime" => [
+                                    "extensions" => ["apcu", "blackfire"]
+                                ],
+                                "web" => [
+                                    "locations" => [
+                                        "/" => [
+                                            "root" => "public",
+                                            "expires" => "1h",
+                                            "passthru" => "/index.php",
+                                            "scripts" => true,
+                                            "allow" => true,
+                                            "headers" => [],
+                                            "rules" => []
+                                        ]
+                                    ],
+                                    "move_to_root" => false
+                                ],
+                                "hooks" => [
+                                    "build" => "build hook",
+                                    "deploy" => "set -x -e\nsymfony-deploy",
+                                    "post_deploy" => null
+                                ],
+                                "crons" => [],
+                                "source" => [
+                                    "root" => "/",
+                                    "operations" => []
+                                ],
+                                "build" => [
+                                    "flavor" => "none",
+                                    "caches" => []
+                                ],
+                                "dependencies" => [
+                                    "php" => [
+                                        "composer" => "^2"
+                                    ]
+                                ],
+                                "stack" => [],
+                                "is_across_submodule" => false,
+                                "instance_count" => 2,
+                                "config_id" => "slug",
+                                "slug_id" => "slug"
+                            ]
+                        ],
+                        "workers" => new \stdClass(),
+                        "container_profiles" => new \stdClass(),
+                        "created_at" => "2025-09-11T12:31:16+00:00",
+                    ]
                 ])
             ));
-        
-        
-        $projectId = 'proj-1';
-        $envId = 'env-1';
 
-        $webapps = ['app1' => $this->createMock(WebApplicationsValue::class)];
-
-        $deployment = $this->createMock(Deployment::class);
-        $deployment->method('getWebapps')->willReturn($webapps);
-
-        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')
-            ->with($projectId, $envId)
-            ->willReturn([$deployment]);
+        $projectId = 'vjfwze4eacnle';
+        $envId = 'main';
 
         $result = $this->applicationTask->list($projectId, $envId);
-        $this->assertSame($webapps, $result);
+
+        $this->assertNotEmpty($result);
+        $this->assertArrayHasKey('app', $result);
+        $this->assertEquals('app', $result['app']->getName());
     }
+
 
     public function testListReturnsEmptyArrayIfNoDeployment(): void
     {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([])
+            ));
+
         $projectId = 'proj-1';
         $envId = 'env-1';
-
-        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')
-            ->willReturn([]);
 
         $result = $this->applicationTask->list($projectId, $envId);
         $this->assertSame([], $result);
@@ -109,68 +186,247 @@ class ApplicationTaskTest extends TestCase
 
     public function testGetReturnsWebApplicationWhenAvailable(): void
     {
-        $projectId = 'proj-1';
-        $envId = 'env-1';
-        $appId = 'app1';
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        "id" => "deploymentId",
+                        "cluster_name" => "clusterName",
+                        "project_info" => [
+                            "title" => "Test project",
+                            "name" => "azertyuiop",
+                            'capabilities' => new \stdClass(),
+                            'settings' => new \stdClass()
+                        ],
+                        "environment_info" => [
+                            "name" => "main",
+                            "status" => "active",
+                            "is_main" => true,
+                            "is_production" => true,
+                            "reference" => 'reference',
+                            'machine_name' => 'machine name',
+                            'environment_type' => 'production',
+                            "constraints" => [
+                                "cluster_type" => "environment",
+                                "deployment_type" => "production"
+                            ],
+                            "links" => []
+                        ],
+                        "deployment_target" => "local",
+                        "http_access" => [
+                            "is_enabled" => true,
+                            "addresses" => [],
+                            "basic_auth" => new \stdClass(),
+                        ],
+                        "enable_smtp" => true,
+                        "restrict_robots" => true,
+                        "variables" => [],
+                        "access" => [["entity_id" => "entityId", "role" => "admin"]],
+                        "subscription" => [
+                            "license_uri" => "licence-uri",
+                            "storage" => 1024,
+                            "included_users" => 1,
+                            "restricted" => false,
+                            "suspended" => false,
+                            "user_licenses" => 1,
+                            'subscription_management_uri' => 'subscription_management_uri'
+                        ],
+                        "services" => new \stdClass(),
+                        "routes" => new \stdClass(),
+                        "webapps" => [
+                            "app" => [
+                                "name" => "app",
+                                "type" => "php:8.3:545",
+                                "disk" => 512,
+                                "size" => "AUTO",
+                                "preflight" => [
+                                    "enabled" => true,
+                                    "ignored_rules" => []
+                                ],
+                                "tree_id" => "treeId",
+                                "app_dir" => "/app",
+                                "runtime" => [
+                                    "extensions" => ["apcu", "blackfire"]
+                                ],
+                                "web" => [
+                                    "locations" => [
+                                        "/" => [
+                                            "root" => "public",
+                                            "expires" => "1h",
+                                            "passthru" => "/index.php",
+                                            "scripts" => true,
+                                            "allow" => true,
+                                            "headers" => [],
+                                            "rules" => []
+                                        ]
+                                    ],
+                                    "move_to_root" => false
+                                ],
+                                "hooks" => [
+                                    "build" => "build hook",
+                                    "deploy" => "set -x -e\nsymfony-deploy",
+                                    "post_deploy" => null
+                                ],
+                                "crons" => [],
+                                "source" => [
+                                    "root" => "/",
+                                    "operations" => []
+                                ],
+                                "build" => [
+                                    "flavor" => "none",
+                                    "caches" => []
+                                ],
+                                "dependencies" => [
+                                    "php" => [
+                                        "composer" => "^2"
+                                    ]
+                                ],
+                                "stack" => [],
+                                "is_across_submodule" => false,
+                                "instance_count" => 2,
+                                "config_id" => "slug",
+                                "slug_id" => "slug"
+                            ]
+                        ],
+                        "workers" => new \stdClass(),
+                        "container_profiles" => new \stdClass(),
+                        "created_at" => "2025-09-11T12:31:16+00:00",
+                    ]
+                ])
+            ));
 
-        $webapp = $this->createMock(WebApplicationsValue::class);
-        $webapps = [$appId => $webapp];
+        $projectId = 'azertyuiop';
+        $envId = 'main';
 
-        $deployment = $this->createMock(Deployment::class);
-        $deployment->method('getWebapps')->willReturn($webapps);
+        $result = $this->applicationTask->get($projectId, $envId, 'app');
 
-        $deploymentState = $this->createMock(DeploymentState::class);
-        $deploymentState->method('getLastDeploymentSuccessful')->willReturn(true);
-
-        $environment = $this->createMock(Environment::class);
-        $environment->method('getDeploymentState')->willReturn($deploymentState);
-
-        $this->environmentTaskMock->method('get')->with($projectId, $envId)->willReturn($environment);
-
-        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')
-            ->willReturn([$deployment]);
-
-        $result = $this->applicationTask->get($projectId, $envId, $appId);
-        $this->assertSame($webapp, $result);
-    }
-
-    public function testGetReturnsNullWhenLastDeploymentUnsuccessful(): void
-    {
-        $projectId = 'proj-1';
-        $envId = 'env-1';
-        $appId = 'app1';
-
-        $deploymentState = $this->createMock(DeploymentState::class);
-        $deploymentState->method('getLastDeploymentSuccessful')->willReturn(false);
-
-        $environment = $this->createMock(Environment::class);
-        $environment->method('getDeploymentState')->willReturn($deploymentState);
-
-        $this->environmentTaskMock->method('get')->willReturn($environment);
-
-        $result = $this->applicationTask->get($projectId, $envId, $appId);
-        $this->assertNull($result);
+        $this->assertNotNull($result);
+        $this->assertEquals('app', $result->getName());
     }
 
     public function testGetReturnsNullWhenAppNotFound(): void
     {
-        $projectId = 'proj-1';
-        $envId = 'env-1';
-        $appId = 'nonexistent';
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        "id" => "deploymentId",
+                        "cluster_name" => "clusterName",
+                        "project_info" => [
+                            "title" => "Test project",
+                            "name" => "azertyuiop",
+                            'capabilities' => new \stdClass(),
+                            'settings' => new \stdClass()
+                        ],
+                        "environment_info" => [
+                            "name" => "main",
+                            "status" => "active",
+                            "is_main" => true,
+                            "is_production" => true,
+                            "reference" => 'reference',
+                            'machine_name' => 'machine name',
+                            'environment_type' => 'production',
+                            "constraints" => [
+                                "cluster_type" => "environment",
+                                "deployment_type" => "production"
+                            ],
+                            "links" => []
+                        ],
+                        "deployment_target" => "local",
+                        "http_access" => [
+                            "is_enabled" => true,
+                            "addresses" => [],
+                            "basic_auth" => new \stdClass(),
+                        ],
+                        "enable_smtp" => true,
+                        "restrict_robots" => true,
+                        "variables" => [],
+                        "access" => [["entity_id" => "entityId", "role" => "admin"]],
+                        "subscription" => [
+                            "license_uri" => "licence-uri",
+                            "storage" => 1024,
+                            "included_users" => 1,
+                            "restricted" => false,
+                            "suspended" => false,
+                            "user_licenses" => 1,
+                            'subscription_management_uri' => 'subscription_management_uri'
+                        ],
+                        "services" => new \stdClass(),
+                        "routes" => new \stdClass(),
+                        "webapps" => [
+                            "anotherApp" => [
+                                "name" => "app",
+                                "type" => "php:8.3:545",
+                                "disk" => 512,
+                                "size" => "AUTO",
+                                "preflight" => [
+                                    "enabled" => true,
+                                    "ignored_rules" => []
+                                ],
+                                "tree_id" => "treeId",
+                                "app_dir" => "/app",
+                                "runtime" => [
+                                    "extensions" => ["apcu", "blackfire"]
+                                ],
+                                "web" => [
+                                    "locations" => [
+                                        "/" => [
+                                            "root" => "public",
+                                            "expires" => "1h",
+                                            "passthru" => "/index.php",
+                                            "scripts" => true,
+                                            "allow" => true,
+                                            "headers" => [],
+                                            "rules" => []
+                                        ]
+                                    ],
+                                    "move_to_root" => false
+                                ],
+                                "hooks" => [
+                                    "build" => "build hook",
+                                    "deploy" => "set -x -e\nsymfony-deploy",
+                                    "post_deploy" => null
+                                ],
+                                "crons" => [],
+                                "source" => [
+                                    "root" => "/",
+                                    "operations" => []
+                                ],
+                                "build" => [
+                                    "flavor" => "none",
+                                    "caches" => []
+                                ],
+                                "dependencies" => [
+                                    "php" => [
+                                        "composer" => "^2"
+                                    ]
+                                ],
+                                "stack" => [],
+                                "is_across_submodule" => false,
+                                "instance_count" => 2,
+                                "config_id" => "slug",
+                                "slug_id" => "slug"
+                            ]
+                        ],
+                        "workers" => new \stdClass(),
+                        "container_profiles" => new \stdClass(),
+                        "created_at" => "2025-09-11T12:31:16+00:00",
+                    ]
+                ])
+            ));
 
-        $deployment = $this->createMock(Deployment::class);
-        $deployment->method('getWebapps')->willReturn([]);
+        $projectId = 'azertyuiop';
+        $envId = 'main';
+        $app = 'app';
 
-        $deploymentState = $this->createMock(DeploymentState::class);
-        $deploymentState->method('getLastDeploymentSuccessful')->willReturn(true);
+        $result = $this->applicationTask->get($projectId, $envId, $app);
 
-        $environment = $this->createMock(Environment::class);
-        $environment->method('getDeploymentState')->willReturn($deploymentState);
-
-        $this->environmentTaskMock->method('get')->willReturn($environment);
-        $this->deploymentApiMock->method('listProjectsEnvironmentsDeployments')->willReturn([$deployment]);
-
-        $result = $this->applicationTask->get($projectId, $envId, $appId);
         $this->assertNull($result);
     }
 }
