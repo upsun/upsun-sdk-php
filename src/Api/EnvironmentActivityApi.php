@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\AcceptedResponse;
+use Upsun\Model\Activity;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +29,7 @@ use Upsun\Core\OAuthProvider;
 final class EnvironmentActivityApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -61,16 +64,16 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         return $this->actionProjectsEnvironmentsActivitiesCancelWithHttpInfo(
             $projectId,
             $environmentId,
@@ -87,7 +90,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\AcceptedResponse {
+    ): AcceptedResponse {
         $request = $this->actionProjectsEnvironmentsActivitiesCancelRequest(
             $projectId,
             $environmentId,
@@ -103,12 +106,12 @@ final class EnvironmentActivityApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\AcceptedResponse',
+                AcceptedResponse::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -129,7 +132,7 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
@@ -141,7 +144,7 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
@@ -153,11 +156,12 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($activityId)
             && count($activityId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $activityId 
                 when calling actionProjectsEnvironmentsActivitiesCancel'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel';
         $formParams = [];
         $queryParams = [];
@@ -173,6 +177,7 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -181,6 +186,7 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($activityId !== null) {
             $resourcePath = str_replace(
@@ -198,7 +204,7 @@ final class EnvironmentActivityApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -210,6 +216,7 @@ final class EnvironmentActivityApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -238,21 +245,22 @@ final class EnvironmentActivityApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Get an environment activity log entry
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/activities/{activityId}" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
     public function getProjectsEnvironmentsActivities(
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         return $this->getProjectsEnvironmentsActivitiesWithHttpInfo(
             $projectId,
             $environmentId,
@@ -269,7 +277,7 @@ final class EnvironmentActivityApi extends AbstractApi
         string $projectId,
         string $environmentId,
         string $activityId
-    ): \Upsun\Model\Activity {
+    ): Activity {
         $request = $this->getProjectsEnvironmentsActivitiesRequest(
             $projectId,
             $environmentId,
@@ -285,12 +293,12 @@ final class EnvironmentActivityApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\Activity',
+                Activity::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -311,7 +319,7 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsEnvironmentsActivities'
             );
@@ -323,7 +331,7 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling getProjectsEnvironmentsActivities'
             );
@@ -335,11 +343,12 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($activityId)
             && count($activityId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $activityId 
                 when calling getProjectsEnvironmentsActivities'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities/{activityId}';
         $formParams = [];
         $queryParams = [];
@@ -355,6 +364,7 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -363,6 +373,7 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($activityId !== null) {
             $resourcePath = str_replace(
@@ -380,7 +391,7 @@ final class EnvironmentActivityApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -392,6 +403,7 @@ final class EnvironmentActivityApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -420,16 +432,17 @@ final class EnvironmentActivityApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Get environment activity log
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\Activity[]
-     * @example
+     * @return Activity[]
+     * @see
      * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/activities" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
     public function listProjectsEnvironmentsActivities(
@@ -469,8 +482,8 @@ final class EnvironmentActivityApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -490,7 +503,7 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsEnvironmentsActivities'
             );
@@ -502,11 +515,12 @@ final class EnvironmentActivityApi extends AbstractApi
             || (is_array($environmentId)
             && count($environmentId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $environmentId 
                 when calling listProjectsEnvironmentsActivities'
             );
         }
+
         $resourcePath = '/projects/{projectId}/environments/{environmentId}/activities';
         $formParams = [];
         $queryParams = [];
@@ -522,6 +536,7 @@ final class EnvironmentActivityApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($environmentId !== null) {
             $resourcePath = str_replace(
@@ -539,7 +554,7 @@ final class EnvironmentActivityApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -551,6 +566,7 @@ final class EnvironmentActivityApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

@@ -2,6 +2,8 @@
 
 namespace Upsun\Api;
 
+use DateTime;
+use Upsun\Model\ListTickets200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +29,7 @@ use Upsun\Core\OAuthProvider;
 final class DefaultApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -61,15 +64,15 @@ final class DefaultApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X GET "https://api.platform.sh/tickets?filterTicketId=56filterCreated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterUpdated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterType=&#39;filterType_example&#39;filterPriority=&#39;filterPriority_example&#39;filterStatus=&#39;filterStatus_example&#39;filterRequesterId=&#39;filterRequesterId_example&#39;filterSubmitterId=&#39;filterSubmitterId_example&#39;filterAssigneeId=&#39;filterAssigneeId_example&#39;filterHasIncidents=TruefilterDue=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)search=&#39;search_example&#39;page=56" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
     public function listTickets(
         ?int $filterTicketId = null,
-        ?\DateTime $filterCreated = null,
-        ?\DateTime $filterUpdated = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -77,10 +80,10 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?\DateTime $filterDue = null,
+        ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): \Upsun\Model\ListTickets200Response {
+    ): ListTickets200Response {
         return $this->listTicketsWithHttpInfo(
             $filterTicketId,
             $filterCreated,
@@ -105,8 +108,8 @@ final class DefaultApi extends AbstractApi
      */
     private function listTicketsWithHttpInfo(
         ?int $filterTicketId = null,
-        ?\DateTime $filterCreated = null,
-        ?\DateTime $filterUpdated = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -114,10 +117,10 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?\DateTime $filterDue = null,
+        ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): \Upsun\Model\ListTickets200Response {
+    ): ListTickets200Response {
         $request = $this->listTicketsRequest(
             $filterTicketId,
             $filterCreated,
@@ -143,12 +146,12 @@ final class DefaultApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListTickets200Response',
+                ListTickets200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -159,8 +162,8 @@ final class DefaultApi extends AbstractApi
      */
     private function listTicketsRequest(
         ?int $filterTicketId = null,
-        ?\DateTime $filterCreated = null,
-        ?\DateTime $filterUpdated = null,
+        ?DateTime $filterCreated = null,
+        ?DateTime $filterUpdated = null,
         ?string $filterType = null,
         ?string $filterPriority = null,
         ?string $filterStatus = null,
@@ -168,7 +171,7 @@ final class DefaultApi extends AbstractApi
         ?string $filterSubmitterId = null,
         ?string $filterAssigneeId = null,
         ?bool $filterHasIncidents = null,
-        ?\DateTime $filterDue = null,
+        ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
     ): RequestInterface {
@@ -370,7 +373,7 @@ final class DefaultApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -382,6 +385,7 @@ final class DefaultApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

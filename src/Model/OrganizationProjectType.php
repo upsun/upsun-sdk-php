@@ -21,7 +21,9 @@ final class OrganizationProjectType implements JsonSerializable
      * Possible values of this enum
      */
     public const GRID = 'grid';
+
     public const DEDICATED = 'dedicated';
+
     private string $value;
 
     /**
@@ -33,9 +35,10 @@ final class OrganizationProjectType implements JsonSerializable
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
             throw new InvalidArgumentException(
-                "Invalid value '{$value}' for enum OrganizationProjectType"
+                sprintf("Invalid value '%s' for enum OrganizationProjectType", $value)
             );
         }
+
         $this->value = $value;
     }
 

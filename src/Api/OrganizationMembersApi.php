@@ -2,6 +2,11 @@
 
 namespace Upsun\Api;
 
+use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\OrganizationMember;
+use Upsun\Model\ArrayFilter;
+use Upsun\Model\ListOrgMembers200Response;
+use Upsun\Model\UpdateOrgMemberRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -27,6 +32,7 @@ use Upsun\Core\OAuthProvider;
 final class OrganizationMembersApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
+
     private Configuration $config;
 
     public function __construct(
@@ -61,9 +67,9 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X POST "https://api.platform.sh/organizations/{organization_id}/members" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{
      *          "user_id": "string",
@@ -74,8 +80,8 @@ final class OrganizationMembersApi extends AbstractApi
      */
     public function createOrgMember(
         string $organizationId,
-        \Upsun\Model\CreateOrgMemberRequest $createOrgMemberRequest
-    ): \Upsun\Model\OrganizationMember {
+        CreateOrgMemberRequest $createOrgMemberRequest
+    ): OrganizationMember {
         return $this->createOrgMemberWithHttpInfo(
             $organizationId,
             $createOrgMemberRequest
@@ -89,8 +95,8 @@ final class OrganizationMembersApi extends AbstractApi
      */
     private function createOrgMemberWithHttpInfo(
         string $organizationId,
-        \Upsun\Model\CreateOrgMemberRequest $createOrgMemberRequest
-    ): \Upsun\Model\OrganizationMember {
+        CreateOrgMemberRequest $createOrgMemberRequest
+    ): OrganizationMember {
         $request = $this->createOrgMemberRequest(
             $organizationId,
             $createOrgMemberRequest
@@ -105,12 +111,12 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMember',
+                OrganizationMember::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -121,7 +127,7 @@ final class OrganizationMembersApi extends AbstractApi
      */
     private function createOrgMemberRequest(
         string $organizationId,
-        \Upsun\Model\CreateOrgMemberRequest $createOrgMemberRequest
+        CreateOrgMemberRequest $createOrgMemberRequest
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -130,7 +136,7 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling createOrgMember'
             );
@@ -142,11 +148,12 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($createOrgMemberRequest)
             && count($createOrgMemberRequest) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $createOrgMemberRequest 
                 when calling createOrgMember'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/members';
         $formParams = [];
         $queryParams = [];
@@ -179,7 +186,7 @@ final class OrganizationMembersApi extends AbstractApi
             } else {
                 $httpBody = $createOrgMemberRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -191,6 +198,7 @@ final class OrganizationMembersApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -219,14 +227,15 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
+
     /**
      * Delete organization member
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X DELETE "https://api.platform.sh/organizations/{organization_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/problem+json"
      */
     public function deleteOrgMember(
@@ -260,8 +269,8 @@ final class OrganizationMembersApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -281,7 +290,7 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling deleteOrgMember'
             );
@@ -293,11 +302,12 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling deleteOrgMember'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
@@ -313,6 +323,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($userId !== null) {
             $resourcePath = str_replace(
@@ -330,7 +341,7 @@ final class OrganizationMembersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -342,6 +353,7 @@ final class OrganizationMembersApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -370,20 +382,21 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
+
     /**
      * Get organization member
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X GET "https://api.platform.sh/organizations/{organization_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
     public function getOrgMember(
         string $organizationId,
         string $userId
-    ): \Upsun\Model\OrganizationMember {
+    ): OrganizationMember {
         return $this->getOrgMemberWithHttpInfo(
             $organizationId,
             $userId
@@ -398,7 +411,7 @@ final class OrganizationMembersApi extends AbstractApi
     private function getOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId
-    ): \Upsun\Model\OrganizationMember {
+    ): OrganizationMember {
         $request = $this->getOrgMemberRequest(
             $organizationId,
             $userId
@@ -413,12 +426,12 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMember',
+                OrganizationMember::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -438,7 +451,7 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgMember'
             );
@@ -450,11 +463,12 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling getOrgMember'
             );
         }
+
         $resourcePath = '/organizations/{organization_id}/members/{user_id}';
         $formParams = [];
         $queryParams = [];
@@ -470,6 +484,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($userId !== null) {
             $resourcePath = str_replace(
@@ -487,7 +502,7 @@ final class OrganizationMembersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -499,6 +514,7 @@ final class OrganizationMembersApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -527,21 +543,22 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * List organization members
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return \Upsun\Model\OrganizationMember[]
-     * @example
+     * @return OrganizationMember[]
+     * @see
      * curl -X GET "https://api.platform.sh/organizations/{organization_id}/members?filterPermissions=new \Upsun\Model\\Upsun\Model\ArrayFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
     public function listOrgMembers(
         string $organizationId,
-        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
+        ?ArrayFilter $filterPermissions = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -564,7 +581,7 @@ final class OrganizationMembersApi extends AbstractApi
      */
     private function listOrgMembersWithHttpInfo(
         string $organizationId,
-        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
+        ?ArrayFilter $filterPermissions = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -588,12 +605,12 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\ListOrgMembers200Response',
+                ListOrgMembers200Response::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -604,7 +621,7 @@ final class OrganizationMembersApi extends AbstractApi
      */
     private function listOrgMembersRequest(
         string $organizationId,
-        ?\Upsun\Model\ArrayFilter $filterPermissions = null,
+        ?ArrayFilter $filterPermissions = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -617,7 +634,7 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgMembers'
             );
@@ -627,13 +644,14 @@ final class OrganizationMembersApi extends AbstractApi
 
 
         if ($pageSize !== null && $pageSize > 100) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationMembersApi.listOrgMembers, 
                 must be smaller than or equal to 100.'
             );
         }
+
         if ($pageSize !== null && $pageSize < 1) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationMembersApi.listOrgMembers,
                 must be bigger than or equal to 1.'
             );
@@ -730,7 +748,7 @@ final class OrganizationMembersApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -742,6 +760,7 @@ final class OrganizationMembersApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -770,14 +789,15 @@ final class OrganizationMembersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
+
     /**
      * Update organization member
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @example
+     * @see
      * curl -X PATCH "https://api.platform.sh/organizations/{organization_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{
      *          "permissions": [
@@ -788,8 +808,8 @@ final class OrganizationMembersApi extends AbstractApi
     public function updateOrgMember(
         string $organizationId,
         string $userId,
-        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
-    ): \Upsun\Model\OrganizationMember {
+        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
+    ): OrganizationMember {
         return $this->updateOrgMemberWithHttpInfo(
             $organizationId,
             $userId,
@@ -805,8 +825,8 @@ final class OrganizationMembersApi extends AbstractApi
     private function updateOrgMemberWithHttpInfo(
         string $organizationId,
         string $userId,
-        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
-    ): \Upsun\Model\OrganizationMember {
+        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
+    ): OrganizationMember {
         $request = $this->updateOrgMemberRequest(
             $organizationId,
             $userId,
@@ -822,12 +842,12 @@ final class OrganizationMembersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                '\Upsun\Model\OrganizationMember',
+                OrganizationMember::class,
                 $request,
                 $response
             );
-        } catch (ApiException $e) {
-            throw $e;
+        } catch (ApiException $apiException) {
+            throw $apiException;
         }
     }
 
@@ -839,7 +859,7 @@ final class OrganizationMembersApi extends AbstractApi
     private function updateOrgMemberRequest(
         string $organizationId,
         string $userId,
-        ?\Upsun\Model\UpdateOrgMemberRequest $updateOrgMemberRequest = null
+        ?UpdateOrgMemberRequest $updateOrgMemberRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'organizationId' is set
@@ -848,7 +868,7 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling updateOrgMember'
             );
@@ -860,7 +880,7 @@ final class OrganizationMembersApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling updateOrgMember'
             );
@@ -881,6 +901,7 @@ final class OrganizationMembersApi extends AbstractApi
                 $resourcePath
             );
         }
+
         // path params
         if ($userId !== null) {
             $resourcePath = str_replace(
@@ -906,7 +927,7 @@ final class OrganizationMembersApi extends AbstractApi
             } else {
                 $httpBody = $updateOrgMemberRequest;
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -918,6 +939,7 @@ final class OrganizationMembersApi extends AbstractApi
                         ];
                     }
                 }
+
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

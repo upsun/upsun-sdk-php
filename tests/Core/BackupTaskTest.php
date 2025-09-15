@@ -51,7 +51,7 @@ class BackupTaskTest extends TestCase
         };
     }
 
-    public function testBackupCallsApiWithCorrectParameters()
+    public function testBackup()
     {
         $this->httpClient
             ->method('sendRequest')
@@ -66,66 +66,159 @@ class BackupTaskTest extends TestCase
 
         $projectId = 'proj-1';
         $envId = 'env-1';
-        $safe = true;
 
-        $result = $this->backupTask->backup($projectId, $envId, $safe);
-        $this->assertSame(new AcceptedResponse('accepted', 200), $result);
+        $result = $this->backupTask->backup($projectId, $envId, true);
+
+        $acceptedResponse = new AcceptedResponse('accepted', 200);
+        $this->assertEquals($acceptedResponse, $result);
     }
 
-    public function testDeleteCallsApi()
+    public function testDelete()
     {
-        $this->apiMock->expects($this->once())
-            ->method('deleteProjectsEnvironmentsBackups')
-            ->willReturn($this->createMock(AcceptedResponse::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $this->task->delete('prj', 'env', 'bkp');
-        $this->assertTrue(true); // Just to avoid risky test
+        $projectId = 'proj-1';
+        $envId = 'env-1';
+        $backupId = 'backup-1';
+
+        $result = $this->backupTask->delete($projectId, $envId, $backupId);
+        $this->assertEquals(new AcceptedResponse('accepted', 200), $result);
     }
 
-    public function testGetCallsApi()
+    public function testGet()
     {
-        $this->apiMock->expects($this->once())
-            ->method('getProjectsEnvironmentsBackups')
-            ->willReturn($this->createMock(Backup::class));
-
-        $this->task->get('prj', 'env', 'bkp');
-        $this->assertTrue(true);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    "id" => "backup-1",
+                    "attributes" => [],
+                    "status" => "CREATED",
+                    "commitId" => "commit-id-1",
+                    "environment" => "main",
+                    "safe" => false,
+                    "restorable" => true,
+                    "automated" => true,
+                    "createdAt" => "2025-09-12T04:09:50.688719+00:00",
+                    "updatedAt" => "2025-09-12T04:09:50.688719+00:00",
+                    "expiresAt" => "2025-09-15T14:08:39.728284+00:00",
+                    "index" => 4,
+                    "sizeOfVolumes" => 2001,
+                    "sizeUsed" => 24,
+                    "deployment" => "deployment-id"
+                ])
+            ));
+        $backup = $this->backupTask->get('prj', 'env', 'bkp');
+        $this->assertEquals("backup-1", $backup->getId());
     }
 
-    public function testListCallsApi()
+    public function testList()
     {
-        $this->apiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsBackups')
-            ->willReturn([]);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    [
+                        "id" => "backup-1",
+                        "attributes" => [],
+                        "status" => "CREATED",
+                        "commitId" => "commit-id-1",
+                        "environment" => "main",
+                        "safe" => false,
+                        "restorable" => true,
+                        "automated" => true,
+                        "createdAt" => "2025-09-12T04:09:50.688719+00:00",
+                        "updatedAt" => "2025-09-12T04:09:50.688719+00:00",
+                        "expiresAt" => "2025-09-15T14:08:39.728284+00:00",
+                        "index" => 4,
+                        "sizeOfVolumes" => 2001,
+                        "sizeUsed" => 24,
+                        "deployment" => "deployment-id"
+                    ],
+                    [
+                        "id" => "backup-2",
+                        "attributes" => [],
+                        "status" => "CREATED",
+                        "commitId" => "commit-id-2",
+                        "environment" => "main",
+                        "safe" => false,
+                        "restorable" => true,
+                        "automated" => true,
+                        "createdAt" => "2025-09-12T04:09:50.688719+00:00",
+                        "updatedAt" => "2025-09-12T04:09:50.688719+00:00",
+                        "expiresAt" => "2025-09-15T14:08:39.728284+00:00",
+                        "index" => 4,
+                        "sizeOfVolumes" => 2001,
+                        "sizeUsed" => 24,
+                        "deployment" => "deployment-id"
+                    ]
+                ])
+            ));
 
-        $result = $this->task->list('prj', 'env');
+        $result = $this->backupTask->list('prj', 'env');
 
         $this->assertIsArray($result);
+        $this->assertEquals("backup-1", $result[0]->getId());
+        $this->assertEquals("backup-2", $result[1]->getId());
     }
 
     public function testRestoreCallsApi()
     {
-        $this->apiMock->expects($this->once())
-            ->method('restoreBackup')
-            ->with(
-                'prj',
-                'env',
-                'bkp',
-                $this->isInstanceOf(EnvironmentRestoreInput::class)
-            )
-            ->willReturn($this->createMock(AcceptedResponse::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
+        $acceptedResponse = new AcceptedResponse('accepted', 200);
 
-        $this->task->restore('prj', 'env', 'bkp', ['foo' => 'bar']);
-        $this->assertTrue(true);
+        $result = $this->backupTask->restore(
+            'prj',
+            'env',
+            'bkp',
+            ['restoreCode' => true, 'restoreResources' => true]
+        );
+        
+        $this->assertEquals($acceptedResponse, $result);
     }
 
-    public function testBackupThrowsApiException()
+    public function testRestoreThrowsApiException()
     {
         $this->expectException(ApiException::class);
 
-        $this->apiMock->method('backupEnvironment')
-            ->willThrowException($this->createMock(ApiException::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'KO',
+                    'code' => 404
+                ])
+            ));
 
-        $this->task->backup('prj', 'env', []);
+        $this->backupTask->restore(
+            'prj-does-not-exist',
+            'env',
+            'bkp',
+            ['restoreCode' => true, 'restoreResources' => true]
+        );
     }
 }

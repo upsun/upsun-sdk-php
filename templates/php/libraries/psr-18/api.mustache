@@ -82,9 +82,9 @@ use {{invokerPackage}}\Core\OAuthProvider;
      *
      * @return {{{vendorExtensions.x-return-types.0}}}
 {{/vendorExtensions.x-return-types-displayReturn}}
-     * @see Curl example:
+     * @see
      * curl -X {{httpMethod}} "{{basePath}}{{path}}{{#hasQueryParams}}?{{#queryParams}}{{paramName}}={{example}}{{#hasMore}}&{{/hasMore}}{{/queryParams}}{{/hasQueryParams}}" \
-     *      -H "Authorization: Bearer <ACCESS_TOKEN>" \{{^hasBodyParam}}
+     *      -H "Authorization: Bearer ACCESS_TOKEN" \{{^hasBodyParam}}
      *      -H "Accept: {{#produces}}{{{mediaType}}}{{^-last}}, {{/-last}}{{/produces}}"{{/hasBodyParam}}
 {{#hasBodyParam}}
      *      -H "Content-Type: {{#produces}}{{{mediaType}}}{{^-last}}, {{/-last}}{{/produces}}" \
