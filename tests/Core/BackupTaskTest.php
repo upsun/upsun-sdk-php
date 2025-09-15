@@ -1,25 +1,18 @@
 <?php
 
-namespace Tests\Unit\Core;
+namespace Upsun\Test\Core;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Api\DeploymentApi;
 use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\ApplicationTask;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\Backup;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\BackupTask;
-use Upsun\Model\EnvironmentBackupInput;
-use Upsun\Model\EnvironmentRestoreInput;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
 class BackupTaskTest extends TestCase
 {
