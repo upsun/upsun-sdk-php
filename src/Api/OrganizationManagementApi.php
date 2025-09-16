@@ -47,11 +47,11 @@ final class OrganizationManagementApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -68,7 +68,7 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/estimate" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/estimate" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -203,7 +203,7 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/alerts/billing" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/alerts/billing" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -338,7 +338,7 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/prepayment" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/prepayment" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -473,7 +473,7 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/prepayment/transactions" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/prepayment/transactions" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -608,7 +608,7 @@ final class OrganizationManagementApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/organizations/{organization_id}/alerts/billing" \
+     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/alerts/billing" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{

@@ -46,11 +46,11 @@ final class ProjectApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -67,7 +67,7 @@ final class ProjectApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/clear_build_cache" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/clear_build_cache" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -202,13 +202,13 @@ final class ProjectApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
     public function getProjects(
         string $projectId
-    ): Project {
+    ): \Upsun\Model\Project {
         return $this->getProjectsWithHttpInfo(
             $projectId
         );
@@ -337,7 +337,7 @@ final class ProjectApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/capabilities" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/capabilities" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -472,7 +472,7 @@ final class ProjectApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/projects/{projectId}" \
+     * curl -X PATCH "https://api.upsun.com/projects/{projectId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{

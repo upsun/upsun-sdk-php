@@ -46,11 +46,11 @@ final class RoutingApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -67,7 +67,7 @@ final class RoutingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/routes" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d ''
@@ -254,7 +254,7 @@ final class RoutingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
+     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -441,7 +441,7 @@ final class RoutingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -630,7 +630,7 @@ final class RoutingApi extends AbstractApi
      *
      * @return Route[]
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/routes" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -791,7 +791,7 @@ final class RoutingApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
+     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d ''

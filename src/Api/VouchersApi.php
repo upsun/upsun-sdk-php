@@ -44,11 +44,11 @@ final class VouchersApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -65,7 +65,7 @@ final class VouchersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/organizations/{organization_id}/vouchers/apply" \
+     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/vouchers/apply" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/problem+json" \
      *      -d '{
@@ -222,7 +222,7 @@ final class VouchersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/vouchers" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/vouchers" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */

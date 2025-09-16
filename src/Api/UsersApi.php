@@ -48,11 +48,11 @@ final class UsersApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -69,7 +69,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/users/me" \
+     * curl -X GET "https://api.upsun.com/users/me" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -178,7 +178,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/me" \
+     * curl -X GET "https://api.upsun.com/me" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -287,7 +287,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/me/phone" \
+     * curl -X POST "https://api.upsun.com/me/phone" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -396,7 +396,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/me/verification" \
+     * curl -X POST "https://api.upsun.com/me/verification" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -505,7 +505,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/users/{user_id}" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -640,7 +640,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/users/email&#x3D;{email}" \
+     * curl -X GET "https://api.upsun.com/users/email&#x3D;{email}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -775,7 +775,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/users/username&#x3D;{username}" \
+     * curl -X GET "https://api.upsun.com/users/username&#x3D;{username}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -910,7 +910,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/users/{user_id}/emailaddress" \
+     * curl -X POST "https://api.upsun.com/users/{user_id}/emailaddress" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -1055,7 +1055,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/users/{user_id}/resetpassword" \
+     * curl -X POST "https://api.upsun.com/users/{user_id}/resetpassword" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1184,7 +1184,7 @@ final class UsersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/users/{user_id}" \
+     * curl -X PATCH "https://api.upsun.com/users/{user_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{

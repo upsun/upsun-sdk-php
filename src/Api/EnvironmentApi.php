@@ -53,11 +53,11 @@ final class EnvironmentApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -74,7 +74,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/activate" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/activate" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -265,7 +265,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/branch" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/branch" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -460,7 +460,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/versions" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -651,7 +651,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/deactivate" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/deactivate" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -812,7 +812,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/projects/{projectId}/environments/{environmentId}" \
+     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -973,7 +973,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
+     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1160,7 +1160,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1321,7 +1321,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1508,7 +1508,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/initialize" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/initialize" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -1711,7 +1711,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return Environment[]
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1848,7 +1848,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return Version[]
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/versions" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -2009,7 +2009,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/merge" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/merge" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -2200,7 +2200,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/pause" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/pause" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -2361,7 +2361,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/redeploy" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/redeploy" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -2522,7 +2522,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/resume" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/resume" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -2683,7 +2683,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/synchronize" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/synchronize" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -2875,7 +2875,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/projects/{projectId}/environments/{environmentId}" \
+     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -3081,7 +3081,7 @@ final class EnvironmentApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
+     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{

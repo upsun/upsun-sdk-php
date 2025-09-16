@@ -47,11 +47,11 @@ final class RecordsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -70,7 +70,7 @@ final class RecordsApi extends AbstractApi
      *
      * @return PlanRecords[]
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/records/plan?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterPlan=&#39;filterPlan_example&#39;filterStatus=&#39;filterStatus_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEnd=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEndedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/plan?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterPlan=&#39;filterPlan_example&#39;filterStatus=&#39;filterStatus_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEnd=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEndedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -358,7 +358,7 @@ final class RecordsApi extends AbstractApi
      *
      * @return Usage[]
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/records/usage?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterUsageGroup=&#39;filterUsageGroup_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/usage?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterUsageGroup=&#39;filterUsageGroup_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */

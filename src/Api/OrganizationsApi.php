@@ -50,11 +50,11 @@ final class OrganizationsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -71,7 +71,7 @@ final class OrganizationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/organizations" \
+     * curl -X POST "https://api.upsun.com/organizations" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{
@@ -213,7 +213,7 @@ final class OrganizationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/organizations/{organization_id}" \
+     * curl -X DELETE "https://api.upsun.com/organizations/{organization_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/problem+json"
      */
@@ -342,7 +342,7 @@ final class OrganizationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -479,7 +479,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return Organization[]
      * @see
-     * curl -X GET "https://api.platform.sh/organizations?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterOwnerId=new \Upsun\Model\\Upsun\Model\StringFilter()filterName=new \Upsun\Model\\Upsun\Model\StringFilter()filterLabel=new \Upsun\Model\\Upsun\Model\StringFilter()filterVendor=new \Upsun\Model\\Upsun\Model\StringFilter()filterCapabilities=new \Upsun\Model\\Upsun\Model\ArrayFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/organizations?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterOwnerId=new \Upsun\Model\\Upsun\Model\StringFilter()filterName=new \Upsun\Model\\Upsun\Model\StringFilter()filterLabel=new \Upsun\Model\\Upsun\Model\StringFilter()filterVendor=new \Upsun\Model\\Upsun\Model\StringFilter()filterCapabilities=new \Upsun\Model\\Upsun\Model\ArrayFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -833,7 +833,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return Organization[]
      * @see
-     * curl -X GET "https://api.platform.sh/users/{user_id}/organizations?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterVendor=new \Upsun\Model\\Upsun\Model\StringFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/organizations?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterVendor=new \Upsun\Model\\Upsun\Model\StringFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1134,7 +1134,7 @@ final class OrganizationsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/organizations/{organization_id}" \
+     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{

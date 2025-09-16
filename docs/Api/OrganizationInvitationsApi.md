@@ -1,6 +1,6 @@
 # Upsun\OrganizationInvitationsApi
 
-All URIs are relative to https://api.platform.sh.
+All URIs are relative to https://api.upsun.com.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

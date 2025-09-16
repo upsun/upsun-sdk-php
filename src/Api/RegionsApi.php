@@ -45,11 +45,11 @@ final class RegionsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -66,7 +66,7 @@ final class RegionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/regions/{region_id}" \
+     * curl -X GET "https://api.upsun.com/regions/{region_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -201,7 +201,7 @@ final class RegionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/regions?filterAvailable=new \Upsun\Model\\Upsun\Model\StringFilter()filterPrivate=new \Upsun\Model\\Upsun\Model\StringFilter()filterZone=new \Upsun\Model\\Upsun\Model\StringFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/regions?filterAvailable=new \Upsun\Model\\Upsun\Model\StringFilter()filterPrivate=new \Upsun\Model\\Upsun\Model\StringFilter()filterZone=new \Upsun\Model\\Upsun\Model\StringFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */

@@ -52,11 +52,11 @@ final class SubscriptionsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -73,7 +73,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions/can-create" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/can-create" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -208,7 +208,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/organizations/{organization_id}/subscriptions" \
+     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/subscriptions" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{
@@ -377,7 +377,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/organizations/{organization_id}/subscriptions/{subscription_id}" \
+     * curl -X DELETE "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/problem+json"
      */
@@ -532,7 +532,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions/estimate?plan=&#39;plan_example&#39;environments=56storage=56userLicenses=56format=&#39;format_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/estimate?plan=&#39;plan_example&#39;environments=56storage=56userLicenses=56format=&#39;format_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -805,7 +805,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions/{subscription_id}/estimate?plan=&#39;plan_example&#39;environments=56storage=56userLicenses=56format=&#39;format_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/estimate?plan=&#39;plan_example&#39;environments=56storage=56userLicenses=56format=&#39;format_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1071,7 +1071,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions/{subscription_id}" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1232,7 +1232,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage?usageGroups=&#39;usageGroups_example&#39;includeNotCharged=True" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage?usageGroups=&#39;usageGroups_example&#39;includeNotCharged=True" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1432,7 +1432,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return Subscription[]
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions?filterStatus=&#39;filterStatus_example&#39;filterId=&#39;filterId_example&#39;filterProjectId=new \Upsun\Model\\Upsun\Model\StringFilter()filterProjectTitle=new \Upsun\Model\\Upsun\Model\StringFilter()filterRegion=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions?filterStatus=&#39;filterStatus_example&#39;filterId=&#39;filterId_example&#39;filterProjectId=new \Upsun\Model\\Upsun\Model\StringFilter()filterProjectTitle=new \Upsun\Model\\Upsun\Model\StringFilter()filterRegion=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1771,7 +1771,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/subscriptions/{subscription_id}/addons" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/addons" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1932,7 +1932,7 @@ final class SubscriptionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X PATCH "https://api.platform.sh/organizations/{organization_id}/subscriptions/{subscription_id}" \
+     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json, application/problem+json" \
      *      -d '{

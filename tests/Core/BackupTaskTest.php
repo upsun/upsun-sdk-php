@@ -12,6 +12,7 @@ use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Core\Tasks\BackupTask;
+use Upsun\Model\Backup;
 use Upsun\UpsunClient;
 
 class BackupTaskTest extends TestCase
@@ -164,6 +165,7 @@ class BackupTaskTest extends TestCase
         $result = $this->backupTask->list('prj', 'env');
 
         $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(Backup::class, $result);
         $this->assertEquals("backup-1", $result[0]->getId());
         $this->assertEquals("backup-2", $result[1]->getId());
     }
@@ -188,7 +190,7 @@ class BackupTaskTest extends TestCase
             'bkp',
             ['restoreCode' => true, 'restoreResources' => true]
         );
-        
+
         $this->assertEquals($acceptedResponse, $result);
     }
 
@@ -199,11 +201,11 @@ class BackupTaskTest extends TestCase
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
-                404,
+                403,
                 ['Content-Type' => 'application/json'],
                 json_encode([
-                    'status' => 'KO',
-                    'code' => 404
+                    'status' => 'Forbidden',
+                    'code' => 403
                 ])
             ));
 

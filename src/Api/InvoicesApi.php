@@ -44,11 +44,11 @@ final class InvoicesApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -65,7 +65,7 @@ final class InvoicesApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/invoices/{invoice_id}" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices/{invoice_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -228,7 +228,7 @@ final class InvoicesApi extends AbstractApi
      *
      * @return Invoice[]
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/invoices?filterStatus=&#39;filterStatus_example&#39;filterType=&#39;filterType_example&#39;filterOrderId=&#39;filterOrderId_example&#39;page=56" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices?filterStatus=&#39;filterStatus_example&#39;filterType=&#39;filterType_example&#39;filterOrderId=&#39;filterOrderId_example&#39;page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */

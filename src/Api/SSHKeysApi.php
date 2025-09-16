@@ -44,11 +44,11 @@ final class SSHKeysApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -65,7 +65,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/ssh_keys" \
+     * curl -X POST "https://api.upsun.com/ssh_keys" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -193,7 +193,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/ssh_keys/{key_id}" \
+     * curl -X DELETE "https://api.upsun.com/ssh_keys/{key_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: "
      */
@@ -322,7 +322,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/ssh_keys/{key_id}" \
+     * curl -X GET "https://api.upsun.com/ssh_keys/{key_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */

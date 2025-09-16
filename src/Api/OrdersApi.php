@@ -45,11 +45,11 @@ final class OrdersApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -66,7 +66,7 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/organizations/{organization_id}/orders/{order_id}/authorize" \
+     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/orders/{order_id}/authorize" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -227,7 +227,7 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/orders/download?token=&#39;token_example&#39;" \
+     * curl -X GET "https://api.upsun.com/orders/download?token=&#39;token_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/pdf"
      */
@@ -361,7 +361,7 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/orders/{order_id}?mode=&#39;mode_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders/{order_id}?mode=&#39;mode_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -542,7 +542,7 @@ final class OrdersApi extends AbstractApi
      *
      * @return Order[]
      * @see
-     * curl -X GET "https://api.platform.sh/organizations/{organization_id}/orders?filterStatus=&#39;filterStatus_example&#39;filterTotal=56page=56mode=&#39;mode_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders?filterStatus=&#39;filterStatus_example&#39;filterTotal=56page=56mode=&#39;mode_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */

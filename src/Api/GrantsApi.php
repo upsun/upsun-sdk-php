@@ -44,11 +44,11 @@ final class GrantsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -67,7 +67,7 @@ final class GrantsApi extends AbstractApi
      *
      * @return object[]
      * @see
-     * curl -X GET "https://api.platform.sh/users/{user_id}/extended-access?filterResourceType=new \Upsun\Model\\Upsun\Model\StringFilter()filterOrganizationId=new \Upsun\Model\\Upsun\Model\StringFilter()filterPermissions=new \Upsun\Model\\Upsun\Model\StringFilter()" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/extended-access?filterResourceType=new \Upsun\Model\\Upsun\Model\StringFilter()filterOrganizationId=new \Upsun\Model\\Upsun\Model\StringFilter()filterPermissions=new \Upsun\Model\\Upsun\Model\StringFilter()" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */

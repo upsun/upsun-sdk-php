@@ -46,11 +46,11 @@ final class EnvironmentBackupsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -67,7 +67,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/backup" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backup" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{
@@ -256,7 +256,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/backups/{backupId}" \
+     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups/{backupId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -443,7 +443,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/backups/{backupId}" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups/{backupId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -632,7 +632,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @return Backup[]
      * @see
-     * curl -X GET "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/backups" \
+     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -793,7 +793,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X POST "https://api.platform.sh/projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore" \
+     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Content-Type: application/json" \
      *      -d '{

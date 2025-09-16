@@ -44,11 +44,11 @@ final class DefaultApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -65,7 +65,7 @@ final class DefaultApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/tickets?filterTicketId=56filterCreated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterUpdated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterType=&#39;filterType_example&#39;filterPriority=&#39;filterPriority_example&#39;filterStatus=&#39;filterStatus_example&#39;filterRequesterId=&#39;filterRequesterId_example&#39;filterSubmitterId=&#39;filterSubmitterId_example&#39;filterAssigneeId=&#39;filterAssigneeId_example&#39;filterHasIncidents=TruefilterDue=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)search=&#39;search_example&#39;page=56" \
+     * curl -X GET "https://api.upsun.com/tickets?filterTicketId=56filterCreated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterUpdated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterType=&#39;filterType_example&#39;filterPriority=&#39;filterPriority_example&#39;filterStatus=&#39;filterStatus_example&#39;filterRequesterId=&#39;filterRequesterId_example&#39;filterSubmitterId=&#39;filterSubmitterId_example&#39;filterAssigneeId=&#39;filterAssigneeId_example&#39;filterHasIncidents=TruefilterDue=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)search=&#39;search_example&#39;page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */

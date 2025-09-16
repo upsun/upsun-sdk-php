@@ -225,7 +225,7 @@ class ObjectSerializer
                     }
 
                     // Fallback if no metadata
-                    $args[] = [];
+                    $args[] = $value;
                 }
 
                 if (str_ends_with($typeName, '[]')) {

@@ -10,7 +10,7 @@ use Upsun\Model\CacheConfiguration1;
 use Upsun\Model\Route;
 use Upsun\Model\RouteCreateInput;
 use Upsun\Model\RoutePatch;
-use Upsun\Model\ServerSideIncludeConfiguration;
+use Upsun\Model\ServerSideIncludeConfiguration1;
 use Upsun\Model\StrictTransportSecurityOptions1;
 use Upsun\Model\TheConfigurationOfTheRedirects1;
 use Upsun\Model\TLSSettingsForTheRoute1;
@@ -89,7 +89,7 @@ class RouteTask extends TaskBase
             ) : null,
             redirects: $data['redirects'] ? new TheConfigurationOfTheRedirects1(...$data['redirects']) : null,
             cache: $data['cache'] ? new CacheConfiguration1(...$data['cache']) : null,
-            ssi: $data['ssi_enabled'] ? new ServerSideIncludeConfiguration(enabled: $data['ssi_enabled']) : null,
+            ssi: $data['ssi_enabled'] ? new ServerSideIncludeConfiguration1(enabled: $data['ssi_enabled']) : null,
         );
         return $this->api->createProjectsEnvironmentsRoutes($projectId, $environmentId, $routeCreateInput);
     }
@@ -184,7 +184,7 @@ class RouteTask extends TaskBase
             ) : null,
             redirects: $data['redirects'] ? new TheConfigurationOfTheRedirects1(...$data['redirects']) : null,
             cache: $data['cache'] ? new CacheConfiguration1(...$data['cache']) : null,
-            ssi: $data['ssi_enabled'] ? new ServerSideIncludeConfiguration(enabled: $data['ssi_enabled']) : null,
+            ssi: $data['ssi_enabled'] ? new ServerSideIncludeConfiguration1(enabled: $data['ssi_enabled']) : null,
         );
         return $this->api->updateProjectsEnvironmentsRoutes($projectId, $environmentId, $routeId, $routePatch);
     }

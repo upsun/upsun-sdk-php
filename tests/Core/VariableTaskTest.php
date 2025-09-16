@@ -101,6 +101,7 @@ class VariableTaskTest extends TestCase
         $this->projectVariablesApi->method('listProjectsVariables')->willReturn([]);
         $result = $this->variableTask->listProjectVariables('pid');
         $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(ProjectVariable::class, $result);
     }
 
     public function testListProjectVariablesFailure(): void

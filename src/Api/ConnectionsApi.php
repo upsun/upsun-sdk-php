@@ -43,11 +43,11 @@ final class ConnectionsApi extends AbstractApi
             $oauthProvider,
             $httpClient,
             $requestFactory,
-            'https://api.platform.sh',
+            'https://api.upsun.com',
             $streamFactory
         );
 
-        $this->config = $config ?? (new Configuration())->setHost('https://api.platform.sh');
+        $this->config = $config ?? (new Configuration())->setHost('https://api.upsun.com');
 
         $this->headerSelector = $selector ?? new HeaderSelector();
     }
@@ -64,7 +64,7 @@ final class ConnectionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X DELETE "https://api.platform.sh/users/{user_id}/connections/{provider}" \
+     * curl -X DELETE "https://api.upsun.com/users/{user_id}/connections/{provider}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -219,7 +219,7 @@ final class ConnectionsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.platform.sh/users/{user_id}/connections/{provider}" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/connections/{provider}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -382,7 +382,7 @@ final class ConnectionsApi extends AbstractApi
      *
      * @return Connection[]
      * @see
-     * curl -X GET "https://api.platform.sh/users/{user_id}/connections" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/connections" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
