@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Upsun\Core;
+namespace Upsun\Test\Core;
 
 use Upsun\ApiException;
 use Upsun\Api\DeploymentTargetApi;

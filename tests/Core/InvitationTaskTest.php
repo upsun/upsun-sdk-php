@@ -1,27 +1,20 @@
 <?php
 
-namespace Tests\Unit\Upsun\Core;
+namespace Upsun\Test\Core;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Client\ClientInterface;
-use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\ApiException;
 use Upsun\Api\OrganizationInvitationsApi;
 use Upsun\Api\ProjectInvitationsApi;
 use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\BackupTask;
-use Upsun\Model\CreateOrgInviteRequest;
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\Error;
 use Upsun\Model\OrganizationInvitation;
 use Upsun\Model\ProjectInvitation;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\InvitationTask;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
 class InvitationTaskTest extends TestCase
 {

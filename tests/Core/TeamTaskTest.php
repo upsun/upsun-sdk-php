@@ -1,5 +1,7 @@
 <?php
 
+namespace Upsun\Test\Core;
+
 use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Upsun\Api\TeamsApi;

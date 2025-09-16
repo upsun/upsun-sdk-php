@@ -1,5 +1,7 @@
 <?php
 
+namespace Upsun\Test\Core;
+
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MFAApi;
 use Upsun\Api\OrdersApi;

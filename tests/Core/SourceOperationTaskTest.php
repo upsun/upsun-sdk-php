@@ -1,5 +1,7 @@
 <?php
 
+namespace Upsun\Test\Core;
+
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Configuration;
 use Upsun\Model\EnvironmentSourceOperationInput;
