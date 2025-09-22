@@ -17,9 +17,9 @@ use JsonSerializable;
 final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?number $cpu = null,
-        private readonly ?number $memory = null,
-        private readonly ?number $storage = null,
+        private readonly ?float $cpu = null,
+        private readonly ?float $memory = null,
+        private readonly ?float $storage = null,
         private readonly ?int $environments = null,
     ) {
     }
@@ -44,17 +44,17 @@ final class OrganizationEstimationObjectSubscriptionsListInnerUsage implements M
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCpu(): ?number
+    public function getCpu(): ?float
     {
         return $this->cpu;
     }
 
-    public function getMemory(): ?number
+    public function getMemory(): ?float
     {
         return $this->memory;
     }
 
-    public function getStorage(): ?number
+    public function getStorage(): ?float
     {
         return $this->storage;
     }

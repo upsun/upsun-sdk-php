@@ -15,7 +15,7 @@ use Upsun\Core\Tasks\BackupTask;
 use Upsun\Model\Backup;
 use Upsun\UpsunClient;
 
-class BackupTaskTest extends TestCase
+class BackupTaskTest extends BaseTestCase
 {
     private BackupTask $backupTask;
 

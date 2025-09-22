@@ -29,7 +29,7 @@ final class Invoice implements ModelInterface, JsonSerializable
         private readonly ?string $status = null,
         private readonly ?string $owner = null,
         private readonly ?string $company = null,
-        private readonly ?number $total = null,
+        private readonly ?float $total = null,
         private readonly ?Address $address = null,
         private readonly ?string $notes = null,
         private readonly ?InvoicePDF $invoicePdf = null,
@@ -128,7 +128,7 @@ final class Invoice implements ModelInterface, JsonSerializable
         return $this->company;
     }
 
-    public function getTotal(): ?number
+    public function getTotal(): ?float
     {
         return $this->total;
     }

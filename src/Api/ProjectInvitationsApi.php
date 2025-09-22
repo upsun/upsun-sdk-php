@@ -2,9 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateProjectInviteRequest;
-use Upsun\Model\ProjectInvitation;
-use Upsun\Model\StringFilter;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -30,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class ProjectInvitationsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -101,8 +97,9 @@ final class ProjectInvitationsApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -122,7 +119,7 @@ final class ProjectInvitationsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling cancelProjectInvite'
             );
@@ -134,12 +131,11 @@ final class ProjectInvitationsApi extends AbstractApi
             || (is_array($invitationId)
             && count($invitationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $invitationId 
                 when calling cancelProjectInvite'
             );
         }
-
         $resourcePath = '/projects/{project_id}/invitations/{invitation_id}';
         $formParams = [];
         $queryParams = [];
@@ -155,7 +151,6 @@ final class ProjectInvitationsApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($invitationId !== null) {
             $resourcePath = str_replace(
@@ -173,7 +168,7 @@ final class ProjectInvitationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -185,7 +180,6 @@ final class ProjectInvitationsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -214,12 +208,14 @@ final class ProjectInvitationsApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Invite user to a project by email
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ProjectInvitation
+     *
      * @see
      * curl -X POST "https://api.upsun.com/projects/{project_id}/invitations" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -244,8 +240,8 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function createProjectInvite(
         string $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): ProjectInvitation {
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+    ): \Upsun\Model\ProjectInvitation {
         return $this->createProjectInviteWithHttpInfo(
             $projectId,
             $createProjectInviteRequest
@@ -255,12 +251,14 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Invite user to a project by email
      *
+     * @return \Upsun\Model\ProjectInvitation
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function createProjectInviteWithHttpInfo(
         string $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
-    ): ProjectInvitation {
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
+    ): \Upsun\Model\ProjectInvitation {
         $request = $this->createProjectInviteRequest(
             $projectId,
             $createProjectInviteRequest
@@ -275,12 +273,13 @@ final class ProjectInvitationsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ProjectInvitation::class,
+                '\Upsun\Model\ProjectInvitation',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -291,7 +290,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     private function createProjectInviteRequest(
         string $projectId,
-        ?CreateProjectInviteRequest $createProjectInviteRequest = null
+        ?\Upsun\Model\CreateProjectInviteRequest $createProjectInviteRequest = null
     ): RequestInterface {
 
         // verify the required parameter 'projectId' is set
@@ -300,7 +299,7 @@ final class ProjectInvitationsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling createProjectInvite'
             );
@@ -338,7 +337,7 @@ final class ProjectInvitationsApi extends AbstractApi
             } else {
                 $httpBody = $createProjectInviteRequest;
             }
-        } elseif ($formParams !== []) {
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -350,7 +349,6 @@ final class ProjectInvitationsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -379,14 +377,14 @@ final class ProjectInvitationsApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * List invitations to a project
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return ProjectInvitation[]
+     * @return \Upsun\Model\ProjectInvitation[]
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{project_id}/invitations?filterState=new \Upsun\Model\\Upsun\Model\StringFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=&#39;sort_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -394,7 +392,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     public function listProjectInvites(
         string $projectId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -413,11 +411,13 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * List invitations to a project
      *
+     * @return \Upsun\Model\ProjectInvitation[]
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function listProjectInvitesWithHttpInfo(
         string $projectId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -445,8 +445,9 @@ final class ProjectInvitationsApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -457,7 +458,7 @@ final class ProjectInvitationsApi extends AbstractApi
      */
     private function listProjectInvitesRequest(
         string $projectId,
-        ?StringFilter $filterState = null,
+        ?\Upsun\Model\StringFilter $filterState = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -470,7 +471,7 @@ final class ProjectInvitationsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectInvites'
             );
@@ -480,14 +481,13 @@ final class ProjectInvitationsApi extends AbstractApi
 
 
         if ($pageSize !== null && $pageSize > 100) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling ProjectInvitationsApi.listProjectInvites, 
                 must be smaller than or equal to 100.'
             );
         }
-
         if ($pageSize !== null && $pageSize < 1) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling ProjectInvitationsApi.listProjectInvites,
                 must be bigger than or equal to 1.'
             );
@@ -584,7 +584,7 @@ final class ProjectInvitationsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -596,7 +596,6 @@ final class ProjectInvitationsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

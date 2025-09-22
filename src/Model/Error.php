@@ -19,7 +19,7 @@ final class Error implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $status = null,
         private readonly ?string $message = null,
-        private readonly ?number $code = null,
+        private readonly ?float $code = null,
         private readonly ?object $detail = null,
         private readonly ?string $title = null,
     ) {
@@ -56,7 +56,7 @@ final class Error implements ModelInterface, JsonSerializable
         return $this->message;
     }
 
-    public function getCode(): ?number
+    public function getCode(): ?float
     {
         return $this->code;
     }

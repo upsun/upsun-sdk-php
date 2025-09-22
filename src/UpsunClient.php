@@ -4,6 +4,7 @@ namespace Upsun;
 
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use Upsun\Api\AddOnsApi;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
@@ -200,6 +201,7 @@ class UpsunClient
             new ProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new RecordsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new VouchersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new AddOnsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->project = new ProjectTask(
             $this,

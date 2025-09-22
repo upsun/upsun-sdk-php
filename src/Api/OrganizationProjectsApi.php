@@ -2,10 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\OrganizationProject;
-use Upsun\Model\StringFilter;
-use Upsun\Model\DateTimeFilter;
-use Upsun\Model\ListOrgProjects200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -31,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class OrganizationProjectsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -66,6 +61,9 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\OrganizationProject
+     *
      * @see
      * curl -X GET "https://api.upsun.com/organizations/{organization_id}/projects/{project_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -74,7 +72,7 @@ final class OrganizationProjectsApi extends AbstractApi
     public function getOrgProject(
         string $organizationId,
         string $projectId
-    ): OrganizationProject {
+    ): \Upsun\Model\OrganizationProject {
         return $this->getOrgProjectWithHttpInfo(
             $organizationId,
             $projectId
@@ -84,12 +82,14 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Get project
      *
+     * @return \Upsun\Model\OrganizationProject
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getOrgProjectWithHttpInfo(
         string $organizationId,
         string $projectId
-    ): OrganizationProject {
+    ): \Upsun\Model\OrganizationProject {
         $request = $this->getOrgProjectRequest(
             $organizationId,
             $projectId
@@ -104,12 +104,13 @@ final class OrganizationProjectsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                OrganizationProject::class,
+                '\Upsun\Model\OrganizationProject',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -129,7 +130,7 @@ final class OrganizationProjectsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgProject'
             );
@@ -141,12 +142,11 @@ final class OrganizationProjectsApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getOrgProject'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/projects/{project_id}';
         $formParams = [];
         $queryParams = [];
@@ -162,7 +162,6 @@ final class OrganizationProjectsApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($projectId !== null) {
             $resourcePath = str_replace(
@@ -180,7 +179,7 @@ final class OrganizationProjectsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -192,7 +191,6 @@ final class OrganizationProjectsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -221,14 +219,14 @@ final class OrganizationProjectsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List projects
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return OrganizationProject[]
+     * @return \Upsun\Model\ListOrgProjects200Response
+     *
      * @see
      * curl -X GET "https://api.upsun.com/organizations/{organization_id}/projects?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterTitle=new \Upsun\Model\\Upsun\Model\StringFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()filterCreatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -236,16 +234,16 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     public function listOrgProjects(
         string $organizationId,
-        ?StringFilter $filterId = null,
-        ?StringFilter $filterTitle = null,
-        ?StringFilter $filterStatus = null,
-        ?DateTimeFilter $filterUpdatedAt = null,
-        ?DateTimeFilter $filterCreatedAt = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): object {
         return $this->listOrgProjectsWithHttpInfo(
             $organizationId,
             $filterId,
@@ -263,20 +261,22 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * List projects
      *
+     * @return \Upsun\Model\ListOrgProjects200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function listOrgProjectsWithHttpInfo(
         string $organizationId,
-        ?StringFilter $filterId = null,
-        ?StringFilter $filterTitle = null,
-        ?StringFilter $filterStatus = null,
-        ?DateTimeFilter $filterUpdatedAt = null,
-        ?DateTimeFilter $filterCreatedAt = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): array {
+    ): object {
         $request = $this->listOrgProjectsRequest(
             $organizationId,
             $filterId,
@@ -299,12 +299,13 @@ final class OrganizationProjectsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListOrgProjects200Response::class,
+                '\Upsun\Model\ListOrgProjects200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -315,11 +316,11 @@ final class OrganizationProjectsApi extends AbstractApi
      */
     private function listOrgProjectsRequest(
         string $organizationId,
-        ?StringFilter $filterId = null,
-        ?StringFilter $filterTitle = null,
-        ?StringFilter $filterStatus = null,
-        ?DateTimeFilter $filterUpdatedAt = null,
-        ?DateTimeFilter $filterCreatedAt = null,
+        ?\Upsun\Model\StringFilter $filterId = null,
+        ?\Upsun\Model\StringFilter $filterTitle = null,
+        ?\Upsun\Model\StringFilter $filterStatus = null,
+        ?\Upsun\Model\DateTimeFilter $filterUpdatedAt = null,
+        ?\Upsun\Model\DateTimeFilter $filterCreatedAt = null,
         ?int $pageSize = null,
         ?string $pageBefore = null,
         ?string $pageAfter = null,
@@ -332,7 +333,7 @@ final class OrganizationProjectsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgProjects'
             );
@@ -346,14 +347,13 @@ final class OrganizationProjectsApi extends AbstractApi
 
 
         if ($pageSize !== null && $pageSize > 100) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationProjectsApi.listOrgProjects, 
                 must be smaller than or equal to 100.'
             );
         }
-
         if ($pageSize !== null && $pageSize < 1) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'invalid value for "$pageSize" when calling OrganizationProjectsApi.listOrgProjects,
                 must be bigger than or equal to 1.'
             );
@@ -502,7 +502,7 @@ final class OrganizationProjectsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -514,7 +514,6 @@ final class OrganizationProjectsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

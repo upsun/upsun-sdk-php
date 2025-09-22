@@ -20,7 +20,7 @@ final class Usage implements ModelInterface, JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $usageGroup = null,
-        private readonly ?number $quantity = null,
+        private readonly ?float $quantity = null,
         private readonly ?string $start = null,
     ) {
     }
@@ -61,7 +61,7 @@ final class Usage implements ModelInterface, JsonSerializable
         return $this->usageGroup;
     }
 
-    public function getQuantity(): ?number
+    public function getQuantity(): ?float
     {
         return $this->quantity;
     }

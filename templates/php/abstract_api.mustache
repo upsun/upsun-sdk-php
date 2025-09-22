@@ -3,6 +3,8 @@
 namespace {{invokerPackage}}\Api;
 
 use Exception;
+use JsonException;
+use RuntimeException;
 use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\RedirectPlugin;
 use Http\Client\Common\PluginClientFactory;
@@ -41,12 +43,13 @@ abstract class AbstractApi
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
-        private readonly OAuthProvider $oauthProvider,
-        private ClientInterface $httpClient,
+        private readonly OAuthProvider           $oauthProvider,
+        private ClientInterface                  $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
-        private readonly string $baseUri,
-        ?StreamFactoryInterface $streamFactory = null,
-    ) {
+        private readonly string                  $baseUri,
+        ?StreamFactoryInterface                  $streamFactory = null,
+    )
+    {
         $plugins = $plugins ?? [
             new RedirectPlugin(['strict' => true]),
             new ErrorPlugin(),
@@ -229,10 +232,15 @@ abstract class AbstractApi
         if ($dataType === '\SplFileObject') {
             $content = $response->getBody(); //stream goes to serializer
         } else {
-            $content = (string) $response->getBody();
+            $content = (string)$response->getBody();
             if ($dataType !== 'string') {
                 try {
                     $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+
+                    // manage generic type like array<string,Model>
+                    if (str_contains($dataType, 'array<')) {
+                        return $this->deserializeGenericArray($content, $dataType, $request);
+                    }
                 } catch (JsonException $exception) {
                     throw new ApiException(
                         sprintf(
@@ -247,5 +255,56 @@ abstract class AbstractApi
         }
 
         return ObjectSerializer::deserialize($content, $dataType, []);
+    }
+
+    /**
+     * Deserialize generic types array<key,value>
+     */
+    protected function deserializeGenericArray($content, string $dataType, RequestInterface $request)
+    {
+        // Parse generic type: array<string,\Upsun\Model\SomeModel>
+        if (!preg_match('/^array<([^,]+),\s*(.+)>$/', $dataType, $matches)) {
+            throw new \InvalidArgumentException("Invalid generic array type: $dataType");
+        }
+
+        $keyType = trim($matches[1]);
+        $valueType = trim($matches[2]);
+
+
+        if (!is_object($content) && !is_array($content)) {
+            throw new ApiException(
+                "Expected object or array for generic array type",
+                $request
+            );
+        }
+
+        $result = [];
+        foreach ($content as $key => $value) {
+            if ($keyType === 'string' && !is_string($key)) {
+                throw new ApiException(
+                    "Expected string key, got " . gettype($key),
+                    $request
+                );
+            }
+            if ($keyType === 'int' && !is_int($key)) {
+                throw new ApiException(
+                    "Expected integer key, got " . gettype($key),
+                    $request
+                );
+            }
+
+            if ($valueType === 'string' || $valueType === 'int' || $valueType === 'float' || $valueType === 'bool') {
+                // primitives
+                $result[$key] = $value;
+            } elseif (str_starts_with($valueType, '\\')) {
+                // classe (Model)
+                $result[$key] = ObjectSerializer::deserialize($value, $valueType, []);
+            } else {
+                // other types
+                $result[$key] = ObjectSerializer::deserialize($value, $valueType, []);
+            }
+        }
+
+        return $result;
     }
 }

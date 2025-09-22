@@ -21,63 +21,34 @@ final class OrganizationProjectPlan implements JsonSerializable
      * Possible values of this enum
      */
     public const DEVELOPMENT = 'development';
-
     public const SMALL = 'small';
-
     public const ESSENTIAL = 'essential';
-
     public const STANDARD = 'standard';
-
     public const STANDARD_HIGH_MEMORY = 'standard-high-memory';
-
     public const MEDIUM = 'medium';
-
     public const MEDIUM_HIGH_MEMORY = 'medium-high-memory';
-
     public const LARGE = 'large';
-
     public const LARGE_HIGH_MEMORY = 'large-high-memory';
-
     public const XLARGE = 'xlarge';
-
     public const XLARGE_HIGH_MEMORY = 'xlarge-high-memory';
-
     public const _2XLARGE = '2xlarge';
-
     public const _2XLARGE_HIGH_MEMORY = '2xlarge-high-memory';
-
     public const _4XLARGE = '4xlarge';
-
     public const FLEXIBLE = 'flexible';
-
     public const GRID_XLARGE = 'grid/xlarge';
-
     public const GRID_2XLARGE = 'grid/2xlarge';
-
     public const GRID_4XLARGE = 'grid/4xlarge';
-
     public const GRID_8XLARGE = 'grid/8xlarge';
-
     public const TRIAL_DEVELOPMENT = 'trial/development';
-
     public const TRIAL_STANDARD = 'trial/standard';
-
     public const TRIAL_MEDIUM = 'trial/medium';
-
     public const TRIAL_LARGE = 'trial/large';
-
     public const TRIAL_2XLARGE = 'trial/2xlarge';
-
     public const TRIAL_UPSUN_FLEXIBLE = 'trial/upsun-flexible';
-
     public const UPSUN_FLEXIBLE = 'upsun/flexible';
-
     public const PIMCORE_SMALL = 'pimcore/small';
-
     public const PIMCORE_MEDIUM = 'pimcore/medium';
-
     public const PIMCORE_LARGE = 'pimcore/large';
-
     private string $value;
 
     /**
@@ -89,10 +60,9 @@ final class OrganizationProjectPlan implements JsonSerializable
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
             throw new InvalidArgumentException(
-                sprintf("Invalid value '%s' for enum OrganizationProjectPlan", $value)
+                "Invalid value '{$value}' for enum OrganizationProjectPlan"
             );
         }
-
         $this->value = $value;
     }
 

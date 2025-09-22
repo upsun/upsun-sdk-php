@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\AcceptedResponse;
-use Upsun\Model\SystemInformation;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -29,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class SystemInformationApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -64,6 +61,9 @@ final class SystemInformationApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\AcceptedResponse
+     *
      * @see
      * curl -X POST "https://api.upsun.com/projects/{projectId}/system/restart" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -71,7 +71,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function actionProjectsSystemRestart(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         return $this->actionProjectsSystemRestartWithHttpInfo(
             $projectId
         );
@@ -80,11 +80,13 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Restart the Git server
      *
+     * @return \Upsun\Model\AcceptedResponse
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function actionProjectsSystemRestartWithHttpInfo(
         string $projectId
-    ): AcceptedResponse {
+    ): \Upsun\Model\AcceptedResponse {
         $request = $this->actionProjectsSystemRestartRequest(
             $projectId
         );
@@ -98,12 +100,13 @@ final class SystemInformationApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                AcceptedResponse::class,
+                '\Upsun\Model\AcceptedResponse',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -122,12 +125,11 @@ final class SystemInformationApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling actionProjectsSystemRestart'
             );
         }
-
         $resourcePath = '/projects/{projectId}/system/restart';
         $formParams = [];
         $queryParams = [];
@@ -152,7 +154,7 @@ final class SystemInformationApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -164,7 +166,6 @@ final class SystemInformationApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -193,12 +194,14 @@ final class SystemInformationApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Get information about the Git server.
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\SystemInformation
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{projectId}/system" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -206,7 +209,7 @@ final class SystemInformationApi extends AbstractApi
      */
     public function getProjectsSystem(
         string $projectId
-    ): SystemInformation {
+    ): \Upsun\Model\SystemInformation {
         return $this->getProjectsSystemWithHttpInfo(
             $projectId
         );
@@ -215,11 +218,13 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Get information about the Git server.
      *
+     * @return \Upsun\Model\SystemInformation
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsSystemWithHttpInfo(
         string $projectId
-    ): SystemInformation {
+    ): \Upsun\Model\SystemInformation {
         $request = $this->getProjectsSystemRequest(
             $projectId
         );
@@ -233,12 +238,13 @@ final class SystemInformationApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                SystemInformation::class,
+                '\Upsun\Model\SystemInformation',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -257,12 +263,11 @@ final class SystemInformationApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsSystem'
             );
         }
-
         $resourcePath = '/projects/{projectId}/system';
         $formParams = [];
         $queryParams = [];
@@ -287,7 +292,7 @@ final class SystemInformationApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -299,7 +304,6 @@ final class SystemInformationApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

@@ -15,7 +15,7 @@ use Upsun\Core\Tasks\CertificateTask;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
-class CertificateTaskTest extends TestCase
+class CertificateTaskTest extends BaseTestCase
 {
     private $apiMock;
     private $task;

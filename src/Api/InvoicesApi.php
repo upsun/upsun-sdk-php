@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Invoice;
-use Upsun\Model\ListOrgInvoices200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -29,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class InvoicesApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -64,6 +61,9 @@ final class InvoicesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Invoice
+     *
      * @see
      * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices/{invoice_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -72,7 +72,7 @@ final class InvoicesApi extends AbstractApi
     public function getOrgInvoice(
         string $invoiceId,
         string $organizationId
-    ): Invoice {
+    ): \Upsun\Model\Invoice {
         return $this->getOrgInvoiceWithHttpInfo(
             $invoiceId,
             $organizationId
@@ -82,12 +82,14 @@ final class InvoicesApi extends AbstractApi
     /**
      * Get invoice
      *
+     * @return \Upsun\Model\Invoice
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getOrgInvoiceWithHttpInfo(
         string $invoiceId,
         string $organizationId
-    ): Invoice {
+    ): \Upsun\Model\Invoice {
         $request = $this->getOrgInvoiceRequest(
             $invoiceId,
             $organizationId
@@ -102,12 +104,13 @@ final class InvoicesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Invoice::class,
+                '\Upsun\Model\Invoice',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -127,7 +130,7 @@ final class InvoicesApi extends AbstractApi
             || (is_array($invoiceId)
             && count($invoiceId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $invoiceId 
                 when calling getOrgInvoice'
             );
@@ -139,12 +142,11 @@ final class InvoicesApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgInvoice'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/invoices/{invoice_id}';
         $formParams = [];
         $queryParams = [];
@@ -160,7 +162,6 @@ final class InvoicesApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($organizationId !== null) {
             $resourcePath = str_replace(
@@ -178,7 +179,7 @@ final class InvoicesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -190,7 +191,6 @@ final class InvoicesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -219,14 +219,14 @@ final class InvoicesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List invoices
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Invoice[]
+     * @return \Upsun\Model\ListOrgInvoices200Response
+     *
      * @see
      * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices?filterStatus=&#39;filterStatus_example&#39;filterType=&#39;filterType_example&#39;filterOrderId=&#39;filterOrderId_example&#39;page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -238,7 +238,7 @@ final class InvoicesApi extends AbstractApi
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
-    ): array {
+    ): object {
         return $this->listOrgInvoicesWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -251,6 +251,8 @@ final class InvoicesApi extends AbstractApi
     /**
      * List invoices
      *
+     * @return \Upsun\Model\ListOrgInvoices200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function listOrgInvoicesWithHttpInfo(
@@ -259,7 +261,7 @@ final class InvoicesApi extends AbstractApi
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
-    ): array {
+    ): object {
         $request = $this->listOrgInvoicesRequest(
             $organizationId,
             $filterStatus,
@@ -277,12 +279,13 @@ final class InvoicesApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListOrgInvoices200Response::class,
+                '\Upsun\Model\ListOrgInvoices200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -305,7 +308,7 @@ final class InvoicesApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgInvoices'
             );
@@ -390,7 +393,7 @@ final class InvoicesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -402,7 +405,6 @@ final class InvoicesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

@@ -17,12 +17,12 @@ use JsonSerializable;
 final class LineItem implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?number $licenseId = null,
+        private readonly ?float $licenseId = null,
         private readonly ?string $projectId = null,
         private readonly ?string $type = null,
         private readonly ?string $product = null,
         private readonly ?string $sku = null,
-        private readonly ?number $total = null,
+        private readonly ?float $total = null,
         private readonly ?string $totalFormatted = null,
         private readonly ?array $components = [],
         private readonly ?bool $excludeFromInvoice = null,
@@ -59,7 +59,7 @@ final class LineItem implements ModelInterface, JsonSerializable
         return $this->type;
     }
 
-    public function getLicenseId(): ?number
+    public function getLicenseId(): ?float
     {
         return $this->licenseId;
     }
@@ -79,7 +79,7 @@ final class LineItem implements ModelInterface, JsonSerializable
         return $this->sku;
     }
 
-    public function getTotal(): ?number
+    public function getTotal(): ?float
     {
         return $this->total;
     }

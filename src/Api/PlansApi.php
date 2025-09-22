@@ -2,7 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\ListPlans200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -28,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class PlansApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -63,12 +61,16 @@ final class PlansApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\ListPlans200Response
+     *
      * @see
      * curl -X GET "https://api.upsun.com/plans" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
-    public function listPlans(): ListPlans200Response
+    public function listPlans(
+    ): object 
     {
         return $this->listPlansWithHttpInfo(
         );
@@ -77,9 +79,12 @@ final class PlansApi extends AbstractApi
     /**
      * List available plans
      *
+     * @return \Upsun\Model\ListPlans200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
-    private function listPlansWithHttpInfo(): ListPlans200Response
+    private function listPlansWithHttpInfo(
+    ): object 
     {
         $request = $this->listPlansRequest(
         );
@@ -93,12 +98,13 @@ final class PlansApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListPlans200Response::class,
+                '\Upsun\Model\ListPlans200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -107,8 +113,8 @@ final class PlansApi extends AbstractApi
      *
      * @throws InvalidArgumentException
      */
-    private function listPlansRequest(): RequestInterface
-    {
+    private function listPlansRequest(
+    ): RequestInterface {
         $resourcePath = '/plans';
         $formParams = [];
         $queryParams = [];
@@ -125,7 +131,7 @@ final class PlansApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -137,7 +143,6 @@ final class PlansApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

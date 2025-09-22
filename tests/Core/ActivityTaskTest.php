@@ -14,7 +14,7 @@ use Upsun\Core\Tasks\ActivityTask;
 use Upsun\UpsunClient;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
-class ActivityTaskTest extends TestCase
+class ActivityTaskTest extends BaseTestCase
 {
     private ActivityTask $activityTask;
     private ClientInterface $httpClient;

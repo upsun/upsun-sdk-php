@@ -2,6 +2,7 @@
 
 namespace Upsun\Core\Tasks;
 
+use Upsun\Api\AddOnsApi;
 use Upsun\Model\ListOrgs200Response;
 use DateTime;
 use Exception;
@@ -43,14 +44,17 @@ use Upsun\Model\ListTeams200Response;
 use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\Order;
 use Upsun\Model\Organization;
+use Upsun\Model\OrganizationAddonsObject;
 use Upsun\Model\OrganizationMember;
 use Upsun\Model\OrganizationMFAEnforcement;
 use Upsun\Model\OrganizationProject;
 use Upsun\Model\Profile;
+use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
 use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\UpdateOrgAddonsRequest;
 use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
 use Upsun\Model\UpdateOrgRequest;
@@ -78,6 +82,7 @@ class OrganizationTask extends TaskBase
         private readonly ProfilesApi $profilesApi,
         private readonly RecordsApi $recordsApi,
         private readonly VouchersApi $vouchersApi,
+        private readonly AddOnsApi $addOnsApi,
     ) {
         parent::__construct($this->client);
     }
@@ -223,7 +228,7 @@ class OrganizationTask extends TaskBase
      */
     public function update(string $organizationId, ?array $updateOrgData = null): Organization
     {
-        $update_org_request = new UpdateOrgRequest($updateOrgData);
+        $update_org_request = new UpdateOrgRequest(...$updateOrgData);
         return $this->api->updateOrg($organizationId, $update_org_request);
     }
 
@@ -435,9 +440,9 @@ class OrganizationTask extends TaskBase
     public function estimateProject(
         string $organizationId,
         string $projectId,
-        ?int $environments = null,
-        ?int $storage = null,
-        ?int $userLicenses = null,
+        ?int $environments = 3,
+        ?int $storage = 500,
+        ?int $userLicenses = 1,
         ?string $format = null
     ): EstimationObject {
         return $this->subscriptionsApi->estimateOrgSubscription(
@@ -515,6 +520,8 @@ class OrganizationTask extends TaskBase
     /**
      * Sends MFA reminders to organization members
      *
+     * @return SendOrgMfaReminders200ResponseValue[]
+     *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function sendMfaReminders(string $organizationId, ?array $userIds = null): array
@@ -571,9 +578,9 @@ class OrganizationTask extends TaskBase
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function downloadInvoice(string $token): void
+    public function downloadInvoice(string $token): string
     {
-        $this->ordersApi->downloadInvoice($token);
+        return $this->ordersApi->downloadInvoice($token);
     }
 
     /**
@@ -758,202 +765,30 @@ class OrganizationTask extends TaskBase
         return $this->vouchersApi->listOrgVouchers($organizationId);
     }
 
+
     /**
-     * Activate addons userManagement on organization $organizationId
+     * Get Organization Addons
      *
-     * Equivalent to
-     * `upsun api:curl -X PATCH --json '{"user_management":"standard"}' 'api/organizations/ORGANIZATION_ID/addons' | jq`
-     * Missing from the openapi config
-     *
-     * @throws ApiException|Exception
-     * @throws RuntimeException
-     * @throws ClientExceptionInterface
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function updateAddons(string $organizationId): mixed
+    public function getAddons(string $organizationId): OrganizationAddonsObject
     {
-        $user_management_addons = ['user_management' => "standard"];
-        list($response) = $this->updateOrgAddonsWithHttpInfo($organizationId, $user_management_addons);
-        return $response;
+        return $this->addOnsApi->getOrgAddons($organizationId);
     }
 
     /**
-     * @template T
-     * @param class-string<T>|string $dataType Fully-qualified class name, or scalar type like "string", "array"
-     * @return T
+     * Updates Organization Addons
      *
-     * @throws ApiException
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @param array{
+     *     userManagement?: string,
+     *     supportLevel?: string,
+     * } $data
      */
-    protected function handleResponseWithDataType(
-        string $dataType,
-        RequestInterface $request,
-        ResponseInterface $response
-    ) {
-        if ($dataType === '\SplFileObject') {
-            $content = $response->getBody(); //stream goes to serializer
-        } else {
-            $content = (string) $response->getBody();
-            if ($dataType !== 'string') {
-                try {
-                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                } catch (JsonException $exception) {
-                    throw new ApiException(
-                        sprintf(
-                            'Error JSON decoding server response (%s)',
-                            $request->getUri()
-                        ),
-                        $request,
-                        $response
-                    );
-                }
-            }
-        }
-
-        return ObjectSerializer::deserialize($content, $dataType, []);
-    }
-
-    /**
-     * Updates organization addons
-     *
-     * note: missing from OrganizationAPI
-     *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception|ClientExceptionInterface on non-2xx response or if the
-     *  response body is not in the expected format
-     */
-    protected function updateOrgAddonsWithHttpInfo(
-        $organizationId,
-        ?array $update_org_request = [],
-        ?string $contentType = 'application/json'
-    ): array {
-        $request = $this->updateOrgAddonsRequest($organizationId, $update_org_request, $contentType);
-        try {
-            $response = $this->client->apiClient->sendRequest($request);
-
-            return $this->handleResponseWithDataType(
-                Organization::class,
-                $request,
-                $response,
-            );
-        } catch (ApiException $apiException) {
-            throw $apiException;
-        }
-    }
-
-    /**
-     * Create request for operation 'updateOrg'
-     * note: missing from OrganizationAPI
-     *
-     * @throws InvalidArgumentException
-     */
-    public function updateOrgAddonsRequest(
-        $organizationId,
-        ?array $update_org_request = [],
-        ?string $contentType = 'application/json'
-    ): Request {
-        // verify the required parameter 'organization_id' is set
-        if ($organizationId === null || (is_array($organizationId) && $organizationId === [])) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $organizationId when calling updateOrgAddons'
-            );
-        }
-
-        $resourcePath = '/organizations/{organization_id}/addons';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($organizationId !== null) {
-            $resourcePath = str_replace(
-                '{' . 'organization_id' . '}',
-                ObjectSerializer::toPathValue($organizationId),
-                $resourcePath
-            );
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', 'application/problem+json',],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($update_org_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                try {
-                    $httpBody = json_encode(
-                        ObjectSerializer::sanitizeForSerialization($update_org_request),
-                        JSON_THROW_ON_ERROR
-                    );
-                } catch (JsonException $e) {
-                    throw new RuntimeException(
-                        'Failed to encode request body to JSON: ' . $e->getMessage(),
-                        0,
-                        $e
-                    );
-                }
-            } else {
-                $httpBody = $update_org_request;
-            }
-        } elseif ($formParams !== []) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                try {
-                    $httpBody = json_encode($formParams, JSON_THROW_ON_ERROR);
-                } catch (JsonException $e) {
-                    throw new RuntimeException(
-                        'Failed to encode form parameters to JSON: ' . $e->getMessage(),
-                        0,
-                        $e
-                    );
-                }
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires OAuth (access token)
-        if (!empty($this->api->getConfig()->getAccessToken())) {
-            $headers['Authorization'] = 'Bearer ' . $this->api->getConfig()->getAccessToken();
-        }
-
-        $defaultHeaders = [];
-        if ($this->api->getConfig()->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->api->getConfig()->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->api->getConfig()->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PATCH',
-            $operationHost . $resourcePath . ($query ? '?' . $query : ''),
-            $headers,
-            $httpBody
-        );
+    public function updateAddons(string $organizationId, array $data): OrganizationAddonsObject
+    {
+        $updateOrgAddonsData = new UpdateOrgAddonsRequest(...$data);
+        return $this->addOnsApi->updateOrgAddons($organizationId, $updateOrgAddonsData);
     }
 }

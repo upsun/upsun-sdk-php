@@ -27,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class ReferencesApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -62,6 +61,9 @@ final class ReferencesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\OrganizationReference>
+     *
      * @see
      * curl -X GET "https://api.upsun.com/ref/organizations?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -79,6 +81,8 @@ final class ReferencesApi extends AbstractApi
 
     /**
      * List referenced organizations
+     *
+     * @return array<string,\Upsun\Model\OrganizationReference>
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -104,8 +108,9 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -125,7 +130,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedOrgs'
             );
@@ -137,12 +142,11 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedOrgs'
             );
         }
-
         $resourcePath = '/ref/organizations';
         $formParams = [];
         $queryParams = [];
@@ -185,7 +189,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -197,7 +201,6 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -226,12 +229,14 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced projects
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\ProjectReference>
+     *
      * @see
      * curl -X GET "https://api.upsun.com/ref/projects?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -249,6 +254,8 @@ final class ReferencesApi extends AbstractApi
 
     /**
      * List referenced projects
+     *
+     * @return array<string,\Upsun\Model\ProjectReference>
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -274,8 +281,9 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -295,7 +303,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedProjects'
             );
@@ -307,12 +315,11 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedProjects'
             );
         }
-
         $resourcePath = '/ref/projects';
         $formParams = [];
         $queryParams = [];
@@ -355,7 +362,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -367,7 +374,6 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -396,12 +402,14 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced regions
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\RegionReference>
+     *
      * @see
      * curl -X GET "https://api.upsun.com/ref/regions?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -419,6 +427,8 @@ final class ReferencesApi extends AbstractApi
 
     /**
      * List referenced regions
+     *
+     * @return array<string,\Upsun\Model\RegionReference>
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -444,8 +454,9 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -465,7 +476,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedRegions'
             );
@@ -477,12 +488,11 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedRegions'
             );
         }
-
         $resourcePath = '/ref/regions';
         $formParams = [];
         $queryParams = [];
@@ -525,7 +535,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -537,7 +547,6 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -566,12 +575,14 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced teams
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\TeamReference>
+     *
      * @see
      * curl -X GET "https://api.upsun.com/ref/teams?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -589,6 +600,8 @@ final class ReferencesApi extends AbstractApi
 
     /**
      * List referenced teams
+     *
+     * @return array<string,\Upsun\Model\TeamReference>
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -614,8 +627,9 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -635,7 +649,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedTeams'
             );
@@ -647,12 +661,11 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedTeams'
             );
         }
-
         $resourcePath = '/ref/teams';
         $formParams = [];
         $queryParams = [];
@@ -695,7 +708,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -707,7 +720,6 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -736,12 +748,14 @@ final class ReferencesApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List referenced users
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return array<string,\Upsun\Model\UserReference>
+     *
      * @see
      * curl -X GET "https://api.upsun.com/ref/users?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -759,6 +773,8 @@ final class ReferencesApi extends AbstractApi
 
     /**
      * List referenced users
+     *
+     * @return array<string,\Upsun\Model\UserReference>
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -784,8 +800,9 @@ final class ReferencesApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -805,7 +822,7 @@ final class ReferencesApi extends AbstractApi
             || (is_array($in)
             && count($in) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $in 
                 when calling listReferencedUsers'
             );
@@ -817,12 +834,11 @@ final class ReferencesApi extends AbstractApi
             || (is_array($sig)
             && count($sig) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $sig 
                 when calling listReferencedUsers'
             );
         }
-
         $resourcePath = '/ref/users';
         $formParams = [];
         $queryParams = [];
@@ -865,7 +881,7 @@ final class ReferencesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -877,7 +893,6 @@ final class ReferencesApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

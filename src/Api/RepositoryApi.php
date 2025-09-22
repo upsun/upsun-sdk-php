@@ -2,10 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\Blob;
-use Upsun\Model\Commit;
-use Upsun\Model\Ref;
-use Upsun\Model\Tree;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -31,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class RepositoryApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -66,6 +61,9 @@ final class RepositoryApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Blob
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{projectId}/git/blobs/{repositoryBlobId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -74,7 +72,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitBlobs(
         string $projectId,
         string $repositoryBlobId
-    ): Blob {
+    ): \Upsun\Model\Blob {
         return $this->getProjectsGitBlobsWithHttpInfo(
             $projectId,
             $repositoryBlobId
@@ -84,12 +82,14 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a blob object
      *
+     * @return \Upsun\Model\Blob
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsGitBlobsWithHttpInfo(
         string $projectId,
         string $repositoryBlobId
-    ): Blob {
+    ): \Upsun\Model\Blob {
         $request = $this->getProjectsGitBlobsRequest(
             $projectId,
             $repositoryBlobId
@@ -104,12 +104,13 @@ final class RepositoryApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Blob::class,
+                '\Upsun\Model\Blob',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -129,7 +130,7 @@ final class RepositoryApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsGitBlobs'
             );
@@ -141,12 +142,11 @@ final class RepositoryApi extends AbstractApi
             || (is_array($repositoryBlobId)
             && count($repositoryBlobId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryBlobId 
                 when calling getProjectsGitBlobs'
             );
         }
-
         $resourcePath = '/projects/{projectId}/git/blobs/{repositoryBlobId}';
         $formParams = [];
         $queryParams = [];
@@ -162,7 +162,6 @@ final class RepositoryApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($repositoryBlobId !== null) {
             $resourcePath = str_replace(
@@ -180,7 +179,7 @@ final class RepositoryApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -192,7 +191,6 @@ final class RepositoryApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -221,12 +219,14 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a commit object
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Commit
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{projectId}/git/commits/{repositoryCommitId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -235,7 +235,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitCommits(
         string $projectId,
         string $repositoryCommitId
-    ): Commit {
+    ): \Upsun\Model\Commit {
         return $this->getProjectsGitCommitsWithHttpInfo(
             $projectId,
             $repositoryCommitId
@@ -245,12 +245,14 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a commit object
      *
+     * @return \Upsun\Model\Commit
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsGitCommitsWithHttpInfo(
         string $projectId,
         string $repositoryCommitId
-    ): Commit {
+    ): \Upsun\Model\Commit {
         $request = $this->getProjectsGitCommitsRequest(
             $projectId,
             $repositoryCommitId
@@ -265,12 +267,13 @@ final class RepositoryApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Commit::class,
+                '\Upsun\Model\Commit',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -290,7 +293,7 @@ final class RepositoryApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsGitCommits'
             );
@@ -302,12 +305,11 @@ final class RepositoryApi extends AbstractApi
             || (is_array($repositoryCommitId)
             && count($repositoryCommitId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryCommitId 
                 when calling getProjectsGitCommits'
             );
         }
-
         $resourcePath = '/projects/{projectId}/git/commits/{repositoryCommitId}';
         $formParams = [];
         $queryParams = [];
@@ -323,7 +325,6 @@ final class RepositoryApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($repositoryCommitId !== null) {
             $resourcePath = str_replace(
@@ -341,7 +342,7 @@ final class RepositoryApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -353,7 +354,6 @@ final class RepositoryApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -382,12 +382,14 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a ref object
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Ref
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{projectId}/git/refs/{repositoryRefId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -396,7 +398,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitRefs(
         string $projectId,
         string $repositoryRefId
-    ): Ref {
+    ): \Upsun\Model\Ref {
         return $this->getProjectsGitRefsWithHttpInfo(
             $projectId,
             $repositoryRefId
@@ -406,12 +408,14 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a ref object
      *
+     * @return \Upsun\Model\Ref
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsGitRefsWithHttpInfo(
         string $projectId,
         string $repositoryRefId
-    ): Ref {
+    ): \Upsun\Model\Ref {
         $request = $this->getProjectsGitRefsRequest(
             $projectId,
             $repositoryRefId
@@ -426,12 +430,13 @@ final class RepositoryApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Ref::class,
+                '\Upsun\Model\Ref',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -451,7 +456,7 @@ final class RepositoryApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsGitRefs'
             );
@@ -463,12 +468,11 @@ final class RepositoryApi extends AbstractApi
             || (is_array($repositoryRefId)
             && count($repositoryRefId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryRefId 
                 when calling getProjectsGitRefs'
             );
         }
-
         $resourcePath = '/projects/{projectId}/git/refs/{repositoryRefId}';
         $formParams = [];
         $queryParams = [];
@@ -484,7 +488,6 @@ final class RepositoryApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($repositoryRefId !== null) {
             $resourcePath = str_replace(
@@ -502,7 +505,7 @@ final class RepositoryApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -514,7 +517,6 @@ final class RepositoryApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -543,12 +545,14 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get a tree object
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\Tree
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{projectId}/git/trees/{repositoryTreeId}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -557,7 +561,7 @@ final class RepositoryApi extends AbstractApi
     public function getProjectsGitTrees(
         string $projectId,
         string $repositoryTreeId
-    ): Tree {
+    ): \Upsun\Model\Tree {
         return $this->getProjectsGitTreesWithHttpInfo(
             $projectId,
             $repositoryTreeId
@@ -567,12 +571,14 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a tree object
      *
+     * @return \Upsun\Model\Tree
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getProjectsGitTreesWithHttpInfo(
         string $projectId,
         string $repositoryTreeId
-    ): Tree {
+    ): \Upsun\Model\Tree {
         $request = $this->getProjectsGitTreesRequest(
             $projectId,
             $repositoryTreeId
@@ -587,12 +593,13 @@ final class RepositoryApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Tree::class,
+                '\Upsun\Model\Tree',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -612,7 +619,7 @@ final class RepositoryApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling getProjectsGitTrees'
             );
@@ -624,12 +631,11 @@ final class RepositoryApi extends AbstractApi
             || (is_array($repositoryTreeId)
             && count($repositoryTreeId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $repositoryTreeId 
                 when calling getProjectsGitTrees'
             );
         }
-
         $resourcePath = '/projects/{projectId}/git/trees/{repositoryTreeId}';
         $formParams = [];
         $queryParams = [];
@@ -645,7 +651,6 @@ final class RepositoryApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($repositoryTreeId !== null) {
             $resourcePath = str_replace(
@@ -663,7 +668,7 @@ final class RepositoryApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -675,7 +680,6 @@ final class RepositoryApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -704,14 +708,14 @@ final class RepositoryApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get list of repository refs
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Ref[]
+     * @return \Upsun\Model\Ref[]
+     *
      * @see
      * curl -X GET "https://api.upsun.com/projects/{projectId}/git/refs" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -727,6 +731,8 @@ final class RepositoryApi extends AbstractApi
 
     /**
      * Get list of repository refs
+     *
+     * @return \Upsun\Model\Ref[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -750,8 +756,9 @@ final class RepositoryApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -770,12 +777,11 @@ final class RepositoryApi extends AbstractApi
             || (is_array($projectId)
             && count($projectId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $projectId 
                 when calling listProjectsGitRefs'
             );
         }
-
         $resourcePath = '/projects/{projectId}/git/refs';
         $formParams = [];
         $queryParams = [];
@@ -800,7 +806,7 @@ final class RepositoryApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -812,7 +818,6 @@ final class RepositoryApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

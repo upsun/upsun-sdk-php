@@ -40,7 +40,7 @@ use Upsun\Core\Tasks\SourceOperationTask;
 use Upsun\Core\Tasks\VariableTask;
 use Upsun\UpsunClient;
 
-class EnvironmentTaskTest extends TestCase
+class EnvironmentTaskTest extends BaseTestCase
 {
     private EnvironmentTask $environmentTask;
     private ClientInterface $httpClient;
@@ -1044,7 +1044,7 @@ class EnvironmentTaskTest extends TestCase
         $acceptedResponse = new AcceptedResponse('accepted', 200);
         $this->assertEquals($acceptedResponse, $result);
     }
-    
+
     /**
      * @throws Exception
      */
@@ -1169,7 +1169,6 @@ class EnvironmentTaskTest extends TestCase
             ));
 
         $projectId = 'proj-1';
-        $envId = 'env-1';
 
         $result = $this->environmentTask->listProjectVariables($projectId);
 

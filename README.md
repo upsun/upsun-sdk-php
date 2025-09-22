@@ -139,6 +139,7 @@ Class | Method | HTTP request | Description
 *APITokensApi* | [**getApiToken**](docs/Api/APITokensApi.md#getapitoken) | **GET** /users/{user_id}/api-tokens/{token_id} | Get an API token
 *APITokensApi* | [**listApiTokens**](docs/Api/APITokensApi.md#listapitokens) | **GET** /users/{user_id}/api-tokens | List a user&#39;s API tokens
 *AddOnsApi* | [**getOrgAddons**](docs/Api/AddOnsApi.md#getorgaddons) | **GET** /organizations/{organization_id}/addons | Get add-ons
+*AddOnsApi* | [**updateOrgAddons**](docs/Api/AddOnsApi.md#updateorgaddons) | **PATCH** /organizations/{organization_id}/addons | Update organization add-ons
 *AlertsApi* | [**createUsageAlert**](docs/Api/AlertsApi.md#createusagealert) | **POST** /alerts/subscriptions/{subscriptionId}/usage | Create a usage alert.
 *AlertsApi* | [**deleteUsageAlert**](docs/Api/AlertsApi.md#deleteusagealert) | **DELETE** /alerts/subscriptions/{subscriptionId}/usage/{usageId} | Delete a usage alert.
 *AlertsApi* | [**getUsageAlerts**](docs/Api/AlertsApi.md#getusagealerts) | **GET** /alerts/subscriptions/{subscriptionId}/usage | Get usage alerts for a subscription
@@ -808,6 +809,7 @@ Class | Method | HTTP request | Description
 - [Ticket](docs/Model/Ticket.md)
 - [TicketJiraInner](docs/Model/TicketJiraInner.md)
 - [Tree](docs/Model/Tree.md)
+- [UpdateOrgAddonsRequest](docs/Model/UpdateOrgAddonsRequest.md)
 - [UpdateOrgBillingAlertConfigRequest](docs/Model/UpdateOrgBillingAlertConfigRequest.md)
 - [UpdateOrgBillingAlertConfigRequestConfig](docs/Model/UpdateOrgBillingAlertConfigRequestConfig.md)
 - [UpdateOrgMemberRequest](docs/Model/UpdateOrgMemberRequest.md)

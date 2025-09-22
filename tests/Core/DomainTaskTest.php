@@ -14,11 +14,10 @@ use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\DomainTask;
 use Upsun\UpsunClient;
 
-class DomainTaskTest extends TestCase
+class DomainTaskTest extends BaseTestCase
 {
     private DomainTask $domainTask;
     private ClientInterface $httpClient;
-
 
     protected function setUp(): void
     {
@@ -336,7 +335,7 @@ class DomainTaskTest extends TestCase
     public function testCreateThrowsApiException(): void
     {
         $this->expectException(ApiException::class);
-        
+
         $projectId = 'proj-1';
         $input = ['name' => 'name'];
 

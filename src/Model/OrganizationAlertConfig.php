@@ -22,7 +22,7 @@ final class OrganizationAlertConfig implements ModelInterface, JsonSerializable
         private readonly ?OrganizationAlertConfigConfig $config = null,
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
-        private readonly ?number $alertsSent = null,
+        private readonly ?float $alertsSent = null,
     ) {
     }
 
@@ -58,7 +58,7 @@ final class OrganizationAlertConfig implements ModelInterface, JsonSerializable
         return $this->active;
     }
 
-    public function getAlertsSent(): ?number
+    public function getAlertsSent(): ?float
     {
         return $this->alertsSent;
     }

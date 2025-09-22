@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateSshKeyRequest;
-use Upsun\Model\SSHKey;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -29,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class SSHKeysApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -64,6 +61,9 @@ final class SSHKeysApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\SSHKey
+     *
      * @see
      * curl -X POST "https://api.upsun.com/ssh_keys" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -75,8 +75,8 @@ final class SSHKeysApi extends AbstractApi
      *      }'
      */
     public function createSshKey(
-        ?CreateSshKeyRequest $createSshKeyRequest = null
-    ): SSHKey {
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+    ): \Upsun\Model\SSHKey {
         return $this->createSshKeyWithHttpInfo(
             $createSshKeyRequest
         );
@@ -85,11 +85,13 @@ final class SSHKeysApi extends AbstractApi
     /**
      * Add a new public SSH key to a user
      *
+     * @return \Upsun\Model\SSHKey
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function createSshKeyWithHttpInfo(
-        ?CreateSshKeyRequest $createSshKeyRequest = null
-    ): SSHKey {
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
+    ): \Upsun\Model\SSHKey {
         $request = $this->createSshKeyRequest(
             $createSshKeyRequest
         );
@@ -103,12 +105,13 @@ final class SSHKeysApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                SSHKey::class,
+                '\Upsun\Model\SSHKey',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -118,7 +121,7 @@ final class SSHKeysApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createSshKeyRequest(
-        ?CreateSshKeyRequest $createSshKeyRequest = null
+        ?\Upsun\Model\CreateSshKeyRequest $createSshKeyRequest = null
     ): RequestInterface {
 
         $resourcePath = '/ssh_keys';
@@ -145,7 +148,7 @@ final class SSHKeysApi extends AbstractApi
             } else {
                 $httpBody = $createSshKeyRequest;
             }
-        } elseif ($formParams !== []) {
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -157,7 +160,6 @@ final class SSHKeysApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -186,7 +188,6 @@ final class SSHKeysApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Delete an SSH key
      *
@@ -224,8 +225,9 @@ final class SSHKeysApi extends AbstractApi
                 $request->getHeaders(),
                 $request->getBody()
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -244,12 +246,11 @@ final class SSHKeysApi extends AbstractApi
             || (is_array($keyId)
             && count($keyId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $keyId 
                 when calling deleteSshKey'
             );
         }
-
         $resourcePath = '/ssh_keys/{key_id}';
         $formParams = [];
         $queryParams = [];
@@ -274,7 +275,7 @@ final class SSHKeysApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -286,7 +287,6 @@ final class SSHKeysApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -315,12 +315,14 @@ final class SSHKeysApi extends AbstractApi
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
     }
-
     /**
      * Get an SSH key
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
+     * @return \Upsun\Model\SSHKey
+     *
      * @see
      * curl -X GET "https://api.upsun.com/ssh_keys/{key_id}" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -328,7 +330,7 @@ final class SSHKeysApi extends AbstractApi
      */
     public function getSshKey(
         int $keyId
-    ): SSHKey {
+    ): \Upsun\Model\SSHKey {
         return $this->getSshKeyWithHttpInfo(
             $keyId
         );
@@ -337,11 +339,13 @@ final class SSHKeysApi extends AbstractApi
     /**
      * Get an SSH key
      *
+     * @return \Upsun\Model\SSHKey
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function getSshKeyWithHttpInfo(
         int $keyId
-    ): SSHKey {
+    ): \Upsun\Model\SSHKey {
         $request = $this->getSshKeyRequest(
             $keyId
         );
@@ -355,12 +359,13 @@ final class SSHKeysApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                SSHKey::class,
+                '\Upsun\Model\SSHKey',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -379,12 +384,11 @@ final class SSHKeysApi extends AbstractApi
             || (is_array($keyId)
             && count($keyId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $keyId 
                 when calling getSshKey'
             );
         }
-
         $resourcePath = '/ssh_keys/{key_id}';
         $formParams = [];
         $queryParams = [];
@@ -409,7 +413,7 @@ final class SSHKeysApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -421,7 +425,6 @@ final class SSHKeysApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

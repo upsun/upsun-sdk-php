@@ -12,10 +12,9 @@ use Upsun\Core\Tasks\OperationTask;
 use Upsun\Api\RuntimeOperationsApi;
 use Upsun\ApiException;
 use Upsun\Model\AcceptedResponse;
-use Upsun\Model\EnvironmentOperationInput;
 use Upsun\UpsunClient;
 
-class OperationTaskTest extends TestCase
+class OperationTaskTest extends BaseTestCase
 {
     private OperationTask $operationTask;
     private ClientInterface $httpClient;

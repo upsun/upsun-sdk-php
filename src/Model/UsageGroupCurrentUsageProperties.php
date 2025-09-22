@@ -19,12 +19,12 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, JsonSeri
     public function __construct(
         private readonly ?string $title = null,
         private readonly ?bool $type = null,
-        private readonly ?number $currentUsage = null,
+        private readonly ?float $currentUsage = null,
         private readonly ?string $currentUsageFormatted = null,
         private readonly ?bool $notCharged = null,
-        private readonly ?number $freeQuantity = null,
+        private readonly ?float $freeQuantity = null,
         private readonly ?string $freeQuantityFormatted = null,
-        private readonly ?number $dailyAverage = null,
+        private readonly ?float $dailyAverage = null,
         private readonly ?string $dailyAverageFormatted = null,
     ) {
     }
@@ -64,7 +64,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, JsonSeri
         return $this->type;
     }
 
-    public function getCurrentUsage(): ?number
+    public function getCurrentUsage(): ?float
     {
         return $this->currentUsage;
     }
@@ -79,7 +79,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, JsonSeri
         return $this->notCharged;
     }
 
-    public function getFreeQuantity(): ?number
+    public function getFreeQuantity(): ?float
     {
         return $this->freeQuantity;
     }
@@ -89,7 +89,7 @@ final class UsageGroupCurrentUsageProperties implements ModelInterface, JsonSeri
         return $this->freeQuantityFormatted;
     }
 
-    public function getDailyAverage(): ?number
+    public function getDailyAverage(): ?float
     {
         return $this->dailyAverage;
     }

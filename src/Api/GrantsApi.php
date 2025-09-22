@@ -2,8 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\StringFilter;
-use Upsun\Model\ListUserExtendedAccess200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -29,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class GrantsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -65,7 +62,8 @@ final class GrantsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return object[]
+     * @return \Upsun\Model\ListUserExtendedAccess200Response
+     *
      * @see
      * curl -X GET "https://api.upsun.com/users/{user_id}/extended-access?filterResourceType=new \Upsun\Model\\Upsun\Model\StringFilter()filterOrganizationId=new \Upsun\Model\\Upsun\Model\StringFilter()filterPermissions=new \Upsun\Model\\Upsun\Model\StringFilter()" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -73,10 +71,10 @@ final class GrantsApi extends AbstractApi
      */
     public function listUserExtendedAccess(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
-    ): array {
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
+    ): object {
         return $this->listUserExtendedAccessWithHttpInfo(
             $userId,
             $filterResourceType,
@@ -88,14 +86,16 @@ final class GrantsApi extends AbstractApi
     /**
      * List extended access of a user
      *
+     * @return \Upsun\Model\ListUserExtendedAccess200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function listUserExtendedAccessWithHttpInfo(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
-    ): array {
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
+    ): object {
         $request = $this->listUserExtendedAccessRequest(
             $userId,
             $filterResourceType,
@@ -112,12 +112,13 @@ final class GrantsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListUserExtendedAccess200Response::class,
+                '\Upsun\Model\ListUserExtendedAccess200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -128,9 +129,9 @@ final class GrantsApi extends AbstractApi
      */
     private function listUserExtendedAccessRequest(
         string $userId,
-        ?StringFilter $filterResourceType = null,
-        ?StringFilter $filterOrganizationId = null,
-        ?StringFilter $filterPermissions = null
+        ?\Upsun\Model\StringFilter $filterResourceType = null,
+        ?\Upsun\Model\StringFilter $filterOrganizationId = null,
+        ?\Upsun\Model\StringFilter $filterPermissions = null
     ): RequestInterface {
 
         // verify the required parameter 'userId' is set
@@ -139,7 +140,7 @@ final class GrantsApi extends AbstractApi
             || (is_array($userId)
             && count($userId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $userId 
                 when calling listUserExtendedAccess'
             );
@@ -210,7 +211,7 @@ final class GrantsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -222,7 +223,6 @@ final class GrantsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

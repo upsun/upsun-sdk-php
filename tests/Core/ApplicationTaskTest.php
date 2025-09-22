@@ -12,7 +12,7 @@ use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
 use Nyholm\Psr7\Factory\Psr17Factory;
 
-class ApplicationTaskTest extends TestCase
+class ApplicationTaskTest extends BaseTestCase
 {
     private ApplicationTask $applicationTask;
     private ClientInterface $httpClient;

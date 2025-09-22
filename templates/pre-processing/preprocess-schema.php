@@ -348,10 +348,12 @@ class OpenApiPreprocessor
                             if (
                                 isset($schema['type'])
                                 && $schema['type'] === 'object'
-                                && isset($schema['properties']['items'])
+                                && isset($schema['properties']['items']['$ref'])  // <-- Condition plus précise
                             ) {
-                                $itemsSchema = $schema['properties']['items'];
-                                $refs = $this->collectMainRefs($itemsSchema, $this->schema);
+                                $ref = $schema['properties']['items']['$ref'];
+                                $parts = explode('/', $ref);
+                                $class = '\\Upsun\\Model\\' . end($parts);
+                                $refs = ['refs' => [$class . '[]']];
                             } else {
                                 $refs = $this->collectMainRefs($schema, $this->schema);
                             }
@@ -387,7 +389,7 @@ class OpenApiPreprocessor
                 }
 
                 foreach ($returnTypes as $t) {
-                    if (str_ends_with($t, '[]')) {
+                    if (str_ends_with($t, '[]') || str_contains($t, 'array<')) {
                         $operation['x-return-types-displayReturn'] = true;
                         break;
                     }
@@ -433,12 +435,12 @@ class OpenApiPreprocessor
                 $parts = explode('/', $resolved['items']['$ref']);
                 $class = '\\Upsun\\Model\\' . end($parts);
                 $refs['refs'][] = $class . '[]';
-                $refs['phpdoc']['items'] = $class . '[]';
+                $refs['phpdoc']['return'] = $class . '[]';
             } else {
                 $parts = explode('/', $schema['$ref']);
                 $class = '\\Upsun\\Model\\' . end($parts);
                 $refs['refs'][] = $class;
-                $refs['phpdoc']['type'] = $class;
+                $refs['phpdoc']['return'] = $class;
             }
             return $refs;
         }
@@ -451,34 +453,57 @@ class OpenApiPreprocessor
                         $parts = explode('/', $schema['items']['$ref']);
                         $class = '\\Upsun\\Model\\' . end($parts);
                         $refs['refs'][] = $class . '[]';
-                        $refs['phpdoc']['items'] = $class . '[]';
+                        $refs['phpdoc']['return'] = $class . '[]';
                     } elseif (isset($schema['items']['type'])) {
                         $type = $schema['items']['type'];
                         $refs['refs'][] = $type . '[]';
-                        $refs['phpdoc']['items'] = $type . '[]';
+                        $refs['phpdoc']['return'] = $type . '[]';
                     }
                     return $refs;
 
                 case 'object':
-                    if (isset($schema['additionalProperties']['$ref'])) {
-                        $parts = explode('/', $schema['additionalProperties']['$ref']);
-                        $class = '\\Upsun\\Model\\' . end($parts);
-                        $refs['refs'][] = $class;
-                        $refs['phpdoc']['items'] = "array<string, $class>";
-                    } elseif (isset($schema['properties'])) {
-                        foreach ($schema['properties'] as $propertyName => $propertyValue) {
-                            $type = $propertyValue['type'] ?? 'mixed';
-                            $refs['phpdoc']['array'][$propertyName] = $type;
+                    // Handle additionalProperties (key-value mapping)
+                    if (isset($schema['additionalProperties'])) {
+                        $additionalProps = $schema['additionalProperties'];
+
+                        if (isset($additionalProps['$ref'])) {
+                            // Case: additionalProperties with $ref
+                            $parts = explode('/', $additionalProps['$ref']);
+                            $class = '\\Upsun\\Model\\' . end($parts);
+                            $refs['refs'][] = "array<string,$class>";
+                            $refs['phpdoc']['return'] = "array<string,$class>";
+                        } elseif (
+                            isset($additionalProps['type'])
+                            && $additionalProps['type'] === 'object'
+                            && isset($additionalProps['properties'])
+                        ) {
+                            $refs['phpdoc']['return'] = true;
+                        } elseif (isset($additionalProps['type'])) {
+                            // Case: additionalProperties with primitive type
+                            $type = $additionalProps['type'];
+                            $refs['refs'][] = "array<string,$type>";
+                            $refs['phpdoc']['return'] = "array<string,$type>";
                         }
+                    } elseif (isset($schema['properties'])) {
+                        // Handle regular object with defined properties
+                        $refs['refs'][] = 'object';
+                        $refs['phpdoc']['return'] = 'object';
+                    } else {
+                        // Generic object
+                        $refs['refs'][] = 'object';
+                        $refs['phpdoc']['return'] = 'object';
                     }
                     return $refs;
 
                 case 'boolean':
                 case 'string':
                 case 'integer':
-                case 'number':
                     $refs['refs'][] = $schema['type'];
-                    $refs['phpdoc']['type'] = $schema['type'];
+                    $refs['phpdoc']['return'] = false;
+                    return $refs;
+                case 'number':
+                    $refs['refs'][] = 'float';
+                    $refs['phpdoc']['return'] = false;
                     return $refs;
             }
         }
@@ -738,7 +763,7 @@ class OpenApiPreprocessor
                     }
                 }
                 unset($line);
-                
+
                 $operation['x-body-example'] = implode("\n", $lines);
             }
         }
@@ -778,6 +803,101 @@ class OpenApiPreprocessor
             default => null,
         };
     }
+
+    public function addOrgAddonsPatch(): void
+    {
+        $path = '/organizations/{organization_id}/addons';
+
+        // Check if the path already exists
+        if (!isset($this->schema['paths'][$path])) {
+            echo "⚠️ The path $path does not exist, creating it completely.\n";
+            $this->schema['paths'][$path] = [];
+        }
+
+        // Add the PATCH operation
+        $this->schema['paths'][$path]['patch'] = [
+            'summary' => 'Update organization add-ons',
+            'description' => 'Updates the add-ons configuration for an organization.',
+            'operationId' => 'update-org-addons',
+            'tags' => ['Add-ons'],
+            'parameters' => [
+                [
+                    '$ref' => '#/components/parameters/OrganizationIDName'
+                ]
+            ],
+            'requestBody' => [
+                'required' => true,
+                'content' => [
+                    'application/json' => [
+                        'schema' => [
+                            'type' => 'object',
+                            'properties' => [
+                                'user_management' => [
+                                    'type' => 'string',
+                                    'description' => 'The user management level to apply.',
+                                    'enum' => ['standard', 'enhanced'],
+                                    'example' => 'standard'
+                                ],
+                                'support_level' => [
+                                    'type' => 'string',
+                                    'description' => 'The support level to apply.',
+                                    'enum' => ['basic', 'premium'],
+                                    'example' => 'basic'
+                                ]
+                            ],
+                            'additionalProperties' => false,
+                            'minProperties' => 1 // at least one of the properties must be present
+                        ]
+                    ]
+                ]
+            ],
+            'responses' => [
+                '200' => [
+                    'description' => 'Add-ons updated successfully',
+                    'content' => [
+                        'application/json' => [
+                            'schema' => [
+                                '$ref' => '#/components/schemas/OrganizationAddonsObject'
+                            ]
+                        ]
+                    ]
+                ],
+                '400' => [
+                    'description' => 'Bad Request',
+                    'content' => [
+                        'application/problem+json' => [
+                            'schema' => [
+                                '$ref' => '#/components/schemas/Error'
+                            ]
+                        ]
+                    ]
+                ],
+                '403' => [
+                    'description' => 'Forbidden',
+                    'content' => [
+                        'application/problem+json' => [
+                            'schema' => [
+                                '$ref' => '#/components/schemas/Error'
+                            ]
+                        ]
+                    ]
+                ],
+                '404' => [
+                    'description' => 'Not Found',
+                    'content' => [
+                        'application/problem+json' => [
+                            'schema' => [
+                                '$ref' => '#/components/schemas/Error'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'x-vendor' => 'upsun'
+        ];
+
+        echo "✅ PATCH operation added for $path\n";
+    }
 }
 
 
@@ -807,6 +927,9 @@ try {
     // Add Deployment.id
     $preprocessor->fixDeploymentId();
 
+    // Add addons update path (PATCH)
+    $preprocessor->addOrgAddonsPatch();
+
     // Remove Project->delete path
     $preprocessor->removeProjectDeletePath();
 
@@ -819,7 +942,8 @@ try {
     // Fix nullable/required
     $preprocessor->fixNullableRequired();
 
-    // Add bodyParam examples for curl docs
+
+    // Add bodyParam examples for curl docs (need to be the last)
     $preprocessor->addRequestBodyExamples();
 
     // Save

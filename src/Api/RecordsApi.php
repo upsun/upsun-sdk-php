@@ -2,11 +2,6 @@
 
 namespace Upsun\Api;
 
-use DateTime;
-use Upsun\Model\ListOrgPlanRecords200Response;
-use Upsun\Model\ListOrgUsageRecords200Response;
-use Upsun\Model\PlanRecords;
-use Upsun\Model\Usage;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -32,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class RecordsApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -68,7 +62,8 @@ final class RecordsApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return PlanRecords[]
+     * @return \Upsun\Model\ListOrgPlanRecords200Response
+     *
      * @see
      * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/plan?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterPlan=&#39;filterPlan_example&#39;filterStatus=&#39;filterStatus_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEnd=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEndedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -79,12 +74,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?DateTime $filterStart = null,
-        ?DateTime $filterEnd = null,
-        ?DateTime $filterStartedAt = null,
-        ?DateTime $filterEndedAt = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterEnd = null,
+        ?\DateTime $filterStartedAt = null,
+        ?\DateTime $filterEndedAt = null,
         ?int $page = null
-    ): array {
+    ): object {
         return $this->listOrgPlanRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -101,6 +96,8 @@ final class RecordsApi extends AbstractApi
     /**
      * List plan records
      *
+     * @return \Upsun\Model\ListOrgPlanRecords200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function listOrgPlanRecordsWithHttpInfo(
@@ -108,12 +105,12 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?DateTime $filterStart = null,
-        ?DateTime $filterEnd = null,
-        ?DateTime $filterStartedAt = null,
-        ?DateTime $filterEndedAt = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterEnd = null,
+        ?\DateTime $filterStartedAt = null,
+        ?\DateTime $filterEndedAt = null,
         ?int $page = null
-    ): array {
+    ): object {
         $request = $this->listOrgPlanRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -135,12 +132,13 @@ final class RecordsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListOrgPlanRecords200Response::class,
+                '\Upsun\Model\ListOrgPlanRecords200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -154,10 +152,10 @@ final class RecordsApi extends AbstractApi
         ?string $filterSubscriptionId = null,
         ?string $filterPlan = null,
         ?string $filterStatus = null,
-        ?DateTime $filterStart = null,
-        ?DateTime $filterEnd = null,
-        ?DateTime $filterStartedAt = null,
-        ?DateTime $filterEndedAt = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterEnd = null,
+        ?\DateTime $filterStartedAt = null,
+        ?\DateTime $filterEndedAt = null,
         ?int $page = null
     ): RequestInterface {
 
@@ -167,7 +165,7 @@ final class RecordsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgPlanRecords'
             );
@@ -308,7 +306,7 @@ final class RecordsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -320,7 +318,6 @@ final class RecordsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -349,14 +346,14 @@ final class RecordsApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List usage records
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Usage[]
+     * @return \Upsun\Model\ListOrgUsageRecords200Response
+     *
      * @see
      * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/usage?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterUsageGroup=&#39;filterUsageGroup_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
@@ -366,10 +363,10 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?DateTime $filterStart = null,
-        ?DateTime $filterStartedAt = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterStartedAt = null,
         ?int $page = null
-    ): array {
+    ): object {
         return $this->listOrgUsageRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -383,16 +380,18 @@ final class RecordsApi extends AbstractApi
     /**
      * List usage records
      *
+     * @return \Upsun\Model\ListOrgUsageRecords200Response
+     *
      * @throws InvalidArgumentException|Exception
      */
     private function listOrgUsageRecordsWithHttpInfo(
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?DateTime $filterStart = null,
-        ?DateTime $filterStartedAt = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterStartedAt = null,
         ?int $page = null
-    ): array {
+    ): object {
         $request = $this->listOrgUsageRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -411,12 +410,13 @@ final class RecordsApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListOrgUsageRecords200Response::class,
+                '\Upsun\Model\ListOrgUsageRecords200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -429,8 +429,8 @@ final class RecordsApi extends AbstractApi
         string $organizationId,
         ?string $filterSubscriptionId = null,
         ?string $filterUsageGroup = null,
-        ?DateTime $filterStart = null,
-        ?DateTime $filterStartedAt = null,
+        ?\DateTime $filterStart = null,
+        ?\DateTime $filterStartedAt = null,
         ?int $page = null
     ): RequestInterface {
 
@@ -440,7 +440,7 @@ final class RecordsApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgUsageRecords'
             );
@@ -539,7 +539,7 @@ final class RecordsApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -551,7 +551,6 @@ final class RecordsApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

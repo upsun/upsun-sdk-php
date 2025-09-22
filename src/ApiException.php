@@ -2,10 +2,10 @@
 
 namespace Upsun;
 
-use Throwable;
 use Http\Client\Exception\RequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Upsun\Model\Error;
 
 /**
  * Low level  (auto-generated)
@@ -37,10 +37,10 @@ class ApiException extends RequestException
         $message,
         RequestInterface $request,
         ?ResponseInterface $response = null,
-        ?Throwable $previous = null
+        ?\Throwable $previous = null
     ) {
         parent::__construct($message, $request, $previous);
-        if ($response !== null) {
+        if ($response) {
             $this->responseHeaders = $response->getHeaders();
             $this->responseBody = (string) $response->getBody();
             $this->code = $response->getStatusCode();
@@ -77,5 +77,83 @@ class ApiException extends RequestException
     public function getResponseObject(): mixed
     {
         return $this->responseObject;
+    }
+
+    /**
+     * Gets the Error object if the response object is an Error
+     */
+    public function getError(): ?Error
+    {
+        return $this->responseObject instanceof Error ? $this->responseObject : null;
+    }
+
+    /**
+     * Gets the API error status
+     */
+    public function getApiStatus(): ?string
+    {
+        $error = $this->getError();
+        return $error?->getStatus();
+    }
+
+    /**
+     * Gets the API error message (different from exception message)
+     */
+    public function getApiMessage(): ?string
+    {
+        $error = $this->getError();
+        return $error?->getMessage();
+    }
+
+    /**
+     * Gets the API error code (different from HTTP status code)
+     */
+    public function getApiCode(): ?float
+    {
+        $error = $this->getError();
+        return $error?->getCode();
+    }
+
+    /**
+     * Gets the API error detail
+     */
+    public function getApiDetail(): ?object
+    {
+        $error = $this->getError();
+        return $error?->getDetail();
+    }
+
+    /**
+     * Gets the API error title
+     */
+    public function getApiTitle(): ?string
+    {
+        $error = $this->getError();
+        return $error?->getTitle();
+    }
+
+    /**
+     * Check if the response contains a structured Error object
+     */
+    public function hasStructuredError(): bool
+    {
+        return $this->responseObject instanceof Error;
+    }
+
+    /**
+     * Enriches the exception with a deserialized Error object if possible
+     */
+    public function enrichWithErrorObject(): void
+    {
+        if (!$this->responseBody) {
+            return;
+        }
+
+        try {
+            $errorData = json_decode($this->responseBody, false, 512, JSON_THROW_ON_ERROR);
+            $this->responseObject = ObjectSerializer::deserialize($errorData, Error::class, []);
+        } catch (\JsonException | \Exception $e) {
+            // Deserialization error, silently ignore
+        }
     }
 }

@@ -81,6 +81,14 @@ use {{invokerPackage}}\Core\OAuthProvider;
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
      * @return {{{vendorExtensions.x-return-types.0}}}
+     *
+{{/vendorExtensions.x-return-types-displayReturn}}
+{{^vendorExtensions.x-return-types-displayReturn}}
+{{#vendorExtensions.x-phpdoc.return}}
+     *
+     * @return {{{returnType}}}
+     *
+{{/vendorExtensions.x-phpdoc.return}}
 {{/vendorExtensions.x-return-types-displayReturn}}
      * @see
      * curl -X {{httpMethod}} "{{basePath}}{{path}}{{#hasQueryParams}}?{{#queryParams}}{{paramName}}={{example}}{{#hasMore}}&{{/hasMore}}{{/queryParams}}{{/hasQueryParams}}" \
@@ -118,6 +126,16 @@ use {{invokerPackage}}\Core\OAuthProvider;
      *
 {{/-last}}
 {{/servers}}
+{{#vendorExtensions.x-return-types-displayReturn}}
+     *
+     * @return {{{vendorExtensions.x-return-types.0}}}
+{{/vendorExtensions.x-return-types-displayReturn}}
+{{^vendorExtensions.x-return-types-displayReturn}}
+{{#vendorExtensions.x-phpdoc.return}}
+     *
+     * @return {{{returnType}}}
+{{/vendorExtensions.x-phpdoc.return}}
+{{/vendorExtensions.x-return-types-displayReturn}}
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -135,14 +153,15 @@ use {{invokerPackage}}\Core\OAuthProvider;
                 (string) $request->getUri(),
                 $request->getHeaders(),
                 $request->getBody()
-            );{{#returnType}}
+            );{{#vendorExtensions.x-returnable}}
 
-            {{#vendorExtensions.x-returnable}}return {{/vendorExtensions.x-returnable}}$this->handleResponseWithDataType(
-                '{{{returnType}}}',
+            return $this->handleResponseWithDataType(
+                '{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}',
                 $request,
                 $response
-            );{{/returnType}}
+            );{{/vendorExtensions.x-returnable}}
         } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
             throw $e;
         }
     }

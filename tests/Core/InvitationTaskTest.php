@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 use Upsun\Core\Tasks\InvitationTask;
 use Upsun\UpsunClient;
 
-class InvitationTaskTest extends TestCase
+class InvitationTaskTest extends BaseTestCase
 {
     private readonly InvitationTask $invitationTask;
     private ClientInterface $httpClient;
@@ -133,7 +133,8 @@ class InvitationTaskTest extends TestCase
                 ])
             ));
 
-        $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
+        $response = $this->invitationTask->createOrgInvite($organizationId, $email, $permissions, $force);
+        $this->assertInstanceOf(OrganizationInvitation::class, $response);
     }
 
     /**

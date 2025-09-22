@@ -18,7 +18,7 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, JsonSer
 {
     public function __construct(
         private readonly ?string $formatted = null,
-        private readonly ?number $amount = null,
+        private readonly ?float $amount = null,
         private readonly ?string $currencyCode = null,
         private readonly ?string $currencySymbol = null,
     ) {
@@ -49,7 +49,7 @@ final class PrepaymentObjectPrepaymentBalance implements ModelInterface, JsonSer
         return $this->formatted;
     }
 
-    public function getAmount(): ?number
+    public function getAmount(): ?float
     {
         return $this->amount;
     }
