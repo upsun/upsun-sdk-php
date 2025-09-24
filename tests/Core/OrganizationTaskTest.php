@@ -10,7 +10,6 @@ use Upsun\Api\AddOnsApi;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\ConnectionsApi;
 use Upsun\Api\DeploymentTargetApi;
-use Upsun\Api\EnvironmentBackupsApi;
 use Upsun\Api\GrantsApi;
 use Upsun\Api\InvoicesApi;
 use Upsun\Api\MFAApi;
@@ -35,13 +34,10 @@ use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
 use Upsun\Configuration;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\BackupTask;
 use Upsun\HeaderSelector;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Address;
-use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\CreateAuthorizationCredentials200Response;
-use Upsun\Model\CreateOrgRequest;
 use Upsun\Model\Invoice;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgOrders200Response;
@@ -54,13 +50,6 @@ use Upsun\Model\PlanRecords;
 use Upsun\Model\Profile;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\Team;
-use Upsun\Model\UpdateOrgProfileRequest;
-use Upsun\Model\UpdateOrgRequest;
-use Upsun\Model\UpdateOrgSubscriptionRequest;
-use Upsun\Model\UsageGroupCurrentUsageProperties;
-use Upsun\Model\User;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\OrganizationTask;
 use Upsun\Model\Organization;
 use Upsun\Model\OrganizationMember;
@@ -68,20 +57,12 @@ use Upsun\Model\OrganizationProject;
 use Upsun\Model\Subscription;
 use Upsun\Model\EstimationObject;
 use Upsun\Model\SubscriptionCurrentUsageObject;
-use Upsun\Model\ListOrgs200Response;
-use Upsun\Model\ListUserOrgs200Response;
-use Upsun\Model\ListOrgMembers200Response;
-use Upsun\Model\ListTeams200Response;
-use Upsun\Model\ListOrgProjects200Response;
-use Upsun\Model\CreateOrgMemberRequest;
-use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Core\Tasks\ProjectTask;
 use Upsun\Core\Tasks\TeamTask;
 use Upsun\Core\Tasks\UserTask;
 use Upsun\Model\Vouchers;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
 class OrganizationTaskTest extends BaseTestCase
 {
@@ -342,7 +323,6 @@ class OrganizationTaskTest extends BaseTestCase
 
         $this->organizationTask = new class (
             $upsunClient,
-            $headerSelector,
             $organizationsApi,
             $organizationProjectsApi,
             $organizationMembersApi,
@@ -415,9 +395,8 @@ class OrganizationTaskTest extends BaseTestCase
 
     public function testDeleteOrganization()
     {
-        $this->expectNotToPerformAssertions();
-
         $this->httpClient
+            ->expects($this->once())
             ->method('sendRequest')
             ->willReturn(new Response(
                 200,

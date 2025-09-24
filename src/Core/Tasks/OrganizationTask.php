@@ -59,10 +59,6 @@ use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
 use Upsun\Model\UpdateOrgRequest;
 use Upsun\Model\Vouchers;
-use Upsun\ObjectSerializer;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use RuntimeException;
 use Upsun\UpsunClient;
 
 class OrganizationTask extends TaskBase
@@ -71,7 +67,6 @@ class OrganizationTask extends TaskBase
 
     public function __construct(
         public UpsunClient $client,
-        private readonly HeaderSelector $headerSelector,
         private readonly OrganizationsApi $api,
         private readonly OrganizationProjectsApi $projectsApi,
         private readonly OrganizationMembersApi $membersApi,

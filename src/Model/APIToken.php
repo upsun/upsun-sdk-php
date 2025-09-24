@@ -17,13 +17,13 @@ use JsonSerializable;
 final class APIToken implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $lastUsedAt = null,
+        private readonly ?\DateTime $lastUsedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $name = null,
         private readonly ?bool $mfaOnCreation = null,
         private readonly ?string $token = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -39,9 +39,9 @@ final class APIToken implements ModelInterface, JsonSerializable
             'name' => $this->name,
             'mfaOnCreation' => $this->mfaOnCreation,
             'token' => $this->token,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
-            'lastUsedAt' => $this->lastUsedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'lastUsedAt' => $this->lastUsedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -70,17 +70,17 @@ final class APIToken implements ModelInterface, JsonSerializable
         return $this->token;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function getLastUsedAt(): ?string
+    public function getLastUsedAt(): ?\DateTime
     {
         return $this->lastUsedAt;
     }

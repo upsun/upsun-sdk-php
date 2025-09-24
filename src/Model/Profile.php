@@ -34,8 +34,8 @@ final class Profile implements ModelInterface, JsonSerializable
         private readonly ?string $defaultCatalog = null,
         private readonly ?string $projectOptionsUrl = null,
         private readonly ?bool $marketing = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $billingContact = null,
         private readonly ?string $securityContact = null,
         private readonly ?ProfileCurrentTrial $currentTrial = null,
@@ -68,8 +68,8 @@ final class Profile implements ModelInterface, JsonSerializable
             'defaultCatalog' => $this->defaultCatalog,
             'projectOptionsUrl' => $this->projectOptionsUrl,
             'marketing' => $this->marketing,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'billingContact' => $this->billingContact,
             'securityContact' => $this->securityContact,
             'currentTrial' => $this->currentTrial,
@@ -167,12 +167,12 @@ final class Profile implements ModelInterface, JsonSerializable
         return $this->marketing;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

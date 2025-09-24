@@ -22,8 +22,8 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
         private readonly ?string $name = null,
         private readonly ?string $label = null,
         private readonly ?string $vendor = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -40,8 +40,8 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
             'name' => $this->name,
             'label' => $this->label,
             'vendor' => $this->vendor,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -75,12 +75,12 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
         return $this->vendor;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

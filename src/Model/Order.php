@@ -17,15 +17,15 @@ use JsonSerializable;
 final class Order implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $paidOn = null,
+        private readonly ?\DateTime $paidOn = null,
         private readonly ?string $id = null,
         private readonly ?string $status = null,
         private readonly ?string $owner = null,
         private readonly ?Address $address = null,
         private readonly ?string $company = null,
         private readonly ?string $vatNumber = null,
-        private readonly ?string $billingPeriodStart = null,
-        private readonly ?string $billingPeriodEnd = null,
+        private readonly ?\DateTime $billingPeriodStart = null,
+        private readonly ?\DateTime $billingPeriodEnd = null,
         private readonly ?OrderBillingPeriodLabel $billingPeriodLabel = null,
         private readonly ?int $billingPeriodDuration = null,
         private readonly ?int $total = null,
@@ -33,7 +33,7 @@ final class Order implements ModelInterface, JsonSerializable
         private readonly ?Components $components = null,
         private readonly ?string $currency = null,
         private readonly ?string $invoiceUrl = null,
-        private readonly ?string $lastRefreshed = null,
+        private readonly ?\DateTime $lastRefreshed = null,
         private readonly ?bool $invoiced = null,
         private readonly ?array $lineItems = [],
         private readonly ?OrderLinks $links = null,
@@ -54,17 +54,17 @@ final class Order implements ModelInterface, JsonSerializable
             'address' => $this->address,
             'company' => $this->company,
             'vatNumber' => $this->vatNumber,
-            'billingPeriodStart' => $this->billingPeriodStart,
-            'billingPeriodEnd' => $this->billingPeriodEnd,
+            'billingPeriodStart' => $this->billingPeriodStart?->format(DATE_ATOM),
+            'billingPeriodEnd' => $this->billingPeriodEnd?->format(DATE_ATOM),
             'billingPeriodLabel' => $this->billingPeriodLabel,
             'billingPeriodDuration' => $this->billingPeriodDuration,
-            'paidOn' => $this->paidOn,
+            'paidOn' => $this->paidOn?->format(DATE_ATOM),
             'total' => $this->total,
             'totalFormatted' => $this->totalFormatted,
             'components' => $this->components,
             'currency' => $this->currency,
             'invoiceUrl' => $this->invoiceUrl,
-            'lastRefreshed' => $this->lastRefreshed,
+            'lastRefreshed' => $this->lastRefreshed?->format(DATE_ATOM),
             'invoiced' => $this->invoiced,
             'lineItems' => $this->lineItems,
             'links' => $this->links,
@@ -106,12 +106,12 @@ final class Order implements ModelInterface, JsonSerializable
         return $this->vatNumber;
     }
 
-    public function getBillingPeriodStart(): ?string
+    public function getBillingPeriodStart(): ?\DateTime
     {
         return $this->billingPeriodStart;
     }
 
-    public function getBillingPeriodEnd(): ?string
+    public function getBillingPeriodEnd(): ?\DateTime
     {
         return $this->billingPeriodEnd;
     }
@@ -126,7 +126,7 @@ final class Order implements ModelInterface, JsonSerializable
         return $this->billingPeriodDuration;
     }
 
-    public function getPaidOn(): ?string
+    public function getPaidOn(): ?\DateTime
     {
         return $this->paidOn;
     }
@@ -156,7 +156,7 @@ final class Order implements ModelInterface, JsonSerializable
         return $this->invoiceUrl;
     }
 
-    public function getLastRefreshed(): ?string
+    public function getLastRefreshed(): ?\DateTime
     {
         return $this->lastRefreshed;
     }

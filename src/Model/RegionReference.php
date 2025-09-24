@@ -28,8 +28,8 @@ final class RegionReference implements ModelInterface, JsonSerializable
         private readonly object $provider,
         private readonly object $datacenter,
         private readonly object $compliance,
-        private readonly string $createdAt,
-        private readonly string $updatedAt,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
         private readonly ?bool $private = null,
         private readonly ?string $code = null,
         private readonly ?object $envimpact = null,
@@ -55,8 +55,8 @@ final class RegionReference implements ModelInterface, JsonSerializable
             'provider' => $this->provider,
             'datacenter' => $this->datacenter,
             'compliance' => $this->compliance,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'private' => $this->private,
             'code' => $this->code,
             'envimpact' => $this->envimpact,
@@ -123,12 +123,12 @@ final class RegionReference implements ModelInterface, JsonSerializable
         return $this->compliance;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }

@@ -19,8 +19,8 @@ final class Subscription implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $owner = null,
         private readonly ?OwnerInfo $ownerInfo = null,
         private readonly ?string $vendor = null,
@@ -54,8 +54,8 @@ final class Subscription implements ModelInterface, JsonSerializable
         return [
             'id' => $this->id,
             'status' => $this->status,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'owner' => $this->owner,
             'ownerInfo' => $this->ownerInfo,
             'vendor' => $this->vendor,
@@ -94,12 +94,12 @@ final class Subscription implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

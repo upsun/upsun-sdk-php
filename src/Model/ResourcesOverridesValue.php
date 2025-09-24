@@ -20,8 +20,8 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
         private readonly array $services,
         private readonly bool $redeployedStart,
         private readonly bool $redeployedEnd,
-        private readonly ?string $startsAt = null,
-        private readonly ?string $endsAt = null,
+        private readonly ?\DateTime $startsAt = null,
+        private readonly ?\DateTime $endsAt = null,
     ) {
     }
 
@@ -34,8 +34,8 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
     {
         return [
             'services' => $this->services,
-            'startsAt' => $this->startsAt,
-            'endsAt' => $this->endsAt,
+            'startsAt' => $this->startsAt?->format(DATE_ATOM),
+            'endsAt' => $this->endsAt?->format(DATE_ATOM),
             'redeployedStart' => $this->redeployedStart,
             'redeployedEnd' => $this->redeployedEnd,
         ];
@@ -54,12 +54,12 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
         return $this->services;
     }
 
-    public function getStartsAt(): ?string
+    public function getStartsAt(): ?\DateTime
     {
         return $this->startsAt;
     }
 
-    public function getEndsAt(): ?string
+    public function getEndsAt(): ?\DateTime
     {
         return $this->endsAt;
     }

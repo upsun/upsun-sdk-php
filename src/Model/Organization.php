@@ -27,8 +27,8 @@ final class Organization implements ModelInterface, JsonSerializable
         private readonly ?array $capabilities = [],
         private readonly ?string $vendor = null,
         private readonly ?string $status = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?OrganizationLinks $links = null,
     ) {
     }
@@ -51,8 +51,8 @@ final class Organization implements ModelInterface, JsonSerializable
             'capabilities' => $this->capabilities,
             'vendor' => $this->vendor,
             'status' => $this->status,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -112,12 +112,12 @@ final class Organization implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

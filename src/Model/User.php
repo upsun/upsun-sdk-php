@@ -29,9 +29,9 @@ final class User implements ModelInterface, JsonSerializable
         private readonly string $company,
         private readonly string $website,
         private readonly string $country,
-        private readonly string $createdAt,
-        private readonly string $updatedAt,
-        private readonly ?string $consentedAt = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly ?\DateTime $consentedAt = null,
         private readonly ?string $consentMethod = null,
     ) {
     }
@@ -56,9 +56,9 @@ final class User implements ModelInterface, JsonSerializable
             'company' => $this->company,
             'website' => $this->website,
             'country' => $this->country,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
-            'consentedAt' => $this->consentedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'consentedAt' => $this->consentedAt?->format(DATE_ATOM),
             'consentMethod' => $this->consentMethod,
         ];
     }
@@ -128,17 +128,17 @@ final class User implements ModelInterface, JsonSerializable
         return $this->country;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    public function getConsentedAt(): ?string
+    public function getConsentedAt(): ?\DateTime
     {
         return $this->consentedAt;
     }

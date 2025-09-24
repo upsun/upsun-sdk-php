@@ -18,10 +18,10 @@ final class Invoice implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $relatedInvoiceId = null,
-        private readonly ?string $invoiceDate = null,
-        private readonly ?string $invoiceDue = null,
-        private readonly ?string $created = null,
-        private readonly ?string $changed = null,
+        private readonly ?\DateTime $invoiceDate = null,
+        private readonly ?\DateTime $invoiceDue = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?\DateTime $changed = null,
         private readonly ?string $id = null,
         private readonly ?string $invoiceNumber = null,
         private readonly ?string $type = null,
@@ -51,10 +51,10 @@ final class Invoice implements ModelInterface, JsonSerializable
             'relatedInvoiceId' => $this->relatedInvoiceId,
             'status' => $this->status,
             'owner' => $this->owner,
-            'invoiceDate' => $this->invoiceDate,
-            'invoiceDue' => $this->invoiceDue,
-            'created' => $this->created,
-            'changed' => $this->changed,
+            'invoiceDate' => $this->invoiceDate?->format(DATE_ATOM),
+            'invoiceDue' => $this->invoiceDue?->format(DATE_ATOM),
+            'created' => $this->created?->format(DATE_ATOM),
+            'changed' => $this->changed?->format(DATE_ATOM),
             'company' => $this->company,
             'total' => $this->total,
             'address' => $this->address,
@@ -103,22 +103,22 @@ final class Invoice implements ModelInterface, JsonSerializable
         return $this->owner;
     }
 
-    public function getInvoiceDate(): ?string
+    public function getInvoiceDate(): ?\DateTime
     {
         return $this->invoiceDate;
     }
 
-    public function getInvoiceDue(): ?string
+    public function getInvoiceDue(): ?\DateTime
     {
         return $this->invoiceDue;
     }
 
-    public function getCreated(): ?string
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
-    public function getChanged(): ?string
+    public function getChanged(): ?\DateTime
     {
         return $this->changed;
     }

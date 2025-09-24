@@ -22,8 +22,8 @@ final class UserProjectAccess implements ModelInterface, JsonSerializable
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
         private readonly ?array $permissions = [],
-        private readonly ?string $grantedAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
@@ -41,8 +41,8 @@ final class UserProjectAccess implements ModelInterface, JsonSerializable
             'projectId' => $this->projectId,
             'projectTitle' => $this->projectTitle,
             'permissions' => $this->permissions,
-            'grantedAt' => $this->grantedAt,
-            'updatedAt' => $this->updatedAt,
+            'grantedAt' => $this->grantedAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -77,12 +77,12 @@ final class UserProjectAccess implements ModelInterface, JsonSerializable
         return $this->permissions;
     }
 
-    public function getGrantedAt(): ?string
+    public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

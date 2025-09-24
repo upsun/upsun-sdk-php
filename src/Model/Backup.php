@@ -25,9 +25,9 @@ final class Backup implements ModelInterface, JsonSerializable
         private readonly bool $safe,
         private readonly bool $restorable,
         private readonly bool $automated,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
-        private readonly ?string $expiresAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?\DateTime $expiresAt = null,
         private readonly ?int $index = null,
         private readonly ?int $sizeOfVolumes = null,
         private readonly ?int $sizeUsed = null,
@@ -43,12 +43,12 @@ final class Backup implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'id' => $this->id,
             'attributes' => $this->attributes,
             'status' => $this->status,
-            'expiresAt' => $this->expiresAt,
+            'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
             'index' => $this->index,
             'commitId' => $this->commitId,
             'environment' => $this->environment,
@@ -66,12 +66,12 @@ final class Backup implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -91,7 +91,7 @@ final class Backup implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getExpiresAt(): ?string
+    public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }

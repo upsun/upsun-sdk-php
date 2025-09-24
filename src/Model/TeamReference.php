@@ -22,8 +22,8 @@ final class TeamReference implements ModelInterface, JsonSerializable
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
         private readonly ?TeamCounts $counts = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -40,8 +40,8 @@ final class TeamReference implements ModelInterface, JsonSerializable
             'label' => $this->label,
             'projectPermissions' => $this->projectPermissions,
             'counts' => $this->counts,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -75,12 +75,12 @@ final class TeamReference implements ModelInterface, JsonSerializable
         return $this->counts;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

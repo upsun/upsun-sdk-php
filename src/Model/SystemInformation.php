@@ -19,7 +19,7 @@ final class SystemInformation implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly string $version,
         private readonly string $image,
-        private readonly string $startedAt,
+        private readonly \DateTime $startedAt,
     ) {
     }
 
@@ -33,7 +33,7 @@ final class SystemInformation implements ModelInterface, JsonSerializable
         return [
             'version' => $this->version,
             'image' => $this->image,
-            'startedAt' => $this->startedAt,
+            'startedAt' => $this->startedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -52,7 +52,7 @@ final class SystemInformation implements ModelInterface, JsonSerializable
         return $this->image;
     }
 
-    public function getStartedAt(): string
+    public function getStartedAt(): \DateTime
     {
         return $this->startedAt;
     }

@@ -2024,6 +2024,12 @@ final class ObjectAttributesMapper
             'updated' => 'updated',
             'expireDate' => 'expire_date'
         ],
+        'Upsun\Model\PrepaymentTransactionObjectAmount' => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'currencyCode' => 'currency_code',
+            'currencySymbol' => 'currency_symbol'
+        ],
         'Upsun\Model\ProdDomainStorage' => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',

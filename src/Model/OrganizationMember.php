@@ -23,8 +23,8 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
         private readonly ?array $permissions = [],
         private readonly ?string $level = null,
         private readonly ?bool $owner = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?OrganizationMemberLinks $links = null,
     ) {
     }
@@ -43,8 +43,8 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
             'permissions' => $this->permissions,
             'level' => $this->level,
             'owner' => $this->owner,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
         ];
     }
@@ -84,12 +84,12 @@ final class OrganizationMember implements ModelInterface, JsonSerializable
         return $this->owner;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

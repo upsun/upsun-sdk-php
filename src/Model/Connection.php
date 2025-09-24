@@ -22,8 +22,8 @@ final class Connection implements ModelInterface, JsonSerializable
         private readonly ?bool $isMandatory = null,
         private readonly ?string $subject = null,
         private readonly ?string $emailAddress = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -40,8 +40,8 @@ final class Connection implements ModelInterface, JsonSerializable
             'isMandatory' => $this->isMandatory,
             'subject' => $this->subject,
             'emailAddress' => $this->emailAddress,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -75,12 +75,12 @@ final class Connection implements ModelInterface, JsonSerializable
         return $this->emailAddress;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

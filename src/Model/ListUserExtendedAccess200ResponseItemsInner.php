@@ -22,8 +22,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         private readonly ?string $resourceType = null,
         private readonly ?string $organizationId = null,
         private readonly ?array $permissions = [],
-        private readonly ?string $grantedAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $grantedAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -40,8 +40,8 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
             'resourceType' => $this->resourceType,
             'organizationId' => $this->organizationId,
             'permissions' => $this->permissions,
-            'grantedAt' => $this->grantedAt,
-            'updatedAt' => $this->updatedAt,
+            'grantedAt' => $this->grantedAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -75,12 +75,12 @@ final class ListUserExtendedAccess200ResponseItemsInner implements ModelInterfac
         return $this->permissions;
     }
 
-    public function getGrantedAt(): ?string
+    public function getGrantedAt(): ?\DateTime
     {
         return $this->grantedAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

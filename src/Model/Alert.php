@@ -20,8 +20,8 @@ final class Alert implements ModelInterface, JsonSerializable
         private readonly ?string $id = null,
         private readonly ?bool $active = null,
         private readonly ?int $alertsSent = null,
-        private readonly ?string $lastAlertAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $lastAlertAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?object $config = null,
     ) {
     }
@@ -37,8 +37,8 @@ final class Alert implements ModelInterface, JsonSerializable
             'id' => $this->id,
             'active' => $this->active,
             'alertsSent' => $this->alertsSent,
-            'lastAlertAt' => $this->lastAlertAt,
-            'updatedAt' => $this->updatedAt,
+            'lastAlertAt' => $this->lastAlertAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'config' => $this->config,
         ];
     }
@@ -63,12 +63,12 @@ final class Alert implements ModelInterface, JsonSerializable
         return $this->alertsSent;
     }
 
-    public function getLastAlertAt(): ?string
+    public function getLastAlertAt(): ?\DateTime
     {
         return $this->lastAlertAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

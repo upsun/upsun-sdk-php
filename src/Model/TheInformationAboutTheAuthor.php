@@ -17,7 +17,7 @@ use JsonSerializable;
 final class TheInformationAboutTheAuthor implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly string $date,
+        private readonly \DateTime $date,
         private readonly string $name,
         private readonly string $email,
     ) {
@@ -31,7 +31,7 @@ final class TheInformationAboutTheAuthor implements ModelInterface, JsonSerializ
     public function jsonSerialize(): array
     {
         return [
-            'date' => $this->date,
+            'date' => $this->date?->format(DATE_ATOM),
             'name' => $this->name,
             'email' => $this->email,
         ];
@@ -42,7 +42,7 @@ final class TheInformationAboutTheAuthor implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getDate(): string
+    public function getDate(): \DateTime
     {
         return $this->date;
     }

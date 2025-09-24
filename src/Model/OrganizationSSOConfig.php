@@ -21,8 +21,8 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
         private readonly ?string $domain = null,
         private readonly ?string $organizationId = null,
         private readonly ?bool $enforced = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -38,8 +38,8 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
             'domain' => $this->domain,
             'organizationId' => $this->organizationId,
             'enforced' => $this->enforced,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -68,12 +68,12 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
         return $this->enforced;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

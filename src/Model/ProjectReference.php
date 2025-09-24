@@ -25,8 +25,8 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         private readonly OrganizationProjectType $type,
         private readonly OrganizationProjectPlan $plan,
         private readonly OrganizationProjectStatus $status,
-        private readonly string $createdAt,
-        private readonly string $updatedAt,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
     ) {
     }
 
@@ -46,8 +46,8 @@ final class ProjectReference implements ModelInterface, JsonSerializable
             'type' => $this->type,
             'plan' => $this->plan,
             'status' => $this->status,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -96,12 +96,12 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): string
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }

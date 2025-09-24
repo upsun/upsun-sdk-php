@@ -193,6 +193,7 @@ class ProjectTask extends TaskBase
     /**
      * Lists invitations to a project
      *
+     * @return ProjectInvitation[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listInvites(
@@ -259,6 +260,16 @@ class ProjectTask extends TaskBase
     }
 
     /**
+     * Get a project variable
+     *
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     */
+    public function getVariable(string $projectId, string $projectVariableId): ProjectVariable
+    {
+        return $this->client->variables->getProjectVariable($projectId, $projectVariableId);
+    }
+
+    /**
      * Deletes a project variable
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
@@ -308,13 +319,15 @@ class ProjectTask extends TaskBase
     }
 
     /**
-     * Cancels a project activity
+     * Gets project activity log
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @return Activity[]
      */
-    public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
+    public function listActivities(string $projectId): array
     {
-        return $this->client->activity->cancel($projectId, $activityId);
+        return $this->client->activity->list($projectId);
     }
 
     /**
@@ -328,15 +341,13 @@ class ProjectTask extends TaskBase
     }
 
     /**
-     * Gets project activity log
+     * Cancels a project activity
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
-     * @return Activity[]
      */
-    public function listActivities(string $projectId): array
+    public function cancelActivity(string $projectId, string $activityId): AcceptedResponse
     {
-        return $this->client->activity->list($projectId);
+        return $this->client->activity->cancel($projectId, $activityId);
     }
 
     /**
@@ -348,7 +359,7 @@ class ProjectTask extends TaskBase
      *     type: string,
      *     name: string,
      *     hosts?: array,
-     *     enforceMounts?: string,
+     *     enforcedMounts?: string,
      *     siteUrls?: string,
      *     sshHosts?: array,
      *     enterpriseEnvironmentsMapping?: array,
@@ -361,7 +372,7 @@ class ProjectTask extends TaskBase
             type: $data['type'],
             name: $data['name'],
             hosts: $data['hosts'] ?? null,
-            enforcedMounts: (object) $data['enforceMounts'] ?? null,
+            enforcedMounts: (object) $data['enforcedMounts'] ?? null,
             siteUrls: (object) $data['siteUrls'] ?? null,
             sshHosts: $data['sshHosts'] ?? null,
             enterpriseEnvironmentsMapping: (object)$data['enterpriseEnvironmentsMapping'] ?? null,
@@ -411,7 +422,7 @@ class ProjectTask extends TaskBase
      *     type: string,
      *     name: string,
      *     hosts?: array,
-     *     enforceMounts?: string,
+     *     enforcedMounts?: string,
      *     siteUrls?: string,
      *     sshHosts?: array,
      *     enterpriseEnvironmentsMapping?: array,
@@ -427,7 +438,7 @@ class ProjectTask extends TaskBase
             type: $data['type'],
             name: $data['name'],
             hosts: $data['hosts'] ?? null,
-            enforcedMounts: (object) $data['enforceMounts'] ?? null,
+            enforcedMounts: (object) $data['enforcedMounts'] ?? null,
             siteUrls: (object) $data['siteUrls'] ?? null,
             sshHosts: $data['sshHosts'] ?? null,
             enterpriseEnvironmentsMapping: (object)$data['enterpriseEnvironmentsMapping'] ?? null,

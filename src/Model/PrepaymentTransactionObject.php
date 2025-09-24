@@ -22,7 +22,7 @@ final class PrepaymentTransactionObject implements ModelInterface, JsonSerializa
         private readonly ?string $orderId = null,
         private readonly ?string $message = null,
         private readonly ?string $status = null,
-        private readonly ?PrepaymentObjectPrepaymentBalance $amount = null,
+        private readonly ?PrepaymentTransactionObjectAmount $amount = null,
         private readonly ?string $created = null,
     ) {
     }
@@ -65,7 +65,7 @@ final class PrepaymentTransactionObject implements ModelInterface, JsonSerializa
         return $this->status;
     }
 
-    public function getAmount(): ?PrepaymentObjectPrepaymentBalance
+    public function getAmount(): ?PrepaymentTransactionObjectAmount
     {
         return $this->amount;
     }

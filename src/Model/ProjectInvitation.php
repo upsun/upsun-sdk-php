@@ -17,15 +17,15 @@ use JsonSerializable;
 final class ProjectInvitation implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $finishedAt = null,
+        private readonly ?\DateTime $finishedAt = null,
         private readonly ?string $id = null,
         private readonly ?string $state = null,
         private readonly ?string $projectId = null,
         private readonly ?string $role = null,
         private readonly ?string $email = null,
         private readonly ?OrganizationInvitationOwner $owner = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?array $environments = [],
     ) {
     }
@@ -44,9 +44,9 @@ final class ProjectInvitation implements ModelInterface, JsonSerializable
             'role' => $this->role,
             'email' => $this->email,
             'owner' => $this->owner,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
-            'finishedAt' => $this->finishedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
+            'finishedAt' => $this->finishedAt?->format(DATE_ATOM),
             'environments' => $this->environments,
         ];
     }
@@ -86,17 +86,17 @@ final class ProjectInvitation implements ModelInterface, JsonSerializable
         return $this->owner;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function getFinishedAt(): ?string
+    public function getFinishedAt(): ?\DateTime
     {
         return $this->finishedAt;
     }

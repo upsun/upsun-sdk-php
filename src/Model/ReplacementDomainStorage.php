@@ -20,8 +20,8 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
         private readonly ?string $replacementFor = null,
@@ -36,8 +36,8 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'name' => $this->name,
             'attributes' => $this->attributes,
@@ -52,12 +52,12 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

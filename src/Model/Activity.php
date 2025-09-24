@@ -26,15 +26,15 @@ final class Activity implements ModelInterface, JsonSerializable
         private readonly string $log,
         private readonly object $payload,
         private readonly string $id,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $result = null,
-        private readonly ?string $startedAt = null,
-        private readonly ?string $completedAt = null,
-        private readonly ?string $cancelledAt = null,
+        private readonly ?\DateTime $startedAt = null,
+        private readonly ?\DateTime $completedAt = null,
+        private readonly ?\DateTime $cancelledAt = null,
         private readonly ?string $description = null,
         private readonly ?string $text = null,
-        private readonly ?string $expiresAt = null,
+        private readonly ?\DateTime $expiresAt = null,
         private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
@@ -48,23 +48,23 @@ final class Activity implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'parameters' => $this->parameters,
             'project' => $this->project,
             'state' => $this->state,
             'result' => $this->result,
-            'startedAt' => $this->startedAt,
-            'completedAt' => $this->completedAt,
+            'startedAt' => $this->startedAt?->format(DATE_ATOM),
+            'completedAt' => $this->completedAt?->format(DATE_ATOM),
             'completionPercent' => $this->completionPercent,
-            'cancelledAt' => $this->cancelledAt,
+            'cancelledAt' => $this->cancelledAt?->format(DATE_ATOM),
             'timings' => $this->timings,
             'log' => $this->log,
             'payload' => $this->payload,
             'description' => $this->description,
             'text' => $this->text,
-            'expiresAt' => $this->expiresAt,
+            'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
             'id' => $this->id,
             'integration' => $this->integration,
             'environments' => $this->environments,
@@ -76,12 +76,12 @@ final class Activity implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -111,12 +111,12 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->result;
     }
 
-    public function getStartedAt(): ?string
+    public function getStartedAt(): ?\DateTime
     {
         return $this->startedAt;
     }
 
-    public function getCompletedAt(): ?string
+    public function getCompletedAt(): ?\DateTime
     {
         return $this->completedAt;
     }
@@ -126,7 +126,7 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->completionPercent;
     }
 
-    public function getCancelledAt(): ?string
+    public function getCancelledAt(): ?\DateTime
     {
         return $this->cancelledAt;
     }
@@ -156,7 +156,7 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->text;
     }
 
-    public function getExpiresAt(): ?string
+    public function getExpiresAt(): ?\DateTime
     {
         return $this->expiresAt;
     }

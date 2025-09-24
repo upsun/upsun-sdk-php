@@ -19,7 +19,7 @@ final class Discount implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?DiscountCommitment $commitment = null,
         private readonly ?int $totalMonths = null,
-        private readonly ?string $endAt = null,
+        private readonly ?\DateTime $endAt = null,
         private readonly ?int $id = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $type = null,
@@ -27,7 +27,7 @@ final class Discount implements ModelInterface, JsonSerializable
         private readonly ?string $status = null,
         private readonly ?DiscountDiscount $discount = null,
         private readonly ?object $config = null,
-        private readonly ?string $startAt = null,
+        private readonly ?\DateTime $startAt = null,
     ) {
     }
 
@@ -48,8 +48,8 @@ final class Discount implements ModelInterface, JsonSerializable
             'totalMonths' => $this->totalMonths,
             'discount' => $this->discount,
             'config' => $this->config,
-            'startAt' => $this->startAt,
-            'endAt' => $this->endAt,
+            'startAt' => $this->startAt?->format(DATE_ATOM),
+            'endAt' => $this->endAt?->format(DATE_ATOM),
         ];
     }
 
@@ -103,12 +103,12 @@ final class Discount implements ModelInterface, JsonSerializable
         return $this->config;
     }
 
-    public function getStartAt(): ?string
+    public function getStartAt(): ?\DateTime
     {
         return $this->startAt;
     }
 
-    public function getEndAt(): ?string
+    public function getEndAt(): ?\DateTime
     {
         return $this->endAt;
     }

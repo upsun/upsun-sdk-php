@@ -17,14 +17,14 @@ use JsonSerializable;
 final class PlanRecords implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $end = null,
+        private readonly ?\DateTime $end = null,
         private readonly ?string $id = null,
         private readonly ?string $owner = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $sku = null,
         private readonly ?string $plan = null,
         private readonly ?array $options = [],
-        private readonly ?string $start = null,
+        private readonly ?\DateTime $start = null,
         private readonly ?string $status = null,
     ) {
     }
@@ -43,8 +43,8 @@ final class PlanRecords implements ModelInterface, JsonSerializable
             'sku' => $this->sku,
             'plan' => $this->plan,
             'options' => $this->options,
-            'start' => $this->start,
-            'end' => $this->end,
+            'start' => $this->start?->format(DATE_ATOM),
+            'end' => $this->end?->format(DATE_ATOM),
             'status' => $this->status,
         ];
     }
@@ -84,12 +84,12 @@ final class PlanRecords implements ModelInterface, JsonSerializable
         return $this->options;
     }
 
-    public function getStart(): ?string
+    public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 
-    public function getEnd(): ?string
+    public function getEnd(): ?\DateTime
     {
         return $this->end;
     }

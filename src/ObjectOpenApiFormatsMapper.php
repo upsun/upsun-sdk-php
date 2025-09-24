@@ -2328,6 +2328,13 @@ final class ObjectOpenApiFormatsMapper
             'expireDate' => null
         ],
 
+        'Upsun\Model\PrepaymentTransactionObjectAmount' => [
+            'formatted' => null,
+            'amount' => null,
+            'currencyCode' => null,
+            'currencySymbol' => null
+        ],
+
         'Upsun\Model\ProdDomainStorage' => [
             'createdAt' => 'date-time',
             'updatedAt' => 'date-time',

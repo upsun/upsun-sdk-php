@@ -185,7 +185,6 @@ class OpenApiPreprocessor
         echo "\n✅ Modified schema saved: {$outputPath}\n";
     }
 
-
     /**
      * Show a report of modifications
      */
@@ -734,6 +733,35 @@ class OpenApiPreprocessor
         }
     }
 
+    /**
+     * Mark properties as DateTime if their OpenAPI format is "date-time"
+     */
+    public function markDateTimeProperties(): void
+    {
+        echo "🔍 Marking all date-time properties in all schemas...\n";
+
+        foreach ($this->schema['components']['schemas'] as $schemaName => &$schema) {
+            if (array_key_exists('properties', $schema)) {
+                foreach ($schema['properties'] as $propName => &$propDefinition) {
+                    // Add flag isDateTime if type is string and format is date-time
+                    if (
+                        ($propDefinition['type'] ?? '') === 'string'
+                        && ($propDefinition['format'] ?? '') === 'date-time'
+                    ) {
+                        $propDefinition['x-isDateTime'] = true;
+                        echo "  → {$schemaName}.{$propName} marked as DateTime\n";
+                    } else {
+                        if (!array_key_exists('$ref', $propDefinition) && $propName != '_links') {
+                            $propDefinition['x-isDateTime'] = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        echo "✅ DateTime marking completed for all schemas.\n";
+    }
+
     public function addRequestBodyExamples(): void
     {
         foreach ($this->schema['paths'] as $path => &$methods) {
@@ -917,6 +945,9 @@ try {
 
     // Main processing
     $preprocessor->makePropertiesNullable();
+
+    // Set DateTime flag on properties
+    $preprocessor->markDateTimeProperties();
 
     // Optional: clean required properties
     $preprocessor->cleanRequiredProperties();

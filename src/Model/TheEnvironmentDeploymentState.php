@@ -19,7 +19,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
         private readonly TheCronsDeploymentState $crons,
-        private readonly ?string $lastDeploymentAt = null,
+        private readonly ?\DateTime $lastDeploymentAt = null,
     ) {
     }
 
@@ -32,7 +32,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
     {
         return [
             'lastDeploymentSuccessful' => $this->lastDeploymentSuccessful,
-            'lastDeploymentAt' => $this->lastDeploymentAt,
+            'lastDeploymentAt' => $this->lastDeploymentAt?->format(DATE_ATOM),
             'crons' => $this->crons,
         ];
     }
@@ -47,7 +47,7 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
         return $this->lastDeploymentSuccessful;
     }
 
-    public function getLastDeploymentAt(): ?string
+    public function getLastDeploymentAt(): ?\DateTime
     {
         return $this->lastDeploymentAt;
     }

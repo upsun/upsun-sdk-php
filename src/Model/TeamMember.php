@@ -19,8 +19,8 @@ final class TeamMember implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $teamId = null,
         private readonly ?string $userId = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -34,8 +34,8 @@ final class TeamMember implements ModelInterface, JsonSerializable
         return [
             'teamId' => $this->teamId,
             'userId' => $this->userId,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
         ];
     }
 
@@ -54,12 +54,12 @@ final class TeamMember implements ModelInterface, JsonSerializable
         return $this->userId;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

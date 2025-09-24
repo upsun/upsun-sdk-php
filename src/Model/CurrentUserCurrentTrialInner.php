@@ -17,10 +17,10 @@ use JsonSerializable;
 final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $created = null,
+        private readonly ?\DateTime $created = null,
         private readonly ?string $description = null,
         private readonly ?string $spendRemaining = null,
-        private readonly ?string $expiration = null,
+        private readonly ?\DateTime $expiration = null,
     ) {
     }
 
@@ -32,10 +32,10 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializ
     public function jsonSerialize(): array
     {
         return [
-            'created' => $this->created,
+            'created' => $this->created?->format(DATE_ATOM),
             'description' => $this->description,
             'spendRemaining' => $this->spendRemaining,
-            'expiration' => $this->expiration,
+            'expiration' => $this->expiration?->format(DATE_ATOM),
         ];
     }
 
@@ -44,7 +44,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializ
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreated(): ?string
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
@@ -59,7 +59,7 @@ final class CurrentUserCurrentTrialInner implements ModelInterface, JsonSerializ
         return $this->spendRemaining;
     }
 
-    public function getExpiration(): ?string
+    public function getExpiration(): ?\DateTime
     {
         return $this->expiration;
     }

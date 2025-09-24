@@ -665,6 +665,7 @@ Class | Method | HTTP request | Description
 - [PrepaymentObjectPrepayment](docs/Model/PrepaymentObjectPrepayment.md)
 - [PrepaymentObjectPrepaymentBalance](docs/Model/PrepaymentObjectPrepaymentBalance.md)
 - [PrepaymentTransactionObject](docs/Model/PrepaymentTransactionObject.md)
+- [PrepaymentTransactionObjectAmount](docs/Model/PrepaymentTransactionObjectAmount.md)
 - [ProdDomainStorage](docs/Model/ProdDomainStorage.md)
 - [ProdDomainStorageCreateInput](docs/Model/ProdDomainStorageCreateInput.md)
 - [ProdDomainStoragePatch](docs/Model/ProdDomainStoragePatch.md)

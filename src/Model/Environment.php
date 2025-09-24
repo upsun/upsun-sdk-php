@@ -39,15 +39,15 @@ final class Environment implements ModelInterface, JsonSerializable
         private readonly TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
         private readonly bool $hasDeployment,
         private readonly bool $supportsRestrictRobots,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $parent = null,
         private readonly ?string $defaultDomain = null,
         private readonly ?string $deploymentTarget = null,
         private readonly ?TheEnvironmentDeploymentState $deploymentState = null,
         private readonly ?int $maxInstanceCount = null,
-        private readonly ?string $lastActiveAt = null,
-        private readonly ?string $lastBackupAt = null,
+        private readonly ?\DateTime $lastActiveAt = null,
+        private readonly ?\DateTime $lastBackupAt = null,
         private readonly ?string $headCommit = null,
     ) {
     }
@@ -60,8 +60,8 @@ final class Environment implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'name' => $this->name,
             'machineName' => $this->machineName,
             'title' => $this->title,
@@ -82,8 +82,8 @@ final class Environment implements ModelInterface, JsonSerializable
             'deploymentState' => $this->deploymentState,
             'resourcesOverrides' => $this->resourcesOverrides,
             'maxInstanceCount' => $this->maxInstanceCount,
-            'lastActiveAt' => $this->lastActiveAt,
-            'lastBackupAt' => $this->lastBackupAt,
+            'lastActiveAt' => $this->lastActiveAt?->format(DATE_ATOM),
+            'lastBackupAt' => $this->lastBackupAt?->format(DATE_ATOM),
             'project' => $this->project,
             'isMain' => $this->isMain,
             'isDirty' => $this->isDirty,
@@ -100,12 +100,12 @@ final class Environment implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -213,12 +213,12 @@ final class Environment implements ModelInterface, JsonSerializable
         return $this->maxInstanceCount;
     }
 
-    public function getLastActiveAt(): ?string
+    public function getLastActiveAt(): ?\DateTime
     {
         return $this->lastActiveAt;
     }
 
-    public function getLastBackupAt(): ?string
+    public function getLastBackupAt(): ?\DateTime
     {
         return $this->lastBackupAt;
     }

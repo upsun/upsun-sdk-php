@@ -34,8 +34,8 @@ final class Deployment implements ModelInterface, JsonSerializable
         private readonly array $containerProfiles,
         private readonly string $id,
         private readonly ?VPNConfiguration $vpn = null,
-        private readonly ?string $createdAt = null,
-        private readonly ?string $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $fingerprint = null,
     ) {
     }
@@ -65,8 +65,8 @@ final class Deployment implements ModelInterface, JsonSerializable
             'workers' => $this->workers,
             'containerProfiles' => $this->containerProfiles,
             'id' => $this->id,
-            'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
+            'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'fingerprint' => $this->fingerprint,
         ];
     }
@@ -179,12 +179,12 @@ final class Deployment implements ModelInterface, JsonSerializable
         return $this->id;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?string
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

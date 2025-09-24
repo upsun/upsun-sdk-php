@@ -21,7 +21,7 @@ final class Usage implements ModelInterface, JsonSerializable
         private readonly ?string $subscriptionId = null,
         private readonly ?string $usageGroup = null,
         private readonly ?float $quantity = null,
-        private readonly ?string $start = null,
+        private readonly ?\DateTime $start = null,
     ) {
     }
 
@@ -37,7 +37,7 @@ final class Usage implements ModelInterface, JsonSerializable
             'subscriptionId' => $this->subscriptionId,
             'usageGroup' => $this->usageGroup,
             'quantity' => $this->quantity,
-            'start' => $this->start,
+            'start' => $this->start?->format(DATE_ATOM),
         ];
     }
 
@@ -66,7 +66,7 @@ final class Usage implements ModelInterface, JsonSerializable
         return $this->quantity;
     }
 
-    public function getStart(): ?string
+    public function getStart(): ?\DateTime
     {
         return $this->start;
     }

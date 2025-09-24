@@ -18,8 +18,8 @@ final class Ticket implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $ticketId = null,
-        private readonly ?string $created = null,
-        private readonly ?string $updated = null,
+        private readonly ?\DateTime $created = null,
+        private readonly ?\DateTime $updated = null,
         private readonly ?string $type = null,
         private readonly ?string $subject = null,
         private readonly ?string $description = null,
@@ -33,7 +33,7 @@ final class Ticket implements ModelInterface, JsonSerializable
         private readonly ?string $organizationId = null,
         private readonly ?array $collaboratorIds = [],
         private readonly ?bool $hasIncidents = null,
-        private readonly ?string $due = null,
+        private readonly ?\DateTime $due = null,
         private readonly ?array $tags = [],
         private readonly ?string $subscriptionId = null,
         private readonly ?string $ticketGroup = null,
@@ -41,8 +41,8 @@ final class Ticket implements ModelInterface, JsonSerializable
         private readonly ?string $affectedUrl = null,
         private readonly ?string $queue = null,
         private readonly ?string $issueType = null,
-        private readonly ?string $resolutionTime = null,
-        private readonly ?string $responseTime = null,
+        private readonly ?\DateTime $resolutionTime = null,
+        private readonly ?\DateTime $responseTime = null,
         private readonly ?string $projectUrl = null,
         private readonly ?string $region = null,
         private readonly ?string $category = null,
@@ -64,8 +64,8 @@ final class Ticket implements ModelInterface, JsonSerializable
     {
         return [
             'ticketId' => $this->ticketId,
-            'created' => $this->created,
-            'updated' => $this->updated,
+            'created' => $this->created?->format(DATE_ATOM),
+            'updated' => $this->updated?->format(DATE_ATOM),
             'type' => $this->type,
             'subject' => $this->subject,
             'description' => $this->description,
@@ -79,7 +79,7 @@ final class Ticket implements ModelInterface, JsonSerializable
             'organizationId' => $this->organizationId,
             'collaboratorIds' => $this->collaboratorIds,
             'hasIncidents' => $this->hasIncidents,
-            'due' => $this->due,
+            'due' => $this->due?->format(DATE_ATOM),
             'tags' => $this->tags,
             'subscriptionId' => $this->subscriptionId,
             'ticketGroup' => $this->ticketGroup,
@@ -87,8 +87,8 @@ final class Ticket implements ModelInterface, JsonSerializable
             'affectedUrl' => $this->affectedUrl,
             'queue' => $this->queue,
             'issueType' => $this->issueType,
-            'resolutionTime' => $this->resolutionTime,
-            'responseTime' => $this->responseTime,
+            'resolutionTime' => $this->resolutionTime?->format(DATE_ATOM),
+            'responseTime' => $this->responseTime?->format(DATE_ATOM),
             'projectUrl' => $this->projectUrl,
             'region' => $this->region,
             'category' => $this->category,
@@ -111,12 +111,12 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->ticketId;
     }
 
-    public function getCreated(): ?string
+    public function getCreated(): ?\DateTime
     {
         return $this->created;
     }
 
-    public function getUpdated(): ?string
+    public function getUpdated(): ?\DateTime
     {
         return $this->updated;
     }
@@ -186,7 +186,7 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->hasIncidents;
     }
 
-    public function getDue(): ?string
+    public function getDue(): ?\DateTime
     {
         return $this->due;
     }
@@ -226,12 +226,12 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->issueType;
     }
 
-    public function getResolutionTime(): ?string
+    public function getResolutionTime(): ?\DateTime
     {
         return $this->resolutionTime;
     }
 
-    public function getResponseTime(): ?string
+    public function getResponseTime(): ?\DateTime
     {
         return $this->responseTime;
     }

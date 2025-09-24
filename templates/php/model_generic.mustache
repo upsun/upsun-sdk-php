@@ -9,7 +9,12 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         private readonly array ${{name}},
       {{/isContainer}}
       {{^isContainer}}
+              {{#isDateTime}}
+        private readonly \DateTime ${{name}},
+              {{/isDateTime}}
+              {{^isDateTime}}
         private readonly {{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}},
+              {{/isDateTime}}
       {{/isContainer}}
       {{/isNullable}}
       {{/required}}      
@@ -20,7 +25,12 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         private readonly ?array ${{name}} = [],
       {{/isContainer}}
       {{^isContainer}}
+          {{#isDateTime}}
+        private readonly ?\DateTime ${{name}} = null,
+          {{/isDateTime}}
+          {{^isDateTime}}
         private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+          {{/isDateTime}}
       {{/isContainer}}
       {{/isNullable}}      
     {{/vars}}
@@ -31,7 +41,12 @@ final class {{classname}} implements ModelInterface, JsonSerializable
         private readonly ?array ${{name}} = [],
     {{/isContainer}}
     {{^isContainer}}
+      {{#isDateTime}}
+        private readonly ?\DateTime ${{name}} = null,
+      {{/isDateTime}}
+      {{^isDateTime}}
         private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+      {{/isDateTime}}
     {{/isContainer}}
     {{/isNullable}}      
     {{/required}}      
@@ -48,7 +63,7 @@ final class {{classname}} implements ModelInterface, JsonSerializable
     {
         return [
             {{#vars}}
-            '{{name}}' => $this->{{name}},
+            '{{name}}' => $this->{{name}}{{#isDateTime}}?->format(DATE_ATOM){{/isDateTime}},
             {{/vars}}
         ];
     }
@@ -66,7 +81,7 @@ final class {{classname}} implements ModelInterface, JsonSerializable
      */
   {{/items.isModel}}
 {{/isContainer}}
-    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
+    public function {{{getter}}}(): {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{#openApiType}}{{#isDateTime}}\DateTime{{/isDateTime}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isNumber}}float{{/isNumber}}{{#isInteger}}int{{/isInteger}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{^isDateTime}}{{{openApiType}}}{{/isDateTime}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}}{{/isContainer}}
     {
         return $this->{{{name}}};
     }

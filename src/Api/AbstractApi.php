@@ -43,16 +43,14 @@ abstract class AbstractApi
     private readonly UriFactoryInterface $uriFactory;
 
     public function __construct(
-        private readonly OAuthProvider           $oauthProvider,
-        private ClientInterface                  $httpClient,
+        private readonly OAuthProvider $oauthProvider,
+        private ClientInterface $httpClient,
         private readonly RequestFactoryInterface $requestFactory,
-        private readonly string                  $baseUri,
-        ?StreamFactoryInterface                  $streamFactory = null,
-    )
-    {
+        private readonly string $baseUri,
+        ?StreamFactoryInterface $streamFactory = null,
+    ) {
         $plugins = $plugins ?? [
             new RedirectPlugin(['strict' => true]),
-            new ErrorPlugin(),
         ];
 
         $this->httpClient = (new PluginClientFactory())->createClient(
@@ -61,7 +59,6 @@ abstract class AbstractApi
         );
 
         $this->streamFactory = $streamFactory ?? Psr17FactoryDiscovery::findStreamFactory();
-
         $this->uriFactory = $uriFactory ?? Psr17FactoryDiscovery::findUriFactory();
     }
 
@@ -120,23 +117,30 @@ abstract class AbstractApi
             $this->refreshToken();
             $request = $this->createAuthenticatedRequest($method, $uri, $headers, $body);
 
-            return $this->httpClient->sendRequest($request);
-        } catch (HttpException $e) {
-            $response = $e->getResponse();
-            throw new ApiException(
-                sprintf(
-                    '[%d] Error connecting to the API (%s)',
-                    $response->getStatusCode(),
-                    $uri
-                ),
-                $request ?? null,
-                $response,
-                $e
-            );
+            $response = $this->httpClient->sendRequest($request);
+
+            // Manually check status code
+            if ($response->getStatusCode() >= 400) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $response->getStatusCode(),
+                        $uri
+                    ),
+                    $request,
+                    $response
+                );
+            }
+
+            return $response;
+        } catch (ApiException $e) {
+            // Enrich the ApiException with the Error object if possible
+            $e->enrichWithErrorObject();
+            throw $e;
         } catch (ClientExceptionInterface $e) {
             throw new ApiException(
                 sprintf('[%d] %s', $e->getCode(), $e->getMessage()),
-                $request,
+                $request ?? null,
                 null,
                 $e
             );

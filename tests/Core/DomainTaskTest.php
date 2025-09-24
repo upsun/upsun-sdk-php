@@ -46,7 +46,15 @@ class DomainTaskTest extends BaseTestCase
     public function testCreateWithoutEnvironment(): void
     {
         $projectId = 'proj-1';
-        $input = ['name' => 'name'];
+        $input = [
+            'name' => 'example.com',
+            'attributes' => [
+                'ssl' => 'enabled',
+                'region' => 'eu',
+            ],
+            'isDefault' => true,
+            'replacementFor' => null,
+        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -67,7 +75,15 @@ class DomainTaskTest extends BaseTestCase
     {
         $projectId = 'proj-1';
         $envId = 'env-1';
-        $input = ['name' => 'name'];
+        $input = [
+            'name' => 'example.com',
+            'attributes' => [
+                'ssl' => 'enabled',
+                'region' => 'eu',
+            ],
+            'isDefault' => true,
+            'replacementFor' => null,
+        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -291,7 +307,7 @@ class DomainTaskTest extends BaseTestCase
         $this->assertEquals("environment", $result[1]->getType());
     }
 
-    public function testUpdateWithoutEnvironment(): void
+    public function testUpdateProject(): void
     {
         $projectId = 'proj-1';
         $domainId = 'domain-1';

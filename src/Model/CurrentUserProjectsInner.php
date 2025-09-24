@@ -36,7 +36,7 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         private readonly ?string $vendorLabel = null,
         private readonly ?string $vendorWebsite = null,
         private readonly ?string $vendorResources = null,
-        private readonly ?string $createdAt = null,
+        private readonly ?\DateTime $createdAt = null,
     ) {
     }
 
@@ -67,7 +67,7 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
             'vendorLabel' => $this->vendorLabel,
             'vendorWebsite' => $this->vendorWebsite,
             'vendorResources' => $this->vendorResources,
-            'createdAt' => $this->createdAt,
+            'createdAt' => $this->createdAt?->format(DATE_ATOM),
         ];
     }
 
@@ -171,7 +171,7 @@ final class CurrentUserProjectsInner implements ModelInterface, JsonSerializable
         return $this->vendorResources;
     }
 
-    public function getCreatedAt(): ?string
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }

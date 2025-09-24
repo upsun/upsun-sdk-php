@@ -6,10 +6,13 @@ use PHPUnit\Framework\TestCase;
 
 abstract class BaseTestCase extends TestCase
 {
+    /**
+     * @throws \Exception
+     */
     protected function assertObjectProperties(mixed $actual, mixed $expected, string $prefix = ''): void
     {
-        // Cas objet
-        if (is_object($actual)) {
+        // Case objet
+        if (is_object($actual) && is_iterable($expected)) {
             foreach ($expected as $key => $value) {
                 $getter = 'get' . ucfirst($key);
                 if (!method_exists($actual, $getter)) {
@@ -21,12 +24,25 @@ abstract class BaseTestCase extends TestCase
             return;
         }
 
-        // Cas tableau
-        if (is_array($actual)) {
+        // Case array
+        if (is_array($actual) && is_iterable($expected)) {
             foreach ($actual as $idx => $item) {
                 $expectedItem = $expected[$idx] ?? $expected;
                 $this->assertObjectProperties($item, $expectedItem, "$prefix" . "[$idx].");
             }
+            return;
+        }
+
+        // Case DateTime
+        if ($actual instanceof \DateTime) {
+            if (!($expected instanceof \DateTime)) {
+                $expected = new \DateTime($expected);
+            }
+            $this->assertEquals(
+                $expected->getTimestamp(),
+                $actual->getTimestamp(),
+                "Failed asserting equality at $prefix"
+            );
             return;
         }
 
@@ -37,38 +53,24 @@ abstract class BaseTestCase extends TestCase
         );
     }
 
-    protected function assertObjectMatchesArray(mixed $expected, mixed $actual, string $prefix = ''): void
+    /**
+     * Compare list of objects (ex: Activity[]) with expected
+     */
+    protected function assertObjectMatchesArray(array $actual, array $expected, string $prefix = ''): void
     {
-        if ($actual instanceof \stdClass) {
-            $actual = (array) $actual;
-        }
-
-        if (is_object($actual)) {
-            foreach ($expected as $key => $value) {
-                $getter = 'get' . ucfirst($key);
-                $this->assertTrue(
-                    method_exists($actual, $getter),
-                    "Getter $getter() not found on " . get_class($actual)
-                );
-
-                $propValue = $actual->$getter();
-                $this->assertObjectMatchesArray($value, $propValue, "$prefix$key.");
-            }
-            return;
-        }
-
-        if (is_array($actual)) {
-            foreach ($expected as $key => $value) {
-                $this->assertArrayHasKey($key, $actual, "Missing key $prefix$key");
-                $this->assertObjectMatchesArray($value, $actual[$key], "$prefix$key.");
-            }
-            return;
-        }
-
-        $this->assertEquals(
-            $expected,
+        $this->assertCount(
+            count($expected),
             $actual,
-            "Failed asserting equality at $prefix"
+            "Array size mismatch at $prefix"
         );
+        
+        // Case objet
+        foreach ($actual as $index => $object) {
+            $this->assertObjectProperties(
+                $object,
+                $expected[$index],
+                $prefix . "[$index]."
+            );
+        }
     }
 }

@@ -2317,10 +2317,17 @@ final class ObjectOpenApiTypesMapper
             'order_id' => '?string',
             'message' => '?string',
             'status' => '?string',
-            'amount' => '?\Upsun\Model\PrepaymentObjectPrepaymentBalance',
+            'amount' => '?\Upsun\Model\PrepaymentTransactionObjectAmount',
             'created' => '?string',
             'updated' => '?string',
             'expire_date' => '?string',
+        ],
+
+        'Upsun\Model\PrepaymentTransactionObjectAmount' => [
+            'formatted' => '?string',
+            'amount' => '?float',
+            'currency_code' => '?string',
+            'currency_symbol' => '?string',
         ],
 
         'Upsun\Model\ProdDomainStorage' => [

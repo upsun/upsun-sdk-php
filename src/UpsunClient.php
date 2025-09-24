@@ -2,8 +2,11 @@
 
 namespace Upsun;
 
+use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr17FactoryDiscovery;
 use Http\Discovery\Psr18ClientDiscovery;
+use Psr\Http\Client\ClientInterface;
+use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\CertManagementApi;
@@ -81,7 +84,7 @@ use Upsun\Core\Tasks\WorkerTask;
  */
 class UpsunClient
 {
-    public HttplugClient $apiClient;
+    public ClientInterface $apiClient;
 
     public Configuration $apiConfig;
 
@@ -136,13 +139,13 @@ class UpsunClient
         $this->apiConfig = Configuration::getDefaultConfiguration()
             ->setHost($this->upsunConfig->base_url);
 
-        $this->apiClient = new HttplugClient();
+        // Symfony HTTP client compatible PSR-18
+        $this->apiClient = new Psr18Client();
 
-        $httpClient = Psr18ClientDiscovery::find();
         $requestFactory = Psr17FactoryDiscovery::findRequestFactory();
 
         $this->auth = new OAuthProvider(
-            $httpClient,
+            $this->apiClient, // Symfony PSR-18 client
             $requestFactory,
             tokenEndpoint: $this->upsunConfig->auth_url . "/" . $this->upsunConfig->token_endpoint,
             clientId: $this->upsunConfig->clientId,
@@ -190,7 +193,6 @@ class UpsunClient
         );
         $this->organization = new OrganizationTask(
             $this,
-            new HeaderSelector(),
             new OrganizationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new OrganizationMembersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
