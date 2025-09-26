@@ -209,10 +209,10 @@ final class SupportApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return object[]
+     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      *
      * @see
-     * curl -X GET "https://api.upsun.com/tickets/category?subscriptionId=&#39;subscriptionId_example&#39;organizationId=&#39;organizationId_example&#39;" \
+     * curl -X GET "https://api.upsun.com/tickets/category?subscriptionId=value&organizationId=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -229,7 +229,7 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket categories
      *
-     * @return object[]
+     * @return \Upsun\Model\ListTicketCategories200ResponseInner[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -286,7 +286,9 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['subscription_id'] = $subscriptionId;
+                $queryParams['subscription_id'] = $subscriptionId instanceof \DateTime
+                    ? $subscriptionId->format(DATE_ATOM)
+                    : ($subscriptionId);
             }
         }
 
@@ -299,7 +301,9 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['organization_id'] = $organizationId;
+                $queryParams['organization_id'] = $organizationId instanceof \DateTime
+                    ? $organizationId->format(DATE_ATOM)
+                    : ($organizationId);
             }
         }
 
@@ -360,10 +364,10 @@ final class SupportApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return object[]
+     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      *
      * @see
-     * curl -X GET "https://api.upsun.com/tickets/priority?subscriptionId=&#39;subscriptionId_example&#39;category=&#39;category_example&#39;" \
+     * curl -X GET "https://api.upsun.com/tickets/priority?subscriptionId=value&category=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -380,7 +384,7 @@ final class SupportApi extends AbstractApi
     /**
      * List support ticket priorities
      *
-     * @return object[]
+     * @return \Upsun\Model\ListTicketPriorities200ResponseInner[]
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -437,7 +441,9 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['subscription_id'] = $subscriptionId;
+                $queryParams['subscription_id'] = $subscriptionId instanceof \DateTime
+                    ? $subscriptionId->format(DATE_ATOM)
+                    : ($subscriptionId);
             }
         }
 
@@ -450,7 +456,9 @@ final class SupportApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['category'] = $category;
+                $queryParams['category'] = $category instanceof \DateTime
+                    ? $category->format(DATE_ATOM)
+                    : ($category);
             }
         }
 

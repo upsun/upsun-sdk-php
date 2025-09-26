@@ -65,7 +65,7 @@ final class GrantsApi extends AbstractApi
      * @return \Upsun\Model\ListUserExtendedAccess200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/extended-access?filterResourceType=new \Upsun\Model\\Upsun\Model\StringFilter()filterOrganizationId=new \Upsun\Model\\Upsun\Model\StringFilter()filterPermissions=new \Upsun\Model\\Upsun\Model\StringFilter()" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/extended-access?filterResourceType=value&filterOrganizationId=value&filterPermissions=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -162,7 +162,9 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[resource_type]'] = $filterResourceType->getEq();
+                $queryParams['filter[resource_type]'] = $filterResourceType instanceof \DateTime
+                    ? $filterResourceType->format(DATE_ATOM)
+                    : ($filterResourceType->getEq());
             }
         }
 
@@ -175,7 +177,9 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filterOrganizationId->getEq();
+                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof \DateTime
+                    ? $filterOrganizationId->format(DATE_ATOM)
+                    : ($filterOrganizationId->getEq());
             }
         }
 
@@ -188,7 +192,9 @@ final class GrantsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[permissions]'] = $filterPermissions->getEq();
+                $queryParams['filter[permissions]'] = $filterPermissions instanceof \DateTime
+                    ? $filterPermissions->format(DATE_ATOM)
+                    : ($filterPermissions->getEq());
             }
         }
 

@@ -228,7 +228,7 @@ final class InvoicesApi extends AbstractApi
      * @return \Upsun\Model\ListOrgInvoices200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices?filterStatus=&#39;filterStatus_example&#39;filterType=&#39;filterType_example&#39;filterOrderId=&#39;filterOrderId_example&#39;page=56" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices?filterStatus=value&filterType=value&filterOrderId=value&page=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -331,7 +331,9 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
 
@@ -344,7 +346,9 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[type]'] = $filterType;
+                $queryParams['filter[type]'] = $filterType instanceof \DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType);
             }
         }
 
@@ -357,7 +361,9 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[order_id]'] = $filterOrderId;
+                $queryParams['filter[order_id]'] = $filterOrderId instanceof \DateTime
+                    ? $filterOrderId->format(DATE_ATOM)
+                    : ($filterOrderId);
             }
         }
 
@@ -370,7 +376,9 @@ final class InvoicesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 

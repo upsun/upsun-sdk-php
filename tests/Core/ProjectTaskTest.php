@@ -68,6 +68,7 @@ use Upsun\Model\OrganizationProject;
 use Upsun\Model\OrganizationProjectPlan;
 use Upsun\Model\OrganizationProjectStatus;
 use Upsun\Model\OrganizationProjectType;
+use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectSettings;
@@ -288,29 +289,65 @@ class ProjectTaskTest extends BaseTestCase
 
     public function testGet()
     {
-        $orgId = 'test-org';
         $prjId = 'test-project';
 
-        $fakeOrganizationProject = [
-            'id' => 'proj_123',
-            'organizationId' => 'org_456',
-            'subscriptionId' => 'sub_789',
-            'region' => 'eu-central-1',
-            'title' => 'My Sample Project',
-            'type' => OrganizationProjectType::GRID,
-            'plan' => OrganizationProjectPlan::STANDARD,
-            'accessMigrationStatus' => 'pending',
-            'status' => OrganizationProjectStatus::ACTIVE,
-            'vendor' => 'upsun',
-            'createdAt' => '2025-09-22T12:00:00Z',
-            'updatedAt' => '2025-09-22T12:00:00Z',
-            'links' => [
-                'self' => ['href' => 'https://api.example.com/projects/proj_123'],
-                'update' => ['href' => 'https://api.example.com/projects/proj_123'],
-                'delete' => ['href' => 'https://api.example.com/projects/proj_123'],
-                'subscription' => ['href' => 'https://api.example.com/subscriptions/sub_789'],
-                'api' => ['href' => 'https://api.example.com/projects/proj_123/api'],
+        $projectFake = [
+            'id' => $prjId,
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
             ],
+            'title' => 'My Student Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:student/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'id' => 'sub_123456',
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'student-namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'student-project.upsun.dev',
         ];
 
         $this->httpClient
@@ -319,12 +356,12 @@ class ProjectTaskTest extends BaseTestCase
             ->willReturn(new Response(
                 200,
                 ['Content-Type' => 'application/json'],
-                json_encode($fakeOrganizationProject)
+                json_encode($projectFake)
             ));
 
-        $result = $this->projectTask->get($orgId, $prjId);
-        $this->assertInstanceOf(OrganizationProject::class, $result);
-        $this->assertObjectProperties($result, $fakeOrganizationProject);
+        $result = $this->projectTask->get($prjId);
+        $this->assertInstanceOf(Project::class, $result);
+        $this->assertObjectProperties($result, $projectFake);
     }
 
     /**
@@ -336,25 +373,62 @@ class ProjectTaskTest extends BaseTestCase
         $projectId = 'test-project';
 
         $fakeOrganizationProject = [
-            'id' => 'proj_123',
-            'organizationId' => 'org_456',
-            'subscriptionId' => 'sub_789',
-            'region' => 'eu-central-1',
-            'title' => 'My Sample Project',
-            'type' => OrganizationProjectType::GRID,
-            'plan' => OrganizationProjectPlan::STANDARD,
-            'accessMigrationStatus' => 'pending',
-            'status' => OrganizationProjectStatus::ACTIVE,
-            'vendor' => 'upsun',
-            'createdAt' => '2025-09-22T12:00:00Z',
-            'updatedAt' => '2025-09-22T12:00:00Z',
-            'links' => [
-                'self' => ['href' => 'https://api.example.com/projects/proj_123'],
-                'update' => ['href' => 'https://api.example.com/projects/proj_123'],
-                'delete' => ['href' => 'https://api.example.com/projects/proj_123'],
-                'subscription' => ['href' => 'https://api.example.com/subscriptions/sub_789'],
-                'api' => ['href' => 'https://api.example.com/projects/proj_123/api'],
+            'id' => $projectId,
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
             ],
+            'title' => 'My Student Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:student/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'id' => 'sub_123456',
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'student-namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'student-project.upsun.dev',
         ];
 
         $this->httpClient
@@ -3252,7 +3326,6 @@ FAKE-CHAIN-CERT-DATA2
 
     public function testGetWithError()
     {
-        $orgId = 'test-org-with-no-right';
         $projectId = 'test-project';
 
         $this->httpClient
@@ -3267,7 +3340,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        $this->projectTask->get($orgId, $projectId);
+        $this->projectTask->get($projectId);
     }
 
     public function testGetCapabilitiesWithError()

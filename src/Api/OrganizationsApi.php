@@ -475,7 +475,7 @@ final class OrganizationsApi extends AbstractApi
      * @return \Upsun\Model\ListOrgs200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterOwnerId=new \Upsun\Model\\Upsun\Model\StringFilter()filterName=new \Upsun\Model\\Upsun\Model\StringFilter()filterLabel=new \Upsun\Model\\Upsun\Model\StringFilter()filterVendor=new \Upsun\Model\\Upsun\Model\StringFilter()filterCapabilities=new \Upsun\Model\\Upsun\Model\ArrayFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/organizations?filterId=value&filterOwnerId=value&filterName=value&filterLabel=value&filterVendor=value&filterCapabilities=value&filterStatus=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -623,7 +623,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filterId->getEq();
+                $queryParams['filter[id]'] = $filterId instanceof \DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId->getEq());
             }
         }
 
@@ -636,7 +638,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[owner_id]'] = $filterOwnerId->getEq();
+                $queryParams['filter[owner_id]'] = $filterOwnerId instanceof \DateTime
+                    ? $filterOwnerId->format(DATE_ATOM)
+                    : ($filterOwnerId->getEq());
             }
         }
 
@@ -649,7 +653,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[name]'] = $filterName->getEq();
+                $queryParams['filter[name]'] = $filterName instanceof \DateTime
+                    ? $filterName->format(DATE_ATOM)
+                    : ($filterName->getEq());
             }
         }
 
@@ -662,7 +668,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[label]'] = $filterLabel->getEq();
+                $queryParams['filter[label]'] = $filterLabel instanceof \DateTime
+                    ? $filterLabel->format(DATE_ATOM)
+                    : ($filterLabel->getEq());
             }
         }
 
@@ -675,7 +683,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[vendor]'] = $filterVendor->getEq();
+                $queryParams['filter[vendor]'] = $filterVendor instanceof \DateTime
+                    ? $filterVendor->format(DATE_ATOM)
+                    : ($filterVendor->getEq());
             }
         }
 
@@ -688,7 +698,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[capabilities]'] = $filterCapabilities->getEq();
+                $queryParams['filter[capabilities]'] = $filterCapabilities instanceof \DateTime
+                    ? $filterCapabilities->format(DATE_ATOM)
+                    : ($filterCapabilities->getEq());
             }
         }
 
@@ -701,7 +713,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus->getEq();
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus->getEq());
             }
         }
 
@@ -714,7 +728,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof \DateTime
+                    ? $filterUpdatedAt->format(DATE_ATOM)
+                    : ($filterUpdatedAt->getEq());
             }
         }
 
@@ -727,7 +743,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -740,7 +758,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -753,7 +773,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -766,7 +788,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 
@@ -830,7 +854,7 @@ final class OrganizationsApi extends AbstractApi
      * @return \Upsun\Model\ListUserOrgs200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/organizations?filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterVendor=new \Upsun\Model\\Upsun\Model\StringFilter()filterStatus=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/organizations?filterId=value&filterVendor=value&filterStatus=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -971,7 +995,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filterId->getEq();
+                $queryParams['filter[id]'] = $filterId instanceof \DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId->getEq());
             }
         }
 
@@ -984,7 +1010,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[vendor]'] = $filterVendor->getEq();
+                $queryParams['filter[vendor]'] = $filterVendor instanceof \DateTime
+                    ? $filterVendor->format(DATE_ATOM)
+                    : ($filterVendor->getEq());
             }
         }
 
@@ -997,7 +1025,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus->getEq();
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus->getEq());
             }
         }
 
@@ -1010,7 +1040,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof \DateTime
+                    ? $filterUpdatedAt->format(DATE_ATOM)
+                    : ($filterUpdatedAt->getEq());
             }
         }
 
@@ -1023,7 +1055,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -1036,7 +1070,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -1049,7 +1085,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -1062,7 +1100,9 @@ final class OrganizationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 

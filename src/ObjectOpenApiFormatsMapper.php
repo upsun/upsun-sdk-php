@@ -3186,6 +3186,7 @@ final class ObjectOpenApiFormatsMapper
             'restricted' => null,
             'suspended' => null,
             'userLicenses' => null,
+            'id' => null,
             'plan' => null,
             'environments' => null,
             'resources' => null,

@@ -65,7 +65,7 @@ final class RecordsApi extends AbstractApi
      * @return \Upsun\Model\ListOrgPlanRecords200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/plan?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterPlan=&#39;filterPlan_example&#39;filterStatus=&#39;filterStatus_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEnd=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterEndedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/plan?filterSubscriptionId=value&filterPlan=value&filterStatus=value&filterStart=value&filterEnd=value&filterStartedAt=value&filterEndedAt=value&page=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -192,7 +192,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filterSubscriptionId;
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof \DateTime
+                    ? $filterSubscriptionId->format(DATE_ATOM)
+                    : ($filterSubscriptionId);
             }
         }
 
@@ -205,7 +207,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[plan]'] = $filterPlan;
+                $queryParams['filter[plan]'] = $filterPlan instanceof \DateTime
+                    ? $filterPlan->format(DATE_ATOM)
+                    : ($filterPlan);
             }
         }
 
@@ -218,7 +222,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
 
@@ -231,7 +237,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filterStart;
+                $queryParams['filter[start]'] = $filterStart instanceof \DateTime
+                    ? $filterStart->format(DATE_ATOM)
+                    : ($filterStart);
             }
         }
 
@@ -244,7 +252,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[end]'] = $filterEnd;
+                $queryParams['filter[end]'] = $filterEnd instanceof \DateTime
+                    ? $filterEnd->format(DATE_ATOM)
+                    : ($filterEnd);
             }
         }
 
@@ -257,7 +267,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filterStartedAt;
+                $queryParams['filter[started_at]'] = $filterStartedAt instanceof \DateTime
+                    ? $filterStartedAt->format(DATE_ATOM)
+                    : ($filterStartedAt);
             }
         }
 
@@ -270,7 +282,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ended_at]'] = $filterEndedAt;
+                $queryParams['filter[ended_at]'] = $filterEndedAt instanceof \DateTime
+                    ? $filterEndedAt->format(DATE_ATOM)
+                    : ($filterEndedAt);
             }
         }
 
@@ -283,7 +297,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
@@ -355,7 +371,7 @@ final class RecordsApi extends AbstractApi
      * @return \Upsun\Model\ListOrgUsageRecords200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/usage?filterSubscriptionId=&#39;filterSubscriptionId_example&#39;filterUsageGroup=&#39;filterUsageGroup_example&#39;filterStart=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterStartedAt=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)page=56" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/usage?filterSubscriptionId=value&filterUsageGroup=value&filterStart=value&filterStartedAt=value&page=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -464,7 +480,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[subscription_id]'] = $filterSubscriptionId;
+                $queryParams['filter[subscription_id]'] = $filterSubscriptionId instanceof \DateTime
+                    ? $filterSubscriptionId->format(DATE_ATOM)
+                    : ($filterSubscriptionId);
             }
         }
 
@@ -477,7 +495,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[usage_group]'] = $filterUsageGroup;
+                $queryParams['filter[usage_group]'] = $filterUsageGroup instanceof \DateTime
+                    ? $filterUsageGroup->format(DATE_ATOM)
+                    : ($filterUsageGroup);
             }
         }
 
@@ -490,7 +510,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[start]'] = $filterStart;
+                $queryParams['filter[start]'] = $filterStart instanceof \DateTime
+                    ? $filterStart->format(DATE_ATOM)
+                    : ($filterStart);
             }
         }
 
@@ -503,7 +525,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[started_at]'] = $filterStartedAt;
+                $queryParams['filter[started_at]'] = $filterStartedAt instanceof \DateTime
+                    ? $filterStartedAt->format(DATE_ATOM)
+                    : ($filterStartedAt);
             }
         }
 
@@ -516,7 +540,9 @@ final class RecordsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 

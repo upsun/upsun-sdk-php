@@ -527,7 +527,7 @@ final class SubscriptionsApi extends AbstractApi
      * @return \Upsun\Model\EstimationObject
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/estimate?plan=&#39;plan_example&#39;environments=56storage=56userLicenses=56format=&#39;format_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/estimate?plan=value&environments=value&storage=value&userLicenses=value&format=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -680,7 +680,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['plan'] = $plan;
+                $queryParams['plan'] = $plan instanceof \DateTime
+                    ? $plan->format(DATE_ATOM)
+                    : ($plan);
             }
         }
 
@@ -693,7 +695,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['environments'] = $environments;
+                $queryParams['environments'] = $environments instanceof \DateTime
+                    ? $environments->format(DATE_ATOM)
+                    : ($environments);
             }
         }
 
@@ -706,7 +710,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['storage'] = $storage;
+                $queryParams['storage'] = $storage instanceof \DateTime
+                    ? $storage->format(DATE_ATOM)
+                    : ($storage);
             }
         }
 
@@ -719,7 +725,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['user_licenses'] = $userLicenses;
+                $queryParams['user_licenses'] = $userLicenses instanceof \DateTime
+                    ? $userLicenses->format(DATE_ATOM)
+                    : ($userLicenses);
             }
         }
 
@@ -732,7 +740,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['format'] = $format;
+                $queryParams['format'] = $format instanceof \DateTime
+                    ? $format->format(DATE_ATOM)
+                    : ($format);
             }
         }
 
@@ -804,7 +814,7 @@ final class SubscriptionsApi extends AbstractApi
      * @return \Upsun\Model\EstimationObject
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/estimate?plan=&#39;plan_example&#39;environments=56storage=56userLicenses=56format=&#39;format_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/estimate?plan=value&environments=value&storage=value&userLicenses=value&format=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -941,7 +951,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['plan'] = $plan;
+                $queryParams['plan'] = $plan instanceof \DateTime
+                    ? $plan->format(DATE_ATOM)
+                    : ($plan);
             }
         }
 
@@ -954,7 +966,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['environments'] = $environments;
+                $queryParams['environments'] = $environments instanceof \DateTime
+                    ? $environments->format(DATE_ATOM)
+                    : ($environments);
             }
         }
 
@@ -967,7 +981,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['storage'] = $storage;
+                $queryParams['storage'] = $storage instanceof \DateTime
+                    ? $storage->format(DATE_ATOM)
+                    : ($storage);
             }
         }
 
@@ -980,7 +996,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['user_licenses'] = $userLicenses;
+                $queryParams['user_licenses'] = $userLicenses instanceof \DateTime
+                    ? $userLicenses->format(DATE_ATOM)
+                    : ($userLicenses);
             }
         }
 
@@ -993,7 +1011,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['format'] = $format;
+                $queryParams['format'] = $format instanceof \DateTime
+                    ? $format->format(DATE_ATOM)
+                    : ($format);
             }
         }
 
@@ -1236,7 +1256,7 @@ final class SubscriptionsApi extends AbstractApi
      * @return \Upsun\Model\SubscriptionCurrentUsageObject
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage?usageGroups=&#39;usageGroups_example&#39;includeNotCharged=True" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage?usageGroups=value&includeNotCharged=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1344,7 +1364,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['usage_groups'] = $usageGroups;
+                $queryParams['usage_groups'] = $usageGroups instanceof \DateTime
+                    ? $usageGroups->format(DATE_ATOM)
+                    : ($usageGroups);
             }
         }
 
@@ -1357,7 +1379,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['include_not_charged'] = $includeNotCharged;
+                $queryParams['include_not_charged'] = $includeNotCharged instanceof \DateTime
+                    ? $includeNotCharged->format(DATE_ATOM)
+                    : ($includeNotCharged);
             }
         }
 
@@ -1437,7 +1461,7 @@ final class SubscriptionsApi extends AbstractApi
      * @return \Upsun\Model\ListOrgSubscriptions200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions?filterStatus=&#39;filterStatus_example&#39;filterId=&#39;filterId_example&#39;filterProjectId=new \Upsun\Model\\Upsun\Model\StringFilter()filterProjectTitle=new \Upsun\Model\\Upsun\Model\StringFilter()filterRegion=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions?filterStatus=value&filterId=value&filterProjectId=value&filterProjectTitle=value&filterRegion=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1590,7 +1614,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
 
@@ -1603,7 +1629,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filterId;
+                $queryParams['filter[id]'] = $filterId instanceof \DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId);
             }
         }
 
@@ -1616,7 +1644,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_id]'] = $filterProjectId->getEq();
+                $queryParams['filter[project_id]'] = $filterProjectId instanceof \DateTime
+                    ? $filterProjectId->format(DATE_ATOM)
+                    : ($filterProjectId->getEq());
             }
         }
 
@@ -1629,7 +1659,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[project_title]'] = $filterProjectTitle->getEq();
+                $queryParams['filter[project_title]'] = $filterProjectTitle instanceof \DateTime
+                    ? $filterProjectTitle->format(DATE_ATOM)
+                    : ($filterProjectTitle->getEq());
             }
         }
 
@@ -1642,7 +1674,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[region]'] = $filterRegion->getEq();
+                $queryParams['filter[region]'] = $filterRegion instanceof \DateTime
+                    ? $filterRegion->format(DATE_ATOM)
+                    : ($filterRegion->getEq());
             }
         }
 
@@ -1655,7 +1689,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof \DateTime
+                    ? $filterUpdatedAt->format(DATE_ATOM)
+                    : ($filterUpdatedAt->getEq());
             }
         }
 
@@ -1668,7 +1704,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -1681,7 +1719,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -1694,7 +1734,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -1707,7 +1749,9 @@ final class SubscriptionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 

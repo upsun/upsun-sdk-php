@@ -386,7 +386,7 @@ final class ProjectInvitationsApi extends AbstractApi
      * @return \Upsun\Model\ProjectInvitation[]
      *
      * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/invitations?filterState=new \Upsun\Model\\Upsun\Model\StringFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=&#39;sort_example&#39;" \
+     * curl -X GET "https://api.upsun.com/projects/{project_id}/invitations?filterState=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -509,7 +509,9 @@ final class ProjectInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[state]'] = $filterState->getEq();
+                $queryParams['filter[state]'] = $filterState instanceof \DateTime
+                    ? $filterState->format(DATE_ATOM)
+                    : ($filterState->getEq());
             }
         }
 
@@ -522,7 +524,9 @@ final class ProjectInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -535,7 +539,9 @@ final class ProjectInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -548,7 +554,9 @@ final class ProjectInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -561,7 +569,9 @@ final class ProjectInvitationsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 

@@ -16,6 +16,7 @@ use Upsun\Model\StringFilter;
 use Upsun\Model\Team;
 use Upsun\Model\TeamMember;
 use Upsun\Model\TeamProjectAccess;
+use Upsun\Model\UpdateTeamRequest;
 use Upsun\UpsunClient;
 
 /**
@@ -175,6 +176,7 @@ class TeamTask extends TaskBase
      */
     public function update(string $teamId, ?array $updateTeamRequest = null): Team
     {
+        $updateTeamRequest = new UpdateTeamRequest(...$updateTeamRequest);
         return $this->teamsApi->updateTeam($teamId, $updateTeamRequest);
     }
 

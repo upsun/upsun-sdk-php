@@ -203,7 +203,7 @@ final class RegionsApi extends AbstractApi
      * @return \Upsun\Model\ListRegions200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/regions?filterAvailable=new \Upsun\Model\\Upsun\Model\StringFilter()filterPrivate=new \Upsun\Model\\Upsun\Model\StringFilter()filterZone=new \Upsun\Model\\Upsun\Model\StringFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/regions?filterAvailable=value&filterPrivate=value&filterZone=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -321,7 +321,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[available]'] = $filterAvailable->getEq();
+                $queryParams['filter[available]'] = $filterAvailable instanceof \DateTime
+                    ? $filterAvailable->format(DATE_ATOM)
+                    : ($filterAvailable->getEq());
             }
         }
 
@@ -334,7 +336,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[private]'] = $filterPrivate->getEq();
+                $queryParams['filter[private]'] = $filterPrivate instanceof \DateTime
+                    ? $filterPrivate->format(DATE_ATOM)
+                    : ($filterPrivate->getEq());
             }
         }
 
@@ -347,7 +351,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[zone]'] = $filterZone->getEq();
+                $queryParams['filter[zone]'] = $filterZone instanceof \DateTime
+                    ? $filterZone->format(DATE_ATOM)
+                    : ($filterZone->getEq());
             }
         }
 
@@ -360,7 +366,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -373,7 +381,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -386,7 +396,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -399,7 +411,9 @@ final class RegionsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 

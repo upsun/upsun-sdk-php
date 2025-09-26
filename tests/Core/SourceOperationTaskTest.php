@@ -2,91 +2,102 @@
 
 namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\Api\SourceOperationsApi;
 use Upsun\Configuration;
-use Upsun\Model\EnvironmentSourceOperationInput;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
+use Upsun\Core\OAuthProvider;
+use Upsun\Model\EnvironmentSourceOperation;
 use Upsun\Core\Tasks\SourceOperationTask;
 use Upsun\UpsunClient;
 use Upsun\Model\AcceptedResponse;
-use Upsun\ApiException;
-use Upsun\UpsunConfig;
 
-class SourceOperationTaskTest extends TestCase
+class SourceOperationTaskTest extends BaseTestCase
 {
     private SourceOperationTask $task;
-    private SourceOperationsApi $apiMock;
-    private UpsunClient $clientMock;
+
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->apiMock = $this->createMock(SourceOperationsApi::class);
-        
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $psr17Factory = new Psr17Factory();
 
-            public UpsunConfig $upsunConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->task = new class(
-            $this->clientMock,
-            $this->apiMock
+        $oauthProvider = $this->createMock(OAuthProvider::class);
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->task = new class (
+            $upsunClient,
+            new SourceOperationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
         ) extends SourceOperationTask {
-            public function refreshToken(): void
-            {
-            }
         };
     }
 
-    public function testRunSuccess(): void
+    public function testRun(): void
     {
-        $response = $this->createMock(AcceptedResponse::class);
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $input = [
+            'operation' => 'sync',
+            'variables' => []
+        ];
 
-        $this->apiMock->expects($this->once())
-            ->method('runSourceOperation')
-            ->with('project1', 'env1', $this->isInstanceOf(EnvironmentSourceOperationInput::class))
-            ->willReturn($response);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'accepted',
+                    'code' => 200
+                ])
+            ));
 
-        $result = $this->task->run('project1', 'env1', ['operation' => 'op1']);
-        $this->assertSame($response, $result);
+        $result = $this->task->run($projectId, $environmentId, $input);
+
+        $acceptedResponse = new AcceptedResponse('accepted', 200);
+        $this->assertEquals($acceptedResponse, $result);
     }
 
-    public function testEnableThrowsApiException(): void
+    public function testList(): void
     {
-        $this->expectException(ApiException::class);
+        $projectId = 'project-123';
+        $environmentId = 'env-456';
+        $fakeEnvironmentOperations = [
+            [
+                'id' => 'op-12345',
+                'app' => 'backend',
+                'operation' => 'deploy',
+                'command' => 'php artisan migrate --force',
+            ],
+            [
+                'id' => 'op-67890',
+                'app' => 'frontend',
+                'operation' => 'build',
+                'command' => 'npm run build',
+            ],
+            [
+                'id' => 'op-54321',
+                'app' => 'worker',
+                'operation' => 'restart',
+                'command' => 'supervisorctl restart all',
+            ],
+        ];
 
-        $this->apiMock->method('runSourceOperation')
-            ->willThrowException($this->createMock(ApiException::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeEnvironmentOperations)
+            ));
 
-        $this->task->run('project1', 'env1', ['operation' => 'op1']);
-    }
+        $result = $this->task->list($projectId, $environmentId);
 
-    public function testListSuccess(): void
-    {
-        $response = [];
-
-        $this->apiMock->expects($this->once())
-            ->method('listProjectsEnvironmentsSourceOperations')
-            ->with('project1', 'env1')
-            ->willReturn($response);
-
-        $result = $this->task->list('project1', 'env1');
-        $this->assertSame($response, $result);
-    }
-
-    public function testDisableThrowsApiException(): void
-    {
-        $this->expectException(ApiException::class);
-
-        $this->apiMock->method('listProjectsEnvironmentsSourceOperations')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->task->list('project1', 'env1');
+        $this->assertContainsOnlyInstancesOf(EnvironmentSourceOperation::class, $result);
+        $this->assertObjectMatchesArray($result, $fakeEnvironmentOperations);
     }
 }

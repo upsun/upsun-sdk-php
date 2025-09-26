@@ -24,6 +24,7 @@ final class SubscriptionInformation implements ModelInterface, JsonSerializable
         private readonly bool $restricted,
         private readonly bool $suspended,
         private readonly int $userLicenses,
+        private readonly string $id,
         private readonly ?string $plan = null,
         private readonly ?int $environments = null,
         private readonly ?ResourcesLimits $resources = null,
@@ -47,6 +48,7 @@ final class SubscriptionInformation implements ModelInterface, JsonSerializable
             'restricted' => $this->restricted,
             'suspended' => $this->suspended,
             'userLicenses' => $this->userLicenses,
+            'id' => $this->id,
             'plan' => $this->plan,
             'environments' => $this->environments,
             'resources' => $this->resources,
@@ -93,6 +95,11 @@ final class SubscriptionInformation implements ModelInterface, JsonSerializable
     public function getUserLicenses(): int
     {
         return $this->userLicenses;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getPlan(): ?string

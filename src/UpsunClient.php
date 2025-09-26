@@ -214,7 +214,6 @@ class UpsunClient
             new SystemInformationApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
         $this->region = new RegionTask(
             $this,

@@ -32,6 +32,7 @@ use Upsun\Model\IntegrationPatch;
 use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\OrganizationProject;
+use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectPatch;
@@ -66,7 +67,6 @@ class ProjectTask extends TaskBase
         private readonly SystemInformationApi $systemInfoApi,
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
         private readonly SubscriptionsApi $subscriptionsApi,
-        private readonly OrganizationProjectsApi $organizationProjectsApi,
     ) {
         parent::__construct($this->client);
     }
@@ -79,9 +79,9 @@ class ProjectTask extends TaskBase
      */
     public function delete(string $organizationId, string $projectId): void
     {
-        $project = $this->get($organizationId, $projectId);
+        $project = $this->get($projectId);
 
-        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $project->getSubscriptionId());
+        $this->subscriptionsApi->deleteOrgSubscription($organizationId, $project->getSubscription()->getId());
     }
 
     /**
@@ -90,9 +90,9 @@ class ProjectTask extends TaskBase
      * @throws InvalidArgumentException|Exception
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function get(string $organizationId, string $projectId): OrganizationProject
+    public function get(string $projectId): Project
     {
-        return $this->organizationProjectsApi->getOrgProject($organizationId, $projectId);
+        return $this->api->getProjects($projectId);
     }
 
     /**

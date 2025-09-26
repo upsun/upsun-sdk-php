@@ -2,7 +2,9 @@
 
 namespace Upsun\Test\Core;
 
-use InvalidArgumentException;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\ApiException;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\ConnectionsApi;
@@ -13,448 +15,1225 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Configuration;
-use Upsun\Model\Address;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\APIToken;
-use Upsun\Model\ConfirmPhoneNumberRequest;
 use Upsun\Model\ConfirmTotpEnrollment200Response;
-use Upsun\Model\ConfirmTotpEnrollmentRequest;
 use Upsun\Model\Connection;
-use Upsun\Model\CreateApiTokenRequest;
-use Upsun\Model\Error;
 use Upsun\Model\GetAddress200Response;
 use Upsun\Model\GetCurrentUserVerificationStatus200Response;
-use Upsun\Model\GetCurrentUserVerificationStatusFull200Response;
 use Upsun\Model\GetTotpEnrollment200Response;
 use Upsun\Model\ListProfiles200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\ListUserExtendedAccess200Response;
+use Upsun\Model\ListUserExtendedAccess200ResponseItemsInner;
 use Upsun\Model\Profile;
-use Upsun\Model\ResetEmailAddressRequest;
-use Upsun\Model\UpdateProfileRequest;
-use Upsun\Model\UpdateProjectUserAccessRequest;
-use Upsun\Model\UpdateUserRequest;
 use Upsun\Model\User;
 use Upsun\Model\UserProjectAccess;
 use Upsun\Model\VerifyPhoneNumber200Response;
-use Upsun\Model\VerifyPhoneNumberRequest;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\UserTask;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
-class UserTaskTest extends TestCase
+class UserTaskTest extends BaseTestCase
 {
-    private $clientMock;
-    private $usersApiMock;
-    private $profilesApiMock;
-    private $accessApiMock;
-    private $tokensApiMock;
-    private $connectionsApiMock;
-    private $grantsApiMock;
-    private $mfaApiMock;
-    private $phoneNumberApiMock;
-    private $userTask;
+    private UserTask $userTask;
+
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $psr17Factory = new Psr17Factory();
 
-            public UpsunConfig $upsunConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public function __construct()
-            {
-            }
-        };
-        $this->usersApiMock = $this->createMock(UsersApi::class);
-        $this->profilesApiMock = $this->createMock(UserProfilesApi::class);
-        $this->accessApiMock = $this->createMock(UserAccessApi::class);
-        $this->tokensApiMock = $this->createMock(APITokensApi::class);
-        $this->connectionsApiMock = $this->createMock(ConnectionsApi::class);
-        $this->grantsApiMock = $this->createMock(GrantsApi::class);
-        $this->mfaApiMock = $this->createMock(MFAApi::class);
-        $this->phoneNumberApiMock = $this->createMock(PhoneNumberApi::class);
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
+        $upsunClient = $this->createMock(UpsunClient::class);
 
-        $this->userTask = new class(
-            $this->clientMock,
-            $this->usersApiMock,
-            $this->profilesApiMock,
-            $this->accessApiMock,
-            $this->tokensApiMock,
-            $this->connectionsApiMock,
-            $this->grantsApiMock,
-            $this->mfaApiMock,
-            $this->phoneNumberApiMock
+        $this->userTask = new class (
+            $upsunClient,
+            new UsersApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new UserProfilesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new UserAccessApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new APITokensApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ConnectionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new GrantsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new MFAApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new PhoneNumberApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
         ) extends UserTask {
-            public function refreshToken(): void
-            {
-            }
         };
     }
 
     public function testMeSuccess()
     {
-        $expectedUser = new User(['id' => '123']);
-        $this->usersApiMock->expects($this->once())
-            ->method('getCurrentUser')
-            ->willReturn($expectedUser);
+        $userFake = [
+            'id' => 'user_123',
+            'deactivated' => false,
+            'namespace' => 'exampleNamespace',
+            'username' => 'john_doe',
+            'email' => 'john.doe@example.com',
+            'emailVerified' => true,
+            'firstName' => 'John',
+            'lastName' => 'Doe',
+            'picture' => 'https://example.com/avatar.jpg',
+            'company' => 'Example Corp',
+            'website' => 'https://example.com',
+            'country' => 'US',
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'consentedAt' => '2025-02-01T08:00:00Z',
+            'consentMethod' => 'email',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($userFake)
+            ));
 
         $result = $this->userTask->me();
-        $this->assertEquals($expectedUser, $result);
+        $this->assertInstanceOf(User::class, $result);
+        $this->assertObjectProperties($result, $userFake);
     }
 
     public function testMeError()
     {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'unauthorized', 'code' => 403])
+            ));
+
         $this->expectException(ApiException::class);
 
-        $this->usersApiMock->expects($this->once())
-            ->method('getCurrentUser')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $result = $this->userTask->me();
-    }
-
-    public function testGetCurrentUserVerificationStatusSuccess()
-    {
-        $expectedResponse = new GetCurrentUserVerificationStatus200Response();
-        $this->usersApiMock->expects($this->once())
-            ->method('getCurrentUserVerificationStatus')
-            ->willReturn($expectedResponse);
-
-        $result = $this->userTask->getCurrentUserVerificationStatus();
-        $this->assertEquals($expectedResponse, $result);
-    }
-
-    public function testGetCurrentUserVerificationStatusFullSuccess()
-    {
-        $expectedResponse = new GetCurrentUserVerificationStatusFull200Response();
-        $this->usersApiMock->expects($this->once())
-            ->method('getCurrentUserVerificationStatusFull')
-            ->willReturn($expectedResponse);
-
-        $result = $this->userTask->getCurrentUserVerificationStatusFull();
-        $this->assertEquals($expectedResponse, $result);
+        $this->userTask->me();
     }
 
     public function testGetSuccess()
     {
-        $userId = '123';
-        $expectedUser = new User(['id' => $userId]);
-        $this->usersApiMock->expects($this->once())
-            ->method('getUser')
-            ->with($userId)
-            ->willReturn($expectedUser);
+        $userFake = [
+            'id' => 'user_123',
+            'deactivated' => false,
+            'namespace' => 'exampleNamespace',
+            'username' => 'john_doe',
+            'email' => 'john.doe@example.com',
+            'emailVerified' => true,
+            'firstName' => 'John',
+            'lastName' => 'Doe',
+            'picture' => 'https://example.com/avatar.jpg',
+            'company' => 'Example Corp',
+            'website' => 'https://example.com',
+            'country' => 'US',
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'consentedAt' => '2025-02-01T08:00:00Z',
+            'consentMethod' => 'email',
+        ];
 
-        $result = $this->userTask->get($userId);
-        $this->assertEquals($expectedUser, $result);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($userFake)
+            ));
+
+        $result = $this->userTask->get('user_123');
+        $this->assertInstanceOf(User::class, $result);
+        $this->assertObjectProperties($result, $userFake);
     }
 
     public function testGetError()
     {
-        $userId = '123';
-        $error = new Error(['message' => 'Not found']);
-        $this->usersApiMock->expects($this->once())
-            ->method('getUser')
-            ->with($userId)
-            ->willReturn($error);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode(['message' => 'Not Found'])
+            ));
 
-        $result = $this->userTask->get($userId);
-        $this->assertEquals($error, $result);
+        $this->expectException(ApiException::class);
+
+        $this->userTask->get('invalid_user');
     }
 
     public function testGetByEmailAddressSuccess()
     {
-        $email = 'test@example.com';
-        $expectedUser = new User(['email' => $email]);
-        $this->usersApiMock->expects($this->once())
-            ->method('getUserByEmailAddress')
-            ->with($email)
-            ->willReturn($expectedUser);
+        $userFake = [
+            'id' => 'user_123',
+            'deactivated' => false,
+            'namespace' => 'exampleNamespace',
+            'username' => 'john_doe',
+            'email' => 'john.doe@example.com',
+            'emailVerified' => true,
+            'firstName' => 'John',
+            'lastName' => 'Doe',
+            'picture' => 'https://example.com/avatar.jpg',
+            'company' => 'Example Corp',
+            'website' => 'https://example.com',
+            'country' => 'US',
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'consentedAt' => '2025-02-01T08:00:00Z',
+            'consentMethod' => 'email',
+        ];
 
-        $result = $this->userTask->getByEmailAddress($email);
-        $this->assertEquals($expectedUser, $result);
-    }
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($userFake)
+            ));
 
-    public function testGetByUsernameSuccess()
-    {
-        $username = 'testuser';
-        $expectedUser = new User(['username' => $username]);
-        $this->usersApiMock->expects($this->once())
-            ->method('getUserByUsername')
-            ->with($username)
-            ->willReturn($expectedUser);
-
-        $result = $this->userTask->getByUsername($username);
-        $this->assertEquals($expectedUser, $result);
-    }
-
-    public function testResetEmailAddressSuccess()
-    {
-        $userId = '123';
-        $request = new ResetEmailAddressRequest();
-
-        $this->usersApiMock->expects($this->once())
-            ->method('resetEmailAddress')
-            ->with($userId, $request);
-
-        $this->userTask->resetEmailAddress($userId, $request);
-    }
-
-    public function testResetPasswordSuccess()
-    {
-        $userId = '123';
-
-        $this->usersApiMock->expects($this->once())
-            ->method('resetPassword')
-            ->with($userId);
-
-        $this->userTask->resetPassword($userId);
+        $result = $this->userTask->getByEmailAddress('john.doe@example.com');
+        $this->assertInstanceOf(User::class, $result);
+        $this->assertObjectProperties($result, $userFake);
     }
 
     public function testUpdateSuccess()
     {
-        $userId = '123';
-        $updateData = ['name' => 'New Name'];
-        $expectedUser = new User(['id' => $userId, 'name' => 'New Name']);
+        $updateData = ['firstName' => 'Jane', 'lastName' => 'Smith'];
+        $userFake = [
+            'id' => 'user_123',
+            'deactivated' => false,
+            'namespace' => 'exampleNamespace',
+            'username' => 'john_doe',
+            'email' => 'john.doe@example.com',
+            'emailVerified' => true,
+            'firstName' => 'Jane',
+            'lastName' => 'Smith',
+            'picture' => 'https://example.com/avatar.jpg',
+            'company' => 'Example Corp',
+            'website' => 'https://example.com',
+            'country' => 'US',
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'consentedAt' => '2025-02-01T08:00:00Z',
+            'consentMethod' => 'email',
+        ];
 
-        $this->usersApiMock->expects($this->once())
-            ->method('updateUser')
-            ->with($userId, $this->isInstanceOf(UpdateUserRequest::class))
-            ->willReturn($expectedUser);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($userFake)
+            ));
 
-        $result = $this->userTask->update($userId, $updateData);
-        $this->assertEquals($expectedUser, $result);
+        $result = $this->userTask->update('user_123', $updateData);
+        $this->assertInstanceOf(User::class, $result);
+        $this->assertObjectProperties($result, $userFake);
+    }
+
+    public function testResetPasswordSuccess()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(204));
+
+        $this->userTask->resetPassword('user_123');
+        $this->assertTrue(true); // Just ensures no exception is thrown
+    }
+
+    public function testResetEmailAddressSuccess()
+    {
+        $email = 'new@example.com';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(204));
+
+        $this->userTask->resetEmailAddress('user_123', $email);
+        $this->assertTrue(true);
+    }
+
+    public function testGetCurrentUserVerificationStatusSuccess()
+    {
+        $responseFake = [
+            'verifyPhone' => true,
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($responseFake)
+            ));
+
+        $result = $this->userTask->getCurrentUserVerificationStatus();
+        $this->assertInstanceOf(GetCurrentUserVerificationStatus200Response::class, $result);
+        $this->assertObjectProperties($result, $responseFake);
+    }
+
+    public function testGetCurrentUserVerificationStatusError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'unauthorized', 'code' => 403])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getCurrentUserVerificationStatus();
+    }
+
+
+    public function testGetByUsernameSuccess()
+    {
+        $username = 'john_doe';
+
+        $userFake = [
+            'id' => 'user_123',
+            'deactivated' => false,
+            'namespace' => 'exampleNamespace',
+            'username' => $username,
+            'email' => 'john.doe@example.com',
+            'emailVerified' => true,
+            'firstName' => 'John',
+            'lastName' => 'Doe',
+            'picture' => 'https://example.com/avatar.jpg',
+            'company' => 'Example Corp',
+            'website' => 'https://example.com',
+            'country' => 'US',
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'consentedAt' => '2025-02-01T08:00:00Z',
+            'consentMethod' => 'email',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($userFake)
+            ));
+
+        $result = $this->userTask->getByUsername($username);
+        $this->assertInstanceOf(User::class, $result);
+        $this->assertObjectProperties($result, $userFake);
+    }
+
+    public function testGetByUsernameError()
+    {
+        $username = 'john_doe';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404,
+                    'message' => 'User not found',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getByUsername($username);
     }
 
     public function testGetProjectUserAccessSuccess()
     {
-        $projectId = 'project123';
-        $userId = 'user123';
-        $expectedAccess = new UserProjectAccess();
+        $projectId = 'proj_123';
+        $userId = 'user_123';
 
-        $this->accessApiMock->expects($this->once())
-            ->method('getProjectUserAccess')
-            ->with($projectId, $userId)
-            ->willReturn($expectedAccess);
+        $accessFake = [
+            'userId' => $userId,
+            'organizationId' => 'org_123',
+            'projectId' => $projectId,
+            'projectTitle' => 'Example Project',
+            'permissions' => ['admin', 'viewer'],
+            'grantedAt' => '2025-01-10T08:30:00Z',
+            'updatedAt' => '2025-09-20T14:15:00Z',
+            'links' => [
+                'self' => ['href' => '/projects/proj_123/users/user_123'],
+                'update' => ['href' => '/projects/proj_123/users/user_123/update'],
+                'delete' => ['href' => '/projects/proj_123/users/user_123/delete'],
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($accessFake)
+            ));
 
         $result = $this->userTask->getProjectUserAccess($projectId, $userId);
-        $this->assertEquals($expectedAccess, $result);
+        $this->assertInstanceOf(UserProjectAccess::class, $result);
+        $this->assertObjectProperties($result, $accessFake);
+    }
+
+    public function testGetProjectUserAccessError()
+    {
+        $projectId = 'proj_123';
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getProjectUserAccess($projectId, $userId);
     }
 
     public function testGetUserProjectAccessSuccess()
     {
-        $userId = 'user123';
-        $projectId = 'project123';
-        $expectedAccess = new UserProjectAccess();
+        $userId = 'user_123';
+        $projectId = 'proj_123';
 
-        $this->accessApiMock->expects($this->once())
-            ->method('getUserProjectAccess')
-            ->with($userId, $projectId)
-            ->willReturn($expectedAccess);
+        $accessFake = [
+            'userId' => $userId,
+            'organizationId' => 'org_123',
+            'projectId' => $projectId,
+            'projectTitle' => 'Example Project',
+            'permissions' => ['admin', 'editor'],
+            'grantedAt' => '2025-01-10T08:30:00Z',
+            'updatedAt' => '2025-09-20T14:15:00Z',
+            'links' => [
+                'self' => ['href' => "/users/{$userId}/projects/{$projectId}"],
+                'update' => ['href' => "/users/{$userId}/projects/{$projectId}/update"],
+                'delete' => ['href' => "/users/{$userId}/projects/{$projectId}/delete"],
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($accessFake)
+            ));
 
         $result = $this->userTask->getUserProjectAccess($userId, $projectId);
-        $this->assertEquals($expectedAccess, $result);
+        $this->assertInstanceOf(UserProjectAccess::class, $result);
+        $this->assertObjectProperties($result, $accessFake);
+    }
+
+    public function testGetUserProjectAccessError()
+    {
+        $userId = 'user_123';
+        $projectId = 'proj_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getUserProjectAccess($userId, $projectId);
     }
 
     public function testGrantProjectUserAccessSuccess()
     {
-        $projectId = 'project123';
-        $request = [['userId' => 'user123', 'role' => 'admin']];
+        $projectId = 'proj_123';
+        $grantRequestFake = [
+            [
+                'userId' => 'user_001',
+                'role' => 'admin',
+            ],
+            [
+                'userId' => 'user_002',
+                'role' => 'viewer',
+            ],
+        ];
 
-        $this->accessApiMock->expects($this->once())
-            ->method('grantProjectUserAccess')
-            ->with($projectId, $request);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204, // No Content
+                ['Content-Type' => 'application/json']
+            ));
 
-        $this->userTask->grantProjectUserAccess($projectId, $request);
+        // Call the method
+        $this->userTask->grantProjectUserAccess($projectId, $grantRequestFake);
+
+        // If no exception, the test is successful
+        $this->assertTrue(true);
+    }
+
+    public function testGrantProjectUserAccessError()
+    {
+        $projectId = 'proj_123';
+        $grantRequestFake = [
+            [
+                'userId' => 'user_001',
+                'role' => 'admin',
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->grantProjectUserAccess($projectId, $grantRequestFake);
     }
 
     public function testListProjectUserAccessSuccess()
     {
-        $projectId = 'project123';
-        $expectedResponse = new ListProjectUserAccess200Response();
+        $projectId = 'proj_123';
+        $itemsFake = [
+            [
+                'userId' => 'user_001',
+                'organizationId' => 'org_001',
+                'projectId' => $projectId,
+                'projectTitle' => 'Project Alpha',
+                'permissions' => ['admin', 'editor'],
+                'grantedAt' => '2025-01-01T10:00:00Z',
+                'updatedAt' => '2025-09-26T12:00:00Z',
+                'links' => [],
+            ],
+            [
+                'userId' => 'user_002',
+                'organizationId' => 'org_001',
+                'projectId' => $projectId,
+                'projectTitle' => 'Project Alpha',
+                'permissions' => ['viewer'],
+                'grantedAt' => '2025-02-01T08:00:00Z',
+                'updatedAt' => '2025-09-20T14:15:00Z',
+                'links' => [],
+            ],
+        ];
 
-        $this->accessApiMock->expects($this->once())
-            ->method('listProjectUserAccess')
-            ->with($projectId, null, null, null, null)
-            ->willReturn($expectedResponse);
+        $responseFake = [
+            'items' => $itemsFake,
+            'links' => [
+                'self' => ['href' => 'https://api.example.com/projects/' . $projectId . '/users'],
+                'previous' => null,
+                'next' => null,
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($responseFake)
+            ));
 
         $result = $this->userTask->listProjectUserAccess($projectId);
-        $this->assertEquals($expectedResponse, $result);
+        $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
+        $this->assertObjectProperties($result, $responseFake);
+    }
+
+    public function testListProjectUserAccessError()
+    {
+        $projectId = 'proj_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->listProjectUserAccess($projectId);
     }
 
     public function testListUserProjectAccessSuccess()
     {
-        $userId = 'user123';
-        $expectedResponse = new ListProjectUserAccess200Response();
+        $userId = 'user_123';
+        $itemsFake = [
+            [
+                'userId' => $userId,
+                'organizationId' => 'org_001',
+                'projectId' => 'proj_001',
+                'projectTitle' => 'Project Alpha',
+                'permissions' => ['admin', 'editor'],
+                'grantedAt' => '2025-01-01T10:00:00Z',
+                'updatedAt' => '2025-09-26T12:00:00Z',
+                'links' => [],
+            ],
+            [
+                'userId' => $userId,
+                'organizationId' => 'org_001',
+                'projectId' => 'proj_002',
+                'projectTitle' => 'Project Beta',
+                'permissions' => ['viewer'],
+                'grantedAt' => '2025-02-01T08:00:00Z',
+                'updatedAt' => '2025-09-20T14:15:00Z',
+                'links' => [],
+            ],
+        ];
 
-        $this->accessApiMock->expects($this->once())
-            ->method('listUserProjectAccess')
-            ->with($userId, null, null, null, null, null)
-            ->willReturn($expectedResponse);
+        $responseFake = [
+            'items' => $itemsFake,
+            'links' => [
+                'self' => ['href' => 'https://api.example.com/users/' . $userId . '/projects'],
+                'previous' => null,
+                'next' => null,
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($responseFake)
+            ));
 
         $result = $this->userTask->listUserProjectAccess($userId);
-        $this->assertEquals($expectedResponse, $result);
+        $this->assertInstanceOf(ListProjectUserAccess200Response::class, $result);
+        $this->assertObjectProperties($result, $responseFake);
+    }
+
+    public function testListUserProjectAccessError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->listUserProjectAccess($userId);
     }
 
     public function testRemoveProjectUserAccessSuccess()
     {
-        $projectId = 'project123';
-        $userId = 'user123';
+        $projectId = 'proj_123';
+        $userId = 'user_123';
 
-        $this->accessApiMock->expects($this->once())
-            ->method('removeProjectUserAccess')
-            ->with($projectId, $userId);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                null
+            ));
+
+        $this->userTask->removeProjectUserAccess($projectId, $userId);
+
+        $this->assertTrue(true);
+    }
+
+    public function testRemoveProjectUserAccessError()
+    {
+        $projectId = 'proj_123';
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
 
         $this->userTask->removeProjectUserAccess($projectId, $userId);
     }
 
+
     public function testUpdateProjectUserAccessSuccess()
     {
-        $projectId = 'project123';
-        $userId = 'user123';
-        $updateData = ['role' => 'admin'];
+        $projectId = 'proj_123';
+        $userId = 'user_123';
+        $permissions = ['read', 'write'];
 
-        $this->accessApiMock->expects($this->once())
-            ->method('updateProjectUserAccess')
-            ->with($projectId, $userId, $this->isInstanceOf(UpdateProjectUserAccessRequest::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                null
+            ));
 
-        $this->userTask->updateProjectUserAccess($projectId, $userId, $updateData);
+        $this->userTask->updateProjectUserAccess($projectId, $userId, $permissions);
+
+        $this->assertTrue(true);
+    }
+
+    public function testUpdateProjectUserAccessError()
+    {
+        $projectId = 'proj_123';
+        $userId = 'user_123';
+        $permissions = ['read', 'write'];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->updateProjectUserAccess($projectId, $userId, $permissions);
     }
 
     public function testDeleteProfilePictureSuccess()
     {
-        $uuid = '12345';
+        $uuid = 'uuid_123';
 
-        $this->profilesApiMock->expects($this->once())
-            ->method('deleteProfilePicture')
-            ->with($uuid);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                null
+            ));
+
+        $this->userTask->deleteProfilePicture($uuid);
+
+        $this->assertTrue(true);
+    }
+
+    public function testDeleteProfilePictureError()
+    {
+        $uuid = 'uuid_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403,
+                    'message' => 'Access denied',
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
 
         $this->userTask->deleteProfilePicture($uuid);
     }
 
+
     public function testGetAddressSuccess()
     {
-        $userId = '123';
-        $expectedResponse = new GetAddress200Response();
+        $addressFake = [
+            'country' => 'US',
+            'nameLine' => 'John Doe',
+            'premise' => '123',
+            'subPremise' => 'Apt 4',
+            'thoroughfare' => 'Main St',
+            'administrativeArea' => 'CA',
+            'subAdministrativeArea' => 'Santa Clara',
+            'locality' => 'San Jose',
+            'dependentLocality' => null,
+            'postalCode' => '95131',
+            'metadata' => [
+                'requiredFields' => ['country', 'postalCode'],
+                'fieldLabels' => (object)['country' => 'Country', 'postalCode' => 'ZIP Code'],
+                'showVat' => false,
+            ],
+        ];
 
-        $this->profilesApiMock->expects($this->once())
-            ->method('getAddress')
-            ->with($userId)
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($addressFake)
+            ));
 
+        $userId = 'user_123';
         $result = $this->userTask->getAddress($userId);
-        $this->assertEquals($expectedResponse, $result);
+        $this->assertInstanceOf(GetAddress200Response::class, $result);
+        $this->assertObjectProperties($result, $addressFake);
     }
+
+    public function testGetAddressError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $userId = 'user_123';
+        $this->userTask->getAddress($userId);
+    }
+
 
     public function testGetProfileSuccess()
     {
-        $userId = '123';
-        $expectedProfile = new Profile();
+        $userId = 'user_123';
+        $profileFake = [
+            'id' => 'profile_001',
+            'displayName' => 'John Doe',
+            'email' => 'john.doe@example.com',
+            'username' => 'john_doe',
+            'type' => 'user',
+            'picture' => 'https://example.com/avatar.jpg',
+            'companyType' => 'private',
+            'companyName' => 'Example Corp',
+            'currency' => 'USD',
+            'vatNumber' => 'VAT123456',
+            'companyRole' => 'admin',
+            'websiteUrl' => 'https://example.com',
+            'newUi' => true,
+            'uiColorscheme' => 'dark',
+            'defaultCatalog' => 'standard',
+            'projectOptionsUrl' => 'https://example.com/projects',
+            'marketing' => false,
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'billingContact' => 'billing@example.com',
+            'securityContact' => 'security@example.com',
+            'currentTrial' => [
+                'pendingVerification' => 'none',
+                'active' => true,
+                'created' => '2025-01-10T08:00:00Z',
+                'description' => 'Trial description',
+                'expiration' => '2025-12-31T23:59:59Z',
+                'current' => [
+                    'formatted' => '$10.00',
+                    'amount' => '10.00',
+                    'currency' => 'USD',
+                    'currencySymbol' => '$',
+                ],
+                'spendRemaining' => [
+                    'formatted' => '$5.00',
+                    'amount' => '5.00',
+                    'currency' => 'USD',
+                    'currencySymbol' => '$',
+                    'unlimited' => false,
+                ],
+                'projects' => [
+                    'id' => 'proj_001',
+                    'name' => 'Project One',
+                    'total' => [
+                        'formatted' => '10',
+                        'amount' => '10',
+                        'currency' => 'USD',
+                        'currencySymbol' => '$',
+                    ],
+                ],
+                'model' => 'trial_model',
+                'daysRemaining' => 30,
+            ],
+            'invoiced' => true,
+        ];
 
-        $this->profilesApiMock->expects($this->once())
-            ->method('getProfile')
-            ->with($userId)
-            ->willReturn($expectedProfile);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($profileFake)
+            ));
 
         $result = $this->userTask->getProfile($userId);
-        $this->assertEquals($expectedProfile, $result);
+        $this->assertInstanceOf(Profile::class, $result);
+        $this->assertObjectProperties($result, $profileFake);
     }
+
+    public function testGetProfileError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getProfile($userId);
+    }
+
 
     public function testListProfilesSuccess()
     {
-        $expectedResponse = new ListProfiles200Response();
+        $profilesFake = [
+            [
+                'id' => 'profile_001',
+                'displayName' => 'John Doe',
+                'email' => 'john.doe@example.com',
+                'username' => 'john_doe',
+            ],
+            [
+                'id' => 'profile_002',
+                'displayName' => 'Jane Smith',
+                'email' => 'jane.smith@example.com',
+                'username' => 'jane_smith',
+            ],
+        ];
 
-        $this->profilesApiMock->expects($this->once())
-            ->method('listProfiles')
-            ->willReturn($expectedResponse);
+        $responseFake = [
+            'count' => 2,
+            'profiles' => $profilesFake,
+            'links' => [
+                'self' => ['href' => '/profiles'],
+                'next' => ['href' => '/profiles?page=2'],
+                'previous' => ['href' => '/profiles?page=0'],
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($responseFake)
+            ));
 
         $result = $this->userTask->listProfiles();
-        $this->assertEquals($expectedResponse, $result);
+        $this->assertInstanceOf(ListProfiles200Response::class, $result);
+        $this->assertObjectProperties($result, $responseFake);
+    }
+
+    public function testListProfilesError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                500,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'server_error',
+                    'code' => 500
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->listProfiles();
     }
 
     public function testUpdateAddressSuccess()
     {
-        $userId = '123';
-        $address = new Address();
-        $expectedResponse = new GetAddress200Response();
+        $addressFake = [
+            'country' => 'US',
+            'nameLine' => 'John Doe',
+            'premise' => '123',
+            'subPremise' => 'Apt 4',
+            'thoroughfare' => 'Main St',
+            'administrativeArea' => 'CA',
+            'subAdministrativeArea' => 'Santa Clara',
+            'locality' => 'San Jose',
+            'dependentLocality' => null,
+            'postalCode' => '95131',
+        ];
 
-        $this->profilesApiMock->expects($this->once())
-            ->method('updateAddress')
-            ->with($userId, $address)
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($addressFake)
+            ));
 
-        $result = $this->userTask->updateAddress($userId, $address);
-        $this->assertEquals($expectedResponse, $result);
+        $userId = 'user_123';
+        $result = $this->userTask->updateAddress($userId, $addressFake);
+        $this->assertInstanceOf(GetAddress200Response::class, $result);
+        $this->assertObjectProperties($result, $addressFake);
     }
+
+    public function testUpdateAddressError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'bad_request',
+                    'code' => 400
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $userId = 'user_123';
+        $addressFake = [
+            'country' => 'US',
+            'nameLine' => 'John Doe'
+        ];
+        $this->userTask->updateAddress($userId, $addressFake);
+    }
+
 
     public function testUpdateProfileSuccess()
     {
-        $userId = '123';
-        $updateData = ['bio' => 'New bio'];
-        $expectedProfile = new Profile();
+        $profileFake = [
+            'displayName' => 'John Doe',
+            'username' => 'john_doe',
+            'currentPassword' => null,
+            'password' => null,
+            'companyType' => 'LLC',
+            'companyName' => 'Example Corp',
+            'vatNumber' => 'US123456789',
+            'companyRole' => 'Admin',
+            'marketing' => true,
+            'uiColorscheme' => 'dark',
+            'defaultCatalog' => 'default',
+            'projectOptionsUrl' => 'https://example.com/projects',
+            'picture' => 'https://example.com/avatar.jpg',
+        ];
 
-        $this->profilesApiMock->expects($this->once())
-            ->method('updateProfile')
-            ->with($userId, $this->isInstanceOf(UpdateProfileRequest::class))
-            ->willReturn($expectedProfile);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($profileFake)
+            ));
 
-        $result = $this->userTask->updateProfile($userId, $updateData);
-        $this->assertEquals($expectedProfile, $result);
+        $userId = 'user_123';
+        $result = $this->userTask->updateProfile($userId, $profileFake);
+        $this->assertInstanceOf(Profile::class, $result);
+        $this->assertObjectProperties($result, $profileFake);
     }
+
+    public function testUpdateProfileError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'bad_request',
+                    'code' => 400
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $userId = 'user_123';
+        $profileFake = [
+            'displayName' => 'John Doe',
+            'username' => 'john_doe'
+        ];
+        $this->userTask->updateProfile($userId, $profileFake);
+    }
+
 
     public function testCreateApiTokenSuccess()
     {
-        $userId = '123';
-        $tokenData = ['name' => 'New Token'];
-        $expectedToken = new APIToken();
+        $tokenFake = [
+            'id' => 'token_123',
+            'name' => 'My Token',
+            'token' => 'abcdef123456',
+            'mfaOnCreation' => true,
+            'lastUsedAt' => '2025-09-26T10:00:00Z',
+            'createdAt' => '2025-09-26T09:00:00Z',
+            'updatedAt' => '2025-09-26T09:30:00Z',
+        ];
 
-        $this->tokensApiMock->expects($this->once())
-            ->method('createApiToken')
-            ->with($userId, $this->isInstanceOf(CreateApiTokenRequest::class))
-            ->willReturn($expectedToken);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($tokenFake)
+            ));
 
-        $result = $this->userTask->createApiToken($userId, $tokenData);
-        $this->assertEquals($expectedToken, $result);
+        $userId = 'user_123';
+        $name = 'My Token';
+        $result = $this->userTask->createApiToken($userId, $name);
+        $this->assertInstanceOf(APIToken::class, $result);
+        $this->assertObjectProperties($result, $tokenFake);
     }
+
+    public function testCreateApiTokenError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'unauthorized',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $userId = 'user_123';
+        $name = 'My Token';
+        $this->userTask->createApiToken($userId, $name);
+    }
+
 
     public function testDeleteApiTokenSuccess()
     {
-        $userId = '123';
-        $tokenId = 'token123';
+        $userId = 'user_123';
+        $tokenId = 'token_123';
 
-        $this->tokensApiMock->expects($this->once())
-            ->method('deleteApiToken')
-            ->with($userId, $tokenId);
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(204));
 
+        $this->userTask->deleteApiToken($userId, $tokenId);
+    }
+
+    public function testDeleteApiTokenError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'unauthorized', 'code' => 403])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $userId = 'user_123';
+        $tokenId = 'token_123';
         $this->userTask->deleteApiToken($userId, $tokenId);
     }
 
     public function testGetApiTokenSuccess()
     {
-        $userId = '123';
-        $tokenId = 'token123';
-        $expectedToken = new APIToken();
+        $userId = 'user_123';
+        $tokenId = 'token_123';
+        $tokenFake = [
+            'id' => 'token_123',
+            'name' => 'My API Token',
+            'mfaOnCreation' => false,
+            'token' => 'abcd1234',
+            'lastUsedAt' => '2025-09-26T10:00:00Z',
+            'createdAt' => '2025-01-01T08:00:00Z',
+            'updatedAt' => '2025-09-20T12:00:00Z',
+        ];
 
-        $this->tokensApiMock->expects($this->once())
-            ->method('getApiToken')
-            ->with($userId, $tokenId)
-            ->willReturn($expectedToken);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($tokenFake)
+            ));
 
         $result = $this->userTask->getApiToken($userId, $tokenId);
-        $this->assertEquals($expectedToken, $result);
+        $this->assertInstanceOf(APIToken::class, $result);
+        $this->assertObjectProperties($result, $tokenFake);
     }
+
+    public function testGetApiTokenError()
+    {
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'not_found', 'code' => 404])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $userId = 'user_123';
+        $tokenId = 'token_123';
+        $this->userTask->getApiToken($userId, $tokenId);
+    }
+
 
     public function testDeleteLoginConnectionSuccess()
     {
         $provider = 'google';
-        $userId = '123';
+        $userId = 'user_123';
 
-        $this->connectionsApiMock->expects($this->once())
-            ->method('deleteLoginConnection')
-            ->with($provider, $userId);
+        $this->httpClient
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn(new Response(204));
+
+        $this->userTask->deleteLoginConnection($provider, $userId);
+    }
+
+    public function testDeleteLoginConnectionError()
+    {
+        $provider = 'google';
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'forbidden', 'code' => 403])
+            ));
+
+        $this->expectException(ApiException::class);
 
         $this->userTask->deleteLoginConnection($provider, $userId);
     }
@@ -462,127 +1241,424 @@ class UserTaskTest extends TestCase
     public function testGetLoginConnectionSuccess()
     {
         $provider = 'google';
-        $userId = '123';
-        $expectedConnection = new Connection();
+        $userId = 'user_123';
+        $connectionFake = [
+            'provider' => $provider,
+            'providerType' => 'oauth',
+            'isMandatory' => true,
+            'subject' => 'sub_123',
+            'emailAddress' => 'john.doe@example.com',
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+        ];
 
-        $this->connectionsApiMock->expects($this->once())
-            ->method('getLoginConnection')
-            ->with($provider, $userId)
-            ->willReturn($expectedConnection);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($connectionFake)
+            ));
 
         $result = $this->userTask->getLoginConnection($provider, $userId);
-        $this->assertEquals($expectedConnection, $result);
+        $this->assertInstanceOf(Connection::class, $result);
+        $this->assertObjectProperties($result, $connectionFake);
     }
+
+    public function testGetLoginConnectionError()
+    {
+        $provider = 'google';
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'forbidden', 'code' => 403])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getLoginConnection($provider, $userId);
+    }
+
 
     public function testListLoginConnectionsSuccess()
     {
-        $userId = '123';
-        $expectedConnections = [new Connection()];
+        $userId = 'user_123';
+        $connectionsFake = [
+            [
+                'provider' => 'google',
+                'providerType' => 'oauth',
+                'isMandatory' => true,
+                'subject' => 'sub_123',
+                'emailAddress' => 'john.doe@example.com',
+                'createdAt' => '2025-01-01T10:00:00Z',
+                'updatedAt' => '2025-09-26T12:00:00Z',
+            ],
+            [
+                'provider' => 'github',
+                'providerType' => 'oauth',
+                'isMandatory' => false,
+                'subject' => 'sub_456',
+                'emailAddress' => 'jane.doe@example.com',
+                'createdAt' => '2025-01-05T11:00:00Z',
+                'updatedAt' => '2025-09-20T08:00:00Z',
+            ],
+        ];
 
-        $this->connectionsApiMock->expects($this->once())
-            ->method('listLoginConnections')
-            ->with($userId)
-            ->willReturn($expectedConnections);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($connectionsFake)
+            ));
 
         $result = $this->userTask->listLoginConnections($userId);
-        $this->assertEquals($expectedConnections, $result);
+        $this->assertIsArray($result);
+        foreach ($result as $i => $connection) {
+            $this->assertInstanceOf(Connection::class, $connection);
+            $this->assertObjectProperties($connection, $connectionsFake[$i]);
+        }
     }
+
+    public function testListLoginConnectionsError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'forbidden', 'code' => 403])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->listLoginConnections($userId);
+    }
+
 
     public function testListExtendedAccessSuccess()
     {
-        $userId = '123';
-        $expectedResponse = new ListUserExtendedAccess200Response();
+        $userId = 'user_123';
+        $extendedAccessFake = [
+            'items' => [
+                [
+                    'userId' => $userId,
+                    'resourceId' => 'res_001',
+                    'resourceType' => 'project',
+                    'organizationId' => 'org_123',
+                    'permissions' => ['read', 'write'],
+                    'grantedAt' => '2025-01-01T10:00:00Z',
+                    'updatedAt' => '2025-09-26T12:00:00Z',
+                ],
+                [
+                    'userId' => $userId,
+                    'resourceId' => 'res_002',
+                    'resourceType' => 'team',
+                    'organizationId' => 'org_456',
+                    'permissions' => ['admin'],
+                    'grantedAt' => '2025-02-01T08:00:00Z',
+                    'updatedAt' => '2025-09-20T08:00:00Z',
+                ],
+            ]
+        ];
 
-        $this->grantsApiMock->expects($this->once())
-            ->method('listUserExtendedAccess')
-            ->with($userId, null, null, null)
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($extendedAccessFake)
+            ));
 
         $result = $this->userTask->listExtendedAccess($userId);
-        $this->assertEquals($expectedResponse, $result);
+        $this->assertInstanceOf(ListUserExtendedAccess200Response::class, $result);
+        $this->assertContainsOnlyInstancesOf(
+            ListUserExtendedAccess200ResponseItemsInner::class,
+            $result->getItems()
+        );
+        $this->assertObjectMatchesArray($result->getItems(), $extendedAccessFake['items']);
     }
 
+    public function testListExtendedAccessError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'forbidden', 'code' => 403])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->listExtendedAccess($userId);
+    }
+    
     public function testConfirmTotpEnrollmentSuccess()
     {
-        $userId = '123';
-        $requestData = ['code' => '123456'];
-        $expectedResponse = new ConfirmTotpEnrollment200Response();
+        $userId = 'user_123';
+        $requestData = [
+            'secret' => 'ABC123SECRET',
+            'passcode' => '123456',
+        ];
+        $responseFake = [
+            'recoveryCodes' => ['code1', 'code2', 'code3'],
+        ];
 
-        $this->mfaApiMock->expects($this->once())
-            ->method('confirmTotpEnrollment')
-            ->with($userId, $this->isInstanceOf(ConfirmTotpEnrollmentRequest::class))
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($responseFake)
+            ));
 
         $result = $this->userTask->confirmTotpEnrollment($userId, $requestData);
-        $this->assertEquals($expectedResponse, $result);
+        $this->assertInstanceOf(ConfirmTotpEnrollment200Response::class, $result);
+        $this->assertObjectProperties($result, $responseFake);
+    }
+
+    public function testConfirmTotpEnrollmentError()
+    {
+        $userId = 'user_123';
+        $requestData = [
+            'secret' => 'ABC123SECRET',
+            'passcode' => '123456',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode(['status' => 'invalid_request', 'code' => 400])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->confirmTotpEnrollment($userId, $requestData);
     }
 
     public function testGetTotpEnrollmentSuccess()
     {
-        $userId = '123';
-        $expectedResponse = new GetTotpEnrollment200Response();
+        $userId = 'user_123';
+        $totpFake = [
+            'issuer' => 'ExampleIssuer',
+            'accountName' => 'john_doe@example.com',
+            'secret' => 'ABC123SECRET',
+            'qrCode' => 'data:image/png;base64,iVBORw0KGgoAAAANS...',
+        ];
 
-        $this->mfaApiMock->expects($this->once())
-            ->method('getTotpEnrollment')
-            ->with($userId)
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($totpFake)
+            ));
 
         $result = $this->userTask->getTotpEnrollment($userId);
-        $this->assertEquals($expectedResponse, $result);
+
+        $this->assertInstanceOf(GetTotpEnrollment200Response::class, $result);
+        $this->assertObjectProperties($result, $totpFake);
+    }
+
+    public function testGetTotpEnrollmentError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'not_found',
+                    'code' => 404
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->getTotpEnrollment($userId);
     }
 
     public function testRecreateRecoveryCodesSuccess()
     {
-        $userId = '123';
-        $expectedResponse = new ConfirmTotpEnrollment200Response();
+        $userId = 'user_123';
 
-        $this->mfaApiMock->expects($this->once())
-            ->method('recreateRecoveryCodes')
-            ->with($userId)
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'no content',
+                    'code' => 204
+                ])
+            ));
 
-        $result = $this->userTask->recreateRecoveryCodes($userId);
-        $this->assertEquals($expectedResponse, $result);
+        $this->userTask->recreateRecoveryCodes($userId);
+
+        $this->assertTrue(true);
     }
+
+    public function testRecreateRecoveryCodesError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->recreateRecoveryCodes($userId);
+    }
+
 
     public function testWithdrawTotpEnrollmentSuccess()
     {
-        $userId = '123';
+        $userId = 'user_123';
 
-        $this->mfaApiMock->expects($this->once())
-            ->method('withdrawTotpEnrollment')
-            ->with($userId);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                null
+            ));
+
+        $this->userTask->withdrawTotpEnrollment($userId);
+
+        $this->assertTrue(true);
+    }
+
+    public function testWithdrawTotpEnrollmentError()
+    {
+        $userId = 'user_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
 
         $this->userTask->withdrawTotpEnrollment($userId);
     }
 
+
     public function testConfirmPhoneNumberSuccess()
     {
-        $sid = 'sid123';
-        $userId = '123';
-        $requestData = ['code' => '1234'];
+        $sid = 'sid_123';
+        $userId = 'user_123';
+        $code = '1234';
 
-        $this->phoneNumberApiMock->expects($this->once())
-            ->method('confirmPhoneNumber')
-            ->with($sid, $userId, $this->isInstanceOf(ConfirmPhoneNumberRequest::class));
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                null
+            ));
 
-        $this->userTask->confirmPhoneNumber($sid, $userId, $requestData);
+        $this->userTask->confirmPhoneNumber($sid, $userId, $code);
+
+        $this->assertTrue(true);
+    }
+
+    public function testConfirmPhoneNumberError()
+    {
+        $sid = 'sid_123';
+        $userId = 'user_123';
+        $code = '1234';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->confirmPhoneNumber($sid, $userId, $code);
     }
 
     public function testVerifyPhoneNumberSuccess()
     {
-        $userId = '123';
-        $requestData = ['phoneNumber' => '+1234567890'];
-        $expectedResponse = new VerifyPhoneNumber200Response();
+        $userId = 'user_123';
+        $data = [
+            'channel' => 'sms',
+            'phoneNumber' => '+1234567890'
+        ];
+        $verifyPhoneNumberFake = [
+            'sid' => 'sid_123'
+        ];
 
-        $this->phoneNumberApiMock->expects($this->once())
-            ->method('verifyPhoneNumber')
-            ->with($userId, $this->isInstanceOf(VerifyPhoneNumberRequest::class))
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($verifyPhoneNumberFake)
+            ));
 
-        $result = $this->userTask->verifyPhoneNumber($userId, $requestData);
-        $this->assertEquals($expectedResponse, $result);
+        $result = $this->userTask->verifyPhoneNumber($userId, $data);
+        $this->assertInstanceOf(VerifyPhoneNumber200Response::class, $result);
+        $this->assertObjectProperties($result, $verifyPhoneNumberFake);
     }
+
+    public function testVerifyPhoneNumberError()
+    {
+        $userId = 'user_123';
+        $data = [
+            'channel' => 'sms',
+            'phoneNumber' => '+1234567890'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                403,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'forbidden',
+                    'code' => 403
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->userTask->verifyPhoneNumber($userId, $data);
+    }
+
 
     public function testCreateProfilePictureNotImplemented()
     {
@@ -591,24 +1667,5 @@ class UserTaskTest extends TestCase
 
         $this->userTask->createProfilePicture('123');
     }
-
-    public function testMeApiException()
-    {
-        $this->expectException(ApiException::class);
-        $this->usersApiMock->expects($this->once())
-            ->method('getCurrentUser')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->userTask->me();
-    }
-
-    public function testGetInvalidArgumentException()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->usersApiMock->expects($this->once())
-            ->method('getUser')
-            ->willThrowException(new InvalidArgumentException());
-
-        $this->userTask->get('invalid-id');
-    }
+    
 }

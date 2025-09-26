@@ -2,121 +2,538 @@
 
 namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
+use Upsun\Api\DeploymentTargetApi;
+use Upsun\Api\ProjectApi;
+use Upsun\Api\ProjectSettingsApi;
+use Upsun\Api\RepositoryApi;
+use Upsun\Api\SubscriptionsApi;
+use Upsun\Api\SystemInformationApi;
+use Upsun\Api\ThirdPartyIntegrationsApi;
 use Upsun\Configuration;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
+use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\ProjectTask;
 use Upsun\Core\Tasks\SupportTicketTask;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Upsun\UpsunClient;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
 use Upsun\Model\Ticket;
 use Upsun\Model\ListTickets200Response;
-use Upsun\Model\CreateTicketRequest;
-use Upsun\Model\UpdateTicketRequest;
-use Upsun\ApiException;
-use Upsun\UpsunConfig;
 
-class SupportTicketTaskTest extends TestCase
+class SupportTicketTaskTest extends BaseTestCase
 {
-    private UpsunClient $client;
-    private DefaultApi $defaultApi;
-    private SupportApi $supportApi;
     private SupportTicketTask $task;
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->client = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $psr17Factory = new Psr17Factory();
 
-            public UpsunConfig $upsunConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public function __construct()
-            {
-            }
+        $oauthProvider = $this->createMock(OAuthProvider::class);
+
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $upsunClient->project = new class (
+            $upsunClient,
+            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+        ) extends ProjectTask {
         };
-        
-        $this->defaultApi = $this->createMock(DefaultApi::class);
-        $this->supportApi = $this->createMock(SupportApi::class);
-        $this->task = new class($this->client, $this->defaultApi, $this->supportApi) extends SupportTicketTask {
-            public function refreshToken(): void
-            {
-            }
+
+        $this->task = new class (
+            $upsunClient,
+            new DefaultApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new SupportApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+        ) extends SupportTicketTask {
         };
     }
 
-    public function testListSuccess(): void
+    public function testList(): void
     {
-        $response = $this->createMock(ListTickets200Response::class);
-        $this->defaultApi->expects($this->once())
-            ->method('listTickets')
-            ->willReturn($response);
+        $filterTicketId = 123;
+        $filterCreated = new \DateTime('2025-09-01T00:00:00Z');
+        $filterUpdated = new \DateTime('2025-09-24T12:00:00Z');
+        $filterType = 'bug';
+        $filterPriority = 'high';
+        $filterStatus = 'open';
+        $filterRequesterId = 'user-456';
+        $filterSubmitterId = 'user-789';
+        $filterAssigneeId = 'user-101';
+        $filterHasIncidents = true;
+        $filterDue = new \DateTime('2025-10-01T00:00:00Z');
+        $search = 'urgent';
+        $page = 1;
 
-        $result = $this->task->list();
+
+        $listTickets = [
+            'count' => 2,
+            'tickets' => [
+                [
+                    'ticketId' => 101,
+                    'created' => '2025-09-01T10:00:00Z',
+                    'updated' => '2025-09-24T12:00:00Z',
+                    'type' => 'bug',
+                    'subject' => 'Ticket 101 subject',
+                    'description' => 'Description for ticket 101',
+                    'priority' => 'high',
+                    'status' => 'open',
+                    'requesterId' => 'user-001',
+                    'submitterId' => 'user-002',
+                    'assigneeId' => 'user-003',
+                    'hasIncidents' => true,
+                    'due' => '2025-10-01T00:00:00Z',
+                    'tags' => ['urgent', 'frontend'],
+                    'jira' => [
+                        [
+                            'id' => 1,
+                            'ticketId' => 101,
+                            'issueId' => 1001,
+                            'issueKey' => 'PROJ-101',
+                            'createdAt' => '2025.0',
+                            'updatedAt' => '2025.0',
+                        ]
+                    ],
+                ],
+                [
+                    'ticketId' => 102,
+                    'created' => '2025-09-05T11:30:00Z',
+                    'updated' => '2025-09-24T13:45:00Z',
+                    'type' => 'feature',
+                    'subject' => 'Ticket 102 subject',
+                    'description' => 'Description for ticket 102',
+                    'priority' => 'medium',
+                    'status' => 'closed',
+                    'requesterId' => 'user-004',
+                    'submitterId' => 'user-005',
+                    'assigneeId' => 'user-006',
+                    'hasIncidents' => false,
+                    'due' => '2025-10-15T00:00:00Z',
+                    'tags' => ['backend'],
+                    'jira' => [],
+                ],
+            ],
+            'links' => [
+                'self' => [
+                    'title' => 'Current Page',
+                    'href' => 'https://api.example.com/tickets?page=1',
+                ],
+                'previous' => [
+                    'title' => 'Previous Page',
+                    'href' => 'https://api.example.com/tickets?page=0',
+                ],
+                'next' => [
+                    'title' => 'Next Page',
+                    'href' => 'https://api.example.com/tickets?page=2',
+                ],
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($listTickets)
+            ));
+
+        $result = $this->task->list(
+            $filterTicketId,
+            $filterCreated,
+            $filterUpdated,
+            $filterType,
+            $filterPriority,
+            $filterStatus,
+            $filterRequesterId,
+            $filterSubmitterId,
+            $filterAssigneeId,
+            $filterHasIncidents,
+            $filterDue,
+            $search,
+            $page
+        );
+
         $this->assertInstanceOf(ListTickets200Response::class, $result);
+        $this->assertContainsOnlyInstancesOf(Ticket::class, $result->getTickets());
+        $this->assertObjectMatchesArray($result->getTickets(), $listTickets['tickets']);
     }
 
-    public function testCreateSuccess(): void
+    /**
+     * @throws \Exception
+     */
+    public function testCreate(): void
     {
-        $ticket = $this->createMock(Ticket::class);
-        $this->supportApi->expects($this->once())
-            ->method('createTicket')
-            ->with($this->isInstanceOf(CreateTicketRequest::class))
-            ->willReturn($ticket);
+        $fakeTicketData = [
+            'subject' => 'Bug: Unable to login',
+            'description' => 'Users report that login fails with 500 error.',
+            'priority' => 'high',
+            'subscriptionId' => 'sub-001',
+            'organizationId' => 'org-001',
+            'affectedUrl' => 'https://example.com/login',
+            'followupTid' => 'ticket-001',
+            'category' => 'authentication',
+            'attachments' => [
+                [
+                    'filename' => 'screenshot1.png',
+                    'data' => 'base64-content',
+                ],
+                [
+                    'filename' => 'error_log.txt',
+                    'data' => 'base64-content',
+                ],
+            ],
+            'collaboratorIds' => ['user-004', 'user-005'],
+        ];
 
-        $result = $this->task->create(['title' => 'Issue']);
+        $ticket = [
+            'ticketId' => 101,
+            'created' => '2025-09-01T10:00:00Z',
+            'updated' => '2025-09-24T12:00:00Z',
+            'type' => 'bug',
+            'subject' => 'Bug: Unable to login',
+            'description' => 'Users report that login fails with 500 error.',
+            'priority' => 'high',
+            'followupTid' => 'ticket-001',
+            'status' => 'open',
+            'recipient' => 'user-001',
+            'requesterId' => 'user-001',
+            'submitterId' => 'user-002',
+            'assigneeId' => 'user-003',
+            'organizationId' => 'org-001',
+            'collaboratorIds' => ['user-004', 'user-005'],
+            'hasIncidents' => true,
+            'due' => '2025-10-01T00:00:00Z',
+            'tags' => ['urgent', 'frontend'],
+            'subscriptionId' => 'sub-001',
+            'ticketGroup' => 'group-001',
+            'supportPlan' => 'premium',
+            'affectedUrl' => 'https://example.com/login',
+            'queue' => 'support',
+            'issueType' => 'bug',
+            'resolutionTime' => '2025-09-05T10:00:00Z',
+            'responseTime' => '2025-09-01T12:00:00Z',
+            'projectUrl' => 'https://project.example.com',
+            'region' => 'us-east-1',
+            'category' => 'authentication',
+            'environment' => 'production',
+            'ticketSharingStatus' => 'private',
+            'applicationTicketUrl' => 'https://app.example.com/ticket/101',
+            'infrastructureTicketUrl' => 'https://infra.example.com/ticket/101',
+            'jira' => [
+                [
+                    'id' => 1,
+                    'ticketId' => 101,
+                    'issueId' => 1001,
+                    'issueKey' => 'PROJ-101',
+                    'createdAt' => '2025-09-01T10:00:00Z',
+                    'updatedAt' => '2025-09-01T11:00:00Z',
+                ]
+            ],
+            'zdTicketUrl' => 'https://zendesk.example.com/tickets/101',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($ticket)
+            ));
+
+        $result = $this->task->create($fakeTicketData);
         $this->assertInstanceOf(Ticket::class, $result);
+        $this->assertObjectProperties($result, $fakeTicketData);
     }
 
-    public function testUpdateSuccess(): void
+    /**
+     * @throws \Exception
+     */
+    public function testUpdate(): void
     {
-        $ticket = $this->createMock(Ticket::class);
-        $this->supportApi->expects($this->once())
-            ->method('updateTicket') 
-            ->with($this->equalTo('123'), $this->isInstanceOf(UpdateTicketRequest::class))
-            ->willReturn($ticket);
+        $fakeTicketData = [
+            'status' => 'open',
+            'collaboratorIds' => ['user-004', 'user-005'],
+            'collaboratorsReplace' => true
+        ];
 
-        $result = $this->task->update('123', ['status' => 'open']);
+        $ticket = [
+            'ticketId' => 101,
+            'created' => '2025-09-01T10:00:00Z',
+            'updated' => '2025-09-24T12:00:00Z',
+            'type' => 'bug',
+            'subject' => 'Bug: Unable to login',
+            'description' => 'Users report that login fails with 500 error.',
+            'priority' => 'high',
+            'followupTid' => 'ticket-001',
+            'status' => 'open',
+            'recipient' => 'user-001',
+            'requesterId' => 'user-001',
+            'submitterId' => 'user-002',
+            'assigneeId' => 'user-003',
+            'organizationId' => 'org-001',
+            'collaboratorIds' => ['user-004', 'user-005'],
+            'hasIncidents' => true,
+            'due' => '2025-10-01T00:00:00Z',
+            'tags' => ['urgent', 'frontend'],
+            'subscriptionId' => 'sub-001',
+            'ticketGroup' => 'group-001',
+            'supportPlan' => 'premium',
+            'affectedUrl' => 'https://example.com/login',
+            'queue' => 'support',
+            'issueType' => 'bug',
+            'resolutionTime' => '2025-09-05T10:00:00Z',
+            'responseTime' => '2025-09-01T12:00:00Z',
+            'projectUrl' => 'https://project.example.com',
+            'region' => 'us-east-1',
+            'category' => 'authentication',
+            'environment' => 'production',
+            'ticketSharingStatus' => 'private',
+            'applicationTicketUrl' => 'https://app.example.com/ticket/101',
+            'infrastructureTicketUrl' => 'https://infra.example.com/ticket/101',
+            'jira' => [
+                [
+                    'id' => 1,
+                    'ticketId' => 101,
+                    'issueId' => 1001,
+                    'issueKey' => 'PROJ-101',
+                    'createdAt' => '2025-09-01T10:00:00Z',
+                    'updatedAt' => '2025-09-01T11:00:00Z',
+                ]
+            ],
+            'zdTicketUrl' => 'https://zendesk.example.com/tickets/101',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($ticket)
+            ));
+
+        $result = $this->task->update('ticket-123', $fakeTicketData);
         $this->assertInstanceOf(Ticket::class, $result);
+        $this->assertObjectProperties($result, $fakeTicketData);
     }
 
-    public function testListCategoriesSuccess(): void
+    public function testListCategories(): void
     {
-        $this->supportApi->expects($this->once())
-            ->method('listTicketCategories')
-            ->willReturn([['label' => 'Bug']]);
+        $projId = 'project-123';
+        $orgId = 'org-123';
 
-        $result = $this->task->listCategories();
-        $this->assertIsArray($result);
+        $ticketCategories = [
+            [
+                'id' => 'bug',
+                'label' => 'Bug Report',
+            ],
+            [
+                'id' => 'feature',
+                'label' => 'Feature Request',
+            ],
+            [
+                'id' => 'support',
+                'label' => 'Support',
+            ],
+        ];
+
+        $projectFake = [
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Student Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:student/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'id' => 'sub_123456',
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'student-namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'student-project.upsun.dev',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($projectFake)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($ticketCategories)
+                )
+            );
+
+        $result = $this->task->listCategories($orgId, $projId);
+        $this->assertContainsOnlyInstancesOf(ListTicketCategories200ResponseInner::class, $result);
+        $this->assertObjectMatchesArray($result, $ticketCategories);
     }
 
-    public function testListPrioritiesSuccess(): void
+    /**
+     * @throws \Exception
+     */
+    public function testListPriorities(): void
     {
-        $this->supportApi->expects($this->once())
-            ->method('listTicketPriorities')
-            ->willReturn([['label' => 'High']]);
+        $projId = 'project-123';
+        $priority = null;
 
-        $result = $this->task->listPriorities();
-        $this->assertIsArray($result);
-    }
+        $ticketPriorities = [
+            [
+                'id' => 'low',
+                'label' => 'Low',
+                'shortDescription' => 'Low priority',
+                'description' => 'Tickets that are not urgent and can be resolved later.',
+            ],
+            [
+                'id' => 'medium',
+                'label' => 'Medium',
+                'shortDescription' => 'Medium priority',
+                'description' => 'Tickets that should be addressed soon but are not critical.',
+            ],
+            [
+                'id' => 'high',
+                'label' => 'High',
+                'shortDescription' => 'High priority',
+                'description' => 'Tickets that require immediate attention.',
+            ],
+            [
+                'id' => 'critical',
+                'label' => 'Critical',
+                'shortDescription' => 'Critical priority',
+                'description' => 'Tickets that must be resolved immediately to prevent major impact.',
+            ],
+        ];
 
-    public function testCreateThrowsApiException(): void
-    {
-        $this->supportApi->expects($this->once())
-            ->method('createTicket')
-            ->willThrowException($this->createMock(ApiException::class));
+        $projectFake = [
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Student Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:student/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'id' => 'sub_123456',
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'student-namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'student-project.upsun.dev',
+        ];
 
-        $this->expectException(ApiException::class);
-        $this->task->create(['invalid' => true]);
-    }
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturnOnConsecutiveCalls(
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($projectFake)
+                ),
+                new Response(
+                    200,
+                    ['Content-Type' => 'application/json'],
+                    json_encode($ticketPriorities)
+                )
+            );
 
-    public function testUpdateThrowsApiException(): void
-    {
-        $this->supportApi->expects($this->once())
-            ->method('updateTicket')
-            ->willThrowException($this->createMock(ApiException::class));
-
-        $this->expectException(ApiException::class);
-        $this->task->update('invalid-id', ['invalid' => true]);
+        $result = $this->task->listPriorities($projId, $priority);
+        $this->assertContainsOnlyInstancesOf(ListTicketPriorities200ResponseInner::class, $result);
+        $this->assertObjectMatchesArray($result, $ticketPriorities);
     }
 }

@@ -225,7 +225,7 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      * @see
-     * curl -X GET "https://api.upsun.com/orders/download?token=&#39;token_example&#39;" \
+     * curl -X GET "https://api.upsun.com/orders/download?token=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/pdf"
      */
@@ -302,7 +302,9 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['token'] = $token;
+                $queryParams['token'] = $token instanceof \DateTime
+                    ? $token->format(DATE_ATOM)
+                    : ($token);
             }
         }
 
@@ -366,7 +368,7 @@ final class OrdersApi extends AbstractApi
      * @return \Upsun\Model\Order
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders/{order_id}?mode=&#39;mode_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders/{order_id}?mode=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -468,7 +470,9 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['mode'] = $mode;
+                $queryParams['mode'] = $mode instanceof \DateTime
+                    ? $mode->format(DATE_ATOM)
+                    : ($mode);
             }
         }
 
@@ -548,7 +552,7 @@ final class OrdersApi extends AbstractApi
      * @return \Upsun\Model\ListOrgOrders200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders?filterStatus=&#39;filterStatus_example&#39;filterTotal=56page=56mode=&#39;mode_example&#39;" \
+     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders?filterStatus=value&filterTotal=value&page=value&mode=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -651,7 +655,9 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
 
@@ -664,7 +670,9 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[total]'] = $filterTotal;
+                $queryParams['filter[total]'] = $filterTotal instanceof \DateTime
+                    ? $filterTotal->format(DATE_ATOM)
+                    : ($filterTotal);
             }
         }
 
@@ -677,7 +685,9 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
@@ -690,7 +700,9 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['mode'] = $mode;
+                $queryParams['mode'] = $mode instanceof \DateTime
+                    ? $mode->format(DATE_ATOM)
+                    : ($mode);
             }
         }
 

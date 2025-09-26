@@ -1319,6 +1319,65 @@ class OrganizationTaskTest extends BaseTestCase
         $projectId = 'proj-1';
         $organizationId = 'org-1';
 
+        $fakeProject = [
+            'id' => $projectId,
+            'attributes' => [
+                'language' => 'php',
+                'framework' => 'symfony',
+            ],
+            'title' => 'My Student Project',
+            'description' => 'This is a fake project for testing.',
+            'owner' => 'user_123',
+            'status' => [
+                'code' => 'active',
+                'message' => 'All systems operational',
+            ],
+            'timezone' => 'Europe/Paris',
+            'region' => 'eu-west-1',
+            'repository' => [
+                'url' => 'git@github.com:student/project.git',
+                'clientSshKey' => 'ssh-rsa AAAAB3Nza...fake',
+            ],
+            'subscription' => [
+                'licenseUri' => 'https://upsun.com/licenses/123',
+                'storage' => 10240,
+                'includedUsers' => 5,
+                'subscriptionManagementUri' => 'https://upsun.com/manage/123',
+                'restricted' => false,
+                'suspended' => false,
+                'userLicenses' => 10,
+                'id' => 'sub_123456',
+                'plan' => 'pro',
+                'environments' => 3,
+                'resources' => [
+                    'containerProfiles' => true,
+                    'production' => [
+                        'legacyDevelopment' => false,
+                        'maxCpu' => 2.0,
+                        'maxMemory' => 4096,
+                        'maxEnvironments' => 5,
+                    ],
+                    'development' => [
+                        'legacyDevelopment' => true,
+                        'maxCpu' => 1.0,
+                        'maxMemory' => 2048,
+                        'maxEnvironments' => 10,
+                    ],
+                ],
+                'resourceValidationUrl' => 'https://upsun.com/resources/validate',
+                'imageTypes' => [
+                    'only' => ['php:8.2', 'node:18'],
+                    'exclude' => ['java:11'],
+                ],
+            ],
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-01T12:00:00Z',
+            'namespace' => 'student-namespace',
+            'organization' => 'org_987',
+            'defaultBranch' => 'main',
+            'defaultDomain' => 'student-project.upsun.dev',
+        ];
+
         $this->httpClient
             ->expects($this->atMost(2))
             ->method('sendRequest')
@@ -1326,54 +1385,7 @@ class OrganizationTaskTest extends BaseTestCase
                 new Response(
                     200,
                     ['Content-Type' => 'application/json'],
-                    json_encode([
-                        "id" => "fake-proj-1234",
-                        "organization_id" => "fake-org-5678",
-                        "subscription_id" => "999999",
-                        "vendor" => "upsun",
-                        "region" => "us.platform.sh",
-                        "title" => "Demo Project",
-                        "plan" => "upsun/flexible",
-                        "default_branch" => "main",
-                        "status" => "active",
-                        "timezone" => "America/New_York",
-                        "options_url" => "",
-                        "agency_site" => false,
-                        "support_tier" => "upsun_standard",
-                        "options_custom" => [
-                            "initialize" => [
-                                "profile" => "demo",
-                                "repository" => "https://github.com/platformsh/demo-cmd.git"
-                            ]
-                        ],
-                        "trial_plan" => false,
-                        "project_ui" => "https://console.upsun.com/fake-org-5678/fake-proj-1234",
-                        "created_at" => "2023-10-24T16:34:45Z",
-                        "updated_at" => "2025-04-08T11:12:55.802313Z",
-                        "_links" => [
-                            "activities" => [
-                                "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/activities"
-                            ],
-                            "addons" => [
-                                "href" => "/organizations/fake-org-5678/projects/fake-proj-1234/addons"
-                            ],
-                            "api" => [
-                                "href" => "/projects/fake-proj-1234"
-                            ],
-                            "self" => [
-                                "href" => "/organizations/fake-org-5678/projects/fake-proj-1234"
-                            ],
-                            "subscription" => [
-                                "href" => "/organizations/fake-org-5678/subscriptions/999999"
-                            ]
-                        ],
-                        "type" => "grid",
-                        "locked" => false,
-                        "cse_notes" => "",
-                        "fastly_service_ids" => [],
-                        "edgee_org_id" => "",
-                        "edgee_project_id" => ""
-                    ])
+                    json_encode($fakeProject)
                 ),
                 new Response(
                     204,

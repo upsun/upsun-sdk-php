@@ -712,7 +712,7 @@ final class UserAccessApi extends AbstractApi
      * @return \Upsun\Model\ListProjectUserAccess200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/user-access?pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/projects/{project_id}/user-access?pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -829,7 +829,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -842,7 +844,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -855,7 +859,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -868,7 +874,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 
@@ -940,7 +948,7 @@ final class UserAccessApi extends AbstractApi
      * @return \Upsun\Model\ListProjectUserAccess200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/project-access?filterOrganizationId=&#39;filterOrganizationId_example&#39;pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=-updated_at" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/project-access?filterOrganizationId=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -1063,7 +1071,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filterOrganizationId;
+                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof \DateTime
+                    ? $filterOrganizationId->format(DATE_ATOM)
+                    : ($filterOrganizationId);
             }
         }
 
@@ -1076,7 +1086,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -1089,7 +1101,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -1102,7 +1116,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -1115,7 +1131,9 @@ final class UserAccessApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 

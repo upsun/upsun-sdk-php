@@ -8,6 +8,8 @@ use Upsun\ApiException;
 use Upsun\Api\DefaultApi;
 use Upsun\Api\SupportApi;
 use Upsun\Model\CreateTicketRequest;
+use Upsun\Model\ListTicketCategories200ResponseInner;
+use Upsun\Model\ListTicketPriorities200ResponseInner;
 use Upsun\Model\ListTickets200Response;
 use Upsun\Model\Ticket;
 use Upsun\Model\UpdateTicketRequest;
@@ -95,21 +97,27 @@ class SupportTicketTask extends TaskBase
     /**
      * Lists support ticket categories
      *
+     * @return  ListTicketCategories200ResponseInner[]
+     *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
-    public function listCategories(?string $projectId = null, ?string $organizationId = null): array
+    public function listCategories(?string $organizationId = null, ?string $projectId = null): array
     {
-        return $this->supportApi->listTicketCategories($projectId, $organizationId);
+        $project = $projectId ? $this->client->project->get($projectId) : null;
+        return $this->supportApi->listTicketCategories($project?->getSubscription()?->getId(), $organizationId);
     }
 
     /**
      * Lists support ticket priorities
      *
+     * @return ListTicketPriorities200ResponseInner[]
+     *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function listPriorities(?string $projectId = null, ?string $category = null): array
     {
-        return $this->supportApi->listTicketPriorities($projectId, $category);
+        $project = $projectId ? $this->client->project->get($projectId) : null;
+        return $this->supportApi->listTicketPriorities($project?->getSubscription()?->getId(), $category);
     }
 
     /**

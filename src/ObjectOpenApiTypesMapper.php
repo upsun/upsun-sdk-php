@@ -3181,6 +3181,7 @@ final class ObjectOpenApiTypesMapper
             'restricted' => 'bool',
             'suspended' => 'bool',
             'user_licenses' => 'int',
+            'id' => 'string',
             'plan' => '?string',
             'environments' => '?int',
             'resources' => '?\Upsun\Model\ResourcesLimits',

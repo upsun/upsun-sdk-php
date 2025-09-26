@@ -956,7 +956,7 @@ final class TeamsApi extends AbstractApi
      * @return \Upsun\Model\ListTeamMembers200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/teams/{team_id}/members?pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=&#39;sort_example&#39;" \
+     * curl -X GET "https://api.upsun.com/teams/{team_id}/members?pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1053,7 +1053,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -1066,7 +1068,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -1079,7 +1083,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 
@@ -1151,7 +1157,7 @@ final class TeamsApi extends AbstractApi
      * @return \Upsun\Model\ListTeams200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/teams?filterOrganizationId=new \Upsun\Model\\Upsun\Model\StringFilter()filterId=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=&#39;sort_example&#39;" \
+     * curl -X GET "https://api.upsun.com/teams?filterOrganizationId=value&filterId=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1269,7 +1275,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filterOrganizationId->getEq();
+                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof \DateTime
+                    ? $filterOrganizationId->format(DATE_ATOM)
+                    : ($filterOrganizationId->getEq());
             }
         }
 
@@ -1282,7 +1290,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[id]'] = $filterId->getEq();
+                $queryParams['filter[id]'] = $filterId instanceof \DateTime
+                    ? $filterId->format(DATE_ATOM)
+                    : ($filterId->getEq());
             }
         }
 
@@ -1295,7 +1305,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof \DateTime
+                    ? $filterUpdatedAt->format(DATE_ATOM)
+                    : ($filterUpdatedAt->getEq());
             }
         }
 
@@ -1308,7 +1320,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -1321,7 +1335,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -1334,7 +1350,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -1347,7 +1365,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 
@@ -1411,7 +1431,7 @@ final class TeamsApi extends AbstractApi
      * @return \Upsun\Model\ListTeams200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/teams?filterOrganizationId=new \Upsun\Model\\Upsun\Model\StringFilter()filterUpdatedAt=new \Upsun\Model\\Upsun\Model\DateTimeFilter()pageSize=56pageBefore=&#39;pageBefore_example&#39;pageAfter=&#39;pageAfter_example&#39;sort=&#39;sort_example&#39;" \
+     * curl -X GET "https://api.upsun.com/users/{user_id}/teams?filterOrganizationId=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -1540,7 +1560,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[organization_id]'] = $filterOrganizationId->getEq();
+                $queryParams['filter[organization_id]'] = $filterOrganizationId instanceof \DateTime
+                    ? $filterOrganizationId->format(DATE_ATOM)
+                    : ($filterOrganizationId->getEq());
             }
         }
 
@@ -1553,7 +1575,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated_at]'] = $filterUpdatedAt->getEq();
+                $queryParams['filter[updated_at]'] = $filterUpdatedAt instanceof \DateTime
+                    ? $filterUpdatedAt->format(DATE_ATOM)
+                    : ($filterUpdatedAt->getEq());
             }
         }
 
@@ -1566,7 +1590,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[size]'] = $pageSize;
+                $queryParams['page[size]'] = $pageSize instanceof \DateTime
+                    ? $pageSize->format(DATE_ATOM)
+                    : ($pageSize);
             }
         }
 
@@ -1579,7 +1605,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[before]'] = $pageBefore;
+                $queryParams['page[before]'] = $pageBefore instanceof \DateTime
+                    ? $pageBefore->format(DATE_ATOM)
+                    : ($pageBefore);
             }
         }
 
@@ -1592,7 +1620,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page[after]'] = $pageAfter;
+                $queryParams['page[after]'] = $pageAfter instanceof \DateTime
+                    ? $pageAfter->format(DATE_ATOM)
+                    : ($pageAfter);
             }
         }
 
@@ -1605,7 +1635,9 @@ final class TeamsApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sort'] = $sort;
+                $queryParams['sort'] = $sort instanceof \DateTime
+                    ? $sort->format(DATE_ATOM)
+                    : ($sort);
             }
         }
 

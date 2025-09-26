@@ -2,135 +2,322 @@
 
 namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
 use Upsun\ApiException;
 use Upsun\Api\CertManagementApi;
 use Upsun\Configuration;
+use Upsun\Core\OAuthProvider;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\Certificate;
-use Upsun\Model\CertificateCreateInput;
-use Upsun\Model\CertificatePatch;
-use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\Tasks\CertificateTask;
 use Upsun\UpsunClient;
-use Upsun\UpsunConfig;
 
 class CertificateTaskTest extends BaseTestCase
 {
-    private $apiMock;
-    private $task;
+    private CertificateTask $task;
 
-    private UpsunClient $clientMock;
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->apiMock = $this->createMock(CertManagementApi::class);
+        $psr17Factory = new Psr17Factory();
 
-        $this->clientMock = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public UpsunConfig $upsunConfig;
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->task = new class($this->clientMock, $this->apiMock) extends CertificateTask {
-            public function refreshToken(): void {}
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->task = new class (
+            $upsunClient,
+            new CertManagementApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+        ) extends CertificateTask {
         };
     }
 
-    public function testCreateCertificate(): void
+    public function testCreateCertificateSuccess()
     {
-        $projectId = 'proj-123';
-        $input = ['certificate' => 'data', 'key' => 'secret'];
-        $expectedResponse = $this->createMock(AcceptedResponse::class);
+        $projectId = 'proj_123';
+        $options = [
+            'certificate' => 'cert-data',
+            'key' => 'key-data',
+            'chain' => ['chain1', 'chain2'],
+            'isInvalid' => false,
+        ];
 
-        $this->apiMock->expects($this->once())
-            ->method('createProjectsCertificates')
-            ->with($projectId, $this->isInstanceOf(CertificateCreateInput::class))
-            ->willReturn($expectedResponse);
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204,
+        ];
 
-        $result = $this->task->create($projectId, $input);
-        $this->assertSame($expectedResponse, $result);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->task->create($projectId, $options);
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testDeleteCertificate(): void
+    public function testCreateCertificateError()
     {
-        $projectId = 'proj-123';
-        $certId = 'cert-abc';
-        $expectedResponse = $this->createMock(AcceptedResponse::class);
+        $projectId = 'proj_123';
+        $options = [
+            'certificate' => 'cert-data',
+            'key' => 'key-data',
+        ];
 
-        $this->apiMock->expects($this->once())
-            ->method('deleteProjectsCertificates')
-            ->with($projectId, $certId)
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid certificate data'
+                ])
+            ));
 
-        $result = $this->task->delete($projectId, $certId);
-        $this->assertSame($expectedResponse, $result);
+        $this->expectException(ApiException::class);
+
+        $this->task->create($projectId, $options);
     }
 
-    public function testGetCertificate(): void
+    public function testDeleteCertificateSuccess()
     {
-        $projectId = 'proj-123';
-        $certId = 'cert-xyz';
-        $expected = $this->createMock(Certificate::class);
+        $projectId = 'proj_123';
+        $certificateId = 'cert_456';
 
-        $this->apiMock->expects($this->once())
-            ->method('getProjectsCertificates')
-            ->with($projectId, $certId)
-            ->willReturn($expected);
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204,
+        ];
 
-        $result = $this->task->get($projectId, $certId);
-        $this->assertSame($expected, $result);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->task->delete($projectId, $certificateId);
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testListCertificates(): void
+    public function testDeleteCertificateError()
     {
-        $projectId = 'proj-123';
-        $cert1 = $this->createMock(Certificate::class);
-        $cert2 = $this->createMock(Certificate::class);
+        $projectId = 'proj_123';
+        $certificateId = 'cert_456';
 
-        $this->apiMock->expects($this->once())
-            ->method('listProjectsCertificates')
-            ->with($projectId)
-            ->willReturn([$cert1, $cert2]);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 404,
+                    'message' => 'Certificate not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->task->delete($projectId, $certificateId);
+    }
+
+    public function testGetCertificateSuccess()
+    {
+        $projectId = 'proj_123';
+        $certificateId = 'cert_456';
+
+        $fakeCertificate = [
+            'certificate' => '-----BEGIN CERTIFICATE----- ...',
+            'chain' => ['chain1', 'chain2'],
+            'isProvisioned' => true,
+            'isInvalid' => false,
+            'isRoot' => false,
+            'domains' => ['example.com', 'www.example.com'],
+            'authType' => ['http', 'dns'],
+            'issuer' => [
+                ['oid' => '1.2.3.4', 'value' => 'Issuer Name', 'alias' => 'CA']
+            ],
+            'expiresAt' => '2025-12-31T23:59:59+00:00',
+            'createdAt' => '2025-01-01T10:00:00+00:00',
+            'updatedAt' => '2025-09-26T12:00:00+00:00',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeCertificate)
+            ));
+
+        $result = $this->task->get($projectId, $certificateId);
+
+        $this->assertInstanceOf(Certificate::class, $result);
+        $this->assertObjectProperties($result, $fakeCertificate);
+    }
+
+    public function testGetCertificateError()
+    {
+        $projectId = 'proj_123';
+        $certificateId = 'cert_456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 404,
+                    'message' => 'Certificate not found'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->task->get($projectId, $certificateId);
+    }
+
+    public function testListCertificatesSuccess()
+    {
+        $projectId = 'proj_123';
+
+        $fakeCertificates = [
+            [
+                'certificate' => '-----BEGIN CERTIFICATE----- ...',
+                'chain' => ['chain1', 'chain2'],
+                'isProvisioned' => true,
+                'isInvalid' => false,
+                'isRoot' => false,
+                'domains' => ['example.com'],
+                'authType' => ['http'],
+                'issuer' => [
+                    ['oid' => '1.2.3.4', 'value' => 'Issuer Name', 'alias' => 'CA']
+                ],
+                'expiresAt' => '2025-12-31T23:59:59+00:00',
+                'createdAt' => '2025-01-01T10:00:00+00:00',
+                'updatedAt' => '2025-09-26T12:00:00+00:00',
+            ],
+            [
+                'certificate' => '-----BEGIN CERTIFICATE----- ...',
+                'chain' => ['chainA', 'chainB'],
+                'isProvisioned' => true,
+                'isInvalid' => false,
+                'isRoot' => true,
+                'domains' => ['test.com'],
+                'authType' => ['dns'],
+                'issuer' => [
+                    ['oid' => '2.3.4.5', 'value' => 'Another Issuer', 'alias' => 'CA2']
+                ],
+                'expiresAt' => '2026-01-31T23:59:59+00:00',
+                'createdAt' => '2025-02-01T10:00:00+00:00',
+                'updatedAt' => '2025-09-26T12:00:00+00:00',
+            ]
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeCertificates)
+            ));
 
         $result = $this->task->list($projectId);
 
         $this->assertIsArray($result);
-        $this->assertCount(2, $result);
         $this->assertContainsOnlyInstancesOf(Certificate::class, $result);
+        $this->assertObjectMatchesArray($result, $fakeCertificates);
     }
 
-    public function testUpdateCertificate(): void
+    public function testListCertificatesError()
     {
-        $projectId = 'proj-123';
-        $certId = 'cert-456';
-        $patch = ['label' => 'updated-cert'];
-        $expectedResponse = $this->createMock(AcceptedResponse::class);
+        $projectId = 'proj_123';
 
-        $this->apiMock->expects($this->once())
-            ->method('updateProjectsCertificates')
-            ->with(
-                $projectId,
-                $certId,
-                $this->isInstanceOf(CertificatePatch::class)
-            )
-            ->willReturn($expectedResponse);
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                500,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 500,
+                    'message' => 'Internal server error'
+                ])
+            ));
 
-        $result = $this->task->update($projectId, $certId, $patch);
-        $this->assertSame($expectedResponse, $result);
-    }
-
-    public function testApiExceptionOnCreate(): void
-    {
         $this->expectException(ApiException::class);
-        $this->apiMock->method('createProjectsCertificates')
-            ->willThrowException($this->createMock(ApiException::class));
 
-        $this->task->create('proj-id', ['certificate' => 'data', 'key' => 'key']);
+        $this->task->list($projectId);
+    }
+
+    public function testUpdateCertificateSuccess()
+    {
+        $projectId = 'proj_123';
+        $certificateId = 'cert_123';
+        $data = [
+            'chain' => ['newChain1', 'newChain2'],
+            'isInvalid' => false,
+        ];
+
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->task->update($projectId, $certificateId, $data);
+
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
+    }
+
+    public function testUpdateCertificateError()
+    {
+        $projectId = 'proj_123';
+        $certificateId = 'cert_123';
+        $data = [
+            'chain' => ['newChain1'],
+            'isInvalid' => true,
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid certificate data'
+                ])
+            ));
+
+        $this->expectException(ApiException::class);
+
+        $this->task->update($projectId, $certificateId, $data);
     }
 }

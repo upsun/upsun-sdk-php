@@ -65,7 +65,7 @@ final class ReferencesApi extends AbstractApi
      * @return array<string,\Upsun\Model\OrganizationReference>
      *
      * @see
-     * curl -X GET "https://api.upsun.com/ref/organizations?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
+     * curl -X GET "https://api.upsun.com/ref/organizations?in=value&sig=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -161,7 +161,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
 
@@ -174,7 +176,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -238,7 +242,7 @@ final class ReferencesApi extends AbstractApi
      * @return array<string,\Upsun\Model\ProjectReference>
      *
      * @see
-     * curl -X GET "https://api.upsun.com/ref/projects?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
+     * curl -X GET "https://api.upsun.com/ref/projects?in=value&sig=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -334,7 +338,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
 
@@ -347,7 +353,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -411,7 +419,7 @@ final class ReferencesApi extends AbstractApi
      * @return array<string,\Upsun\Model\RegionReference>
      *
      * @see
-     * curl -X GET "https://api.upsun.com/ref/regions?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
+     * curl -X GET "https://api.upsun.com/ref/regions?in=value&sig=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json, application/problem+json"
      */
@@ -507,7 +515,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
 
@@ -520,7 +530,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -584,7 +596,7 @@ final class ReferencesApi extends AbstractApi
      * @return array<string,\Upsun\Model\TeamReference>
      *
      * @see
-     * curl -X GET "https://api.upsun.com/ref/teams?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
+     * curl -X GET "https://api.upsun.com/ref/teams?in=value&sig=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -680,7 +692,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
 
@@ -693,7 +707,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 
@@ -757,7 +773,7 @@ final class ReferencesApi extends AbstractApi
      * @return array<string,\Upsun\Model\UserReference>
      *
      * @see
-     * curl -X GET "https://api.upsun.com/ref/users?in=&#39;in_example&#39;sig=&#39;sig_example&#39;" \
+     * curl -X GET "https://api.upsun.com/ref/users?in=value&sig=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -853,7 +869,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['in'] = $in;
+                $queryParams['in'] = $in instanceof \DateTime
+                    ? $in->format(DATE_ATOM)
+                    : ($in);
             }
         }
 
@@ -866,7 +884,9 @@ final class ReferencesApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['sig'] = $sig;
+                $queryParams['sig'] = $sig instanceof \DateTime
+                    ? $sig->format(DATE_ATOM)
+                    : ($sig);
             }
         }
 

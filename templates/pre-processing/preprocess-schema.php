@@ -242,6 +242,28 @@ class OpenApiPreprocessor
         }
     }
 
+    /**
+     * Add project.subscription.id field if not exist yet
+     * @todo remove if solved: https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
+     */
+    public function fixProjectSubscriptionId(): void
+    {
+        $project = &$this->schema['components']['schemas']['Project'];
+
+        // Add id property if missing
+        if (!isset($project['properties']['subscription']['properties']['id'])) {
+            $project['properties']['subscription']['properties']['id'] = [
+                'type' => 'string',
+                'title' => 'ID',
+            ];
+        }
+
+        // Add id to required if not already there
+        if (!in_array('id', $project['properties']['subscription']['required'], true)) {
+            $project['properties']['subscription']['required'][] = 'id';
+        }
+    }
+
 
     /**
      * Add Deployment.id field if not exist yet
@@ -955,6 +977,9 @@ try {
     // Add Activity.id
     $preprocessor->fixActivityId();
 
+    // Add Project.subscription.id
+    $preprocessor->fixProjectSubscriptionId();
+    
     // Add Deployment.id
     $preprocessor->fixDeploymentId();
 

@@ -2,9 +2,22 @@
 
 namespace Upsun\Test\Core;
 
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Nyholm\Psr7\Response;
+use Psr\Http\Client\ClientInterface;
+use Upsun\Api\APITokensApi;
+use Upsun\Api\ConnectionsApi;
+use Upsun\Api\GrantsApi;
+use Upsun\Api\MFAApi;
+use Upsun\Api\PhoneNumberApi;
+use Upsun\Api\UserAccessApi;
+use Upsun\Api\UserProfilesApi;
+use Upsun\Api\UsersApi;
 use Upsun\Configuration;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttplugClient;
+use Upsun\Core\OAuthProvider;
+use Upsun\Core\Tasks\UserTask;
 use Upsun\Core\Tasks\VariableTask;
 use Upsun\Api\ProjectVariablesApi;
 use Upsun\Api\EnvironmentVariablesApi;
@@ -15,186 +28,609 @@ use Upsun\ApiException;
 use Upsun\UpsunClient;
 use Upsun\UpsunConfig;
 
-class VariableTaskTest extends TestCase
+class VariableTaskTest extends BaseTestCase
 {
     private VariableTask $variableTask;
-    private $projectVariablesApi;
-    private $environmentVariablesApi;
-    private $client;
+
+    private ClientInterface $httpClient;
 
     protected function setUp(): void
     {
-        $this->client = new class() extends UpsunClient {
-            public HttplugClient $apiClient;
-            public Configuration $apiConfig;
+        $psr17Factory = new Psr17Factory();
 
-            public UpsunConfig $upsunConfig;
+        $this->httpClient = $this->createMock(ClientInterface::class);
 
-            public function __construct()
-            {
-            }
-        };
-        
-        $this->projectVariablesApi = $this->createMock(ProjectVariablesApi::class);
-        $this->environmentVariablesApi = $this->createMock(EnvironmentVariablesApi::class);
+        $oauthProvider = $this->createMock(OAuthProvider::class);
 
-        $this->variableTask = new class(
-            $this->client,
-            $this->projectVariablesApi,
-            $this->environmentVariablesApi
+        $upsunClient = $this->createMock(UpsunClient::class);
+
+        $this->variableTask = new class (
+            $upsunClient,
+            new ProjectVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
+            new EnvironmentVariablesApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
         ) extends VariableTask {
-            public function refreshToken(): void
-            {
-            }
         };
-        
     }
 
-    public function testCreateProjectVariableSuccess(): void
+    public function testCreateProjectVariableSuccess()
     {
-        $response = $this->createMock(AcceptedResponse::class);
-        $this->projectVariablesApi->method('createProjectsVariables')->willReturn($response);
+        $projectId = 'proj_123';
+        $data = [
+            'name' => 'VAR_NAME',
+            'value' => 'value123',
+            'attributes' => ['attr1' => 'val1'],
+            'isJson' => false,
+            'isSensitive' => true,
+            'visibleBuild' => true,
+            'visibleRuntime' => false,
+        ];
 
-        $result = $this->variableTask->createProjectVariable('pid', ['name' => 'FOO', 'value' => 'bar']);
-        $this->assertSame($response, $result);
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->variableTask->createProjectVariable($projectId, $data);
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testCreateProjectVariableFailure(): void
+    public function testCreateProjectVariableError()
     {
-        $this->projectVariablesApi->method('createProjectsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $data = [
+            'name' => 'VAR_NAME',
+            'value' => 'value123'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid input'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->createProjectVariable('pid', ['name' => 'FOO', 'value' => 'bar']);
+
+        $this->variableTask->createProjectVariable($projectId, $data);
     }
 
-    public function testDeleteProjectVariableSuccess(): void
+    public function testDeleteProjectVariableSuccess()
     {
-        $response = $this->createMock(AcceptedResponse::class);
-        $this->projectVariablesApi->method('deleteProjectsVariables')->willReturn($response);
+        $projectId = 'proj_123';
+        $projectVariableId = 'var_456';
 
-        $result = $this->variableTask->deleteProjectVariable('pid', 'vid');
-        $this->assertSame($response, $result);
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->variableTask->deleteProjectVariable($projectId, $projectVariableId);
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testDeleteProjectVariableFailure(): void
+    public function testDeleteProjectVariableError()
     {
-        $this->projectVariablesApi->method('deleteProjectsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $projectVariableId = 'var_456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 404,
+                    'message' => 'Variable not found'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->deleteProjectVariable('pid', 'vid');
+
+        $this->variableTask->deleteProjectVariable($projectId, $projectVariableId);
     }
 
-    public function testGetProjectVariableSuccess(): void
+    public function testGetProjectVariableSuccess()
     {
-        $variable = $this->createMock(ProjectVariable::class);
-        $this->projectVariablesApi->method('getProjectsVariables')->willReturn($variable);
+        $projectId = 'proj_123';
+        $projectVariableId = 'var_456';
 
-        $result = $this->variableTask->getProjectVariable('pid', 'vid');
-        $this->assertSame($variable, $result);
+        $variableFake = [
+            'name' => 'VAR_NAME',
+            'attributes' => ['attr1' => 'val1'],
+            'isJson' => false,
+            'isSensitive' => true,
+            'visibleBuild' => true,
+            'visibleRuntime' => false,
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'value' => 'value123',
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($variableFake)
+            ));
+
+        $result = $this->variableTask->getProjectVariable($projectId, $projectVariableId);
+        $this->assertInstanceOf(ProjectVariable::class, $result);
+        $this->assertObjectProperties($result, $variableFake);
     }
 
-    public function testGetProjectVariableFailure(): void
+    public function testGetProjectVariableError()
     {
-        $this->projectVariablesApi->method('getProjectsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $projectVariableId = 'var_456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 404,
+                    'message' => 'Variable not found'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->getProjectVariable('pid', 'vid');
+
+        $this->variableTask->getProjectVariable($projectId, $projectVariableId);
     }
 
-    public function testListProjectVariablesSuccess(): void
+
+    public function testListProjectVariablesSuccess()
     {
-        $this->projectVariablesApi->method('listProjectsVariables')->willReturn([]);
-        $result = $this->variableTask->listProjectVariables('pid');
+        $projectId = 'proj_123';
+
+        $variablesFake = [
+            [
+                'name' => 'VAR_ONE',
+                'attributes' => ['attr1' => 'val1'],
+                'isJson' => false,
+                'isSensitive' => true,
+                'visibleBuild' => true,
+                'visibleRuntime' => false,
+                'createdAt' => '2025-01-01T10:00:00Z',
+                'updatedAt' => '2025-09-26T12:00:00Z',
+                'value' => 'value1',
+            ],
+            [
+                'name' => 'VAR_TWO',
+                'attributes' => ['attr2' => 'val2'],
+                'isJson' => true,
+                'isSensitive' => false,
+                'visibleBuild' => false,
+                'visibleRuntime' => true,
+                'createdAt' => '2025-02-01T08:00:00Z',
+                'updatedAt' => '2025-09-20T08:00:00Z',
+                'value' => '{"foo":"bar"}',
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($variablesFake)
+            ));
+
+        $result = $this->variableTask->listProjectVariables($projectId);
         $this->assertIsArray($result);
         $this->assertContainsOnlyInstancesOf(ProjectVariable::class, $result);
+        $this->assertObjectMatchesArray($result, $variablesFake);
     }
 
-    public function testListProjectVariablesFailure(): void
+    public function testListProjectVariablesError()
     {
-        $this->projectVariablesApi->method('listProjectsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                500,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 500,
+                    'message' => 'Internal server error'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->listProjectVariables('pid');
+
+        $this->variableTask->listProjectVariables($projectId);
     }
 
-    public function testUpdateProjectVariableSuccess(): void
+    public function testUpdateProjectVariableSuccess()
     {
-        $response = $this->createMock(AcceptedResponse::class);
-        $this->projectVariablesApi->method('updateProjectsVariables')->willReturn($response);
+        $projectId = 'proj_123';
+        $variableId = 'var_456';
+        $data = [
+            'name' => 'VAR_UPDATED',
+            'value' => 'new_value',
+            'attributes' => ['attr1' => 'val1'],
+            'isJson' => true,
+            'isSensitive' => false,
+            'visibleBuild' => false,
+            'visibleRuntime' => true,
+        ];
 
-        $result = $this->variableTask->updateProjectVariable('pid', 'vid', ['value' => 'baz']);
-        $this->assertSame($response, $result);
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->variableTask->updateProjectVariable($projectId, $variableId, $data);
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testUpdateProjectVariableFailure(): void
+    public function testUpdateProjectVariableError()
     {
-        $this->projectVariablesApi->method('updateProjectsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $variableId = 'var_456';
+        $data = [
+            'name' => 'VAR_UPDATED',
+            'value' => 'new_value'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid input'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->updateProjectVariable('pid', 'vid', ['value' => 'baz']);
+
+        $this->variableTask->updateProjectVariable($projectId, $variableId, $data);
     }
 
-    public function testCreateEnvironmentVariableFailure(): void
+    public function testCreateEnvironmentVariableSuccess()
     {
-        $this->environmentVariablesApi->method('deleteProjectsEnvironmentsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $data = [
+            'name' => 'ENV_VAR',
+            'value' => 'value123',
+            'attributes' => ['attr1' => 'val1'],
+            'isJson' => false,
+            'isSensitive' => true,
+            'visibleBuild' => true,
+            'visibleRuntime' => false,
+            'isEnabled' => true,
+            'isInheritable' => false,
+        ];
+
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->variableTask->createEnvironmentVariable($projectId, $environmentId, $data);
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
+    }
+
+    public function testCreateEnvironmentVariableError()
+    {
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $data = [
+            'name' => 'ENV_VAR',
+            'value' => 'value123'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid input'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->createEnvironmentVariable('pid', 'eid', ['name' => 'FOO', 'value' => 'bar']);
+
+        $this->variableTask->createEnvironmentVariable($projectId, $environmentId, $data);
     }
 
-    public function testDeleteEnvironmentVariableSuccess(): void
-    {
-        $response = $this->createMock(AcceptedResponse::class);
-        $this->environmentVariablesApi->method('deleteProjectsEnvironmentsVariables')->willReturn($response);
 
-        $result = $this->variableTask->deleteEnvironmentVariable('pid', 'eid', 'vid');
-        $this->assertSame($response, $result);
+    public function testDeleteEnvironmentVariableSuccess()
+    {
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $variableId = 'var_789';
+
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->variableTask->deleteEnvironmentVariable($projectId, $environmentId, $variableId);
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testDeleteEnvironmentVariableFailure(): void
+    public function testDeleteEnvironmentVariableError()
     {
-        $this->environmentVariablesApi->method('deleteProjectsEnvironmentsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $variableId = 'var_789';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid variable ID'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->deleteEnvironmentVariable('pid', 'eid', 'vid');
+
+        $this->variableTask->deleteEnvironmentVariable($projectId, $environmentId, $variableId);
     }
 
-    public function testGetEnvironmentVariableSuccess(): void
-    {
-        $variable = $this->createMock(EnvironmentVariable::class);
-        $this->environmentVariablesApi->method('getProjectsEnvironmentsVariables')->willReturn($variable);
 
-        $result = $this->variableTask->getEnvironmentVariable('pid', 'eid', 'vid');
-        $this->assertSame($variable, $result);
+    public function testGetEnvironmentVariableSuccess()
+    {
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $variableId = 'var_789';
+
+        $variableFake = [
+            'name' => 'VAR_NAME',
+            'attributes' => ['attr1' => 'val1'],
+            'isJson' => false,
+            'isSensitive' => true,
+            'visibleBuild' => true,
+            'visibleRuntime' => false,
+            'project' => $projectId,
+            'environment' => $environmentId,
+            'inherited' => false,
+            'isEnabled' => true,
+            'isInheritable' => false,
+            'createdAt' => '2025-01-01T10:00:00Z',
+            'updatedAt' => '2025-09-26T12:00:00Z',
+            'value' => 'value123'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($variableFake)
+            ));
+
+        $result = $this->variableTask->getEnvironmentVariable($projectId, $environmentId, $variableId);
+        $this->assertInstanceOf(EnvironmentVariable::class, $result);
+        $this->assertObjectProperties($result, $variableFake);
     }
 
-    public function testGetEnvironmentVariableFailure(): void
+    public function testGetEnvironmentVariableError()
     {
-        $this->environmentVariablesApi->method('getProjectsEnvironmentsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $variableId = 'var_789';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                404,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 404,
+                    'message' => 'Variable not found'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->getEnvironmentVariable('pid', 'eid', 'vid');
+
+        $this->variableTask->getEnvironmentVariable($projectId, $environmentId, $variableId);
     }
 
-    public function testListEnvironmentVariablesSuccess(): void
+    public function testListEnvironmentVariablesSuccess()
     {
-        $this->environmentVariablesApi->method('listProjectsEnvironmentsVariables')->willReturn([]);
-        $result = $this->variableTask->listEnvironmentVariables('pid', 'eid');
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+
+        $variablesFake = [
+            [
+                'name' => 'VAR_1',
+                'attributes' => ['attr' => 'val1'],
+                'isJson' => false,
+                'isSensitive' => false,
+                'visibleBuild' => true,
+                'visibleRuntime' => false,
+                'project' => $projectId,
+                'environment' => $environmentId,
+                'inherited' => false,
+                'isEnabled' => true,
+                'isInheritable' => false,
+                'createdAt' => '2025-01-01T10:00:00Z',
+                'updatedAt' => '2025-09-26T12:00:00Z',
+                'value' => 'value1',
+            ],
+            [
+                'name' => 'VAR_2',
+                'attributes' => ['attr' => 'val2'],
+                'isJson' => true,
+                'isSensitive' => true,
+                'visibleBuild' => false,
+                'visibleRuntime' => true,
+                'project' => $projectId,
+                'environment' => $environmentId,
+                'inherited' => true,
+                'isEnabled' => false,
+                'isInheritable' => true,
+                'createdAt' => '2025-02-01T08:00:00Z',
+                'updatedAt' => '2025-09-20T08:00:00Z',
+                'value' => '{"key":"val"}',
+            ],
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                200,
+                ['Content-Type' => 'application/json'],
+                json_encode($variablesFake)
+            ));
+
+        $result = $this->variableTask->listEnvironmentVariables($projectId, $environmentId);
         $this->assertIsArray($result);
+        $this->assertContainsOnlyInstancesOf(EnvironmentVariable::class, $result);
+        $this->assertObjectMatchesArray($result, $variablesFake);
     }
 
-    public function testListEnvironmentVariablesFailure(): void
+    public function testListEnvironmentVariablesError()
     {
-        $this->environmentVariablesApi->method('listProjectsEnvironmentsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                500,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 500,
+                    'message' => 'Internal Server Error'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->listEnvironmentVariables('pid', 'eid');
+
+        $this->variableTask->listEnvironmentVariables($projectId, $environmentId);
     }
 
-    public function testUpdateEnvironmentVariableSuccess(): void
+    public function testUpdateEnvironmentVariableSuccess()
     {
-        $response = $this->createMock(AcceptedResponse::class);
-        $this->environmentVariablesApi->method('updateProjectsEnvironmentsVariables')->willReturn($response);
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $variableId = 'var_789';
+        $data = [
+            'name' => 'VAR_NAME_UPDATED',
+            'value' => 'newValue',
+            'attributes' => ['attr' => 'val'],
+            'isJson' => false,
+            'isSensitive' => true,
+            'visibleBuild' => true,
+            'visibleRuntime' => false,
+            'isEnabled' => true,
+            'isInheritable' => false,
+        ];
 
-        $result = $this->variableTask->updateEnvironmentVariable('pid', 'eid', 'vid', ['value' => 'baz']);
-        $this->assertSame($response, $result);
+        $fakeResponse = [
+            'status' => 'accepted',
+            'code' => 204
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                204,
+                ['Content-Type' => 'application/json'],
+                json_encode($fakeResponse)
+            ));
+
+        $result = $this->variableTask->updateEnvironmentVariable($projectId, $environmentId, $variableId, $data);
+        $this->assertInstanceOf(AcceptedResponse::class, $result);
+        $this->assertObjectProperties($result, $fakeResponse);
     }
 
-    public function testUpdateEnvironmentVariableFailure(): void
+    public function testUpdateEnvironmentVariableError()
     {
-        $this->environmentVariablesApi->method('updateProjectsEnvironmentsVariables')->willThrowException($this->createMock(ApiException::class));
+        $projectId = 'proj_123';
+        $environmentId = 'env_456';
+        $variableId = 'var_789';
+        $data = [
+            'name' => 'VAR_NAME_UPDATED',
+            'value' => 'newValue'
+        ];
+
+        $this->httpClient
+            ->method('sendRequest')
+            ->willReturn(new Response(
+                400,
+                ['Content-Type' => 'application/json'],
+                json_encode([
+                    'status' => 'error',
+                    'code' => 400,
+                    'message' => 'Invalid input'
+                ])
+            ));
+
         $this->expectException(ApiException::class);
-        $this->variableTask->updateEnvironmentVariable('pid', 'eid', 'vid', ['value' => 'baz']);
+
+        $this->variableTask->updateEnvironmentVariable($projectId, $environmentId, $variableId, $data);
     }
 }

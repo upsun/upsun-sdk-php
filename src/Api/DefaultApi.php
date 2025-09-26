@@ -65,7 +65,7 @@ final class DefaultApi extends AbstractApi
      * @return \Upsun\Model\ListTickets200Response
      *
      * @see
-     * curl -X GET "https://api.upsun.com/tickets?filterTicketId=56filterCreated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterUpdated=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)filterType=&#39;filterType_example&#39;filterPriority=&#39;filterPriority_example&#39;filterStatus=&#39;filterStatus_example&#39;filterRequesterId=&#39;filterRequesterId_example&#39;filterSubmitterId=&#39;filterSubmitterId_example&#39;filterAssigneeId=&#39;filterAssigneeId_example&#39;filterHasIncidents=TruefilterDue=new \DateTime(&#39;2013-10-20T19:20:30+01:00&#39;)search=&#39;search_example&#39;page=56" \
+     * curl -X GET "https://api.upsun.com/tickets?filterTicketId=value&filterCreated=value&filterUpdated=value&filterType=value&filterPriority=value&filterStatus=value&filterRequesterId=value&filterSubmitterId=value&filterAssigneeId=value&filterHasIncidents=value&filterDue=value&search=value&page=value" \
      *      -H "Authorization: Bearer ACCESS_TOKEN" \
      *      -H "Accept: application/json"
      */
@@ -205,7 +205,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[ticket_id]'] = $filterTicketId;
+                $queryParams['filter[ticket_id]'] = $filterTicketId instanceof \DateTime
+                    ? $filterTicketId->format(DATE_ATOM)
+                    : ($filterTicketId);
             }
         }
 
@@ -218,7 +220,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[created]'] = $filterCreated;
+                $queryParams['filter[created]'] = $filterCreated instanceof \DateTime
+                    ? $filterCreated->format(DATE_ATOM)
+                    : ($filterCreated);
             }
         }
 
@@ -231,7 +235,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[updated]'] = $filterUpdated;
+                $queryParams['filter[updated]'] = $filterUpdated instanceof \DateTime
+                    ? $filterUpdated->format(DATE_ATOM)
+                    : ($filterUpdated);
             }
         }
 
@@ -244,7 +250,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[type]'] = $filterType;
+                $queryParams['filter[type]'] = $filterType instanceof \DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType);
             }
         }
 
@@ -257,7 +265,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[priority]'] = $filterPriority;
+                $queryParams['filter[priority]'] = $filterPriority instanceof \DateTime
+                    ? $filterPriority->format(DATE_ATOM)
+                    : ($filterPriority);
             }
         }
 
@@ -270,7 +280,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus;
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
+                    ? $filterStatus->format(DATE_ATOM)
+                    : ($filterStatus);
             }
         }
 
@@ -283,7 +295,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[requester_id]'] = $filterRequesterId;
+                $queryParams['filter[requester_id]'] = $filterRequesterId instanceof \DateTime
+                    ? $filterRequesterId->format(DATE_ATOM)
+                    : ($filterRequesterId);
             }
         }
 
@@ -296,7 +310,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[submitter_id]'] = $filterSubmitterId;
+                $queryParams['filter[submitter_id]'] = $filterSubmitterId instanceof \DateTime
+                    ? $filterSubmitterId->format(DATE_ATOM)
+                    : ($filterSubmitterId);
             }
         }
 
@@ -309,7 +325,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[assignee_id]'] = $filterAssigneeId;
+                $queryParams['filter[assignee_id]'] = $filterAssigneeId instanceof \DateTime
+                    ? $filterAssigneeId->format(DATE_ATOM)
+                    : ($filterAssigneeId);
             }
         }
 
@@ -322,7 +340,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[has_incidents]'] = $filterHasIncidents;
+                $queryParams['filter[has_incidents]'] = $filterHasIncidents instanceof \DateTime
+                    ? $filterHasIncidents->format(DATE_ATOM)
+                    : ($filterHasIncidents);
             }
         }
 
@@ -335,7 +355,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[due]'] = $filterDue;
+                $queryParams['filter[due]'] = $filterDue instanceof \DateTime
+                    ? $filterDue->format(DATE_ATOM)
+                    : ($filterDue);
             }
         }
 
@@ -348,7 +370,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['search'] = $search;
+                $queryParams['search'] = $search instanceof \DateTime
+                    ? $search->format(DATE_ATOM)
+                    : ($search);
             }
         }
 
@@ -361,7 +385,9 @@ final class DefaultApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page;
+                $queryParams['page'] = $page instanceof \DateTime
+                    ? $page->format(DATE_ATOM)
+                    : ($page);
             }
         }
 
