@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
@@ -20,8 +21,8 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
         private readonly string $type,
         private readonly string $name,
         private readonly array $attributes,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
         private readonly ?string $replacementFor = null,
@@ -52,12 +53,12 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

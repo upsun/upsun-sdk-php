@@ -12,14 +12,15 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Ticket implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?int $ticketId = null,
-        private readonly ?\DateTime $created = null,
-        private readonly ?\DateTime $updated = null,
+        private readonly ?DateTime $created = null,
+        private readonly ?DateTime $updated = null,
         private readonly ?string $type = null,
         private readonly ?string $subject = null,
         private readonly ?string $description = null,
@@ -33,7 +34,7 @@ final class Ticket implements ModelInterface, JsonSerializable
         private readonly ?string $organizationId = null,
         private readonly ?array $collaboratorIds = [],
         private readonly ?bool $hasIncidents = null,
-        private readonly ?\DateTime $due = null,
+        private readonly ?DateTime $due = null,
         private readonly ?array $tags = [],
         private readonly ?string $subscriptionId = null,
         private readonly ?string $ticketGroup = null,
@@ -41,8 +42,8 @@ final class Ticket implements ModelInterface, JsonSerializable
         private readonly ?string $affectedUrl = null,
         private readonly ?string $queue = null,
         private readonly ?string $issueType = null,
-        private readonly ?\DateTime $resolutionTime = null,
-        private readonly ?\DateTime $responseTime = null,
+        private readonly ?DateTime $resolutionTime = null,
+        private readonly ?DateTime $responseTime = null,
         private readonly ?string $projectUrl = null,
         private readonly ?string $region = null,
         private readonly ?string $category = null,
@@ -111,12 +112,12 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->ticketId;
     }
 
-    public function getCreated(): ?\DateTime
+    public function getCreated(): ?DateTime
     {
         return $this->created;
     }
 
-    public function getUpdated(): ?\DateTime
+    public function getUpdated(): ?DateTime
     {
         return $this->updated;
     }
@@ -186,7 +187,7 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->hasIncidents;
     }
 
-    public function getDue(): ?\DateTime
+    public function getDue(): ?DateTime
     {
         return $this->due;
     }
@@ -226,12 +227,12 @@ final class Ticket implements ModelInterface, JsonSerializable
         return $this->issueType;
     }
 
-    public function getResolutionTime(): ?\DateTime
+    public function getResolutionTime(): ?DateTime
     {
         return $this->resolutionTime;
     }
 
-    public function getResponseTime(): ?\DateTime
+    public function getResponseTime(): ?DateTime
     {
         return $this->responseTime;
     }

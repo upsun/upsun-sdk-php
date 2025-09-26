@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Discount implements ModelInterface, JsonSerializable
@@ -19,7 +20,7 @@ final class Discount implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?DiscountCommitment $commitment = null,
         private readonly ?int $totalMonths = null,
-        private readonly ?\DateTime $endAt = null,
+        private readonly ?DateTime $endAt = null,
         private readonly ?int $id = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $type = null,
@@ -27,7 +28,7 @@ final class Discount implements ModelInterface, JsonSerializable
         private readonly ?string $status = null,
         private readonly ?DiscountDiscount $discount = null,
         private readonly ?object $config = null,
-        private readonly ?\DateTime $startAt = null,
+        private readonly ?DateTime $startAt = null,
     ) {
     }
 
@@ -103,12 +104,12 @@ final class Discount implements ModelInterface, JsonSerializable
         return $this->config;
     }
 
-    public function getStartAt(): ?\DateTime
+    public function getStartAt(): ?DateTime
     {
         return $this->startAt;
     }
 
-    public function getEndAt(): ?\DateTime
+    public function getEndAt(): ?DateTime
     {
         return $this->endAt;
     }

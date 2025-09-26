@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Activity implements ModelInterface, JsonSerializable
@@ -26,15 +27,15 @@ final class Activity implements ModelInterface, JsonSerializable
         private readonly string $log,
         private readonly object $payload,
         private readonly string $id,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $result = null,
-        private readonly ?\DateTime $startedAt = null,
-        private readonly ?\DateTime $completedAt = null,
-        private readonly ?\DateTime $cancelledAt = null,
+        private readonly ?DateTime $startedAt = null,
+        private readonly ?DateTime $completedAt = null,
+        private readonly ?DateTime $cancelledAt = null,
         private readonly ?string $description = null,
         private readonly ?string $text = null,
-        private readonly ?\DateTime $expiresAt = null,
+        private readonly ?DateTime $expiresAt = null,
         private readonly ?string $integration = null,
         private readonly ?array $environments = [],
     ) {
@@ -76,12 +77,12 @@ final class Activity implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
@@ -111,12 +112,12 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->result;
     }
 
-    public function getStartedAt(): ?\DateTime
+    public function getStartedAt(): ?DateTime
     {
         return $this->startedAt;
     }
 
-    public function getCompletedAt(): ?\DateTime
+    public function getCompletedAt(): ?DateTime
     {
         return $this->completedAt;
     }
@@ -126,7 +127,7 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->completionPercent;
     }
 
-    public function getCancelledAt(): ?\DateTime
+    public function getCancelledAt(): ?DateTime
     {
         return $this->cancelledAt;
     }
@@ -156,7 +157,7 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->text;
     }
 
-    public function getExpiresAt(): ?\DateTime
+    public function getExpiresAt(): ?DateTime
     {
         return $this->expiresAt;
     }

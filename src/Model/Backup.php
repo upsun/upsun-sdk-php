@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Backup implements ModelInterface, JsonSerializable
@@ -25,9 +26,9 @@ final class Backup implements ModelInterface, JsonSerializable
         private readonly bool $safe,
         private readonly bool $restorable,
         private readonly bool $automated,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
-        private readonly ?\DateTime $expiresAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $expiresAt = null,
         private readonly ?int $index = null,
         private readonly ?int $sizeOfVolumes = null,
         private readonly ?int $sizeUsed = null,
@@ -66,12 +67,12 @@ final class Backup implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
@@ -91,7 +92,7 @@ final class Backup implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getExpiresAt(): ?\DateTime
+    public function getExpiresAt(): ?DateTime
     {
         return $this->expiresAt;
     }

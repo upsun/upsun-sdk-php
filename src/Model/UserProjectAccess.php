@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class UserProjectAccess implements ModelInterface, JsonSerializable
@@ -22,8 +23,8 @@ final class UserProjectAccess implements ModelInterface, JsonSerializable
         private readonly ?string $projectId = null,
         private readonly ?string $projectTitle = null,
         private readonly ?array $permissions = [],
-        private readonly ?\DateTime $grantedAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $grantedAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?TeamProjectAccessLinks $links = null,
     ) {
     }
@@ -77,12 +78,12 @@ final class UserProjectAccess implements ModelInterface, JsonSerializable
         return $this->permissions;
     }
 
-    public function getGrantedAt(): ?\DateTime
+    public function getGrantedAt(): ?DateTime
     {
         return $this->grantedAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

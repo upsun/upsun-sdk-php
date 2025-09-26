@@ -41,7 +41,7 @@ class HeaderSelector
         # filter out empty entries
         $accept = array_filter($accept);
 
-        if (count($accept) === 0) {
+        if ($accept === []) {
             return null;
         }
 
@@ -52,7 +52,7 @@ class HeaderSelector
 
         # If none of the available Accept headers is of type "json", then just use all them
         $headersWithJson = $this->selectJsonMimeList($accept);
-        if (count($headersWithJson) === 0) {
+        if ($headersWithJson === []) {
             return implode(',', $accept);
         }
 
@@ -83,6 +83,7 @@ class HeaderSelector
                 $jsonMimeList[] = $mime;
             }
         }
+
         return $jsonMimeList;
     }
 
@@ -116,7 +117,7 @@ class HeaderSelector
         $hasMoreThan28Headers = count($accept) > 28;
 
         foreach ($processedHeaders as $headers) {
-            if (count($headers) > 0) {
+            if ($headers !== []) {
                 $acceptHeaders[] = $this->adjustWeight($headers, $currentWeight, $hasMoreThan28Headers);
             }
         }

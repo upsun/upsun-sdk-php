@@ -2,9 +2,7 @@
 
 namespace Upsun;
 
-use Http\Client\Common\PluginClient;
 use Http\Discovery\Psr17FactoryDiscovery;
-use Http\Discovery\Psr18ClientDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
@@ -51,7 +49,6 @@ use Upsun\Api\UserAccessApi;
 use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
-use Symfony\Component\HttpClient\HttplugClient;
 use Upsun\Core\OAuthProvider;
 use Upsun\Core\Tasks\ActivityTask;
 use Upsun\Core\Tasks\ApplicationTask;

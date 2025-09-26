@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class ProjectReference implements ModelInterface, JsonSerializable
@@ -25,8 +26,8 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         private readonly OrganizationProjectType $type,
         private readonly OrganizationProjectPlan $plan,
         private readonly OrganizationProjectStatus $status,
-        private readonly \DateTime $createdAt,
-        private readonly \DateTime $updatedAt,
+        private readonly DateTime $createdAt,
+        private readonly DateTime $updatedAt,
     ) {
     }
 
@@ -96,12 +97,12 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }

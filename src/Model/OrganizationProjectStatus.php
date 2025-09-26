@@ -21,8 +21,11 @@ final class OrganizationProjectStatus implements JsonSerializable
      * Possible values of this enum
      */
     public const PROVISIONING = 'provisioning';
+
     public const ACTIVE = 'active';
+
     public const SUSPENDED = 'suspended';
+
     private string $value;
 
     /**
@@ -34,9 +37,10 @@ final class OrganizationProjectStatus implements JsonSerializable
     {
         if (!in_array($value, self::getAllowableEnumValues(), true)) {
             throw new InvalidArgumentException(
-                "Invalid value '{$value}' for enum OrganizationProjectStatus"
+                sprintf("Invalid value '%s' for enum OrganizationProjectStatus", $value)
             );
         }
+
         $this->value = $value;
     }
 

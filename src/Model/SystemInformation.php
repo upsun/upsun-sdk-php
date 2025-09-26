@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class SystemInformation implements ModelInterface, JsonSerializable
@@ -19,7 +20,7 @@ final class SystemInformation implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly string $version,
         private readonly string $image,
-        private readonly \DateTime $startedAt,
+        private readonly DateTime $startedAt,
     ) {
     }
 
@@ -52,7 +53,7 @@ final class SystemInformation implements ModelInterface, JsonSerializable
         return $this->image;
     }
 
-    public function getStartedAt(): \DateTime
+    public function getStartedAt(): DateTime
     {
         return $this->startedAt;
     }

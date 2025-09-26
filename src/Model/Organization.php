@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Organization implements ModelInterface, JsonSerializable
@@ -27,8 +28,8 @@ final class Organization implements ModelInterface, JsonSerializable
         private readonly ?array $capabilities = [],
         private readonly ?string $vendor = null,
         private readonly ?string $status = null,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?OrganizationLinks $links = null,
     ) {
     }
@@ -112,12 +113,12 @@ final class Organization implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

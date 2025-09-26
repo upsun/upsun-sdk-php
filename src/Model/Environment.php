@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Environment implements ModelInterface, JsonSerializable
@@ -39,15 +40,15 @@ final class Environment implements ModelInterface, JsonSerializable
         private readonly TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
         private readonly bool $hasDeployment,
         private readonly bool $supportsRestrictRobots,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $parent = null,
         private readonly ?string $defaultDomain = null,
         private readonly ?string $deploymentTarget = null,
         private readonly ?TheEnvironmentDeploymentState $deploymentState = null,
         private readonly ?int $maxInstanceCount = null,
-        private readonly ?\DateTime $lastActiveAt = null,
-        private readonly ?\DateTime $lastBackupAt = null,
+        private readonly ?DateTime $lastActiveAt = null,
+        private readonly ?DateTime $lastBackupAt = null,
         private readonly ?string $headCommit = null,
     ) {
     }
@@ -100,12 +101,12 @@ final class Environment implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
@@ -213,12 +214,12 @@ final class Environment implements ModelInterface, JsonSerializable
         return $this->maxInstanceCount;
     }
 
-    public function getLastActiveAt(): ?\DateTime
+    public function getLastActiveAt(): ?DateTime
     {
         return $this->lastActiveAt;
     }
 
-    public function getLastBackupAt(): ?\DateTime
+    public function getLastBackupAt(): ?DateTime
     {
         return $this->lastBackupAt;
     }

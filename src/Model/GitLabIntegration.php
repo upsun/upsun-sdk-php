@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class GitLabIntegration implements ModelInterface, JsonSerializable
@@ -26,8 +27,8 @@ final class GitLabIntegration implements ModelInterface, JsonSerializable
         private readonly bool $buildMergeRequests,
         private readonly bool $buildWipMergeRequests,
         private readonly bool $mergeRequestsCloneParentData,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
     ) {
     }
 
@@ -58,12 +59,12 @@ final class GitLabIntegration implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }

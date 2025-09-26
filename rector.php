@@ -11,10 +11,10 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__ . '/tests',
     ]);
 
-    // active l'import automatique des FQN
+    // enables automatic import of FQNs (Fully Qualified Names)
     $rectorConfig->importNames();
 
-    // optionnel : nettoie les "use" non utilisés
+    // optional: removes unused "use" statements
     $rectorConfig->removeUnusedImports();
 
     $rectorConfig->sets([SetList::CODING_STYLE]);

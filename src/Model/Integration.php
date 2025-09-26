@@ -12,6 +12,7 @@
 
 namespace Upsun\Model;
 
+use DateTime;
 use JsonSerializable;
 
 final class Integration implements ModelInterface, JsonSerializable
@@ -58,8 +59,8 @@ final class Integration implements ModelInterface, JsonSerializable
         private readonly string $protocol,
         private readonly int $facility,
         private readonly string $messageFormat,
-        private readonly ?\DateTime $createdAt = null,
-        private readonly ?\DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt = null,
+        private readonly ?DateTime $updatedAt = null,
         private readonly ?string $fromAddress = null,
         private readonly ?string $sharedKey = null,
         private readonly ?TheOAuth2ConsumerInformationOptional $appCredentials = null,
@@ -130,12 +131,12 @@ final class Integration implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
