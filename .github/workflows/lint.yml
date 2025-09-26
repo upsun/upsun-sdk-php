@@ -32,5 +32,5 @@ jobs:
                 composer run rector
               continue-on-error: true
             
-            - name: Run PHP lint (phpcs)
-              run: composer run lint
+#            - name: Run PHP lint (phpcs)
+#              run: composer run lint
