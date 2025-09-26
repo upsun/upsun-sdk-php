@@ -69,16 +69,7 @@ final class AlertsApi extends AbstractApi
      *
      * @return Alert
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/alerts/subscriptions/{subscriptionId}/usage" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "id": "string",
-     *          "config": {
-     *              "threshold": 0
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Alerts/operation/create-usage-alert
      */
     public function createUsageAlert(
         string $subscriptionId,
@@ -226,10 +217,7 @@ final class AlertsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/alerts/subscriptions/{subscriptionId}/usage/{usageId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: "
+     * @see https://docs.upsun.com/api/#tag/Alerts/operation/delete-usage-alert
      */
     public function deleteUsageAlert(
         string $subscriptionId,
@@ -385,10 +373,7 @@ final class AlertsApi extends AbstractApi
      *
      * @return GetUsageAlerts200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/alerts/subscriptions/{subscriptionId}/usage" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Alerts/operation/get-usage-alerts
      */
     public function getUsageAlerts(
         string $subscriptionId
@@ -526,15 +511,7 @@ final class AlertsApi extends AbstractApi
      *
      * @return Alert
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/alerts/subscriptions/{subscriptionId}/usage/{usageId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "config": {
-     *              "threshold": 0
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Alerts/operation/update-usage-alert
      */
     public function updateUsageAlert(
         string $subscriptionId,

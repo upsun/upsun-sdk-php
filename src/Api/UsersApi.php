@@ -71,10 +71,7 @@ final class UsersApi extends AbstractApi
      *
      * @return User
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/me" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user
      */
     public function getCurrentUser(): User
     {
@@ -186,10 +183,7 @@ final class UsersApi extends AbstractApi
      *
      * @return CurrentUser
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/me" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-deprecated
      */
     public function getCurrentUserDeprecated(): CurrentUser
     {
@@ -301,10 +295,7 @@ final class UsersApi extends AbstractApi
      *
      * @return GetCurrentUserVerificationStatus200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/me/phone" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status
      */
     public function getCurrentUserVerificationStatus(): object
     {
@@ -416,10 +407,7 @@ final class UsersApi extends AbstractApi
      *
      * @return GetCurrentUserVerificationStatusFull200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/me/verification" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full
      */
     public function getCurrentUserVerificationStatusFull(): object
     {
@@ -531,10 +519,7 @@ final class UsersApi extends AbstractApi
      *
      * @return User
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-user
      */
     public function getUser(
         string $userId
@@ -672,10 +657,7 @@ final class UsersApi extends AbstractApi
      *
      * @return User
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/email&#x3D;{email}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-email-address
      */
     public function getUserByEmailAddress(
         string $email
@@ -813,10 +795,7 @@ final class UsersApi extends AbstractApi
      *
      * @return User
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/username&#x3D;{username}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/get-user-by-username
      */
     public function getUserByUsername(
         string $username
@@ -951,13 +930,7 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/emailaddress" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "email_address": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Users/operation/reset-email-address
      */
     public function resetEmailAddress(
         string $userId,
@@ -1097,10 +1070,7 @@ final class UsersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/resetpassword" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Users/operation/reset-password
      */
     public function resetPassword(
         string $userId
@@ -1230,19 +1200,7 @@ final class UsersApi extends AbstractApi
      *
      * @return User
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/users/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "username": "string",
-     *          "first_name": "string",
-     *          "last_name": "string",
-     *          "picture": "string",
-     *          "company": "string",
-     *          "website": "string",
-     *          "country": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Users/operation/update-user
      */
     public function updateUser(
         string $userId,

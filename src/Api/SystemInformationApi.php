@@ -67,10 +67,7 @@ final class SystemInformationApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/system/restart" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/System-Information/operation/action-projects-system-restart
      */
     public function actionProjectsSystemRestart(
         string $projectId
@@ -208,10 +205,7 @@ final class SystemInformationApi extends AbstractApi
      *
      * @return SystemInformation
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/system" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/System-Information/operation/get-projects-system
      */
     public function getProjectsSystem(
         string $projectId

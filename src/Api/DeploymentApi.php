@@ -67,10 +67,7 @@ final class DeploymentApi extends AbstractApi
      *
      * @return Deployment
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments
      */
     public function getProjectsEnvironmentsDeployments(
         string $projectId,
@@ -260,10 +257,7 @@ final class DeploymentApi extends AbstractApi
      *
      * @return Deployment[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/deployments" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments
      */
     public function listProjectsEnvironmentsDeployments(
         string $projectId,
@@ -424,15 +418,7 @@ final class DeploymentApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/deployments/next" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "webapps": [],
-     *          "services": [],
-     *          "workers": []
-     *      }'
+     * @see https://docs.upsun.com/api/#tag//operation/
      */
     public function updateProjectsEnvironmentsDeploymentsNext(
         string $projectId,

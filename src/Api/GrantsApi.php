@@ -68,10 +68,7 @@ final class GrantsApi extends AbstractApi
      *
      * @return ListUserExtendedAccess200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/extended-access?filterResourceType=value&filterOrganizationId=value&filterPermissions=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Grants/operation/list-user-extended-access
      */
     public function listUserExtendedAccess(
         string $userId,

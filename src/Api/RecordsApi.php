@@ -68,10 +68,7 @@ final class RecordsApi extends AbstractApi
      *
      * @return ListOrgPlanRecords200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/plan?filterSubscriptionId=value&filterPlan=value&filterStatus=value&filterStart=value&filterEnd=value&filterStartedAt=value&filterEndedAt=value&page=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-plan-records
      */
     public function listOrgPlanRecords(
         string $organizationId,
@@ -376,10 +373,7 @@ final class RecordsApi extends AbstractApi
      *
      * @return ListOrgUsageRecords200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/records/usage?filterSubscriptionId=value&filterUsageGroup=value&filterStart=value&filterStartedAt=value&page=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Records/operation/list-org-usage-records
      */
     public function listOrgUsageRecords(
         string $organizationId,

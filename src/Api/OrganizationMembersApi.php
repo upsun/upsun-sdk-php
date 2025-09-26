@@ -71,16 +71,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @return OrganizationMember
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/members" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "user_id": "string",
-     *          "permissions": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/create-org-member
      */
     public function createOrgMember(
         string $organizationId,
@@ -240,10 +231,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/organizations/{organization_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/delete-org-member
      */
     public function deleteOrgMember(
         string $organizationId,
@@ -399,10 +387,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @return OrganizationMember
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/get-org-member
      */
     public function getOrgMember(
         string $organizationId,
@@ -566,10 +551,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @return ListOrgMembers200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/members?filterPermissions=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/list-org-members
      */
     public function listOrgMembers(
         string $organizationId,
@@ -826,15 +808,7 @@ final class OrganizationMembersApi extends AbstractApi
      *
      * @return OrganizationMember
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "permissions": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Organization-Members/operation/update-org-member
      */
     public function updateOrgMember(
         string $organizationId,

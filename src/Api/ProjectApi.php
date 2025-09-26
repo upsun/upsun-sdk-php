@@ -69,10 +69,7 @@ final class ProjectApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/clear_build_cache" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project/operation/action-projects-clear-build-cache
      */
     public function actionProjectsClearBuildCache(
         string $projectId
@@ -210,10 +207,7 @@ final class ProjectApi extends AbstractApi
      *
      * @return Project
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects
      */
     public function getProjects(
         string $projectId
@@ -351,10 +345,7 @@ final class ProjectApi extends AbstractApi
      *
      * @return ProjectCapabilities
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/capabilities" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project/operation/get-projects-capabilities
      */
     public function getProjectsCapabilities(
         string $projectId
@@ -492,19 +483,7 @@ final class ProjectApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "attributes": [],
-     *          "title": "string",
-     *          "description": "string",
-     *          "default_branch": "string",
-     *          "timezone": "string",
-     *          "region": "string",
-     *          "default_domain": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Project/operation/update-projects
      */
     public function updateProjects(
         string $projectId,

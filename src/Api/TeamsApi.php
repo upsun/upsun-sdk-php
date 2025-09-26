@@ -75,17 +75,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return Team
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/teams" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "organization_id": "string",
-     *          "label": "string",
-     *          "project_permissions": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team
      */
     public function createTeam(
         CreateTeamRequest $createTeamRequest
@@ -223,13 +213,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return TeamMember
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/teams/{team_id}/members" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "user_id": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/create-team-member
      */
     public function createTeamMember(
         string $teamId,
@@ -389,10 +373,7 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/teams/{team_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team
      */
     public function deleteTeam(
         string $teamId
@@ -519,10 +500,7 @@ final class TeamsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/teams/{team_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team-member
      */
     public function deleteTeamMember(
         string $teamId,
@@ -678,10 +656,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return Team
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/teams/{team_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/get-team
      */
     public function getTeam(
         string $teamId
@@ -819,10 +794,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return TeamMember
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/teams/{team_id}/members/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/get-team-member
      */
     public function getTeamMember(
         string $teamId,
@@ -986,10 +958,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return ListTeamMembers200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/teams/{team_id}/members?pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/list-team-members
      */
     public function listTeamMembers(
         string $teamId,
@@ -1189,10 +1158,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return ListTeams200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/teams?filterOrganizationId=value&filterId=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/list-teams
      */
     public function listTeams(
         ?StringFilter $filterOrganizationId = null,
@@ -1466,10 +1432,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return ListTeams200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/teams?filterOrganizationId=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/list-user-teams
      */
     public function listUserTeams(
         string $userId,
@@ -1747,16 +1710,7 @@ final class TeamsApi extends AbstractApi
      *
      * @return Team
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/teams/{team_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "label": "string",
-     *          "project_permissions": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Teams/operation/update-team
      */
     public function updateTeam(
         string $teamId,

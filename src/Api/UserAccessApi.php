@@ -69,10 +69,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @return UserProjectAccess
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/user-access/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/get-project-user-access
      */
     public function getProjectUserAccess(
         string $projectId,
@@ -236,10 +233,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @return UserProjectAccess
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/project-access/{project_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/get-user-project-access
      */
     public function getUserProjectAccess(
         string $userId,
@@ -400,19 +394,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{project_id}/user-access" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '[
-     *          {
-     *              "user_id": "string",
-     *              "permissions": [
-     *                  "string"
-     *              ],
-     *              "auto_add_member": false
-     *          }
-     *      ]'
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-project-user-access
      */
     public function grantProjectUserAccess(
         string $projectId,
@@ -564,18 +546,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/project-access" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '[
-     *          {
-     *              "project_id": "string",
-     *              "permissions": [
-     *                  "string"
-     *              ]
-     *          }
-     *      ]'
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-user-project-access
      */
     public function grantUserProjectAccess(
         string $userId,
@@ -730,10 +701,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @return ListProjectUserAccess200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/user-access?pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/list-project-user-access
      */
     public function listProjectUserAccess(
         string $projectId,
@@ -969,10 +937,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @return ListProjectUserAccess200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/project-access?filterOrganizationId=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/list-user-project-access
      */
     public function listUserProjectAccess(
         string $userId,
@@ -1226,10 +1191,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{project_id}/user-access/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-project-user-access
      */
     public function removeProjectUserAccess(
         string $projectId,
@@ -1382,10 +1344,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/users/{user_id}/project-access/{project_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-user-project-access
      */
     public function removeUserProjectAccess(
         string $userId,
@@ -1538,15 +1497,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{project_id}/user-access/{user_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '{
-     *          "permissions": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-project-user-access
      */
     public function updateProjectUserAccess(
         string $projectId,
@@ -1712,15 +1663,7 @@ final class UserAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X PATCH "https://api.upsun.com/users/{user_id}/project-access/{project_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '{
-     *          "permissions": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-user-project-access
      */
     public function updateUserProjectAccess(
         string $userId,

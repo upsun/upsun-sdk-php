@@ -76,15 +76,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/activate" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "resources": {
-     *              "init": "string"
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/activate-environment
      */
     public function activateEnvironment(
         string $projectId,
@@ -273,19 +265,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/branch" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "title": "string",
-     *          "name": "string",
-     *          "clone_parent": false,
-     *          "type": "string",
-     *          "resources": {
-     *              "init": "string"
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/branch-environment
      */
     public function branchEnvironment(
         string $projectId,
@@ -474,15 +454,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "routing": {
-     *              "percentage": 0
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/create-projects-environments-versions
      */
     public function createProjectsEnvironmentsVersions(
         string $projectId,
@@ -671,10 +643,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/deactivate" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/deactivate-environment
      */
     public function deactivateEnvironment(
         string $projectId,
@@ -838,10 +807,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-environment
      */
     public function deleteEnvironment(
         string $projectId,
@@ -1005,10 +971,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/delete-projects-environments-versions
      */
     public function deleteProjectsEnvironmentsVersions(
         string $projectId,
@@ -1198,10 +1161,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return Environment
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/get-environment
      */
     public function getEnvironment(
         string $projectId,
@@ -1365,10 +1325,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return Version
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/get-projects-environments-versions
      */
     public function getProjectsEnvironmentsVersions(
         string $projectId,
@@ -1558,25 +1515,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/initialize" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "profile": "string",
-     *          "repository": "string",
-     *          "config": "string",
-     *          "files": [
-     *              {
-     *                  "path": "string",
-     *                  "mode": 0,
-     *                  "contents": "string"
-     *              }
-     *          ],
-     *          "resources": {
-     *              "init": "string"
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/initialize-environment
      */
     public function initializeEnvironment(
         string $projectId,
@@ -1765,10 +1704,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return Environment[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments
      */
     public function listProjectsEnvironments(
         string $projectId
@@ -1906,10 +1842,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return Version[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/list-projects-environments-versions
      */
     public function listProjectsEnvironmentsVersions(
         string $projectId,
@@ -2073,15 +2006,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/merge" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "resources": {
-     *              "init": "string"
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/merge-environment
      */
     public function mergeEnvironment(
         string $projectId,
@@ -2270,10 +2195,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/pause" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/pause-environment
      */
     public function pauseEnvironment(
         string $projectId,
@@ -2437,10 +2359,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/redeploy" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/redeploy-environment
      */
     public function redeployEnvironment(
         string $projectId,
@@ -2604,10 +2523,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/resume" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/resume-environment
      */
     public function resumeEnvironment(
         string $projectId,
@@ -2771,16 +2687,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/synchronize" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "synchronize_code": false,
-     *          "rebase": false,
-     *          "synchronize_data": false,
-     *          "synchronize_resources": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/synchronize-environment
      */
     public function synchronizeEnvironment(
         string $projectId,
@@ -2969,30 +2876,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "name": "string",
-     *          "title": "string",
-     *          "attributes": [],
-     *          "type": "string",
-     *          "parent": "string",
-     *          "clone_parent_on_create": false,
-     *          "http_access": {
-     *              "is_enabled": false,
-     *              "addresses": [
-     *                  {
-     *                      "permission": "string",
-     *                      "address": "string"
-     *                  }
-     *              ],
-     *              "basic_auth": []
-     *          },
-     *          "enable_smtp": false,
-     *          "restrict_robots": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/update-environment
      */
     public function updateEnvironment(
         string $projectId,
@@ -3181,15 +3065,7 @@ final class EnvironmentApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/versions/{versionId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "routing": {
-     *              "percentage": 0
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/update-projects-environments-versions
      */
     public function updateProjectsEnvironmentsVersions(
         string $projectId,

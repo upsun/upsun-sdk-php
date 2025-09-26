@@ -63,10 +63,7 @@ final class ConnectionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/users/{user_id}/connections/{provider}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Connections/operation/delete-login-connection
      */
     public function deleteLoginConnection(
         string $provider,
@@ -222,10 +219,7 @@ final class ConnectionsApi extends AbstractApi
      *
      * @return Connection
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/connections/{provider}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Connections/operation/get-login-connection
      */
     public function getLoginConnection(
         string $provider,
@@ -389,10 +383,7 @@ final class ConnectionsApi extends AbstractApi
      *
      * @return Connection[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/connections" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Connections/operation/list-login-connections
      */
     public function listLoginConnections(
         string $userId

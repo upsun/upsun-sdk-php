@@ -67,10 +67,7 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/action-projects-environments-activities-cancel
      */
     public function actionProjectsEnvironmentsActivitiesCancel(
         string $projectId,
@@ -260,10 +257,7 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @return Activity
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/activities/{activityId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/get-projects-environments-activities
      */
     public function getProjectsEnvironmentsActivities(
         string $projectId,
@@ -453,10 +447,7 @@ final class EnvironmentActivityApi extends AbstractApi
      *
      * @return Activity[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/activities" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Activity/operation/list-projects-environments-activities
      */
     public function listProjectsEnvironmentsActivities(
         string $projectId,

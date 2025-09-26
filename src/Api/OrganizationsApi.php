@@ -74,17 +74,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return Organization
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "type": "string",
-     *          "owner_id": "string",
-     *          "name": "string",
-     *          "label": "string",
-     *          "country": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Organizations/operation/create-org
      */
     public function createOrg(
         CreateOrgRequest $createOrgRequest
@@ -219,10 +209,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/organizations/{organization_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organizations/operation/delete-org
      */
     public function deleteOrg(
         string $organizationId
@@ -352,10 +339,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return Organization
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organizations/operation/get-org
      */
     public function getOrg(
         string $organizationId
@@ -493,10 +477,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return ListOrgs200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations?filterId=value&filterOwnerId=value&filterName=value&filterLabel=value&filterVendor=value&filterCapabilities=value&filterStatus=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organizations/operation/list-orgs
      */
     public function listOrgs(
         ?StringFilter $filterId = null,
@@ -875,10 +856,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return ListUserOrgs200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/organizations?filterId=value&filterVendor=value&filterStatus=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organizations/operation/list-user-orgs
      */
     public function listUserOrgs(
         string $userId,
@@ -1198,15 +1176,7 @@ final class OrganizationsApi extends AbstractApi
      *
      * @return Organization
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "name": "string",
-     *          "label": "string",
-     *          "country": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Organizations/operation/update-org
      */
     public function updateOrg(
         string $organizationId,

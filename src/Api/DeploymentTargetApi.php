@@ -69,11 +69,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/deployments" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/create-projects-deployments
      */
     public function createProjectsDeployments(
         string $projectId,
@@ -236,10 +232,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/deployments/{deploymentTargetConfigurationId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/delete-projects-deployments
      */
     public function deleteProjectsDeployments(
         string $projectId,
@@ -403,10 +396,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @return DeploymentTarget
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/deployments/{deploymentTargetConfigurationId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/get-projects-deployments
      */
     public function getProjectsDeployments(
         string $projectId,
@@ -570,10 +560,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @return DeploymentTarget[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/deployments" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/list-projects-deployments
      */
     public function listProjectsDeployments(
         string $projectId
@@ -711,11 +698,7 @@ final class DeploymentTargetApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/deployments/{deploymentTargetConfigurationId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Deployment-Target/operation/update-projects-deployments
      */
     public function updateProjectsDeployments(
         string $projectId,

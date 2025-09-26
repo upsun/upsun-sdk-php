@@ -67,10 +67,7 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/activities/{activityId}/cancel" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/action-projects-activities-cancel
      */
     public function actionProjectsActivitiesCancel(
         string $projectId,
@@ -234,10 +231,7 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @return Activity
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/activities/{activityId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/get-projects-activities
      */
     public function getProjectsActivities(
         string $projectId,
@@ -401,10 +395,7 @@ final class ProjectActivityApi extends AbstractApi
      *
      * @return Activity[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/activities" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Activity/operation/list-projects-activities
      */
     public function listProjectsActivities(
         string $projectId

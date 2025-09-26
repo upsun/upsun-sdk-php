@@ -76,10 +76,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return CanCreateNewOrgSubscription200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/can-create" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-create-new-org-subscription
      */
     public function canCreateNewOrgSubscription(
         string $organizationId
@@ -217,19 +214,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return Subscription
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/subscriptions" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "plan": null,
-     *          "project_region": "string",
-     *          "project_title": "string",
-     *          "options_url": "string",
-     *          "default_branch": "string",
-     *          "environments": 0,
-     *          "storage": 0
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/create-org-subscription
      */
     public function createOrgSubscription(
         string $organizationId,
@@ -389,10 +374,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/delete-org-subscription
      */
     public function deleteOrgSubscription(
         string $organizationId,
@@ -548,10 +530,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return EstimationObject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/estimate?plan=value&environments=value&storage=value&userLicenses=value&format=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-new-org-subscription
      */
     public function estimateNewOrgSubscription(
         string $organizationId,
@@ -837,10 +816,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return EstimationObject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/estimate?plan=value&environments=value&storage=value&userLicenses=value&format=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/estimate-org-subscription
      */
     public function estimateOrgSubscription(
         string $organizationId,
@@ -1119,10 +1095,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return Subscription
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription
      */
     public function getOrgSubscription(
         string $organizationId,
@@ -1286,10 +1259,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return SubscriptionCurrentUsageObject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/current_usage?usageGroups=value&includeNotCharged=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-org-subscription-current-usage
      */
     public function getOrgSubscriptionCurrentUsage(
         string $organizationId,
@@ -1494,10 +1464,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return ListOrgSubscriptions200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions?filterStatus=value&filterId=value&filterProjectId=value&filterProjectTitle=value&filterRegion=value&filterUpdatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-org-subscriptions
      */
     public function listOrgSubscriptions(
         string $organizationId,
@@ -1859,10 +1826,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return SubscriptionAddonsObject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}/addons" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/list-subscription-addons
      */
     public function listSubscriptionAddons(
         string $organizationId,
@@ -2026,24 +1990,7 @@ final class SubscriptionsApi extends AbstractApi
      *
      * @return Subscription
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/subscriptions/{subscription_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "project_title": "string",
-     *          "plan": "string",
-     *          "timezone": "string",
-     *          "environments": 0,
-     *          "storage": 0,
-     *          "big_dev": "string",
-     *          "big_dev_service": "string",
-     *          "backups": "string",
-     *          "observability_suite": "string",
-     *          "blackfire": "string",
-     *          "continuous_profiling": "string",
-     *          "project_support_level": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-org-subscription
      */
     public function updateOrgSubscription(
         string $organizationId,

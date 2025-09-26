@@ -69,13 +69,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backup" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "safe": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/backup-environment
      */
     public function backupEnvironment(
         string $projectId,
@@ -264,10 +258,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups/{backupId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/delete-projects-environments-backups
      */
     public function deleteProjectsEnvironmentsBackups(
         string $projectId,
@@ -457,10 +448,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @return Backup
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups/{backupId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/get-projects-environments-backups
      */
     public function getProjectsEnvironmentsBackups(
         string $projectId,
@@ -650,10 +638,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @return Backup[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/list-projects-environments-backups
      */
     public function listProjectsEnvironmentsBackups(
         string $projectId,
@@ -817,19 +802,7 @@ final class EnvironmentBackupsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/backups/{backupId}/restore" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "environment_name": "string",
-     *          "branch_from": "string",
-     *          "restore_code": false,
-     *          "restore_resources": false,
-     *          "resources": {
-     *              "init": "string"
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment-Backups/operation/restore-backup
      */
     public function restoreBackup(
         string $projectId,

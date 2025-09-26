@@ -71,10 +71,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @return CreateProfilePicture200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/profile/{uuid}/picture" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/create-profile-picture
      */
     public function createProfilePicture(
         string $uuid
@@ -209,10 +206,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/profile/{uuid}/picture" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: "
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/delete-profile-picture
      */
     public function deleteProfilePicture(
         string $uuid
@@ -339,10 +333,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X GET "https://api.upsun.com/profiles/{userId}/address" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-address
      */
     public function getAddress(
         string $userId
@@ -478,10 +469,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @return Profile
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/profiles/{userId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-profile
      */
     public function getProfile(
         string $userId
@@ -619,10 +607,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @return ListProfiles200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/profiles" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/list-profiles
      */
     public function listProfiles(): object
     {
@@ -731,22 +716,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X PATCH "https://api.upsun.com/profiles/{userId}/address" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "country": "string",
-     *          "name_line": "string",
-     *          "premise": "string",
-     *          "sub_premise": "string",
-     *          "thoroughfare": "string",
-     *          "administrative_area": "string",
-     *          "sub_administrative_area": "string",
-     *          "locality": "string",
-     *          "dependent_locality": "string",
-     *          "postal_code": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-address
      */
     public function updateAddress(
         string $userId,
@@ -895,25 +865,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @return Profile
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/profiles/{userId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "display_name": "string",
-     *          "username": "string",
-     *          "current_password": "string",
-     *          "password": "string",
-     *          "company_type": "string",
-     *          "company_name": "string",
-     *          "vat_number": "string",
-     *          "company_role": "string",
-     *          "marketing": false,
-     *          "ui_colorscheme": "string",
-     *          "default_catalog": "string",
-     *          "project_options_url": "string",
-     *          "picture": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-profile
      */
     public function updateProfile(
         string $userId,

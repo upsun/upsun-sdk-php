@@ -70,10 +70,7 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * @return OrganizationProject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/projects/{project_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/get-org-project
      */
     public function getOrgProject(
         string $organizationId,
@@ -237,10 +234,7 @@ final class OrganizationProjectsApi extends AbstractApi
      *
      * @return ListOrgProjects200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/projects?filterId=value&filterTitle=value&filterStatus=value&filterUpdatedAt=value&filterCreatedAt=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/list-org-projects
      */
     public function listOrgProjects(
         string $organizationId,

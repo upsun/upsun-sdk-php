@@ -67,10 +67,7 @@ final class DefaultApi extends AbstractApi
      *
      * @return ListTickets200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/tickets?filterTicketId=value&filterCreated=value&filterUpdated=value&filterType=value&filterPriority=value&filterStatus=value&filterRequesterId=value&filterSubmitterId=value&filterAssigneeId=value&filterHasIncidents=value&filterDue=value&search=value&page=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag//operation/list-tickets
      */
     public function listTickets(
         ?int $filterTicketId = null,

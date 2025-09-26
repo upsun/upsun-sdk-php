@@ -67,13 +67,7 @@ final class APITokensApi extends AbstractApi
      *
      * @return APIToken
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/api-tokens" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "name": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/API-Tokens/operation/create-api-token
      */
     public function createApiToken(
         string $userId,
@@ -221,10 +215,7 @@ final class APITokensApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/users/{user_id}/api-tokens/{token_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/API-Tokens/operation/delete-api-token
      */
     public function deleteApiToken(
         string $userId,
@@ -380,10 +371,7 @@ final class APITokensApi extends AbstractApi
      *
      * @return APIToken
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/api-tokens/{token_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/API-Tokens/operation/get-api-token
      */
     public function getApiToken(
         string $userId,
@@ -547,10 +535,7 @@ final class APITokensApi extends AbstractApi
      *
      * @return APIToken[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/api-tokens" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/API-Tokens/operation/list-api-tokens
      */
     public function listApiTokens(
         string $userId

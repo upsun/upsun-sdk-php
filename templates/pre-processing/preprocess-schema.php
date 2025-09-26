@@ -324,6 +324,15 @@ class OpenApiPreprocessor
                     continue;
                 }
 
+                if (!empty($operation['operationId'])) {
+                    $operation['x-property-id-kebab'] = $operation['operationId'];
+                    echo "  → {$httpMethod} {$path} => {$operation['operationId']}\n";
+                }
+
+                if (!empty($operation['tags'])) {
+                    $operation['x-tag-id-kebab'] = preg_replace('/\s+/', '-', $operation['tags'][0]);
+                }
+                
                 // --- Remove "default": null if $ref exists in requestBody schema ---
                 if (isset($operation['requestBody']['content']['application/json']['schema']['properties'])) {
                     $properties = $operation['requestBody']['content']['application/json']['schema']['properties'];
@@ -784,76 +793,6 @@ class OpenApiPreprocessor
         echo "✅ DateTime marking completed for all schemas.\n";
     }
 
-    public function addRequestBodyExamples(): void
-    {
-        foreach ($this->schema['paths'] as $path => &$methods) {
-            foreach ($methods as $httpMethod => &$operation) {
-                if (!is_array($operation) || $httpMethod === 'parameters') {
-                    continue;
-                }
-
-                $bodySchema = $operation['requestBody']['content']['application/json']['schema'] ?? null;
-                if (!$bodySchema) {
-                    continue;
-                }
-
-                $example = $this->generateExampleFromSchema($bodySchema);
-                if ($example === null) {
-                    continue;
-                }
-
-                // JSON pretty print
-                $bodyExample = json_encode($example, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-
-                // Préparer le format pour PHPDoc : première ligne sans indentation
-                $lines = explode("\n", $bodyExample);
-                foreach ($lines as $i => &$line) {
-                    if ($i > 0) { // do not indent first line
-                        $line = '     *      ' . $line;
-                    }
-                }
-                unset($line);
-
-                $operation['x-body-example'] = implode("\n", $lines);
-            }
-        }
-    }
-
-
-    private function generateExampleFromSchema(array $schema)
-    {
-        if (isset($schema['example'])) {
-            return $schema['example'];
-        }
-
-        if (isset($schema['$ref'])) {
-            $resolved = $this->resolveRef($this->schema, $schema['$ref']);
-            return $this->generateExampleFromSchema($resolved);
-        }
-
-        if (($schema['type'] ?? null) === 'object') {
-            $result = [];
-            foreach ($schema['properties'] ?? [] as $propName => $propSchema) {
-                $result[$propName] = $this->generateExampleFromSchema($propSchema);
-            }
-            return $result;
-        }
-
-        if (($schema['type'] ?? null) === 'array') {
-            return [
-                $this->generateExampleFromSchema($schema['items'] ?? [])
-            ];
-        }
-
-        return match ($schema['type'] ?? null) {
-            'string' => $schema['example'] ?? 'string',
-            'integer' => $schema['example'] ?? 0,
-            'number' => $schema['example'] ?? 0.0,
-            'boolean' => $schema['example'] ?? false,
-            default => null,
-        };
-    }
-
     public function addOrgAddonsPatch(): void
     {
         $path = '/organizations/{organization_id}/addons';
@@ -950,7 +889,6 @@ class OpenApiPreprocessor
     }
 }
 
-
 # Main script
 try {
     echo "Usage: php preprocess-schema.php <path-to-schema.json> [output-path]\n";
@@ -979,7 +917,7 @@ try {
 
     // Add Project.subscription.id
     $preprocessor->fixProjectSubscriptionId();
-    
+
     // Add Deployment.id
     $preprocessor->fixDeploymentId();
 
@@ -992,15 +930,14 @@ try {
     // Add x-return-* properties
     $preprocessor->addXReturn();
 
+    // add x-property-id-kebab
+//    $preprocessor->addPropertyIdKebab();
+
     // Add deployment/next path for managing resources
     $preprocessor->addResourcePath();
 
     // Fix nullable/required
     $preprocessor->fixNullableRequired();
-
-
-    // Add bodyParam examples for curl docs (need to be the last)
-    $preprocessor->addRequestBodyExamples();
 
     // Save
     $preprocessor->save($outputPath);

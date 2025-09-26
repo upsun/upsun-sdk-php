@@ -71,10 +71,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @return array<string, OrganizationReference>
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/ref/organizations?in=value&sig=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-orgs
      */
     public function listReferencedOrgs(
         string $in,
@@ -251,10 +248,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @return array<string, ProjectReference>
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/ref/projects?in=value&sig=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-projects
      */
     public function listReferencedProjects(
         string $in,
@@ -431,10 +425,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @return array<string, RegionReference>
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/ref/regions?in=value&sig=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-regions
      */
     public function listReferencedRegions(
         string $in,
@@ -611,10 +602,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @return array<string, TeamReference>
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/ref/teams?in=value&sig=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-teams
      */
     public function listReferencedTeams(
         string $in,
@@ -791,10 +779,7 @@ final class ReferencesApi extends AbstractApi
      *
      * @return array<string, UserReference>
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/ref/users?in=value&sig=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/References/operation/list-referenced-users
      */
     public function listReferencedUsers(
         string $in,

@@ -67,15 +67,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @return SSHKey
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/ssh_keys" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "value": "string",
-     *          "title": "string",
-     *          "uuid": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/SSH-Keys/operation/create-ssh-key
      */
     public function createSshKey(
         ?CreateSshKeyRequest $createSshKeyRequest = null
@@ -198,10 +190,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/ssh_keys/{key_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: "
+     * @see https://docs.upsun.com/api/#tag/SSH-Keys/operation/delete-ssh-key
      */
     public function deleteSshKey(
         int $keyId
@@ -331,10 +320,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @return SSHKey
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/ssh_keys/{key_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/SSH-Keys/operation/get-ssh-key
      */
     public function getSshKey(
         int $keyId

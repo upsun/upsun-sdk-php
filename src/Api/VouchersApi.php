@@ -64,13 +64,7 @@ final class VouchersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/vouchers/apply" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '{
-     *          "code": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Vouchers/operation/apply-org-voucher
      */
     public function applyOrgVoucher(
         string $organizationId,
@@ -225,10 +219,7 @@ final class VouchersApi extends AbstractApi
      *
      * @return Vouchers
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/vouchers" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Vouchers/operation/list-org-vouchers
      */
     public function listOrgVouchers(
         string $organizationId

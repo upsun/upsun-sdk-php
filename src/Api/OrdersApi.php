@@ -69,10 +69,7 @@ final class OrdersApi extends AbstractApi
      *
      * @return CreateAuthorizationCredentials200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/orders/{order_id}/authorize" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Orders/operation/create-authorization-credentials
      */
     public function createAuthorizationCredentials(
         string $organizationId,
@@ -233,10 +230,7 @@ final class OrdersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X GET "https://api.upsun.com/orders/download?token=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/pdf"
+     * @see https://docs.upsun.com/api/#tag/Orders/operation/download-invoice
      */
     public function downloadInvoice(
         string $token
@@ -379,10 +373,7 @@ final class OrdersApi extends AbstractApi
      *
      * @return Order
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders/{order_id}?mode=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Orders/operation/get-org-order
      */
     public function getOrgOrder(
         string $organizationId,
@@ -566,10 +557,7 @@ final class OrdersApi extends AbstractApi
      *
      * @return ListOrgOrders200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/orders?filterStatus=value&filterTotal=value&page=value&mode=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Orders/operation/list-org-orders
      */
     public function listOrgOrders(
         string $organizationId,

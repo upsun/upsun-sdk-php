@@ -69,19 +69,7 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/variables" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "name": "string",
-     *          "attributes": [],
-     *          "value": "string",
-     *          "is_json": false,
-     *          "is_sensitive": false,
-     *          "visible_build": false,
-     *          "visible_runtime": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/create-projects-variables
      */
     public function createProjectsVariables(
         string $projectId,
@@ -244,10 +232,7 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/variables/{projectVariableId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/delete-projects-variables
      */
     public function deleteProjectsVariables(
         string $projectId,
@@ -411,10 +396,7 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @return ProjectVariable
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/variables/{projectVariableId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/get-projects-variables
      */
     public function getProjectsVariables(
         string $projectId,
@@ -578,10 +560,7 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @return ProjectVariable[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/variables" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/list-projects-variables
      */
     public function listProjectsVariables(
         string $projectId
@@ -719,19 +698,7 @@ final class ProjectVariablesApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/variables/{projectVariableId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "name": "string",
-     *          "attributes": [],
-     *          "value": "string",
-     *          "is_json": false,
-     *          "is_sensitive": false,
-     *          "visible_build": false,
-     *          "visible_runtime": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Project-Variables/operation/update-projects-variables
      */
     public function updateProjectsVariables(
         string $projectId,

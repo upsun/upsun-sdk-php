@@ -70,10 +70,7 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @return OrganizationEstimationObject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/estimate" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/estimate-org
      */
     public function estimateOrg(
         string $organizationId
@@ -211,10 +208,7 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @return OrganizationAlertConfig
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/alerts/billing" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/get-org-billing-alert-config
      */
     public function getOrgBillingAlertConfig(
         string $organizationId
@@ -352,10 +346,7 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @return GetOrgPrepaymentInfo200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/prepayment" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/get-org-prepayment-info
      */
     public function getOrgPrepaymentInfo(
         string $organizationId
@@ -493,10 +484,7 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @return ListOrgPrepaymentTransactions200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/prepayment/transactions" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/list-org-prepayment-transactions
      */
     public function listOrgPrepaymentTransactions(
         string $organizationId
@@ -634,17 +622,7 @@ final class OrganizationManagementApi extends AbstractApi
      *
      * @return OrganizationAlertConfig
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/alerts/billing" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "active": false,
-     *          "config": {
-     *              "threshold": 0,
-     *              "mode": "string"
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Organization-Management/operation/update-org-billing-alert-config
      */
     public function updateOrgBillingAlertConfig(
         string $organizationId,

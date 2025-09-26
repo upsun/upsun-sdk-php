@@ -69,11 +69,7 @@ final class RoutingApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/create-projects-environments-routes
      */
     public function createProjectsEnvironmentsRoutes(
         string $projectId,
@@ -262,10 +258,7 @@ final class RoutingApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/delete-projects-environments-routes
      */
     public function deleteProjectsEnvironmentsRoutes(
         string $projectId,
@@ -455,10 +448,7 @@ final class RoutingApi extends AbstractApi
      *
      * @return Route
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/get-projects-environments-routes
      */
     public function getProjectsEnvironmentsRoutes(
         string $projectId,
@@ -648,10 +638,7 @@ final class RoutingApi extends AbstractApi
      *
      * @return Route[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/list-projects-environments-routes
      */
     public function listProjectsEnvironmentsRoutes(
         string $projectId,
@@ -815,11 +802,7 @@ final class RoutingApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/routes/{routeId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Routing/operation/update-projects-environments-routes
      */
     public function updateProjectsEnvironmentsRoutes(
         string $projectId,

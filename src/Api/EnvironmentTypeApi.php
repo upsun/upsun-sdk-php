@@ -66,10 +66,7 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * @return EnvironmentType
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environment-types/{environmentTypeId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/get-environment-type
      */
     public function getEnvironmentType(
         string $projectId,
@@ -233,10 +230,7 @@ final class EnvironmentTypeApi extends AbstractApi
      *
      * @return EnvironmentType[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environment-types" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Type/operation/list-projects-environment-types
      */
     public function listProjectsEnvironmentTypes(
         string $projectId

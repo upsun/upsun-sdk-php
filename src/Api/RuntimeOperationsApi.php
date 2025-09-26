@@ -67,14 +67,7 @@ final class RuntimeOperationsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "service": "string",
-     *          "operation": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Runtime-Operations/operation/run-operation
      */
     public function runOperation(
         string $projectId,

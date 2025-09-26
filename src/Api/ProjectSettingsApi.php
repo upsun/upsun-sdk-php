@@ -68,10 +68,7 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * @return ProjectSettings
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/settings" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/get-projects-settings
      */
     public function getProjectsSettings(
         string $projectId
@@ -209,18 +206,7 @@ final class ProjectSettingsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/settings" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "initialize": [],
-     *          "data_retention": [],
-     *          "build_resources": {
-     *              "cpu": 0,
-     *              "memory": 0
-     *          }
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Project-Settings/operation/update-projects-settings
      */
     public function updateProjectsSettings(
         string $projectId,

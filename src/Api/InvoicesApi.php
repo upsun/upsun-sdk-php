@@ -68,10 +68,7 @@ final class InvoicesApi extends AbstractApi
      *
      * @return Invoice
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices/{invoice_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice
      */
     public function getOrgInvoice(
         string $invoiceId,
@@ -235,10 +232,7 @@ final class InvoicesApi extends AbstractApi
      *
      * @return ListOrgInvoices200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invoices?filterStatus=value&filterType=value&filterOrderId=value&page=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices
      */
     public function listOrgInvoices(
         string $organizationId,

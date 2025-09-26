@@ -66,10 +66,7 @@ final class PlansApi extends AbstractApi
      *
      * @return ListPlans200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/plans" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Plans/operation/list-plans
      */
     public function listPlans(): object
     {

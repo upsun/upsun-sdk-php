@@ -69,21 +69,7 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/variables" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "name": "string",
-     *          "attributes": [],
-     *          "value": "string",
-     *          "is_json": false,
-     *          "is_sensitive": false,
-     *          "visible_build": false,
-     *          "visible_runtime": false,
-     *          "is_enabled": false,
-     *          "is_inheritable": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/create-projects-environments-variables
      */
     public function createProjectsEnvironmentsVariables(
         string $projectId,
@@ -272,10 +258,7 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/variables/{variableId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/delete-projects-environments-variables
      */
     public function deleteProjectsEnvironmentsVariables(
         string $projectId,
@@ -465,10 +448,7 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * @return EnvironmentVariable
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/variables/{variableId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/get-projects-environments-variables
      */
     public function getProjectsEnvironmentsVariables(
         string $projectId,
@@ -658,10 +638,7 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * @return EnvironmentVariable[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/variables" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/list-projects-environments-variables
      */
     public function listProjectsEnvironmentsVariables(
         string $projectId,
@@ -825,21 +802,7 @@ final class EnvironmentVariablesApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/variables/{variableId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "name": "string",
-     *          "attributes": [],
-     *          "value": "string",
-     *          "is_json": false,
-     *          "is_sensitive": false,
-     *          "visible_build": false,
-     *          "visible_runtime": false,
-     *          "is_enabled": false,
-     *          "is_inheritable": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Environment-Variables/operation/update-projects-environments-variables
      */
     public function updateProjectsEnvironmentsVariables(
         string $projectId,

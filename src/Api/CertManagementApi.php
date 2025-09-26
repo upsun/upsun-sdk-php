@@ -69,18 +69,7 @@ final class CertManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/certificates" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "certificate": "string",
-     *          "key": "string",
-     *          "chain": [
-     *              "string"
-     *          ],
-     *          "is_invalid": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/create-projects-certificates
      */
     public function createProjectsCertificates(
         string $projectId,
@@ -243,10 +232,7 @@ final class CertManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/certificates/{certificateId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/delete-projects-certificates
      */
     public function deleteProjectsCertificates(
         string $projectId,
@@ -410,10 +396,7 @@ final class CertManagementApi extends AbstractApi
      *
      * @return Certificate
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/certificates/{certificateId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/get-projects-certificates
      */
     public function getProjectsCertificates(
         string $projectId,
@@ -577,10 +560,7 @@ final class CertManagementApi extends AbstractApi
      *
      * @return Certificate[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/certificates" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/list-projects-certificates
      */
     public function listProjectsCertificates(
         string $projectId
@@ -718,16 +698,7 @@ final class CertManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/certificates/{certificateId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "chain": [
-     *              "string"
-     *          ],
-     *          "is_invalid": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Cert-Management/operation/update-projects-certificates
      */
     public function updateProjectsCertificates(
         string $projectId,

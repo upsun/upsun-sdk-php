@@ -69,11 +69,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/domains" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-domains
      */
     public function createProjectsDomains(
         string $projectId,
@@ -236,11 +232,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/domains" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-environments-domains
      */
     public function createProjectsEnvironmentsDomains(
         string $projectId,
@@ -429,10 +421,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/domains/{domainId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-domains
      */
     public function deleteProjectsDomains(
         string $projectId,
@@ -596,10 +585,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/domains/{domainId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-environments-domains
      */
     public function deleteProjectsEnvironmentsDomains(
         string $projectId,
@@ -789,10 +775,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return Domain
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/domains/{domainId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains
      */
     public function getProjectsDomains(
         string $projectId,
@@ -956,10 +939,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return Domain
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/domains/{domainId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains
      */
     public function getProjectsEnvironmentsDomains(
         string $projectId,
@@ -1149,10 +1129,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return Domain[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/domains" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains
      */
     public function listProjectsDomains(
         string $projectId
@@ -1290,10 +1267,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return Domain[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/domains" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains
      */
     public function listProjectsEnvironmentsDomains(
         string $projectId,
@@ -1457,11 +1431,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/domains/{domainId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-domains
      */
     public function updateProjectsDomains(
         string $projectId,
@@ -1650,11 +1620,7 @@ final class DomainManagementApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/domains/{domainId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-environments-domains
      */
     public function updateProjectsEnvironmentsDomains(
         string $projectId,

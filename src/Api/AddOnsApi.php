@@ -67,10 +67,7 @@ final class AddOnsApi extends AbstractApi
      *
      * @return OrganizationAddonsObject
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/addons" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons
      */
     public function getOrgAddons(
         string $organizationId
@@ -208,14 +205,7 @@ final class AddOnsApi extends AbstractApi
      *
      * @return OrganizationAddonsObject
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/addons" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "user_management": "standard",
-     *          "support_level": "basic"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons
      */
     public function updateOrgAddons(
         string $organizationId,

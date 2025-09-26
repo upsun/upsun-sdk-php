@@ -71,14 +71,7 @@ final class MFAApi extends AbstractApi
      *
      * @return ConfirmTotpEnrollment200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/totp" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "secret": "string",
-     *          "passcode": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/confirm-totp-enrollment
      */
     public function confirmTotpEnrollment(
         string $userId,
@@ -226,10 +219,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/mfa-enforcement/disable" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/disable-org-mfa-enforcement
      */
     public function disableOrgMfaEnforcement(
         string $organizationId
@@ -356,10 +346,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/mfa-enforcement/enable" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/enable-org-mfa-enforcement
      */
     public function enableOrgMfaEnforcement(
         string $organizationId
@@ -489,10 +476,7 @@ final class MFAApi extends AbstractApi
      *
      * @return OrganizationMFAEnforcement
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/mfa-enforcement" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/get-org-mfa-enforcement
      */
     public function getOrgMfaEnforcement(
         string $organizationId
@@ -630,10 +614,7 @@ final class MFAApi extends AbstractApi
      *
      * @return GetTotpEnrollment200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/users/{user_id}/totp" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/get-totp-enrollment
      */
     public function getTotpEnrollment(
         string $userId
@@ -771,10 +752,7 @@ final class MFAApi extends AbstractApi
      *
      * @return ConfirmTotpEnrollment200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/codes" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/recreate-recovery-codes
      */
     public function recreateRecoveryCodes(
         string $userId
@@ -912,15 +890,7 @@ final class MFAApi extends AbstractApi
      *
      * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/mfa/remind" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "user_ids": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/send-org-mfa-reminders
      */
     public function sendOrgMfaReminders(
         string $organizationId,
@@ -1068,10 +1038,7 @@ final class MFAApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/users/{user_id}/totp" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/MFA/operation/withdraw-totp-enrollment
      */
     public function withdrawTotpEnrollment(
         string $userId

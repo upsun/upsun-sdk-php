@@ -66,10 +66,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/organizations/{organization_id}/invitations/{invitation_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/cancel-org-invite
      */
     public function cancelOrgInvite(
         string $organizationId,
@@ -225,17 +222,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * @return OrganizationInvitation
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/organizations/{organization_id}/invitations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "email": "string",
-     *          "permissions": [
-     *              "string"
-     *          ],
-     *          "force": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/create-org-invite
      */
     public function createOrgInvite(
         string $organizationId,
@@ -386,10 +373,7 @@ final class OrganizationInvitationsApi extends AbstractApi
      *
      * @return OrganizationInvitation[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/invitations?filterState=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/list-org-invites
      */
     public function listOrgInvites(
         string $organizationId,

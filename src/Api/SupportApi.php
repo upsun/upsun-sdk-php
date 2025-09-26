@@ -71,30 +71,7 @@ final class SupportApi extends AbstractApi
      *
      * @return Ticket
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/tickets" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "subject": "string",
-     *          "description": "string",
-     *          "requester_id": "string",
-     *          "priority": "string",
-     *          "subscription_id": "string",
-     *          "organization_id": "string",
-     *          "affected_url": "string",
-     *          "followup_tid": "string",
-     *          "category": "string",
-     *          "attachments": [
-     *              {
-     *                  "filename": "string",
-     *                  "data": "string"
-     *              }
-     *          ],
-     *          "collaborator_ids": [
-     *              "string"
-     *          ]
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Support/operation/create-ticket
      */
     public function createTicket(
         ?CreateTicketRequest $createTicketRequest = null
@@ -220,10 +197,7 @@ final class SupportApi extends AbstractApi
      *
      * @return ListTicketCategories200ResponseInner[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/tickets/category?subscriptionId=value&organizationId=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-categories
      */
     public function listTicketCategories(
         ?string $subscriptionId = null,
@@ -377,10 +351,7 @@ final class SupportApi extends AbstractApi
      *
      * @return ListTicketPriorities200ResponseInner[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/tickets/priority?subscriptionId=value&category=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Support/operation/list-ticket-priorities
      */
     public function listTicketPriorities(
         ?string $subscriptionId = null,
@@ -534,17 +505,7 @@ final class SupportApi extends AbstractApi
      *
      * @return Ticket
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/tickets/{ticket_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "status": "string",
-     *          "collaborator_ids": [
-     *              "string"
-     *          ],
-     *          "collaborators_replace": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Support/operation/update-ticket
      */
     public function updateTicket(
         string $ticketId,

@@ -69,10 +69,7 @@ final class RegionsApi extends AbstractApi
      *
      * @return Region
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/regions/{region_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Regions/operation/get-region
      */
     public function getRegion(
         string $regionId
@@ -210,10 +207,7 @@ final class RegionsApi extends AbstractApi
      *
      * @return ListRegions200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/regions?filterAvailable=value&filterPrivate=value&filterZone=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Regions/operation/list-regions
      */
     public function listRegions(
         ?StringFilter $filterAvailable = null,

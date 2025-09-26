@@ -69,10 +69,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @return Blob
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/git/blobs/{repositoryBlobId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-blobs
      */
     public function getProjectsGitBlobs(
         string $projectId,
@@ -236,10 +233,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @return Commit
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/git/commits/{repositoryCommitId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-commits
      */
     public function getProjectsGitCommits(
         string $projectId,
@@ -403,10 +397,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @return Ref
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/git/refs/{repositoryRefId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-refs
      */
     public function getProjectsGitRefs(
         string $projectId,
@@ -570,10 +561,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @return Tree
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/git/trees/{repositoryTreeId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-trees
      */
     public function getProjectsGitTrees(
         string $projectId,
@@ -737,10 +725,7 @@ final class RepositoryApi extends AbstractApi
      *
      * @return Ref[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/git/refs" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Repository/operation/list-projects-git-refs
      */
     public function listProjectsGitRefs(
         string $projectId

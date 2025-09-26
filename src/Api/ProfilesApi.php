@@ -68,10 +68,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @return Address
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/address" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-address
      */
     public function getOrgAddress(
         string $organizationId
@@ -209,10 +206,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @return Profile
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/profile" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Profiles/operation/get-org-profile
      */
     public function getOrgProfile(
         string $organizationId
@@ -350,22 +344,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @return Address
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/address" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "country": "string",
-     *          "name_line": "string",
-     *          "premise": "string",
-     *          "sub_premise": "string",
-     *          "thoroughfare": "string",
-     *          "administrative_area": "string",
-     *          "sub_administrative_area": "string",
-     *          "locality": "string",
-     *          "dependent_locality": "string",
-     *          "postal_code": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-address
      */
     public function updateOrgAddress(
         string $organizationId,
@@ -516,18 +495,7 @@ final class ProfilesApi extends AbstractApi
      *
      * @return Profile
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/organizations/{organization_id}/profile" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json, application/problem+json" \
-     *      -d '{
-     *          "default_catalog": "string",
-     *          "project_options_url": "string",
-     *          "security_contact": "string",
-     *          "company_name": "string",
-     *          "vat_number": "string",
-     *          "billing_contact": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Profiles/operation/update-org-profile
      */
     public function updateOrgProfile(
         string $organizationId,

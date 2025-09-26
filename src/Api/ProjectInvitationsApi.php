@@ -66,10 +66,7 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{project_id}/invitations/{invitation_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/cancel-project-invite
      */
     public function cancelProjectInvite(
         string $projectId,
@@ -225,27 +222,7 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * @return ProjectInvitation
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{project_id}/invitations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "role": "string",
-     *          "email": "string",
-     *          "permissions": [
-     *              {
-     *                  "type": "string",
-     *                  "role": "string"
-     *              }
-     *          ],
-     *          "environments": [
-     *              {
-     *                  "id": "string",
-     *                  "role": "string"
-     *              }
-     *          ],
-     *          "force": false
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/create-project-invite
      */
     public function createProjectInvite(
         string $projectId,
@@ -396,10 +373,7 @@ final class ProjectInvitationsApi extends AbstractApi
      *
      * @return ProjectInvitation[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/invitations?filterState=value&pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/list-project-invites
      */
     public function listProjectInvites(
         string $projectId,

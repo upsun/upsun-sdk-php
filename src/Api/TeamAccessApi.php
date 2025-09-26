@@ -68,10 +68,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @return TeamProjectAccess
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/team-access/{team_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-project-team-access
      */
     public function getProjectTeamAccess(
         string $projectId,
@@ -235,10 +232,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @return TeamProjectAccess
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/teams/{team_id}/project-access/{project_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/get-team-project-access
      */
     public function getTeamProjectAccess(
         string $teamId,
@@ -399,15 +393,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{project_id}/team-access" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '[
-     *          {
-     *              "team_id": "string"
-     *          }
-     *      ]'
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-project-team-access
      */
     public function grantProjectTeamAccess(
         string $projectId,
@@ -559,15 +545,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/teams/{team_id}/project-access" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/problem+json" \
-     *      -d '[
-     *          {
-     *              "project_id": "string"
-     *          }
-     *      ]'
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-team-project-access
      */
     public function grantTeamProjectAccess(
         string $teamId,
@@ -722,10 +700,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @return ListTeamProjectAccess200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{project_id}/team-access?pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-project-team-access
      */
     public function listProjectTeamAccess(
         string $projectId,
@@ -961,10 +936,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @return ListTeamProjectAccess200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/teams/{team_id}/project-access?pageSize=value&pageBefore=value&pageAfter=value&sort=value" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-team-project-access
      */
     public function listTeamProjectAccess(
         string $teamId,
@@ -1197,10 +1169,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{project_id}/team-access/{team_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-project-team-access
      */
     public function removeProjectTeamAccess(
         string $projectId,
@@ -1353,10 +1322,7 @@ final class TeamAccessApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X DELETE "https://api.upsun.com/teams/{team_id}/project-access/{project_id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-team-project-access
      */
     public function removeTeamProjectAccess(
         string $teamId,

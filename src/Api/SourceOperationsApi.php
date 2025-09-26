@@ -68,10 +68,7 @@ final class SourceOperationsApi extends AbstractApi
      *
      * @return EnvironmentSourceOperation[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/source-operations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations
      */
     public function listProjectsEnvironmentsSourceOperations(
         string $projectId,
@@ -235,14 +232,7 @@ final class SourceOperationsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/environments/{environmentId}/source-operation" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "operation": "string",
-     *          "variables": []
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/Source-Operations/operation/run-source-operation
      */
     public function runSourceOperation(
         string $projectId,

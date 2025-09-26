@@ -68,10 +68,7 @@ final class DiscountsApi extends AbstractApi
      *
      * @return Discount
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/discounts/{id}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-discount
      */
     public function getDiscount(
         string $id
@@ -209,10 +206,7 @@ final class DiscountsApi extends AbstractApi
      *
      * @return GetTypeAllowance200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/discounts/types/allowance" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance
      */
     public function getTypeAllowance(): object
     {
@@ -324,10 +318,7 @@ final class DiscountsApi extends AbstractApi
      *
      * @return ListOrgDiscounts200Response
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/organizations/{organization_id}/discounts" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json, application/problem+json"
+     * @see https://docs.upsun.com/api/#tag/Discounts/operation/list-org-discounts
      */
     public function listOrgDiscounts(
         string $organizationId

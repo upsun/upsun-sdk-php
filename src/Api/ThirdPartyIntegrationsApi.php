@@ -69,11 +69,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/projects/{projectId}/integrations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/create-projects-integrations
      */
     public function createProjectsIntegrations(
         string $projectId,
@@ -236,10 +232,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X DELETE "https://api.upsun.com/projects/{projectId}/integrations/{integrationId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/delete-projects-integrations
      */
     public function deleteProjectsIntegrations(
         string $projectId,
@@ -403,10 +396,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @return Integration
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/integrations/{integrationId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/get-projects-integrations
      */
     public function getProjectsIntegrations(
         string $projectId,
@@ -570,10 +560,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @return Integration[]
      *
-     * @see
-     * curl -X GET "https://api.upsun.com/projects/{projectId}/integrations" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Accept: application/json"
+     * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/list-projects-integrations
      */
     public function listProjectsIntegrations(
         string $projectId
@@ -711,11 +698,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
      *
      * @return AcceptedResponse
      *
-     * @see
-     * curl -X PATCH "https://api.upsun.com/projects/{projectId}/integrations/{integrationId}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d ''
+     * @see https://docs.upsun.com/api/#tag/Third-Party-Integrations/operation/update-projects-integrations
      */
     public function updateProjectsIntegrations(
         string $projectId,

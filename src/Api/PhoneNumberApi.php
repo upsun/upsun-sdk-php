@@ -65,13 +65,7 @@ final class PhoneNumberApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/phonenumber/{sid}" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "code": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/confirm-phone-number
      */
     public function confirmPhoneNumber(
         string $sid,
@@ -240,14 +234,7 @@ final class PhoneNumberApi extends AbstractApi
      *
      * @return VerifyPhoneNumber200Response
      *
-     * @see
-     * curl -X POST "https://api.upsun.com/users/{user_id}/phonenumber" \
-     *      -H "Authorization: Bearer ACCESS_TOKEN" \
-     *      -H "Content-Type: application/json" \
-     *      -d '{
-     *          "channel": "string",
-     *          "phone_number": "string"
-     *      }'
+     * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/verify-phone-number
      */
     public function verifyPhoneNumber(
         string $userId,
