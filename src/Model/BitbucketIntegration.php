@@ -30,6 +30,7 @@ final class BitbucketIntegration implements ModelInterface, JsonSerializable
         private readonly ?DateTime $updatedAt = null,
         private readonly ?TheOAuth2ConsumerInformationOptional $appCredentials = null,
         private readonly ?TheAddonCredentialInformationOptional $addonCredentials = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -51,6 +52,7 @@ final class BitbucketIntegration implements ModelInterface, JsonSerializable
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'resyncPullRequests' => $this->resyncPullRequests,
+            'id' => $this->id,
             'appCredentials' => $this->appCredentials,
             'addonCredentials' => $this->addonCredentials,
         ];
@@ -109,6 +111,11 @@ final class BitbucketIntegration implements ModelInterface, JsonSerializable
     public function getResyncPullRequests(): bool
     {
         return $this->resyncPullRequests;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional

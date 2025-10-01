@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **extra** | **array<string,string>** |  | [optional]
 **headers** | **array<string,string>** |  | [optional]
 **tlsVerify** | **bool** |  | [optional]
+**excludedServices** | **string[]** |  | [optional]
 **sourcetype** | **string** |  | [optional]
 **category** | **string** |  | [optional]
 **host** | **string** |  | [optional]

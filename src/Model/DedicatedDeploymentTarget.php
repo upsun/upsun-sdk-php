@@ -30,6 +30,7 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
         private readonly ?int $deployPort = null,
         private readonly ?string $sshHost = null,
         private readonly ?array $hosts = [],
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -54,6 +55,7 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
             'autoNginx' => $this->autoNginx,
             'maintenanceMode' => $this->maintenanceMode,
             'guardrailsPhase' => $this->guardrailsPhase,
+            'id' => $this->id,
         ];
     }
 
@@ -128,5 +130,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
     public function getGuardrailsPhase(): int
     {
         return $this->guardrailsPhase;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

@@ -19,10 +19,12 @@ final class ProjectCapabilities implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly Metrics $metrics,
         private readonly LogsForwarding $logsForwarding,
+        private readonly GuaranteedResources $guaranteedResources,
         private readonly array $images,
         private readonly int $instanceLimit,
         private readonly BuildResources $buildResources,
         private readonly DataRetention $dataRetention,
+        private readonly Autoscaling $autoscaling,
         private readonly ?CustomDomains $customDomains = null,
         private readonly ?SourceOperations $sourceOperations = null,
         private readonly ?RuntimeOperations $runtimeOperations = null,
@@ -41,10 +43,12 @@ final class ProjectCapabilities implements ModelInterface, JsonSerializable
         return [
             'metrics' => $this->metrics,
             'logsForwarding' => $this->logsForwarding,
+            'guaranteedResources' => $this->guaranteedResources,
             'images' => $this->images,
             'instanceLimit' => $this->instanceLimit,
             'buildResources' => $this->buildResources,
             'dataRetention' => $this->dataRetention,
+            'autoscaling' => $this->autoscaling,
             'customDomains' => $this->customDomains,
             'sourceOperations' => $this->sourceOperations,
             'runtimeOperations' => $this->runtimeOperations,
@@ -68,6 +72,11 @@ final class ProjectCapabilities implements ModelInterface, JsonSerializable
         return $this->logsForwarding;
     }
 
+    public function getGuaranteedResources(): GuaranteedResources
+    {
+        return $this->guaranteedResources;
+    }
+
     public function getImages(): array
     {
         return $this->images;
@@ -86,6 +95,11 @@ final class ProjectCapabilities implements ModelInterface, JsonSerializable
     public function getDataRetention(): DataRetention
     {
         return $this->dataRetention;
+    }
+
+    public function getAutoscaling(): Autoscaling
+    {
+        return $this->autoscaling;
     }
 
     public function getCustomDomains(): ?CustomDomains

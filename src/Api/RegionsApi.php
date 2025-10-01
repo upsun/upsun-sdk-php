@@ -217,7 +217,7 @@ final class RegionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListRegions200Response {
         return $this->listRegionsWithHttpInfo(
             $filterAvailable,
             $filterPrivate,
@@ -244,7 +244,7 @@ final class RegionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListRegions200Response {
         $request = $this->listRegionsRequest(
             $filterAvailable,
             $filterPrivate,

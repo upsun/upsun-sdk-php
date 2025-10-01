@@ -1,12 +1,12 @@
-# Upsun\DeploymentApi
+# [Upsun\Api\DeploymentApi](../src/Api/DeploymentApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment
-[**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information
-[**updateProjectsEnvironmentsDeploymentsNext()**](DeploymentApi.md#updateProjectsEnvironmentsDeploymentsNext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getProjectsEnvironmentsDeployments()**](DeploymentApi.md#getProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId} | Get a single environment deployment | https://docs.upsun.com/api/#tag/Deployment/operation/get-projects-environments-deployments |
+| [**listProjectsEnvironmentsDeployments()**](DeploymentApi.md#listProjectsEnvironmentsDeployments) | **GET** /projects/{projectId}/environments/{environmentId}/deployments | Get an environment&#39;s deployment information | https://docs.upsun.com/api/#tag/Deployment/operation/list-projects-environments-deployments |
+| [**updateProjectsEnvironmentsDeploymentsNext()**](DeploymentApi.md#updateProjectsEnvironmentsDeploymentsNext) | **PATCH** /projects/{projectId}/environments/{environmentId}/deployments/next | Update the next deployment | https://docs.upsun.com/api/#tag//operation/ |
 
 
 ## `getProjectsEnvironmentsDeployments()`
@@ -28,8 +28,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -46,11 +46,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **deploymentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **deploymentId** | **string**|  | |
 
 ### Return type
 
@@ -77,7 +77,7 @@ listProjectsEnvironmentsDeployments($projectId, $environmentId): \Upsun\Model\De
 
 Get an environment's deployment information
 
-Retrieve the read-only configuration of an environment's deployment. The returned information is everything required to recreate a project's current deployment.  More specifically, the objects returned by this endpoint contain the configuration derived from the repository's YAML configuration files: `.platform.app.yaml`, `.platform/services.yaml`, and `.platform/routes.yaml`.  Additionally, any values deriving from environment variables, the domains attached to a project, project access settings, etc. are included here.  This endpoint currently returns a list containing a single deployment configuration with an `id` of `current`. This may be subject to change in the future.
+Retrieve the read-only configuration of an environment's deployment. The returned information is everything required to recreate a project's current deployment.  More specifically, the objects returned by this endpoint contain the configuration derived from the repository's YAML configuration file: `.upsun/config.yaml`.  Additionally, any values deriving from environment variables, the domains attached to a project, project access settings, etc. are included here.  This endpoint currently returns a list containing a single deployment configuration with an `id` of `current`. This may be subject to change in the future.
 
 ### Example
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -105,10 +105,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
 
 ### Return type
 
@@ -146,8 +146,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DeploymentApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -164,11 +164,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **updateProjectsEnvironmentsDeploymentsNextRequest** | [**\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest**](../Model/UpdateProjectsEnvironmentsDeploymentsNextRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **updateProjectsEnvironmentsDeploymentsNextRequest** | [**\Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest**](../Model/UpdateProjectsEnvironmentsDeploymentsNextRequest.md)|  | |
 
 ### Return type
 

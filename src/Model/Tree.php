@@ -17,6 +17,7 @@ use JsonSerializable;
 final class Tree implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $sha,
         private readonly array $tree,
     ) {
@@ -30,6 +31,7 @@ final class Tree implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'sha' => $this->sha,
             'tree' => $this->tree,
         ];
@@ -38,6 +40,11 @@ final class Tree implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getSha(): string

@@ -1,14 +1,14 @@
-# Upsun\ProjectVariablesApi
+# [Upsun\Api\ProjectVariablesApi](../src/Api/ProjectVariablesApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createProjectsVariables()**](ProjectVariablesApi.md#createProjectsVariables) | **POST** /projects/{projectId}/variables | Add a project variable
-[**deleteProjectsVariables()**](ProjectVariablesApi.md#deleteProjectsVariables) | **DELETE** /projects/{projectId}/variables/{projectVariableId} | Delete a project variable
-[**getProjectsVariables()**](ProjectVariablesApi.md#getProjectsVariables) | **GET** /projects/{projectId}/variables/{projectVariableId} | Get a project variable
-[**listProjectsVariables()**](ProjectVariablesApi.md#listProjectsVariables) | **GET** /projects/{projectId}/variables | Get list of project variables
-[**updateProjectsVariables()**](ProjectVariablesApi.md#updateProjectsVariables) | **PATCH** /projects/{projectId}/variables/{projectVariableId} | Update a project variable
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createProjectsVariables()**](ProjectVariablesApi.md#createProjectsVariables) | **POST** /projects/{projectId}/variables | Add a project variable | https://docs.upsun.com/api/#tag/Project-Variables/operation/create-projects-variables |
+| [**deleteProjectsVariables()**](ProjectVariablesApi.md#deleteProjectsVariables) | **DELETE** /projects/{projectId}/variables/{projectVariableId} | Delete a project variable | https://docs.upsun.com/api/#tag/Project-Variables/operation/delete-projects-variables |
+| [**getProjectsVariables()**](ProjectVariablesApi.md#getProjectsVariables) | **GET** /projects/{projectId}/variables/{projectVariableId} | Get a project variable | https://docs.upsun.com/api/#tag/Project-Variables/operation/get-projects-variables |
+| [**listProjectsVariables()**](ProjectVariablesApi.md#listProjectsVariables) | **GET** /projects/{projectId}/variables | Get list of project variables | https://docs.upsun.com/api/#tag/Project-Variables/operation/list-projects-variables |
+| [**updateProjectsVariables()**](ProjectVariablesApi.md#updateProjectsVariables) | **PATCH** /projects/{projectId}/variables/{projectVariableId} | Update a project variable | https://docs.upsun.com/api/#tag/Project-Variables/operation/update-projects-variables |
 
 
 ## `createProjectsVariables()`
@@ -19,7 +19,7 @@ createProjectsVariables($projectId, $projectVariableCreateInput): \Upsun\Model\A
 
 Add a project variable
 
-Add a variable to a project. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. See the [Variables](https://docs.platform.sh/development/variables.html#project-variables) section in our documentation for more information.
+Add a variable to a project. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. See the [Variables](https://docs.upsun.com/anchors/variables/set/project/create/) section in our documentation for more information.
 
 ### Example
 
@@ -30,8 +30,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -47,10 +47,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **projectVariableCreateInput** | [**\Upsun\Model\ProjectVariableCreateInput**](../Model/ProjectVariableCreateInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **projectVariableCreateInput** | [**\Upsun\Model\ProjectVariableCreateInput**](../Model/ProjectVariableCreateInput.md)|  | |
 
 ### Return type
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -105,10 +105,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **projectVariableId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **projectVariableId** | **string**|  | |
 
 ### Return type
 
@@ -146,8 +146,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -163,10 +163,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **projectVariableId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **projectVariableId** | **string**|  | |
 
 ### Return type
 
@@ -204,8 +204,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -220,9 +220,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 
@@ -249,7 +249,7 @@ updateProjectsVariables($projectId, $projectVariableId, $projectVariablePatch): 
 
 Update a project variable
 
-Update a single user-defined project variable. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. See the [Variables](https://docs.platform.sh/development/variables.html#project-variables) section in our documentation for more information.
+Update a single user-defined project variable. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. See the [Variables](https://docs.upsun.com/anchors/variables/set/project/create/) section in our documentation for more information.
 
 ### Example
 
@@ -260,8 +260,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\ProjectVariablesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -278,11 +278,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **projectVariableId** | **string**|  |
- **projectVariablePatch** | [**\Upsun\Model\ProjectVariablePatch**](../Model/ProjectVariablePatch.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **projectVariableId** | **string**|  | |
+| **projectVariablePatch** | [**\Upsun\Model\ProjectVariablePatch**](../Model/ProjectVariablePatch.md)|  | |
 
 ### Return type
 

@@ -75,7 +75,7 @@ final class GrantsApi extends AbstractApi
         ?StringFilter $filterResourceType = null,
         ?StringFilter $filterOrganizationId = null,
         ?StringFilter $filterPermissions = null
-    ): object {
+    ): ListUserExtendedAccess200Response {
         return $this->listUserExtendedAccessWithHttpInfo(
             $userId,
             $filterResourceType,
@@ -96,7 +96,7 @@ final class GrantsApi extends AbstractApi
         ?StringFilter $filterResourceType = null,
         ?StringFilter $filterOrganizationId = null,
         ?StringFilter $filterPermissions = null
-    ): object {
+    ): ListUserExtendedAccess200Response {
         $request = $this->listUserExtendedAccessRequest(
             $userId,
             $filterResourceType,

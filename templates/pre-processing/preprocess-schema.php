@@ -209,39 +209,7 @@ class OpenApiPreprocessor
             echo "  → {$routeType}: " . count($properties) . " total properties, {$nullableCount} nullable\n";
         }
     }
-
-    /**
-     * Add Activity.id field if not exist yet
-     * @todo remove if solved: https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
-     */
-    public function fixActivityId(): void
-    {
-        $activity = &$this->schema['components']['schemas']['Activity'];
-
-        // Ensure properties array exists
-        if (!isset($activity['properties']) || !is_array($activity['properties'])) {
-            $activity['properties'] = [];
-        }
-
-        // Add id property if missing
-        if (!isset($activity['properties']['id'])) {
-            $activity['properties']['id'] = [
-                'type' => 'string',
-                'title' => 'ID',
-            ];
-        }
-
-        // Ensure required is an array
-        if (!isset($activity['required']) || !is_array($activity['required'])) {
-            $activity['required'] = [];
-        }
-
-        // Add id to required if not already there
-        if (!in_array('id', $activity['required'], true)) {
-            $activity['required'][] = 'id';
-        }
-    }
-
+    
     /**
      * Add project.subscription.id field if not exist yet
      * @todo remove if solved: https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
@@ -256,44 +224,15 @@ class OpenApiPreprocessor
                 'type' => 'string',
                 'title' => 'ID',
             ];
+        } else {
+            throw new Exception(
+                'Project.subscription.id already exists, please review your fixProjectSubscriptionId function'
+            );
         }
 
         // Add id to required if not already there
         if (!in_array('id', $project['properties']['subscription']['required'], true)) {
             $project['properties']['subscription']['required'][] = 'id';
-        }
-    }
-
-
-    /**
-     * Add Deployment.id field if not exist yet
-     * @todo remove if solved: https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
-     */
-    public function fixDeploymentId(): void
-    {
-        $deployment = &$this->schema['components']['schemas']['Deployment'];
-
-        // Ensure properties array exists
-        if (!isset($deployment['properties']) || !is_array($deployment['properties'])) {
-            $deployment['properties'] = [];
-        }
-
-        // Add id if missing
-        if (!isset($deployment['properties']['id'])) {
-            $deployment['properties']['id'] = [
-                'type' => 'string',
-                'title' => 'ID',
-            ];
-        }
-
-        // Ensure required is an array
-        if (!isset($deployment['required']) || !is_array($deployment['required'])) {
-            $deployment['required'] = [];
-        }
-
-        // Add id in required if not already there
-        if (!in_array('id', $deployment['required'], true)) {
-            $deployment['required'][] = 'id';
         }
     }
 
@@ -414,7 +353,7 @@ class OpenApiPreprocessor
                 }, $returnTypes);
 
                 $returnTypeUnion = implode('|', array_values(array_unique($unionTypes)));
-                if ($returnTypeUnion) {
+                if ($returnTypeUnion && $returnTypeUnion !== 'object') {
                     $operation['x-return-types-union'] = $returnTypeUnion;
                 }
 
@@ -425,7 +364,6 @@ class OpenApiPreprocessor
                     }
                 }
 
-                // Determine if the operation has a real return type
                 // Determine if the operation has a real return type
                 $hasReturn = false;
                 foreach ($operation['responses'] as $statusCode => $resp) {
@@ -443,7 +381,6 @@ class OpenApiPreprocessor
 
                 $operation['x-phpdoc'] = $phpDoc;
                 $operation['x-returnable'] = $hasReturn;
-                $operation['x-hasMultipleResponses'] = count($operation['responses'] ?? []) > 1;
             }
         }
     }
@@ -752,6 +689,59 @@ class OpenApiPreprocessor
         // If scalar (string, number, etc.), do nothing
     }
 
+    public function fixEmptyParameters(): void
+    {
+        foreach ($this->schema['paths'] as $path => &$methods) {
+            foreach ($methods as $method => &$operation) {
+                if (isset($operation['parameters']) && $operation['parameters'] === []) {
+                    unset($operation['parameters']);
+                }
+            }
+        }
+    }
+
+    public function renameXInternal(): void
+    {
+        // on paths
+        foreach ($this->schema['paths'] as &$methods) {
+            foreach ($methods as &$operation) {
+                if (isset($operation['x-internal'])) {
+                    $operation['x-internal-doc'] = $operation['x-internal'];
+                    unset($operation['x-internal']);
+                }
+            }
+        }
+
+        // on Components
+        foreach ($this->schema['components']['schemas'] as &$schema) {
+            if (isset($schema['x-internal'])) {
+                $schema['x-internal-doc'] = $schema['x-internal'];
+                unset($schema['x-internal']);
+            }
+        }
+    }
+
+    public function renameXDeprecated(): void
+    {
+        // on paths
+        foreach ($this->schema['paths'] as &$methods) {
+            foreach ($methods as &$operation) {
+                if (isset($operation['deprecated'])) {
+                    $operation['x-internal-doc'] = $operation['x-internal'];
+                    unset($operation['x-internal']);
+                }
+            }
+        }
+
+        // on Components
+        foreach ($this->schema['components']['schemas'] as &$schema) {
+            if (isset($schema['x-internal'])) {
+                $schema['x-internal-doc'] = $schema['x-internal'];
+                unset($schema['x-internal']);
+            }
+        }
+    }
+    
     public function fixNullableRequired(): void
     {
         foreach ($this->schema['components']['schemas'] as &$schema) {
@@ -894,7 +884,7 @@ try {
     echo "Usage: php preprocess-schema.php <path-to-schema.json> [output-path]\n";
     echo "Example: php preprocess-schema.php ./openapi.json ./openapi-processed.json\n";
 
-    $inputPath = $argv[1] ?? './schema/openapispec-platformsh.json';
+    $inputPath = $argv[1] ?? './schema/openapispec-upsun.json';
     $outputPath = $argv[2] ?? str_replace('.json', '-processed.json', $inputPath);
 
     echo "🚀 Starting OpenAPI schema preprocessing\n";
@@ -911,15 +901,9 @@ try {
 
     // Optional: clean required properties
     $preprocessor->cleanRequiredProperties();
-
-    // Add Activity.id
-    $preprocessor->fixActivityId();
-
+    
     // Add Project.subscription.id
     $preprocessor->fixProjectSubscriptionId();
-
-    // Add Deployment.id
-    $preprocessor->fixDeploymentId();
 
     // Add addons update path (PATCH)
     $preprocessor->addOrgAddonsPatch();
@@ -930,14 +914,17 @@ try {
     // Add x-return-* properties
     $preprocessor->addXReturn();
 
-    // add x-property-id-kebab
-//    $preprocessor->addPropertyIdKebab();
-
     // Add deployment/next path for managing resources
     $preprocessor->addResourcePath();
 
     // Fix nullable/required
     $preprocessor->fixNullableRequired();
+
+    // Fix empty parameters
+    $preprocessor->fixEmptyParameters();
+
+    // rename x-internal --> x-internal-doc
+    //$preprocessor->renameXInternal();
 
     // Save
     $preprocessor->save($outputPath);

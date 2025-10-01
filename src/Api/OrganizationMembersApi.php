@@ -560,7 +560,7 @@ final class OrganizationMembersApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListOrgMembers200Response {
         return $this->listOrgMembersWithHttpInfo(
             $organizationId,
             $filterPermissions,
@@ -585,7 +585,7 @@ final class OrganizationMembersApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListOrgMembers200Response {
         $request = $this->listOrgMembersRequest(
             $organizationId,
             $filterPermissions,

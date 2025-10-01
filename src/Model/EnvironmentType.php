@@ -17,6 +17,7 @@ use JsonSerializable;
 final class EnvironmentType implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly array $attributes,
     ) {
     }
@@ -29,6 +30,7 @@ final class EnvironmentType implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'attributes' => $this->attributes,
         ];
     }
@@ -36,6 +38,11 @@ final class EnvironmentType implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getAttributes(): array

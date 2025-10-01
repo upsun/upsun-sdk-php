@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **type** | **string** |  |
 **name** | **string** |  |
 **attributes** | **array<string,string>** |  |
+**id** | **string** |  | [optional]
 **project** | **string** |  | [optional]
 **registeredName** | **string** |  | [optional]
 **isDefault** | **bool** |  | [optional]

@@ -21,13 +21,19 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
         private readonly ?string $id = null,
         private readonly ?string $organizationId = null,
         private readonly ?string $subscriptionId = null,
+        private readonly ?string $vendor = null,
         private readonly ?string $region = null,
         private readonly ?string $title = null,
-        private readonly ?OrganizationProjectType $type = null,
-        private readonly ?OrganizationProjectPlan $plan = null,
-        private readonly ?string $accessMigrationStatus = null,
-        private readonly ?OrganizationProjectStatus $status = null,
-        private readonly ?string $vendor = null,
+        private readonly ?ProjectType $type = null,
+        private readonly ?string $plan = null,
+        private readonly ?string $timezone = null,
+        private readonly ?string $defaultBranch = null,
+        private readonly ?ProjectStatus $status = null,
+        private readonly ?bool $trialPlan = null,
+        private readonly ?string $projectUi = null,
+        private readonly ?bool $locked = null,
+        private readonly ?string $cseNotes = null,
+        private readonly ?string $dedicatedTag = null,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?OrganizationProjectLinks $links = null,
@@ -45,13 +51,19 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
             'id' => $this->id,
             'organizationId' => $this->organizationId,
             'subscriptionId' => $this->subscriptionId,
+            'vendor' => $this->vendor,
             'region' => $this->region,
             'title' => $this->title,
             'type' => $this->type,
             'plan' => $this->plan,
-            'accessMigrationStatus' => $this->accessMigrationStatus,
+            'timezone' => $this->timezone,
+            'defaultBranch' => $this->defaultBranch,
             'status' => $this->status,
-            'vendor' => $this->vendor,
+            'trialPlan' => $this->trialPlan,
+            'projectUi' => $this->projectUi,
+            'locked' => $this->locked,
+            'cseNotes' => $this->cseNotes,
+            'dedicatedTag' => $this->dedicatedTag,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'links' => $this->links,
@@ -78,6 +90,11 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
         return $this->subscriptionId;
     }
 
+    public function getVendor(): ?string
+    {
+        return $this->vendor;
+    }
+
     public function getRegion(): ?string
     {
         return $this->region;
@@ -88,29 +105,54 @@ final class OrganizationProject implements ModelInterface, JsonSerializable
         return $this->title;
     }
 
-    public function getType(): ?OrganizationProjectType
+    public function getType(): ?ProjectType
     {
         return $this->type;
     }
 
-    public function getPlan(): ?OrganizationProjectPlan
+    public function getPlan(): ?string
     {
         return $this->plan;
     }
 
-    public function getAccessMigrationStatus(): ?string
+    public function getTimezone(): ?string
     {
-        return $this->accessMigrationStatus;
+        return $this->timezone;
     }
 
-    public function getStatus(): ?OrganizationProjectStatus
+    public function getDefaultBranch(): ?string
+    {
+        return $this->defaultBranch;
+    }
+
+    public function getStatus(): ?ProjectStatus
     {
         return $this->status;
     }
 
-    public function getVendor(): ?string
+    public function getTrialPlan(): ?bool
     {
-        return $this->vendor;
+        return $this->trialPlan;
+    }
+
+    public function getProjectUi(): ?string
+    {
+        return $this->projectUi;
+    }
+
+    public function getLocked(): ?bool
+    {
+        return $this->locked;
+    }
+
+    public function getCseNotes(): ?string
+    {
+        return $this->cseNotes;
+    }
+
+    public function getDedicatedTag(): ?string
+    {
+        return $this->dedicatedTag;
     }
 
     public function getCreatedAt(): ?DateTime

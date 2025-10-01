@@ -709,7 +709,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectUserAccess200Response {
         return $this->listProjectUserAccessWithHttpInfo(
             $projectId,
             $pageSize,
@@ -732,7 +732,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectUserAccess200Response {
         $request = $this->listProjectUserAccessRequest(
             $projectId,
             $pageSize,
@@ -946,7 +946,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectUserAccess200Response {
         return $this->listUserProjectAccessWithHttpInfo(
             $userId,
             $filterOrganizationId,
@@ -971,7 +971,7 @@ final class UserAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectUserAccess200Response {
         $request = $this->listUserProjectAccessRequest(
             $userId,
             $filterOrganizationId,

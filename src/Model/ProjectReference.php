@@ -23,9 +23,9 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         private readonly string $subscriptionId,
         private readonly string $region,
         private readonly string $title,
-        private readonly OrganizationProjectType $type,
-        private readonly OrganizationProjectPlan $plan,
-        private readonly OrganizationProjectStatus $status,
+        private readonly ProjectType $type,
+        private readonly string $plan,
+        private readonly ProjectStatus $status,
         private readonly DateTime $createdAt,
         private readonly DateTime $updatedAt,
     ) {
@@ -82,17 +82,17 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         return $this->title;
     }
 
-    public function getType(): OrganizationProjectType
+    public function getType(): ProjectType
     {
         return $this->type;
     }
 
-    public function getPlan(): OrganizationProjectPlan
+    public function getPlan(): string
     {
         return $this->plan;
     }
 
-    public function getStatus(): OrganizationProjectStatus
+    public function getStatus(): ProjectStatus
     {
         return $this->status;
     }

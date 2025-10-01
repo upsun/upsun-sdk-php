@@ -17,6 +17,7 @@ use JsonSerializable;
 final class EnvironmentSourceOperation implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $app,
         private readonly string $operation,
         private readonly string $command,
@@ -31,6 +32,7 @@ final class EnvironmentSourceOperation implements ModelInterface, JsonSerializab
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'app' => $this->app,
             'operation' => $this->operation,
             'command' => $this->command,
@@ -40,6 +42,11 @@ final class EnvironmentSourceOperation implements ModelInterface, JsonSerializab
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getApp(): string

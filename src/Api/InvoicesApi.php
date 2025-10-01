@@ -240,7 +240,7 @@ final class InvoicesApi extends AbstractApi
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
-    ): object {
+    ): ListOrgInvoices200Response {
         return $this->listOrgInvoicesWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -263,7 +263,7 @@ final class InvoicesApi extends AbstractApi
         ?string $filterType = null,
         ?string $filterOrderId = null,
         ?int $page = null
-    ): object {
+    ): ListOrgInvoices200Response {
         $request = $this->listOrgInvoicesRequest(
             $organizationId,
             $filterStatus,

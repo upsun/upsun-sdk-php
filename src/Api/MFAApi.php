@@ -76,7 +76,7 @@ final class MFAApi extends AbstractApi
     public function confirmTotpEnrollment(
         string $userId,
         ?ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
-    ): object {
+    ): ConfirmTotpEnrollment200Response {
         return $this->confirmTotpEnrollmentWithHttpInfo(
             $userId,
             $confirmTotpEnrollmentRequest
@@ -93,7 +93,7 @@ final class MFAApi extends AbstractApi
     private function confirmTotpEnrollmentWithHttpInfo(
         string $userId,
         ?ConfirmTotpEnrollmentRequest $confirmTotpEnrollmentRequest = null
-    ): object {
+    ): ConfirmTotpEnrollment200Response {
         $request = $this->confirmTotpEnrollmentRequest(
             $userId,
             $confirmTotpEnrollmentRequest
@@ -618,7 +618,7 @@ final class MFAApi extends AbstractApi
      */
     public function getTotpEnrollment(
         string $userId
-    ): object {
+    ): GetTotpEnrollment200Response {
         return $this->getTotpEnrollmentWithHttpInfo(
             $userId
         );
@@ -633,7 +633,7 @@ final class MFAApi extends AbstractApi
      */
     private function getTotpEnrollmentWithHttpInfo(
         string $userId
-    ): object {
+    ): GetTotpEnrollment200Response {
         $request = $this->getTotpEnrollmentRequest(
             $userId
         );
@@ -756,7 +756,7 @@ final class MFAApi extends AbstractApi
      */
     public function recreateRecoveryCodes(
         string $userId
-    ): object {
+    ): ConfirmTotpEnrollment200Response {
         return $this->recreateRecoveryCodesWithHttpInfo(
             $userId
         );
@@ -771,7 +771,7 @@ final class MFAApi extends AbstractApi
      */
     private function recreateRecoveryCodesWithHttpInfo(
         string $userId
-    ): object {
+    ): ConfirmTotpEnrollment200Response {
         $request = $this->recreateRecoveryCodesRequest(
             $userId
         );

@@ -4,6 +4,8 @@ namespace Upsun\Api;
 
 use DateTime;
 use Upsun\Model\ListTickets200Response;
+use Upsun\Model\DateTimeFilter;
+use Upsun\Model\OrganizationCarbon;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -83,7 +85,7 @@ final class DefaultApi extends AbstractApi
         ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): object {
+    ): ListTickets200Response {
         return $this->listTicketsWithHttpInfo(
             $filterTicketId,
             $filterCreated,
@@ -122,7 +124,7 @@ final class DefaultApi extends AbstractApi
         ?DateTime $filterDue = null,
         ?string $search = null,
         ?int $page = null
-    ): object {
+    ): ListTickets200Response {
         $request = $this->listTicketsRequest(
             $filterTicketId,
             $filterCreated,
@@ -397,6 +399,206 @@ final class DefaultApi extends AbstractApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * Query project carbon emissions metrics for an entire organization
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return OrganizationCarbon
+     *
+     * @see https://docs.upsun.com/api/#tag//operation/query-organiation-carbon
+     */
+    public function queryOrganiationCarbon(
+        string $organizationId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): OrganizationCarbon {
+        return $this->queryOrganiationCarbonWithHttpInfo(
+            $organizationId,
+            $from,
+            $to,
+            $interval
+        );
+    }
+
+    /**
+     * Query project carbon emissions metrics for an entire organization
+     *
+     * @return OrganizationCarbon
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function queryOrganiationCarbonWithHttpInfo(
+        string $organizationId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): OrganizationCarbon {
+        $request = $this->queryOrganiationCarbonRequest(
+            $organizationId,
+            $from,
+            $to,
+            $interval
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                OrganizationCarbon::class,
+                $request,
+                $response
+            );
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
+        }
+    }
+
+    /**
+     * Create request for operation 'queryOrganiationCarbon'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function queryOrganiationCarbonRequest(
+        string $organizationId,
+        ?DateTimeFilter $from = null,
+        ?DateTimeFilter $to = null,
+        ?string $interval = null
+    ): RequestInterface {
+
+        // verify the required parameter 'organizationId' is set
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $organizationId 
+                when calling queryOrganiationCarbon'
+            );
+        }
+
+
+
+        $resourcePath = '/organizations/{organization_id}/metrics/carbon';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($from !== null) {
+            if ('form' === 'form' && is_array($from)) {
+                foreach ($from as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['from'] = $from instanceof DateTime
+                    ? $from->format(DATE_ATOM)
+                    : ($from->getEq());
+            }
+        }
+
+
+
+        // query params
+        if ($to !== null) {
+            if ('form' === 'form' && is_array($to)) {
+                foreach ($to as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['to'] = $to instanceof DateTime
+                    ? $to->format(DATE_ATOM)
+                    : ($to->getEq());
+            }
+        }
+
+
+
+        // query params
+        if ($interval !== null) {
+            if ('form' === 'form' && is_array($interval)) {
+                foreach ($interval as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['interval'] = $interval instanceof DateTime
+                    ? $interval->format(DATE_ATOM)
+                    : ($interval);
+            }
+        }
+
+
+
+        // path params
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
             '',
             $multipart
         );

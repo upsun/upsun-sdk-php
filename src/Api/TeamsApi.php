@@ -965,7 +965,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListTeamMembers200Response {
         return $this->listTeamMembersWithHttpInfo(
             $teamId,
             $pageBefore,
@@ -986,7 +986,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListTeamMembers200Response {
         $request = $this->listTeamMembersRequest(
             $teamId,
             $pageBefore,
@@ -1168,7 +1168,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListTeams200Response {
         return $this->listTeamsWithHttpInfo(
             $filterOrganizationId,
             $filterId,
@@ -1195,7 +1195,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListTeams200Response {
         $request = $this->listTeamsRequest(
             $filterOrganizationId,
             $filterId,
@@ -1442,7 +1442,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListTeams200Response {
         return $this->listUserTeamsWithHttpInfo(
             $userId,
             $filterOrganizationId,
@@ -1469,7 +1469,7 @@ final class TeamsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListTeams200Response {
         $request = $this->listUserTeamsRequest(
             $userId,
             $filterOrganizationId,

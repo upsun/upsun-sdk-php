@@ -20,8 +20,8 @@ final class OrganizationProjectLinks implements ModelInterface, JsonSerializable
         private readonly ?OrganizationProjectLinksSelf $self = null,
         private readonly ?OrganizationProjectLinksUpdate $update = null,
         private readonly ?OrganizationProjectLinksDelete $delete = null,
-        private readonly ?OrganizationProjectLinksSubscription $subscription = null,
-        private readonly ?OrganizationProjectLinksApi $api = null,
+        private readonly ?OrganizationProjectLinksActivities $activities = null,
+        private readonly ?OrganizationProjectLinksAddons $addons = null,
     ) {
     }
 
@@ -36,8 +36,8 @@ final class OrganizationProjectLinks implements ModelInterface, JsonSerializable
             'self' => $this->self,
             'update' => $this->update,
             'delete' => $this->delete,
-            'subscription' => $this->subscription,
-            'api' => $this->api,
+            'activities' => $this->activities,
+            'addons' => $this->addons,
         ];
     }
 
@@ -61,13 +61,13 @@ final class OrganizationProjectLinks implements ModelInterface, JsonSerializable
         return $this->delete;
     }
 
-    public function getSubscription(): ?OrganizationProjectLinksSubscription
+    public function getActivities(): ?OrganizationProjectLinksActivities
     {
-        return $this->subscription;
+        return $this->activities;
     }
 
-    public function getApi(): ?OrganizationProjectLinksApi
+    public function getAddons(): ?OrganizationProjectLinksAddons
     {
-        return $this->api;
+        return $this->addons;
     }
 }

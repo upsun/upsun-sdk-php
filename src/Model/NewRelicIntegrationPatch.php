@@ -22,6 +22,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, JsonSerializable
         private readonly string $licenseKey,
         private readonly ?array $extra = [],
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -38,6 +39,7 @@ final class NewRelicIntegrationPatch implements ModelInterface, JsonSerializable
             'licenseKey' => $this->licenseKey,
             'extra' => $this->extra,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -69,5 +71,10 @@ final class NewRelicIntegrationPatch implements ModelInterface, JsonSerializable
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
     }
 }

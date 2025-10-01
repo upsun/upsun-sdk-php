@@ -23,6 +23,7 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
         private readonly array $attributes,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
         private readonly ?string $replacementFor = null,
@@ -42,6 +43,7 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
             'type' => $this->type,
             'name' => $this->name,
             'attributes' => $this->attributes,
+            'id' => $this->id,
             'project' => $this->project,
             'registeredName' => $this->registeredName,
             'replacementFor' => $this->replacementFor,
@@ -76,6 +78,11 @@ final class ReplacementDomainStorage implements ModelInterface, JsonSerializable
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getProject(): ?string

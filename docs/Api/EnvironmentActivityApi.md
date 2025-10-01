@@ -1,12 +1,12 @@
-# Upsun\EnvironmentActivityApi
+# [Upsun\Api\EnvironmentActivityApi](../src/Api/EnvironmentActivityApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**actionProjectsEnvironmentsActivitiesCancel()**](EnvironmentActivityApi.md#actionProjectsEnvironmentsActivitiesCancel) | **POST** /projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel | Cancel an environment activity
-[**getProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#getProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities/{activityId} | Get an environment activity log entry
-[**listProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#listProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities | Get environment activity log
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**actionProjectsEnvironmentsActivitiesCancel()**](EnvironmentActivityApi.md#actionProjectsEnvironmentsActivitiesCancel) | **POST** /projects/{projectId}/environments/{environmentId}/activities/{activityId}/cancel | Cancel an environment activity | https://docs.upsun.com/api/#tag/Environment-Activity/operation/action-projects-environments-activities-cancel |
+| [**getProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#getProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities/{activityId} | Get an environment activity log entry | https://docs.upsun.com/api/#tag/Environment-Activity/operation/get-projects-environments-activities |
+| [**listProjectsEnvironmentsActivities()**](EnvironmentActivityApi.md#listProjectsEnvironmentsActivities) | **GET** /projects/{projectId}/environments/{environmentId}/activities | Get environment activity log | https://docs.upsun.com/api/#tag/Environment-Activity/operation/list-projects-environments-activities |
 
 
 ## `actionProjectsEnvironmentsActivitiesCancel()`
@@ -28,8 +28,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -46,11 +46,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **activityId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **activityId** | **string**|  | |
 
 ### Return type
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -106,11 +106,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **activityId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **activityId** | **string**|  | |
 
 ### Return type
 
@@ -148,8 +148,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\EnvironmentActivityApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -165,10 +165,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
 
 ### Return type
 

@@ -22,6 +22,7 @@ final class PagerDutyIntegration implements ModelInterface, JsonSerializable
         private readonly string $routingKey,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -37,6 +38,7 @@ final class PagerDutyIntegration implements ModelInterface, JsonSerializable
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'routingKey' => $this->routingKey,
+            'id' => $this->id,
         ];
     }
 
@@ -63,5 +65,10 @@ final class PagerDutyIntegration implements ModelInterface, JsonSerializable
     public function getRoutingKey(): string
     {
         return $this->routingKey;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

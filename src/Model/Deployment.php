@@ -18,6 +18,7 @@ use JsonSerializable;
 final class Deployment implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $clusterName,
         private readonly ProjectInfo $projectInfo,
         private readonly EnvironmentInfo $environmentInfo,
@@ -33,7 +34,6 @@ final class Deployment implements ModelInterface, JsonSerializable
         private readonly array $webapps,
         private readonly array $workers,
         private readonly array $containerProfiles,
-        private readonly string $id,
         private readonly ?VPNConfiguration $vpn = null,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
@@ -49,6 +49,7 @@ final class Deployment implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'clusterName' => $this->clusterName,
             'projectInfo' => $this->projectInfo,
             'environmentInfo' => $this->environmentInfo,
@@ -65,7 +66,6 @@ final class Deployment implements ModelInterface, JsonSerializable
             'webapps' => $this->webapps,
             'workers' => $this->workers,
             'containerProfiles' => $this->containerProfiles,
-            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'fingerprint' => $this->fingerprint,
@@ -75,6 +75,11 @@ final class Deployment implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getClusterName(): string
@@ -173,11 +178,6 @@ final class Deployment implements ModelInterface, JsonSerializable
     public function getContainerProfiles(): array
     {
         return $this->containerProfiles;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime

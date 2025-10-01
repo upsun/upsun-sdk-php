@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **sshHosts** | **string[]** |  |
 **useDedicatedGrid** | **bool** |  |
 **storageType** | **string** |  |
+**id** | **string** |  | [optional]
 **enterpriseEnvironmentsMapping** | **object** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

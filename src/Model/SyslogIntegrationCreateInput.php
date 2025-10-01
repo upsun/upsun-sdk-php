@@ -27,6 +27,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, JsonSerializ
         private readonly ?string $authToken = null,
         private readonly ?string $authMode = null,
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -48,6 +49,7 @@ final class SyslogIntegrationCreateInput implements ModelInterface, JsonSerializ
             'authToken' => $this->authToken,
             'authMode' => $this->authMode,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -104,5 +106,10 @@ final class SyslogIntegrationCreateInput implements ModelInterface, JsonSerializ
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
     }
 }

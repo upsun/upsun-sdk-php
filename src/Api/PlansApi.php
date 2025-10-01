@@ -68,7 +68,7 @@ final class PlansApi extends AbstractApi
      *
      * @see https://docs.upsun.com/api/#tag/Plans/operation/list-plans
      */
-    public function listPlans(): object
+    public function listPlans(): ListPlans200Response
     {
         return $this->listPlansWithHttpInfo(
         );
@@ -81,7 +81,7 @@ final class PlansApi extends AbstractApi
      *
      * @throws InvalidArgumentException|Exception
      */
-    private function listPlansWithHttpInfo(): object
+    private function listPlansWithHttpInfo(): ListPlans200Response
     {
         $request = $this->listPlansRequest(
         );

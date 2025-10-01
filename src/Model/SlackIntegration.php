@@ -22,6 +22,7 @@ final class SlackIntegration implements ModelInterface, JsonSerializable
         private readonly string $channel,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -37,6 +38,7 @@ final class SlackIntegration implements ModelInterface, JsonSerializable
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'channel' => $this->channel,
+            'id' => $this->id,
         ];
     }
 
@@ -63,5 +65,10 @@ final class SlackIntegration implements ModelInterface, JsonSerializable
     public function getChannel(): string
     {
         return $this->channel;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

@@ -23,8 +23,10 @@ final class HttpLogIntegration implements ModelInterface, JsonSerializable
         private readonly string $url,
         private readonly array $headers,
         private readonly bool $tlsVerify,
+        private readonly array $excludedServices,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -43,6 +45,8 @@ final class HttpLogIntegration implements ModelInterface, JsonSerializable
             'url' => $this->url,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
+            'id' => $this->id,
         ];
     }
 
@@ -84,5 +88,15 @@ final class HttpLogIntegration implements ModelInterface, JsonSerializable
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): array
+    {
+        return $this->excludedServices;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

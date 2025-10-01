@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **createdAt** | **\DateTime** |  |
 **updatedAt** | **\DateTime** |  |
 **name** | **string** |  |
@@ -24,6 +25,7 @@ Name | Type | Description | Notes
 **restrictRobots** | **bool** |  |
 **edgeHostname** | **string** |  |
 **deploymentState** | [**\Upsun\Model\TheEnvironmentDeploymentState**](TheEnvironmentDeploymentState.md) |  |
+**sizing** | [**\Upsun\Model\TheEnvironmentSizingConfiguration**](TheEnvironmentSizingConfiguration.md) |  |
 **resourcesOverrides** | [**array<string,\Upsun\Model\ResourcesOverridesValue>**](ResourcesOverridesValue.md) |  |
 **maxInstanceCount** | **int** |  |
 **lastActiveAt** | **\DateTime** |  |
@@ -31,6 +33,8 @@ Name | Type | Description | Notes
 **project** | **string** |  |
 **isMain** | **bool** |  |
 **isDirty** | **bool** |  |
+**hasStagedActivities** | **bool** |  |
+**canRollingDeploy** | **bool** |  |
 **hasCode** | **bool** |  |
 **headCommit** | **string** |  |
 **mergeInfo** | [**\Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments**](TheCommitDistanceInfoBetweenParentAndChildEnvironments.md) |  |

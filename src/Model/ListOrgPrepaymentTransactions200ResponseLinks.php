@@ -17,10 +17,10 @@ use JsonSerializable;
 final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?ListLinksSelf $self = null,
-        private readonly ?ListLinksPrevious $previous = null,
-        private readonly ?ListLinksNext $next = null,
-        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment $prepayment = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksSelf $self = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksPrevious $previous = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksNext $next = null,
+        private readonly ?ListOrgPrepaymentTransactions200ResponseLinksPrepayment $prepayment = null,
     ) {
     }
 
@@ -44,22 +44,22 @@ final class ListOrgPrepaymentTransactions200ResponseLinks implements ModelInterf
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSelf(): ?ListLinksSelf
+    public function getSelf(): ?ListOrgPrepaymentTransactions200ResponseLinksSelf
     {
         return $this->self;
     }
 
-    public function getPrevious(): ?ListLinksPrevious
+    public function getPrevious(): ?ListOrgPrepaymentTransactions200ResponseLinksPrevious
     {
         return $this->previous;
     }
 
-    public function getNext(): ?ListLinksNext
+    public function getNext(): ?ListOrgPrepaymentTransactions200ResponseLinksNext
     {
         return $this->next;
     }
 
-    public function getPrepayment(): ?ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment
+    public function getPrepayment(): ?ListOrgPrepaymentTransactions200ResponseLinksPrepayment
     {
         return $this->prepayment;
     }

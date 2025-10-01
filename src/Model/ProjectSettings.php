@@ -35,6 +35,8 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
         private readonly bool $enableStateApiDeployments,
         private readonly int $cronMinimumInterval,
         private readonly int $cronMaximumJitter,
+        private readonly int $cronProductionExpiryInterval,
+        private readonly int $cronNonProductionExpiryInterval,
         private readonly array $concurrencyLimits,
         private readonly bool $flexibleBuildCache,
         private readonly bool $strictConfiguration,
@@ -71,6 +73,13 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
         private readonly TheContinuousProfilingConfiguration $continuousProfiling,
         private readonly bool $disableAgentErrorReporter,
         private readonly bool $requiresDomainOwnership,
+        private readonly bool $enableGuaranteedResources,
+        private readonly GitServerConfiguration $gitServer,
+        private readonly int $activityLogsMaxSize,
+        private readonly bool $allowManualDeployments,
+        private readonly bool $allowRollingDeployments,
+        private readonly bool $allowBurst,
+        private readonly RouterResourceSettingsForFlexPlan $routerResources,
         private readonly ?string $developmentDomainTemplate = null,
         private readonly ?int $temporaryDiskSize = null,
         private readonly ?int $localDiskSize = null,
@@ -109,6 +118,8 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
             'localDiskSize' => $this->localDiskSize,
             'cronMinimumInterval' => $this->cronMinimumInterval,
             'cronMaximumJitter' => $this->cronMaximumJitter,
+            'cronProductionExpiryInterval' => $this->cronProductionExpiryInterval,
+            'cronNonProductionExpiryInterval' => $this->cronNonProductionExpiryInterval,
             'concurrencyLimits' => $this->concurrencyLimits,
             'flexibleBuildCache' => $this->flexibleBuildCache,
             'strictConfiguration' => $this->strictConfiguration,
@@ -148,6 +159,13 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
             'continuousProfiling' => $this->continuousProfiling,
             'disableAgentErrorReporter' => $this->disableAgentErrorReporter,
             'requiresDomainOwnership' => $this->requiresDomainOwnership,
+            'enableGuaranteedResources' => $this->enableGuaranteedResources,
+            'gitServer' => $this->gitServer,
+            'activityLogsMaxSize' => $this->activityLogsMaxSize,
+            'allowManualDeployments' => $this->allowManualDeployments,
+            'allowRollingDeployments' => $this->allowRollingDeployments,
+            'allowBurst' => $this->allowBurst,
+            'routerResources' => $this->routerResources,
         ];
     }
 
@@ -259,6 +277,16 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
     public function getCronMaximumJitter(): int
     {
         return $this->cronMaximumJitter;
+    }
+
+    public function getCronProductionExpiryInterval(): int
+    {
+        return $this->cronProductionExpiryInterval;
+    }
+
+    public function getCronNonProductionExpiryInterval(): int
+    {
+        return $this->cronNonProductionExpiryInterval;
     }
 
     public function getConcurrencyLimits(): array
@@ -457,5 +485,40 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
     public function getRequiresDomainOwnership(): bool
     {
         return $this->requiresDomainOwnership;
+    }
+
+    public function getEnableGuaranteedResources(): bool
+    {
+        return $this->enableGuaranteedResources;
+    }
+
+    public function getGitServer(): GitServerConfiguration
+    {
+        return $this->gitServer;
+    }
+
+    public function getActivityLogsMaxSize(): int
+    {
+        return $this->activityLogsMaxSize;
+    }
+
+    public function getAllowManualDeployments(): bool
+    {
+        return $this->allowManualDeployments;
+    }
+
+    public function getAllowRollingDeployments(): bool
+    {
+        return $this->allowRollingDeployments;
+    }
+
+    public function getAllowBurst(): bool
+    {
+        return $this->allowBurst;
+    }
+
+    public function getRouterResources(): RouterResourceSettingsForFlexPlan
+    {
+        return $this->routerResources;
     }
 }

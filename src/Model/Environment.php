@@ -18,6 +18,7 @@ use JsonSerializable;
 final class Environment implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $name,
         private readonly string $machineName,
         private readonly string $title,
@@ -36,6 +37,8 @@ final class Environment implements ModelInterface, JsonSerializable
         private readonly string $project,
         private readonly bool $isMain,
         private readonly bool $isDirty,
+        private readonly bool $hasStagedActivities,
+        private readonly bool $canRollingDeploy,
         private readonly bool $hasCode,
         private readonly TheCommitDistanceInfoBetweenParentAndChildEnvironments $mergeInfo,
         private readonly bool $hasDeployment,
@@ -46,6 +49,7 @@ final class Environment implements ModelInterface, JsonSerializable
         private readonly ?string $defaultDomain = null,
         private readonly ?string $deploymentTarget = null,
         private readonly ?TheEnvironmentDeploymentState $deploymentState = null,
+        private readonly ?TheEnvironmentSizingConfiguration $sizing = null,
         private readonly ?int $maxInstanceCount = null,
         private readonly ?DateTime $lastActiveAt = null,
         private readonly ?DateTime $lastBackupAt = null,
@@ -61,6 +65,7 @@ final class Environment implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'name' => $this->name,
@@ -81,6 +86,7 @@ final class Environment implements ModelInterface, JsonSerializable
             'restrictRobots' => $this->restrictRobots,
             'edgeHostname' => $this->edgeHostname,
             'deploymentState' => $this->deploymentState,
+            'sizing' => $this->sizing,
             'resourcesOverrides' => $this->resourcesOverrides,
             'maxInstanceCount' => $this->maxInstanceCount,
             'lastActiveAt' => $this->lastActiveAt?->format(DATE_ATOM),
@@ -88,6 +94,8 @@ final class Environment implements ModelInterface, JsonSerializable
             'project' => $this->project,
             'isMain' => $this->isMain,
             'isDirty' => $this->isDirty,
+            'hasStagedActivities' => $this->hasStagedActivities,
+            'canRollingDeploy' => $this->canRollingDeploy,
             'hasCode' => $this->hasCode,
             'headCommit' => $this->headCommit,
             'mergeInfo' => $this->mergeInfo,
@@ -99,6 +107,11 @@ final class Environment implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime
@@ -201,6 +214,11 @@ final class Environment implements ModelInterface, JsonSerializable
         return $this->deploymentState;
     }
 
+    public function getSizing(): ?TheEnvironmentSizingConfiguration
+    {
+        return $this->sizing;
+    }
+
     /**
      * @return ResourcesOverridesValue[]
      */
@@ -237,6 +255,16 @@ final class Environment implements ModelInterface, JsonSerializable
     public function getIsDirty(): bool
     {
         return $this->isDirty;
+    }
+
+    public function getHasStagedActivities(): bool
+    {
+        return $this->hasStagedActivities;
+    }
+
+    public function getCanRollingDeploy(): bool
+    {
+        return $this->canRollingDeploy;
     }
 
     public function getHasCode(): bool

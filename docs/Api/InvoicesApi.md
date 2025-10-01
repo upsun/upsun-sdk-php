@@ -1,11 +1,11 @@
-# Upsun\InvoicesApi
+# [Upsun\Api\InvoicesApi](../src/Api/InvoicesApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getOrgInvoice()**](InvoicesApi.md#getOrgInvoice) | **GET** /organizations/{organization_id}/invoices/{invoice_id} | Get invoice
-[**listOrgInvoices()**](InvoicesApi.md#listOrgInvoices) | **GET** /organizations/{organization_id}/invoices | List invoices
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getOrgInvoice()**](InvoicesApi.md#getOrgInvoice) | **GET** /organizations/{organization_id}/invoices/{invoice_id} | Get invoice | https://docs.upsun.com/api/#tag/Invoices/operation/get-org-invoice |
+| [**listOrgInvoices()**](InvoicesApi.md#listOrgInvoices) | **GET** /organizations/{organization_id}/invoices | List invoices | https://docs.upsun.com/api/#tag/Invoices/operation/list-org-invoices |
 
 
 ## `getOrgInvoice()`
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\InvoicesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $invoiceId = 'invoiceId_example'; // string | The ID of the invoice.
@@ -44,10 +44,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **invoiceId** | **string**| The ID of the invoice. |
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **invoiceId** | **string**| The ID of the invoice. | |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
 
 ### Return type
 
@@ -85,8 +85,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\InvoicesApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -105,13 +105,13 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **filterStatus** | **string**| The status of the invoice. | [optional]
- **filterType** | **string**| The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. | [optional]
- **filterOrderId** | **string**| The order id of Invoice. | [optional]
- **page** | **int**| Page to be displayed. Defaults to 1. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+| **filterStatus** | **string**| The status of the invoice. | [optional] |
+| **filterType** | **string**| The invoice type. Use invoice for standard invoices, credit_memo for refund/credit invoices. | [optional] |
+| **filterOrderId** | **string**| The order id of Invoice. | [optional] |
+| **page** | **int**| Page to be displayed. Defaults to 1. | [optional] |
 
 ### Return type
 

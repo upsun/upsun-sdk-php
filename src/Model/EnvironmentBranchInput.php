@@ -21,7 +21,7 @@ final class EnvironmentBranchInput implements ModelInterface, JsonSerializable
         private readonly string $name,
         private readonly bool $cloneParent,
         private readonly string $type,
-        private readonly ?Resources2 $resources = null,
+        private readonly ?Resources3 $resources = null,
     ) {
     }
 
@@ -66,7 +66,7 @@ final class EnvironmentBranchInput implements ModelInterface, JsonSerializable
         return $this->type;
     }
 
-    public function getResources(): ?Resources2
+    public function getResources(): ?Resources3
     {
         return $this->resources;
     }

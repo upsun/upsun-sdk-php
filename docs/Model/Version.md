@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **commit** | **string** |  |
 **locked** | **bool** |  |
 **routing** | [**\Upsun\Model\ConfigurationAboutTheTrafficRoutedToThisVersion**](ConfigurationAboutTheTrafficRoutedToThisVersion.md) |  |

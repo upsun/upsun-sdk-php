@@ -22,6 +22,7 @@ final class SumologicIntegrationPatch implements ModelInterface, JsonSerializabl
         private readonly ?array $extra = [],
         private readonly ?string $category = null,
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -38,6 +39,7 @@ final class SumologicIntegrationPatch implements ModelInterface, JsonSerializabl
             'extra' => $this->extra,
             'category' => $this->category,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -69,5 +71,10 @@ final class SumologicIntegrationPatch implements ModelInterface, JsonSerializabl
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
     }
 }

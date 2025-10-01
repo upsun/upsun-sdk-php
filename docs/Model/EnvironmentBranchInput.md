@@ -8,6 +8,6 @@ Name | Type | Description | Notes
 **name** | **string** |  |
 **cloneParent** | **bool** |  |
 **type** | **string** |  |
-**resources** | [**\Upsun\Model\Resources2**](Resources2.md) |  |
+**resources** | [**\Upsun\Model\Resources3**](Resources3.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

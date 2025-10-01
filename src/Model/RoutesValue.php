@@ -17,17 +17,18 @@ use JsonSerializable;
 final class RoutesValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly array $attributes,
         private readonly string $type,
         private readonly TLSSettingsForTheRoute $tls,
         private readonly ?string $to = null,
         private readonly ?bool $primary = null,
-        private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?TheConfigurationOfTheRedirects $redirects = null,
         private readonly ?CacheConfiguration $cache = null,
         private readonly ?ServerSideIncludeConfiguration $ssi = null,
         private readonly ?string $upstream = null,
+        private readonly ?StickyRoutingConfiguration $sticky = null,
     ) {
     }
 
@@ -39,23 +40,29 @@ final class RoutesValue implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'attributes' => $this->attributes,
             'type' => $this->type,
             'tls' => $this->tls,
             'to' => $this->to,
             'primary' => $this->primary,
-            'id' => $this->id,
             'productionUrl' => $this->productionUrl,
             'redirects' => $this->redirects,
             'cache' => $this->cache,
             'ssi' => $this->ssi,
             'upstream' => $this->upstream,
+            'sticky' => $this->sticky,
         ];
     }
 
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getAttributes(): array
@@ -83,11 +90,6 @@ final class RoutesValue implements ModelInterface, JsonSerializable
         return $this->primary;
     }
 
-    public function getId(): ?string
-    {
-        return $this->id;
-    }
-
     public function getProductionUrl(): ?string
     {
         return $this->productionUrl;
@@ -111,5 +113,10 @@ final class RoutesValue implements ModelInterface, JsonSerializable
     public function getUpstream(): ?string
     {
         return $this->upstream;
+    }
+
+    public function getSticky(): ?StickyRoutingConfiguration
+    {
+        return $this->sticky;
     }
 }

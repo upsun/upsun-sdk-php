@@ -17,9 +17,9 @@ use JsonSerializable;
 final class ListLinks implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?ListLinksSelf $self = null,
-        private readonly ?ListLinksPrevious $previous = null,
-        private readonly ?ListLinksNext $next = null,
+        private readonly ?Link $self = null,
+        private readonly ?Link $previous = null,
+        private readonly ?Link $next = null,
     ) {
     }
 
@@ -42,17 +42,17 @@ final class ListLinks implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getSelf(): ?ListLinksSelf
+    public function getSelf(): ?Link
     {
         return $this->self;
     }
 
-    public function getPrevious(): ?ListLinksPrevious
+    public function getPrevious(): ?Link
     {
         return $this->previous;
     }
 
-    public function getNext(): ?ListLinksNext
+    public function getNext(): ?Link
     {
         return $this->next;
     }

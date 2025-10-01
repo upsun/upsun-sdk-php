@@ -1,11 +1,11 @@
-# Upsun\SourceOperationsApi
+# [Upsun\Api\SourceOperationsApi](../src/Api/SourceOperationsApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**listProjectsEnvironmentsSourceOperations()**](SourceOperationsApi.md#listProjectsEnvironmentsSourceOperations) | **GET** /projects/{projectId}/environments/{environmentId}/source-operations | List source operations
-[**runSourceOperation()**](SourceOperationsApi.md#runSourceOperation) | **POST** /projects/{projectId}/environments/{environmentId}/source-operation | Trigger a source operation
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**listProjectsEnvironmentsSourceOperations()**](SourceOperationsApi.md#listProjectsEnvironmentsSourceOperations) | **GET** /projects/{projectId}/environments/{environmentId}/source-operations | List source operations | https://docs.upsun.com/api/#tag/Source-Operations/operation/list-projects-environments-source-operations |
+| [**runSourceOperation()**](SourceOperationsApi.md#runSourceOperation) | **POST** /projects/{projectId}/environments/{environmentId}/source-operation | Trigger a source operation | https://docs.upsun.com/api/#tag/Source-Operations/operation/run-source-operation |
 
 
 ## `listProjectsEnvironmentsSourceOperations()`
@@ -16,7 +16,7 @@ listProjectsEnvironmentsSourceOperations($projectId, $environmentId): \Upsun\Mod
 
 List source operations
 
-Lists all the source operations, defined in `.platform.app.yaml`, that are available in an environment. More information on source code operations is [available in our user documentation](https://docs.platform.sh/configuration/app/source-operations.html).
+Lists all the source operations, defined in `.upsun/config.yaml`, that are available in an environment. More information on source code operations is [available in our user documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
 
 ### Example
 
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SourceOperationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -44,10 +44,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
 
 ### Return type
 
@@ -74,7 +74,7 @@ runSourceOperation($projectId, $environmentId, $environmentSourceOperationInput)
 
 Trigger a source operation
 
-This endpoint triggers a source code operation as defined in the `source.operations` key in a project's `.platform.app.yaml` configuration. More information on source code operations is [available in our user documentation](https://docs.platform.sh/configuration/app/source-operations.html).
+This endpoint triggers a source code operation as defined in the `source.operations` key in a project's `.upsun/config.yaml` configuration. More information on source code operations is [available in our user documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
 
 ### Example
 
@@ -85,8 +85,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SourceOperationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -103,11 +103,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **environmentSourceOperationInput** | [**\Upsun\Model\EnvironmentSourceOperationInput**](../Model/EnvironmentSourceOperationInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **environmentSourceOperationInput** | [**\Upsun\Model\EnvironmentSourceOperationInput**](../Model/EnvironmentSourceOperationInput.md)|  | |
 
 ### Return type
 

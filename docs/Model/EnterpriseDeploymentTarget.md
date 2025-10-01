@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **siteUrls** | **object** |  |
 **sshHosts** | **string[]** |  |
 **maintenanceMode** | **bool** |  |
+**id** | **string** |  | [optional]
 **enterpriseEnvironmentsMapping** | **object** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -481,6 +481,7 @@ final class OrganizationsApi extends AbstractApi
      */
     public function listOrgs(
         ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
         ?StringFilter $filterOwnerId = null,
         ?StringFilter $filterName = null,
         ?StringFilter $filterLabel = null,
@@ -492,9 +493,10 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListOrgs200Response {
         return $this->listOrgsWithHttpInfo(
             $filterId,
+            $filterType,
             $filterOwnerId,
             $filterName,
             $filterLabel,
@@ -518,6 +520,7 @@ final class OrganizationsApi extends AbstractApi
      */
     private function listOrgsWithHttpInfo(
         ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
         ?StringFilter $filterOwnerId = null,
         ?StringFilter $filterName = null,
         ?StringFilter $filterLabel = null,
@@ -529,9 +532,10 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListOrgs200Response {
         $request = $this->listOrgsRequest(
             $filterId,
+            $filterType,
             $filterOwnerId,
             $filterName,
             $filterLabel,
@@ -571,6 +575,7 @@ final class OrganizationsApi extends AbstractApi
      */
     private function listOrgsRequest(
         ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
         ?StringFilter $filterOwnerId = null,
         ?StringFilter $filterName = null,
         ?StringFilter $filterLabel = null,
@@ -583,6 +588,7 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageAfter = null,
         ?string $sort = null
     ): RequestInterface {
+
 
 
 
@@ -627,6 +633,21 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filterId instanceof DateTime
                     ? $filterId->format(DATE_ATOM)
                     : ($filterId->getEq());
+            }
+        }
+
+
+
+        // query params
+        if ($filterType !== null) {
+            if ('form' === 'deepObject' && is_array($filterType)) {
+                foreach ($filterType as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[type]'] = $filterType instanceof DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType->getEq());
             }
         }
 
@@ -861,6 +882,7 @@ final class OrganizationsApi extends AbstractApi
     public function listUserOrgs(
         string $userId,
         ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
         ?StringFilter $filterVendor = null,
         ?StringFilter $filterStatus = null,
         ?DateTimeFilter $filterUpdatedAt = null,
@@ -868,10 +890,11 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListUserOrgs200Response {
         return $this->listUserOrgsWithHttpInfo(
             $userId,
             $filterId,
+            $filterType,
             $filterVendor,
             $filterStatus,
             $filterUpdatedAt,
@@ -892,6 +915,7 @@ final class OrganizationsApi extends AbstractApi
     private function listUserOrgsWithHttpInfo(
         string $userId,
         ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
         ?StringFilter $filterVendor = null,
         ?StringFilter $filterStatus = null,
         ?DateTimeFilter $filterUpdatedAt = null,
@@ -899,10 +923,11 @@ final class OrganizationsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListUserOrgs200Response {
         $request = $this->listUserOrgsRequest(
             $userId,
             $filterId,
+            $filterType,
             $filterVendor,
             $filterStatus,
             $filterUpdatedAt,
@@ -939,6 +964,7 @@ final class OrganizationsApi extends AbstractApi
     private function listUserOrgsRequest(
         string $userId,
         ?StringFilter $filterId = null,
+        ?StringFilter $filterType = null,
         ?StringFilter $filterVendor = null,
         ?StringFilter $filterStatus = null,
         ?DateTimeFilter $filterUpdatedAt = null,
@@ -959,6 +985,7 @@ final class OrganizationsApi extends AbstractApi
                 when calling listUserOrgs'
             );
         }
+
 
 
 
@@ -999,6 +1026,21 @@ final class OrganizationsApi extends AbstractApi
                 $queryParams['filter[id]'] = $filterId instanceof DateTime
                     ? $filterId->format(DATE_ATOM)
                     : ($filterId->getEq());
+            }
+        }
+
+
+
+        // query params
+        if ($filterType !== null) {
+            if ('form' === 'deepObject' && is_array($filterType)) {
+                foreach ($filterType as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['filter[type]'] = $filterType instanceof DateTime
+                    ? $filterType->format(DATE_ATOM)
+                    : ($filterType->getEq());
             }
         }
 

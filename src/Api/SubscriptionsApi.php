@@ -3,16 +3,19 @@
 namespace Upsun\Api;
 
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
+use Upsun\Model\CanUpdateSubscription200Response;
+use DateTime;
 use Upsun\Model\CreateOrgSubscriptionRequest;
 use Upsun\Model\Subscription;
 use Upsun\Model\EstimationObject;
-use DateTime;
 use Upsun\Model\SubscriptionCurrentUsageObject;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
 use Upsun\Model\StringFilter;
 use Upsun\Model\DateTimeFilter;
 use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\SubscriptionAddonsObject;
 use Upsun\Model\UpdateOrgSubscriptionRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -80,7 +83,7 @@ final class SubscriptionsApi extends AbstractApi
      */
     public function canCreateNewOrgSubscription(
         string $organizationId
-    ): object {
+    ): CanCreateNewOrgSubscription200Response {
         return $this->canCreateNewOrgSubscriptionWithHttpInfo(
             $organizationId
         );
@@ -95,7 +98,7 @@ final class SubscriptionsApi extends AbstractApi
      */
     private function canCreateNewOrgSubscriptionWithHttpInfo(
         string $organizationId
-    ): object {
+    ): CanCreateNewOrgSubscription200Response {
         $request = $this->canCreateNewOrgSubscriptionRequest(
             $organizationId
         );
@@ -159,6 +162,227 @@ final class SubscriptionsApi extends AbstractApi
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json', 'application/problem+json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * Checks if the user is able to update a project.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return CanUpdateSubscription200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/can-update-subscription
+     */
+    public function canUpdateSubscription(
+        string $subscriptionId,
+        ?string $plan = null,
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null
+    ): CanUpdateSubscription200Response {
+        return $this->canUpdateSubscriptionWithHttpInfo(
+            $subscriptionId,
+            $plan,
+            $environments,
+            $storage,
+            $userLicenses
+        );
+    }
+
+    /**
+     * Checks if the user is able to update a project.
+     *
+     * @return CanUpdateSubscription200Response
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function canUpdateSubscriptionWithHttpInfo(
+        string $subscriptionId,
+        ?string $plan = null,
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null
+    ): CanUpdateSubscription200Response {
+        $request = $this->canUpdateSubscriptionRequest(
+            $subscriptionId,
+            $plan,
+            $environments,
+            $storage,
+            $userLicenses
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                CanUpdateSubscription200Response::class,
+                $request,
+                $response
+            );
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
+        }
+    }
+
+    /**
+     * Create request for operation 'canUpdateSubscription'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function canUpdateSubscriptionRequest(
+        string $subscriptionId,
+        ?string $plan = null,
+        ?int $environments = null,
+        ?int $storage = null,
+        ?int $userLicenses = null
+    ): RequestInterface {
+
+        // verify the required parameter 'subscriptionId' is set
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $subscriptionId 
+                when calling canUpdateSubscription'
+            );
+        }
+
+
+
+
+        $resourcePath = '/subscriptions/{subscriptionId}/can-update';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // query params
+        if ($plan !== null) {
+            if ('form' === 'form' && is_array($plan)) {
+                foreach ($plan as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['plan'] = $plan instanceof DateTime
+                    ? $plan->format(DATE_ATOM)
+                    : ($plan);
+            }
+        }
+
+
+
+        // query params
+        if ($environments !== null) {
+            if ('form' === 'form' && is_array($environments)) {
+                foreach ($environments as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['environments'] = $environments instanceof DateTime
+                    ? $environments->format(DATE_ATOM)
+                    : ($environments);
+            }
+        }
+
+
+
+        // query params
+        if ($storage !== null) {
+            if ('form' === 'form' && is_array($storage)) {
+                foreach ($storage as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['storage'] = $storage instanceof DateTime
+                    ? $storage->format(DATE_ATOM)
+                    : ($storage);
+            }
+        }
+
+
+
+        // query params
+        if ($userLicenses !== null) {
+            if ('form' === 'form' && is_array($userLicenses)) {
+                foreach ($userLicenses as $key => $value) {
+                    $queryParams[$key] = $value;
+                }
+            } else {
+                $queryParams['user_licenses'] = $userLicenses instanceof DateTime
+                    ? $userLicenses->format(DATE_ATOM)
+                    : ($userLicenses);
+            }
+        }
+
+
+
+        // path params
+        if ($subscriptionId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'subscriptionId' . '}',
+                ObjectSerializer::toPathValue($subscriptionId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
             '',
             $multipart
         );
@@ -1457,6 +1681,170 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
+     * Get usage alerts
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return GetSubscriptionUsageAlerts200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-subscription-usage-alerts
+     */
+    public function getSubscriptionUsageAlerts(
+        string $organizationId,
+        string $subscriptionId
+    ): GetSubscriptionUsageAlerts200Response {
+        return $this->getSubscriptionUsageAlertsWithHttpInfo(
+            $organizationId,
+            $subscriptionId
+        );
+    }
+
+    /**
+     * Get usage alerts
+     *
+     * @return GetSubscriptionUsageAlerts200Response
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function getSubscriptionUsageAlertsWithHttpInfo(
+        string $organizationId,
+        string $subscriptionId
+    ): GetSubscriptionUsageAlerts200Response {
+        $request = $this->getSubscriptionUsageAlertsRequest(
+            $organizationId,
+            $subscriptionId
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                GetSubscriptionUsageAlerts200Response::class,
+                $request,
+                $response
+            );
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
+        }
+    }
+
+    /**
+     * Create request for operation 'getSubscriptionUsageAlerts'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function getSubscriptionUsageAlertsRequest(
+        string $organizationId,
+        string $subscriptionId
+    ): RequestInterface {
+
+        // verify the required parameter 'organizationId' is set
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $organizationId 
+                when calling getSubscriptionUsageAlerts'
+            );
+        }
+
+        // verify the required parameter 'subscriptionId' is set
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $subscriptionId 
+                when calling getSubscriptionUsageAlerts'
+            );
+        }
+
+        $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+
+        // path params
+        if ($subscriptionId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'subscription_id' . '}',
+                ObjectSerializer::toPathValue($subscriptionId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
+            '',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('GET', $uri, $headers, $httpBody);
+    }
+
+    /**
      * List subscriptions
      *
      * @throws ApiException on non-2xx response
@@ -1478,7 +1866,7 @@ final class SubscriptionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListOrgSubscriptions200Response {
         return $this->listOrgSubscriptionsWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -1513,7 +1901,7 @@ final class SubscriptionsApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListOrgSubscriptions200Response {
         $request = $this->listOrgSubscriptionsRequest(
             $organizationId,
             $filterStatus,
@@ -2116,6 +2504,183 @@ final class SubscriptionsApi extends AbstractApi
                 );
             } else {
                 $httpBody = $updateOrgSubscriptionRequest;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('PATCH', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * Update usage alerts.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return GetSubscriptionUsageAlerts200Response
+     *
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-subscription-usage-alerts
+     */
+    public function updateSubscriptionUsageAlerts(
+        string $organizationId,
+        string $subscriptionId,
+        ?UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
+    ): GetSubscriptionUsageAlerts200Response {
+        return $this->updateSubscriptionUsageAlertsWithHttpInfo(
+            $organizationId,
+            $subscriptionId,
+            $updateSubscriptionUsageAlertsRequest
+        );
+    }
+
+    /**
+     * Update usage alerts.
+     *
+     * @return GetSubscriptionUsageAlerts200Response
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function updateSubscriptionUsageAlertsWithHttpInfo(
+        string $organizationId,
+        string $subscriptionId,
+        ?UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
+    ): GetSubscriptionUsageAlerts200Response {
+        $request = $this->updateSubscriptionUsageAlertsRequest(
+            $organizationId,
+            $subscriptionId,
+            $updateSubscriptionUsageAlertsRequest
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                GetSubscriptionUsageAlerts200Response::class,
+                $request,
+                $response
+            );
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
+        }
+    }
+
+    /**
+     * Create request for operation 'updateSubscriptionUsageAlerts'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function updateSubscriptionUsageAlertsRequest(
+        string $organizationId,
+        string $subscriptionId,
+        ?UpdateSubscriptionUsageAlertsRequest $updateSubscriptionUsageAlertsRequest = null
+    ): RequestInterface {
+
+        // verify the required parameter 'organizationId' is set
+        if (
+            $organizationId === null
+            || (is_array($organizationId)
+            && count($organizationId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $organizationId 
+                when calling updateSubscriptionUsageAlerts'
+            );
+        }
+
+        // verify the required parameter 'subscriptionId' is set
+        if (
+            $subscriptionId === null
+            || (is_array($subscriptionId)
+            && count($subscriptionId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $subscriptionId 
+                when calling updateSubscriptionUsageAlerts'
+            );
+        }
+
+        $resourcePath = '/organizations/{organization_id}/alerts/subscriptions/{subscription_id}/usage';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+        if ($organizationId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'organization_id' . '}',
+                ObjectSerializer::toPathValue($organizationId),
+                $resourcePath
+            );
+        }
+
+        // path params
+        if ($subscriptionId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'subscription_id' . '}',
+                ObjectSerializer::toPathValue($subscriptionId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', 'application/problem+json'],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($updateSubscriptionUsageAlertsRequest)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($updateSubscriptionUsageAlertsRequest)
+                );
+            } else {
+                $httpBody = $updateSubscriptionUsageAlertsRequest;
             }
         } elseif ($formParams !== []) {
             if ($multipart) {

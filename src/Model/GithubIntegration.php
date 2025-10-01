@@ -31,6 +31,7 @@ final class GithubIntegration implements ModelInterface, JsonSerializable
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?string $baseUrl = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -55,6 +56,7 @@ final class GithubIntegration implements ModelInterface, JsonSerializable
             'buildPullRequestsPostMerge' => $this->buildPullRequestsPostMerge,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
             'tokenType' => $this->tokenType,
+            'id' => $this->id,
         ];
     }
 
@@ -126,5 +128,10 @@ final class GithubIntegration implements ModelInterface, JsonSerializable
     public function getTokenType(): string
     {
         return $this->tokenType;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

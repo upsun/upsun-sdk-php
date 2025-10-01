@@ -74,7 +74,7 @@ final class OrdersApi extends AbstractApi
     public function createAuthorizationCredentials(
         string $organizationId,
         string $orderId
-    ): object {
+    ): CreateAuthorizationCredentials200Response {
         return $this->createAuthorizationCredentialsWithHttpInfo(
             $organizationId,
             $orderId
@@ -91,7 +91,7 @@ final class OrdersApi extends AbstractApi
     private function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
         string $orderId
-    ): object {
+    ): CreateAuthorizationCredentials200Response {
         $request = $this->createAuthorizationCredentialsRequest(
             $organizationId,
             $orderId
@@ -565,7 +565,7 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): object {
+    ): ListOrgOrders200Response {
         return $this->listOrgOrdersWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -588,7 +588,7 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): object {
+    ): ListOrgOrders200Response {
         $request = $this->listOrgOrdersRequest(
             $organizationId,
             $filterStatus,

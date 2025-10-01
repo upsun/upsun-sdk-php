@@ -80,7 +80,7 @@ final class RecordsApi extends AbstractApi
         ?DateTime $filterStartedAt = null,
         ?DateTime $filterEndedAt = null,
         ?int $page = null
-    ): object {
+    ): ListOrgPlanRecords200Response {
         return $this->listOrgPlanRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -111,7 +111,7 @@ final class RecordsApi extends AbstractApi
         ?DateTime $filterStartedAt = null,
         ?DateTime $filterEndedAt = null,
         ?int $page = null
-    ): object {
+    ): ListOrgPlanRecords200Response {
         $request = $this->listOrgPlanRecordsRequest(
             $organizationId,
             $filterSubscriptionId,
@@ -382,7 +382,7 @@ final class RecordsApi extends AbstractApi
         ?DateTime $filterStart = null,
         ?DateTime $filterStartedAt = null,
         ?int $page = null
-    ): object {
+    ): ListOrgUsageRecords200Response {
         return $this->listOrgUsageRecordsWithHttpInfo(
             $organizationId,
             $filterSubscriptionId,
@@ -407,7 +407,7 @@ final class RecordsApi extends AbstractApi
         ?DateTime $filterStart = null,
         ?DateTime $filterStartedAt = null,
         ?int $page = null
-    ): object {
+    ): ListOrgUsageRecords200Response {
         $request = $this->listOrgUsageRecordsRequest(
             $organizationId,
             $filterSubscriptionId,

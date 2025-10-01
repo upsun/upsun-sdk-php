@@ -19,6 +19,7 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly ?string $id = null,
+        private readonly ?string $type = null,
         private readonly ?string $ownerId = null,
         private readonly ?string $name = null,
         private readonly ?string $label = null,
@@ -37,6 +38,7 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
     {
         return [
             'id' => $this->id,
+            'type' => $this->type,
             'ownerId' => $this->ownerId,
             'name' => $this->name,
             'label' => $this->label,
@@ -54,6 +56,11 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
     }
 
     public function getOwnerId(): ?string

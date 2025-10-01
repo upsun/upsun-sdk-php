@@ -19,6 +19,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, JsonSer
     public function __construct(
         private readonly float $cpu,
         private readonly int $memory,
+        private readonly string $cpuType,
         private readonly ?int $disk = null,
         private readonly ?string $profileSize = null,
     ) {
@@ -34,6 +35,7 @@ final class TheMinimumResourcesForThisService implements ModelInterface, JsonSer
         return [
             'cpu' => $this->cpu,
             'memory' => $this->memory,
+            'cpuType' => $this->cpuType,
             'disk' => $this->disk,
             'profileSize' => $this->profileSize,
         ];
@@ -52,6 +54,11 @@ final class TheMinimumResourcesForThisService implements ModelInterface, JsonSer
     public function getMemory(): int
     {
         return $this->memory;
+    }
+
+    public function getCpuType(): string
+    {
+        return $this->cpuType;
     }
 
     public function getDisk(): ?int

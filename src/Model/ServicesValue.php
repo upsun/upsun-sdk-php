@@ -27,6 +27,7 @@ final class ServicesValue implements ModelInterface, JsonSerializable
         private readonly ?Resources $resources = null,
         private readonly ?string $containerProfile = null,
         private readonly ?object $endpoints = null,
+        private readonly ?int $instanceCount = null,
     ) {
     }
 
@@ -48,6 +49,7 @@ final class ServicesValue implements ModelInterface, JsonSerializable
             'resources' => $this->resources,
             'containerProfile' => $this->containerProfile,
             'endpoints' => $this->endpoints,
+            'instanceCount' => $this->instanceCount,
         ];
     }
 
@@ -104,5 +106,10 @@ final class ServicesValue implements ModelInterface, JsonSerializable
     public function getEndpoints(): ?object
     {
         return $this->endpoints;
+    }
+
+    public function getInstanceCount(): ?int
+    {
+        return $this->instanceCount;
     }
 }

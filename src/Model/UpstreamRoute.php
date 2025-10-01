@@ -17,16 +17,17 @@ use JsonSerializable;
 final class UpstreamRoute implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly array $attributes,
         private readonly string $type,
         private readonly TLSSettingsForTheRoute $tls,
         private readonly ?bool $primary = null,
-        private readonly ?string $id = null,
         private readonly ?string $productionUrl = null,
         private readonly ?CacheConfiguration $cache = null,
         private readonly ?ServerSideIncludeConfiguration $ssi = null,
         private readonly ?string $upstream = null,
         private readonly ?TheConfigurationOfTheRedirects $redirects = null,
+        private readonly ?StickyRoutingConfiguration $sticky = null,
         private readonly ?string $to = null,
     ) {
     }
@@ -39,16 +40,17 @@ final class UpstreamRoute implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'attributes' => $this->attributes,
             'type' => $this->type,
             'tls' => $this->tls,
             'primary' => $this->primary,
-            'id' => $this->id,
             'productionUrl' => $this->productionUrl,
             'cache' => $this->cache,
             'ssi' => $this->ssi,
             'upstream' => $this->upstream,
             'redirects' => $this->redirects,
+            'sticky' => $this->sticky,
             'to' => $this->to,
         ];
     }
@@ -56,6 +58,11 @@ final class UpstreamRoute implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getAttributes(): array
@@ -76,11 +83,6 @@ final class UpstreamRoute implements ModelInterface, JsonSerializable
     public function getPrimary(): ?bool
     {
         return $this->primary;
-    }
-
-    public function getId(): ?string
-    {
-        return $this->id;
     }
 
     public function getProductionUrl(): ?string
@@ -106,6 +108,11 @@ final class UpstreamRoute implements ModelInterface, JsonSerializable
     public function getRedirects(): ?TheConfigurationOfTheRedirects
     {
         return $this->redirects;
+    }
+
+    public function getSticky(): ?StickyRoutingConfiguration
+    {
+        return $this->sticky;
     }
 
     public function getTo(): ?string

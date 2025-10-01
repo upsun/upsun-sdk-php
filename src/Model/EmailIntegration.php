@@ -23,6 +23,7 @@ final class EmailIntegration implements ModelInterface, JsonSerializable
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?string $fromAddress = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -39,6 +40,7 @@ final class EmailIntegration implements ModelInterface, JsonSerializable
             'type' => $this->type,
             'fromAddress' => $this->fromAddress,
             'recipients' => $this->recipients,
+            'id' => $this->id,
         ];
     }
 
@@ -70,5 +72,10 @@ final class EmailIntegration implements ModelInterface, JsonSerializable
     public function getRecipients(): array
     {
         return $this->recipients;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

@@ -22,6 +22,7 @@ final class FoundationDeploymentTarget implements ModelInterface, JsonSerializab
         private readonly bool $useDedicatedGrid,
         private readonly ?array $hosts = [],
         private readonly ?string $storageType = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -38,6 +39,7 @@ final class FoundationDeploymentTarget implements ModelInterface, JsonSerializab
             'hosts' => $this->hosts,
             'useDedicatedGrid' => $this->useDedicatedGrid,
             'storageType' => $this->storageType,
+            'id' => $this->id,
         ];
     }
 
@@ -72,5 +74,10 @@ final class FoundationDeploymentTarget implements ModelInterface, JsonSerializab
     public function getStorageType(): ?string
     {
         return $this->storageType;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

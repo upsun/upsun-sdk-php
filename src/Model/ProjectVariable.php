@@ -18,12 +18,14 @@ use JsonSerializable;
 final class ProjectVariable implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $name,
         private readonly array $attributes,
         private readonly bool $isJson,
         private readonly bool $isSensitive,
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
+        private readonly array $applicationScope,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?string $value = null,
@@ -38,6 +40,7 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'name' => $this->name,
@@ -46,6 +49,7 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
             'value' => $this->value,
         ];
     }
@@ -53,6 +57,11 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime
@@ -93,6 +102,11 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
+    }
+
+    public function getApplicationScope(): array
+    {
+        return $this->applicationScope;
     }
 
     public function getValue(): ?string

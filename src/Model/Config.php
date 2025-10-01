@@ -34,6 +34,7 @@ final class Config implements ModelInterface, JsonSerializable
         private readonly ?HealthSlackNotificationIntegrationConfigurations $healthSlack = null,
         private readonly ?FastlyCDNIntegrationConfigurations $cdnFastly = null,
         private readonly ?BlackfireIntegrationConfigurations $blackfire = null,
+        private readonly ?OpenTelemetryLogForwardingIntegrationConfigurations $otlp = null,
     ) {
     }
 
@@ -62,6 +63,7 @@ final class Config implements ModelInterface, JsonSerializable
             'healthSlack' => $this->healthSlack,
             'cdnFastly' => $this->cdnFastly,
             'blackfire' => $this->blackfire,
+            'otlp' => $this->otlp,
         ];
     }
 
@@ -153,5 +155,10 @@ final class Config implements ModelInterface, JsonSerializable
     public function getBlackfire(): ?BlackfireIntegrationConfigurations
     {
         return $this->blackfire;
+    }
+
+    public function getOtlp(): ?OpenTelemetryLogForwardingIntegrationConfigurations
+    {
+        return $this->otlp;
     }
 }

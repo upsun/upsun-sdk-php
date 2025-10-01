@@ -18,6 +18,7 @@ use JsonSerializable;
 final class Activity implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $type,
         private readonly object $parameters,
         private readonly string $project,
@@ -26,7 +27,7 @@ final class Activity implements ModelInterface, JsonSerializable
         private readonly array $timings,
         private readonly string $log,
         private readonly object $payload,
-        private readonly string $id,
+        private readonly array $commands,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?string $result = null,
@@ -49,6 +50,7 @@ final class Activity implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
@@ -66,7 +68,7 @@ final class Activity implements ModelInterface, JsonSerializable
             'description' => $this->description,
             'text' => $this->text,
             'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
-            'id' => $this->id,
+            'commands' => $this->commands,
             'integration' => $this->integration,
             'environments' => $this->environments,
         ];
@@ -75,6 +77,11 @@ final class Activity implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime
@@ -162,9 +169,12 @@ final class Activity implements ModelInterface, JsonSerializable
         return $this->expiresAt;
     }
 
-    public function getId(): string
+    /**
+     * @return CommandsInner[]
+     */
+    public function getCommands(): array
     {
-        return $this->id;
+        return $this->commands;
     }
 
     public function getIntegration(): ?string

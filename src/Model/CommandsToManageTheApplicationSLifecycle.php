@@ -19,6 +19,7 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     public function __construct(
         private readonly ?string $preStart = null,
         private readonly ?string $start = null,
+        private readonly ?string $postStart = null,
     ) {
     }
 
@@ -32,6 +33,7 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
         return [
             'preStart' => $this->preStart,
             'start' => $this->start,
+            'postStart' => $this->postStart,
         ];
     }
 
@@ -48,5 +50,10 @@ final class CommandsToManageTheApplicationSLifecycle implements ModelInterface, 
     public function getStart(): ?string
     {
         return $this->start;
+    }
+
+    public function getPostStart(): ?string
+    {
+        return $this->postStart;
     }
 }

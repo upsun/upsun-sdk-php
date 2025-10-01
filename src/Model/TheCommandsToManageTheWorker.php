@@ -19,6 +19,7 @@ final class TheCommandsToManageTheWorker implements ModelInterface, JsonSerializ
     public function __construct(
         private readonly string $start,
         private readonly ?string $preStart = null,
+        private readonly ?string $postStart = null,
     ) {
     }
 
@@ -32,6 +33,7 @@ final class TheCommandsToManageTheWorker implements ModelInterface, JsonSerializ
         return [
             'start' => $this->start,
             'preStart' => $this->preStart,
+            'postStart' => $this->postStart,
         ];
     }
 
@@ -48,5 +50,10 @@ final class TheCommandsToManageTheWorker implements ModelInterface, JsonSerializ
     public function getPreStart(): ?string
     {
         return $this->preStart;
+    }
+
+    public function getPostStart(): ?string
+    {
+        return $this->postStart;
     }
 }

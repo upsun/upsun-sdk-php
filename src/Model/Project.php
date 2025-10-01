@@ -18,6 +18,7 @@ use JsonSerializable;
 final class Project implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly array $attributes,
         private readonly string $title,
         private readonly string $description,
@@ -44,6 +45,7 @@ final class Project implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'attributes' => $this->attributes,
@@ -65,6 +67,11 @@ final class Project implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime

@@ -23,6 +23,7 @@ final class BlackfireIntegration implements ModelInterface, JsonSerializable
         private readonly bool $continuousProfiling,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -39,6 +40,7 @@ final class BlackfireIntegration implements ModelInterface, JsonSerializable
             'type' => $this->type,
             'environmentsCredentials' => $this->environmentsCredentials,
             'continuousProfiling' => $this->continuousProfiling,
+            'id' => $this->id,
         ];
     }
 
@@ -73,5 +75,10 @@ final class BlackfireIntegration implements ModelInterface, JsonSerializable
     public function getContinuousProfiling(): bool
     {
         return $this->continuousProfiling;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

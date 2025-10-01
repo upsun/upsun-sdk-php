@@ -17,6 +17,7 @@ use JsonSerializable;
 final class Commit implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $sha,
         private readonly TheInformationAboutTheAuthor $author,
         private readonly TheInformationAboutTheCommitter $committer,
@@ -34,6 +35,7 @@ final class Commit implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'sha' => $this->sha,
             'author' => $this->author,
             'committer' => $this->committer,
@@ -46,6 +48,11 @@ final class Commit implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getSha(): string

@@ -1,19 +1,19 @@
-# Upsun\DomainManagementApi
+# [Upsun\Api\DomainManagementApi](../src/Api/DomainManagementApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createProjectsDomains()**](DomainManagementApi.md#createProjectsDomains) | **POST** /projects/{projectId}/domains | Add a project domain
-[**createProjectsEnvironmentsDomains()**](DomainManagementApi.md#createProjectsEnvironmentsDomains) | **POST** /projects/{projectId}/environments/{environmentId}/domains | Add an environment domain
-[**deleteProjectsDomains()**](DomainManagementApi.md#deleteProjectsDomains) | **DELETE** /projects/{projectId}/domains/{domainId} | Delete a project domain
-[**deleteProjectsEnvironmentsDomains()**](DomainManagementApi.md#deleteProjectsEnvironmentsDomains) | **DELETE** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Delete an environment domain
-[**getProjectsDomains()**](DomainManagementApi.md#getProjectsDomains) | **GET** /projects/{projectId}/domains/{domainId} | Get a project domain
-[**getProjectsEnvironmentsDomains()**](DomainManagementApi.md#getProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Get an environment domain
-[**listProjectsDomains()**](DomainManagementApi.md#listProjectsDomains) | **GET** /projects/{projectId}/domains | Get list of project domains
-[**listProjectsEnvironmentsDomains()**](DomainManagementApi.md#listProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains | Get a list of environment domains
-[**updateProjectsDomains()**](DomainManagementApi.md#updateProjectsDomains) | **PATCH** /projects/{projectId}/domains/{domainId} | Update a project domain
-[**updateProjectsEnvironmentsDomains()**](DomainManagementApi.md#updateProjectsEnvironmentsDomains) | **PATCH** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Update an environment domain
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createProjectsDomains()**](DomainManagementApi.md#createProjectsDomains) | **POST** /projects/{projectId}/domains | Add a project domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-domains |
+| [**createProjectsEnvironmentsDomains()**](DomainManagementApi.md#createProjectsEnvironmentsDomains) | **POST** /projects/{projectId}/environments/{environmentId}/domains | Add an environment domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/create-projects-environments-domains |
+| [**deleteProjectsDomains()**](DomainManagementApi.md#deleteProjectsDomains) | **DELETE** /projects/{projectId}/domains/{domainId} | Delete a project domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-domains |
+| [**deleteProjectsEnvironmentsDomains()**](DomainManagementApi.md#deleteProjectsEnvironmentsDomains) | **DELETE** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Delete an environment domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/delete-projects-environments-domains |
+| [**getProjectsDomains()**](DomainManagementApi.md#getProjectsDomains) | **GET** /projects/{projectId}/domains/{domainId} | Get a project domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-domains |
+| [**getProjectsEnvironmentsDomains()**](DomainManagementApi.md#getProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Get an environment domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/get-projects-environments-domains |
+| [**listProjectsDomains()**](DomainManagementApi.md#listProjectsDomains) | **GET** /projects/{projectId}/domains | Get list of project domains | https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-domains |
+| [**listProjectsEnvironmentsDomains()**](DomainManagementApi.md#listProjectsEnvironmentsDomains) | **GET** /projects/{projectId}/environments/{environmentId}/domains | Get a list of environment domains | https://docs.upsun.com/api/#tag/Domain-Management/operation/list-projects-environments-domains |
+| [**updateProjectsDomains()**](DomainManagementApi.md#updateProjectsDomains) | **PATCH** /projects/{projectId}/domains/{domainId} | Update a project domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-domains |
+| [**updateProjectsEnvironmentsDomains()**](DomainManagementApi.md#updateProjectsEnvironmentsDomains) | **PATCH** /projects/{projectId}/environments/{environmentId}/domains/{domainId} | Update an environment domain | https://docs.upsun.com/api/#tag/Domain-Management/operation/update-projects-environments-domains |
 
 
 ## `createProjectsDomains()`
@@ -24,7 +24,7 @@ createProjectsDomains($projectId, $domainCreateInput): \Upsun\Model\AcceptedResp
 
 Add a project domain
 
-Add a single domain to a project. If the `ssl` field is left blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via Let's Encrypt.](https://docs.platform.sh/configuration/routes/https.html#lets-encrypt)
+Add a single domain to a project. If the `ssl` field is left blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via Let's Encrypt.](https://docs.upsun.com/anchors/routes/https/certificates/)
 
 ### Example
 
@@ -35,8 +35,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -52,10 +52,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **domainCreateInput** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **domainCreateInput** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  | |
 
 ### Return type
 
@@ -82,7 +82,7 @@ createProjectsEnvironmentsDomains($projectId, $environmentId, $domainCreateInput
 
 Add an environment domain
 
-Add a single domain to an environment. If the environment is not production, the `replacement_for` field is required, which binds a new domain to an existing one from a production environment. If the `ssl` field is left blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via Let's Encrypt](https://docs.platform.sh/configuration/routes/https.html#lets-encrypt).
+Add a single domain to an environment. If the environment is not production, the `replacement_for` field is required, which binds a new domain to an existing one from a production environment. If the `ssl` field is left blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via Let's Encrypt](https://docs.upsun.com/anchors/routes/https/certificates/).
 
 ### Example
 
@@ -93,8 +93,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -111,11 +111,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **domainCreateInput** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **domainCreateInput** | [**\Upsun\Model\DomainCreateInput**](../Model/DomainCreateInput.md)|  | |
 
 ### Return type
 
@@ -153,8 +153,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -170,10 +170,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **domainId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **domainId** | **string**|  | |
 
 ### Return type
 
@@ -211,8 +211,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -229,11 +229,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **domainId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **domainId** | **string**|  | |
 
 ### Return type
 
@@ -271,8 +271,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -288,10 +288,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **domainId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **domainId** | **string**|  | |
 
 ### Return type
 
@@ -329,8 +329,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -347,11 +347,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **domainId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **domainId** | **string**|  | |
 
 ### Return type
 
@@ -389,8 +389,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -405,9 +405,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 
@@ -445,8 +445,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -462,10 +462,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
 
 ### Return type
 
@@ -503,8 +503,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -521,11 +521,11 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **domainId** | **string**|  |
- **domainPatch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **domainId** | **string**|  | |
+| **domainPatch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  | |
 
 ### Return type
 
@@ -563,8 +563,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\DomainManagementApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -582,12 +582,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **domainId** | **string**|  |
- **domainPatch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **domainId** | **string**|  | |
+| **domainPatch** | [**\Upsun\Model\DomainPatch**](../Model/DomainPatch.md)|  | |
 
 ### Return type
 

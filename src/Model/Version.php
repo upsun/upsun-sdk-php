@@ -17,6 +17,7 @@ use JsonSerializable;
 final class Version implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly bool $locked,
         private readonly ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
         private readonly ?string $commit = null,
@@ -31,6 +32,7 @@ final class Version implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'commit' => $this->commit,
             'locked' => $this->locked,
             'routing' => $this->routing,
@@ -40,6 +42,11 @@ final class Version implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCommit(): ?string

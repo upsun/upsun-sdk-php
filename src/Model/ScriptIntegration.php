@@ -27,6 +27,7 @@ final class ScriptIntegration implements ModelInterface, JsonSerializable
         private readonly string $script,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -47,6 +48,7 @@ final class ScriptIntegration implements ModelInterface, JsonSerializable
             'states' => $this->states,
             'result' => $this->result,
             'script' => $this->script,
+            'id' => $this->id,
         ];
     }
 
@@ -98,5 +100,10 @@ final class ScriptIntegration implements ModelInterface, JsonSerializable
     public function getScript(): string
     {
         return $this->script;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

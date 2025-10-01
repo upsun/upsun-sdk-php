@@ -23,6 +23,7 @@ final class Domain implements ModelInterface, JsonSerializable
         private readonly array $attributes,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
         private readonly ?string $project = null,
         private readonly ?string $registeredName = null,
         private readonly ?bool $isDefault = null,
@@ -43,6 +44,7 @@ final class Domain implements ModelInterface, JsonSerializable
             'type' => $this->type,
             'name' => $this->name,
             'attributes' => $this->attributes,
+            'id' => $this->id,
             'project' => $this->project,
             'registeredName' => $this->registeredName,
             'isDefault' => $this->isDefault,
@@ -78,6 +80,11 @@ final class Domain implements ModelInterface, JsonSerializable
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getProject(): ?string

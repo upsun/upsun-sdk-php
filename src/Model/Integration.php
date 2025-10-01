@@ -50,6 +50,7 @@ final class Integration implements ModelInterface, JsonSerializable
         private readonly array $extra,
         private readonly array $headers,
         private readonly bool $tlsVerify,
+        private readonly array $excludedServices,
         private readonly string $script,
         private readonly string $index,
         private readonly string $sourcetype,
@@ -65,6 +66,7 @@ final class Integration implements ModelInterface, JsonSerializable
         private readonly ?string $sharedKey = null,
         private readonly ?TheOAuth2ConsumerInformationOptional $appCredentials = null,
         private readonly ?TheAddonCredentialInformationOptional $addonCredentials = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -111,6 +113,7 @@ final class Integration implements ModelInterface, JsonSerializable
             'extra' => $this->extra,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
             'script' => $this->script,
             'index' => $this->index,
             'sourcetype' => $this->sourcetype,
@@ -121,6 +124,7 @@ final class Integration implements ModelInterface, JsonSerializable
             'facility' => $this->facility,
             'messageFormat' => $this->messageFormat,
             'sharedKey' => $this->sharedKey,
+            'id' => $this->id,
             'appCredentials' => $this->appCredentials,
             'addonCredentials' => $this->addonCredentials,
         ];
@@ -309,6 +313,11 @@ final class Integration implements ModelInterface, JsonSerializable
         return $this->tlsVerify;
     }
 
+    public function getExcludedServices(): array
+    {
+        return $this->excludedServices;
+    }
+
     public function getScript(): string
     {
         return $this->script;
@@ -357,6 +366,11 @@ final class Integration implements ModelInterface, JsonSerializable
     public function getSharedKey(): ?string
     {
         return $this->sharedKey;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getAppCredentials(): ?TheOAuth2ConsumerInformationOptional

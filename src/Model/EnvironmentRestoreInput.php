@@ -21,7 +21,7 @@ final class EnvironmentRestoreInput implements ModelInterface, JsonSerializable
         private readonly bool $restoreResources,
         private readonly ?string $environmentName = null,
         private readonly ?string $branchFrom = null,
-        private readonly ?Resources5 $resources = null,
+        private readonly ?Resources6 $resources = null,
     ) {
     }
 
@@ -66,7 +66,7 @@ final class EnvironmentRestoreInput implements ModelInterface, JsonSerializable
         return $this->restoreResources;
     }
 
-    public function getResources(): ?Resources5
+    public function getResources(): ?Resources6
     {
         return $this->resources;
     }

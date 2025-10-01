@@ -29,6 +29,7 @@ final class GitLabIntegration implements ModelInterface, JsonSerializable
         private readonly bool $mergeRequestsCloneParentData,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -51,6 +52,7 @@ final class GitLabIntegration implements ModelInterface, JsonSerializable
             'buildMergeRequests' => $this->buildMergeRequests,
             'buildWipMergeRequests' => $this->buildWipMergeRequests,
             'mergeRequestsCloneParentData' => $this->mergeRequestsCloneParentData,
+            'id' => $this->id,
         ];
     }
 
@@ -112,5 +114,10 @@ final class GitLabIntegration implements ModelInterface, JsonSerializable
     public function getMergeRequestsCloneParentData(): bool
     {
         return $this->mergeRequestsCloneParentData;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

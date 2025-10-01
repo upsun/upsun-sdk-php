@@ -35,6 +35,7 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
         private readonly ?string $sshHost = null,
         private readonly ?array $hosts = [],
         private readonly ?string $storageType = null,
+        private readonly ?string $id = null,
         private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
@@ -65,6 +66,7 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
             'sshHosts' => $this->sshHosts,
             'useDedicatedGrid' => $this->useDedicatedGrid,
             'storageType' => $this->storageType,
+            'id' => $this->id,
             'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
         ];
     }
@@ -168,6 +170,11 @@ final class DeploymentTarget implements ModelInterface, JsonSerializable
     public function getStorageType(): ?string
     {
         return $this->storageType;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getEnterpriseEnvironmentsMapping(): ?object

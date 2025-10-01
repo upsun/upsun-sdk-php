@@ -17,6 +17,7 @@ use JsonSerializable;
 final class Ref implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $ref,
         private readonly TheObjectTheReferencePointsTo $object,
         private readonly string $sha,
@@ -31,6 +32,7 @@ final class Ref implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'ref' => $this->ref,
             'object' => $this->object,
             'sha' => $this->sha,
@@ -40,6 +42,11 @@ final class Ref implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getRef(): string

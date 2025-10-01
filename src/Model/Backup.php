@@ -44,9 +44,9 @@ final class Backup implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
-            'id' => $this->id,
             'attributes' => $this->attributes,
             'status' => $this->status,
             'expiresAt' => $this->expiresAt?->format(DATE_ATOM),
@@ -67,6 +67,11 @@ final class Backup implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
@@ -75,11 +80,6 @@ final class Backup implements ModelInterface, JsonSerializable
     public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
     }
 
     public function getAttributes(): array

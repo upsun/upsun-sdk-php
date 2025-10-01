@@ -62,7 +62,7 @@ final class EnvironmentBackupsApi extends AbstractApi
 
 
     /**
-     * Create snapshot of environment
+     * Create backup of environment
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -84,7 +84,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Create snapshot of environment
+     * Create backup of environment
      *
      * @return AcceptedResponse
      *
@@ -251,7 +251,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Delete an environment snapshot
+     * Delete an environment backup
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -273,7 +273,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Delete an environment snapshot
+     * Delete an environment backup
      *
      * @return AcceptedResponse
      *
@@ -441,7 +441,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment snapshot&#39;s info
+     * Get an environment backup&#39;s info
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -463,7 +463,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment snapshot&#39;s info
+     * Get an environment backup&#39;s info
      *
      * @return Backup
      *
@@ -631,7 +631,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment&#39;s snapshot list
+     * Get an environment&#39;s backup list
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -651,7 +651,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment&#39;s snapshot list
+     * Get an environment&#39;s backup list
      *
      * @return Backup[]
      *

@@ -22,8 +22,10 @@ final class NewRelicIntegration implements ModelInterface, JsonSerializable
         private readonly array $extra,
         private readonly string $url,
         private readonly bool $tlsVerify,
+        private readonly array $excludedServices,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -41,6 +43,8 @@ final class NewRelicIntegration implements ModelInterface, JsonSerializable
             'extra' => $this->extra,
             'url' => $this->url,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
+            'id' => $this->id,
         ];
     }
 
@@ -77,5 +81,15 @@ final class NewRelicIntegration implements ModelInterface, JsonSerializable
     public function getTlsVerify(): bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): array
+    {
+        return $this->excludedServices;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

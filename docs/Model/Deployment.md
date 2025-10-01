@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **string** |  |
 **clusterName** | **string** |  |
 **projectInfo** | [**\Upsun\Model\ProjectInfo**](ProjectInfo.md) |  |
 **environmentInfo** | [**\Upsun\Model\EnvironmentInfo**](EnvironmentInfo.md) |  |
@@ -20,7 +21,6 @@ Name | Type | Description | Notes
 **webapps** | [**array<string,\Upsun\Model\WebApplicationsValue>**](WebApplicationsValue.md) |  |
 **workers** | [**array<string,\Upsun\Model\WorkersValue>**](WorkersValue.md) |  |
 **containerProfiles** | **array<string,array<string,\Upsun\Model\ContainerProfilesValueValue>>** |  |
-**id** | **string** |  |
 **createdAt** | **\DateTime** |  | [optional]
 **updatedAt** | **\DateTime** |  | [optional]
 **fingerprint** | **string** |  | [optional]

@@ -1,19 +1,19 @@
-# Upsun\TeamsApi
+# [Upsun\Api\TeamsApi](../src/Api/TeamsApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createTeam()**](TeamsApi.md#createTeam) | **POST** /teams | Create team
-[**createTeamMember()**](TeamsApi.md#createTeamMember) | **POST** /teams/{team_id}/members | Create team member
-[**deleteTeam()**](TeamsApi.md#deleteTeam) | **DELETE** /teams/{team_id} | Delete team
-[**deleteTeamMember()**](TeamsApi.md#deleteTeamMember) | **DELETE** /teams/{team_id}/members/{user_id} | Delete team member
-[**getTeam()**](TeamsApi.md#getTeam) | **GET** /teams/{team_id} | Get team
-[**getTeamMember()**](TeamsApi.md#getTeamMember) | **GET** /teams/{team_id}/members/{user_id} | Get team member
-[**listTeamMembers()**](TeamsApi.md#listTeamMembers) | **GET** /teams/{team_id}/members | List team members
-[**listTeams()**](TeamsApi.md#listTeams) | **GET** /teams | List teams
-[**listUserTeams()**](TeamsApi.md#listUserTeams) | **GET** /users/{user_id}/teams | User teams
-[**updateTeam()**](TeamsApi.md#updateTeam) | **PATCH** /teams/{team_id} | Update team
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createTeam()**](TeamsApi.md#createTeam) | **POST** /teams | Create team | https://docs.upsun.com/api/#tag/Teams/operation/create-team |
+| [**createTeamMember()**](TeamsApi.md#createTeamMember) | **POST** /teams/{team_id}/members | Create team member | https://docs.upsun.com/api/#tag/Teams/operation/create-team-member |
+| [**deleteTeam()**](TeamsApi.md#deleteTeam) | **DELETE** /teams/{team_id} | Delete team | https://docs.upsun.com/api/#tag/Teams/operation/delete-team |
+| [**deleteTeamMember()**](TeamsApi.md#deleteTeamMember) | **DELETE** /teams/{team_id}/members/{user_id} | Delete team member | https://docs.upsun.com/api/#tag/Teams/operation/delete-team-member |
+| [**getTeam()**](TeamsApi.md#getTeam) | **GET** /teams/{team_id} | Get team | https://docs.upsun.com/api/#tag/Teams/operation/get-team |
+| [**getTeamMember()**](TeamsApi.md#getTeamMember) | **GET** /teams/{team_id}/members/{user_id} | Get team member | https://docs.upsun.com/api/#tag/Teams/operation/get-team-member |
+| [**listTeamMembers()**](TeamsApi.md#listTeamMembers) | **GET** /teams/{team_id}/members | List team members | https://docs.upsun.com/api/#tag/Teams/operation/list-team-members |
+| [**listTeams()**](TeamsApi.md#listTeams) | **GET** /teams | List teams | https://docs.upsun.com/api/#tag/Teams/operation/list-teams |
+| [**listUserTeams()**](TeamsApi.md#listUserTeams) | **GET** /users/{user_id}/teams | User teams | https://docs.upsun.com/api/#tag/Teams/operation/list-user-teams |
+| [**updateTeam()**](TeamsApi.md#updateTeam) | **PATCH** /teams/{team_id} | Update team | https://docs.upsun.com/api/#tag/Teams/operation/update-team |
 
 
 ## `createTeam()`
@@ -35,8 +35,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $createTeamRequest = new \Upsun\Model\CreateTeamRequest(); // \Upsun\Model\CreateTeamRequest
@@ -51,9 +51,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createTeamRequest** | [**\Upsun\Model\CreateTeamRequest**](../Model/CreateTeamRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createTeamRequest** | [**\Upsun\Model\CreateTeamRequest**](../Model/CreateTeamRequest.md)|  | |
 
 ### Return type
 
@@ -91,8 +91,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -108,10 +108,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **createTeamMemberRequest** | [**\Upsun\Model\CreateTeamMemberRequest**](../Model/CreateTeamMemberRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **createTeamMemberRequest** | [**\Upsun\Model\CreateTeamMemberRequest**](../Model/CreateTeamMemberRequest.md)|  | |
 
 ### Return type
 
@@ -149,8 +149,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -164,9 +164,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
 
 ### Return type
 
@@ -204,8 +204,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -220,10 +220,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -261,8 +261,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -277,9 +277,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
 
 ### Return type
 
@@ -317,8 +317,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -334,10 +334,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **userId** | **string**| The ID of the user. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **userId** | **string**| The ID of the user. | |
 
 ### Return type
 
@@ -375,8 +375,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -394,12 +394,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional] |
 
 ### Return type
 
@@ -437,8 +437,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $filterOrganizationId = new \Upsun\Model\\Upsun\Model\StringFilter(); // \Upsun\Model\StringFilter | Allows filtering by `organization_id` using one or more operators.
@@ -459,15 +459,15 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **filterOrganizationId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional]
- **filterId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;id&#x60; using one or more operators. | [optional]
- **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **filterOrganizationId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional] |
+| **filterId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;id&#x60; using one or more operators. | [optional] |
+| **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional] |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional] |
 
 ### Return type
 
@@ -505,8 +505,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $userId = d81c8ee2-44b3-429f-b944-a33ad7437690; // string | The ID of the user.
@@ -527,15 +527,15 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **userId** | **string**| The ID of the user. |
- **filterOrganizationId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional]
- **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional]
- **pageSize** | **int**| Determines the number of items to show. | [optional]
- **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional]
- **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **userId** | **string**| The ID of the user. | |
+| **filterOrganizationId** | [**\Upsun\Model\StringFilter**](../Model/.md)| Allows filtering by &#x60;organization_id&#x60; using one or more operators. | [optional] |
+| **filterUpdatedAt** | [**\Upsun\Model\DateTimeFilter**](../Model/.md)| Allows filtering by &#x60;updated_at&#x60; using one or more operators. | [optional] |
+| **pageSize** | **int**| Determines the number of items to show. | [optional] |
+| **pageBefore** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **pageAfter** | **string**| Pagination cursor. This is automatically generated as necessary and provided in HAL links (_links); it should not be constructed externally. | [optional] |
+| **sort** | **string**| Allows sorting by a single field.&lt;br&gt; Use a dash (\&quot;-\&quot;) to sort descending. | [optional] |
 
 ### Return type
 
@@ -573,8 +573,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\TeamsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $teamId = 'teamId_example'; // string | The ID of the team.
@@ -590,10 +590,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **teamId** | **string**| The ID of the team. |
- **updateTeamRequest** | [**\Upsun\Model\UpdateTeamRequest**](../Model/UpdateTeamRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **teamId** | **string**| The ID of the team. | |
+| **updateTeamRequest** | [**\Upsun\Model\UpdateTeamRequest**](../Model/UpdateTeamRequest.md)|  | [optional] |
 
 ### Return type
 

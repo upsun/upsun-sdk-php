@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **country** | **string** | The organization country (2-letter country code). | [optional]
 **capabilities** | **string[]** | The organization capabilities. | [optional]
 **vendor** | **string** | The vendor. | [optional]
+**billingAccountId** | **string** | The Billing Account ID. | [optional]
+**billingLegacy** | **bool** | Whether the account is billed with the legacy system. | [optional]
 **status** | **string** | The status of the organization. | [optional]
 **createdAt** | **\DateTime** | The date and time when the organization was created. | [optional]
 **updatedAt** | **\DateTime** | The date and time when the organization was last updated. | [optional]

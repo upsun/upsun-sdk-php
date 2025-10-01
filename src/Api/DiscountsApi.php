@@ -208,7 +208,7 @@ final class DiscountsApi extends AbstractApi
      *
      * @see https://docs.upsun.com/api/#tag/Discounts/operation/get-type-allowance
      */
-    public function getTypeAllowance(): object
+    public function getTypeAllowance(): GetTypeAllowance200Response
     {
         return $this->getTypeAllowanceWithHttpInfo(
         );
@@ -221,7 +221,7 @@ final class DiscountsApi extends AbstractApi
      *
      * @throws InvalidArgumentException|Exception
      */
-    private function getTypeAllowanceWithHttpInfo(): object
+    private function getTypeAllowanceWithHttpInfo(): GetTypeAllowance200Response
     {
         $request = $this->getTypeAllowanceRequest(
         );
@@ -322,7 +322,7 @@ final class DiscountsApi extends AbstractApi
      */
     public function listOrgDiscounts(
         string $organizationId
-    ): object {
+    ): ListOrgDiscounts200Response {
         return $this->listOrgDiscountsWithHttpInfo(
             $organizationId
         );
@@ -337,7 +337,7 @@ final class DiscountsApi extends AbstractApi
      */
     private function listOrgDiscountsWithHttpInfo(
         string $organizationId
-    ): object {
+    ): ListOrgDiscounts200Response {
         $request = $this->listOrgDiscountsRequest(
             $organizationId
         );

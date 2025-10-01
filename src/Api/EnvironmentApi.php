@@ -6,6 +6,7 @@ use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\AcceptedResponse;
 use Upsun\Model\EnvironmentBranchInput;
 use Upsun\Model\VersionCreateInput;
+use Upsun\Model\EnvironmentDeployInput;
 use Upsun\Model\Environment;
 use Upsun\Model\Version;
 use Upsun\Model\EnvironmentInitializeInput;
@@ -1151,6 +1152,195 @@ final class EnvironmentApi extends AbstractApi
         $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
 
         return $this->createRequest('DELETE', $uri, $headers, $httpBody);
+    }
+
+    /**
+     * Deploy an environment
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @return AcceptedResponse
+     *
+     * @see https://docs.upsun.com/api/#tag/Environment/operation/deploy-environment
+     */
+    public function deployEnvironment(
+        string $projectId,
+        string $environmentId,
+        EnvironmentDeployInput $environmentDeployInput
+    ): AcceptedResponse {
+        return $this->deployEnvironmentWithHttpInfo(
+            $projectId,
+            $environmentId,
+            $environmentDeployInput
+        );
+    }
+
+    /**
+     * Deploy an environment
+     *
+     * @return AcceptedResponse
+     *
+     * @throws InvalidArgumentException|Exception
+     */
+    private function deployEnvironmentWithHttpInfo(
+        string $projectId,
+        string $environmentId,
+        EnvironmentDeployInput $environmentDeployInput
+    ): AcceptedResponse {
+        $request = $this->deployEnvironmentRequest(
+            $projectId,
+            $environmentId,
+            $environmentDeployInput
+        );
+
+        try {
+            $response = $this->sendAuthenticatedRequest(
+                $request->getMethod(),
+                (string) $request->getUri(),
+                $request->getHeaders(),
+                $request->getBody()
+            );
+
+            return $this->handleResponseWithDataType(
+                AcceptedResponse::class,
+                $request,
+                $response
+            );
+        } catch (ApiException $apiException) {
+            $apiException->enrichWithErrorObject();
+            throw $apiException;
+        }
+    }
+
+    /**
+     * Create request for operation 'deployEnvironment'
+     *
+     * @throws InvalidArgumentException
+     */
+    private function deployEnvironmentRequest(
+        string $projectId,
+        string $environmentId,
+        EnvironmentDeployInput $environmentDeployInput
+    ): RequestInterface {
+
+        // verify the required parameter 'projectId' is set
+        if (
+            $projectId === null
+            || (is_array($projectId)
+            && count($projectId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $projectId 
+                when calling deployEnvironment'
+            );
+        }
+
+        // verify the required parameter 'environmentId' is set
+        if (
+            $environmentId === null
+            || (is_array($environmentId)
+            && count($environmentId) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $environmentId 
+                when calling deployEnvironment'
+            );
+        }
+
+        // verify the required parameter 'environmentDeployInput' is set
+        if (
+            $environmentDeployInput === null
+            || (is_array($environmentDeployInput)
+            && count($environmentDeployInput) === 0)
+        ) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $environmentDeployInput 
+                when calling deployEnvironment'
+            );
+        }
+
+        $resourcePath = '/projects/{projectId}/environments/{environmentId}/deploy';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = null;
+        $multipart = false;
+
+        // path params
+        if ($projectId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'projectId' . '}',
+                ObjectSerializer::toPathValue($projectId),
+                $resourcePath
+            );
+        }
+
+        // path params
+        if ($environmentId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'environmentId' . '}',
+                ObjectSerializer::toPathValue($environmentId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json'],
+            'application/json',
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($environmentDeployInput)) {
+            if ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode(
+                    ObjectSerializer::sanitizeForSerialization($environmentDeployInput)
+                );
+            } else {
+                $httpBody = $environmentDeployInput;
+            }
+        } elseif ($formParams !== []) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+            } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
+                $httpBody = json_encode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+
+        $uri = $this->createUri($operationHost, $resourcePath, $queryParams);
+
+        return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
 
     /**

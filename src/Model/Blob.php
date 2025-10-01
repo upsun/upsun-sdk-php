@@ -17,6 +17,7 @@ use JsonSerializable;
 final class Blob implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $sha,
         private readonly int $size,
         private readonly string $encoding,
@@ -32,6 +33,7 @@ final class Blob implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'sha' => $this->sha,
             'size' => $this->size,
             'encoding' => $this->encoding,
@@ -42,6 +44,11 @@ final class Blob implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getSha(): string

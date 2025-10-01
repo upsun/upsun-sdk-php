@@ -2,6 +2,7 @@
 
 namespace Upsun\Api;
 
+use SplFileObject;
 use Upsun\Model\CreateProfilePicture200Response;
 use Upsun\Model\GetAddress200Response;
 use Upsun\Model\Profile;
@@ -74,10 +75,12 @@ final class UserProfilesApi extends AbstractApi
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/create-profile-picture
      */
     public function createProfilePicture(
-        string $uuid
-    ): object {
+        string $uuid,
+        ?SplFileObject $file = null
+    ): CreateProfilePicture200Response {
         return $this->createProfilePictureWithHttpInfo(
-            $uuid
+            $uuid,
+            $file
         );
     }
 
@@ -89,10 +92,12 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException|Exception
      */
     private function createProfilePictureWithHttpInfo(
-        string $uuid
-    ): object {
+        string $uuid,
+        ?SplFileObject $file = null
+    ): CreateProfilePicture200Response {
         $request = $this->createProfilePictureRequest(
-            $uuid
+            $uuid,
+            $file
         );
 
         try {
@@ -120,7 +125,8 @@ final class UserProfilesApi extends AbstractApi
      * @throws InvalidArgumentException
      */
     private function createProfilePictureRequest(
-        string $uuid
+        string $uuid,
+        ?SplFileObject $file = null
     ): RequestInterface {
 
         // verify the required parameter 'uuid' is set
@@ -151,15 +157,25 @@ final class UserProfilesApi extends AbstractApi
             );
         }
 
+        // form params
+        $formDataProcessor = new FormDataProcessor();
+
+        $formData = $formDataProcessor->prepare([
+            'file' => $file,
+        ]);
+
+        $formParams = $formDataProcessor->flatten($formData);
+        $multipart = $formDataProcessor->has_file;
+
 
         $headers = $this->headerSelector->selectHeaders(
             ['application/json'],
-            '',
+            'multipart/form-data',
             $multipart
         );
 
         // for model (json/xml)
-        if ($formParams !== []) {
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -609,7 +625,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/list-profiles
      */
-    public function listProfiles(): object
+    public function listProfiles(): ListProfiles200Response
     {
         return $this->listProfilesWithHttpInfo(
         );
@@ -622,7 +638,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws InvalidArgumentException|Exception
      */
-    private function listProfilesWithHttpInfo(): object
+    private function listProfilesWithHttpInfo(): ListProfiles200Response
     {
         $request = $this->listProfilesRequest(
         );

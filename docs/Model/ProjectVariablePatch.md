@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **isSensitive** | **bool** |  | [optional]
 **visibleBuild** | **bool** |  | [optional]
 **visibleRuntime** | **bool** |  | [optional]
+**applicationScope** | **string[]** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

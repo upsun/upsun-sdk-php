@@ -27,6 +27,7 @@ final class FastlyIntegration implements ModelInterface, JsonSerializable
         private readonly string $serviceId,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -47,6 +48,7 @@ final class FastlyIntegration implements ModelInterface, JsonSerializable
             'states' => $this->states,
             'result' => $this->result,
             'serviceId' => $this->serviceId,
+            'id' => $this->id,
         ];
     }
 
@@ -98,5 +100,10 @@ final class FastlyIntegration implements ModelInterface, JsonSerializable
     public function getServiceId(): string
     {
         return $this->serviceId;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

@@ -17,7 +17,7 @@ use JsonSerializable;
 final class GetOrgPrepaymentInfo200Response implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?GetOrgPrepaymentInfo200ResponsePrepayment $prepayment = null,
+        private readonly ?PrepaymentObject $prepayment = null,
         private readonly ?GetOrgPrepaymentInfo200ResponseLinks $links = null,
     ) {
     }
@@ -40,7 +40,7 @@ final class GetOrgPrepaymentInfo200Response implements ModelInterface, JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getPrepayment(): ?GetOrgPrepaymentInfo200ResponsePrepayment
+    public function getPrepayment(): ?PrepaymentObject
     {
         return $this->prepayment;
     }

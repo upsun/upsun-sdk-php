@@ -1,10 +1,10 @@
-# Upsun\RuntimeOperationsApi
+# [Upsun\Api\RuntimeOperationsApi](../src/Api/RuntimeOperationsApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**runOperation()**](RuntimeOperationsApi.md#runOperation) | **POST** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations | Execute a runtime operation
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**runOperation()**](RuntimeOperationsApi.md#runOperation) | **POST** /projects/{projectId}/environments/{environmentId}/deployments/{deploymentId}/operations | Execute a runtime operation | https://docs.upsun.com/api/#tag/Runtime-Operations/operation/run-operation |
 
 
 ## `runOperation()`
@@ -15,7 +15,7 @@ runOperation($projectId, $environmentId, $deploymentId, $environmentOperationInp
 
 Execute a runtime operation
 
-Execute a runtime operation on a currently deployed environment. This allows you to run one-off commands, such as rebuilding static assets on demand, by defining an `operations` key in a project's `.platform.app.yaml` configuration. More information on runtime operations is [available in our user documentation](https://docs.platform.sh/create-apps/runtime-operations.html).
+Execute a runtime operation on a currently deployed environment. This allows you to run one-off commands, such as rebuilding static assets on demand, by defining an `operations` key in a project's `.upsun/config.yaml` configuration. More information on runtime operations is [available in our user documentation](https://docs.upsun.com/anchors/app/runtime-operations/).
 
 ### Example
 
@@ -26,8 +26,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RuntimeOperationsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -45,12 +45,12 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **environmentId** | **string**|  |
- **deploymentId** | **string**|  |
- **environmentOperationInput** | [**\Upsun\Model\EnvironmentOperationInput**](../Model/EnvironmentOperationInput.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **environmentId** | **string**|  | |
+| **deploymentId** | **string**|  | |
+| **environmentOperationInput** | [**\Upsun\Model\EnvironmentOperationInput**](../Model/EnvironmentOperationInput.md)|  | |
 
 ### Return type
 

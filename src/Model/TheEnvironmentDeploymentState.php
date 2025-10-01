@@ -21,6 +21,8 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
         private readonly bool $lastDeploymentSuccessful,
         private readonly TheCronsDeploymentState $crons,
         private readonly ?DateTime $lastDeploymentAt = null,
+        private readonly ?DateTime $lastAutoscaleUpAt = null,
+        private readonly ?DateTime $lastAutoscaleDownAt = null,
     ) {
     }
 
@@ -34,6 +36,8 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
         return [
             'lastDeploymentSuccessful' => $this->lastDeploymentSuccessful,
             'lastDeploymentAt' => $this->lastDeploymentAt?->format(DATE_ATOM),
+            'lastAutoscaleUpAt' => $this->lastAutoscaleUpAt?->format(DATE_ATOM),
+            'lastAutoscaleDownAt' => $this->lastAutoscaleDownAt?->format(DATE_ATOM),
             'crons' => $this->crons,
         ];
     }
@@ -51,6 +55,16 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
     public function getLastDeploymentAt(): ?DateTime
     {
         return $this->lastDeploymentAt;
+    }
+
+    public function getLastAutoscaleUpAt(): ?DateTime
+    {
+        return $this->lastAutoscaleUpAt;
+    }
+
+    public function getLastAutoscaleDownAt(): ?DateTime
+    {
+        return $this->lastAutoscaleDownAt;
     }
 
     public function getCrons(): TheCronsDeploymentState

@@ -17,7 +17,7 @@ use JsonSerializable;
 final class Resources1 implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $init = null,
+        private readonly ?string $profileSize = null,
     ) {
     }
 
@@ -29,7 +29,7 @@ final class Resources1 implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'init' => $this->init,
+            'profileSize' => $this->profileSize,
         ];
     }
 
@@ -38,8 +38,8 @@ final class Resources1 implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getInit(): ?string
+    public function getProfileSize(): ?string
     {
-        return $this->init;
+        return $this->profileSize;
     }
 }

@@ -27,6 +27,23 @@ use Upsun\Model\AddressMetadataMetadata;
 use Upsun\Model\Alert;
 use Upsun\Model\ApplyOrgVoucherRequest;
 use Upsun\Model\ArrayFilter;
+use Upsun\Model\AutoscalerAlertPartial;
+use Upsun\Model\AutoscalerCPUPressureTrigger;
+use Upsun\Model\AutoscalerCPUResources;
+use Upsun\Model\AutoscalerCPUTrigger;
+use Upsun\Model\AutoscalerCondition;
+use Upsun\Model\AutoscalerDuration;
+use Upsun\Model\AutoscalerInstances;
+use Upsun\Model\AutoscalerMemoryPressureTrigger;
+use Upsun\Model\AutoscalerMemoryResources;
+use Upsun\Model\AutoscalerMemoryTrigger;
+use Upsun\Model\AutoscalerResources;
+use Upsun\Model\AutoscalerScalingCooldown;
+use Upsun\Model\AutoscalerScalingFactor;
+use Upsun\Model\AutoscalerServiceSettings;
+use Upsun\Model\AutoscalerSettings;
+use Upsun\Model\AutoscalerTriggers;
+use Upsun\Model\Autoscaling;
 use Upsun\Model\Backup;
 use Upsun\Model\BitbucketIntegration;
 use Upsun\Model\BitbucketIntegrationConfigurations;
@@ -46,12 +63,15 @@ use Upsun\Model\BuildResources;
 use Upsun\Model\BuildResources1;
 use Upsun\Model\BuildResources2;
 use Upsun\Model\CacheConfiguration;
-use Upsun\Model\CacheConfiguration1;
 use Upsun\Model\CanCreateNewOrgSubscription200Response;
 use Upsun\Model\CanCreateNewOrgSubscription200ResponseRequiredAction;
+use Upsun\Model\CanUpdateSubscription200Response;
 use Upsun\Model\Certificate;
 use Upsun\Model\CertificateCreateInput;
 use Upsun\Model\CertificatePatch;
+use Upsun\Model\CertificateProvisioner;
+use Upsun\Model\CertificateProvisionerPatch;
+use Upsun\Model\CommandsInner;
 use Upsun\Model\CommandsToManageTheApplicationSLifecycle;
 use Upsun\Model\Commit;
 use Upsun\Model\Components;
@@ -74,6 +94,7 @@ use Upsun\Model\CreateAuthorizationCredentials200Response;
 use Upsun\Model\CreateAuthorizationCredentials200ResponseRedirectToUrl;
 use Upsun\Model\CreateOrgInviteRequest;
 use Upsun\Model\CreateOrgMemberRequest;
+use Upsun\Model\CreateOrgProjectRequest;
 use Upsun\Model\CreateOrgRequest;
 use Upsun\Model\CreateOrgSubscriptionRequest;
 use Upsun\Model\CreateProfilePicture200Response;
@@ -85,8 +106,6 @@ use Upsun\Model\CreateTeamMemberRequest;
 use Upsun\Model\CreateTeamRequest;
 use Upsun\Model\CreateTicketRequest;
 use Upsun\Model\CreateTicketRequestAttachmentsInner;
-use Upsun\Model\CreateUsageAlertRequest;
-use Upsun\Model\CreateUsageAlertRequestConfig;
 use Upsun\Model\CurrencyAmount;
 use Upsun\Model\CurrencyAmountNullable;
 use Upsun\Model\CurrentUser;
@@ -124,6 +143,7 @@ use Upsun\Model\Environment;
 use Upsun\Model\EnvironmentActivateInput;
 use Upsun\Model\EnvironmentBackupInput;
 use Upsun\Model\EnvironmentBranchInput;
+use Upsun\Model\EnvironmentDeployInput;
 use Upsun\Model\EnvironmentInfo;
 use Upsun\Model\EnvironmentInitializeInput;
 use Upsun\Model\EnvironmentMergeInput;
@@ -155,7 +175,7 @@ use Upsun\Model\GetOrgPrepaymentInfo200Response;
 use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinks;
 use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksSelf;
 use Upsun\Model\GetOrgPrepaymentInfo200ResponseLinksTransactions;
-use Upsun\Model\GetOrgPrepaymentInfo200ResponsePrepayment;
+use Upsun\Model\GetSubscriptionUsageAlerts200Response;
 use Upsun\Model\GetTotpEnrollment200Response;
 use Upsun\Model\GetTypeAllowance200Response;
 use Upsun\Model\GetTypeAllowance200ResponseCurrencies;
@@ -170,6 +190,7 @@ use Upsun\Model\GitLabIntegration;
 use Upsun\Model\GitLabIntegrationConfigurations;
 use Upsun\Model\GitLabIntegrationCreateInput;
 use Upsun\Model\GitLabIntegrationPatch;
+use Upsun\Model\GitServerConfiguration;
 use Upsun\Model\GithubIntegration;
 use Upsun\Model\GithubIntegrationCreateInput;
 use Upsun\Model\GithubIntegrationPatch;
@@ -178,6 +199,7 @@ use Upsun\Model\GrantProjectTeamAccessRequestInner;
 use Upsun\Model\GrantProjectUserAccessRequestInner;
 use Upsun\Model\GrantTeamProjectAccessRequestInner;
 use Upsun\Model\GrantUserProjectAccessRequestInner;
+use Upsun\Model\GuaranteedResources;
 use Upsun\Model\HTTPLogForwardingIntegrationConfigurations;
 use Upsun\Model\HalLinks;
 use Upsun\Model\HalLinksNext;
@@ -205,10 +227,8 @@ use Upsun\Model\Invoice;
 use Upsun\Model\InvoicePDF;
 use Upsun\Model\LineItem;
 use Upsun\Model\LineItemComponent;
+use Upsun\Model\Link;
 use Upsun\Model\ListLinks;
-use Upsun\Model\ListLinksNext;
-use Upsun\Model\ListLinksPrevious;
-use Upsun\Model\ListLinksSelf;
 use Upsun\Model\ListOrgDiscounts200Response;
 use Upsun\Model\ListOrgInvoices200Response;
 use Upsun\Model\ListOrgMembers200Response;
@@ -216,17 +236,20 @@ use Upsun\Model\ListOrgOrders200Response;
 use Upsun\Model\ListOrgPlanRecords200Response;
 use Upsun\Model\ListOrgPrepaymentTransactions200Response;
 use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinks;
-use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksNext;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrepayment;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksPrevious;
+use Upsun\Model\ListOrgPrepaymentTransactions200ResponseLinksSelf;
 use Upsun\Model\ListOrgProjects200Response;
 use Upsun\Model\ListOrgSubscriptions200Response;
 use Upsun\Model\ListOrgUsageRecords200Response;
 use Upsun\Model\ListOrgs200Response;
 use Upsun\Model\ListPlans200Response;
 use Upsun\Model\ListProfiles200Response;
+use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
 use Upsun\Model\ListRegions200Response;
 use Upsun\Model\ListTeamMembers200Response;
-use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\ListTeams200Response;
 use Upsun\Model\ListTicketCategories200ResponseInner;
 use Upsun\Model\ListTicketPriorities200ResponseInner;
@@ -237,10 +260,13 @@ use Upsun\Model\ListUserOrgs200Response;
 use Upsun\Model\LogsForwarding;
 use Upsun\Model\MappingOfClustersToEnterpriseApplicationsValue;
 use Upsun\Model\Metrics;
+use Upsun\Model\MetricsMetadata;
+use Upsun\Model\MetricsValue;
 use Upsun\Model\NewRelicIntegration;
 use Upsun\Model\NewRelicIntegrationCreateInput;
 use Upsun\Model\NewRelicIntegrationPatch;
 use Upsun\Model\NewRelicLogForwardingIntegrationConfigurations;
+use Upsun\Model\OpenTelemetryLogForwardingIntegrationConfigurations;
 use Upsun\Model\OperationsThatCanBeAppliedToTheSourceCodeValue;
 use Upsun\Model\OperationsThatCanBeTriggeredOnThisApplicationValue;
 use Upsun\Model\Order;
@@ -255,6 +281,7 @@ use Upsun\Model\OrganizationAddonsObjectUpgradesAvailable;
 use Upsun\Model\OrganizationAlertConfig;
 use Upsun\Model\OrganizationAlertConfigConfig;
 use Upsun\Model\OrganizationAlertConfigConfigThreshold;
+use Upsun\Model\OrganizationCarbon;
 use Upsun\Model\OrganizationEstimationObject;
 use Upsun\Model\OrganizationEstimationObjectSubscriptions;
 use Upsun\Model\OrganizationEstimationObjectSubscriptionsListInner;
@@ -293,15 +320,13 @@ use Upsun\Model\OrganizationMemberLinksDelete;
 use Upsun\Model\OrganizationMemberLinksSelf;
 use Upsun\Model\OrganizationMemberLinksUpdate;
 use Upsun\Model\OrganizationProject;
+use Upsun\Model\OrganizationProjectCarbon;
 use Upsun\Model\OrganizationProjectLinks;
-use Upsun\Model\OrganizationProjectLinksApi;
+use Upsun\Model\OrganizationProjectLinksActivities;
+use Upsun\Model\OrganizationProjectLinksAddons;
 use Upsun\Model\OrganizationProjectLinksDelete;
 use Upsun\Model\OrganizationProjectLinksSelf;
-use Upsun\Model\OrganizationProjectLinksSubscription;
 use Upsun\Model\OrganizationProjectLinksUpdate;
-use Upsun\Model\OrganizationProjectPlan;
-use Upsun\Model\OrganizationProjectStatus;
-use Upsun\Model\OrganizationProjectType;
 use Upsun\Model\OrganizationReference;
 use Upsun\Model\OrganizationSSOConfig;
 use Upsun\Model\OutboundFirewall;
@@ -330,6 +355,7 @@ use Upsun\Model\ProfileCurrentTrialSpend;
 use Upsun\Model\ProfileCurrentTrialSpendRemaining;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
+use Upsun\Model\ProjectCarbon;
 use Upsun\Model\ProjectInfo;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectInvitationEnvironmentsInner;
@@ -340,15 +366,13 @@ use Upsun\Model\ProjectPatch;
 use Upsun\Model\ProjectReference;
 use Upsun\Model\ProjectSettings;
 use Upsun\Model\ProjectSettingsPatch;
+use Upsun\Model\ProjectStatus;
+use Upsun\Model\ProjectType;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\ProjectVariableCreateInput;
 use Upsun\Model\ProjectVariablePatch;
 use Upsun\Model\ProxyRoute;
-use Upsun\Model\ProxyRouteCreateInput;
-use Upsun\Model\ProxyRoutePatch;
 use Upsun\Model\RedirectRoute;
-use Upsun\Model\RedirectRouteCreateInput;
-use Upsun\Model\RedirectRoutePatch;
 use Upsun\Model\Ref;
 use Upsun\Model\Region;
 use Upsun\Model\RegionDatacenter;
@@ -367,14 +391,14 @@ use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
 use Upsun\Model\Resources5;
+use Upsun\Model\Resources6;
 use Upsun\Model\ResourcesForDevelopmentEnvironments;
 use Upsun\Model\ResourcesForProductionEnvironments;
 use Upsun\Model\ResourcesLimits;
 use Upsun\Model\ResourcesOverridesValue;
 use Upsun\Model\RestrictedAndDeniedImageTypes;
 use Upsun\Model\Route;
-use Upsun\Model\RouteCreateInput;
-use Upsun\Model\RoutePatch;
+use Upsun\Model\RouterResourceSettingsForFlexPlan;
 use Upsun\Model\RoutesValue;
 use Upsun\Model\RuntimeOperations;
 use Upsun\Model\SSHKey;
@@ -386,8 +410,8 @@ use Upsun\Model\ScriptIntegrationPatch;
 use Upsun\Model\SendOrgMfaReminders200ResponseValue;
 use Upsun\Model\SendOrgMfaRemindersRequest;
 use Upsun\Model\ServerSideIncludeConfiguration;
-use Upsun\Model\ServerSideIncludeConfiguration1;
 use Upsun\Model\ServicesValue;
+use Upsun\Model\ServicesValue1;
 use Upsun\Model\SlackIntegration;
 use Upsun\Model\SlackIntegrationCreateInput;
 use Upsun\Model\SlackIntegrationPatch;
@@ -398,8 +422,8 @@ use Upsun\Model\SplunkIntegrationCreateInput;
 use Upsun\Model\SplunkIntegrationPatch;
 use Upsun\Model\SplunkLogForwardingIntegrationConfigurations;
 use Upsun\Model\Status;
+use Upsun\Model\StickyRoutingConfiguration;
 use Upsun\Model\StrictTransportSecurityOptions;
-use Upsun\Model\StrictTransportSecurityOptions1;
 use Upsun\Model\StringFilter;
 use Upsun\Model\Subscription;
 use Upsun\Model\Subscription1;
@@ -419,7 +443,6 @@ use Upsun\Model\SyslogIntegrationPatch;
 use Upsun\Model\SyslogLogForwardingIntegrationConfigurations;
 use Upsun\Model\SystemInformation;
 use Upsun\Model\TLSSettingsForTheRoute;
-use Upsun\Model\TLSSettingsForTheRoute1;
 use Upsun\Model\Team;
 use Upsun\Model\TeamCounts;
 use Upsun\Model\TeamMember;
@@ -438,12 +461,12 @@ use Upsun\Model\TheCommandsToManageTheWorker;
 use Upsun\Model\TheCommitDistanceInfoBetweenParentAndChildEnvironments;
 use Upsun\Model\TheConfigurationOfPathsManagedByTheBuildCacheValue;
 use Upsun\Model\TheConfigurationOfTheRedirects;
-use Upsun\Model\TheConfigurationOfTheRedirects1;
 use Upsun\Model\TheContinuousProfilingConfiguration;
 use Upsun\Model\TheCronsDeploymentState;
 use Upsun\Model\TheDefaultResourcesForThisService;
 use Upsun\Model\TheDisksResources;
 use Upsun\Model\TheEnvironmentDeploymentState;
+use Upsun\Model\TheEnvironmentSizingConfiguration;
 use Upsun\Model\TheHostsOfTheDeploymentTargetInner;
 use Upsun\Model\TheHostsOfTheDeploymentTargetInner1;
 use Upsun\Model\TheInformationAboutTheAuthor;
@@ -454,7 +477,6 @@ use Upsun\Model\TheOAuth2ConsumerInformationOptional;
 use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
 use Upsun\Model\TheObjectTheReferencePointsTo;
 use Upsun\Model\ThePathsToRedirectValue;
-use Upsun\Model\ThePathsToRedirectValue1;
 use Upsun\Model\TheRelationshipsOfTheApplicationToDefinedServicesValue;
 use Upsun\Model\TheSpecificationOfTheWebLocationsServedByThisApplicationValue;
 use Upsun\Model\TheTreeItemsInner;
@@ -467,6 +489,7 @@ use Upsun\Model\UpdateOrgBillingAlertConfigRequest;
 use Upsun\Model\UpdateOrgBillingAlertConfigRequestConfig;
 use Upsun\Model\UpdateOrgMemberRequest;
 use Upsun\Model\UpdateOrgProfileRequest;
+use Upsun\Model\UpdateOrgProjectRequest;
 use Upsun\Model\UpdateOrgRequest;
 use Upsun\Model\UpdateOrgSubscriptionRequest;
 use Upsun\Model\UpdateProfileRequest;
@@ -474,14 +497,18 @@ use Upsun\Model\UpdateProjectUserAccessRequest;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestServicesValue;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequestWebappsValue;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequest;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInner;
+use Upsun\Model\UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig;
 use Upsun\Model\UpdateTeamRequest;
 use Upsun\Model\UpdateTicketRequest;
-use Upsun\Model\UpdateUsageAlertRequest;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\UpdateUserRequest;
 use Upsun\Model\UpstreamRoute;
-use Upsun\Model\UpstreamRouteCreateInput;
-use Upsun\Model\UpstreamRoutePatch;
 use Upsun\Model\Usage;
+use Upsun\Model\UsageAlert;
+use Upsun\Model\UsageAlertConfig;
+use Upsun\Model\UsageAlertConfigThreshold;
 use Upsun\Model\UsageGroupCurrentUsageProperties;
 use Upsun\Model\User;
 use Upsun\Model\UserProjectAccess;
@@ -538,6 +565,7 @@ final class ObjectAttributesMapper
             'role' => 'role'
         ],
         Activity::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
@@ -555,7 +583,7 @@ final class ObjectAttributesMapper
             'description' => 'description',
             'text' => 'text',
             'expiresAt' => 'expires_at',
-            'id' => 'id',
+            'commands' => 'commands',
             'integration' => 'integration',
             'environments' => 'environments'
         ],
@@ -600,10 +628,91 @@ final class ObjectAttributesMapper
             'in' => 'in',
             'nin' => 'nin'
         ],
+        AutoscalerAlertPartial::class => [
+            'name' => 'name',
+            'service' => 'service',
+            'condition' => 'condition',
+            'threshold' => 'threshold',
+            'value' => 'value',
+            'environment' => 'environment',
+            'resource' => 'resource',
+            'duration' => 'duration'
+        ],
+        AutoscalerCPUPressureTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerCPUResources::class => [
+            'min' => 'min',
+            'max' => 'max'
+        ],
+        AutoscalerCPUTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerCondition::class => [
+            'threshold' => 'threshold',
+            'duration' => 'duration',
+            'enabled' => 'enabled'
+        ],
+        AutoscalerDuration::class => [
+
+        ],
+        AutoscalerInstances::class => [
+            'min' => 'min',
+            'max' => 'max'
+        ],
+        AutoscalerMemoryPressureTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerMemoryResources::class => [
+            'min' => 'min',
+            'max' => 'max'
+        ],
+        AutoscalerMemoryTrigger::class => [
+            'enabled' => 'enabled',
+            'down' => 'down',
+            'up' => 'up'
+        ],
+        AutoscalerResources::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory'
+        ],
+        AutoscalerScalingCooldown::class => [
+            'up' => 'up',
+            'down' => 'down'
+        ],
+        AutoscalerScalingFactor::class => [
+            'up' => 'up',
+            'down' => 'down'
+        ],
+        AutoscalerServiceSettings::class => [
+            'triggers' => 'triggers',
+            'instances' => 'instances',
+            'resources' => 'resources',
+            'scaleFactor' => 'scale_factor',
+            'scaleCooldown' => 'scale_cooldown'
+        ],
+        AutoscalerSettings::class => [
+            'services' => 'services'
+        ],
+        AutoscalerTriggers::class => [
+            'cpu' => 'cpu',
+            'memory' => 'memory',
+            'cpuPressure' => 'cpu_pressure',
+            'memoryPressure' => 'memory_pressure'
+        ],
+        Autoscaling::class => [
+            'enabled' => 'enabled'
+        ],
         Backup::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
-            'id' => 'id',
             'attributes' => 'attributes',
             'status' => 'status',
             'expiresAt' => 'expires_at',
@@ -628,6 +737,7 @@ final class ObjectAttributesMapper
             'buildPullRequests' => 'build_pull_requests',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
             'resyncPullRequests' => 'resync_pull_requests',
+            'id' => 'id',
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
@@ -671,7 +781,8 @@ final class ObjectAttributesMapper
             'project' => 'project',
             'repository' => 'repository',
             'buildPullRequests' => 'build_pull_requests',
-            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data'
+            'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
+            'id' => 'id'
         ],
         BitbucketServerIntegrationConfigurations::class => [
             'enabled' => 'enabled',
@@ -712,7 +823,8 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'environmentsCredentials' => 'environments_credentials',
-            'continuousProfiling' => 'continuous_profiling'
+            'continuousProfiling' => 'continuous_profiling',
+            'id' => 'id'
         ],
         BlackfireIntegrationConfigurations::class => [
             'enabled' => 'enabled',
@@ -725,6 +837,7 @@ final class ObjectAttributesMapper
             'type' => 'type'
         ],
         Blob::class => [
+            'id' => 'id',
             'sha' => 'sha',
             'size' => 'size',
             'encoding' => 'encoding',
@@ -749,12 +862,6 @@ final class ObjectAttributesMapper
             'cookies' => 'cookies',
             'headers' => 'headers'
         ],
-        CacheConfiguration1::class => [
-            'enabled' => 'enabled',
-            'defaultTtl' => 'default_ttl',
-            'cookies' => 'cookies',
-            'headers' => 'headers'
-        ],
         CanCreateNewOrgSubscription200Response::class => [
             'canCreate' => 'can_create',
             'message' => 'message',
@@ -764,7 +871,13 @@ final class ObjectAttributesMapper
             'action' => 'action',
             'type' => 'type'
         ],
+        CanUpdateSubscription200Response::class => [
+            'canUpdate' => 'can_update',
+            'message' => 'message',
+            'requiredAction' => 'required_action'
+        ],
         Certificate::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'certificate' => 'certificate',
@@ -787,11 +900,31 @@ final class ObjectAttributesMapper
             'chain' => 'chain',
             'isInvalid' => 'is_invalid'
         ],
+        CertificateProvisioner::class => [
+            'id' => 'id',
+            'directoryUrl' => 'directory_url',
+            'email' => 'email',
+            'eabKid' => 'eab_kid',
+            'eabHmacKey' => 'eab_hmac_key'
+        ],
+        CertificateProvisionerPatch::class => [
+            'directoryUrl' => 'directory_url',
+            'email' => 'email',
+            'eabKid' => 'eab_kid',
+            'eabHmacKey' => 'eab_hmac_key'
+        ],
+        CommandsInner::class => [
+            'app' => 'app',
+            'type' => 'type',
+            'exitCode' => 'exit_code'
+        ],
         CommandsToManageTheApplicationSLifecycle::class => [
             'preStart' => 'pre_start',
-            'start' => 'start'
+            'start' => 'start',
+            'postStart' => 'post_start'
         ],
         Commit::class => [
+            'id' => 'id',
             'sha' => 'sha',
             'author' => 'author',
             'committer' => 'committer',
@@ -819,7 +952,8 @@ final class ObjectAttributesMapper
             'healthPagerduty' => 'health.pagerduty',
             'healthSlack' => 'health.slack',
             'cdnFastly' => 'cdn.fastly',
-            'blackfire' => 'blackfire'
+            'blackfire' => 'blackfire',
+            'otlp' => 'otlp'
         ],
         ConfigurationAboutTheTrafficRoutedToThisVersion::class => [
             'percentage' => 'percentage'
@@ -880,7 +1014,8 @@ final class ObjectAttributesMapper
         ],
         ContainerProfilesValueValue::class => [
             'cpu' => 'cpu',
-            'memory' => 'memory'
+            'memory' => 'memory',
+            'cpuType' => 'cpu_type'
         ],
         CreateApiTokenRequest::class => [
             'name' => 'name'
@@ -901,6 +1036,16 @@ final class ObjectAttributesMapper
         CreateOrgMemberRequest::class => [
             'userId' => 'user_id',
             'permissions' => 'permissions'
+        ],
+        CreateOrgProjectRequest::class => [
+            'region' => 'region',
+            'organizationId' => 'organization_id',
+            'title' => 'title',
+            'type' => 'type',
+            'plan' => 'plan',
+            'defaultBranch' => 'default_branch',
+            'cseNotes' => 'cse_notes',
+            'dedicatedTag' => 'dedicated_tag'
         ],
         CreateOrgRequest::class => [
             'label' => 'label',
@@ -965,13 +1110,6 @@ final class ObjectAttributesMapper
         CreateTicketRequestAttachmentsInner::class => [
             'filename' => 'filename',
             'data' => 'data'
-        ],
-        CreateUsageAlertRequest::class => [
-            'id' => 'id',
-            'config' => 'config'
-        ],
-        CreateUsageAlertRequestConfig::class => [
-            'threshold' => 'threshold'
         ],
         CurrencyAmount::class => [
             'formatted' => 'formatted',
@@ -1067,7 +1205,8 @@ final class ObjectAttributesMapper
             'autoCrons' => 'auto_crons',
             'autoNginx' => 'auto_nginx',
             'maintenanceMode' => 'maintenance_mode',
-            'guardrailsPhase' => 'guardrails_phase'
+            'guardrailsPhase' => 'guardrails_phase',
+            'id' => 'id'
         ],
         DedicatedDeploymentTargetCreateInput::class => [
             'type' => 'type',
@@ -1088,6 +1227,7 @@ final class ObjectAttributesMapper
             'schedule' => 'schedule'
         ],
         Deployment::class => [
+            'id' => 'id',
             'clusterName' => 'cluster_name',
             'projectInfo' => 'project_info',
             'environmentInfo' => 'environment_info',
@@ -1104,7 +1244,6 @@ final class ObjectAttributesMapper
             'webapps' => 'webapps',
             'workers' => 'workers',
             'containerProfiles' => 'container_profiles',
-            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'fingerprint' => 'fingerprint'
@@ -1128,6 +1267,7 @@ final class ObjectAttributesMapper
             'sshHosts' => 'ssh_hosts',
             'useDedicatedGrid' => 'use_dedicated_grid',
             'storageType' => 'storage_type',
+            'id' => 'id',
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
         DeploymentTargetCreateInput::class => [
@@ -1189,6 +1329,7 @@ final class ObjectAttributesMapper
             'type' => 'type',
             'name' => 'name',
             'attributes' => 'attributes',
+            'id' => 'id',
             'project' => 'project',
             'registeredName' => 'registered_name',
             'isDefault' => 'is_default',
@@ -1209,7 +1350,8 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'fromAddress' => 'from_address',
-            'recipients' => 'recipients'
+            'recipients' => 'recipients',
+            'id' => 'id'
         ],
         EmailIntegrationCreateInput::class => [
             'type' => 'type',
@@ -1229,6 +1371,7 @@ final class ObjectAttributesMapper
             'siteUrls' => 'site_urls',
             'sshHosts' => 'ssh_hosts',
             'maintenanceMode' => 'maintenance_mode',
+            'id' => 'id',
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
         EnterpriseDeploymentTargetCreateInput::class => [
@@ -1246,6 +1389,7 @@ final class ObjectAttributesMapper
             'enterpriseEnvironmentsMapping' => 'enterprise_environments_mapping'
         ],
         Environment::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'name' => 'name',
@@ -1266,6 +1410,7 @@ final class ObjectAttributesMapper
             'restrictRobots' => 'restrict_robots',
             'edgeHostname' => 'edge_hostname',
             'deploymentState' => 'deployment_state',
+            'sizing' => 'sizing',
             'resourcesOverrides' => 'resources_overrides',
             'maxInstanceCount' => 'max_instance_count',
             'lastActiveAt' => 'last_active_at',
@@ -1273,6 +1418,8 @@ final class ObjectAttributesMapper
             'project' => 'project',
             'isMain' => 'is_main',
             'isDirty' => 'is_dirty',
+            'hasStagedActivities' => 'has_staged_activities',
+            'canRollingDeploy' => 'can_rolling_deploy',
             'hasCode' => 'has_code',
             'headCommit' => 'head_commit',
             'mergeInfo' => 'merge_info',
@@ -1291,6 +1438,9 @@ final class ObjectAttributesMapper
             'cloneParent' => 'clone_parent',
             'type' => 'type',
             'resources' => 'resources'
+        ],
+        EnvironmentDeployInput::class => [
+            'strategy' => 'strategy'
         ],
         EnvironmentInfo::class => [
             'name' => 'name',
@@ -1315,7 +1465,8 @@ final class ObjectAttributesMapper
         ],
         EnvironmentOperationInput::class => [
             'service' => 'service',
-            'operation' => 'operation'
+            'operation' => 'operation',
+            'parameters' => 'parameters'
         ],
         EnvironmentPatch::class => [
             'name' => 'name',
@@ -1336,6 +1487,7 @@ final class ObjectAttributesMapper
             'resources' => 'resources'
         ],
         EnvironmentSourceOperation::class => [
+            'id' => 'id',
             'app' => 'app',
             'operation' => 'operation',
             'command' => 'command'
@@ -1351,9 +1503,11 @@ final class ObjectAttributesMapper
             'synchronizeResources' => 'synchronize_resources'
         ],
         EnvironmentType::class => [
+            'id' => 'id',
             'attributes' => 'attributes'
         ],
         EnvironmentVariable::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'name' => 'name',
@@ -1362,6 +1516,7 @@ final class ObjectAttributesMapper
             'isSensitive' => 'is_sensitive',
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
             'project' => 'project',
             'environment' => 'environment',
             'inherited' => 'inherited',
@@ -1377,6 +1532,7 @@ final class ObjectAttributesMapper
             'isSensitive' => 'is_sensitive',
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
             'isEnabled' => 'is_enabled',
             'isInheritable' => 'is_inheritable'
         ],
@@ -1388,6 +1544,7 @@ final class ObjectAttributesMapper
             'isSensitive' => 'is_sensitive',
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
             'isEnabled' => 'is_enabled',
             'isInheritable' => 'is_inheritable'
         ],
@@ -1419,7 +1576,8 @@ final class ObjectAttributesMapper
             'excludedEnvironments' => 'excluded_environments',
             'states' => 'states',
             'result' => 'result',
-            'serviceId' => 'service_id'
+            'serviceId' => 'service_id',
+            'id' => 'id'
         ],
         FastlyIntegrationCreateInput::class => [
             'type' => 'type',
@@ -1454,7 +1612,8 @@ final class ObjectAttributesMapper
             'name' => 'name',
             'hosts' => 'hosts',
             'useDedicatedGrid' => 'use_dedicated_grid',
-            'storageType' => 'storage_type'
+            'storageType' => 'storage_type',
+            'id' => 'id'
         ],
         FoundationDeploymentTargetCreateInput::class => [
             'type' => 'type',
@@ -1502,8 +1661,9 @@ final class ObjectAttributesMapper
         GetOrgPrepaymentInfo200ResponseLinksTransactions::class => [
             'href' => 'href'
         ],
-        GetOrgPrepaymentInfo200ResponsePrepayment::class => [
-            'prepayment' => 'prepayment'
+        GetSubscriptionUsageAlerts200Response::class => [
+            'current' => 'current',
+            'available' => 'available'
         ],
         GetTotpEnrollment200Response::class => [
             'issuer' => 'issuer',
@@ -1570,7 +1730,8 @@ final class ObjectAttributesMapper
             'project' => 'project',
             'buildMergeRequests' => 'build_merge_requests',
             'buildWipMergeRequests' => 'build_wip_merge_requests',
-            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
+            'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data',
+            'id' => 'id'
         ],
         GitLabIntegrationConfigurations::class => [
             'enabled' => 'enabled',
@@ -1600,6 +1761,9 @@ final class ObjectAttributesMapper
             'buildWipMergeRequests' => 'build_wip_merge_requests',
             'mergeRequestsCloneParentData' => 'merge_requests_clone_parent_data'
         ],
+        GitServerConfiguration::class => [
+            'pushSizeHardLimit' => 'push_size_hard_limit'
+        ],
         GithubIntegration::class => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
@@ -1613,7 +1777,8 @@ final class ObjectAttributesMapper
             'buildDraftPullRequests' => 'build_draft_pull_requests',
             'buildPullRequestsPostMerge' => 'build_pull_requests_post_merge',
             'pullRequestsCloneParentData' => 'pull_requests_clone_parent_data',
-            'tokenType' => 'token_type'
+            'tokenType' => 'token_type',
+            'id' => 'id'
         ],
         GithubIntegrationCreateInput::class => [
             'type' => 'type',
@@ -1660,6 +1825,10 @@ final class ObjectAttributesMapper
             'projectId' => 'project_id',
             'permissions' => 'permissions'
         ],
+        GuaranteedResources::class => [
+            'enabled' => 'enabled',
+            'instanceLimit' => 'instance_limit'
+        ],
         HTTPLogForwardingIntegrationConfigurations::class => [
             'enabled' => 'enabled',
             'role' => 'role'
@@ -1697,7 +1866,8 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
-            'url' => 'url'
+            'url' => 'url',
+            'id' => 'id'
         ],
         HealthWebHookIntegrationCreateInput::class => [
             'type' => 'type',
@@ -1735,21 +1905,25 @@ final class ObjectAttributesMapper
             'extra' => 'extra',
             'url' => 'url',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
         ],
         HttpLogIntegrationCreateInput::class => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         HttpLogIntegrationPatch::class => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'headers' => 'headers',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         ImagesValueValue::class => [
             'available' => 'available'
@@ -1790,6 +1964,7 @@ final class ObjectAttributesMapper
             'extra' => 'extra',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
             'script' => 'script',
             'index' => 'index',
             'sourcetype' => 'sourcetype',
@@ -1800,6 +1975,7 @@ final class ObjectAttributesMapper
             'facility' => 'facility',
             'messageFormat' => 'message_format',
             'sharedKey' => 'shared_key',
+            'id' => 'id',
             'appCredentials' => 'app_credentials',
             'addonCredentials' => 'addon_credentials'
         ],
@@ -1841,6 +2017,7 @@ final class ObjectAttributesMapper
             'extra' => 'extra',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
             'sourcetype' => 'sourcetype',
             'category' => 'category',
             'host' => 'host',
@@ -1889,6 +2066,7 @@ final class ObjectAttributesMapper
             'extra' => 'extra',
             'headers' => 'headers',
             'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
             'sourcetype' => 'sourcetype',
             'category' => 'category',
             'host' => 'host',
@@ -1943,19 +2121,13 @@ final class ObjectAttributesMapper
             'displayTitle' => 'display_title',
             'currency' => 'currency'
         ],
+        Link::class => [
+            'href' => 'href'
+        ],
         ListLinks::class => [
             'self' => 'self',
             'previous' => 'previous',
             'next' => 'next'
-        ],
-        ListLinksNext::class => [
-            'href' => 'href'
-        ],
-        ListLinksPrevious::class => [
-            'href' => 'href'
-        ],
-        ListLinksSelf::class => [
-            'href' => 'href'
         ],
         ListOrgDiscounts200Response::class => [
             'items' => 'items',
@@ -1988,7 +2160,16 @@ final class ObjectAttributesMapper
             'next' => 'next',
             'prepayment' => 'prepayment'
         ],
-        ListOrgPrepaymentTransactions200ResponseLinksAllOfPrepayment::class => [
+        ListOrgPrepaymentTransactions200ResponseLinksNext::class => [
+            'href' => 'href'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksPrepayment::class => [
+            'href' => 'href'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksPrevious::class => [
+            'href' => 'href'
+        ],
+        ListOrgPrepaymentTransactions200ResponseLinksSelf::class => [
             'href' => 'href'
         ],
         ListOrgProjects200Response::class => [
@@ -2018,6 +2199,10 @@ final class ObjectAttributesMapper
             'profiles' => 'profiles',
             'links' => '_links'
         ],
+        ListProjectTeamAccess200Response::class => [
+            'items' => 'items',
+            'links' => '_links'
+        ],
         ListProjectUserAccess200Response::class => [
             'items' => 'items',
             'links' => '_links'
@@ -2027,10 +2212,6 @@ final class ObjectAttributesMapper
             'links' => '_links'
         ],
         ListTeamMembers200Response::class => [
-            'items' => 'items',
-            'links' => '_links'
-        ],
-        ListTeamProjectAccess200Response::class => [
             'items' => 'items',
             'links' => '_links'
         ],
@@ -2081,29 +2262,47 @@ final class ObjectAttributesMapper
         Metrics::class => [
             'maxRange' => 'max_range'
         ],
+        MetricsMetadata::class => [
+            'from' => 'from',
+            'to' => 'to',
+            'interval' => 'interval',
+            'units' => 'units'
+        ],
+        MetricsValue::class => [
+            'value' => 'value',
+            'startTime' => 'start_time'
+        ],
         NewRelicIntegration::class => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
             'extra' => 'extra',
             'url' => 'url',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
         ],
         NewRelicIntegrationCreateInput::class => [
             'type' => 'type',
             'url' => 'url',
             'licenseKey' => 'license_key',
             'extra' => 'extra',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         NewRelicIntegrationPatch::class => [
             'type' => 'type',
             'url' => 'url',
             'licenseKey' => 'license_key',
             'extra' => 'extra',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         NewRelicLogForwardingIntegrationConfigurations::class => [
+            'enabled' => 'enabled',
+            'role' => 'role'
+        ],
+        OpenTelemetryLogForwardingIntegrationConfigurations::class => [
             'enabled' => 'enabled',
             'role' => 'role'
         ],
@@ -2159,6 +2358,8 @@ final class ObjectAttributesMapper
             'country' => 'country',
             'capabilities' => 'capabilities',
             'vendor' => 'vendor',
+            'billingAccountId' => 'billing_account_id',
+            'billingLegacy' => 'billing_legacy',
             'status' => 'status',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
@@ -2198,6 +2399,12 @@ final class ObjectAttributesMapper
             'amount' => 'amount',
             'currencyCode' => 'currency_code',
             'currencySymbol' => 'currency_symbol'
+        ],
+        OrganizationCarbon::class => [
+            'organizationId' => 'organization_id',
+            'meta' => 'meta',
+            'projects' => 'projects',
+            'total' => 'total'
         ],
         OrganizationEstimationObject::class => [
             'total' => 'total',
@@ -2378,25 +2585,40 @@ final class ObjectAttributesMapper
             'id' => 'id',
             'organizationId' => 'organization_id',
             'subscriptionId' => 'subscription_id',
+            'vendor' => 'vendor',
             'region' => 'region',
             'title' => 'title',
             'type' => 'type',
             'plan' => 'plan',
-            'accessMigrationStatus' => 'access_migration_status',
+            'timezone' => 'timezone',
+            'defaultBranch' => 'default_branch',
             'status' => 'status',
-            'vendor' => 'vendor',
+            'trialPlan' => 'trial_plan',
+            'projectUi' => 'project_ui',
+            'locked' => 'locked',
+            'cseNotes' => 'cse_notes',
+            'dedicatedTag' => 'dedicated_tag',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'links' => '_links'
+        ],
+        OrganizationProjectCarbon::class => [
+            'projectId' => 'project_id',
+            'projectTitle' => 'project_title',
+            'values' => 'values',
+            'total' => 'total'
         ],
         OrganizationProjectLinks::class => [
             'self' => 'self',
             'update' => 'update',
             'delete' => 'delete',
-            'subscription' => 'subscription',
-            'api' => 'api'
+            'activities' => 'activities',
+            'addons' => 'addons'
         ],
-        OrganizationProjectLinksApi::class => [
+        OrganizationProjectLinksActivities::class => [
+            'href' => 'href'
+        ],
+        OrganizationProjectLinksAddons::class => [
             'href' => 'href'
         ],
         OrganizationProjectLinksDelete::class => [
@@ -2406,24 +2628,13 @@ final class ObjectAttributesMapper
         OrganizationProjectLinksSelf::class => [
             'href' => 'href'
         ],
-        OrganizationProjectLinksSubscription::class => [
-            'href' => 'href'
-        ],
         OrganizationProjectLinksUpdate::class => [
             'href' => 'href',
             'method' => 'method'
         ],
-        OrganizationProjectPlan::class => [
-
-        ],
-        OrganizationProjectStatus::class => [
-
-        ],
-        OrganizationProjectType::class => [
-
-        ],
         OrganizationReference::class => [
             'id' => 'id',
+            'type' => 'type',
             'ownerId' => 'owner_id',
             'name' => 'name',
             'label' => 'label',
@@ -2457,7 +2668,8 @@ final class ObjectAttributesMapper
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
-            'routingKey' => 'routing_key'
+            'routingKey' => 'routing_key',
+            'id' => 'id'
         ],
         PagerDutyIntegrationCreateInput::class => [
             'type' => 'type',
@@ -2524,6 +2736,7 @@ final class ObjectAttributesMapper
             'type' => 'type',
             'name' => 'name',
             'attributes' => 'attributes',
+            'id' => 'id',
             'project' => 'project',
             'registeredName' => 'registered_name',
             'isDefault' => 'is_default'
@@ -2606,6 +2819,7 @@ final class ObjectAttributesMapper
             'unlimited' => 'unlimited'
         ],
         Project::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'attributes' => 'attributes',
@@ -2625,15 +2839,24 @@ final class ObjectAttributesMapper
         ProjectCapabilities::class => [
             'metrics' => 'metrics',
             'logsForwarding' => 'logs_forwarding',
+            'guaranteedResources' => 'guaranteed_resources',
             'images' => 'images',
             'instanceLimit' => 'instance_limit',
             'buildResources' => 'build_resources',
             'dataRetention' => 'data_retention',
+            'autoscaling' => 'autoscaling',
             'customDomains' => 'custom_domains',
             'sourceOperations' => 'source_operations',
             'runtimeOperations' => 'runtime_operations',
             'outboundFirewall' => 'outbound_firewall',
             'integrations' => 'integrations'
+        ],
+        ProjectCarbon::class => [
+            'projectId' => 'project_id',
+            'projectTitle' => 'project_title',
+            'meta' => 'meta',
+            'values' => 'values',
+            'total' => 'total'
         ],
         ProjectInfo::class => [
             'title' => 'title',
@@ -2721,6 +2944,8 @@ final class ObjectAttributesMapper
             'localDiskSize' => 'local_disk_size',
             'cronMinimumInterval' => 'cron_minimum_interval',
             'cronMaximumJitter' => 'cron_maximum_jitter',
+            'cronProductionExpiryInterval' => 'cron_production_expiry_interval',
+            'cronNonProductionExpiryInterval' => 'cron_non_production_expiry_interval',
             'concurrencyLimits' => 'concurrency_limits',
             'flexibleBuildCache' => 'flexible_build_cache',
             'strictConfiguration' => 'strict_configuration',
@@ -2759,14 +2984,28 @@ final class ObjectAttributesMapper
             'enableGithubAppTokenExchange' => 'enable_github_app_token_exchange',
             'continuousProfiling' => 'continuous_profiling',
             'disableAgentErrorReporter' => 'disable_agent_error_reporter',
-            'requiresDomainOwnership' => 'requires_domain_ownership'
+            'requiresDomainOwnership' => 'requires_domain_ownership',
+            'enableGuaranteedResources' => 'enable_guaranteed_resources',
+            'gitServer' => 'git_server',
+            'activityLogsMaxSize' => 'activity_logs_max_size',
+            'allowManualDeployments' => 'allow_manual_deployments',
+            'allowRollingDeployments' => 'allow_rolling_deployments',
+            'allowBurst' => 'allow_burst',
+            'routerResources' => 'router_resources'
         ],
         ProjectSettingsPatch::class => [
             'initialize' => 'initialize',
             'dataRetention' => 'data_retention',
             'buildResources' => 'build_resources'
         ],
+        ProjectStatus::class => [
+
+        ],
+        ProjectType::class => [
+
+        ],
         ProjectVariable::class => [
+            'id' => 'id',
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'name' => 'name',
@@ -2775,6 +3014,7 @@ final class ObjectAttributesMapper
             'isSensitive' => 'is_sensitive',
             'visibleBuild' => 'visible_build',
             'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope',
             'value' => 'value'
         ],
         ProjectVariableCreateInput::class => [
@@ -2784,7 +3024,8 @@ final class ObjectAttributesMapper
             'isJson' => 'is_json',
             'isSensitive' => 'is_sensitive',
             'visibleBuild' => 'visible_build',
-            'visibleRuntime' => 'visible_runtime'
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope'
         ],
         ProjectVariablePatch::class => [
             'name' => 'name',
@@ -2793,73 +3034,39 @@ final class ObjectAttributesMapper
             'isJson' => 'is_json',
             'isSensitive' => 'is_sensitive',
             'visibleBuild' => 'visible_build',
-            'visibleRuntime' => 'visible_runtime'
+            'visibleRuntime' => 'visible_runtime',
+            'applicationScope' => 'application_scope'
         ],
         ProxyRoute::class => [
+            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
             'primary' => 'primary',
-            'id' => 'id',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
             'cache' => 'cache',
             'ssi' => 'ssi',
-            'upstream' => 'upstream'
-        ],
-        ProxyRouteCreateInput::class => [
-            'type' => 'type',
-            'to' => 'to',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls'
-        ],
-        ProxyRoutePatch::class => [
-            'type' => 'type',
-            'to' => 'to',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls'
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
         ],
         RedirectRoute::class => [
+            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
             'primary' => 'primary',
-            'id' => 'id',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
             'cache' => 'cache',
             'ssi' => 'ssi',
-            'upstream' => 'upstream'
-        ],
-        RedirectRouteCreateInput::class => [
-            'type' => 'type',
-            'to' => 'to',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls',
-            'redirects' => 'redirects'
-        ],
-        RedirectRoutePatch::class => [
-            'type' => 'type',
-            'to' => 'to',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls',
-            'redirects' => 'redirects'
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
         ],
         Ref::class => [
+            'id' => 'id',
             'ref' => 'ref',
             'object' => 'object',
             'sha' => 'sha'
@@ -2916,6 +3123,7 @@ final class ObjectAttributesMapper
             'type' => 'type',
             'name' => 'name',
             'attributes' => 'attributes',
+            'id' => 'id',
             'project' => 'project',
             'registeredName' => 'registered_name',
             'replacementFor' => 'replacement_for'
@@ -2947,7 +3155,7 @@ final class ObjectAttributesMapper
             'disk' => 'disk'
         ],
         Resources1::class => [
-            'init' => 'init'
+            'profileSize' => 'profile_size'
         ],
         Resources2::class => [
             'init' => 'init'
@@ -2959,6 +3167,9 @@ final class ObjectAttributesMapper
             'init' => 'init'
         ],
         Resources5::class => [
+            'init' => 'init'
+        ],
+        Resources6::class => [
             'init' => 'init'
         ],
         ResourcesForDevelopmentEnvironments::class => [
@@ -2990,56 +3201,38 @@ final class ObjectAttributesMapper
             'exclude' => 'exclude'
         ],
         Route::class => [
+            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
             'primary' => 'primary',
-            'id' => 'id',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
             'cache' => 'cache',
             'ssi' => 'ssi',
-            'upstream' => 'upstream'
-        ],
-        RouteCreateInput::class => [
-            'type' => 'type',
-            'to' => 'to',
             'upstream' => 'upstream',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls',
-            'redirects' => 'redirects',
-            'cache' => 'cache',
-            'ssi' => 'ssi'
+            'sticky' => 'sticky'
         ],
-        RoutePatch::class => [
-            'type' => 'type',
-            'to' => 'to',
-            'upstream' => 'upstream',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls',
-            'redirects' => 'redirects',
-            'cache' => 'cache',
-            'ssi' => 'ssi'
+        RouterResourceSettingsForFlexPlan::class => [
+            'baselineCpu' => 'baseline_cpu',
+            'baselineMemory' => 'baseline_memory',
+            'maxCpu' => 'max_cpu',
+            'maxMemory' => 'max_memory'
         ],
         RoutesValue::class => [
+            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'to' => 'to',
             'primary' => 'primary',
-            'id' => 'id',
             'productionUrl' => 'production_url',
             'redirects' => 'redirects',
             'cache' => 'cache',
             'ssi' => 'ssi',
-            'upstream' => 'upstream'
+            'upstream' => 'upstream',
+            'sticky' => 'sticky'
         ],
         RuntimeOperations::class => [
             'enabled' => 'enabled'
@@ -3068,7 +3261,8 @@ final class ObjectAttributesMapper
             'excludedEnvironments' => 'excluded_environments',
             'states' => 'states',
             'result' => 'result',
-            'script' => 'script'
+            'script' => 'script',
+            'id' => 'id'
         ],
         ScriptIntegrationConfigurations::class => [
             'enabled' => 'enabled',
@@ -3102,9 +3296,6 @@ final class ObjectAttributesMapper
         ServerSideIncludeConfiguration::class => [
             'enabled' => 'enabled'
         ],
-        ServerSideIncludeConfiguration1::class => [
-            'enabled' => 'enabled'
-        ],
         ServicesValue::class => [
             'type' => 'type',
             'size' => 'size',
@@ -3115,13 +3306,20 @@ final class ObjectAttributesMapper
             'firewall' => 'firewall',
             'resources' => 'resources',
             'containerProfile' => 'container_profile',
-            'endpoints' => 'endpoints'
+            'endpoints' => 'endpoints',
+            'instanceCount' => 'instance_count'
+        ],
+        ServicesValue1::class => [
+            'resources' => 'resources',
+            'instanceCount' => 'instance_count',
+            'disk' => 'disk'
         ],
         SlackIntegration::class => [
             'createdAt' => 'created_at',
             'updatedAt' => 'updated_at',
             'type' => 'type',
-            'channel' => 'channel'
+            'channel' => 'channel',
+            'id' => 'id'
         ],
         SlackIntegrationCreateInput::class => [
             'type' => 'type',
@@ -3151,7 +3349,9 @@ final class ObjectAttributesMapper
             'url' => 'url',
             'index' => 'index',
             'sourcetype' => 'sourcetype',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
         ],
         SplunkIntegrationCreateInput::class => [
             'type' => 'type',
@@ -3160,7 +3360,8 @@ final class ObjectAttributesMapper
             'token' => 'token',
             'extra' => 'extra',
             'sourcetype' => 'sourcetype',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         SplunkIntegrationPatch::class => [
             'type' => 'type',
@@ -3169,7 +3370,8 @@ final class ObjectAttributesMapper
             'token' => 'token',
             'extra' => 'extra',
             'sourcetype' => 'sourcetype',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         SplunkLogForwardingIntegrationConfigurations::class => [
             'enabled' => 'enabled',
@@ -3179,12 +3381,10 @@ final class ObjectAttributesMapper
             'code' => 'code',
             'message' => 'message'
         ],
-        StrictTransportSecurityOptions::class => [
-            'enabled' => 'enabled',
-            'includeSubdomains' => 'include_subdomains',
-            'preload' => 'preload'
+        StickyRoutingConfiguration::class => [
+            'enabled' => 'enabled'
         ],
-        StrictTransportSecurityOptions1::class => [
+        StrictTransportSecurityOptions::class => [
             'enabled' => 'enabled',
             'includeSubdomains' => 'include_subdomains',
             'preload' => 'preload'
@@ -3297,21 +3497,25 @@ final class ObjectAttributesMapper
             'extra' => 'extra',
             'url' => 'url',
             'category' => 'category',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
         ],
         SumologicIntegrationCreateInput::class => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'category' => 'category',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         SumologicIntegrationPatch::class => [
             'type' => 'type',
             'url' => 'url',
             'extra' => 'extra',
             'category' => 'category',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         SyslogIntegration::class => [
             'createdAt' => 'created_at',
@@ -3323,7 +3527,9 @@ final class ObjectAttributesMapper
             'protocol' => 'protocol',
             'facility' => 'facility',
             'messageFormat' => 'message_format',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services',
+            'id' => 'id'
         ],
         SyslogIntegrationCreateInput::class => [
             'type' => 'type',
@@ -3335,7 +3541,8 @@ final class ObjectAttributesMapper
             'messageFormat' => 'message_format',
             'authToken' => 'auth_token',
             'authMode' => 'auth_mode',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         SyslogIntegrationPatch::class => [
             'type' => 'type',
@@ -3347,7 +3554,8 @@ final class ObjectAttributesMapper
             'messageFormat' => 'message_format',
             'authToken' => 'auth_token',
             'authMode' => 'auth_mode',
-            'tlsVerify' => 'tls_verify'
+            'tlsVerify' => 'tls_verify',
+            'excludedServices' => 'excluded_services'
         ],
         SyslogLogForwardingIntegrationConfigurations::class => [
             'enabled' => 'enabled',
@@ -3359,12 +3567,6 @@ final class ObjectAttributesMapper
             'startedAt' => 'started_at'
         ],
         TLSSettingsForTheRoute::class => [
-            'strictTransportSecurity' => 'strict_transport_security',
-            'minVersion' => 'min_version',
-            'clientAuthentication' => 'client_authentication',
-            'clientCertificateAuthorities' => 'client_certificate_authorities'
-        ],
-        TLSSettingsForTheRoute1::class => [
             'strictTransportSecurity' => 'strict_transport_security',
             'minVersion' => 'min_version',
             'clientAuthentication' => 'client_authentication',
@@ -3446,7 +3648,8 @@ final class ObjectAttributesMapper
         ],
         TheCommandsToManageTheWorker::class => [
             'start' => 'start',
-            'preStart' => 'pre_start'
+            'preStart' => 'pre_start',
+            'postStart' => 'post_start'
         ],
         TheCommitDistanceInfoBetweenParentAndChildEnvironments::class => [
             'commitsAhead' => 'commits_ahead',
@@ -3463,10 +3666,6 @@ final class ObjectAttributesMapper
             'expires' => 'expires',
             'paths' => 'paths'
         ],
-        TheConfigurationOfTheRedirects1::class => [
-            'paths' => 'paths',
-            'expires' => 'expires'
-        ],
         TheContinuousProfilingConfiguration::class => [
             'supportedRuntimes' => 'supported_runtimes'
         ],
@@ -3477,6 +3676,7 @@ final class ObjectAttributesMapper
         TheDefaultResourcesForThisService::class => [
             'cpu' => 'cpu',
             'memory' => 'memory',
+            'cpuType' => 'cpu_type',
             'disk' => 'disk',
             'profileSize' => 'profile_size'
         ],
@@ -3488,7 +3688,14 @@ final class ObjectAttributesMapper
         TheEnvironmentDeploymentState::class => [
             'lastDeploymentSuccessful' => 'last_deployment_successful',
             'lastDeploymentAt' => 'last_deployment_at',
+            'lastAutoscaleUpAt' => 'last_autoscale_up_at',
+            'lastAutoscaleDownAt' => 'last_autoscale_down_at',
             'crons' => 'crons'
+        ],
+        TheEnvironmentSizingConfiguration::class => [
+            'services' => 'services',
+            'webapps' => 'webapps',
+            'workers' => 'workers'
         ],
         TheHostsOfTheDeploymentTargetInner::class => [
             'id' => 'id',
@@ -3518,6 +3725,7 @@ final class ObjectAttributesMapper
         TheMinimumResourcesForThisService::class => [
             'cpu' => 'cpu',
             'memory' => 'memory',
+            'cpuType' => 'cpu_type',
             'disk' => 'disk',
             'profileSize' => 'profile_size'
         ],
@@ -3535,14 +3743,6 @@ final class ObjectAttributesMapper
         ThePathsToRedirectValue::class => [
             'regexp' => 'regexp',
             'to' => 'to',
-            'prefix' => 'prefix',
-            'appendSuffix' => 'append_suffix',
-            'code' => 'code',
-            'expires' => 'expires'
-        ],
-        ThePathsToRedirectValue1::class => [
-            'to' => 'to',
-            'regexp' => 'regexp',
             'prefix' => 'prefix',
             'appendSuffix' => 'append_suffix',
             'code' => 'code',
@@ -3623,6 +3823,7 @@ final class ObjectAttributesMapper
             'updatedAt' => 'updated_at'
         ],
         Tree::class => [
+            'id' => 'id',
             'sha' => 'sha',
             'tree' => 'tree'
         ],
@@ -3648,6 +3849,13 @@ final class ObjectAttributesMapper
             'companyName' => 'company_name',
             'vatNumber' => 'vat_number',
             'billingContact' => 'billing_contact'
+        ],
+        UpdateOrgProjectRequest::class => [
+            'title' => 'title',
+            'plan' => 'plan',
+            'timezone' => 'timezone',
+            'cseNotes' => 'cse_notes',
+            'dedicatedTag' => 'dedicated_tag'
         ],
         UpdateOrgRequest::class => [
             'name' => 'name',
@@ -3701,6 +3909,17 @@ final class ObjectAttributesMapper
             'instanceCount' => 'instance_count',
             'disk' => 'disk'
         ],
+        UpdateSubscriptionUsageAlertsRequest::class => [
+            'alerts' => 'alerts'
+        ],
+        UpdateSubscriptionUsageAlertsRequestAlertsInner::class => [
+            'id' => 'id',
+            'active' => 'active',
+            'config' => 'config'
+        ],
+        UpdateSubscriptionUsageAlertsRequestAlertsInnerConfig::class => [
+            'threshold' => 'threshold'
+        ],
         UpdateTeamRequest::class => [
             'label' => 'label',
             'projectPermissions' => 'project_permissions'
@@ -3710,8 +3929,8 @@ final class ObjectAttributesMapper
             'collaboratorIds' => 'collaborator_ids',
             'collaboratorsReplace' => 'collaborators_replace'
         ],
-        UpdateUsageAlertRequest::class => [
-            'config' => 'config'
+        UpdateUsageAlertsRequest::class => [
+            'alerts' => 'alerts'
         ],
         UpdateUserRequest::class => [
             'username' => 'username',
@@ -3723,41 +3942,18 @@ final class ObjectAttributesMapper
             'country' => 'country'
         ],
         UpstreamRoute::class => [
+            'id' => 'id',
             'attributes' => 'attributes',
             'type' => 'type',
             'tls' => 'tls',
             'primary' => 'primary',
-            'id' => 'id',
             'productionUrl' => 'production_url',
             'cache' => 'cache',
             'ssi' => 'ssi',
             'upstream' => 'upstream',
             'redirects' => 'redirects',
+            'sticky' => 'sticky',
             'to' => 'to'
-        ],
-        UpstreamRouteCreateInput::class => [
-            'type' => 'type',
-            'upstream' => 'upstream',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls',
-            'cache' => 'cache',
-            'ssi' => 'ssi',
-            'redirects' => 'redirects'
-        ],
-        UpstreamRoutePatch::class => [
-            'type' => 'type',
-            'upstream' => 'upstream',
-            'primary' => 'primary',
-            'id' => 'id',
-            'productionUrl' => 'production_url',
-            'attributes' => 'attributes',
-            'tls' => 'tls',
-            'cache' => 'cache',
-            'ssi' => 'ssi',
-            'redirects' => 'redirects'
         ],
         Usage::class => [
             'id' => 'id',
@@ -3765,6 +3961,22 @@ final class ObjectAttributesMapper
             'usageGroup' => 'usage_group',
             'quantity' => 'quantity',
             'start' => 'start'
+        ],
+        UsageAlert::class => [
+            'id' => 'id',
+            'active' => 'active',
+            'alertsSent' => 'alerts_sent',
+            'lastAlertAt' => 'last_alert_at',
+            'updatedAt' => 'updated_at',
+            'config' => 'config'
+        ],
+        UsageAlertConfig::class => [
+            'threshold' => 'threshold'
+        ],
+        UsageAlertConfigThreshold::class => [
+            'formatted' => 'formatted',
+            'amount' => 'amount',
+            'unit' => 'unit'
         ],
         UsageGroupCurrentUsageProperties::class => [
             'title' => 'title',
@@ -3839,6 +4051,7 @@ final class ObjectAttributesMapper
             'phoneNumber' => 'phone_number'
         ],
         Version::class => [
+            'id' => 'id',
             'commit' => 'commit',
             'locked' => 'locked',
             'routing' => 'routing'
@@ -3918,7 +4131,8 @@ final class ObjectAttributesMapper
             'states' => 'states',
             'result' => 'result',
             'sharedKey' => 'shared_key',
-            'url' => 'url'
+            'url' => 'url',
+            'id' => 'id'
         ],
         WebHookIntegrationCreateInput::class => [
             'type' => 'type',

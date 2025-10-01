@@ -22,6 +22,7 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, JsonSeriali
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
     ) {
     }
 
@@ -38,6 +39,7 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, JsonSeriali
             'extra' => $this->extra,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
         ];
     }
 
@@ -69,5 +71,10 @@ final class HttpLogIntegrationCreateInput implements ModelInterface, JsonSeriali
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
     }
 }

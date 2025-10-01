@@ -3,7 +3,7 @@
 namespace Upsun\Api;
 
 use Upsun\Model\TeamProjectAccess;
-use Upsun\Model\ListTeamProjectAccess200Response;
+use Upsun\Model\ListProjectTeamAccess200Response;
 use DateTime;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -698,7 +698,7 @@ final class TeamAccessApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return ListTeamProjectAccess200Response
+     * @return ListProjectTeamAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-project-team-access
      */
@@ -708,7 +708,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectTeamAccess200Response {
         return $this->listProjectTeamAccessWithHttpInfo(
             $projectId,
             $pageSize,
@@ -721,7 +721,7 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List team access for a project
      *
-     * @return ListTeamProjectAccess200Response
+     * @return ListProjectTeamAccess200Response
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -731,7 +731,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectTeamAccess200Response {
         $request = $this->listProjectTeamAccessRequest(
             $projectId,
             $pageSize,
@@ -749,7 +749,7 @@ final class TeamAccessApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListTeamProjectAccess200Response::class,
+                ListProjectTeamAccess200Response::class,
                 $request,
                 $response
             );
@@ -934,7 +934,7 @@ final class TeamAccessApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return ListTeamProjectAccess200Response
+     * @return ListProjectTeamAccess200Response
      *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/list-team-project-access
      */
@@ -944,7 +944,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectTeamAccess200Response {
         return $this->listTeamProjectAccessWithHttpInfo(
             $teamId,
             $pageSize,
@@ -957,7 +957,7 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List project access for a team
      *
-     * @return ListTeamProjectAccess200Response
+     * @return ListProjectTeamAccess200Response
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -967,7 +967,7 @@ final class TeamAccessApi extends AbstractApi
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): object {
+    ): ListProjectTeamAccess200Response {
         $request = $this->listTeamProjectAccessRequest(
             $teamId,
             $pageSize,
@@ -985,7 +985,7 @@ final class TeamAccessApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListTeamProjectAccess200Response::class,
+                ListProjectTeamAccess200Response::class,
                 $request,
                 $response
             );

@@ -24,6 +24,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, JsonSerializab
         private readonly array $sshHosts,
         private readonly bool $maintenanceMode,
         private readonly ?string $deployHost = null,
+        private readonly ?string $id = null,
         private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {
     }
@@ -43,6 +44,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, JsonSerializab
             'siteUrls' => $this->siteUrls,
             'sshHosts' => $this->sshHosts,
             'maintenanceMode' => $this->maintenanceMode,
+            'id' => $this->id,
             'enterpriseEnvironmentsMapping' => $this->enterpriseEnvironmentsMapping,
         ];
     }
@@ -88,6 +90,11 @@ final class EnterpriseDeploymentTarget implements ModelInterface, JsonSerializab
     public function getMaintenanceMode(): bool
     {
         return $this->maintenanceMode;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getEnterpriseEnvironmentsMapping(): ?object

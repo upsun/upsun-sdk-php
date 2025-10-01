@@ -27,6 +27,8 @@ final class Organization implements ModelInterface, JsonSerializable
         private readonly ?string $country = null,
         private readonly ?array $capabilities = [],
         private readonly ?string $vendor = null,
+        private readonly ?string $billingAccountId = null,
+        private readonly ?bool $billingLegacy = null,
         private readonly ?string $status = null,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
@@ -51,6 +53,8 @@ final class Organization implements ModelInterface, JsonSerializable
             'country' => $this->country,
             'capabilities' => $this->capabilities,
             'vendor' => $this->vendor,
+            'billingAccountId' => $this->billingAccountId,
+            'billingLegacy' => $this->billingLegacy,
             'status' => $this->status,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
@@ -106,6 +110,16 @@ final class Organization implements ModelInterface, JsonSerializable
     public function getVendor(): ?string
     {
         return $this->vendor;
+    }
+
+    public function getBillingAccountId(): ?string
+    {
+        return $this->billingAccountId;
+    }
+
+    public function getBillingLegacy(): ?bool
+    {
+        return $this->billingLegacy;
     }
 
     public function getStatus(): ?string

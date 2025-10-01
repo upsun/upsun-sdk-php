@@ -22,6 +22,7 @@ final class HealthWebHookIntegration implements ModelInterface, JsonSerializable
         private readonly string $url,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -37,6 +38,7 @@ final class HealthWebHookIntegration implements ModelInterface, JsonSerializable
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'type' => $this->type,
             'url' => $this->url,
+            'id' => $this->id,
         ];
     }
 
@@ -63,5 +65,10 @@ final class HealthWebHookIntegration implements ModelInterface, JsonSerializable
     public function getUrl(): string
     {
         return $this->url;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

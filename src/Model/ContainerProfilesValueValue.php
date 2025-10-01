@@ -19,6 +19,7 @@ final class ContainerProfilesValueValue implements ModelInterface, JsonSerializa
     public function __construct(
         private readonly float $cpu,
         private readonly int $memory,
+        private readonly string $cpuType,
     ) {
     }
 
@@ -32,6 +33,7 @@ final class ContainerProfilesValueValue implements ModelInterface, JsonSerializa
         return [
             'cpu' => $this->cpu,
             'memory' => $this->memory,
+            'cpuType' => $this->cpuType,
         ];
     }
 
@@ -48,5 +50,10 @@ final class ContainerProfilesValueValue implements ModelInterface, JsonSerializa
     public function getMemory(): int
     {
         return $this->memory;
+    }
+
+    public function getCpuType(): string
+    {
+        return $this->cpuType;
     }
 }

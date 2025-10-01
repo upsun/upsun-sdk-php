@@ -24,6 +24,7 @@ final class ProjectVariableCreateInput implements ModelInterface, JsonSerializab
         private readonly ?bool $isSensitive = null,
         private readonly ?bool $visibleBuild = null,
         private readonly ?bool $visibleRuntime = null,
+        private readonly ?array $applicationScope = [],
     ) {
     }
 
@@ -42,6 +43,7 @@ final class ProjectVariableCreateInput implements ModelInterface, JsonSerializab
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
         ];
     }
 
@@ -83,5 +85,10 @@ final class ProjectVariableCreateInput implements ModelInterface, JsonSerializab
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;
+    }
+
+    public function getApplicationScope(): ?array
+    {
+        return $this->applicationScope;
     }
 }

@@ -24,6 +24,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, JsonSerial
         private readonly ?bool $isSensitive = null,
         private readonly ?bool $visibleBuild = null,
         private readonly ?bool $visibleRuntime = null,
+        private readonly ?array $applicationScope = [],
         private readonly ?bool $isEnabled = null,
         private readonly ?bool $isInheritable = null,
     ) {
@@ -44,6 +45,7 @@ final class EnvironmentVariableCreateInput implements ModelInterface, JsonSerial
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
             'isEnabled' => $this->isEnabled,
             'isInheritable' => $this->isInheritable,
         ];
@@ -87,6 +89,11 @@ final class EnvironmentVariableCreateInput implements ModelInterface, JsonSerial
     public function getVisibleRuntime(): ?bool
     {
         return $this->visibleRuntime;
+    }
+
+    public function getApplicationScope(): ?array
+    {
+        return $this->applicationScope;
     }
 
     public function getIsEnabled(): ?bool

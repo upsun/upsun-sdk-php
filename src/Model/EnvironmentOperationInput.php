@@ -19,6 +19,7 @@ final class EnvironmentOperationInput implements ModelInterface, JsonSerializabl
     public function __construct(
         private readonly string $service,
         private readonly string $operation,
+        private readonly array $parameters,
     ) {
     }
 
@@ -32,6 +33,7 @@ final class EnvironmentOperationInput implements ModelInterface, JsonSerializabl
         return [
             'service' => $this->service,
             'operation' => $this->operation,
+            'parameters' => $this->parameters,
         ];
     }
 
@@ -48,5 +50,10 @@ final class EnvironmentOperationInput implements ModelInterface, JsonSerializabl
     public function getOperation(): string
     {
         return $this->operation;
+    }
+
+    public function getParameters(): array
+    {
+        return $this->parameters;
     }
 }

@@ -350,7 +350,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function getOrgPrepaymentInfo(
         string $organizationId
-    ): object {
+    ): GetOrgPrepaymentInfo200Response {
         return $this->getOrgPrepaymentInfoWithHttpInfo(
             $organizationId
         );
@@ -365,7 +365,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     private function getOrgPrepaymentInfoWithHttpInfo(
         string $organizationId
-    ): object {
+    ): GetOrgPrepaymentInfo200Response {
         $request = $this->getOrgPrepaymentInfoRequest(
             $organizationId
         );
@@ -488,7 +488,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     public function listOrgPrepaymentTransactions(
         string $organizationId
-    ): object {
+    ): ListOrgPrepaymentTransactions200Response {
         return $this->listOrgPrepaymentTransactionsWithHttpInfo(
             $organizationId
         );
@@ -503,7 +503,7 @@ final class OrganizationManagementApi extends AbstractApi
      */
     private function listOrgPrepaymentTransactionsWithHttpInfo(
         string $organizationId
-    ): object {
+    ): ListOrgPrepaymentTransactions200Response {
         $request = $this->listOrgPrepaymentTransactionsRequest(
             $organizationId
         );

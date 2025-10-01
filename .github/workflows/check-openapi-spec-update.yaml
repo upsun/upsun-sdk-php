@@ -25,15 +25,16 @@ jobs:
             -   name: Download and patch OpenAPI spec
                 run: |
                     echo "Download OpenAPI spec..."
-                    wget -O ./schema/openapispec-platformsh.json https://proxy.upsun.com/docs/openapispec-platformsh.json
+                    wget -O ./schema/openapispec-upsun.json https://docs.upsun.com/api/openapispec-upsun.json
 
                     echo "Patch OpenAPI spec..."
-                    sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-platformsh.json
+                    sed -i 's/HTTP access permissions/Http access permissions/g' ./schema/openapispec-upsun.json
 
             -   name: Remove existing Api and Model Classes
                 run: |
                     rm -Rf src/Api/*
                     rm -Rf src/Model/*
+                    rm -Rf docs/*
 
             -   name: Pre-process OpenApi specs 
                 run: |
@@ -44,7 +45,7 @@ jobs:
                 with:
                     generator: php
                     config-file: templates/php/config.yaml
-                    openapi-file: schema/openapispec-platformsh-processed.json                    
+                    openapi-file: schema/openapispec-upsun-processed.json
 
             -   name: Create Pull Request if changes
                 uses: peter-evans/create-pull-request@v6

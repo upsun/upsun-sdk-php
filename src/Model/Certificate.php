@@ -18,6 +18,7 @@ use JsonSerializable;
 final class Certificate implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $certificate,
         private readonly array $chain,
         private readonly bool $isProvisioned,
@@ -40,6 +41,7 @@ final class Certificate implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'certificate' => $this->certificate,
@@ -57,6 +59,11 @@ final class Certificate implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime

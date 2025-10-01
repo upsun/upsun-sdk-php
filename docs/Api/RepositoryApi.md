@@ -1,14 +1,14 @@
-# Upsun\RepositoryApi
+# [Upsun\Api\RepositoryApi](../src/Api/RepositoryApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getProjectsGitBlobs()**](RepositoryApi.md#getProjectsGitBlobs) | **GET** /projects/{projectId}/git/blobs/{repositoryBlobId} | Get a blob object
-[**getProjectsGitCommits()**](RepositoryApi.md#getProjectsGitCommits) | **GET** /projects/{projectId}/git/commits/{repositoryCommitId} | Get a commit object
-[**getProjectsGitRefs()**](RepositoryApi.md#getProjectsGitRefs) | **GET** /projects/{projectId}/git/refs/{repositoryRefId} | Get a ref object
-[**getProjectsGitTrees()**](RepositoryApi.md#getProjectsGitTrees) | **GET** /projects/{projectId}/git/trees/{repositoryTreeId} | Get a tree object
-[**listProjectsGitRefs()**](RepositoryApi.md#listProjectsGitRefs) | **GET** /projects/{projectId}/git/refs | Get list of repository refs
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getProjectsGitBlobs()**](RepositoryApi.md#getProjectsGitBlobs) | **GET** /projects/{projectId}/git/blobs/{repositoryBlobId} | Get a blob object | https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-blobs |
+| [**getProjectsGitCommits()**](RepositoryApi.md#getProjectsGitCommits) | **GET** /projects/{projectId}/git/commits/{repositoryCommitId} | Get a commit object | https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-commits |
+| [**getProjectsGitRefs()**](RepositoryApi.md#getProjectsGitRefs) | **GET** /projects/{projectId}/git/refs/{repositoryRefId} | Get a ref object | https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-refs |
+| [**getProjectsGitTrees()**](RepositoryApi.md#getProjectsGitTrees) | **GET** /projects/{projectId}/git/trees/{repositoryTreeId} | Get a tree object | https://docs.upsun.com/api/#tag/Repository/operation/get-projects-git-trees |
+| [**listProjectsGitRefs()**](RepositoryApi.md#listProjectsGitRefs) | **GET** /projects/{projectId}/git/refs | Get list of repository refs | https://docs.upsun.com/api/#tag/Repository/operation/list-projects-git-refs |
 
 
 ## `getProjectsGitBlobs()`
@@ -30,8 +30,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -47,10 +47,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **repositoryBlobId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **repositoryBlobId** | **string**|  | |
 
 ### Return type
 
@@ -88,8 +88,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -105,10 +105,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **repositoryCommitId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **repositoryCommitId** | **string**|  | |
 
 ### Return type
 
@@ -146,8 +146,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -163,10 +163,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **repositoryRefId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **repositoryRefId** | **string**|  | |
 
 ### Return type
 
@@ -204,8 +204,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -221,10 +221,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
- **repositoryTreeId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
+| **repositoryTreeId** | **string**|  | |
 
 ### Return type
 
@@ -262,8 +262,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\RepositoryApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $projectId = 'projectId_example'; // string
@@ -278,9 +278,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **projectId** | **string**|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **projectId** | **string**|  | |
 
 ### Return type
 

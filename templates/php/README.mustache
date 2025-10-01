@@ -116,7 +116,7 @@ from the [Upsun OpenAPI spec](https://proxy.upsun.com/docs/openapispec-platforms
 
 ```bash
 npm install @openapitools/openapi-generator-cli --save-dev
-php templates/pre-processing/preprocess_openapi.php
+php templates/pre-processing/preprocess-schema.php
 npx openapi-generator-cli generate -c templates/php/config.yaml
 ```
 
@@ -132,9 +132,9 @@ for any improvements, bug fixes, or new features.
 
 All URIs are relative to *{{basePath}}*
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}*{{classname}}* | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}}
+| Class | Method | HTTP request | Description | Upsun API Doc |
+| ------------ | ------------- | ------------- | ------------- | ------------- |
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}| *{{classname}} * | [**{{operationId}}**]({{apiDocPath}}/{{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}} | https://docs.upsun.com/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}} |
 {{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
 ## Models
 

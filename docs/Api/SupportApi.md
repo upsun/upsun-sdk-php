@@ -1,13 +1,13 @@
-# Upsun\SupportApi
+# [Upsun\Api\SupportApi](../src/Api/SupportApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**createTicket()**](SupportApi.md#createTicket) | **POST** /tickets | Create a new support ticket
-[**listTicketCategories()**](SupportApi.md#listTicketCategories) | **GET** /tickets/category | List support ticket categories
-[**listTicketPriorities()**](SupportApi.md#listTicketPriorities) | **GET** /tickets/priority | List support ticket priorities
-[**updateTicket()**](SupportApi.md#updateTicket) | **PATCH** /tickets/{ticket_id} | Update a ticket
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**createTicket()**](SupportApi.md#createTicket) | **POST** /tickets | Create a new support ticket | https://docs.upsun.com/api/#tag/Support/operation/create-ticket |
+| [**listTicketCategories()**](SupportApi.md#listTicketCategories) | **GET** /tickets/category | List support ticket categories | https://docs.upsun.com/api/#tag/Support/operation/list-ticket-categories |
+| [**listTicketPriorities()**](SupportApi.md#listTicketPriorities) | **GET** /tickets/priority | List support ticket priorities | https://docs.upsun.com/api/#tag/Support/operation/list-ticket-priorities |
+| [**updateTicket()**](SupportApi.md#updateTicket) | **PATCH** /tickets/{ticket_id} | Update a ticket | https://docs.upsun.com/api/#tag/Support/operation/update-ticket |
 
 
 ## `createTicket()`
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $createTicketRequest = new \Upsun\Model\CreateTicketRequest(); // \Upsun\Model\CreateTicketRequest
@@ -43,9 +43,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createTicketRequest** | [**\Upsun\Model\CreateTicketRequest**](../Model/CreateTicketRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **createTicketRequest** | [**\Upsun\Model\CreateTicketRequest**](../Model/CreateTicketRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -81,8 +81,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription the ticket should be related to
@@ -98,10 +98,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **string**| The ID of the subscription the ticket should be related to | [optional]
- **organizationId** | **string**| The ID of the organization the ticket should be related to | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **subscriptionId** | **string**| The ID of the subscription the ticket should be related to | [optional] |
+| **organizationId** | **string**| The ID of the organization the ticket should be related to | [optional] |
 
 ### Return type
 
@@ -137,8 +137,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $subscriptionId = 'subscriptionId_example'; // string | The ID of the subscription the ticket should be related to
@@ -154,10 +154,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subscriptionId** | **string**| The ID of the subscription the ticket should be related to | [optional]
- **category** | **string**| The category of the support ticket. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **subscriptionId** | **string**| The ID of the subscription the ticket should be related to | [optional] |
+| **category** | **string**| The category of the support ticket. | [optional] |
 
 ### Return type
 
@@ -193,8 +193,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\SupportApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $ticketId = 'ticketId_example'; // string | The ID of the ticket
@@ -210,10 +210,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ticketId** | **string**| The ID of the ticket |
- **updateTicketRequest** | [**\Upsun\Model\UpdateTicketRequest**](../Model/UpdateTicketRequest.md)|  | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **ticketId** | **string**| The ID of the ticket | |
+| **updateTicketRequest** | [**\Upsun\Model\UpdateTicketRequest**](../Model/UpdateTicketRequest.md)|  | [optional] |
 
 ### Return type
 

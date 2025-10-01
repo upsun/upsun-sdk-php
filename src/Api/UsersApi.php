@@ -297,7 +297,7 @@ final class UsersApi extends AbstractApi
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status
      */
-    public function getCurrentUserVerificationStatus(): object
+    public function getCurrentUserVerificationStatus(): GetCurrentUserVerificationStatus200Response
     {
         return $this->getCurrentUserVerificationStatusWithHttpInfo(
         );
@@ -310,7 +310,7 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException|Exception
      */
-    private function getCurrentUserVerificationStatusWithHttpInfo(): object
+    private function getCurrentUserVerificationStatusWithHttpInfo(): GetCurrentUserVerificationStatus200Response
     {
         $request = $this->getCurrentUserVerificationStatusRequest(
         );
@@ -409,7 +409,7 @@ final class UsersApi extends AbstractApi
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-verification-status-full
      */
-    public function getCurrentUserVerificationStatusFull(): object
+    public function getCurrentUserVerificationStatusFull(): GetCurrentUserVerificationStatusFull200Response
     {
         return $this->getCurrentUserVerificationStatusFullWithHttpInfo(
         );
@@ -422,7 +422,7 @@ final class UsersApi extends AbstractApi
      *
      * @throws InvalidArgumentException|Exception
      */
-    private function getCurrentUserVerificationStatusFullWithHttpInfo(): object
+    private function getCurrentUserVerificationStatusFullWithHttpInfo(): GetCurrentUserVerificationStatusFull200Response
     {
         $request = $this->getCurrentUserVerificationStatusFullRequest(
         );

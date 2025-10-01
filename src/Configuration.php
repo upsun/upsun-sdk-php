@@ -57,7 +57,7 @@ final class Configuration
     /**
      * The host
      */
-    protected $host = 'https://api.platform.sh';
+    protected $host = 'https://api.upsun.com';
 
     /**
      * User agent of the HTTP request, set to "OpenAPI-Generator/{version}/PHP" by default
@@ -336,8 +336,8 @@ final class Configuration
     {
         return [
             [
-                "url" => "{schemes}://api.platform.sh",
-                "description" => "The Platform.sh API gateway",
+                "url" => "{schemes}://api.upsun.com",
+                "description" => "The Upsun.com API gateway",
                 "variables" => [
                     "schemes" => [
                         "description" => "No description provided",

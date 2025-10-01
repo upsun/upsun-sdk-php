@@ -18,12 +18,14 @@ use JsonSerializable;
 final class EnvironmentVariable implements ModelInterface, JsonSerializable
 {
     public function __construct(
+        private readonly string $id,
         private readonly string $name,
         private readonly array $attributes,
         private readonly bool $isJson,
         private readonly bool $isSensitive,
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
+        private readonly array $applicationScope,
         private readonly string $project,
         private readonly string $environment,
         private readonly bool $inherited,
@@ -43,6 +45,7 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->id,
             'createdAt' => $this->createdAt?->format(DATE_ATOM),
             'updatedAt' => $this->updatedAt?->format(DATE_ATOM),
             'name' => $this->name,
@@ -51,6 +54,7 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
             'isSensitive' => $this->isSensitive,
             'visibleBuild' => $this->visibleBuild,
             'visibleRuntime' => $this->visibleRuntime,
+            'applicationScope' => $this->applicationScope,
             'project' => $this->project,
             'environment' => $this->environment,
             'inherited' => $this->inherited,
@@ -63,6 +67,11 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
     public function __toString(): string
     {
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getCreatedAt(): ?DateTime
@@ -103,6 +112,11 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
     public function getVisibleRuntime(): bool
     {
         return $this->visibleRuntime;
+    }
+
+    public function getApplicationScope(): array
+    {
+        return $this->applicationScope;
     }
 
     public function getProject(): string

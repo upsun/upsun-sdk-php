@@ -30,6 +30,7 @@ final class BitbucketServerIntegration implements ModelInterface, JsonSerializab
         private readonly bool $pullRequestsCloneParentData,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
+        private readonly ?string $id = null,
     ) {
     }
 
@@ -53,6 +54,7 @@ final class BitbucketServerIntegration implements ModelInterface, JsonSerializab
             'repository' => $this->repository,
             'buildPullRequests' => $this->buildPullRequests,
             'pullRequestsCloneParentData' => $this->pullRequestsCloneParentData,
+            'id' => $this->id,
         ];
     }
 
@@ -119,5 +121,10 @@ final class BitbucketServerIntegration implements ModelInterface, JsonSerializab
     public function getPullRequestsCloneParentData(): bool
     {
         return $this->pullRequestsCloneParentData;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 }

@@ -21,4 +21,4 @@ openapitools.json
 .openapi-generator/
 .openapi-generator-ignore
 git_push.sh
-schema/openapispec-platformsh-processed.json
+schema/openapispec-upsun-processed.json

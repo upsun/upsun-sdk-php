@@ -239,7 +239,7 @@ final class PhoneNumberApi extends AbstractApi
     public function verifyPhoneNumber(
         string $userId,
         ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
-    ): object {
+    ): VerifyPhoneNumber200Response {
         return $this->verifyPhoneNumberWithHttpInfo(
             $userId,
             $verifyPhoneNumberRequest
@@ -256,7 +256,7 @@ final class PhoneNumberApi extends AbstractApi
     private function verifyPhoneNumberWithHttpInfo(
         string $userId,
         ?VerifyPhoneNumberRequest $verifyPhoneNumberRequest = null
-    ): object {
+    ): VerifyPhoneNumber200Response {
         $request = $this->verifyPhoneNumberRequest(
             $userId,
             $verifyPhoneNumberRequest

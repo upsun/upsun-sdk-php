@@ -59,22 +59,16 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
     /**
 {{#summary}}
-     * {{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
 {{/summary}}
 {{#description}}
      *
-     * {{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
      *
 {{/description}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
+{{#vendorExtensions.x-deprecated}}
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -103,22 +97,13 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
     /**
 {{#summary}}
-     * {{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
 {{/summary}}
 {{#description}}
      * 
-     * {{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
      *
 {{/description}}
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
      * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}

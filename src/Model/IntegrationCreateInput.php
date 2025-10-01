@@ -54,6 +54,7 @@ final class IntegrationCreateInput implements ModelInterface, JsonSerializable
         private readonly ?array $extra = [],
         private readonly ?array $headers = [],
         private readonly ?bool $tlsVerify = null,
+        private readonly ?array $excludedServices = [],
         private readonly ?string $sourcetype = null,
         private readonly ?string $category = null,
         private readonly ?string $host = null,
@@ -111,6 +112,7 @@ final class IntegrationCreateInput implements ModelInterface, JsonSerializable
             'extra' => $this->extra,
             'headers' => $this->headers,
             'tlsVerify' => $this->tlsVerify,
+            'excludedServices' => $this->excludedServices,
             'sourcetype' => $this->sourcetype,
             'category' => $this->category,
             'host' => $this->host,
@@ -311,6 +313,11 @@ final class IntegrationCreateInput implements ModelInterface, JsonSerializable
     public function getTlsVerify(): ?bool
     {
         return $this->tlsVerify;
+    }
+
+    public function getExcludedServices(): ?array
+    {
+        return $this->excludedServices;
     }
 
     public function getSourcetype(): ?string

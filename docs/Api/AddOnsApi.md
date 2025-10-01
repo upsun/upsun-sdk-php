@@ -1,11 +1,11 @@
-# Upsun\AddOnsApi
+# [Upsun\Api\AddOnsApi](../src/Api/AddOnsApi.php)
 
-All URIs are relative to https://api.upsun.com.
+All URIs are relative to https://api.upsun.com, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getOrgAddons()**](AddOnsApi.md#getOrgAddons) | **GET** /organizations/{organization_id}/addons | Get add-ons
-[**updateOrgAddons()**](AddOnsApi.md#updateOrgAddons) | **PATCH** /organizations/{organization_id}/addons | Update organization add-ons
+| Method | HTTP request | Description | Upsun API Doc |
+| ------------- | ------------- | ------------- | ------------- |
+| [**getOrgAddons()**](AddOnsApi.md#getOrgAddons) | **GET** /organizations/{organization_id}/addons | Get add-ons | https://docs.upsun.com/api/#tag/Add-ons/operation/get-org-addons |
+| [**updateOrgAddons()**](AddOnsApi.md#updateOrgAddons) | **PATCH** /organizations/{organization_id}/addons | Update organization add-ons | https://docs.upsun.com/api/#tag/Add-ons/operation/update-org-addons |
 
 
 ## `getOrgAddons()`
@@ -27,8 +27,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\AddOnsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -43,9 +43,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
 
 ### Return type
 
@@ -83,8 +83,8 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 $apiInstance = new Upsun\Api\AddOnsApi(
-    // If you want use custom http client, pass your client which implements `Psr\Http\Client\ClientInterface`.
-    // This is optional, `Psr18ClientDiscovery` will be used to find http client. For instance `GuzzleHttp\Client` implements that interface
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $organizationId = 'organizationId_example'; // string | The ID of the organization.<br> Prefix with name= to retrieve the organization by name instead.
@@ -100,10 +100,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. |
- **updateOrgAddonsRequest** | [**\Upsun\Model\UpdateOrgAddonsRequest**](../Model/UpdateOrgAddonsRequest.md)|  |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **organizationId** | **string**| The ID of the organization.&lt;br&gt; Prefix with name&#x3D; to retrieve the organization by name instead. | |
+| **updateOrgAddonsRequest** | [**\Upsun\Model\UpdateOrgAddonsRequest**](../Model/UpdateOrgAddonsRequest.md)|  | |
 
 ### Return type
 
