@@ -23,7 +23,7 @@ final class EnterpriseDeploymentTarget implements ModelInterface, JsonSerializab
         private readonly object $siteUrls,
         private readonly array $sshHosts,
         private readonly bool $maintenanceMode,
-        private readonly ?string $deployHost = null,
+        private readonly ?string $deployHost,
         private readonly ?string $id = null,
         private readonly ?object $enterpriseEnvironmentsMapping = null,
     ) {

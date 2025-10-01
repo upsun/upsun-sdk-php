@@ -27,8 +27,8 @@ final class GitLabIntegration implements ModelInterface, JsonSerializable
         private readonly bool $buildMergeRequests,
         private readonly bool $buildWipMergeRequests,
         private readonly bool $mergeRequestsCloneParentData,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }

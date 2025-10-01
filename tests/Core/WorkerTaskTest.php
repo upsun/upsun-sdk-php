@@ -178,13 +178,15 @@ class WorkerTaskTest extends BaseTestCase
                                 "cpu" => 1.0,
                                 "memory" => 512,
                                 "disk" => 256,
-                                "profileSize" => "medium"
+                                "profileSize" => "medium",
+                                "cpuType" => "x86_64"
                             ],
                             "default" => [
                                 "cpu" => 2.0,
                                 "memory" => 1024,
                                 "disk" => 512,
-                                "profileSize" => "large"
+                                "profileSize" => "large",
+                                "cpuType" => "x86_64"
                             ],
                             "disk" => [
                                 "temporary" => 128,

@@ -61,8 +61,11 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Delete a federated login connection
      *
+     * Deletes the specified connection.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Connections/operation/delete-login-connection
      */
     public function deleteLoginConnection(
@@ -76,7 +79,7 @@ final class ConnectionsApi extends AbstractApi
     }
 
     /**
-     * Delete a federated login connection
+     * Delete a federated login connection with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -214,6 +217,8 @@ final class ConnectionsApi extends AbstractApi
     /**
      * Get a federated login connection
      *
+     * Retrieves the specified connection.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -232,7 +237,7 @@ final class ConnectionsApi extends AbstractApi
     }
 
     /**
-     * Get a federated login connection
+     * Get a federated login connection with HTTP Info
      *
      * @return Connection
      *
@@ -378,6 +383,8 @@ final class ConnectionsApi extends AbstractApi
     /**
      * List federated login connections
      *
+     * Retrieves a list of connections associated with a single user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -394,7 +401,7 @@ final class ConnectionsApi extends AbstractApi
     }
 
     /**
-     * List federated login connections
+     * List federated login connections with HTTP Info
      *
      * @return Connection[]
      *

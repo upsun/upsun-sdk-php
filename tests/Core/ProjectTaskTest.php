@@ -62,16 +62,13 @@ use Upsun\Model\DeploymentTarget;
 use Upsun\Model\Domain;
 use Upsun\Model\Environment;
 use Upsun\Model\Integration;
+use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
-use Upsun\Model\ListTeamProjectAccess200Response;
-use Upsun\Model\OrganizationProject;
-use Upsun\Model\OrganizationProjectPlan;
-use Upsun\Model\OrganizationProjectStatus;
-use Upsun\Model\OrganizationProjectType;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
 use Upsun\Model\ProjectSettings;
+use Upsun\Model\ProjectStatus;
 use Upsun\Model\ProjectVariable;
 use Upsun\Model\Ref;
 use Upsun\Model\Subscription;
@@ -216,18 +213,7 @@ class ProjectTaskTest extends BaseTestCase
         ) extends OrganizationTask {
         };
 
-        $upsunClient->project = new class (
-            $upsunClient,
-            new ProjectApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ProjectSettingsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new DeploymentTargetApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new RepositoryApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SystemInformationApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new ThirdPartyIntegrationsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new SubscriptionsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration()),
-            new OrganizationProjectsApi($oauthProvider, $this->httpClient, $psr17Factory, new Configuration())
-        ) extends ProjectTask {
-        };
+        $upsunClient->project = $this->projectTask;
 
         $upsunClient->region = new class (
             $upsunClient,
@@ -444,7 +430,7 @@ class ProjectTaskTest extends BaseTestCase
                     204,
                     ['Content-Type' => 'application/json'],
                     json_encode([
-                        'status' => OrganizationProjectStatus::SUSPENDED,
+                        'status' => ProjectStatus::SUSPENDED,
                         'code' => 204
                     ])
                 )
@@ -475,6 +461,13 @@ class ProjectTaskTest extends BaseTestCase
             ],
             'dataRetention' => [
                 'enabled' => true,
+            ],
+            'autoscaling' => [
+                'enabled' => true,
+            ],
+            'guaranteedResources' => [
+                'enabled' => true,
+                'instanceLimit' => '2',
             ],
             'customDomains' => [
                 'enabled' => true,
@@ -1332,6 +1325,7 @@ class ProjectTaskTest extends BaseTestCase
         $deploymentId = 'deploy-123';
 
         $deploymentTarget = [
+            'id' => 'deploy1',
             'type' => 'production',
             'name' => 'Main Deployment Target',
             'autoMounts' => true,
@@ -1421,6 +1415,7 @@ class ProjectTaskTest extends BaseTestCase
 
         $list = [
             [
+                'id' => 'deploy1',
                 'type' => 'dedicated',
                 'name' => 'Main Deployment Target',
                 'autoMounts' => true,
@@ -1490,6 +1485,7 @@ class ProjectTaskTest extends BaseTestCase
                 ],
             ],
             [
+                'id' => 'deploy2',
                 'type' => 'dedicated',
                 'name' => 'Staging Deployment Target',
                 'autoMounts' => true,
@@ -1580,6 +1576,7 @@ class ProjectTaskTest extends BaseTestCase
         $projectId = 'test-project';
         $deploymentId = 'deploy-123';
         $deploymentData = [
+            'id' => 'deploy1',
             'type' => 'dedicated',
             'name' => 'Updated Deployment Target',
             'hosts' => [
@@ -1634,6 +1631,7 @@ class ProjectTaskTest extends BaseTestCase
         $blobId = 'blob-123';
 
         $fakeBlob = [
+            'id' => 'blob1',
             'sha' => 'abc123def456',
             'size' => 1024,
             'encoding' => 'base64',
@@ -1660,6 +1658,7 @@ class ProjectTaskTest extends BaseTestCase
         $commitId = 'commit-123';
 
         $fakeCommit = [
+            'id' => 'ref1',
             'sha' => 'abc123def456',
             'author' => [
                 'date' => '2025-09-24T10:15:00+00:00',
@@ -1696,6 +1695,7 @@ class ProjectTaskTest extends BaseTestCase
         $projectId = 'test-project';
         $refId = 'ref-123';
         $fakeRef = [
+            'id' => 'ref1',
             'ref' => 'refs/heads/main',
             'object' => [
                 'type' => 'commit',
@@ -1723,6 +1723,7 @@ class ProjectTaskTest extends BaseTestCase
         $projectId = 'test-project';
         $treeId = 'tree-123';
         $fakeTree = [
+            'id' => 'ref1',
             'sha' => 'tree123456789',
             'tree' => [
                 [
@@ -1769,6 +1770,7 @@ class ProjectTaskTest extends BaseTestCase
 
         $list = [
             [
+                'id' => 'ref1',
                 'ref' => 'refs/heads/main',
                 'object' => [
                     'type' => 'commit',
@@ -1777,6 +1779,7 @@ class ProjectTaskTest extends BaseTestCase
                 'sha' => 'abc123def456'
             ],
             [
+                'id' => 'ref2',
                 'ref' => 'refs/heads/staging',
                 'object' => [
                     'type' => 'commit',
@@ -2440,6 +2443,7 @@ MIIDdTCCAl2gAwIBAgIEb/2OBDANBgkqhkiG9w0BAQUFADB1MQswCQYDVQQGEwJV
         $projectId = 'test-project';
         $certId = 'cert-123';
         $fakeCertificate = [
+            'id' => 'cert1',
             'certificate' => '-----BEGIN CERTIFICATE-----
 FAKE-CERTIFICATE-DATA
 -----END CERTIFICATE-----',
@@ -2500,6 +2504,7 @@ FAKE-CHAIN-CERT-DATA
 
         $list = [
             [
+                'id' => 'cert1',
                 'certificate' => '-----BEGIN CERTIFICATE-----
 FAKE-CERTIFICATE-DATA
 -----END CERTIFICATE-----',
@@ -2540,6 +2545,7 @@ FAKE-CHAIN-CERT-DATA
                 'updatedAt' => '2025-09-24T09:30:00Z',
             ],
             [
+                'id' => 'cert2',
                 'certificate' => '-----BEGIN CERTIFICATE-----
 FAKE-CERTIFICATE-DATA2
 -----END CERTIFICATE-----',
@@ -2632,6 +2638,7 @@ FAKE-CHAIN-CERT-DATA2
         $operationData = [
             'service' => 'database',
             'operation' => 'backup',
+            'parameters' => []
         ];
 
         $this->httpClient
@@ -2838,7 +2845,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $result = $this->projectTask->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
-        $this->assertInstanceOf(ListTeamProjectAccess200Response::class, $result);
+        $this->assertInstanceOf(ListProjectTeamAccess200Response::class, $result);
         $this->assertObjectMatchesArray($result->getItems(), $fakeListTeamProjectAccess['items']);
         $this->assertObjectProperties($result->getLinks(), $fakeListTeamProjectAccess['links']);
     }
@@ -2897,7 +2904,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $result = $this->projectTask->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
-        $this->assertInstanceOf(ListTeamProjectAccess200Response::class, $result);
+        $this->assertInstanceOf(ListProjectTeamAccess200Response::class, $result);
         $this->assertObjectMatchesArray($result->getItems(), $fakeListTeamProjectAccess['items']);
         $this->assertObjectProperties($result->getLinks(), $fakeListTeamProjectAccess['links']);
     }
@@ -3171,6 +3178,7 @@ FAKE-CHAIN-CERT-DATA2
 
         $list = [
             [
+                'id' => 'env1',
                 '_links' => [],
                 '_embedded' => [],
                 'created_at' => '2025-09-08T13:29:56.333140+00:00',
@@ -3230,6 +3238,7 @@ FAKE-CHAIN-CERT-DATA2
                 'supports_restrict_robots' => true
             ],
             [
+                'id' => 'env1',
                 '_links' => [],
                 '_embedded' => [],
                 'created_at' => '2025-09-08T13:29:56.333140+00:00',
@@ -3320,7 +3329,7 @@ FAKE-CHAIN-CERT-DATA2
             ));
 
         $this->expectException(ApiException::class);
-        
+
         $this->projectTask->delete($orgId, $projectId);
     }
 
@@ -3507,7 +3516,7 @@ FAKE-CHAIN-CERT-DATA2
             ],
             'useDedicatedGrid' => true,
         ];
-        
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -3616,7 +3625,7 @@ FAKE-CHAIN-CERT-DATA2
             ],
             'useDedicatedGrid' => true
         ];
-        
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -3827,7 +3836,7 @@ FAKE-CHAIN-CERT-DATA2
             'authToken' => 'token-abc-123',
             'authMode' => 'bearer'
         ];
-        
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -3961,7 +3970,7 @@ FAKE-CHAIN-CERT-DATA2
             'authToken' => 'token-abc-123',
             'authMode' => 'bearer'
         ];
-        
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -4137,6 +4146,9 @@ FAKE-CHAIN-CERT-DATA2
         $this->projectTask->getCertificate($projectId, $certId);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testListCertificatesWithError()
     {
         $projectId = 'test-project';
@@ -4168,7 +4180,7 @@ FAKE-CHAIN-CERT-DATA2
             ],
             'isInvalid' => false,
         ];
-        
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -4192,6 +4204,7 @@ FAKE-CHAIN-CERT-DATA2
         $operationData = [
             'service' => 'database',
             'operation' => 'backup',
+            'parameters' => [],
         ];
 
         $this->httpClient
@@ -4479,7 +4492,7 @@ FAKE-CHAIN-CERT-DATA2
             'environments' => 3,
             'storage' => 5000,
         ];
-        
+
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(

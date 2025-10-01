@@ -17,9 +17,9 @@ use JsonSerializable;
 final class PerServiceResourcesOverridesValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?float $cpu = null,
-        private readonly ?int $memory = null,
-        private readonly ?int $disk = null,
+        private readonly ?float $cpu,
+        private readonly ?int $memory,
+        private readonly ?int $disk,
     ) {
     }
 

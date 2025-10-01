@@ -17,7 +17,7 @@ use JsonSerializable;
 final class Resources6 implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $init = null,
+        private readonly ?string $init,
     ) {
     }
 

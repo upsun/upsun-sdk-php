@@ -64,6 +64,8 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a blob object
      *
+     * Retrieve, by hash, an object representing a blob in the repository backing a project. This endpoint allows direct read-only access to the contents of files in a repo. It returns the file in the `content` field of the response object, encoded according to the format in the `encoding` field, e.g. `base64`.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class RepositoryApi extends AbstractApi
     }
 
     /**
-     * Get a blob object
+     * Get a blob object with HTTP Info
      *
      * @return Blob
      *
@@ -228,6 +230,8 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a commit object
      *
+     * Retrieve, by hash, an object representing a commit in the repository backing a project. This endpoint functions similarly to `git cat-file -p <commit-id>`. The returned object contains the hash of the Git tree that it belongs to, as well as the ID of parent commits.  The commit represented by a parent ID can be retrieved using this endpoint, while the tree state represented by this commit can be retrieved using the [Get a tree object](#tag/Git-Repo%2Fpaths%2F~1projects~1%7BprojectId%7D~1git~1trees~1%7BrepositoryTreeId%7D%2Fget) endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -246,7 +250,7 @@ final class RepositoryApi extends AbstractApi
     }
 
     /**
-     * Get a commit object
+     * Get a commit object with HTTP Info
      *
      * @return Commit
      *
@@ -392,6 +396,8 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a ref object
      *
+     * Retrieve the details of a single `refs` object in the repository backing a project. This endpoint functions similarly to `git show-ref <pattern>`, although the pattern must be a full ref `id`, rather than a matching pattern.  *NOTE: The `{repositoryRefId}` must be properly escaped.* That is, the ref `refs/heads/master` is accessible via `/projects/{projectId}/git/refs/heads%2Fmaster`.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -410,7 +416,7 @@ final class RepositoryApi extends AbstractApi
     }
 
     /**
-     * Get a ref object
+     * Get a ref object with HTTP Info
      *
      * @return Ref
      *
@@ -556,6 +562,8 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get a tree object
      *
+     * Retrieve, by hash, the tree state represented by a commit. The returned object's `tree` field contains a list of files and directories present in the tree.  Directories in the tree can be recursively retrieved by this endpoint through their hashes. Files in the tree can be retrieved by the [Get a blob object](#tag/Git-Repo%2Fpaths%2F~1projects~1%7BprojectId%7D~1git~1blobs~1%7BrepositoryBlobId%7D%2Fget) endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -574,7 +582,7 @@ final class RepositoryApi extends AbstractApi
     }
 
     /**
-     * Get a tree object
+     * Get a tree object with HTTP Info
      *
      * @return Tree
      *
@@ -720,6 +728,8 @@ final class RepositoryApi extends AbstractApi
     /**
      * Get list of repository refs
      *
+     * Retrieve a list of `refs/_*` in the repository backing a project. This endpoint functions similarly to `git show-ref`, with each returned object containing a `ref` field with the ref's name, and an object containing the associated commit ID.  The returned commit ID can be used with the [Get a commit object](#tag/Git-Repo%2Fpaths%2F~1projects~1%7BprojectId%7D~1git~1commits~1%7BrepositoryCommitId%7D%2Fget) endpoint to retrieve information about that specific commit.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -736,7 +746,7 @@ final class RepositoryApi extends AbstractApi
     }
 
     /**
-     * Get list of repository refs
+     * Get list of repository refs with HTTP Info
      *
      * @return Ref[]
      *

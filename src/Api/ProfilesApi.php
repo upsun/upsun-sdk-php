@@ -63,6 +63,8 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get address
      *
+     * Retrieves the address for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -79,7 +81,7 @@ final class ProfilesApi extends AbstractApi
     }
 
     /**
-     * Get address
+     * Get address with HTTP Info
      *
      * @return Address
      *
@@ -201,6 +203,8 @@ final class ProfilesApi extends AbstractApi
     /**
      * Get profile
      *
+     * Retrieves the profile for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -217,7 +221,7 @@ final class ProfilesApi extends AbstractApi
     }
 
     /**
-     * Get profile
+     * Get profile with HTTP Info
      *
      * @return Profile
      *
@@ -339,6 +343,8 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update address
      *
+     * Updates the address for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -357,7 +363,7 @@ final class ProfilesApi extends AbstractApi
     }
 
     /**
-     * Update address
+     * Update address with HTTP Info
      *
      * @return Address
      *
@@ -490,6 +496,8 @@ final class ProfilesApi extends AbstractApi
     /**
      * Update profile
      *
+     * Updates the profile for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -508,7 +516,7 @@ final class ProfilesApi extends AbstractApi
     }
 
     /**
-     * Update profile
+     * Update profile with HTTP Info
      *
      * @return Profile
      *

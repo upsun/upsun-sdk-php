@@ -31,8 +31,8 @@ final class EnvironmentVariable implements ModelInterface, JsonSerializable
         private readonly bool $inherited,
         private readonly bool $isEnabled,
         private readonly bool $isInheritable,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $value = null,
     ) {
     }

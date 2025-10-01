@@ -62,6 +62,8 @@ final class AddOnsApi extends AbstractApi
     /**
      * Get add-ons
      *
+     * Retrieves information about the add-ons for an organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -78,7 +80,7 @@ final class AddOnsApi extends AbstractApi
     }
 
     /**
-     * Get add-ons
+     * Get add-ons with HTTP Info
      *
      * @return OrganizationAddonsObject
      *
@@ -200,6 +202,8 @@ final class AddOnsApi extends AbstractApi
     /**
      * Update organization add-ons
      *
+     * Updates the add-ons configuration for an organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -218,7 +222,7 @@ final class AddOnsApi extends AbstractApi
     }
 
     /**
-     * Update organization add-ons
+     * Update organization add-ons with HTTP Info
      *
      * @return OrganizationAddonsObject
      *

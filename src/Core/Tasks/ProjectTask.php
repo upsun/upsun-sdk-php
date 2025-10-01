@@ -28,8 +28,8 @@ use Upsun\Model\Environment;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
+use Upsun\Model\ListProjectTeamAccess200Response;
 use Upsun\Model\ListProjectUserAccess200Response;
-use Upsun\Model\ListTeamProjectAccess200Response;
 use Upsun\Model\Project;
 use Upsun\Model\ProjectCapabilities;
 use Upsun\Model\ProjectInvitation;
@@ -921,19 +921,25 @@ class ProjectTask extends TaskBase
     /**
      * Executes a runtime operation
      *
+     * @param array{
+     *     service: string,
+     *     operation: string,
+     *     parameters: array
+     * } $data
+     *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      */
     public function runOperation(
         string $projectId,
         string $environmentId,
         string $deploymentId,
-        array $environmentOperationInput
+        array $data
     ): AcceptedResponse {
         return $this->client->operation->run(
             $projectId,
             $environmentId,
             $deploymentId,
-            $environmentOperationInput
+            $data
         );
     }
 
@@ -989,7 +995,7 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListTeamProjectAccess200Response {
+    ): ListProjectTeamAccess200Response {
         return $this->client->team->listProjectTeamAccess($projectId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 
@@ -1004,7 +1010,7 @@ class ProjectTask extends TaskBase
         ?string $pageBefore = null,
         ?string $pageAfter = null,
         ?string $sort = null
-    ): ListTeamProjectAccess200Response {
+    ): ListProjectTeamAccess200Response {
         return $this->client->team->listTeamProjectAccess($teamId, $pageSize, $pageBefore, $pageAfter, $sort);
     }
 

@@ -104,7 +104,7 @@ final class DefaultApi extends AbstractApi
     }
 
     /**
-     * List support tickets
+     * List support tickets with HTTP Info
      *
      * @return ListTickets200Response
      *
@@ -449,6 +449,8 @@ final class DefaultApi extends AbstractApi
     /**
      * Query project carbon emissions metrics for an entire organization
      *
+     * Queries the carbon emission data for all projects owned by the specified organiation.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -471,7 +473,7 @@ final class DefaultApi extends AbstractApi
     }
 
     /**
-     * Query project carbon emissions metrics for an entire organization
+     * Query project carbon emissions metrics for an entire organization with HTTP Info
      *
      * @return OrganizationCarbon
      *

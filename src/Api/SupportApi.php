@@ -82,7 +82,7 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * Create a new support ticket
+     * Create a new support ticket with HTTP Info
      *
      * @return Ticket
      *
@@ -210,7 +210,7 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * List support ticket categories
+     * List support ticket categories with HTTP Info
      *
      * @return ListTicketCategories200ResponseInner[]
      *
@@ -364,7 +364,7 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * List support ticket priorities
+     * List support ticket priorities with HTTP Info
      *
      * @return ListTicketPriorities200ResponseInner[]
      *
@@ -518,7 +518,7 @@ final class SupportApi extends AbstractApi
     }
 
     /**
-     * Update a ticket
+     * Update a ticket with HTTP Info
      *
      * @return Ticket
      *

@@ -64,6 +64,8 @@ final class UserAccessApi extends AbstractApi
     /**
      * Get user access for a project
      *
+     * Retrieves the user's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Get user access for a project
+     * Get user access for a project with HTTP Info
      *
      * @return UserProjectAccess
      *
@@ -228,6 +230,8 @@ final class UserAccessApi extends AbstractApi
     /**
      * Get project access for a user
      *
+     * Retrieves the user's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -246,7 +250,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Get project access for a user
+     * Get project access for a user with HTTP Info
      *
      * @return UserProjectAccess
      *
@@ -392,8 +396,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Grant user access to a project
      *
+     * Grants one or more users access to a specific project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-project-user-access
      */
     public function grantProjectUserAccess(
@@ -407,7 +414,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Grant user access to a project
+     * Grant user access to a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -544,8 +551,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Grant project access to a user
      *
+     * Adds the user to one or more specified projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/grant-user-project-access
      */
     public function grantUserProjectAccess(
@@ -559,7 +569,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Grant project access to a user
+     * Grant project access to a user with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -696,6 +706,8 @@ final class UserAccessApi extends AbstractApi
     /**
      * List user access for a project
      *
+     * Returns a list of items representing the project access.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -720,7 +732,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * List user access for a project
+     * List user access for a project with HTTP Info
      *
      * @return ListProjectUserAccess200Response
      *
@@ -932,6 +944,8 @@ final class UserAccessApi extends AbstractApi
     /**
      * List project access for a user
      *
+     * Returns a list of items representing the user's project access.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -958,7 +972,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * List project access for a user
+     * List project access for a user with HTTP Info
      *
      * @return ListProjectUserAccess200Response
      *
@@ -1189,8 +1203,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Remove user access for a project
      *
+     * Removes the user from the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-project-user-access
      */
     public function removeProjectUserAccess(
@@ -1204,7 +1221,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Remove user access for a project
+     * Remove user access for a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1342,8 +1359,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Remove project access for a user
      *
+     * Removes the user from the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/remove-user-project-access
      */
     public function removeUserProjectAccess(
@@ -1357,7 +1377,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Remove project access for a user
+     * Remove project access for a user with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1495,8 +1515,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Update user access for a project
      *
+     * Updates the user's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-project-user-access
      */
     public function updateProjectUserAccess(
@@ -1512,7 +1535,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Update user access for a project
+     * Update user access for a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1661,8 +1684,11 @@ final class UserAccessApi extends AbstractApi
     /**
      * Update project access for a user
      *
+     * Updates the user's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Access/operation/update-user-project-access
      */
     public function updateUserProjectAccess(
@@ -1678,7 +1704,7 @@ final class UserAccessApi extends AbstractApi
     }
 
     /**
-     * Update project access for a user
+     * Update project access for a user with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */

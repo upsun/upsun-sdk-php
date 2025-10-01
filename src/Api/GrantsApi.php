@@ -63,6 +63,8 @@ final class GrantsApi extends AbstractApi
     /**
      * List extended access of a user
      *
+     * List extended access of the given user, which includes both individual and team access to project and organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -85,7 +87,7 @@ final class GrantsApi extends AbstractApi
     }
 
     /**
-     * List extended access of a user
+     * List extended access of a user with HTTP Info
      *
      * @return ListUserExtendedAccess200Response
      *

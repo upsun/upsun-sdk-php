@@ -21,7 +21,7 @@ final class Route implements ModelInterface, JsonSerializable
         private readonly array $attributes,
         private readonly string $type,
         private readonly TLSSettingsForTheRoute $tls,
-        private readonly ?string $to = null,
+        private readonly ?string $to,
         private readonly ?bool $primary = null,
         private readonly ?string $productionUrl = null,
         private readonly ?TheConfigurationOfTheRedirects $redirects = null,

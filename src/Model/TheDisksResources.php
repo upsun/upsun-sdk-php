@@ -17,9 +17,9 @@ use JsonSerializable;
 final class TheDisksResources implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?int $temporary = null,
-        private readonly ?int $instance = null,
-        private readonly ?int $storage = null,
+        private readonly ?int $temporary,
+        private readonly ?int $instance,
+        private readonly ?int $storage,
     ) {
     }
 

@@ -63,6 +63,8 @@ final class InvoicesApi extends AbstractApi
     /**
      * Get invoice
      *
+     * Retrieves an invoice for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -81,7 +83,7 @@ final class InvoicesApi extends AbstractApi
     }
 
     /**
-     * Get invoice
+     * Get invoice with HTTP Info
      *
      * @return Invoice
      *
@@ -227,6 +229,8 @@ final class InvoicesApi extends AbstractApi
     /**
      * List invoices
      *
+     * Retrieves a list of invoices for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -251,7 +255,7 @@ final class InvoicesApi extends AbstractApi
     }
 
     /**
-     * List invoices
+     * List invoices with HTTP Info
      *
      * @return ListOrgInvoices200Response
      *

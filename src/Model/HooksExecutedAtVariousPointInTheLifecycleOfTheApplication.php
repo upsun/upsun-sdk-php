@@ -17,9 +17,9 @@ use JsonSerializable;
 final class HooksExecutedAtVariousPointInTheLifecycleOfTheApplication implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $build = null,
-        private readonly ?string $deploy = null,
-        private readonly ?string $postDeploy = null,
+        private readonly ?string $build,
+        private readonly ?string $deploy,
+        private readonly ?string $postDeploy,
     ) {
     }
 

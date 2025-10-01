@@ -18,7 +18,7 @@ final class ConfigurationForSupportingRequestBuffering implements ModelInterface
 {
     public function __construct(
         private readonly bool $enabled,
-        private readonly ?string $maxRequestSize = null,
+        private readonly ?string $maxRequestSize,
     ) {
     }
 

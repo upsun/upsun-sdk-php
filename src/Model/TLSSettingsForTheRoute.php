@@ -19,8 +19,8 @@ final class TLSSettingsForTheRoute implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly StrictTransportSecurityOptions $strictTransportSecurity,
         private readonly array $clientCertificateAuthorities,
-        private readonly ?string $minVersion = null,
-        private readonly ?string $clientAuthentication = null,
+        private readonly ?string $minVersion,
+        private readonly ?string $clientAuthentication,
     ) {
     }
 

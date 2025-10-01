@@ -26,10 +26,10 @@ final class DedicatedDeploymentTarget implements ModelInterface, JsonSerializabl
         private readonly bool $autoNginx,
         private readonly bool $maintenanceMode,
         private readonly int $guardrailsPhase,
-        private readonly ?string $deployHost = null,
-        private readonly ?int $deployPort = null,
-        private readonly ?string $sshHost = null,
-        private readonly ?array $hosts = [],
+        private readonly ?string $deployHost,
+        private readonly ?int $deployPort,
+        private readonly ?string $sshHost,
+        private readonly ?array $hosts,
         private readonly ?string $id = null,
     ) {
     }

@@ -18,7 +18,7 @@ final class RepositoryInformation implements ModelInterface, JsonSerializable
 {
     public function __construct(
         private readonly string $url,
-        private readonly ?string $clientSshKey = null,
+        private readonly ?string $clientSshKey,
     ) {
     }
 

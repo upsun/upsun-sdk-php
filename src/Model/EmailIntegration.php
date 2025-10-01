@@ -20,9 +20,9 @@ final class EmailIntegration implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly string $type,
         private readonly array $recipients,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
-        private readonly ?string $fromAddress = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
+        private readonly ?string $fromAddress,
         private readonly ?string $id = null,
     ) {
     }

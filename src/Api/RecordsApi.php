@@ -63,6 +63,8 @@ final class RecordsApi extends AbstractApi
     /**
      * List plan records
      *
+     * Retrieves plan records for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -95,7 +97,7 @@ final class RecordsApi extends AbstractApi
     }
 
     /**
-     * List plan records
+     * List plan records with HTTP Info
      *
      * @return ListOrgPlanRecords200Response
      *
@@ -368,6 +370,8 @@ final class RecordsApi extends AbstractApi
     /**
      * List usage records
      *
+     * Retrieves usage records for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -394,7 +398,7 @@ final class RecordsApi extends AbstractApi
     }
 
     /**
-     * List usage records
+     * List usage records with HTTP Info
      *
      * @return ListOrgUsageRecords200Response
      *

@@ -63,6 +63,8 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Get list of project settings
      *
+     * Retrieve the global settings for a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -79,7 +81,7 @@ final class ProjectSettingsApi extends AbstractApi
     }
 
     /**
-     * Get list of project settings
+     * Get list of project settings with HTTP Info
      *
      * @return ProjectSettings
      *
@@ -201,6 +203,8 @@ final class ProjectSettingsApi extends AbstractApi
     /**
      * Update a project setting
      *
+     * Update one or more project-level settings.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -219,7 +223,7 @@ final class ProjectSettingsApi extends AbstractApi
     }
 
     /**
-     * Update a project setting
+     * Update a project setting with HTTP Info
      *
      * @return AcceptedResponse
      *

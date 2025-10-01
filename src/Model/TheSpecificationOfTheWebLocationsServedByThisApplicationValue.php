@@ -23,7 +23,7 @@ final class TheSpecificationOfTheWebLocationsServedByThisApplicationValue implem
         private readonly bool $allow,
         private readonly array $headers,
         private readonly array $rules,
-        private readonly ?string $root = null,
+        private readonly ?string $root,
         private readonly ?array $index = [],
         private readonly ?ConfigurationForSupportingRequestBuffering $requestBuffering = null,
     ) {

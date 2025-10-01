@@ -33,6 +33,7 @@ class OperationTask extends TaskBase
      * @param array{
      *     service: string,
      *     operation: string,
+     *     parameters: array
      * } $data
      */
     public function run(

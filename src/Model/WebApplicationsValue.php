@@ -39,14 +39,14 @@ final class WebApplicationsValue implements ModelInterface, JsonSerializable
         private readonly bool $isAcrossSubmodule,
         private readonly string $configId,
         private readonly string $slugId,
-        private readonly ?Resources $resources = null,
-        private readonly ?int $disk = null,
-        private readonly ?string $timezone = null,
-        private readonly ?Firewall $firewall = null,
-        private readonly ?string $containerProfile = null,
-        private readonly ?object $endpoints = null,
-        private readonly ?array $stack = [],
-        private readonly ?int $instanceCount = null,
+        private readonly ?Resources $resources,
+        private readonly ?int $disk,
+        private readonly ?string $timezone,
+        private readonly ?Firewall $firewall,
+        private readonly ?string $containerProfile,
+        private readonly ?object $endpoints,
+        private readonly ?array $stack,
+        private readonly ?int $instanceCount,
     ) {
     }
 

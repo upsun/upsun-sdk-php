@@ -66,6 +66,8 @@ final class UsersApi extends AbstractApi
     /**
      * Get the current user
      *
+     * Retrieves the current user, determined from the used access token.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -80,7 +82,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get the current user
+     * Get the current user with HTTP Info
      *
      * @return User
      *
@@ -178,12 +180,16 @@ final class UsersApi extends AbstractApi
     /**
      * Get current logged-in user info
      *
+     * Retrieve information about the currently logged-in user (the user associated with the access token).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
      * @return CurrentUser
      *
      * @see https://docs.upsun.com/api/#tag/Users/operation/get-current-user-deprecated
+     *
+     * @deprecated
      */
     public function getCurrentUserDeprecated(): CurrentUser
     {
@@ -192,11 +198,13 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get current logged-in user info
+     * Get current logged-in user info with HTTP Info
      *
      * @return CurrentUser
      *
      * @throws InvalidArgumentException|Exception
+     *
+     * @deprecated
      */
     private function getCurrentUserDeprecatedWithHttpInfo(): CurrentUser
     {
@@ -226,6 +234,8 @@ final class UsersApi extends AbstractApi
      * Create request for operation 'getCurrentUserDeprecated'
      *
      * @throws InvalidArgumentException
+     *
+     * @deprecated
      */
     private function getCurrentUserDeprecatedRequest(): RequestInterface
     {
@@ -290,6 +300,8 @@ final class UsersApi extends AbstractApi
     /**
      * Check if phone verification is required
      *
+     * Find out if the current logged in user requires phone verification to create projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -304,7 +316,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Check if phone verification is required
+     * Check if phone verification is required with HTTP Info
      *
      * @return GetCurrentUserVerificationStatus200Response
      *
@@ -402,6 +414,8 @@ final class UsersApi extends AbstractApi
     /**
      * Check if verification is required
      *
+     * Find out if the current logged in user requires verification (phone or staff) to create projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -416,7 +430,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Check if verification is required
+     * Check if verification is required with HTTP Info
      *
      * @return GetCurrentUserVerificationStatusFull200Response
      *
@@ -514,6 +528,8 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user
      *
+     * Retrieves the specified user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -530,7 +546,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get a user
+     * Get a user with HTTP Info
      *
      * @return User
      *
@@ -652,6 +668,8 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by email
      *
+     * Retrieves a user matching the specified email address.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -668,7 +686,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get a user by email
+     * Get a user by email with HTTP Info
      *
      * @return User
      *
@@ -790,6 +808,8 @@ final class UsersApi extends AbstractApi
     /**
      * Get a user by username
      *
+     * Retrieves a user matching the specified username.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -806,7 +826,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Get a user by username
+     * Get a user by username with HTTP Info
      *
      * @return User
      *
@@ -928,8 +948,11 @@ final class UsersApi extends AbstractApi
     /**
      * Reset email address
      *
+     * Requests a reset of the user's email address. A confirmation email will be sent to the new address when the request is accepted.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/reset-email-address
      */
     public function resetEmailAddress(
@@ -943,7 +966,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Reset email address
+     * Reset email address with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1068,8 +1091,11 @@ final class UsersApi extends AbstractApi
     /**
      * Reset user password
      *
+     * Requests a reset of the user's password. A password reset email will be sent to the user when the request is accepted.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Users/operation/reset-password
      */
     public function resetPassword(
@@ -1081,7 +1107,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Reset user password
+     * Reset user password with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1195,6 +1221,8 @@ final class UsersApi extends AbstractApi
     /**
      * Update a user
      *
+     * Updates the specified user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1213,7 +1241,7 @@ final class UsersApi extends AbstractApi
     }
 
     /**
-     * Update a user
+     * Update a user with HTTP Info
      *
      * @return User
      *

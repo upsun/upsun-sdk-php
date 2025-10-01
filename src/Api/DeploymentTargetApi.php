@@ -64,6 +64,8 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Create a project deployment target
      *
+     * Set the deployment target information for a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class DeploymentTargetApi extends AbstractApi
     }
 
     /**
-     * Create a project deployment target
+     * Create a project deployment target with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -227,6 +229,8 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Delete a single project deployment target
      *
+     * Delete a single deployment target configuration associated with a specific project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -245,7 +249,7 @@ final class DeploymentTargetApi extends AbstractApi
     }
 
     /**
-     * Delete a single project deployment target
+     * Delete a single project deployment target with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -391,6 +395,8 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get a single project deployment target
      *
+     * Get a single deployment target configuration of a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -409,7 +415,7 @@ final class DeploymentTargetApi extends AbstractApi
     }
 
     /**
-     * Get a single project deployment target
+     * Get a single project deployment target with HTTP Info
      *
      * @return DeploymentTarget
      *
@@ -555,6 +561,8 @@ final class DeploymentTargetApi extends AbstractApi
     /**
      * Get project deployment target info
      *
+     * The deployment target information for the project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -571,7 +579,7 @@ final class DeploymentTargetApi extends AbstractApi
     }
 
     /**
-     * Get project deployment target info
+     * Get project deployment target info with HTTP Info
      *
      * @return DeploymentTarget[]
      *
@@ -713,7 +721,7 @@ final class DeploymentTargetApi extends AbstractApi
     }
 
     /**
-     * Update a project deployment
+     * Update a project deployment with HTTP Info
      *
      * @return AcceptedResponse
      *

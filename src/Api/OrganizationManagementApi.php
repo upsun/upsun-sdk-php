@@ -65,6 +65,8 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Estimate total spend
      *
+     * Estimates the total spend for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -81,7 +83,7 @@ final class OrganizationManagementApi extends AbstractApi
     }
 
     /**
-     * Estimate total spend
+     * Estimate total spend with HTTP Info
      *
      * @return OrganizationEstimationObject
      *
@@ -203,6 +205,8 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Get billing alert configuration
      *
+     * Retrieves billing alert configuration for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -219,7 +223,7 @@ final class OrganizationManagementApi extends AbstractApi
     }
 
     /**
-     * Get billing alert configuration
+     * Get billing alert configuration with HTTP Info
      *
      * @return OrganizationAlertConfig
      *
@@ -341,6 +345,8 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Get organization prepayment information
      *
+     * Retrieves prepayment information for the specified organization, if applicable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -357,7 +363,7 @@ final class OrganizationManagementApi extends AbstractApi
     }
 
     /**
-     * Get organization prepayment information
+     * Get organization prepayment information with HTTP Info
      *
      * @return GetOrgPrepaymentInfo200Response
      *
@@ -479,6 +485,8 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * List organization prepayment transactions
      *
+     * Retrieves a list of prepayment transactions for the specified organization, if applicable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -495,7 +503,7 @@ final class OrganizationManagementApi extends AbstractApi
     }
 
     /**
-     * List organization prepayment transactions
+     * List organization prepayment transactions with HTTP Info
      *
      * @return ListOrgPrepaymentTransactions200Response
      *
@@ -617,6 +625,8 @@ final class OrganizationManagementApi extends AbstractApi
     /**
      * Update billing alert configuration
      *
+     * Updates billing alert configuration for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -635,7 +645,7 @@ final class OrganizationManagementApi extends AbstractApi
     }
 
     /**
-     * Update billing alert configuration
+     * Update billing alert configuration with HTTP Info
      *
      * @return OrganizationAlertConfig
      *

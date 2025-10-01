@@ -26,8 +26,8 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
         private readonly array $applicationScope,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $value = null,
     ) {
     }

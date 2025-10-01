@@ -20,7 +20,7 @@ final class Version implements ModelInterface, JsonSerializable
         private readonly string $id,
         private readonly bool $locked,
         private readonly ConfigurationAboutTheTrafficRoutedToThisVersion $routing,
-        private readonly ?string $commit = null,
+        private readonly ?string $commit,
     ) {
     }
 

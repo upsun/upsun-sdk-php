@@ -48,8 +48,11 @@ class OperationTaskTest extends BaseTestCase
         $projectId = 'project-1';
         $environmentId = 'env-1';
         $deploymentId = 'deploy-1';
-        $inputArray = ['operation' => 'clear-cache', 'service' => 'cache-service'];
-
+        $inputArray = [
+            'operation' => 'clear-cache',
+            'service' => 'cache-service',
+            'parameters' => []
+        ];
         $this->httpClient
             ->method('sendRequest')
             ->willReturn(new Response(
@@ -72,7 +75,11 @@ class OperationTaskTest extends BaseTestCase
         $projectId = 'project-1';
         $environmentId = 'env-1';
         $deploymentId = 'deploy-1';
-        $inputArray = ['operation' => 'unknown-operation', 'service' => 'cache-service'];
+        $inputArray = [
+            'operation' => 'unknown-operation',
+            'service' => 'cache-service',
+            'parameters' => []
+        ];
 
         $this->expectException(ApiException::class);
 

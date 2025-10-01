@@ -17,12 +17,12 @@ use JsonSerializable;
 final class Resources implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?int $baseMemory = null,
-        private readonly ?int $memoryRatio = null,
-        private readonly ?string $profileSize = null,
-        private readonly ?TheMinimumResourcesForThisService $minimum = null,
-        private readonly ?TheDefaultResourcesForThisService $default = null,
-        private readonly ?TheDisksResources $disk = null,
+        private readonly ?int $baseMemory,
+        private readonly ?int $memoryRatio,
+        private readonly ?string $profileSize,
+        private readonly ?TheMinimumResourcesForThisService $minimum,
+        private readonly ?TheDefaultResourcesForThisService $default,
+        private readonly ?TheDisksResources $disk,
     ) {
     }
 

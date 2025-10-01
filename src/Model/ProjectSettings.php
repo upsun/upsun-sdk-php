@@ -80,12 +80,12 @@ final class ProjectSettings implements ModelInterface, JsonSerializable
         private readonly bool $allowRollingDeployments,
         private readonly bool $allowBurst,
         private readonly RouterResourceSettingsForFlexPlan $routerResources,
-        private readonly ?string $developmentDomainTemplate = null,
-        private readonly ?int $temporaryDiskSize = null,
-        private readonly ?int $localDiskSize = null,
-        private readonly ?string $customErrorTemplate = null,
-        private readonly ?string $appErrorPageTemplate = null,
-        private readonly ?array $dataRetention = [],
+        private readonly ?string $developmentDomainTemplate,
+        private readonly ?int $temporaryDiskSize,
+        private readonly ?int $localDiskSize,
+        private readonly ?string $customErrorTemplate,
+        private readonly ?string $appErrorPageTemplate,
+        private readonly ?array $dataRetention,
     ) {
     }
 

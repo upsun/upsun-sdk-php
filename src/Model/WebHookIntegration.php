@@ -25,9 +25,9 @@ final class WebHookIntegration implements ModelInterface, JsonSerializable
         private readonly array $states,
         private readonly string $result,
         private readonly string $url,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
-        private readonly ?string $sharedKey = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
+        private readonly ?string $sharedKey,
         private readonly ?string $id = null,
     ) {
     }

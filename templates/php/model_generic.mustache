@@ -22,14 +22,14 @@ final class {{classname}} implements ModelInterface, JsonSerializable
     {{#vars}}
       {{#isNullable}}
       {{#isContainer}}
-        private readonly ?array ${{name}} = [],
+        private readonly ?array ${{name}}{{^required}} = []{{/required}},
       {{/isContainer}}
       {{^isContainer}}
           {{#isDateTime}}
-        private readonly ?\DateTime ${{name}} = null,
+        private readonly ?\DateTime ${{name}}{{^required}} = null{{/required}},
           {{/isDateTime}}
           {{^isDateTime}}
-        private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}},
+        private readonly ?{{#openApiType}}{{#isLong}}int{{/isLong}}{{#isDouble}}float{{/isDouble}}{{#isInteger}}int{{/isInteger}}{{#isNumber}}float{{/isNumber}}{{#isFloat}}float{{/isFloat}}{{#isBoolean}}bool{{/isBoolean}}{{^isInteger}}{{^isFloat}}{{^isBoolean}}{{^isNumber}}{{^isLong}}{{^isDouble}}{{{openApiType}}}{{/isDouble}}{{/isLong}}{{/isNumber}}{{/isBoolean}}{{/isFloat}}{{/isInteger}}{{/openApiType}} ${{name}}{{^required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{^defaultValue}} = null{{/defaultValue}}{{/required}},
           {{/isDateTime}}
       {{/isContainer}}
       {{/isNullable}}      

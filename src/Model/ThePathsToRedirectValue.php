@@ -20,9 +20,9 @@ final class ThePathsToRedirectValue implements ModelInterface, JsonSerializable
         private readonly bool $regexp,
         private readonly string $to,
         private readonly int $code,
-        private readonly ?bool $prefix = null,
-        private readonly ?bool $appendSuffix = null,
-        private readonly ?string $expires = null,
+        private readonly ?bool $prefix,
+        private readonly ?bool $appendSuffix,
+        private readonly ?string $expires,
     ) {
     }
 

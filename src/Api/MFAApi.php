@@ -66,6 +66,8 @@ final class MFAApi extends AbstractApi
     /**
      * Confirm TOTP enrollment
      *
+     * Confirms the given TOTP enrollment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -84,7 +86,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Confirm TOTP enrollment
+     * Confirm TOTP enrollment with HTTP Info
      *
      * @return ConfirmTotpEnrollment200Response
      *
@@ -217,8 +219,11 @@ final class MFAApi extends AbstractApi
     /**
      * Disable organization MFA enforcement
      *
+     * Disables MFA enforcement for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/MFA/operation/disable-org-mfa-enforcement
      */
     public function disableOrgMfaEnforcement(
@@ -230,7 +235,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Disable organization MFA enforcement
+     * Disable organization MFA enforcement with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -344,8 +349,11 @@ final class MFAApi extends AbstractApi
     /**
      * Enable organization MFA enforcement
      *
+     * Enables MFA enforcement for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/MFA/operation/enable-org-mfa-enforcement
      */
     public function enableOrgMfaEnforcement(
@@ -357,7 +365,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Enable organization MFA enforcement
+     * Enable organization MFA enforcement with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -471,6 +479,8 @@ final class MFAApi extends AbstractApi
     /**
      * Get organization MFA settings
      *
+     * Retrieves MFA settings for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -487,7 +497,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Get organization MFA settings
+     * Get organization MFA settings with HTTP Info
      *
      * @return OrganizationMFAEnforcement
      *
@@ -609,6 +619,8 @@ final class MFAApi extends AbstractApi
     /**
      * Get information about TOTP enrollment
      *
+     * Retrieves TOTP enrollment information.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -625,7 +637,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Get information about TOTP enrollment
+     * Get information about TOTP enrollment with HTTP Info
      *
      * @return GetTotpEnrollment200Response
      *
@@ -747,6 +759,8 @@ final class MFAApi extends AbstractApi
     /**
      * Re-create recovery codes
      *
+     * Re-creates recovery codes for the MFA enrollment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -763,7 +777,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Re-create recovery codes
+     * Re-create recovery codes with HTTP Info
      *
      * @return ConfirmTotpEnrollment200Response
      *
@@ -885,6 +899,8 @@ final class MFAApi extends AbstractApi
     /**
      * Send MFA reminders to organization members
      *
+     * Sends a reminder about setting up MFA to the specified organization members.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -903,7 +919,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Send MFA reminders to organization members
+     * Send MFA reminders to organization members with HTTP Info
      *
      * @return array<string, SendOrgMfaReminders200ResponseValue>
      *
@@ -1036,8 +1052,11 @@ final class MFAApi extends AbstractApi
     /**
      * Withdraw TOTP enrollment
      *
+     * Withdraws from the TOTP enrollment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/MFA/operation/withdraw-totp-enrollment
      */
     public function withdrawTotpEnrollment(
@@ -1049,7 +1068,7 @@ final class MFAApi extends AbstractApi
     }
 
     /**
-     * Withdraw TOTP enrollment
+     * Withdraw TOTP enrollment with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */

@@ -28,12 +28,12 @@ final class Project implements ModelInterface, JsonSerializable
         private readonly string $region,
         private readonly RepositoryInformation $repository,
         private readonly SubscriptionInformation $subscription,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
-        private readonly ?string $namespace = null,
-        private readonly ?string $organization = null,
-        private readonly ?string $defaultBranch = null,
-        private readonly ?string $defaultDomain = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
+        private readonly ?string $namespace,
+        private readonly ?string $organization,
+        private readonly ?string $defaultBranch,
+        private readonly ?string $defaultDomain,
     ) {
     }
 

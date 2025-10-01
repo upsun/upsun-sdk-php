@@ -70,6 +70,8 @@ final class TeamsApi extends AbstractApi
     /**
      * Create team
      *
+     * Creates a new team.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -86,7 +88,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Create team
+     * Create team with HTTP Info
      *
      * @return Team
      *
@@ -208,6 +210,8 @@ final class TeamsApi extends AbstractApi
     /**
      * Create team member
      *
+     * Creates a new team member.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -226,7 +230,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Create team member
+     * Create team member with HTTP Info
      *
      * @return TeamMember
      *
@@ -371,8 +375,11 @@ final class TeamsApi extends AbstractApi
     /**
      * Delete team
      *
+     * Deletes the specified team.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team
      */
     public function deleteTeam(
@@ -384,7 +391,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Delete team
+     * Delete team with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -498,8 +505,11 @@ final class TeamsApi extends AbstractApi
     /**
      * Delete team member
      *
+     * Deletes the specified team member.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Teams/operation/delete-team-member
      */
     public function deleteTeamMember(
@@ -513,7 +523,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Delete team member
+     * Delete team member with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -651,6 +661,8 @@ final class TeamsApi extends AbstractApi
     /**
      * Get team
      *
+     * Retrieves the specified team.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -667,7 +679,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Get team
+     * Get team with HTTP Info
      *
      * @return Team
      *
@@ -789,6 +801,8 @@ final class TeamsApi extends AbstractApi
     /**
      * Get team member
      *
+     * Retrieves the specified team member.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -807,7 +821,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Get team member
+     * Get team member with HTTP Info
      *
      * @return TeamMember
      *
@@ -953,6 +967,8 @@ final class TeamsApi extends AbstractApi
     /**
      * List team members
      *
+     * Retrieves a list of users associated with a single team.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -975,7 +991,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * List team members
+     * List team members with HTTP Info
      *
      * @return ListTeamMembers200Response
      *
@@ -1153,6 +1169,8 @@ final class TeamsApi extends AbstractApi
     /**
      * List teams
      *
+     * Retrieves a list of teams.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1181,7 +1199,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * List teams
+     * List teams with HTTP Info
      *
      * @return ListTeams200Response
      *
@@ -1427,6 +1445,8 @@ final class TeamsApi extends AbstractApi
     /**
      * User teams
      *
+     * Retrieves teams that the specified user is a member of.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1455,7 +1475,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * User teams
+     * User teams with HTTP Info
      *
      * @return ListTeams200Response
      *
@@ -1705,6 +1725,8 @@ final class TeamsApi extends AbstractApi
     /**
      * Update team
      *
+     * Updates the specified team.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1723,7 +1745,7 @@ final class TeamsApi extends AbstractApi
     }
 
     /**
-     * Update team
+     * Update team with HTTP Info
      *
      * @return Team
      *

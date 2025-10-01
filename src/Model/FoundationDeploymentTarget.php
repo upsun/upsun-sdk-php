@@ -20,8 +20,8 @@ final class FoundationDeploymentTarget implements ModelInterface, JsonSerializab
         private readonly string $type,
         private readonly string $name,
         private readonly bool $useDedicatedGrid,
-        private readonly ?array $hosts = [],
-        private readonly ?string $storageType = null,
+        private readonly ?array $hosts,
+        private readonly ?string $storageType,
         private readonly ?string $id = null,
     ) {
     }

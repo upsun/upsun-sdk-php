@@ -69,6 +69,8 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Create organization
      *
+     * Creates a new organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -85,7 +87,7 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * Create organization
+     * Create organization with HTTP Info
      *
      * @return Organization
      *
@@ -207,8 +209,11 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Delete organization
      *
+     * Deletes the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Organizations/operation/delete-org
      */
     public function deleteOrg(
@@ -220,7 +225,7 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * Delete organization
+     * Delete organization with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -334,6 +339,8 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Get organization
      *
+     * Retrieves the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -350,7 +357,7 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * Get organization
+     * Get organization with HTTP Info
      *
      * @return Organization
      *
@@ -472,6 +479,8 @@ final class OrganizationsApi extends AbstractApi
     /**
      * List organizations
      *
+     * Non-admin users will only see organizations they are members of.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -512,7 +521,7 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * List organizations
+     * List organizations with HTTP Info
      *
      * @return ListOrgs200Response
      *
@@ -872,6 +881,8 @@ final class OrganizationsApi extends AbstractApi
     /**
      * User organizations
      *
+     * Retrieves organizations that the specified user is a member of.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -906,7 +917,7 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * User organizations
+     * User organizations with HTTP Info
      *
      * @return ListUserOrgs200Response
      *
@@ -1213,6 +1224,8 @@ final class OrganizationsApi extends AbstractApi
     /**
      * Update organization
      *
+     * Updates the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1231,7 +1244,7 @@ final class OrganizationsApi extends AbstractApi
     }
 
     /**
-     * Update organization
+     * Update organization with HTTP Info
      *
      * @return Organization
      *

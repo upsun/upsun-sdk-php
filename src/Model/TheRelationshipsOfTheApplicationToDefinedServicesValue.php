@@ -17,8 +17,8 @@ use JsonSerializable;
 final class TheRelationshipsOfTheApplicationToDefinedServicesValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $service = null,
-        private readonly ?string $endpoint = null,
+        private readonly ?string $service,
+        private readonly ?string $endpoint,
     ) {
     }
 

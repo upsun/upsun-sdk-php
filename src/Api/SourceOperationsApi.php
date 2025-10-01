@@ -63,6 +63,8 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * List source operations
      *
+     * Lists all the source operations, defined in `.upsun/config.yaml`, that are available in an environment. More information on source code operations is [available in our user documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -81,7 +83,7 @@ final class SourceOperationsApi extends AbstractApi
     }
 
     /**
-     * List source operations
+     * List source operations with HTTP Info
      *
      * @return EnvironmentSourceOperation[]
      *
@@ -227,6 +229,8 @@ final class SourceOperationsApi extends AbstractApi
     /**
      * Trigger a source operation
      *
+     * This endpoint triggers a source code operation as defined in the `source.operations` key in a project's `.upsun/config.yaml` configuration. More information on source code operations is [available in our user documentation](https://docs.upsun.com/anchors/app/reference/source/operations/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -247,7 +251,7 @@ final class SourceOperationsApi extends AbstractApi
     }
 
     /**
-     * Trigger a source operation
+     * Trigger a source operation with HTTP Info
      *
      * @return AcceptedResponse
      *

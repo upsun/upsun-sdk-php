@@ -17,7 +17,7 @@ use JsonSerializable;
 final class OperationsThatCanBeAppliedToTheSourceCodeValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $command = null,
+        private readonly ?string $command,
     ) {
     }
 

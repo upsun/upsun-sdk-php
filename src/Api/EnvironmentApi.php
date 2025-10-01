@@ -72,6 +72,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Activate an environment
      *
+     * Set the specified environment's status to active
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -92,7 +94,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Activate an environment
+     * Activate an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -261,6 +263,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Branch an environment
      *
+     * Create a new environment as a branch of the current environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -281,7 +285,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Branch an environment
+     * Branch an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -450,6 +454,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Create versions associated with the environment
      *
+     * Create versions associated with the `{environmentId}` environment. At least one version always exists. When multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type denotes whether staged deployment is supported.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -470,7 +476,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Create versions associated with the environment
+     * Create versions associated with the environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -639,6 +645,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Deactivate an environment
      *
+     * Destroy all services and data running on this environment so that only the Git branch remains. The environment can be reactivated later at any time; reactivating an environment will sync data from the parent environment and redeploy.  **NOTE: ALL DATA IN THIS ENVIRONMENT WILL BE IRREVOCABLY LOST**
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -657,7 +665,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Deactivate an environment
+     * Deactivate an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -803,6 +811,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Delete an environment
      *
+     * Delete a specified environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -821,7 +831,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Delete an environment
+     * Delete an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -967,6 +977,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Delete the version
      *
+     * Delete the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if the deployment target supports it).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -987,7 +999,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Delete the version
+     * Delete the version with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -1157,6 +1169,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Deploy an environment
      *
+     * Trigger a controlled [manual deployment](https://docs.upsun.com/learn/overview/build-deploy.html#manual-deployment) to release all the staged changes
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1177,7 +1191,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Deploy an environment
+     * Deploy an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -1346,6 +1360,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Get an environment
      *
+     * Retrieve the details of a single existing environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1364,7 +1380,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Get an environment
+     * Get an environment with HTTP Info
      *
      * @return Environment
      *
@@ -1510,6 +1526,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List the version
      *
+     * List the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if the deployment target supports it).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1530,7 +1548,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * List the version
+     * List the version with HTTP Info
      *
      * @return Version
      *
@@ -1700,6 +1718,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Initialize a new environment
      *
+     * Initialize and configure a new environment with an existing repository. The payload is the url of a git repository with a profile name:  ``` {     \"repository\": \"git@github.com:platformsh/a-project-template.git@master\",     \"profile\": \"Example Project\",     \"files\": [       {         \"mode\": 0600,         \"path\": \"config.json\",         \"contents\": \"XXXXXXXX\"       }     ] } ``` It can optionally carry additional files that will be committed to the repository, the POSIX file mode to set on each file, and the base64-encoded contents of each file.  This endpoint can also add a second repository URL in the `config` parameter that will be added to the contents of the first. This allows you to put your application in one repository and the Upsun YAML configuration files in another.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1720,7 +1740,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Initialize a new environment
+     * Initialize a new environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -1889,6 +1909,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Get list of project environments
      *
+     * Retrieve a list of a project's existing environments and the information associated with each environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1905,7 +1927,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Get list of project environments
+     * Get list of project environments with HTTP Info
      *
      * @return Environment[]
      *
@@ -2027,6 +2049,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * List versions associated with the environment
      *
+     * List versions associated with the `{environmentId}` environment. At least one version always exists. When multiple versions exist, it means that multiple versions of an app are deployed. The deployment target type denotes whether staged deployment is supported.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2045,7 +2069,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * List versions associated with the environment
+     * List versions associated with the environment with HTTP Info
      *
      * @return Version[]
      *
@@ -2191,6 +2215,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Merge an environment
      *
+     * Merge an environment into its parent. This means that code changes from the branch environment will be merged into the parent branch, and the parent branch will be rebuilt and deployed with the new code changes, retaining the existing data in the parent environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2211,7 +2237,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Merge an environment
+     * Merge an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -2380,6 +2406,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Pause an environment
      *
+     * Pause an environment, stopping all services and applications (except the router).  Development environments are often used for a limited time and then abandoned. To prevent unnecessary consumption of resources, development environments that haven't been redeployed in 14 days are automatically paused.  You can pause an environment manually at any time using this endpoint. Further information is available in our [public documentation](https://docs.upsun.com/anchors/environments/paused/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2398,7 +2426,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Pause an environment
+     * Pause an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -2544,6 +2572,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Redeploy an environment
      *
+     * Trigger the redeployment sequence of an environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2562,7 +2592,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Redeploy an environment
+     * Redeploy an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -2708,6 +2738,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Resume a paused environment
      *
+     * Resume a paused environment, restarting all services and applications.  Development environments that haven't been used for 14 days will be paused automatically. They can be resumed via a redeployment or manually using this endpoint or the CLI as described in the [public documentation](https://docs.upsun.com/anchors/environments/paused/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2726,7 +2758,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Resume a paused environment
+     * Resume a paused environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -2872,6 +2904,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Synchronize a child environment with its parent
      *
+     * This synchronizes the code and/or data of an environment with that of its parent, then redeploys the environment. Synchronization is only possible if a branch has no unmerged commits and it can be fast-forwarded.  If data synchronization is specified, the data in the environment will be overwritten with that of its parent.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2892,7 +2926,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Synchronize a child environment with its parent
+     * Synchronize a child environment with its parent with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -3061,6 +3095,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Update an environment
      *
+     * Update the details of a single existing environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -3081,7 +3117,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Update an environment
+     * Update an environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -3250,6 +3286,8 @@ final class EnvironmentApi extends AbstractApi
     /**
      * Update the version
      *
+     * Update the `{versionId}` version. A routing percentage for this version may be specified for staged rollouts (if the deployment target supports it).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -3272,7 +3310,7 @@ final class EnvironmentApi extends AbstractApi
     }
 
     /**
-     * Update the version
+     * Update the version with HTTP Info
      *
      * @return AcceptedResponse
      *

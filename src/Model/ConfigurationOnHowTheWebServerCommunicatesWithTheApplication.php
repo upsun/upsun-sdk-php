@@ -18,7 +18,7 @@ final class ConfigurationOnHowTheWebServerCommunicatesWithTheApplication impleme
 {
     public function __construct(
         private readonly string $socketFamily,
-        private readonly ?string $protocol = null,
+        private readonly ?string $protocol,
     ) {
     }
 

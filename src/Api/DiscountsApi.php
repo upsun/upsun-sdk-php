@@ -79,7 +79,7 @@ final class DiscountsApi extends AbstractApi
     }
 
     /**
-     * Get an organization discount
+     * Get an organization discount with HTTP Info
      *
      * @return Discount
      *
@@ -215,7 +215,7 @@ final class DiscountsApi extends AbstractApi
     }
 
     /**
-     * Get the value of the First Project Incentive discount
+     * Get the value of the First Project Incentive discount with HTTP Info
      *
      * @return GetTypeAllowance200Response
      *
@@ -313,6 +313,8 @@ final class DiscountsApi extends AbstractApi
     /**
      * List organization discounts
      *
+     * Retrieves all applicable discounts granted to the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -329,7 +331,7 @@ final class DiscountsApi extends AbstractApi
     }
 
     /**
-     * List organization discounts
+     * List organization discounts with HTTP Info
      *
      * @return ListOrgDiscounts200Response
      *

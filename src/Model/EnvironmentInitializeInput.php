@@ -20,8 +20,8 @@ final class EnvironmentInitializeInput implements ModelInterface, JsonSerializab
         private readonly string $profile,
         private readonly string $repository,
         private readonly array $files,
-        private readonly ?string $config = null,
-        private readonly ?Resources4 $resources = null,
+        private readonly ?string $config,
+        private readonly ?Resources4 $resources,
     ) {
     }
 

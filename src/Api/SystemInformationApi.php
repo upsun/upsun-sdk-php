@@ -62,6 +62,8 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Restart the Git server
      *
+     * Force the Git server to restart.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -78,7 +80,7 @@ final class SystemInformationApi extends AbstractApi
     }
 
     /**
-     * Restart the Git server
+     * Restart the Git server with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -200,6 +202,8 @@ final class SystemInformationApi extends AbstractApi
     /**
      * Get information about the Git server.
      *
+     * Output information for the project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -216,7 +220,7 @@ final class SystemInformationApi extends AbstractApi
     }
 
     /**
-     * Get information about the Git server.
+     * Get information about the Git server. with HTTP Info
      *
      * @return SystemInformation
      *

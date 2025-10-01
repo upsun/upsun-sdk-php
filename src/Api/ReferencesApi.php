@@ -66,6 +66,8 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced organizations
      *
+     * Retrieves a list of organizations referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:organizations:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -84,7 +86,7 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced organizations
+     * List referenced organizations with HTTP Info
      *
      * @return array<string, OrganizationReference>
      *
@@ -243,6 +245,8 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced projects
      *
+     * Retrieves a list of projects referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:projects:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -261,7 +265,7 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced projects
+     * List referenced projects with HTTP Info
      *
      * @return array<string, ProjectReference>
      *
@@ -420,6 +424,8 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced regions
      *
+     * Retrieves a list of regions referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:regions:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -438,7 +444,7 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced regions
+     * List referenced regions with HTTP Info
      *
      * @return array<string, RegionReference>
      *
@@ -597,6 +603,8 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced teams
      *
+     * Retrieves a list of teams referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:teams:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -615,7 +623,7 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced teams
+     * List referenced teams with HTTP Info
      *
      * @return array<string, TeamReference>
      *
@@ -774,6 +782,8 @@ final class ReferencesApi extends AbstractApi
     /**
      * List referenced users
      *
+     * Retrieves a list of users referenced by a trusted service. Clients cannot construct the URL themselves. The correct URL will be provided in the HAL links of another API response, in the <code>_links</code> object with a key like <code>ref:users:0</code>.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -792,7 +802,7 @@ final class ReferencesApi extends AbstractApi
     }
 
     /**
-     * List referenced users
+     * List referenced users with HTTP Info
      *
      * @return array<string, UserReference>
      *

@@ -721,27 +721,29 @@ class OpenApiPreprocessor
         }
     }
 
-    public function renameXDeprecated(): void
+    public function renameDeprecated(): void
     {
         // on paths
         foreach ($this->schema['paths'] as &$methods) {
             foreach ($methods as &$operation) {
                 if (isset($operation['deprecated'])) {
-                    $operation['x-internal-doc'] = $operation['x-internal'];
-                    unset($operation['x-internal']);
+                    $operation['x-deprecated'] = $operation['deprecated'];
+                    unset($operation['deprecated']);
                 }
             }
         }
 
         // on Components
         foreach ($this->schema['components']['schemas'] as &$schema) {
-            if (isset($schema['x-internal'])) {
-                $schema['x-internal-doc'] = $schema['x-internal'];
-                unset($schema['x-internal']);
+            foreach ($schema['properties'] ?? [] as &$prop) {
+                if ($prop['deprecated'] ?? false) {
+                    $prop['x-deprecated'] = $prop['deprecated'];
+                    unset($prop['deprecated']);
+                }
             }
         }
     }
-    
+
     public function fixNullableRequired(): void
     {
         foreach ($this->schema['components']['schemas'] as &$schema) {
@@ -924,7 +926,10 @@ try {
     $preprocessor->fixEmptyParameters();
 
     // rename x-internal --> x-internal-doc
-    //$preprocessor->renameXInternal();
+    $preprocessor->renameXInternal();
+
+    // rename deprecated --> x-deprecated
+    $preprocessor->renameDeprecated();
 
     // Save
     $preprocessor->save($outputPath);

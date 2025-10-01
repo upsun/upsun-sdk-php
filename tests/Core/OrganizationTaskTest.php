@@ -78,8 +78,6 @@ class OrganizationTaskTest extends BaseTestCase
 
         $oauthProvider = $this->createMock(OAuthProvider::class);
 
-        $headerSelector = new HeaderSelector();
-
         $upsunClient = $this->createMock(UpsunClient::class);
 
         // UserTask init

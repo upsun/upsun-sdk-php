@@ -26,10 +26,10 @@ use Upsun\Model\EnvironmentType;
 use Upsun\Model\EnvironmentVariable;
 use Upsun\Model\HttpAccessPermissions1;
 use Upsun\Model\ProjectVariable;
-use Upsun\Model\Resources1;
 use Upsun\Model\Resources2;
 use Upsun\Model\Resources3;
 use Upsun\Model\Resources4;
+use Upsun\Model\Resources5;
 use Upsun\Model\Route;
 use Upsun\Model\Version;
 use Upsun\Model\VersionCreateInput;
@@ -65,7 +65,7 @@ class EnvironmentTask extends TaskBase
         string $init
     ): AcceptedResponse {
         $environmentActivateInput = new EnvironmentActivateInput(
-            new Resources1(init: $init)
+            new Resources2(init: $init)
         );
         return $this->api->activateEnvironment($projectId, $environmentId, $environmentActivateInput);
     }
@@ -93,7 +93,7 @@ class EnvironmentTask extends TaskBase
             name: $data['name'],
             cloneParent: $data['cloneParent'],
             type: $data['type'],
-            resources: new Resources2($data['init'] ?? null),
+            resources: new Resources3($data['init'] ?? null),
         );
         return $this->api->branchEnvironment($projectId, $environmentId, $environmentBranchInput);
     }
@@ -192,7 +192,7 @@ class EnvironmentTask extends TaskBase
             repository: $data['repository'],
             files: $data['files'],
             config: $data['config'] ?? null,
-            resources: new Resources3(init: $data['init'] ?? null),
+            resources: new Resources4(init: $data['init'] ?? null),
         );
         return $this->api->initializeEnvironment($projectId, $environmentId, $environmentInitializeInput);
     }
@@ -229,7 +229,7 @@ class EnvironmentTask extends TaskBase
     public function merge(string $projectId, string $environmentId, ?int $init = null): AcceptedResponse
     {
         $environmentMergeInput = new EnvironmentMergeInput(
-            new Resources4(init: $init)
+            new Resources5(init: $init)
         );
         return $this->api->mergeEnvironment($projectId, $environmentId, $environmentMergeInput);
     }
@@ -569,26 +569,6 @@ class EnvironmentTask extends TaskBase
     }
 
     /**
-     * Creates a new route
-     *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     */
-    public function createRoute(string $projectId, string $environmentId, array $routeCreateInput): AcceptedResponse
-    {
-        return $this->client->route->create($projectId, $environmentId, $routeCreateInput);
-    }
-
-    /**
-     * Deletes a route
-     *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     */
-    public function deleteRoute(string $projectId, string $environmentId, string $routeId): AcceptedResponse
-    {
-        return $this->client->route->delete($projectId, $environmentId, $routeId);
-    }
-
-    /**
      * Gets a route's info
      *
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
@@ -608,51 +588,6 @@ class EnvironmentTask extends TaskBase
     public function listRoutes(string $projectId, string $environmentId): array
     {
         return $this->client->route->list($projectId, $environmentId);
-    }
-
-    /**
-     * Updates a route
-     *
-     * @param array{
-     *     type: string,
-     *     to: string,
-     *     upstream: string,
-     *     primary?: bool,
-     *     id?: string,
-     *     productionUrl?: string,
-     *     attributes?: bool,
-     *     tls?: array{
-     *       minVersion?: string,
-     *       clientAuthentication?: string,
-     *       clientCertificateAuthorities?: array,
-     *       strictTransportSecurity?: array{
-     *         enabled?: bool,
-     *         includeSubdomains?: bool,
-     *         preload?: bool,
-     *       },
-     *     },
-     *     redirects?: array{
-     *       expires?: string,
-     *       paths: array,
-     *     },
-     *     cache?: array{
-     *       enabled: bool,
-     *       defaultTtl?: int,
-     *       cookies?: array,
-     *       headers?: array
-     *     },
-     *     ssi_enabled?: bool,
-     * } $data
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
-     */
-    public function updateRoute(
-        string $projectId,
-        string $environmentId,
-        string $routeId,
-        array $data
-    ): AcceptedResponse {
-        return $this->client->route->update($projectId, $environmentId, $routeId, $data);
     }
 
     /**

@@ -19,9 +19,9 @@ final class EnvironmentRestoreInput implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly bool $restoreCode,
         private readonly bool $restoreResources,
-        private readonly ?string $environmentName = null,
-        private readonly ?string $branchFrom = null,
-        private readonly ?Resources6 $resources = null,
+        private readonly ?string $environmentName,
+        private readonly ?string $branchFrom,
+        private readonly ?Resources6 $resources,
     ) {
     }
 

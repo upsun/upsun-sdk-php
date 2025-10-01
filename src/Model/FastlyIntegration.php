@@ -25,8 +25,8 @@ final class FastlyIntegration implements ModelInterface, JsonSerializable
         private readonly array $states,
         private readonly string $result,
         private readonly string $serviceId,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }

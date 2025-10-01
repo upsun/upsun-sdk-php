@@ -64,6 +64,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Create backup of environment
      *
+     * Trigger a new backup of an environment to be created. See the [Backups](https://docs.upsun.com/anchors/environments/backup/) section of the documentation for more information.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -84,7 +86,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Create backup of environment
+     * Create backup of environment with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -253,6 +255,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Delete an environment backup
      *
+     * Delete a specific backup from an environment using the `id` of the entry retrieved by the [Get backups list](#tag/Environment-Backups%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1backups%2Fget) endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -273,7 +277,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Delete an environment backup
+     * Delete an environment backup with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -443,6 +447,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Get an environment backup&#39;s info
      *
+     * Get the details of a specific backup from an environment using the `id` of the entry retrieved by the [Get backups list](#tag/Environment-Backups%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1backups%2Fget) endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -463,7 +469,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment backup&#39;s info
+     * Get an environment backup&#39;s info with HTTP Info
      *
      * @return Backup
      *
@@ -633,6 +639,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Get an environment&#39;s backup list
      *
+     * Retrieve a list of objects representing backups of this environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -651,7 +659,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Get an environment&#39;s backup list
+     * Get an environment&#39;s backup list with HTTP Info
      *
      * @return Backup[]
      *
@@ -797,6 +805,8 @@ final class EnvironmentBackupsApi extends AbstractApi
     /**
      * Restore an environment snapshot
      *
+     * Restore a specific backup from an environment using the `id` of the entry retrieved by the [Get backups list](#tag/Environment-Backups%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1backups%2Fget) endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -819,7 +829,7 @@ final class EnvironmentBackupsApi extends AbstractApi
     }
 
     /**
-     * Restore an environment snapshot
+     * Restore an environment snapshot with HTTP Info
      *
      * @return AcceptedResponse
      *

@@ -347,6 +347,7 @@ class SupportTicketTaskTest extends BaseTestCase
         ];
 
         $projectFake = [
+            'id' => $projId,
             'attributes' => [
                 'language' => 'php',
                 'framework' => 'symfony',
@@ -460,6 +461,7 @@ class SupportTicketTaskTest extends BaseTestCase
         ];
 
         $projectFake = [
+            'id' => $projId,
             'attributes' => [
                 'language' => 'php',
                 'framework' => 'symfony',

@@ -64,6 +64,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Add an environment variable
      *
+     * Add a variable to an environment. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. Additionally, the inheritability of an environment variable can be determined through the `is_inheritable` flag (default: true). See the [Environment Variables](https://docs.upsun.com/anchors/variables/set/environment/create/) section in our documentation for more information.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -84,7 +86,7 @@ final class EnvironmentVariablesApi extends AbstractApi
     }
 
     /**
-     * Add an environment variable
+     * Add an environment variable with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -253,6 +255,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Delete an environment variable
      *
+     * Delete a single user-defined environment variable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -273,7 +277,7 @@ final class EnvironmentVariablesApi extends AbstractApi
     }
 
     /**
-     * Delete an environment variable
+     * Delete an environment variable with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -443,6 +447,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Get an environment variable
      *
+     * Retrieve a single user-defined environment variable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -463,7 +469,7 @@ final class EnvironmentVariablesApi extends AbstractApi
     }
 
     /**
-     * Get an environment variable
+     * Get an environment variable with HTTP Info
      *
      * @return EnvironmentVariable
      *
@@ -633,6 +639,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Get list of environment variables
      *
+     * Retrieve a list of objects representing the user-defined variables within an environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -651,7 +659,7 @@ final class EnvironmentVariablesApi extends AbstractApi
     }
 
     /**
-     * Get list of environment variables
+     * Get list of environment variables with HTTP Info
      *
      * @return EnvironmentVariable[]
      *
@@ -797,6 +805,8 @@ final class EnvironmentVariablesApi extends AbstractApi
     /**
      * Update an environment variable
      *
+     * Update a single user-defined environment variable. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. Additionally, the inheritability of an environment variable can be determined through the `is_inheritable` flag (default: true). See the [Variables](https://docs.upsun.com/anchors/variables/) section in our documentation for more information.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -819,7 +829,7 @@ final class EnvironmentVariablesApi extends AbstractApi
     }
 
     /**
-     * Update an environment variable
+     * Update an environment variable with HTTP Info
      *
      * @return AcceptedResponse
      *

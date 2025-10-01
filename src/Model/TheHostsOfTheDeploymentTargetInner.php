@@ -18,8 +18,8 @@ final class TheHostsOfTheDeploymentTargetInner implements ModelInterface, JsonSe
 {
     public function __construct(
         private readonly string $type,
-        private readonly ?string $id = null,
-        private readonly ?array $services = [],
+        private readonly ?string $id,
+        private readonly ?array $services,
     ) {
     }
 

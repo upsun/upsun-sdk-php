@@ -19,7 +19,7 @@ final class TheIssuerOfTheCertificateInner implements ModelInterface, JsonSerial
     public function __construct(
         private readonly string $oid,
         private readonly string $value,
-        private readonly ?string $alias = null,
+        private readonly ?string $alias,
     ) {
     }
 

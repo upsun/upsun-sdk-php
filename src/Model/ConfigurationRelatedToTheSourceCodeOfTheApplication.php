@@ -18,7 +18,7 @@ final class ConfigurationRelatedToTheSourceCodeOfTheApplication implements Model
 {
     public function __construct(
         private readonly array $operations,
-        private readonly ?string $root = null,
+        private readonly ?string $root,
     ) {
     }
 

@@ -20,7 +20,7 @@ final class TheTreeItemsInner implements ModelInterface, JsonSerializable
         private readonly string $path,
         private readonly string $mode,
         private readonly string $type,
-        private readonly ?string $sha = null,
+        private readonly ?string $sha,
     ) {
     }
 

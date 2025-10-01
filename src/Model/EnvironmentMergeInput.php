@@ -17,7 +17,7 @@ use JsonSerializable;
 final class EnvironmentMergeInput implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?Resources5 $resources = null,
+        private readonly ?Resources5 $resources,
     ) {
     }
 

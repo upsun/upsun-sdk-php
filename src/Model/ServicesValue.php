@@ -22,12 +22,12 @@ final class ServicesValue implements ModelInterface, JsonSerializable
         private readonly object $access,
         private readonly object $configuration,
         private readonly array $relationships,
-        private readonly ?int $disk = null,
-        private readonly ?Firewall $firewall = null,
-        private readonly ?Resources $resources = null,
-        private readonly ?string $containerProfile = null,
-        private readonly ?object $endpoints = null,
-        private readonly ?int $instanceCount = null,
+        private readonly ?int $disk,
+        private readonly ?Firewall $firewall,
+        private readonly ?Resources $resources,
+        private readonly ?string $containerProfile,
+        private readonly ?object $endpoints,
+        private readonly ?int $instanceCount,
     ) {
     }
 

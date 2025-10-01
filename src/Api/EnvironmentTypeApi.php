@@ -61,6 +61,8 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment type links
      *
+     * Lists the endpoints used to retrieve info about the environment type.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -79,7 +81,7 @@ final class EnvironmentTypeApi extends AbstractApi
     }
 
     /**
-     * Get environment type links
+     * Get environment type links with HTTP Info
      *
      * @return EnvironmentType
      *
@@ -225,6 +227,8 @@ final class EnvironmentTypeApi extends AbstractApi
     /**
      * Get environment types
      *
+     * List all available environment types
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -241,7 +245,7 @@ final class EnvironmentTypeApi extends AbstractApi
     }
 
     /**
-     * Get environment types
+     * Get environment types with HTTP Info
      *
      * @return EnvironmentType[]
      *

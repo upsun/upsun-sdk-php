@@ -20,8 +20,8 @@ final class CertificateProvisioner implements ModelInterface, JsonSerializable
         private readonly string $id,
         private readonly string $directoryUrl,
         private readonly string $email,
-        private readonly ?string $eabKid = null,
-        private readonly ?string $eabHmacKey = null,
+        private readonly ?string $eabKid,
+        private readonly ?string $eabHmacKey,
     ) {
     }
 

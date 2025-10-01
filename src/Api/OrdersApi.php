@@ -64,6 +64,8 @@ final class OrdersApi extends AbstractApi
     /**
      * Create confirmation credentials for for 3D-Secure
      *
+     * Creates confirmation credentials for payments that require online authorization
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class OrdersApi extends AbstractApi
     }
 
     /**
-     * Create confirmation credentials for for 3D-Secure
+     * Create confirmation credentials for for 3D-Secure with HTTP Info
      *
      * @return CreateAuthorizationCredentials200Response
      *
@@ -230,6 +232,7 @@ final class OrdersApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/download-invoice
      */
     public function downloadInvoice(
@@ -241,7 +244,7 @@ final class OrdersApi extends AbstractApi
     }
 
     /**
-     * Download an invoice.
+     * Download an invoice. with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -368,6 +371,8 @@ final class OrdersApi extends AbstractApi
     /**
      * Get order
      *
+     * Retrieves an order for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -388,7 +393,7 @@ final class OrdersApi extends AbstractApi
     }
 
     /**
-     * Get order
+     * Get order with HTTP Info
      *
      * @return Order
      *
@@ -552,6 +557,8 @@ final class OrdersApi extends AbstractApi
     /**
      * List orders
      *
+     * Retrieves orders for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -576,7 +583,7 @@ final class OrdersApi extends AbstractApi
     }
 
     /**
-     * List orders
+     * List orders with HTTP Info
      *
      * @return ListOrgOrders200Response
      *

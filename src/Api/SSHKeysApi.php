@@ -78,7 +78,7 @@ final class SSHKeysApi extends AbstractApi
     }
 
     /**
-     * Add a new public SSH key to a user
+     * Add a new public SSH key to a user with HTTP Info
      *
      * @return SSHKey
      *
@@ -190,6 +190,7 @@ final class SSHKeysApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/SSH-Keys/operation/delete-ssh-key
      */
     public function deleteSshKey(
@@ -201,7 +202,7 @@ final class SSHKeysApi extends AbstractApi
     }
 
     /**
-     * Delete an SSH key
+     * Delete an SSH key with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -331,7 +332,7 @@ final class SSHKeysApi extends AbstractApi
     }
 
     /**
-     * Get an SSH key
+     * Get an SSH key with HTTP Info
      *
      * @return SSHKey
      *

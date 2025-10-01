@@ -21,8 +21,8 @@ final class ResourcesOverridesValue implements ModelInterface, JsonSerializable
         private readonly array $services,
         private readonly bool $redeployedStart,
         private readonly bool $redeployedEnd,
-        private readonly ?DateTime $startsAt = null,
-        private readonly ?DateTime $endsAt = null,
+        private readonly ?DateTime $startsAt,
+        private readonly ?DateTime $endsAt,
     ) {
     }
 

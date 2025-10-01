@@ -159,6 +159,7 @@ class VariableTaskTest extends BaseTestCase
         $projectVariableId = 'var_456';
 
         $variableFake = [
+            'id' => 'var1',
             'name' => 'VAR_NAME',
             'attributes' => ['attr1' => 'val1'],
             'isJson' => false,
@@ -212,6 +213,7 @@ class VariableTaskTest extends BaseTestCase
 
         $variablesFake = [
             [
+                'id' => 'var1',
                 'name' => 'VAR_ONE',
                 'attributes' => ['attr1' => 'val1'],
                 'isJson' => false,
@@ -223,6 +225,7 @@ class VariableTaskTest extends BaseTestCase
                 'value' => 'value1',
             ],
             [
+                'id' => 'var2',
                 'name' => 'VAR_TWO',
                 'attributes' => ['attr2' => 'val2'],
                 'isJson' => true,
@@ -444,6 +447,7 @@ class VariableTaskTest extends BaseTestCase
         $variableId = 'var_789';
 
         $variableFake = [
+            'id' => 'var1',
             'name' => 'VAR_NAME',
             'attributes' => ['attr1' => 'val1'],
             'isJson' => false,
@@ -503,6 +507,7 @@ class VariableTaskTest extends BaseTestCase
 
         $variablesFake = [
             [
+                'id' => 'var1',
                 'name' => 'VAR_1',
                 'attributes' => ['attr' => 'val1'],
                 'isJson' => false,
@@ -519,6 +524,7 @@ class VariableTaskTest extends BaseTestCase
                 'value' => 'value1',
             ],
             [
+                'id' => 'var2',
                 'name' => 'VAR_2',
                 'attributes' => ['attr' => 'val2'],
                 'isJson' => true,
@@ -614,7 +620,18 @@ class VariableTaskTest extends BaseTestCase
         $variableId = 'var_789';
         $data = [
             'name' => 'VAR_NAME_UPDATED',
-            'value' => 'newValue'
+            'attributes' => [
+                'origin' => 'test',
+                'custom' => 'fake-attribute'
+            ],
+            'value' => 'newValue',
+            'isJson' => false,
+            'isSensitive' => true,
+            'visibleBuild' => true,
+            'visibleRuntime' => false,
+            'applicationScope' => ['app1', 'app2'],
+            'isEnabled' => true,
+            'isInheritable' => false,
         ];
 
         $this->httpClient

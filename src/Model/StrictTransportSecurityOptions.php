@@ -17,9 +17,9 @@ use JsonSerializable;
 final class StrictTransportSecurityOptions implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?bool $enabled = null,
-        private readonly ?bool $includeSubdomains = null,
-        private readonly ?bool $preload = null,
+        private readonly ?bool $enabled,
+        private readonly ?bool $includeSubdomains,
+        private readonly ?bool $preload,
     ) {
     }
 

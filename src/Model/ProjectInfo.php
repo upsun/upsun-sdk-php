@@ -21,8 +21,8 @@ final class ProjectInfo implements ModelInterface, JsonSerializable
         private readonly string $name,
         private readonly object $capabilities,
         private readonly object $settings,
-        private readonly ?string $namespace = null,
-        private readonly ?string $organization = null,
+        private readonly ?string $namespace,
+        private readonly ?string $organization,
     ) {
     }
 

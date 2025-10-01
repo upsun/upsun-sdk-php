@@ -17,9 +17,9 @@ use JsonSerializable;
 final class TheCommitDistanceInfoBetweenParentAndChildEnvironments implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?int $commitsAhead = null,
-        private readonly ?int $commitsBehind = null,
-        private readonly ?string $parentRef = null,
+        private readonly ?int $commitsAhead,
+        private readonly ?int $commitsBehind,
+        private readonly ?string $parentRef,
     ) {
     }
 

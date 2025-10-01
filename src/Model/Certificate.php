@@ -28,8 +28,8 @@ final class Certificate implements ModelInterface, JsonSerializable
         private readonly array $authType,
         private readonly array $issuer,
         private readonly DateTime $expiresAt,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
     ) {
     }
 

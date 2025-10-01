@@ -17,7 +17,7 @@ use JsonSerializable;
 final class Resources1 implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $profileSize = null,
+        private readonly ?string $profileSize,
     ) {
     }
 

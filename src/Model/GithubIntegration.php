@@ -28,9 +28,9 @@ final class GithubIntegration implements ModelInterface, JsonSerializable
         private readonly bool $buildPullRequestsPostMerge,
         private readonly bool $pullRequestsCloneParentData,
         private readonly string $tokenType,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
-        private readonly ?string $baseUrl = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
+        private readonly ?string $baseUrl,
         private readonly ?string $id = null,
     ) {
     }

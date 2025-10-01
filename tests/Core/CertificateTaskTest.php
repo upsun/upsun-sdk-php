@@ -143,6 +143,7 @@ class CertificateTaskTest extends BaseTestCase
         $certificateId = 'cert_456';
 
         $fakeCertificate = [
+            'id' => 'ref1',
             'certificate' => '-----BEGIN CERTIFICATE----- ...',
             'chain' => ['chain1', 'chain2'],
             'isProvisioned' => true,
@@ -200,6 +201,7 @@ class CertificateTaskTest extends BaseTestCase
 
         $fakeCertificates = [
             [
+                'id' => 'ref1',
                 'certificate' => '-----BEGIN CERTIFICATE----- ...',
                 'chain' => ['chain1', 'chain2'],
                 'isProvisioned' => true,
@@ -215,6 +217,7 @@ class CertificateTaskTest extends BaseTestCase
                 'updatedAt' => '2025-09-26T12:00:00+00:00',
             ],
             [
+                'id' => 'ref2',
                 'certificate' => '-----BEGIN CERTIFICATE----- ...',
                 'chain' => ['chainA', 'chainB'],
                 'isProvisioned' => true,

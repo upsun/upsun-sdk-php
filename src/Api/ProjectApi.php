@@ -64,6 +64,8 @@ final class ProjectApi extends AbstractApi
     /**
      * Clear project build cache
      *
+     * On rare occasions, a project's build cache can become corrupted. This endpoint will entirely flush the project's build cache. More information on [clearing the build cache can be found in our user documentation.](https://docs.upsun.com/anchors/troubleshoot/clear-build-cache/)
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -80,7 +82,7 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Clear project build cache
+     * Clear project build cache with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -202,6 +204,8 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project
      *
+     * Retrieve the details of a single project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -218,7 +222,7 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Get a project
+     * Get a project with HTTP Info
      *
      * @return Project
      *
@@ -340,6 +344,8 @@ final class ProjectApi extends AbstractApi
     /**
      * Get a project&#39;s capabilities
      *
+     * Get a list of capabilities on a project, as defined by the billing system. For instance, one special capability that could be defined on a project is large development environments.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -356,7 +362,7 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Get a project&#39;s capabilities
+     * Get a project&#39;s capabilities with HTTP Info
      *
      * @return ProjectCapabilities
      *
@@ -478,6 +484,8 @@ final class ProjectApi extends AbstractApi
     /**
      * Update a project
      *
+     * Update the details of an existing project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -496,7 +504,7 @@ final class ProjectApi extends AbstractApi
     }
 
     /**
-     * Update a project
+     * Update a project with HTTP Info
      *
      * @return AcceptedResponse
      *

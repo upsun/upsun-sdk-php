@@ -82,7 +82,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     }
 
     /**
-     * Integrate project with a third-party service
+     * Integrate project with a third-party service with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -245,7 +245,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     }
 
     /**
-     * Delete an existing third-party integration
+     * Delete an existing third-party integration with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -409,7 +409,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     }
 
     /**
-     * Get information about an existing third-party integration
+     * Get information about an existing third-party integration with HTTP Info
      *
      * @return Integration
      *
@@ -571,7 +571,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     }
 
     /**
-     * Get list of existing integrations for a project
+     * Get list of existing integrations for a project with HTTP Info
      *
      * @return Integration[]
      *
@@ -713,7 +713,7 @@ final class ThirdPartyIntegrationsApi extends AbstractApi
     }
 
     /**
-     * Update an existing third-party integration
+     * Update an existing third-party integration with HTTP Info
      *
      * @return AcceptedResponse
      *

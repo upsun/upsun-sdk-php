@@ -238,6 +238,7 @@ class EnvironmentTaskTest extends BaseTestCase
                 200,
                 ['Content-Type' => 'application/json'],
                 json_encode([
+                    'id' => 'ref1',
                     '_links' => [],
                     '_embedded' => [],
                     'created_at' => '2025-09-08T13:29:56.333140+00:00',
@@ -314,6 +315,7 @@ class EnvironmentTaskTest extends BaseTestCase
                 ['Content-Type' => 'application/json'],
                 json_encode([
                     [
+                        'id' => 'ref1',
                         '_links' => [],
                         '_embedded' => [],
                         'created_at' => '2025-09-08T13:29:56.333140+00:00',
@@ -373,6 +375,7 @@ class EnvironmentTaskTest extends BaseTestCase
                         'supports_restrict_robots' => true
                     ],
                     [
+                        'id' => 'ref2',
                         '_links' => [],
                         '_embedded' => [],
                         'created_at' => '2025-09-08T13:29:56.333140+00:00',
@@ -584,6 +587,7 @@ class EnvironmentTaskTest extends BaseTestCase
                 ['Content-Type' => 'application/json'],
                 json_encode([
                     [
+                        'id' => 'version1',
                         'commit' => 'azertyuiop1236',
                         'locked' => false,
                         'routing' => [
@@ -591,6 +595,7 @@ class EnvironmentTaskTest extends BaseTestCase
                         ]
                     ],
                     [
+                        'id' => 'version2',
                         'commit' => 'azertyuiop1235',
                         'locked' => false,
                         'routing' => [
@@ -1000,6 +1005,7 @@ class EnvironmentTaskTest extends BaseTestCase
                 200,
                 ['Content-Type' => 'application/json'],
                 json_encode([
+                    'id' => $variableId,
                     'name' => 'API_KEY',
                     'value' => 'secret',
                     'attributes' => [],
@@ -1178,61 +1184,6 @@ class EnvironmentTaskTest extends BaseTestCase
         $this->assertEquals("env:proj2", $result[1]->getName());
     }
 
-    public function testCreateRoute(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $input = [
-            'type' => 'upstream',
-            'to' => 'app:http',
-            'upstream' => 'app',
-            'primary' => true,
-            'id' => 'route-123',
-            'productionUrl' => 'https://www.example.com',
-            'attributes' => [
-                'id' => 'route-123',
-                'restrictRobots' => false,
-            ],
-            'tls' => [
-                'minVersion' => 'TLSv1.2',
-                'clientAuthentication' => null,
-                'strictTransportSecurity' => [
-                    'enabled' => true,
-                    'includeSubdomains' => true,
-                    'preload' => false,
-                ],
-                'clientCertificateAuthorities' => null,
-            ],
-            'redirects' => [
-                'paths' => [],
-                'expires' => ''
-            ],
-            'cache' => [
-                'enabled' => true,
-                'defaultTtl' => 3600,
-                'cookies' => [],
-                'headers' => [],
-            ],
-            'ssi_enabled' => true,
-        ];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->createRoute($projectId, $environmentId, $input);
-
-        $acceptedResponse = new AcceptedResponse('accepted', 200);
-        $this->assertEquals($acceptedResponse, $result);
-    }
-
     public function testGetRoute(): void
     {
         $projectId = 'project-123';
@@ -1245,6 +1196,7 @@ class EnvironmentTaskTest extends BaseTestCase
                 200,
                 ['Content-Type' => 'application/json'],
                 json_encode([
+                    'id' => 'var1',
                     'type' => 'upstream',
                     'to' => 'app:http',
                     'upstream' => 'app',
@@ -1288,7 +1240,6 @@ class EnvironmentTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $routeId = 'route-1';
 
         $this->httpClient
             ->method('sendRequest')
@@ -1371,85 +1322,6 @@ class EnvironmentTaskTest extends BaseTestCase
 
         $this->assertEquals("route-123", $result[0]->getId());
         $this->assertEquals("route-456", $result[1]->getId());
-    }
-
-    public function testUpdateRoute(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $routeId = 'route-1';
-        $input = [
-            'type' => 'upstream',
-            'to' => 'app:http',
-            'upstream' => 'app',
-            'primary' => true,
-            'id' => 'route-123',
-            'productionUrl' => 'https://www.example.com',
-            'attributes' => [
-                'id' => 'route-123',
-                'restrictRobots' => false,
-            ],
-            'tls' => [
-                'minVersion' => 'TLSv1.2',
-                'clientAuthentication' => null,
-                'strictTransportSecurity' => [
-                    'enabled' => true,
-                    'includeSubdomains' => true,
-                    'preload' => false,
-                ],
-                'clientCertificateAuthorities' => null,
-            ],
-            'redirects' => [
-                'paths' => [],
-                'expires' => ''
-            ],
-            'cache' => [
-                'enabled' => true,
-                'defaultTtl' => 3600,
-                'cookies' => [],
-                'headers' => [],
-            ],
-            'ssi_enabled' => true,
-        ];
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->updateRoute($projectId, $environmentId, $routeId, $input);
-
-        $acceptedResponse = new AcceptedResponse('accepted', 200);
-        $this->assertEquals($acceptedResponse, $result);
-    }
-
-    public function testDeleteRoute(): void
-    {
-        $projectId = 'project-123';
-        $environmentId = 'env-456';
-        $routeId = 'route-1';
-
-        $this->httpClient
-            ->method('sendRequest')
-            ->willReturn(new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                json_encode([
-                    'status' => 'accepted',
-                    'code' => 200
-                ])
-            ));
-
-        $result = $this->environmentTask->deleteRoute($projectId, $environmentId, $routeId);
-
-        $acceptedResponse = new AcceptedResponse('accepted', 200);
-        $this->assertEquals($acceptedResponse, $result);
     }
 
     /**
@@ -1599,6 +1471,7 @@ class EnvironmentTaskTest extends BaseTestCase
                 ['Content-Type' => 'application/json'],
                 json_encode([
                     [
+                        'id' => 'ref1',
                         'type' => 'environment',
                         'name' => 'DEV',
                         'attributes' => [
@@ -1613,6 +1486,7 @@ class EnvironmentTaskTest extends BaseTestCase
                         'replacementFor' => null,
                     ],
                     [
+                        'id' => 'ref2',
                         'type' => 'production',
                         'name' => 'PROD',
                         'attributes' => [
@@ -1931,7 +1805,7 @@ class EnvironmentTaskTest extends BaseTestCase
                     'routes' => [
                         'https://dev-fakeproj.eu-5.platformsh.site/' => [
                             'primary' => true,
-                            'id' => null,
+                            'id' => 'route1',
                             'production_url' => 'https://dev-fakeproj.eu-5.platformsh.site/',
                             'attributes' => [],
                             'type' => 'upstream',
@@ -1963,7 +1837,7 @@ class EnvironmentTaskTest extends BaseTestCase
                         ],
                         'http://dev-fakeproj.eu-5.platformsh.site/' => [
                             'primary' => false,
-                            'id' => null,
+                            'id' => 'route2',
                             'production_url' => 'http://dev-fakeproj.eu-5.platformsh.site/',
                             'attributes' => [],
                             'type' => 'redirect',
@@ -2349,7 +2223,7 @@ class EnvironmentTaskTest extends BaseTestCase
                         'routes' => [
                             'https://dev-fakeproj.eu-5.platformsh.site/' => [
                                 'primary' => true,
-                                'id' => null,
+                                'id' => 'route1',
                                 'production_url' => 'https://dev-fakeproj.eu-5.platformsh.site/',
                                 'attributes' => [],
                                 'type' => 'upstream',
@@ -2381,7 +2255,7 @@ class EnvironmentTaskTest extends BaseTestCase
                             ],
                             'http://dev-fakeproj.eu-5.platformsh.site/' => [
                                 'primary' => false,
-                                'id' => null,
+                                'id' => 'route2',
                                 'production_url' => 'http://dev-fakeproj.eu-5.platformsh.site/',
                                 'attributes' => [],
                                 'type' => 'redirect',
@@ -2746,7 +2620,7 @@ class EnvironmentTaskTest extends BaseTestCase
                         'routes' => [
                             'https://dev-fakeproj.eu-5.platformsh.site/' => [
                                 'primary' => true,
-                                'id' => null,
+                                'id' => 'route4',
                                 'production_url' => 'https://dev-fakeproj.eu-5.platformsh.site/',
                                 'attributes' => [],
                                 'type' => 'upstream',
@@ -2778,7 +2652,7 @@ class EnvironmentTaskTest extends BaseTestCase
                             ],
                             'http://dev-fakeproj.eu-5.platformsh.site/' => [
                                 'primary' => false,
-                                'id' => null,
+                                'id' => 'route5',
                                 'production_url' => 'http://dev-fakeproj.eu-5.platformsh.site/',
                                 'attributes' => [],
                                 'type' => 'redirect',
@@ -2967,10 +2841,6 @@ class EnvironmentTaskTest extends BaseTestCase
     {
         $projectId = 'project-123';
         $environmentId = 'env-456';
-        $input = [
-            'operation' => 'sync',
-            'variables' => []
-        ];
 
         $this->httpClient
             ->method('sendRequest')
@@ -2979,16 +2849,19 @@ class EnvironmentTaskTest extends BaseTestCase
                 ['Content-Type' => 'application/json'],
                 json_encode([
                     [
+                        'id' => 'ope1',
                         'app' => 'app1',
                         'operation' => 'build',
                         'command' => 'composer install'
                     ],
                     [
+                        'id' => 'ope2',
                         'app' => 'app2',
                         'operation' => 'deploy',
                         'command' => 'symfony deploy'
                     ],
                     [
+                        'id' => 'ope3',
                         'app' => 'app3',
                         'operation' => 'backup',
                         'command' => 'backup --full'

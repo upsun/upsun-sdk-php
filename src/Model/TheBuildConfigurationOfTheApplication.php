@@ -18,7 +18,7 @@ final class TheBuildConfigurationOfTheApplication implements ModelInterface, Jso
 {
     public function __construct(
         private readonly array $caches,
-        private readonly ?string $flavor = null,
+        private readonly ?string $flavor,
     ) {
     }
 

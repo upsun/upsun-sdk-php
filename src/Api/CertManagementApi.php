@@ -64,6 +64,8 @@ final class CertManagementApi extends AbstractApi
     /**
      * Add an SSL certificate
      *
+     * Add a single SSL certificate to a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class CertManagementApi extends AbstractApi
     }
 
     /**
-     * Add an SSL certificate
+     * Add an SSL certificate with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -227,6 +229,8 @@ final class CertManagementApi extends AbstractApi
     /**
      * Delete an SSL certificate
      *
+     * Delete a single SSL certificate associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -245,7 +249,7 @@ final class CertManagementApi extends AbstractApi
     }
 
     /**
-     * Delete an SSL certificate
+     * Delete an SSL certificate with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -391,6 +395,8 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get an SSL certificate
      *
+     * Retrieve information about a single SSL certificate associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -409,7 +415,7 @@ final class CertManagementApi extends AbstractApi
     }
 
     /**
-     * Get an SSL certificate
+     * Get an SSL certificate with HTTP Info
      *
      * @return Certificate
      *
@@ -555,6 +561,8 @@ final class CertManagementApi extends AbstractApi
     /**
      * Get list of SSL certificates
      *
+     * Retrieve a list of objects representing the SSL certificates associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -571,7 +579,7 @@ final class CertManagementApi extends AbstractApi
     }
 
     /**
-     * Get list of SSL certificates
+     * Get list of SSL certificates with HTTP Info
      *
      * @return Certificate[]
      *
@@ -693,6 +701,8 @@ final class CertManagementApi extends AbstractApi
     /**
      * Update an SSL certificate
      *
+     * Update a single SSL certificate associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -713,7 +723,7 @@ final class CertManagementApi extends AbstractApi
     }
 
     /**
-     * Update an SSL certificate
+     * Update an SSL certificate with HTTP Info
      *
      * @return AcceptedResponse
      *

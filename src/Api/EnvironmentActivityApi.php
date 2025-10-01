@@ -62,6 +62,8 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Cancel an environment activity
      *
+     * Cancel a single activity as specified by an `id` returned by the [Get environment activities list](#tag/Environment-Activity%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1activities%2Fget) endpoint.  Please note that not all activities are cancelable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
-     * Cancel an environment activity
+     * Cancel an environment activity with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -252,6 +254,8 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get an environment activity log entry
      *
+     * Retrieve a single environment activity entry as specified by an `id` returned by the [Get environment activities list](#tag/Environment-Activity%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1activities%2Fget) endpoint. See the documentation on that endpoint for details about the information this endpoint can return.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -272,7 +276,7 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
-     * Get an environment activity log entry
+     * Get an environment activity log entry with HTTP Info
      *
      * @return Activity
      *
@@ -442,6 +446,8 @@ final class EnvironmentActivityApi extends AbstractApi
     /**
      * Get environment activity log
      *
+     * Retrieve an environment's activity log. This returns a list of object with records of actions such as:  - Commits being pushed to the repository - A new environment being branched out from the specified environment - A snapshot being created of the specified environment  The object includes a timestamp of when the action occurred (`created_at`), when the action concluded (`updated_at`), the current `state` of the action, the action's completion percentage (`completion_percent`), and other related information in the `payload`.  The contents of the `payload` varies based on the `type` of the activity. For example:  - An `environment.branch` action's `payload` can contain objects representing the `parent` environment and the branching action's `outcome`.  - An `environment.push` action's `payload` can contain objects representing the `environment`, the specific `commits` included in the push, and the `user` who pushed.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -460,7 +466,7 @@ final class EnvironmentActivityApi extends AbstractApi
     }
 
     /**
-     * Get environment activity log
+     * Get environment activity log with HTTP Info
      *
      * @return Activity[]
      *

@@ -34,7 +34,7 @@ final class Deployment implements ModelInterface, JsonSerializable
         private readonly array $webapps,
         private readonly array $workers,
         private readonly array $containerProfiles,
-        private readonly ?VPNConfiguration $vpn = null,
+        private readonly ?VPNConfiguration $vpn,
         private readonly ?DateTime $createdAt = null,
         private readonly ?DateTime $updatedAt = null,
         private readonly ?string $fingerprint = null,

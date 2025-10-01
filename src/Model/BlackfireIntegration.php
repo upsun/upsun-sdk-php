@@ -21,8 +21,8 @@ final class BlackfireIntegration implements ModelInterface, JsonSerializable
         private readonly string $type,
         private readonly array $environmentsCredentials,
         private readonly bool $continuousProfiling,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }

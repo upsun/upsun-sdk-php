@@ -26,13 +26,13 @@ final class Backup implements ModelInterface, JsonSerializable
         private readonly bool $safe,
         private readonly bool $restorable,
         private readonly bool $automated,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
-        private readonly ?DateTime $expiresAt = null,
-        private readonly ?int $index = null,
-        private readonly ?int $sizeOfVolumes = null,
-        private readonly ?int $sizeUsed = null,
-        private readonly ?string $deployment = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
+        private readonly ?DateTime $expiresAt,
+        private readonly ?int $index,
+        private readonly ?int $sizeOfVolumes,
+        private readonly ?int $sizeUsed,
+        private readonly ?string $deployment,
     ) {
     }
 

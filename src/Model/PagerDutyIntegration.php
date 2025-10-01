@@ -20,8 +20,8 @@ final class PagerDutyIntegration implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly string $type,
         private readonly string $routingKey,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }

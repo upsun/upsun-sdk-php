@@ -62,6 +62,8 @@ final class RuntimeOperationsApi extends AbstractApi
     /**
      * Execute a runtime operation
      *
+     * Execute a runtime operation on a currently deployed environment. This allows you to run one-off commands, such as rebuilding static assets on demand, by defining an `operations` key in a project's `.upsun/config.yaml` configuration. More information on runtime operations is [available in our user documentation](https://docs.upsun.com/anchors/app/runtime-operations/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -84,7 +86,7 @@ final class RuntimeOperationsApi extends AbstractApi
     }
 
     /**
-     * Execute a runtime operation
+     * Execute a runtime operation with HTTP Info
      *
      * @return AcceptedResponse
      *

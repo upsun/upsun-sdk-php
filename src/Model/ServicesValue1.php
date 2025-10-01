@@ -17,9 +17,9 @@ use JsonSerializable;
 final class ServicesValue1 implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?Resources1 $resources = null,
-        private readonly ?int $instanceCount = null,
-        private readonly ?int $disk = null,
+        private readonly ?Resources1 $resources,
+        private readonly ?int $instanceCount,
+        private readonly ?int $disk,
     ) {
     }
 

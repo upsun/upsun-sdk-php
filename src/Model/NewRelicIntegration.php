@@ -23,8 +23,8 @@ final class NewRelicIntegration implements ModelInterface, JsonSerializable
         private readonly string $url,
         private readonly bool $tlsVerify,
         private readonly array $excludedServices,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }

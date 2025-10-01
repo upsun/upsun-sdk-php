@@ -62,6 +62,8 @@ final class APITokensApi extends AbstractApi
     /**
      * Create an API token
      *
+     * Creates an API token
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -80,7 +82,7 @@ final class APITokensApi extends AbstractApi
     }
 
     /**
-     * Create an API token
+     * Create an API token with HTTP Info
      *
      * @return APIToken
      *
@@ -213,8 +215,11 @@ final class APITokensApi extends AbstractApi
     /**
      * Delete an API token
      *
+     * Deletes an API token
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/API-Tokens/operation/delete-api-token
      */
     public function deleteApiToken(
@@ -228,7 +233,7 @@ final class APITokensApi extends AbstractApi
     }
 
     /**
-     * Delete an API token
+     * Delete an API token with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -366,6 +371,8 @@ final class APITokensApi extends AbstractApi
     /**
      * Get an API token
      *
+     * Retrieves the specified API token.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -384,7 +391,7 @@ final class APITokensApi extends AbstractApi
     }
 
     /**
-     * Get an API token
+     * Get an API token with HTTP Info
      *
      * @return APIToken
      *
@@ -530,6 +537,8 @@ final class APITokensApi extends AbstractApi
     /**
      * List a user&#39;s API tokens
      *
+     * Retrieves a list of API tokens associated with a single user.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -546,7 +555,7 @@ final class APITokensApi extends AbstractApi
     }
 
     /**
-     * List a user&#39;s API tokens
+     * List a user&#39;s API tokens with HTTP Info
      *
      * @return APIToken[]
      *

@@ -64,8 +64,11 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Cancel a pending invitation to an organization
      *
+     * Cancels the specified invitation.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Organization-Invitations/operation/cancel-org-invite
      */
     public function cancelOrgInvite(
@@ -79,7 +82,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     }
 
     /**
-     * Cancel a pending invitation to an organization
+     * Cancel a pending invitation to an organization with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -217,6 +220,8 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * Invite user to an organization by email
      *
+     * Creates an invitation to an organization for a user with the specified email address.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -235,7 +240,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     }
 
     /**
-     * Invite user to an organization by email
+     * Invite user to an organization by email with HTTP Info
      *
      * @return OrganizationInvitation
      *
@@ -368,6 +373,8 @@ final class OrganizationInvitationsApi extends AbstractApi
     /**
      * List invitations to an organization
      *
+     * Returns a list of invitations to an organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -394,7 +401,7 @@ final class OrganizationInvitationsApi extends AbstractApi
     }
 
     /**
-     * List invitations to an organization
+     * List invitations to an organization with HTTP Info
      *
      * @return OrganizationInvitation[]
      *

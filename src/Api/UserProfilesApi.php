@@ -85,7 +85,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Create a user profile picture
+     * Create a user profile picture with HTTP Info
      *
      * @return CreateProfilePicture200Response
      *
@@ -175,7 +175,7 @@ final class UserProfilesApi extends AbstractApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -222,6 +222,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/delete-profile-picture
      */
     public function deleteProfilePicture(
@@ -233,7 +234,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Delete a user profile picture
+     * Delete a user profile picture with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -349,6 +350,7 @@ final class UserProfilesApi extends AbstractApi
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/get-address
      */
     public function getAddress(
@@ -360,7 +362,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Get a user address
+     * Get a user address with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -496,7 +498,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Get a single user profile
+     * Get a single user profile with HTTP Info
      *
      * @return Profile
      *
@@ -632,7 +634,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * List user profiles
+     * List user profiles with HTTP Info
      *
      * @return ListProfiles200Response
      *
@@ -730,8 +732,11 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Update a user address
      *
+     * Update a user address, supplying one or more key/value pairs to to change.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/User-Profiles/operation/update-address
      */
     public function updateAddress(
@@ -745,7 +750,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Update a user address
+     * Update a user address with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -876,6 +881,8 @@ final class UserProfilesApi extends AbstractApi
     /**
      * Update a user profile
      *
+     * Update a user profile, supplying one or more key/value pairs to to change.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -894,7 +901,7 @@ final class UserProfilesApi extends AbstractApi
     }
 
     /**
-     * Update a user profile
+     * Update a user profile with HTTP Info
      *
      * @return Profile
      *

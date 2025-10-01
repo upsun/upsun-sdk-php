@@ -62,6 +62,8 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Cancel a project activity
      *
+     * Cancel a single activity as specified by an `id` returned by the [Get project activity log](#tag/Project-Activity%2Fpaths%2F~1projects~1%7BprojectId%7D~1activities%2Fget) endpoint.  Please note that not all activities are cancelable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -80,7 +82,7 @@ final class ProjectActivityApi extends AbstractApi
     }
 
     /**
-     * Cancel a project activity
+     * Cancel a project activity with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -226,6 +228,8 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get a project activity log entry
      *
+     * Retrieve a single activity log entry as specified by an `id` returned by the [Get project activity log](#tag/Project-Activity%2Fpaths%2F~1projects~1%7BprojectId%7D~1activities%2Fget) endpoint. See the documentation on that endpoint for details about the information this endpoint can return.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -244,7 +248,7 @@ final class ProjectActivityApi extends AbstractApi
     }
 
     /**
-     * Get a project activity log entry
+     * Get a project activity log entry with HTTP Info
      *
      * @return Activity
      *
@@ -390,6 +394,8 @@ final class ProjectActivityApi extends AbstractApi
     /**
      * Get project activity log
      *
+     * Retrieve a project's activity log including logging actions in all environments within a project. This returns a list of objects with records of actions such as:  - Commits being pushed to the repository - A new environment being branched out from the specified environment - A snapshot being created of the specified environment  The object includes a timestamp of when the action occurred (`created_at`), when the action concluded (`updated_at`), the current `state` of the action, the action's completion percentage (`completion_percent`), the `environments` it applies to and when the activity expires (`expires_at`).  There are other related information in the `payload`. The contents of the `payload` varies based on the `type` of the activity. For example:  - An `environment.branch` action's `payload` can contain objects representing the environment's `parent` environment and the branching action's `outcome`.  - An `environment.push` action's `payload` can contain objects representing the `environment`, the specific `commits` included in the push, and the `user` who pushed.  Expired activities are removed from the project activity log, except the last 100 expired objects provided they are not of type `environment.cron` or `environment.backup`.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -406,7 +412,7 @@ final class ProjectActivityApi extends AbstractApi
     }
 
     /**
-     * Get project activity log
+     * Get project activity log with HTTP Info
      *
      * @return Activity[]
      *

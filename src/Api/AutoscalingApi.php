@@ -62,6 +62,8 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
+     * Retrieves Autoscaler settings
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -223,6 +225,8 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     *
+     * Modifies Autoscaler settings
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -399,6 +403,8 @@ final class AutoscalingApi extends AbstractApi
 
     /**
      *
+     * Sends an Autoscaler alert for processing
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -573,6 +579,8 @@ final class AutoscalingApi extends AbstractApi
     }
 
     /**
+     *
+     * Updates Autoscaler settings
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception

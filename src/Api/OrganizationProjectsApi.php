@@ -68,6 +68,8 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Create project
      *
+     * Creates a new project in the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -86,7 +88,7 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * Create project
+     * Create project with HTTP Info
      *
      * @return OrganizationProject
      *
@@ -231,8 +233,11 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Delete project
      *
+     * Deletes the specified project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Organization-Projects/operation/delete-org-project
      */
     public function deleteOrgProject(
@@ -246,7 +251,7 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * Delete project
+     * Delete project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -384,6 +389,8 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Get project
      *
+     * Retrieves the specified project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -402,7 +409,7 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * Get project
+     * Get project with HTTP Info
      *
      * @return OrganizationProject
      *
@@ -548,6 +555,8 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * List projects
      *
+     * Retrieves a list of projects for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -582,7 +591,7 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * List projects
+     * List projects with HTTP Info
      *
      * @return ListOrgProjects200Response
      *
@@ -889,6 +898,8 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Query project carbon emissions metrics
      *
+     * Queries the carbon emission data for the specified project using the supplied parameters.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -913,7 +924,7 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * Query project carbon emissions metrics
+     * Query project carbon emissions metrics with HTTP Info
      *
      * @return ProjectCarbon
      *
@@ -1115,6 +1126,8 @@ final class OrganizationProjectsApi extends AbstractApi
     /**
      * Update project
      *
+     * Updates the specified project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1135,7 +1148,7 @@ final class OrganizationProjectsApi extends AbstractApi
     }
 
     /**
-     * Update project
+     * Update project with HTTP Info
      *
      * @return OrganizationProject
      *

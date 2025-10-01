@@ -6,7 +6,6 @@ use Exception;
 use InvalidArgumentException;
 use Upsun\Api\DeploymentApi;
 use Upsun\ApiException;
-use Upsun\Model\AcceptedResponse;
 use Upsun\Model\UpdateProjectsEnvironmentsDeploymentsNextRequest;
 use Upsun\UpsunClient;
 
@@ -59,7 +58,7 @@ class ResourcesTask extends TaskBase
         string $projectId,
         string $environmentId,
         array $resourcesData
-    ): AcceptedResponse {
+    ): void {
         // ✅ Validate before building request
         $this->validateResourcesData($resourcesData);
 
@@ -69,7 +68,7 @@ class ResourcesTask extends TaskBase
             workers: $resourcesData['workers'] ?? null,
         );
 
-        return $this->api->updateProjectsEnvironmentsDeploymentsNext(
+        $this->api->updateProjectsEnvironmentsDeploymentsNext(
             $projectId,
             $environmentId,
             $data

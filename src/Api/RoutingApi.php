@@ -61,6 +61,8 @@ final class RoutingApi extends AbstractApi
     /**
      * Get a route&#39;s info
      *
+     * Get details of a route from an environment using the `id` of the entry retrieved by the [Get environment routes list](#tag/Environment-Routes%2Fpaths%2F~1projects~1%7BprojectId%7D~1environments~1%7BenvironmentId%7D~1routes%2Fget) endpoint.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -81,7 +83,7 @@ final class RoutingApi extends AbstractApi
     }
 
     /**
-     * Get a route&#39;s info
+     * Get a route&#39;s info with HTTP Info
      *
      * @return Route
      *
@@ -251,6 +253,8 @@ final class RoutingApi extends AbstractApi
     /**
      * Get list of routes
      *
+     * Retrieve a list of objects containing route definitions for a specific environment. The definitions returned by this endpoint are those present in an environment's `.upsun/config.yaml` file.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -269,7 +273,7 @@ final class RoutingApi extends AbstractApi
     }
 
     /**
-     * Get list of routes
+     * Get list of routes with HTTP Info
      *
      * @return Route[]
      *

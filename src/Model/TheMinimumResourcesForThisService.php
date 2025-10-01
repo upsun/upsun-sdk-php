@@ -20,8 +20,8 @@ final class TheMinimumResourcesForThisService implements ModelInterface, JsonSer
         private readonly float $cpu,
         private readonly int $memory,
         private readonly string $cpuType,
-        private readonly ?int $disk = null,
-        private readonly ?string $profileSize = null,
+        private readonly ?int $disk,
+        private readonly ?string $profileSize,
     ) {
     }
 

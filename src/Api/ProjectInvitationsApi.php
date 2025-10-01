@@ -64,8 +64,11 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Cancel a pending invitation to a project
      *
+     * Cancels the specified invitation.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Project-Invitations/operation/cancel-project-invite
      */
     public function cancelProjectInvite(
@@ -79,7 +82,7 @@ final class ProjectInvitationsApi extends AbstractApi
     }
 
     /**
-     * Cancel a pending invitation to a project
+     * Cancel a pending invitation to a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -217,6 +220,8 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * Invite user to a project by email
      *
+     * Creates an invitation to a project for a user with the specified email address.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -235,7 +240,7 @@ final class ProjectInvitationsApi extends AbstractApi
     }
 
     /**
-     * Invite user to a project by email
+     * Invite user to a project by email with HTTP Info
      *
      * @return ProjectInvitation
      *
@@ -368,6 +373,8 @@ final class ProjectInvitationsApi extends AbstractApi
     /**
      * List invitations to a project
      *
+     * Returns a list of invitations to a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -394,7 +401,7 @@ final class ProjectInvitationsApi extends AbstractApi
     }
 
     /**
-     * List invitations to a project
+     * List invitations to a project with HTTP Info
      *
      * @return ProjectInvitation[]
      *

@@ -62,8 +62,11 @@ final class VouchersApi extends AbstractApi
     /**
      * Apply voucher
      *
+     * Applies a voucher for the specified organization, and refreshes the currently open order.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Vouchers/operation/apply-org-voucher
      */
     public function applyOrgVoucher(
@@ -77,7 +80,7 @@ final class VouchersApi extends AbstractApi
     }
 
     /**
-     * Apply voucher
+     * Apply voucher with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -214,6 +217,8 @@ final class VouchersApi extends AbstractApi
     /**
      * List vouchers
      *
+     * Retrieves vouchers for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -230,7 +235,7 @@ final class VouchersApi extends AbstractApi
     }
 
     /**
-     * List vouchers
+     * List vouchers with HTTP Info
      *
      * @return Vouchers
      *

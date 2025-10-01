@@ -64,6 +64,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add a project domain
      *
+     * Add a single domain to a project. If the `ssl` field is left blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via Let's Encrypt.](https://docs.upsun.com/anchors/routes/https/certificates/)
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Add a project domain
+     * Add a project domain with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -227,6 +229,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Add an environment domain
      *
+     * Add a single domain to an environment. If the environment is not production, the `replacement_for` field is required, which binds a new domain to an existing one from a production environment. If the `ssl` field is left blank without an object containing a PEM-encoded SSL certificate, a certificate will [be provisioned for you via Let's Encrypt](https://docs.upsun.com/anchors/routes/https/certificates/).
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -247,7 +251,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Add an environment domain
+     * Add an environment domain with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -416,6 +420,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete a project domain
      *
+     * Delete a single user-specified domain associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -434,7 +440,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Delete a project domain
+     * Delete a project domain with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -580,6 +586,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Delete an environment domain
      *
+     * Delete a single user-specified domain associated with an environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -600,7 +608,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Delete an environment domain
+     * Delete an environment domain with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -770,6 +778,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a project domain
      *
+     * Retrieve information about a single user-specified domain associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -788,7 +798,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Get a project domain
+     * Get a project domain with HTTP Info
      *
      * @return Domain
      *
@@ -934,6 +944,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get an environment domain
      *
+     * Retrieve information about a single user-specified domain associated with an environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -954,7 +966,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Get an environment domain
+     * Get an environment domain with HTTP Info
      *
      * @return Domain
      *
@@ -1124,6 +1136,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get list of project domains
      *
+     * Retrieve a list of objects representing the user-specified domains associated with a project. Note that this does *not* return the domains automatically assigned to a project that appear under \"Access site\" on the user interface.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1140,7 +1154,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Get list of project domains
+     * Get list of project domains with HTTP Info
      *
      * @return Domain[]
      *
@@ -1262,6 +1276,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Get a list of environment domains
      *
+     * Retrieve a list of objects representing the user-specified domains associated with an environment. Note that this does *not* return the `.platformsh.site` subdomains, which are automatically assigned to the environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1280,7 +1296,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Get a list of environment domains
+     * Get a list of environment domains with HTTP Info
      *
      * @return Domain[]
      *
@@ -1426,6 +1442,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update a project domain
      *
+     * Update the information associated with a single user-specified domain associated with a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1446,7 +1464,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Update a project domain
+     * Update a project domain with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -1615,6 +1633,8 @@ final class DomainManagementApi extends AbstractApi
     /**
      * Update an environment domain
      *
+     * Update the information associated with a single user-specified domain associated with an environment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1637,7 +1657,7 @@ final class DomainManagementApi extends AbstractApi
     }
 
     /**
-     * Update an environment domain
+     * Update an environment domain with HTTP Info
      *
      * @return AcceptedResponse
      *

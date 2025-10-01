@@ -64,6 +64,8 @@ final class RegionsApi extends AbstractApi
     /**
      * Get region
      *
+     * Retrieves the specified region.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -80,7 +82,7 @@ final class RegionsApi extends AbstractApi
     }
 
     /**
-     * Get region
+     * Get region with HTTP Info
      *
      * @return Region
      *
@@ -202,6 +204,8 @@ final class RegionsApi extends AbstractApi
     /**
      * List regions
      *
+     * Retrieves a list of available regions.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -230,7 +234,7 @@ final class RegionsApi extends AbstractApi
     }
 
     /**
-     * List regions
+     * List regions with HTTP Info
      *
      * @return ListRegions200Response
      *

@@ -61,30 +61,29 @@ use {{invokerPackage}}\Core\OAuthProvider;
 {{#summary}}
      * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
 {{/summary}}
-{{#description}}
+{{#notes}}
      *
-     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
-     *
-{{/description}}
-{{#vendorExtensions.x-deprecated}}
-     * @deprecated
-{{/vendorExtensions.x-deprecated}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{{.}}}
+{{/notes}}
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
      * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
-     *
 {{/vendorExtensions.x-return-types-displayReturn}}
 {{^vendorExtensions.x-return-types-displayReturn}}
 {{#vendorExtensions.x-phpdoc.return}}
      *
      * @return {{{returnType}}}
-     *
 {{/vendorExtensions.x-phpdoc.return}}
 {{/vendorExtensions.x-return-types-displayReturn}}
+     *
      * @see https://docs.upsun.com/api/#tag/{{vendorExtensions.x-tag-id-kebab}}/operation/{{vendorExtensions.x-property-id-kebab}}
+{{#vendorExtensions.x-deprecated}}
+     *
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      */
     public function {{operationId}}({{#allParams}}
         {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
@@ -97,13 +96,8 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
     /**
 {{#summary}}
-     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}} with HTTP Info
 {{/summary}}
-{{#description}}
-     * 
-     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
-     *
-{{/description}}
 {{#vendorExtensions.x-return-types-displayReturn}}
      *
      * @return {{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}{{vendorExtensions.x-return-types-union}}{{/returnType}}
@@ -116,6 +110,10 @@ use {{invokerPackage}}\Core\OAuthProvider;
 {{/vendorExtensions.x-return-types-displayReturn}}
      *
      * @throws InvalidArgumentException|Exception
+{{#vendorExtensions.x-deprecated}}
+     *
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      */
     private function {{operationId}}WithHttpInfo({{#allParams}}
         {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
@@ -147,16 +145,11 @@ use {{invokerPackage}}\Core\OAuthProvider;
     /**
      * Create request for operation '{{{operationId}}}'
      *
-{{#servers}}
-{{#-first}}
-     * This operation contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-{{/-first}}
-     * URL: {{{url}}}
-{{#-last}}
-     *
-{{/-last}}
-{{/servers}}
      * @throws InvalidArgumentException
+{{#vendorExtensions.x-deprecated}}
+     *
+     * @deprecated
+{{/vendorExtensions.x-deprecated}}
      */
     private function {{operationId}}Request({{#allParams}}
         {{#isNullable}}?{{/isNullable}}{{^isNullable}}{{^required}}?{{/required}}{{/isNullable}}{{#isContainer}}array{{/isContainer}}{{^isContainer}}{{{dataType}}}{{/isContainer}} ${{paramName}}{{#isNullable}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/isNullable}}{{^isNullable}}{{^required}} = {{#defaultValue}}{{{.}}}{{/defaultValue}}{{^defaultValue}}null{{/defaultValue}}{{/required}}{{/isNullable}}{{^-last}},{{/-last}}{{/allParams}}
@@ -327,10 +320,10 @@ use {{invokerPackage}}\Core\OAuthProvider;
             } else {
                 $httpBody = ${{paramName}};
             }
-        } elseif (count($formParams) > 0) {
+        } elseif ($formParams !== []) {
         {{/bodyParams}}
         {{^bodyParams}}
-        if (count($formParams) > 0) {
+        if ($formParams !== []) {
         {{/bodyParams}}
             if ($multipart) {
                 $multipartContents = [];

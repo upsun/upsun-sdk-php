@@ -61,6 +61,8 @@ final class PlansApi extends AbstractApi
     /**
      * List available plans
      *
+     * Retrieve information about plans and pricing on Platform.sh.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -75,7 +77,7 @@ final class PlansApi extends AbstractApi
     }
 
     /**
-     * List available plans
+     * List available plans with HTTP Info
      *
      * @return ListPlans200Response
      *

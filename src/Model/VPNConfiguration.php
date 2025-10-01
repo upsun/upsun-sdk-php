@@ -28,9 +28,9 @@ final class VPNConfiguration implements ModelInterface, JsonSerializable
         private readonly string $ikelifetime,
         private readonly string $lifetime,
         private readonly string $margintime,
-        private readonly ?string $identity = null,
-        private readonly ?string $secondIdentity = null,
-        private readonly ?string $remoteIdentity = null,
+        private readonly ?string $identity,
+        private readonly ?string $secondIdentity,
+        private readonly ?string $remoteIdentity,
     ) {
     }
 

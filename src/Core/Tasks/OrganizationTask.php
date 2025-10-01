@@ -127,6 +127,7 @@ class OrganizationTask extends TaskBase
     public function list(
         ?array $filterId = null,
         ?array $filterOwnerId = null,
+        ?array $filterType = null,
         ?array $filterName = null,
         ?array $filterLabel = null,
         ?array $filterVendor = null,
@@ -140,6 +141,7 @@ class OrganizationTask extends TaskBase
     ): ListOrgs200Response {
         return $this->api->listOrgs(
             new StringFilter(...$this->normalizeFilter($filterId)),
+            new StringFilter(...$this->normalizeFilter($filterType)),
             new StringFilter(...$this->normalizeFilter($filterOwnerId)),
             new StringFilter(...$this->normalizeFilter($filterName)),
             new StringFilter(...$this->normalizeFilter($filterLabel)),
@@ -162,6 +164,7 @@ class OrganizationTask extends TaskBase
     public function listUserOrgs(
         string $userId,
         ?array $filterId = null,
+        ?array $filterType = null,
         ?array $filterVendor = null,
         ?array $filterStatus = null,
         ?array $filterUpdatedAt = null,
@@ -173,6 +176,7 @@ class OrganizationTask extends TaskBase
         return $this->api->listUserOrgs(
             $userId,
             new StringFilter(...$this->normalizeFilter($filterId)),
+            new StringFilter(...$this->normalizeFilter($filterType)),
             new StringFilter(...$this->normalizeFilter($filterVendor)),
             new StringFilter(...$this->normalizeFilter($filterStatus)),
             new DateTimeFilter(...$this->normalizeFilter($filterUpdatedAt)),
@@ -667,7 +671,7 @@ class OrganizationTask extends TaskBase
      *     billingContact?: string,
      * } $data
      */
-    public function updateProfile(string $organizationId, ?array $data = null,): Profile
+    public function updateProfile(string $organizationId, ?array $data = null): Profile
     {
         $update_org_profile_request = $data ? new UpdateOrgProfileRequest(
             defaultCatalog: $data['defaultCatalog'],

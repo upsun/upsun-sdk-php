@@ -21,7 +21,7 @@ final class EnvironmentBranchInput implements ModelInterface, JsonSerializable
         private readonly string $name,
         private readonly bool $cloneParent,
         private readonly string $type,
-        private readonly ?Resources3 $resources = null,
+        private readonly ?Resources3 $resources,
     ) {
     }
 

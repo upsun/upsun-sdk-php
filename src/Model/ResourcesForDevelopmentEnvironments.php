@@ -18,9 +18,9 @@ final class ResourcesForDevelopmentEnvironments implements ModelInterface, JsonS
 {
     public function __construct(
         private readonly bool $legacyDevelopment,
-        private readonly ?float $maxCpu = null,
-        private readonly ?int $maxMemory = null,
-        private readonly ?int $maxEnvironments = null,
+        private readonly ?float $maxCpu,
+        private readonly ?int $maxMemory,
+        private readonly ?int $maxEnvironments,
     ) {
     }
 

@@ -28,8 +28,8 @@ final class BitbucketServerIntegration implements ModelInterface, JsonSerializab
         private readonly string $repository,
         private readonly bool $buildPullRequests,
         private readonly bool $pullRequestsCloneParentData,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?DateTime $createdAt,
+        private readonly ?DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }

@@ -78,7 +78,7 @@ final class AlertsApi extends AbstractApi
     }
 
     /**
-     * Get usage alerts for a subscription
+     * Get usage alerts for a subscription with HTTP Info
      *
      * @return GetUsageAlerts200Response
      *
@@ -218,7 +218,7 @@ final class AlertsApi extends AbstractApi
     }
 
     /**
-     * Update usage alerts.
+     * Update usage alerts. with HTTP Info
      *
      * @return GetUsageAlerts200Response
      *

@@ -64,6 +64,8 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Add a project variable
      *
+     * Add a variable to a project. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. See the [Variables](https://docs.upsun.com/anchors/variables/set/project/create/) section in our documentation for more information.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class ProjectVariablesApi extends AbstractApi
     }
 
     /**
-     * Add a project variable
+     * Add a project variable with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -227,6 +229,8 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Delete a project variable
      *
+     * Delete a single user-defined project variable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -245,7 +249,7 @@ final class ProjectVariablesApi extends AbstractApi
     }
 
     /**
-     * Delete a project variable
+     * Delete a project variable with HTTP Info
      *
      * @return AcceptedResponse
      *
@@ -391,6 +395,8 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get a project variable
      *
+     * Retrieve a single user-defined project variable.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -409,7 +415,7 @@ final class ProjectVariablesApi extends AbstractApi
     }
 
     /**
-     * Get a project variable
+     * Get a project variable with HTTP Info
      *
      * @return ProjectVariable
      *
@@ -555,6 +561,8 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Get list of project variables
      *
+     * Retrieve a list of objects representing the user-defined variables within a project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -571,7 +579,7 @@ final class ProjectVariablesApi extends AbstractApi
     }
 
     /**
-     * Get list of project variables
+     * Get list of project variables with HTTP Info
      *
      * @return ProjectVariable[]
      *
@@ -693,6 +701,8 @@ final class ProjectVariablesApi extends AbstractApi
     /**
      * Update a project variable
      *
+     * Update a single user-defined project variable. The `value` can be either a string or a JSON object (default: string), as specified by the `is_json` boolean flag. See the [Variables](https://docs.upsun.com/anchors/variables/set/project/create/) section in our documentation for more information.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -713,7 +723,7 @@ final class ProjectVariablesApi extends AbstractApi
     }
 
     /**
-     * Update a project variable
+     * Update a project variable with HTTP Info
      *
      * @return AcceptedResponse
      *

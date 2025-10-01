@@ -19,7 +19,7 @@ final class OperationsThatCanBeTriggeredOnThisApplicationValue implements ModelI
     public function __construct(
         private readonly TheCommandsDefinition $commands,
         private readonly string $role,
-        private readonly ?int $timeout = null,
+        private readonly ?int $timeout,
     ) {
     }
 

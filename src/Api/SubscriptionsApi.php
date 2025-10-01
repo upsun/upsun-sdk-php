@@ -90,7 +90,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Checks if the user is able to create a new project.
+     * Checks if the user is able to create a new project. with HTTP Info
      *
      * @return CanCreateNewOrgSubscription200Response
      *
@@ -236,7 +236,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Checks if the user is able to update a project.
+     * Checks if the user is able to update a project. with HTTP Info
      *
      * @return CanUpdateSubscription200Response
      *
@@ -433,6 +433,8 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Create subscription
      *
+     * Creates a subscription for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -451,7 +453,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Create subscription
+     * Create subscription with HTTP Info
      *
      * @return Subscription
      *
@@ -596,8 +598,11 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Delete subscription
      *
+     * Deletes a subscription for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/delete-org-subscription
      */
     public function deleteOrgSubscription(
@@ -611,7 +616,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Delete subscription
+     * Delete subscription with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -775,7 +780,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Estimate the price of a new subscription
+     * Estimate the price of a new subscription with HTTP Info
      *
      * @return EstimationObject
      *
@@ -1063,7 +1068,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Estimate the price of a subscription
+     * Estimate the price of a subscription with HTTP Info
      *
      * @return EstimationObject
      *
@@ -1314,6 +1319,8 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get subscription
      *
+     * Retrieves a subscription for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1332,7 +1339,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Get subscription
+     * Get subscription with HTTP Info
      *
      * @return Subscription
      *
@@ -1500,7 +1507,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Get current usage for a subscription
+     * Get current usage for a subscription with HTTP Info
      *
      * @return SubscriptionCurrentUsageObject
      *
@@ -1683,6 +1690,8 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Get usage alerts
      *
+     * Retrieves current and available usage alerts.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1701,7 +1710,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Get usage alerts
+     * Get usage alerts with HTTP Info
      *
      * @return GetSubscriptionUsageAlerts200Response
      *
@@ -1847,6 +1856,8 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * List subscriptions
      *
+     * Retrieves subscriptions for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -1883,7 +1894,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * List subscriptions
+     * List subscriptions with HTTP Info
      *
      * @return ListOrgSubscriptions200Response
      *
@@ -2227,7 +2238,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * List addons for a subscription
+     * List addons for a subscription with HTTP Info
      *
      * @return SubscriptionAddonsObject
      *
@@ -2373,6 +2384,8 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update subscription
      *
+     * Updates a subscription for the specified organization.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2393,7 +2406,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Update subscription
+     * Update subscription with HTTP Info
      *
      * @return Subscription
      *
@@ -2550,6 +2563,8 @@ final class SubscriptionsApi extends AbstractApi
     /**
      * Update usage alerts.
      *
+     * Updates usage alerts for a subscription.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -2570,7 +2585,7 @@ final class SubscriptionsApi extends AbstractApi
     }
 
     /**
-     * Update usage alerts.
+     * Update usage alerts. with HTTP Info
      *
      * @return GetSubscriptionUsageAlerts200Response
      *

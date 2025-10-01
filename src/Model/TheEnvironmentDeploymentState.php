@@ -20,9 +20,9 @@ final class TheEnvironmentDeploymentState implements ModelInterface, JsonSeriali
     public function __construct(
         private readonly bool $lastDeploymentSuccessful,
         private readonly TheCronsDeploymentState $crons,
-        private readonly ?DateTime $lastDeploymentAt = null,
-        private readonly ?DateTime $lastAutoscaleUpAt = null,
-        private readonly ?DateTime $lastAutoscaleDownAt = null,
+        private readonly ?DateTime $lastDeploymentAt,
+        private readonly ?DateTime $lastAutoscaleUpAt,
+        private readonly ?DateTime $lastAutoscaleDownAt,
     ) {
     }
 

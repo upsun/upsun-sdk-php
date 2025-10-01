@@ -18,7 +18,7 @@ final class TheHostsOfTheDeploymentTargetInner1 implements ModelInterface, JsonS
 {
     public function __construct(
         private readonly string $type,
-        private readonly ?string $id = null,
+        private readonly ?string $id,
         private readonly ?array $services = [],
     ) {
     }

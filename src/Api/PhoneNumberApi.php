@@ -63,8 +63,11 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Confirm phone number
      *
+     * Confirms phone number using a verification code.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/PhoneNumber/operation/confirm-phone-number
      */
     public function confirmPhoneNumber(
@@ -80,7 +83,7 @@ final class PhoneNumberApi extends AbstractApi
     }
 
     /**
-     * Confirm phone number
+     * Confirm phone number with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -229,6 +232,8 @@ final class PhoneNumberApi extends AbstractApi
     /**
      * Verify phone number
      *
+     * Starts a phone number verification session.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -247,7 +252,7 @@ final class PhoneNumberApi extends AbstractApi
     }
 
     /**
-     * Verify phone number
+     * Verify phone number with HTTP Info
      *
      * @return VerifyPhoneNumber200Response
      *

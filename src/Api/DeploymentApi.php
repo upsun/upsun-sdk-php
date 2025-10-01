@@ -62,6 +62,8 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get a single environment deployment
      *
+     * Retrieve a single deployment configuration with an id of `current`. This may be subject to change in the future. Only `current` can be queried.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -82,7 +84,7 @@ final class DeploymentApi extends AbstractApi
     }
 
     /**
-     * Get a single environment deployment
+     * Get a single environment deployment with HTTP Info
      *
      * @return Deployment
      *
@@ -252,6 +254,8 @@ final class DeploymentApi extends AbstractApi
     /**
      * Get an environment&#39;s deployment information
      *
+     * Retrieve the read-only configuration of an environment's deployment. The returned information is everything required to recreate a project's current deployment.  More specifically, the objects returned by this endpoint contain the configuration derived from the repository's YAML configuration file: `.upsun/config.yaml`.  Additionally, any values deriving from environment variables, the domains attached to a project, project access settings, etc. are included here.  This endpoint currently returns a list containing a single deployment configuration with an `id` of `current`. This may be subject to change in the future.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -270,7 +274,7 @@ final class DeploymentApi extends AbstractApi
     }
 
     /**
-     * Get an environment&#39;s deployment information
+     * Get an environment&#39;s deployment information with HTTP Info
      *
      * @return Deployment[]
      *
@@ -416,8 +420,11 @@ final class DeploymentApi extends AbstractApi
     /**
      * Update the next deployment
      *
+     * Update resources for either webapps, services, or workers in the next deployment.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag//operation/
      */
     public function updateProjectsEnvironmentsDeploymentsNext(
@@ -433,7 +440,7 @@ final class DeploymentApi extends AbstractApi
     }
 
     /**
-     * Update the next deployment
+     * Update the next deployment with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */

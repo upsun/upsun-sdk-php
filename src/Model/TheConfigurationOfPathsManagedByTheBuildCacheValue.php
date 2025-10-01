@@ -20,7 +20,7 @@ final class TheConfigurationOfPathsManagedByTheBuildCacheValue implements ModelI
         private readonly array $watch,
         private readonly bool $allowStale,
         private readonly bool $shareBetweenApps,
-        private readonly ?string $directory = null,
+        private readonly ?string $directory,
     ) {
     }
 

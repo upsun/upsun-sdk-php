@@ -63,6 +63,8 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get team access for a project
      *
+     * Retrieves the team's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -81,7 +83,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Get team access for a project
+     * Get team access for a project with HTTP Info
      *
      * @return TeamProjectAccess
      *
@@ -227,6 +229,8 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Get project access for a team
      *
+     * Retrieves the team's permissions for the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -245,7 +249,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Get project access for a team
+     * Get project access for a team with HTTP Info
      *
      * @return TeamProjectAccess
      *
@@ -391,8 +395,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Grant team access to a project
      *
+     * Grants one or more team access to a specific project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-project-team-access
      */
     public function grantProjectTeamAccess(
@@ -406,7 +413,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Grant team access to a project
+     * Grant team access to a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -543,8 +550,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Grant project access to a team
      *
+     * Adds the team to one or more specified projects.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/grant-team-project-access
      */
     public function grantTeamProjectAccess(
@@ -558,7 +568,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Grant project access to a team
+     * Grant project access to a team with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -695,6 +705,8 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List team access for a project
      *
+     * Returns a list of items representing the project access.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -719,7 +731,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * List team access for a project
+     * List team access for a project with HTTP Info
      *
      * @return ListProjectTeamAccess200Response
      *
@@ -931,6 +943,8 @@ final class TeamAccessApi extends AbstractApi
     /**
      * List project access for a team
      *
+     * Returns a list of items representing the team's project access.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
@@ -955,7 +969,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * List project access for a team
+     * List project access for a team with HTTP Info
      *
      * @return ListProjectTeamAccess200Response
      *
@@ -1167,8 +1181,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Remove team access for a project
      *
+     * Removes the team from the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-project-team-access
      */
     public function removeProjectTeamAccess(
@@ -1182,7 +1199,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Remove team access for a project
+     * Remove team access for a project with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -1320,8 +1337,11 @@ final class TeamAccessApi extends AbstractApi
     /**
      * Remove project access for a team
      *
+     * Removes the team from the current project.
+     *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
+     *
      * @see https://docs.upsun.com/api/#tag/Team-Access/operation/remove-team-project-access
      */
     public function removeTeamProjectAccess(
@@ -1335,7 +1355,7 @@ final class TeamAccessApi extends AbstractApi
     }
 
     /**
-     * Remove project access for a team
+     * Remove project access for a team with HTTP Info
      *
      * @throws InvalidArgumentException|Exception
      */

@@ -17,8 +17,8 @@ use JsonSerializable;
 final class MappingOfClustersToEnterpriseApplicationsValue implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?string $activeDocroot = null,
-        private readonly ?array $docrootVersions = [],
+        private readonly ?string $activeDocroot,
+        private readonly ?array $docrootVersions,
     ) {
     }
 
