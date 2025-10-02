@@ -82,7 +82,7 @@ $response = $client->project->update(<projectId>, $projectData);
 ### Example: Delete a project
 
 ```php
-$client->organization->deleteProject(<organizationId>, <projectId>);
+$client->organizations->deleteProject(<organizationId>, <projectId>);
 ```
 
 ---

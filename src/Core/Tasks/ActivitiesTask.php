@@ -3,7 +3,6 @@
 namespace Upsun\Core\Tasks;
 
 use Exception;
-use Upsun\Api\AutoscalingApi;
 use Upsun\ApiException;
 use Upsun\Api\EnvironmentActivityApi;
 use Upsun\Api\ProjectActivityApi;
@@ -18,13 +17,32 @@ use Upsun\UpsunClient;
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
  */
-class AutoscalingTask extends TaskBase
+class ActivitiesTask extends TaskBase
 {
     public function __construct(
         public UpsunClient $client,
-        private readonly AutoscalingApi $api,
+        private readonly ProjectActivityApi $prjApi,
+        private readonly EnvironmentActivityApi $envApi
     ) {
         parent::__construct($this->client);
+    }
+
+    /**
+     * Cancels a project (or environment) activity
+     *
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     */
+    public function cancel(string $projectId, string $activityId, ?string $environmentId = null): AcceptedResponse
+    {
+        if (!$environmentId) {
+            return $this->prjApi->actionProjectsActivitiesCancel($projectId, $activityId);
+        } else {
+            return $this->envApi->actionProjectsEnvironmentsActivitiesCancel(
+                $projectId,
+                $environmentId,
+                $activityId
+            );
+        }
     }
 
     /**
