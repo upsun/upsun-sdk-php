@@ -3,6 +3,7 @@
 /**
  * Low level Connection (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +13,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class Connection implements ModelInterface, JsonSerializable
@@ -23,8 +23,8 @@ final class Connection implements ModelInterface, JsonSerializable
         private readonly ?bool $isMandatory = null,
         private readonly ?string $subject = null,
         private readonly ?string $emailAddress = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -76,12 +76,12 @@ final class Connection implements ModelInterface, JsonSerializable
         return $this->emailAddress;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

@@ -12,13 +12,12 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class TheInformationAboutTheCommitter implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly DateTime $date,
+        private readonly \DateTime $date,
         private readonly string $name,
         private readonly string $email,
     ) {
@@ -43,7 +42,7 @@ final class TheInformationAboutTheCommitter implements ModelInterface, JsonSeria
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getDate(): DateTime
+    public function getDate(): \DateTime
     {
         return $this->date;
     }

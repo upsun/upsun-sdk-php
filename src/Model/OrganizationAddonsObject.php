@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationAddonsObject (auto-generated)
  *
+ * The list of available and current add-ons of an organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

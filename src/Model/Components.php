@@ -3,6 +3,8 @@
 /**
  * Low level Components (auto-generated)
  *
+ * The components of the project
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

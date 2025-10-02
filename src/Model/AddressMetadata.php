@@ -3,6 +3,8 @@
 /**
  * Low level AddressMetadata (auto-generated)
  *
+ * Information about fields required to express an address.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

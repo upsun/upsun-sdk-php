@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationAlertConfig (auto-generated)
  *
+ * The alert configuration for an organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

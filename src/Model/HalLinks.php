@@ -3,6 +3,8 @@
 /**
  * Low level HalLinks (auto-generated)
  *
+ * Links to _self, and previous or next page, given that they exist.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

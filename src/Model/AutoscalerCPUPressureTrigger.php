@@ -3,6 +3,9 @@
 /**
  * Low level AutoscalerCPUPressureTrigger (auto-generated)
  *
+ * CPU pressure trigger settings. When CPU pressure goes below lower bound, service will be scaled down. When CPU
+ * pressure goes above upper bound, service will be scaled up.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

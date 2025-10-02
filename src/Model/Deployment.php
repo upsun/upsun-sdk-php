@@ -12,7 +12,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class Deployment implements ModelInterface, JsonSerializable
@@ -35,8 +34,8 @@ final class Deployment implements ModelInterface, JsonSerializable
         private readonly array $workers,
         private readonly array $containerProfiles,
         private readonly ?VPNConfiguration $vpn,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $fingerprint = null,
     ) {
     }
@@ -180,12 +179,12 @@ final class Deployment implements ModelInterface, JsonSerializable
         return $this->containerProfiles;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

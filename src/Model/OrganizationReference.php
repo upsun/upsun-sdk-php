@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationReference (auto-generated)
  *
+ * The referenced organization, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +14,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class OrganizationReference implements ModelInterface, JsonSerializable
@@ -24,8 +25,8 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
         private readonly ?string $name = null,
         private readonly ?string $label = null,
         private readonly ?string $vendor = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -83,12 +84,12 @@ final class OrganizationReference implements ModelInterface, JsonSerializable
         return $this->vendor;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

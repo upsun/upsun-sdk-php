@@ -209,7 +209,7 @@ class OpenApiPreprocessor
             echo "  → {$routeType}: " . count($properties) . " total properties, {$nullableCount} nullable\n";
         }
     }
-    
+
     /**
      * Add project.subscription.id field if not exist yet
      * @todo remove if solved: https://lab.plat.farm/sdk/git/-/merge_requests/4006#note_2218419
@@ -271,7 +271,7 @@ class OpenApiPreprocessor
                 if (!empty($operation['tags'])) {
                     $operation['x-tag-id-kebab'] = preg_replace('/\s+/', '-', $operation['tags'][0]);
                 }
-                
+
                 // --- Remove "default": null if $ref exists in requestBody schema ---
                 if (isset($operation['requestBody']['content']['application/json']['schema']['properties'])) {
                     $properties = $operation['requestBody']['content']['application/json']['schema']['properties'];
@@ -317,7 +317,7 @@ class OpenApiPreprocessor
                             if (
                                 isset($schema['type'])
                                 && $schema['type'] === 'object'
-                                && isset($schema['properties']['items']['$ref'])  // <-- Condition plus précise
+                                && isset($schema['properties']['items']['$ref'])
                             ) {
                                 $ref = $schema['properties']['items']['$ref'];
                                 $parts = explode('/', $ref);
@@ -879,6 +879,80 @@ class OpenApiPreprocessor
 
         echo "✅ PATCH operation added for $path\n";
     }
+
+    public function wordwrapDescription(): void
+    {
+        // on paths
+        foreach ($this->schema['paths'] as &$methods) {
+            foreach ($methods as &$operation) {
+                if (isset($operation['description'])) {
+                    $operation['x-description'] = $this->preprocessDescription($operation['description']);
+                }
+            }
+        }
+
+        // on Components
+        foreach ($this->schema['components']['schemas'] as &$schema) {
+            if ($schema['description'] ?? false) {
+                $schema['x-description'] = $this->preprocessDescription($schema['description']);
+            }
+        }
+    }
+
+    public function preprocessDescription(string $description): array
+    {
+        // Replace Markdown links with absolute Upsun URLs
+        $description = preg_replace_callback(
+            '/\[([^\]]+)\]\((#[^)]+)\)/',
+            function ($matches) {
+                $text = $matches[1];
+                $anchor = $matches[2];
+                $url = 'https://docs.upsun.com/api/' . $anchor;
+
+                // Decode JSON Pointer style
+                $url = str_replace('~1', '/', $url);
+                $url = str_replace(['%7B', '%7D'], ['{', '}'], $url);
+
+                return $text . ' (' . $url . ')';
+            },
+            $description
+        );
+
+        // Replace %2F with "/"
+        $description = str_replace('%2F', '/', $description);
+
+        // Normalize whitespace
+        $normalized = preg_replace('/\s+/', ' ', trim($description));
+
+        // Wrap at 113 chars
+        $lines = wordwrap($normalized, 113, "\n", false);
+
+        return explode("\n", $lines);
+    }
+
+    public function markEmptyResponses(): void
+    {
+        // on Path
+        foreach ($this->schema['paths'] as &$methods) {
+            foreach ($methods as &$operation) {
+                foreach ($operation['responses'] as $respKey) {
+                    if (!empty($operation[$respKey])) {
+                        foreach ($operation[$respKey] as &$resp) {
+                            if (isset($resp['content']['application/json']['schema']['$ref'])) {
+                                $ref = $resp['content']['application/json']['schema']['$ref'];
+                                $refName = basename($ref);
+                                if (empty($this->schema['components']['schemas'][$refName]['properties'])) {
+                                    // remove response.content as targeted schema is property empty
+                                    unset($resp['content']);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 # Main script
@@ -903,7 +977,7 @@ try {
 
     // Optional: clean required properties
     $preprocessor->cleanRequiredProperties();
-    
+
     // Add Project.subscription.id
     $preprocessor->fixProjectSubscriptionId();
 
@@ -930,6 +1004,12 @@ try {
 
     // rename deprecated --> x-deprecated
     $preprocessor->renameDeprecated();
+
+    // wordwrap description
+    $preprocessor->wordwrapDescription();
+
+    // remove response.content targeting empty object
+    $preprocessor->markEmptyResponses();
 
     // Save
     $preprocessor->save($outputPath);

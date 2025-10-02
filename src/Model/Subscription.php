@@ -3,6 +3,8 @@
 /**
  * Low level Subscription (auto-generated)
  *
+ * The subscription object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +14,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class Subscription implements ModelInterface, JsonSerializable
@@ -20,8 +21,8 @@ final class Subscription implements ModelInterface, JsonSerializable
     public function __construct(
         private readonly ?string $id = null,
         private readonly ?string $status = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
         private readonly ?string $owner = null,
         private readonly ?OwnerInfo $ownerInfo = null,
         private readonly ?string $vendor = null,
@@ -95,12 +96,12 @@ final class Subscription implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

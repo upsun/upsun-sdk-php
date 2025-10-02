@@ -3,6 +3,8 @@
 /**
  * Low level PlanRecords (auto-generated)
  *
+ * The plan record object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,20 +14,19 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class PlanRecords implements ModelInterface, JsonSerializable
 {
     public function __construct(
-        private readonly ?DateTime $end = null,
+        private readonly ?\DateTime $end = null,
         private readonly ?string $id = null,
         private readonly ?string $owner = null,
         private readonly ?string $subscriptionId = null,
         private readonly ?string $sku = null,
         private readonly ?string $plan = null,
         private readonly ?array $options = [],
-        private readonly ?DateTime $start = null,
+        private readonly ?\DateTime $start = null,
         private readonly ?string $status = null,
     ) {
     }
@@ -85,12 +86,12 @@ final class PlanRecords implements ModelInterface, JsonSerializable
         return $this->options;
     }
 
-    public function getStart(): ?DateTime
+    public function getStart(): ?\DateTime
     {
         return $this->start;
     }
 
-    public function getEnd(): ?DateTime
+    public function getEnd(): ?\DateTime
     {
         return $this->end;
     }

@@ -3,6 +3,7 @@
 /**
  * Low level GetTypeAllowance200ResponseCurrenciesGBP (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

@@ -59,12 +59,12 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
     /**
 {{#summary}}
-     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}}
-{{/summary}}
-{{#notes}}
-     *
      * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{{.}}}
-{{/notes}}
+     *
+{{/summary}}
+{{#vendorExtensions.x-description}}
+     * {{{.}}}
+{{/vendorExtensions.x-description}}
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -96,7 +96,7 @@ use {{invokerPackage}}\Core\OAuthProvider;
 
     /**
 {{#summary}}
-     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{.}} with HTTP Info
+     * {{#vendorExtensions.x-internal-doc}}[INTERNAL] {{/vendorExtensions.x-internal-doc}}{{{.}}} with HTTP Info
 {{/summary}}
 {{#vendorExtensions.x-return-types-displayReturn}}
      *

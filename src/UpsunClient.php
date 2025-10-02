@@ -6,6 +6,7 @@ use Http\Discovery\Psr17FactoryDiscovery;
 use Psr\Http\Client\ClientInterface;
 use Symfony\Component\HttpClient\Psr18Client;
 use Upsun\Api\AddOnsApi;
+use Upsun\Api\AlertsApi;
 use Upsun\Api\APITokensApi;
 use Upsun\Api\CertManagementApi;
 use Upsun\Api\ConnectionsApi;
@@ -211,6 +212,7 @@ class UpsunClient
             new SystemInformationApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
+            new AlertsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->region = new RegionTask(
             $this,

@@ -3,6 +3,7 @@
 /**
  * Low level Team (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +13,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class Team implements ModelInterface, JsonSerializable
@@ -23,8 +23,8 @@ final class Team implements ModelInterface, JsonSerializable
         private readonly ?string $label = null,
         private readonly ?array $projectPermissions = [],
         private readonly ?TeamCounts $counts = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -76,12 +76,12 @@ final class Team implements ModelInterface, JsonSerializable
         return $this->counts;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

@@ -3,6 +3,8 @@
 /**
  * Low level ProjectReference (auto-generated)
  *
+ * The referenced project, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +14,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class ProjectReference implements ModelInterface, JsonSerializable
@@ -26,8 +27,8 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         private readonly ProjectType $type,
         private readonly string $plan,
         private readonly ProjectStatus $status,
-        private readonly DateTime $createdAt,
-        private readonly DateTime $updatedAt,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
     ) {
     }
 
@@ -97,12 +98,12 @@ final class ProjectReference implements ModelInterface, JsonSerializable
         return $this->status;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }

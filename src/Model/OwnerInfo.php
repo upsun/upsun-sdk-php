@@ -3,6 +3,8 @@
 /**
  * Low level OwnerInfo (auto-generated)
  *
+ * Project owner information that can be exposed to collaborators.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

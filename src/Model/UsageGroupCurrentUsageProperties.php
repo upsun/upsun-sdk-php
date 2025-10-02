@@ -3,6 +3,8 @@
 /**
  * Low level UsageGroupCurrentUsageProperties (auto-generated)
  *
+ * Current usage info for a usage group.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

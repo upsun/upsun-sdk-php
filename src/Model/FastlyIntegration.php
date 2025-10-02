@@ -12,7 +12,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class FastlyIntegration implements ModelInterface, JsonSerializable
@@ -25,8 +24,8 @@ final class FastlyIntegration implements ModelInterface, JsonSerializable
         private readonly array $states,
         private readonly string $result,
         private readonly string $serviceId,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $id = null,
     ) {
     }
@@ -57,12 +56,12 @@ final class FastlyIntegration implements ModelInterface, JsonSerializable
         return json_encode($this->jsonSerialize(), JSON_PRETTY_PRINT);
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

@@ -3,6 +3,8 @@
 /**
  * Low level LineItemComponent (auto-generated)
  *
+ * A price component for a line item.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

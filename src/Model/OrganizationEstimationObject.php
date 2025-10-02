@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationEstimationObject (auto-generated)
  *
+ * An estimation of all organization spend.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

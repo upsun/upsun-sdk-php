@@ -2,10 +2,6 @@
 
 namespace Upsun\Api;
 
-use Upsun\Model\CreateAuthorizationCredentials200Response;
-use DateTime;
-use Upsun\Model\Order;
-use Upsun\Model\ListOrgOrders200Response;
 use Exception;
 use GuzzleHttp\Psr7\MultipartStream;
 use Upsun\ApiException;
@@ -31,7 +27,6 @@ use Upsun\Core\OAuthProvider;
 final class OrdersApi extends AbstractApi
 {
     private readonly HeaderSelector $headerSelector;
-
     private Configuration $config;
 
     public function __construct(
@@ -69,14 +64,14 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return CreateAuthorizationCredentials200Response
+     * @return \Upsun\Model\CreateAuthorizationCredentials200Response
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/create-authorization-credentials
      */
     public function createAuthorizationCredentials(
         string $organizationId,
         string $orderId
-    ): CreateAuthorizationCredentials200Response {
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         return $this->createAuthorizationCredentialsWithHttpInfo(
             $organizationId,
             $orderId
@@ -86,14 +81,14 @@ final class OrdersApi extends AbstractApi
     /**
      * Create confirmation credentials for for 3D-Secure with HTTP Info
      *
-     * @return CreateAuthorizationCredentials200Response
+     * @return \Upsun\Model\CreateAuthorizationCredentials200Response
      *
      * @throws InvalidArgumentException|Exception
      */
     private function createAuthorizationCredentialsWithHttpInfo(
         string $organizationId,
         string $orderId
-    ): CreateAuthorizationCredentials200Response {
+    ): \Upsun\Model\CreateAuthorizationCredentials200Response {
         $request = $this->createAuthorizationCredentialsRequest(
             $organizationId,
             $orderId
@@ -108,13 +103,13 @@ final class OrdersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                CreateAuthorizationCredentials200Response::class,
+                '\Upsun\Model\CreateAuthorizationCredentials200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -134,7 +129,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling createAuthorizationCredentials'
             );
@@ -146,12 +141,11 @@ final class OrdersApi extends AbstractApi
             || (is_array($orderId)
             && count($orderId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $orderId 
                 when calling createAuthorizationCredentials'
             );
         }
-
         $resourcePath = '/organizations/{organization_id}/orders/{order_id}/authorize';
         $formParams = [];
         $queryParams = [];
@@ -167,7 +161,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($orderId !== null) {
             $resourcePath = str_replace(
@@ -197,7 +190,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -226,9 +218,9 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('POST', $uri, $headers, $httpBody);
     }
-
     /**
      * Download an invoice.
+     *
      *
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
@@ -268,9 +260,9 @@ final class OrdersApi extends AbstractApi
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -289,12 +281,11 @@ final class OrdersApi extends AbstractApi
             || (is_array($token)
             && count($token) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $token 
                 when calling downloadInvoice'
             );
         }
-
         $resourcePath = '/orders/download';
         $formParams = [];
         $queryParams = [];
@@ -309,7 +300,7 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['token'] = $token instanceof DateTime
+                $queryParams['token'] = $token instanceof \DateTime
                     ? $token->format(DATE_ATOM)
                     : ($token);
             }
@@ -338,7 +329,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -367,7 +357,6 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * Get order
      *
@@ -376,7 +365,7 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return Order
+     * @return \Upsun\Model\Order
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/get-org-order
      */
@@ -384,7 +373,7 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId,
         ?string $mode = null
-    ): Order {
+    ): \Upsun\Model\Order {
         return $this->getOrgOrderWithHttpInfo(
             $organizationId,
             $orderId,
@@ -395,7 +384,7 @@ final class OrdersApi extends AbstractApi
     /**
      * Get order with HTTP Info
      *
-     * @return Order
+     * @return \Upsun\Model\Order
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -403,7 +392,7 @@ final class OrdersApi extends AbstractApi
         string $organizationId,
         string $orderId,
         ?string $mode = null
-    ): Order {
+    ): \Upsun\Model\Order {
         $request = $this->getOrgOrderRequest(
             $organizationId,
             $orderId,
@@ -419,13 +408,13 @@ final class OrdersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                Order::class,
+                '\Upsun\Model\Order',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -446,7 +435,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling getOrgOrder'
             );
@@ -458,7 +447,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($orderId)
             && count($orderId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $orderId 
                 when calling getOrgOrder'
             );
@@ -478,7 +467,7 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['mode'] = $mode instanceof DateTime
+                $queryParams['mode'] = $mode instanceof \DateTime
                     ? $mode->format(DATE_ATOM)
                     : ($mode);
             }
@@ -494,7 +483,6 @@ final class OrdersApi extends AbstractApi
                 $resourcePath
             );
         }
-
         // path params
         if ($orderId !== null) {
             $resourcePath = str_replace(
@@ -524,7 +512,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {
@@ -553,7 +540,6 @@ final class OrdersApi extends AbstractApi
 
         return $this->createRequest('GET', $uri, $headers, $httpBody);
     }
-
     /**
      * List orders
      *
@@ -562,7 +548,7 @@ final class OrdersApi extends AbstractApi
      * @throws ApiException on non-2xx response
      * @throws InvalidArgumentException|Exception
      *
-     * @return ListOrgOrders200Response
+     * @return \Upsun\Model\ListOrgOrders200Response
      *
      * @see https://docs.upsun.com/api/#tag/Orders/operation/list-org-orders
      */
@@ -572,7 +558,7 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): ListOrgOrders200Response {
+    ): \Upsun\Model\ListOrgOrders200Response {
         return $this->listOrgOrdersWithHttpInfo(
             $organizationId,
             $filterStatus,
@@ -585,7 +571,7 @@ final class OrdersApi extends AbstractApi
     /**
      * List orders with HTTP Info
      *
-     * @return ListOrgOrders200Response
+     * @return \Upsun\Model\ListOrgOrders200Response
      *
      * @throws InvalidArgumentException|Exception
      */
@@ -595,7 +581,7 @@ final class OrdersApi extends AbstractApi
         ?int $filterTotal = null,
         ?int $page = null,
         ?string $mode = null
-    ): ListOrgOrders200Response {
+    ): \Upsun\Model\ListOrgOrders200Response {
         $request = $this->listOrgOrdersRequest(
             $organizationId,
             $filterStatus,
@@ -613,13 +599,13 @@ final class OrdersApi extends AbstractApi
             );
 
             return $this->handleResponseWithDataType(
-                ListOrgOrders200Response::class,
+                '\Upsun\Model\ListOrgOrders200Response',
                 $request,
                 $response
             );
-        } catch (ApiException $apiException) {
-            $apiException->enrichWithErrorObject();
-            throw $apiException;
+        } catch (ApiException $e) {
+            $e->enrichWithErrorObject();
+            throw $e;
         }
     }
 
@@ -642,7 +628,7 @@ final class OrdersApi extends AbstractApi
             || (is_array($organizationId)
             && count($organizationId) === 0)
         ) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'Missing the required parameter $organizationId 
                 when calling listOrgOrders'
             );
@@ -665,7 +651,7 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[status]'] = $filterStatus instanceof DateTime
+                $queryParams['filter[status]'] = $filterStatus instanceof \DateTime
                     ? $filterStatus->format(DATE_ATOM)
                     : ($filterStatus);
             }
@@ -680,7 +666,7 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['filter[total]'] = $filterTotal instanceof DateTime
+                $queryParams['filter[total]'] = $filterTotal instanceof \DateTime
                     ? $filterTotal->format(DATE_ATOM)
                     : ($filterTotal);
             }
@@ -695,7 +681,7 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['page'] = $page instanceof DateTime
+                $queryParams['page'] = $page instanceof \DateTime
                     ? $page->format(DATE_ATOM)
                     : ($page);
             }
@@ -710,7 +696,7 @@ final class OrdersApi extends AbstractApi
                     $queryParams[$key] = $value;
                 }
             } else {
-                $queryParams['mode'] = $mode instanceof DateTime
+                $queryParams['mode'] = $mode instanceof \DateTime
                     ? $mode->format(DATE_ATOM)
                     : ($mode);
             }
@@ -747,7 +733,6 @@ final class OrdersApi extends AbstractApi
                         ];
                     }
                 }
-
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
             } elseif ($this->headerSelector->isJsonMime($headers['Content-Type'])) {

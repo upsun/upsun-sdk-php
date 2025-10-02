@@ -3,6 +3,7 @@
 /**
  * Low level User (auto-generated)
  *
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +13,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class User implements ModelInterface, JsonSerializable
@@ -30,9 +30,9 @@ final class User implements ModelInterface, JsonSerializable
         private readonly string $company,
         private readonly string $website,
         private readonly string $country,
-        private readonly DateTime $createdAt,
-        private readonly DateTime $updatedAt,
-        private readonly ?DateTime $consentedAt = null,
+        private readonly \DateTime $createdAt,
+        private readonly \DateTime $updatedAt,
+        private readonly ?\DateTime $consentedAt = null,
         private readonly ?string $consentMethod = null,
     ) {
     }
@@ -129,17 +129,17 @@ final class User implements ModelInterface, JsonSerializable
         return $this->country;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): \DateTime
     {
         return $this->updatedAt;
     }
 
-    public function getConsentedAt(): ?DateTime
+    public function getConsentedAt(): ?\DateTime
     {
         return $this->consentedAt;
     }

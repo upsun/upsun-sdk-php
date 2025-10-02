@@ -3,6 +3,8 @@
 /**
  * Low level UserReference (auto-generated)
  *
+ * The referenced user, or null if it no longer exists.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

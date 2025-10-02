@@ -3,6 +3,8 @@
 /**
  * Low level CurrencyAmountNullable (auto-generated)
  *
+ * Currency amount with detailed components.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

@@ -3,6 +3,8 @@
 /**
  * Low level OrganizationSSOConfig (auto-generated)
  *
+ * The SSO configuration for the organization.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com
@@ -12,7 +14,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
@@ -22,8 +23,8 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
         private readonly ?string $domain = null,
         private readonly ?string $organizationId = null,
         private readonly ?bool $enforced = null,
-        private readonly ?DateTime $createdAt = null,
-        private readonly ?DateTime $updatedAt = null,
+        private readonly ?\DateTime $createdAt = null,
+        private readonly ?\DateTime $updatedAt = null,
     ) {
     }
 
@@ -69,12 +70,12 @@ final class OrganizationSSOConfig implements ModelInterface, JsonSerializable
         return $this->enforced;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }

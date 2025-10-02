@@ -2,8 +2,10 @@
 
 namespace Upsun\Core\Tasks;
 
+use DateTime;
 use Exception;
 use InvalidArgumentException;
+use Upsun\Api\AlertsApi;
 use Upsun\ApiException;
 use Upsun\Api\DeploymentTargetApi;
 use Upsun\Api\ProjectApi;
@@ -25,6 +27,7 @@ use Upsun\Model\DeploymentTargetCreateInput;
 use Upsun\Model\DeploymentTargetPatch;
 use Upsun\Model\Domain;
 use Upsun\Model\Environment;
+use Upsun\Model\GetUsageAlerts200Response;
 use Upsun\Model\Integration;
 use Upsun\Model\IntegrationCreateInput;
 use Upsun\Model\IntegrationPatch;
@@ -44,6 +47,7 @@ use Upsun\Model\TeamProjectAccess;
 use Upsun\Model\TheAddonCredentialInformationOptional1;
 use Upsun\Model\TheOAuth2ConsumerInformationOptional1;
 use Upsun\Model\Tree;
+use Upsun\Model\UpdateUsageAlertsRequest;
 use Upsun\Model\UserProjectAccess;
 use Upsun\UpsunClient;
 
@@ -65,6 +69,7 @@ class ProjectTask extends TaskBase
         private readonly SystemInformationApi $systemInfoApi,
         private readonly ThirdPartyIntegrationsApi $thirdPartyIntegrationsApi,
         private readonly SubscriptionsApi $subscriptionsApi,
+        private readonly AlertsApi $alertsApi,
     ) {
         parent::__construct($this->client);
     }
@@ -96,8 +101,6 @@ class ProjectTask extends TaskBase
     /**
      * Creates a project
      *
-     * @throws ApiException|Exception
-     *
      * @param array{
      *     projectRegion: string,
      *     plan?: string,
@@ -107,6 +110,8 @@ class ProjectTask extends TaskBase
      *     environments?: int,
      *     storage?: int
      * } $projectData Update data
+     * @throws ApiException|Exception
+     *
      */
     public function create(string $organizationId, array $projectData): Subscription
     {
@@ -139,9 +144,6 @@ class ProjectTask extends TaskBase
     /**
      * Updates a project
      *
-     * @throws InvalidArgumentException|Exception
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *   defaultBranch?: string,
      *   defaultDomain?: string,
@@ -151,6 +153,9 @@ class ProjectTask extends TaskBase
      *   timezone?: string,
      *   region?: string
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @throws InvalidArgumentException|Exception
      */
     public function update(string $projectId, array $data): AcceptedResponse
     {
@@ -172,9 +177,6 @@ class ProjectTask extends TaskBase
     /**
      * Invites user to a project by email
      *
-     * @throws InvalidArgumentException
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     email: string,
      *     role?: string,
@@ -182,6 +184,9 @@ class ProjectTask extends TaskBase
      *     environments?: bool,
      *     force?: bool
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
+     * @throws InvalidArgumentException
      */
     public function createInvite(string $projectId, array $data): ProjectInvitation
     {
@@ -225,14 +230,14 @@ class ProjectTask extends TaskBase
     /**
      * Updates a project setting
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     dataRetention?: array,
      *     initialize: string,
      *     cpu?: float,
      *     memory?: int
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function updateSettings(string $projectId, array $data): AcceptedResponse
     {
@@ -280,9 +285,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of project variables
      *
+     * @return ProjectVariable[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return ProjectVariable[]
      */
     public function listVariables(string $projectId): array
     {
@@ -291,8 +296,6 @@ class ProjectTask extends TaskBase
 
     /**
      * Updates a project variable
-     *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     name?: string,
@@ -303,6 +306,8 @@ class ProjectTask extends TaskBase
      *     visibleBuild?: bool,
      *     visibleRuntime?: bool,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function updateVariable(
         string $projectId,
@@ -319,9 +324,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets project activity log
      *
+     * @return Activity[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return Activity[]
      */
     public function listActivities(string $projectId): array
     {
@@ -351,8 +356,6 @@ class ProjectTask extends TaskBase
     /**
      * Creates a project deployment target
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     type: string,
      *     name: string,
@@ -363,6 +366,8 @@ class ProjectTask extends TaskBase
      *     enterpriseEnvironmentsMapping?: array,
      *     useDedicatedGrid?: bool,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function createDeployment(string $projectId, array $data): AcceptedResponse
     {
@@ -370,8 +375,8 @@ class ProjectTask extends TaskBase
             type: $data['type'],
             name: $data['name'],
             hosts: $data['hosts'] ?? null,
-            enforcedMounts: (object) $data['enforcedMounts'] ?? null,
-            siteUrls: (object) $data['siteUrls'] ?? null,
+            enforcedMounts: (object)$data['enforcedMounts'] ?? null,
+            siteUrls: (object)$data['siteUrls'] ?? null,
             sshHosts: $data['sshHosts'] ?? null,
             enterpriseEnvironmentsMapping: (object)$data['enterpriseEnvironmentsMapping'] ?? null,
             useDedicatedGrid: $data['useDedicatedGrid'] ?? null,
@@ -402,9 +407,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets project deployment target info
      *
+     * @return DeploymentTarget[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return DeploymentTarget[]
      */
     public function listDeployments(string $projectId): array
     {
@@ -413,8 +418,6 @@ class ProjectTask extends TaskBase
 
     /**
      * Updates a project deployment
-     *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     type: string,
@@ -426,6 +429,8 @@ class ProjectTask extends TaskBase
      *     enterpriseEnvironmentsMapping?: array,
      *     useDedicatedGrid?: bool,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function updateDeployment(
         string $projectId,
@@ -436,8 +441,8 @@ class ProjectTask extends TaskBase
             type: $data['type'],
             name: $data['name'],
             hosts: $data['hosts'] ?? null,
-            enforcedMounts: (object) $data['enforcedMounts'] ?? null,
-            siteUrls: (object) $data['siteUrls'] ?? null,
+            enforcedMounts: (object)$data['enforcedMounts'] ?? null,
+            siteUrls: (object)$data['siteUrls'] ?? null,
             sshHosts: $data['sshHosts'] ?? null,
             enterpriseEnvironmentsMapping: (object)$data['enterpriseEnvironmentsMapping'] ?? null,
             useDedicatedGrid: $data['useDedicatedGrid'] ?? null,
@@ -494,9 +499,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of repository refs
      *
+     * @return Ref[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return Ref[]
      */
     public function listGitRefs(string $projectId): array
     {
@@ -525,8 +530,6 @@ class ProjectTask extends TaskBase
 
     /**
      * Integrates project with a third-party service
-     *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     type: string,
@@ -583,6 +586,8 @@ class ProjectTask extends TaskBase
      *     authToken?: string,
      *     authMode?: string,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function createIntegration(string $projectId, array $data): AcceptedResponse
     {
@@ -661,9 +666,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of existing integrations for a project
      *
+     * @return Integration[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return Integration[]
      */
     public function listIntegrations(string $projectId): array
     {
@@ -672,8 +677,6 @@ class ProjectTask extends TaskBase
 
     /**
      * Updates an existing third-party integration
-     *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
      * @param array{
      *     type: string,
@@ -730,6 +733,8 @@ class ProjectTask extends TaskBase
      *     authToken?: string,
      *     authMode?: string,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function updateIntegration(
         string $projectId,
@@ -795,14 +800,14 @@ class ProjectTask extends TaskBase
     /**
      * Adds a project domain
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     name: string,
      *     attributes?: array,
      *     isDefault?: bool,
      *     replacementFor?: string,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function createDomain(string $projectId, array $data): AcceptedResponse
     {
@@ -832,9 +837,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of project domains
      *
+     * @return Domain[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return Domain[]
      */
     public function listDomains(string $projectId): array
     {
@@ -844,12 +849,12 @@ class ProjectTask extends TaskBase
     /**
      * Updates a project domain
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     attributes?: array,
      *     isDefault?: bool,
      * } $data
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function updateDomain(string $projectId, string $domainId, array $data): AcceptedResponse
     {
@@ -859,14 +864,14 @@ class ProjectTask extends TaskBase
     /**
      * Adds an SSL certificate
      *
-     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
-     *
      * @param array{
      *     certificate?: string,
      *     key?: string,
      *     chain?: array,
      *     isInvalid?: bool
      * } $options Configuration options
+     * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
+     *
      */
     public function createCertificate(string $projectId, array $options): AcceptedResponse
     {
@@ -896,9 +901,9 @@ class ProjectTask extends TaskBase
     /**
      * Gets list of SSL certificates
      *
+     * @return Certificate[]
      * @throws ApiException|Exception on non-2xx response or if the response body is not in the expected format
      *
-     * @return Certificate[]
      */
     public function listCertificates(string $projectId): array
     {
@@ -1095,12 +1100,47 @@ class ProjectTask extends TaskBase
     /**
      * Lists environments of a project
      *
+     * @return Environment[]
      * @throws ApiException|Exception
      *
-     * @return Environment[]
      */
     public function listEnvironments(string $projectId): array
     {
         return $this->client->environment->list($projectId);
+    }
+
+    /**
+     * Get usage alerts for a project
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/get-subscription-usage-alerts
+     */
+    public function getUsageAlert(string $projectId): GetUsageAlerts200Response
+    {
+        $project = $this->get($projectId);
+        return $this->alertsApi->getUsageAlerts($project?->getSubscription()?->getId());
+    }
+
+    /**
+     * Update usage alerts.
+     *
+     * @throws ApiException on non-2xx response
+     * @throws InvalidArgumentException|Exception
+     *
+     * @param array<array{id?: string, active?: bool, alertsSent?: int, lastAlertAt?: DateTime|string|null, updatedAt?: DateTime|string|null, config?: object|array|null}>|null $data
+     *
+     * @see https://docs.upsun.com/api/#tag/Subscriptions/operation/update-subscription-usage-alerts
+     */
+    public function updateUsageAlerts(
+        string $projectId,
+        ?array $data
+    ): GetUsageAlerts200Response {
+        $project = $this->get($projectId);
+        $data = new UpdateUsageAlertsRequest(
+            alerts: $data
+        );
+        return $this->alertsApi->updateUsageAlerts($project?->getSubscription()?->getId(), $data);
     }
 }

@@ -3,6 +3,8 @@
 /**
  * Low level SSHKey (auto-generated)
  *
+ * The ssh key object.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

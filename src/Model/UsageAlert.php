@@ -3,6 +3,8 @@
 /**
  * Low level UsageAlert (auto-generated)
  *
+ * The usage alert for a subscription.
+ *
  * @author    Upsun SDK Team
  * @license   Apache-2.0
  * @see       https://docs.upsun.com

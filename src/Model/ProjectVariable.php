@@ -12,7 +12,6 @@
 
 namespace Upsun\Model;
 
-use DateTime;
 use JsonSerializable;
 
 final class ProjectVariable implements ModelInterface, JsonSerializable
@@ -26,8 +25,8 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
         private readonly bool $visibleBuild,
         private readonly bool $visibleRuntime,
         private readonly array $applicationScope,
-        private readonly ?DateTime $createdAt,
-        private readonly ?DateTime $updatedAt,
+        private readonly ?\DateTime $createdAt,
+        private readonly ?\DateTime $updatedAt,
         private readonly ?string $value = null,
     ) {
     }
@@ -64,12 +63,12 @@ final class ProjectVariable implements ModelInterface, JsonSerializable
         return $this->id;
     }
 
-    public function getCreatedAt(): ?DateTime
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
