@@ -51,27 +51,27 @@ use Upsun\Api\UserProfilesApi;
 use Upsun\Api\UsersApi;
 use Upsun\Api\VouchersApi;
 use Upsun\Core\OAuthProvider;
-use Upsun\Core\Tasks\ActivityTask;
-use Upsun\Core\Tasks\ApplicationTask;
-use Upsun\Core\Tasks\BackupTask;
-use Upsun\Core\Tasks\CertificateTask;
-use Upsun\Core\Tasks\DomainTask;
-use Upsun\Core\Tasks\EnvironmentTask;
-use Upsun\Core\Tasks\InvitationTask;
+use Upsun\Core\Tasks\ActivitiesTask;
+use Upsun\Core\Tasks\ApplicationsTask;
+use Upsun\Core\Tasks\BackupsTask;
+use Upsun\Core\Tasks\CertificatesTask;
+use Upsun\Core\Tasks\DomainsTask;
+use Upsun\Core\Tasks\EnvironmentsTask;
+use Upsun\Core\Tasks\InvitationsTask;
 use Upsun\Core\Tasks\MetricsTask;
-use Upsun\Core\Tasks\MountTask;
-use Upsun\Core\Tasks\OperationTask;
-use Upsun\Core\Tasks\OrganizationTask;
-use Upsun\Core\Tasks\ProjectTask;
-use Upsun\Core\Tasks\RegionTask;
+use Upsun\Core\Tasks\MountsTask;
+use Upsun\Core\Tasks\OperationsTask;
+use Upsun\Core\Tasks\OrganizationsTask;
+use Upsun\Core\Tasks\ProjectsTask;
+use Upsun\Core\Tasks\RegionsTask;
 use Upsun\Core\Tasks\ResourcesTask;
-use Upsun\Core\Tasks\RouteTask;
-use Upsun\Core\Tasks\SourceOperationTask;
-use Upsun\Core\Tasks\SupportTicketTask;
-use Upsun\Core\Tasks\TeamTask;
-use Upsun\Core\Tasks\UserTask;
-use Upsun\Core\Tasks\VariableTask;
-use Upsun\Core\Tasks\WorkerTask;
+use Upsun\Core\Tasks\RoutesTask;
+use Upsun\Core\Tasks\SourceOperationsTask;
+use Upsun\Core\Tasks\SupportTicketsTask;
+use Upsun\Core\Tasks\TeamsTask;
+use Upsun\Core\Tasks\UsersTask;
+use Upsun\Core\Tasks\VariablesTask;
+use Upsun\Core\Tasks\WorkersTask;
 
 /**
  * Upsun Client to interact with the API.
@@ -90,47 +90,47 @@ class UpsunClient
 
     public ?string $userId = null;
 
-    public ActivityTask $activity;
+    public ActivitiesTask $activities;
 
-    public ApplicationTask $application;
+    public ApplicationsTask $applications;
 
-    public BackupTask $backup;
+    public BackupsTask $backups;
 
-    public CertificateTask $certificate;
+    public CertificatesTask $certificates;
 
-    public DomainTask $domain;
+    public DomainsTask $domains;
 
-    public EnvironmentTask $environment;
+    public EnvironmentsTask $environments;
 
-    public InvitationTask $invitations;
+    public InvitationsTask $invitations;
 
     public MetricsTask $metrics;
 
-    public MountTask $mount;
+    public MountsTask $mounts;
 
-    public OperationTask $operation;
+    public OperationsTask $operations;
 
-    public OrganizationTask $organization;
+    public OrganizationsTask $organizations;
 
-    public ProjectTask $project;
+    public ProjectsTask $projects;
 
-    public RegionTask $region;
+    public RegionsTask $regions;
 
-    public ResourcesTask $resource;
+    public ResourcesTask $resources;
 
-    public RouteTask $route;
+    public RoutesTask $routes;
 
-    public SourceOperationTask $sourceOperation;
+    public SourceOperationsTask $sourceOperations;
 
-    public TeamTask $team;
+    public TeamsTask $teams;
 
-    public SupportTicketTask $supportTicket;
+    public SupportTicketsTask $supportTickets;
 
-    public UserTask $user;
+    public UsersTask $users;
 
-    public VariableTask $variables;
+    public VariablesTask $variables;
 
-    public WorkerTask $worker;
+    public WorkersTask $workers;
 
     public function __construct(protected UpsunConfig $upsunConfig)
     {
@@ -151,45 +151,45 @@ class UpsunClient
         );
 
         // Initialize the commands tasks.
-        $this->activity = new ActivityTask(
+        $this->activities = new ActivitiesTask(
             $this,
             new ProjectActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new EnvironmentActivityApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->application = new ApplicationTask(
+        $this->applications = new ApplicationsTask(
             $this,
             new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->backup = new BackupTask(
+        $this->backups = new BackupsTask(
             $this,
             new EnvironmentBackupsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->certificate = new CertificateTask(
+        $this->certificates = new CertificatesTask(
             $this,
             new CertManagementApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->domain = new DomainTask(
+        $this->domains = new DomainsTask(
             $this,
             new DomainManagementApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->environment = new EnvironmentTask(
+        $this->environments = new EnvironmentsTask(
             $this,
             new EnvironmentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new EnvironmentTypeApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
-        $this->invitations = new InvitationTask(
+        $this->invitations = new InvitationsTask(
             $this,
             new OrganizationInvitationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ProjectInvitationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
         $this->metrics = new MetricsTask($this);
-        $this->mount = new MountTask($this);
-        $this->operation = new OperationTask(
+        $this->mounts = new MountsTask($this);
+        $this->operations = new OperationsTask(
             $this,
             new RuntimeOperationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->organization = new OrganizationTask(
+        $this->organizations = new OrganizationsTask(
             $this,
             new OrganizationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new OrganizationProjectsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
@@ -203,7 +203,7 @@ class UpsunClient
             new VouchersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new AddOnsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
-        $this->project = new ProjectTask(
+        $this->projects = new ProjectsTask(
             $this,
             new ProjectApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ProjectSettingsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
@@ -212,35 +212,34 @@ class UpsunClient
             new SystemInformationApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new ThirdPartyIntegrationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new SubscriptionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
-            new AlertsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
-        $this->region = new RegionTask(
+        $this->regions = new RegionsTask(
             $this,
             new RegionsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->resource = new ResourcesTask(
+        $this->resources = new ResourcesTask(
             $this,
             new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->route = new RouteTask(
+        $this->routes = new RoutesTask(
             $this,
             new RoutingApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->sourceOperation = new SourceOperationTask(
+        $this->sourceOperations = new SourceOperationsTask(
             $this,
             new SourceOperationsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->team = new TeamTask(
+        $this->teams = new TeamsTask(
             $this,
             new TeamsApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new TeamAccessApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
-        $this->supportTicket = new SupportTicketTask(
+        $this->supportTickets = new SupportTicketsTask(
             $this,
             new DefaultApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new SupportApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
-        $this->user = new UserTask(
+        $this->users = new UsersTask(
             $this,
             new UsersApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new UserProfilesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
@@ -251,12 +250,12 @@ class UpsunClient
             new MFAApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new PhoneNumberApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
-        $this->variables = new VariableTask(
+        $this->variables = new VariablesTask(
             $this,
             new ProjectVariablesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
             new EnvironmentVariablesApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig),
         );
-        $this->worker = new WorkerTask(
+        $this->workers = new WorkersTask(
             $this,
             new DeploymentApi($this->auth, $this->apiClient, $requestFactory, $this->apiConfig)
         );
